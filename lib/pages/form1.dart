@@ -32,7 +32,7 @@ class _Form1PageState extends State<Form1Page> {
     );
   }
 
-  Widget customDropDown({String headerlable}) {
+  Widget customDropDown({String headerlable, List<String> items}) {
     return Container(
       child: Column(
         children: <Widget>[
@@ -42,7 +42,7 @@ class _Form1PageState extends State<Form1Page> {
           Container(
             padding: EdgeInsets.only(left: 10, right: 10),
             child: DropdownButtonFormField(
-              items: <String>['1', '2', '3'].map((String value) {
+              items: items.map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -274,49 +274,171 @@ class _Form1PageState extends State<Form1Page> {
                   setapptext(key: 'key_property_location'),
                 ),
                 children: [
-                  customDropDown(headerlable: 'key_select_province'),
+                  customDropDown(
+                      headerlable: 'key_select_province',
+                      items: ['1', '2', '3']),
+                  customDropDown(
+                      headerlable: 'key_select_city', items: ['1', '2', '3']),
+                  formtextfield(labletext: 'key_area'),
+                  formtextfield(labletext: 'key_pass'),
+                  formtextfield(labletext: 'key_block'),
+                  formtextfield(labletext: 'key_part_number'),
+                  formtextfield(labletext: 'key_unit_number'),
+                  formtextfield(labletext: 'key_number_of_unit'),
+                  formtextfield(labletext: 'key_state_name'),
+                  formtextfield(labletext: 'key_historycal_site'),
+                  formtextfield(labletext: 'key_land_area'),
+                  Container(
+                    padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                    child: Column(
+                      children: <Widget>[
+                        Text(setapptext(key: 'key_type_ownership')),
+                        RadioButtonGroup(
+                          labels: [
+                            setapptext(key: 'key_solo'),
+                            setapptext(key: 'key_collective')
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
                   RaisedButton(
                     onPressed: () {},
                     child: Text("Submit"),
                   )
                 ],
               ),
-              // ExpansionTile(
-              //   title: Text('Property Details'),
-              //   children: [
-              //     TextField(
-              //       decoration: InputDecoration(hintText: 'input1'),
-              //     ),
-              //     TextField(
-              //       decoration: InputDecoration(hintText: 'input2'),
-              //     ),
-              //     TextField(
-              //       decoration: InputDecoration(hintText: 'input3'),
-              //     ),
-              //     RaisedButton(
-              //       onPressed: null,
-              //       child: Text("Submit"),
-              //     )
-              //   ],
-              // ),
-              // ExpansionTile(
-              //   title: Text('Personal Fame / First Partner'),
-              //   children: [
-              //     TextField(
-              //       decoration: InputDecoration(hintText: 'input1'),
-              //     ),
-              //     TextField(
-              //       decoration: InputDecoration(hintText: 'input2'),
-              //     ),
-              //     TextField(
-              //       decoration: InputDecoration(hintText: 'input3'),
-              //     ),
-              //     RaisedButton(
-              //       onPressed: null,
-              //       child: Text("Submit"),
-              //     )
-              //   ],
-              // ),
+              //Property Details
+              ExpansionTile(
+                title: Text(setapptext(key: 'key_property_details')),
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          setapptext(key: 'key_location_land'),
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        RadioButtonGroup(
+                          labels: [
+                            setapptext(key: 'key_zone_1'),
+                            setapptext(key: 'key_zone_2'),
+                            setapptext(key: 'key_zone_3'),
+                            setapptext(key: 'key_zone_4'),
+                            setapptext(key: 'key_zone_5'),
+                            setapptext(key: 'key_zone_6'),
+                            setapptext(key: 'key_zone_7')
+                          ],
+                          onSelected: (String value) {
+                            print(value);
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          setapptext(key: 'key_does_properties_document'),
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        RadioButtonGroup(
+                          labels: [
+                            setapptext(key: 'key_yes_sir'),
+                            setapptext(key: 'key_no'),
+                          ],
+                          onSelected: (String value) {
+                            print(value);
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          setapptext(key: 'key_current_use_property_type'),
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        RadioButtonGroup(
+                          labels: [
+                            setapptext(key: 'key_release'),
+                            setapptext(key: 'key_commercial'),
+                            setapptext(key: 'key_complex'),
+                            setapptext(key: 'key_productive'),
+                            setapptext(key: 'key_govt'),
+                            setapptext(key: 'key_agriculture'),
+                            setapptext(key: 'key_block_score'),
+                            setapptext(key: 'key_demaged'),
+                            setapptext(key: 'key_property_type_specified'),
+                            setapptext(key: 'key_property_type_unspecified'),
+                          ],
+                          onSelected: (String value) {
+                            print(value);
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                  RaisedButton(
+                    onPressed: null,
+                    child: Text("Submit"),
+                  )
+                ],
+              ),
+              //True personal / judgmental
+              ExpansionTile(
+                title: Text(
+                  setapptext(key: 'key_true_personal'),
+                ),
+                children: [
+                  formtextfield(labletext: 'key_asthma'),
+                  formtextfield(labletext: 'key_surname'),
+                  formtextfield(labletext: 'key_wold'),
+                  formtextfield(labletext: 'key_birth'),
+                  Container(
+                    padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          setapptext(key: 'key_gender'),
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        RadioButtonGroup(
+                          labels: [
+                            setapptext(key: 'key_male'),
+                            setapptext(key: 'key_female')
+                          ],
+                          onSelected: (String value) {
+                            print(value);
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                  formtextfield(labletext: 'key_phone'),
+                  formtextfield(labletext: 'key_email'),
+                  Container(
+                    padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          setapptext(key: ''),
+                        )
+                      ],
+                    ),
+                  ),
+                  RaisedButton(
+                    onPressed: null,
+                    child: Text("Submit"),
+                  )
+                ],
+              ),
               // ExpansionTile(
               //   title: Text('Information and photo hint'),
               //   children: [
