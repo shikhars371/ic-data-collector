@@ -10,6 +10,7 @@ class Form1Page extends StatefulWidget {
 
 class _Form1PageState extends State<Form1Page> {
   var _formkey = GlobalKey<FormState>();
+  bool chkval = false;
 
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
@@ -53,6 +54,23 @@ class _Form1PageState extends State<Form1Page> {
               },
               //onSaved: ,
             ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget fileuploader({String lable}) {
+    return Container(
+      padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+      child: Column(
+        children: <Widget>[
+          Text(
+            setapptext(key: lable),
+          ),
+          RaisedButton(
+            onPressed: () {},
+            child: Text("Click here to upload file (<10 MB)"),
           )
         ],
       ),
@@ -423,124 +441,88 @@ class _Form1PageState extends State<Form1Page> {
                   ),
                   formtextfield(labletext: 'key_phone'),
                   formtextfield(labletext: 'key_email'),
-                  Container(
-                    padding: EdgeInsets.only(left: 10, right: 10, top: 10),
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                          setapptext(key: ''),
-                        )
-                      ],
-                    ),
-                  ),
+                  fileuploader(lable: 'key_photo_owner'),
+                  formtextfield(labletext: 'key_enter_any_mere'),
                   RaisedButton(
                     onPressed: null,
                     child: Text("Submit"),
                   )
                 ],
               ),
-              // ExpansionTile(
-              //   title: Text('Information and photo hint'),
-              //   children: [
-              //     TextField(
-              //       decoration: InputDecoration(hintText: 'input1'),
-              //     ),
-              //     TextField(
-              //       decoration: InputDecoration(hintText: 'input2'),
-              //     ),
-              //     TextField(
-              //       decoration: InputDecoration(hintText: 'input3'),
-              //     ),
-              //     RaisedButton(
-              //       onPressed: null,
-              //       child: Text("Submit"),
-              //     )
-              //   ],
-              // ),
-              // ExpansionTile(
-              //   title: Text('Four limits'),
-              //   children: [
-              //     TextField(
-              //       decoration: InputDecoration(hintText: 'input1'),
-              //     ),
-              //     TextField(
-              //       decoration: InputDecoration(hintText: 'input2'),
-              //     ),
-              //     TextField(
-              //       decoration: InputDecoration(hintText: 'input3'),
-              //     ),
-              //     RaisedButton(
-              //       onPressed: null,
-              //       child: Text("Submit"),
-              //     )
-              //   ],
-              // ),
-              // ExpansionTile(
-              //   title: Text(
-              //       'Details of the number and area of ​​units (if the current use is mixed-use and commercial, fill the following sections).'),
-              //   children: [
-              //     TextField(
-              //       decoration: InputDecoration(hintText: 'input1'),
-              //     ),
-              //     TextField(
-              //       decoration: InputDecoration(hintText: 'input2'),
-              //     ),
-              //     TextField(
-              //       decoration: InputDecoration(hintText: 'input3'),
-              //     ),
-              //     RaisedButton(
-              //       onPressed: null,
-              //       child: Text("Submit"),
-              //     )
-              //   ],
-              // ),
-              // Container(
-              //   child: Column(
-              //     children: <Widget>[
-              //       Align(
-              //         alignment: Alignment.topLeft,
-              //         child: Text("Home / sketch map"),
-              //       ),
-              //       RaisedButton(
-              //         onPressed: () {},
-              //         child: Text("Click here to upload file"),
-              //       )
-              //     ],
-              //   ),
-              // ),
-              // Container(
-              //   child: Column(
-              //     children: <Widget>[
-              //       Align(
-              //         alignment: Alignment.topLeft,
-              //         child: Text("Home photo"),
-              //       ),
-              //       RaisedButton(
-              //         onPressed: () {},
-              //         child: Text("Click here to upload file"),
-              //       )
-              //     ],
-              //   ),
-              // ),
-              // Container(
-              //   child: Column(
-              //     children: <Widget>[
-              //       Text(
-              //           "Registered Property Fertilizer: (Unit-Block-Gateway-District-City-Province)"),
-              //       Radio(
-              //         groupValue: '',
-              //         onChanged: null,
-              //         value: '',
-              //       )
-              //     ],
-              //   ),
-              // ),
-              // Container(
-              //   child: RaisedButton(
-              //     onPressed: () {},
-              //     child: Text("submit"),
-              //   ),
-              // )
+              //info & photo
+              ExpansionTile(
+                title: Text(setapptext(key: 'key_information_and_photo')),
+                children: [
+                  formtextfield(labletext: 'key_machine_gun'),
+                  formtextfield(labletext: 'key_cover_letter'),
+                  formtextfield(labletext: 'Notification page'),
+                  formtextfield(labletext: 'key_reg_no'),
+                  fileuploader(lable: 'key_photo_note1'),
+                  fileuploader(lable: 'key_photo_tips1'),
+                  fileuploader(lable: 'key_photo_tips2'),
+                  RaisedButton(
+                    onPressed: null,
+                    child: Text("Submit"),
+                  )
+                ],
+              ),
+              //Four limits
+              ExpansionTile(
+                title: Text(setapptext(key: 'key_four_limits')),
+                children: [
+                  formtextfield(labletext: 'key_east'),
+                  formtextfield(labletext: 'key_west'),
+                  formtextfield(labletext: 'key_south'),
+                  formtextfield(labletext: 'key_north'),
+                  RaisedButton(
+                    onPressed: null,
+                    child: Text("Submit"),
+                  )
+                ],
+              ),
+              //details number area
+              ExpansionTile(
+                title: Text(
+                  setapptext(key: 'key_details_number'),
+                ),
+                children: [
+                  formtextfield(labletext: 'key_release_area'),
+                  formtextfield(labletext: 'key_business_area'),
+                  formtextfield(labletext: 'key_total_release_units'),
+                  formtextfield(labletext: 'key_total_business_unit'),
+                  RaisedButton(
+                    onPressed: null,
+                    child: Text("Submit"),
+                  )
+                ],
+              ),
+              fileuploader(lable: 'key_home_map'),
+              fileuploader(lable: 'key_home_photo'),
+              Container(
+                padding: EdgeInsets.only(left: 10, right: 10),
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      setapptext(key: 'key_registered_property'),
+                    ),
+                    Checkbox(
+                      value: chkval,
+                      onChanged: (bool value) {
+                        setState(() {
+                          chkval = !chkval;
+                        });
+                      },
+                    )
+                  ],
+                ),
+              ),
+              RaisedButton(
+                onPressed: () {},
+                child: Text("Submit"),
+              ),
+              Container(
+                height: 50,
+              )
             ],
           ),
         ),

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 
 import './pages/login.dart';
 import './localization/app_translations_delegate.dart';
 import './localization/application.dart';
+import './controllers/auth.dart';
+import './controllers/appproviders.dart';
 
 Future<Null> main() async {
   runApp(new LocalisedApp());
@@ -28,19 +31,26 @@ class LocalisedAppState extends State<LocalisedApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: LoginPage(),
-      localizationsDelegates: [
-        _newLocaleDelegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => AuthModel(),
+        )
       ],
-      supportedLocales: [
-        const Locale("en", ""),
-        const Locale("pashto", ""),
-        const Locale("dari", ""),
-      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: LoginPage(),
+        localizationsDelegates: [
+          _newLocaleDelegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: [
+          const Locale("en", ""),
+          const Locale("pashto", ""),
+          const Locale("dari", ""),
+        ],
+      ),
     );
   }
 

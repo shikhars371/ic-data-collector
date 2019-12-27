@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../pages/form1.dart';
 import '../localization/app_translations.dart';
+import '../controllers/auth.dart';
+import '../models/user.dart';
+import '../utils/showappdialog.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -9,6 +13,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  var _formkey = GlobalKey<FormState>();
+  User _user = new User();
+
   @override
   void initState() {
     super.initState();
@@ -29,7 +36,9 @@ class _LoginPageState extends State<LoginPage> {
               Container(
                 height: 100,
                 width: 100,
-                child: Image.asset("assets/images/klogo.png",),
+                child: Image.asset(
+                  "assets/images/klogo.png",
+                ),
               ),
               //titel
               Container(
@@ -49,75 +58,124 @@ class _LoginPageState extends State<LoginPage> {
                     side: BorderSide(color: Colors.white, width: 1),
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.only(top: 20, left: 20, right: 20),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.person_pin),
-                            labelText:
-                                AppTranslations.of(context).text("key_email"),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(left: 20, right: 20),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.lock),
-                            labelText: AppTranslations.of(context)
-                                .text("key_password"),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 16.0),
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(24),
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (BuildContext context) => Form1Page(),
+                  child: Consumer<AuthModel>(
+                    builder: (context, data, child) {
+                      return Form(
+                        key: _formkey,
+                        child: Column(
+                          children: <Widget>[
+                            //email textbox
+                            Container(
+                              padding:
+                                  EdgeInsets.only(top: 20, left: 20, right: 20),
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                  prefixIcon: Icon(Icons.person_pin),
+                                  labelText: AppTranslations.of(context)
+                                      .text("key_email"),
+                                ),
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return '* requaired';
+                                  }
+                                },
+                                onSaved: (value) {
+                                  _user.email = value;
+                                },
                               ),
-                            );
-                          },
-                          padding: EdgeInsets.all(12),
-                          color: Colors.lightBlueAccent,
-                          child: Text(
-                            AppTranslations.of(context).text("key_login"),
-                            style: TextStyle(color: Colors.white),
-                          ),
+                            ),
+                            //password textbox
+                            Container(
+                              padding: EdgeInsets.only(left: 20, right: 20),
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                  prefixIcon: Icon(Icons.lock),
+                                  labelText: AppTranslations.of(context)
+                                      .text("key_password"),
+                                ),
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return '* required';
+                                  }
+                                },
+                                onSaved: (value) {
+                                  _user.password = value;
+                                },
+                              ),
+                            ),
+                            //login button
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 16.0),
+                              child: data.state == AppState.Busy
+                                  ? Center(
+                                      child: CircularProgressIndicator(),
+                                    )
+                                  : RaisedButton(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(24),
+                                      ),
+                                      onPressed: () async {
+                                        if (_formkey.currentState.validate()) {
+                                          _formkey.currentState.save();
+                                          var result =
+                                              await data.login(user: _user);
+                                          if (result) {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        Form1Page(),
+                                              ),
+                                            );
+                                          } else {
+                                            showDialogSingleButton(
+                                                context: context,
+                                                message:
+                                                    'Invalid username or password.',
+                                                title: 'Warning',
+                                                buttonLabel: 'ok');
+                                          }
+                                        }
+                                        return;
+                                      },
+                                      padding: EdgeInsets.all(12),
+                                      color: Colors.lightBlueAccent,
+                                      child: Text(
+                                        AppTranslations.of(context)
+                                            .text("key_login"),
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                            )
+                          ],
                         ),
-                      )
-                    ],
+                      );
+                    },
                   ),
                 ),
               ),
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    FlatButton(
-                      child: Text("english"),
-                      onPressed: () {
-                        AppTranslations.load(Locale("en"));
-                        setState(() {});
-                      },
-                    ),
-                    FlatButton(
-                      child: Text("Pashto"),
-                      onPressed: () {
-                        AppTranslations.load(Locale("pashto"));
-                        setState(() {});
-                      },
-                    )
-                  ],
-                ),
-              )
+              // Container(
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: <Widget>[
+              //       FlatButton(
+              //         child: Text("english"),
+              //         onPressed: () {
+              //           AppTranslations.load(Locale("en"));
+              //           setState(() {});
+              //         },
+              //       ),
+              //       FlatButton(
+              //         child: Text("Pashto"),
+              //         onPressed: () {
+              //           AppTranslations.load(Locale("pashto"));
+              //           setState(() {});
+              //         },
+              //       )
+              //     ],
+              //   ),
+              // )
             ],
           ),
         ),
