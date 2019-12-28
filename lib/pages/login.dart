@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../pages/form1.dart';
+import './dashboard.dart';
 import '../localization/app_translations.dart';
 import '../controllers/auth.dart';
 import '../models/user.dart';
@@ -125,7 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                                               MaterialPageRoute(
                                                 builder:
                                                     (BuildContext context) =>
-                                                        Form1Page(),
+                                                        DashboardPage(),
                                               ),
                                             );
                                           } else {

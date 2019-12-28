@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
 
 import '../localization/app_translations.dart';
+import '../utils/buttomnavbar.dart';
+import '../utils/appdrawer.dart';
 
 class Form1Page extends StatefulWidget {
   @override
@@ -81,8 +83,26 @@ class _Form1PageState extends State<Form1Page> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Form1"),
+        title: Text(
+          "Form",
+          style: TextStyle(
+              //color: Color.fromRGBO(192, 65, 25, 1),
+              fontWeight: FontWeight.bold),
+        ),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomRight,
+                colors: [
+                  Theme.of(context).primaryColor,
+                  Theme.of(context).secondaryHeaderColor
+                ]),
+          ),
+        ),
       ),
+      drawer: AppDrawer(pageindex: 0,),
+      bottomNavigationBar: appbuttomnavbar(context),
       body: SingleChildScrollView(
         child: Form(
           key: _formkey,

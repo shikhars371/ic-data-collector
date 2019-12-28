@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:page_transition/page_transition.dart';
 
 import '../pages/login.dart';
+import '../pages/form1.dart';
 
 class DrawerItem {
   String title;
@@ -23,10 +25,9 @@ class _AppDrawerState extends State<AppDrawer> {
   String _email;
 
   final drawerItems = [
-    DrawerItem("Dashboard", Icons.dashboard), //page index = 0
-    DrawerItem("Committee Formation", Icons.group), //page index = 1
-    DrawerItem("Joint Verification", Icons.verified_user), //page index = 2
-    DrawerItem("DGPS Survey", Icons.router) //page index = 3
+    DrawerItem("New Tasks", Icons.dashboard), //page index = 0
+    DrawerItem("Progressive Tasks", Icons.terrain), //page index = 1
+    DrawerItem("Completed Tasks", Icons.check), //page index = 2
   ];
   @override
   void initState() {
@@ -46,7 +47,7 @@ class _AppDrawerState extends State<AppDrawer> {
   getUserInfo() async {
     pref = await SharedPreferences.getInstance();
     setState(() {
-      _user = pref.getString("user");
+      _user = pref.getString("firstname");
       _email = pref.getString("email");
     });
   }
@@ -60,15 +61,13 @@ class _AppDrawerState extends State<AppDrawer> {
 
   _pageNavigator(int page) {
     if (page == 0) {
-      //_navfunction();
-    } 
+      _navfunction(Form1Page());
+    }
   }
 
   _navfunction(Widget page) {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (BuildContext context) => page),
-    );
+    Navigator.of(context).pushReplacement(
+        PageTransition(type: PageTransitionType.downToUp, child: page));
   }
 
   logout() async {
@@ -100,11 +99,20 @@ class _AppDrawerState extends State<AppDrawer> {
         child: Column(
           children: <Widget>[
             UserAccountsDrawerHeader(
-              decoration: BoxDecoration(color: Colors.green[800]),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Theme.of(context).primaryColor,
+                      Theme.of(context).secondaryHeaderColor,
+                    ]),
+              ),
               currentAccountPicture: new CircleAvatar(
                 radius: 50.0,
-                child: new Image.asset(
-                  'assets/images/logo_light.png',
+                child: new Image.network(
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTnx9gugwptmYiJSoH38ftixCTsOiX86pseDJUG8nTONwADCQUS',
                 ),
               ),
               accountEmail: Text(_user?.isEmpty ?? true ? "" : _user),

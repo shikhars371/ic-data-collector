@@ -99,5 +99,7 @@
     "key_release_area": "Release Area",
     "key_business_area": "Business Area",
     "key_total_release_units": "Total number of release units",
-    "key_total_business_unit": "Total number of business units"
+    "key_total_business_unit": "Total number of business units",
+    "key_dashboard": "Dashboard",
+    "key_task":"Task"
 }
