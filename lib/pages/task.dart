@@ -39,7 +39,22 @@ class _TaskPageState extends State<TaskPage> {
       bottomNavigationBar: appbuttomnavbar(context),
       drawer: AppDrawer(),
       body: Container(
-
+        child: Card(
+          elevation: 3.0,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text("data"),
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: Text("data"),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

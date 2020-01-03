@@ -120,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                                           var result =
                                               await data.login(user: _user);
                                           if (result) {
-                                            Navigator.push(
+                                            Navigator.pushReplacement(
                                               context,
                                               MaterialPageRoute(
                                                 builder:

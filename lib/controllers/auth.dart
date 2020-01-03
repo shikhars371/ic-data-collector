@@ -23,8 +23,8 @@ class AuthModel with ChangeNotifier {
       var responce = await http.post(Configuration.apiurl + "authentication",
           body: {
             "strategy": "local",
-            "email": user.email,
-            "password": user.password
+            "email": user.email.trim(),
+            "password": user.password.trim()
           });
       if (responce.statusCode == 201) {
         if (responce.body.isNotEmpty) {
