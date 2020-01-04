@@ -9,6 +9,7 @@ import './pages/dashboard.dart';
 import './localization/app_translations_delegate.dart';
 import './localization/application.dart';
 import './controllers/auth.dart';
+import './controllers/task.dart';
 
 Future<Null> main() async {
   runApp(LocalisedApp());
@@ -37,6 +38,9 @@ class LocalisedAppState extends State<LocalisedApp> {
       providers: [
         ChangeNotifierProvider(
           create: (_) => AuthModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => TaskModel(),
         )
       ],
       child: MaterialApp(
