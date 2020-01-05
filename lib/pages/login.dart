@@ -88,6 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                             Container(
                               padding: EdgeInsets.only(left: 20, right: 20),
                               child: TextFormField(
+                                obscureText: true,
                                 decoration: InputDecoration(
                                   prefixIcon: Icon(Icons.lock),
                                   labelText: AppTranslations.of(context)
