@@ -6,6 +6,8 @@ import '../localization/app_translations.dart';
 import '../controllers/auth.dart';
 import '../models/user.dart';
 import '../utils/showappdialog.dart';
+import '../utils/navigation_service.dart';
+import '../utils/route_paths.dart' as routes;
 
 class LoginPage extends StatefulWidget {
   @override
@@ -15,11 +17,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   var _formkey = GlobalKey<FormState>();
   User _user = new User();
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -121,14 +118,17 @@ class _LoginPageState extends State<LoginPage> {
                                           var result =
                                               await data.login(user: _user);
                                           if (result) {
-                                            Navigator.pushReplacement(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder:
-                                                    (BuildContext context) =>
-                                                        DashboardPage(),
-                                              ),
-                                            );
+                                            NavigationService()
+                                                .navigateRepalceTo(
+                                                    routes.DashboardRoute);
+                                            // Navigator.pushReplacement(
+                                            //   context,
+                                            //   MaterialPageRoute(
+                                            //     builder:
+                                            //         (BuildContext context) =>
+                                            //             DashboardPage(),
+                                            //   ),
+                                            // );
                                           } else {
                                             showDialogSingleButton(
                                                 context: context,
@@ -156,27 +156,6 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              // Container(
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.center,
-              //     children: <Widget>[
-              //       FlatButton(
-              //         child: Text("english"),
-              //         onPressed: () {
-              //           AppTranslations.load(Locale("en"));
-              //           setState(() {});
-              //         },
-              //       ),
-              //       FlatButton(
-              //         child: Text("Pashto"),
-              //         onPressed: () {
-              //           AppTranslations.load(Locale("pashto"));
-              //           setState(() {});
-              //         },
-              //       )
-              //     ],
-              //   ),
-              // )
             ],
           ),
         ),

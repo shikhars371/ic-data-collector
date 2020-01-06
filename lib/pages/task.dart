@@ -141,14 +141,16 @@ class _TaskPageState extends State<TaskPage> {
                 )
               : Column(
                   children: <Widget>[
-                    Container(
-                      child: customDropDown(
-                          headerlable: 'Task Filter',
-                          items: ['Assigned', 'Processing', 'Completed']),
-                    ),
+                    // Container(
+                    //   child: customDropDown(
+                    //       headerlable: 'Task Filter',
+                    //       items: ['Assigned', 'Processing', 'Completed']),
+                    // ),
                     Expanded(
                       child: ListView.builder(
-                        itemCount: 5,
+                        itemCount: data.surveyAssignments.isEmpty
+                            ? 0
+                            : data.surveyAssignments.length,
                         itemBuilder: (context, index) {
                           return listcard(
                               status: 'Processing',

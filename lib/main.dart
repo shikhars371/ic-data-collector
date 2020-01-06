@@ -4,14 +4,18 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import './pages/login.dart';
-import './pages/dashboard.dart';
-import './localization/app_translations_delegate.dart';
-import './localization/application.dart';
 import './controllers/auth.dart';
 import './controllers/task.dart';
+import './localization/app_translations_delegate.dart';
+import './localization/application.dart';
+import './utils/locator.dart';
+import './utils/navigation_service.dart';
+import './utils/router.dart' as router;
+import './utils/route_paths.dart' as routes;
+import './utils/appproviders.dart';
 
 Future<Null> main() async {
+  setupLocator();
   runApp(LocalisedApp());
 }
 
@@ -43,6 +47,7 @@ class LocalisedAppState extends State<LocalisedApp> {
           create: (_) => TaskModel(),
         )
       ],
+      //providers: AppProviders().appproviders,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
@@ -50,6 +55,9 @@ class LocalisedAppState extends State<LocalisedApp> {
           secondaryHeaderColor: Color.fromRGBO(255, 138, 0, 1),
         ),
         home: MyHomePage(),
+        navigatorKey: locator<NavigationService>().navigatorKey,
+        onGenerateRoute: router.generateRoute,
+        initialRoute: routes.LoginRoute,
         localizationsDelegates: [
           _newLocaleDelegate,
           GlobalMaterialLocalizations.delegate,
@@ -86,17 +94,9 @@ class _MyHomePageState extends State<MyHomePage> {
     sharedPreferences = await SharedPreferences.getInstance();
     var access = sharedPreferences.getString("accesstoken");
     if (access != null && access != "") {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => DashboardPage(),
-        ),
-      );
+      NavigationService().navigateRepalceTo(routes.DashboardRoute);
     } else {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => LoginPage(),
-        ),
-      );
+      NavigationService().navigateRepalceTo(routes.LoginRoute);
     }
   }
 

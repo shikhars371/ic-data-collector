@@ -5,6 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/surveyAssignment.dart';
 import '../configs/configuration.dart';
+import '../utils/navigation_service.dart';
+import '../utils/route_paths.dart' as routes;
 
 enum AppState { Idle, Busy }
 
@@ -32,6 +34,8 @@ class TaskModel with ChangeNotifier {
         Iterable i = json.decode(responce.body[3]);
         _surveyAssignments =
             i.map((model) => SurveyAssignment.fromJson(model)).toList();
+      } else if (responce.statusCode == 401) {
+        NavigationService().navigateTo(routes.LoginRoute);
       } else {
         _surveyAssignments = [];
         setState(AppState.Idle);
