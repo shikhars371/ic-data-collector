@@ -6,6 +6,9 @@ import '../utils/buttomnavbar.dart';
 import '../utils/appdrawer.dart';
 import '../controllers/task.dart';
 import './surveylist.dart';
+import '../utils/navigation_service.dart';
+import '../utils/route_paths.dart' as routes;
+import '../utils/locator.dart';
 
 class TaskPage extends StatefulWidget {
   @override
@@ -13,6 +16,7 @@ class TaskPage extends StatefulWidget {
 }
 
 class _TaskPageState extends State<TaskPage> {
+  final NavigationService _navigationService = locator<NavigationService>();
   @override
   void initState() {
     Future.delayed(Duration.zero).then((_) {
@@ -21,96 +25,65 @@ class _TaskPageState extends State<TaskPage> {
     super.initState();
   }
 
+  Widget listcard(
+      {String id,
+      String status,
+      Color statuscolor,
+      String provinance,
+      String nahia,
+      String gozar,
+      String area}) {
+    return GestureDetector(
+      onTap: () {
+        _navigationService.navigateTo(routeName: routes.SurveyRoute);
+      },
+      child: Card(
+        elevation: 3.0,
+        child: Container(
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(242, 239, 230, 1),
+          ),
+          padding: EdgeInsets.all(5.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Align(
+                alignment: Alignment.topRight,
+                child: Text(
+                  status,
+                  style: TextStyle(
+                      color: statuscolor, fontWeight: FontWeight.bold),
+                ),
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text("Provinance :$provinance"),
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text("Nahia :$nahia"),
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text("Gozar :$gozar"),
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text("No od Area :$area"),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
   }
 
   @override
   Widget build(BuildContext context) {
-    Widget customDropDown({String headerlable, List<String> items}) {
-      return Container(
-        child: Column(
-          children: <Widget>[
-            Text(
-              setapptext(key: headerlable),
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 10, right: 10),
-              child: DropdownButtonFormField(
-                items: items.map((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-                onChanged: (String value) {
-                  value = value;
-                },
-                //onSaved: ,
-              ),
-            )
-          ],
-        ),
-      );
-    }
-
-    Widget listcard(
-        {String status,
-        Color statuscolor,
-        String provinance,
-        String nahia,
-        String gozar,
-        String area}) {
-      return GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => SurveyPage(),
-            ),
-          );
-        },
-        child: Card(
-          elevation: 3.0,
-          child: Container(
-            decoration: BoxDecoration(
-              color: Color.fromRGBO(242, 239, 230, 1),
-            ),
-            padding: EdgeInsets.all(5.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Text(
-                    status,
-                    style: TextStyle(
-                        color: statuscolor, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text("Provinance :$provinance"),
-                ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text("Nahia :$nahia"),
-                ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text("Gozar :$gozar"),
-                ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text("No od Area :$area"),
-                )
-              ],
-            ),
-          ),
-        ),
-      );
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -148,17 +121,39 @@ class _TaskPageState extends State<TaskPage> {
                     // ),
                     Expanded(
                       child: ListView.builder(
-                        itemCount: data.surveyAssignments.isEmpty
+                        itemCount: data.surveyAssignments?.isEmpty ?? true
                             ? 0
                             : data.surveyAssignments.length,
                         itemBuilder: (context, index) {
                           return listcard(
+                              id: data.surveyAssignments[index].id?.isEmpty ??
+                                      true
+                                  ? ""
+                                  : data.surveyAssignments[index].id,
                               status: 'Processing',
                               statuscolor: Colors.lightGreen,
-                              provinance: 'test',
-                              nahia: 'test',
-                              gozar: 'test',
-                              area: '12');
+                              provinance: data.surveyAssignments[index]
+                                          .provinceId?.isEmpty ??
+                                      true
+                                  ? ""
+                                  : data.surveyAssignments[index].provinceId,
+                              nahia: data.surveyAssignments[index].nahiaId
+                                          ?.isEmpty ??
+                                      true
+                                  ? ""
+                                  : data.surveyAssignments[index].nahiaId,
+                              gozar: data.surveyAssignments[index].gozarId
+                                          ?.isEmpty ??
+                                      true
+                                  ? ""
+                                  : data.surveyAssignments[index].gozarId,
+                              area: data.surveyAssignments[index]
+                                          .propertyToSurvey ==
+                                      0
+                                  ? ""
+                                  : data
+                                      .surveyAssignments[index].propertyToSurvey
+                                      .toString());
                         },
                       ),
                     )

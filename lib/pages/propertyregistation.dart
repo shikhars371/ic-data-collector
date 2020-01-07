@@ -5,12 +5,12 @@ import '../localization/app_translations.dart';
 import '../utils/buttomnavbar.dart';
 import '../utils/appdrawer.dart';
 
-class Form1Page extends StatefulWidget {
+class PropertyRegistationPage extends StatefulWidget {
   @override
-  _Form1PageState createState() => _Form1PageState();
+  _PropertyRegistationPage createState() => _PropertyRegistationPage();
 }
 
-class _Form1PageState extends State<Form1Page> {
+class _PropertyRegistationPage extends State<PropertyRegistationPage> {
   var _formkey = GlobalKey<FormState>();
   bool chkval = false;
 
@@ -152,6 +152,9 @@ class _Form1PageState extends State<Form1Page> {
                       ),
                       padding: EdgeInsets.all(10),
                       child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                         child: Container(
                           decoration: BoxDecoration(
                             border: Border.all(

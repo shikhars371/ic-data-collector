@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../pages/login.dart';
-import '../pages/form1.dart';
+import '../pages/propertyregistation.dart';
 
 class DrawerItem {
   String title;
@@ -61,7 +61,7 @@ class _AppDrawerState extends State<AppDrawer> {
 
   _pageNavigator(int page) {
     if (page == 0) {
-      _navfunction(Form1Page());
+      _navfunction(PropertyRegistationPage());
     }
   }
 

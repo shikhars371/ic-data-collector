@@ -121,7 +121,8 @@ class _LoginPageState extends State<LoginPage> {
                                           if (result) {
                                             _navigationService
                                                 .navigateRepalceTo(
-                                                    routes.DashboardRoute);
+                                                    routeName:
+                                                        routes.DashboardRoute);
                                             // Navigator.pushReplacement(
                                             //   context,
                                             //   MaterialPageRoute(

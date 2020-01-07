@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../localization/app_translations.dart';
-import './form1.dart';
+import './propertyregistation.dart';
 
 class SurveyPage extends StatefulWidget {
   SurveyPage({this.id});
@@ -34,7 +34,7 @@ class _SurveyPageState extends State<SurveyPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => Form1Page(),
+                  builder: (BuildContext context) => PropertyRegistationPage(),
                 ),
               );
             },

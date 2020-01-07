@@ -27,18 +27,23 @@ class TaskModel with ChangeNotifier {
     try {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       setState(AppState.Busy);
-      var responce =
-          await http.get(Configuration.apiurl + 'SurveyAssignment', headers: {
-        "Content-Type": "application/json",
-        "Authorization": preferences.getString("accesstoken")
-      });
+      var responce = await http.get(
+          Configuration.apiurl +
+              'SurveyAssignment?assigned_to=' +
+              preferences.getString('userid'),
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": preferences.getString("accesstoken")
+          });
       if (responce.statusCode == 200) {
-        Map responseJson=json.decode(responce.body);
-        Iterable i = responseJson['data'];
-        _surveyAssignments =
-            i.map((model) => SurveyAssignment.fromJson(model)).toList();
+        Map responseJson = json.decode(responce.body);
+        Iterable i = responseJson['date'];
+        if (i != null) {
+          _surveyAssignments =
+              i.map((model) => SurveyAssignment.fromJson(model)).toList();
+        }
       } else if (responce.statusCode == 401) {
-        _navigationService.navigateRepalceTo(routes.LoginRoute);
+        _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);
       } else {
         _surveyAssignments = [];
         setState(AppState.Idle);

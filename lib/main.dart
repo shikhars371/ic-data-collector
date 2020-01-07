@@ -95,9 +95,9 @@ class _MyHomePageState extends State<MyHomePage> {
     sharedPreferences = await SharedPreferences.getInstance();
     var access = sharedPreferences.getString("accesstoken");
     if (access != null && access != "") {
-      _navigationService.navigateRepalceTo(routes.DashboardRoute);
+      _navigationService.navigateRepalceTo(routeName: routes.DashboardRoute);
     } else {
-      _navigationService.navigateRepalceTo(routes.LoginRoute);
+      _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);
     }
   }
 
@@ -114,7 +114,8 @@ class _MyHomePageState extends State<MyHomePage> {
       // width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         image: DecorationImage(
-            image: AssetImage('assets/images/klogo.png'), fit: BoxFit.none),
+            image: AssetImage('assets/images/splashscreen.jpg'),
+            fit: BoxFit.fill),
       ),
     );
   }
