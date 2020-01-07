@@ -13,6 +13,7 @@ import './utils/navigation_service.dart';
 import './utils/router.dart' as router;
 import './utils/route_paths.dart' as routes;
 import './utils/appproviders.dart';
+import './utils/db_helper.dart';
 
 Future<Null> main() async {
   setupLocator();
@@ -87,6 +88,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final NavigationService _navigationService = locator<NavigationService>();
   SharedPreferences sharedPreferences;
+  DBHelper dbHelper;
   Future<Timer> loadData() async {
     return Timer(Duration(seconds: 2), onDoneLoading);
   }
@@ -103,6 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
+    dbHelper = DBHelper();
     loadData();
     super.initState();
   }
