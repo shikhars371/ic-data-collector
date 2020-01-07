@@ -57,7 +57,7 @@ class LocalisedAppState extends State<LocalisedApp> {
         home: MyHomePage(),
         navigatorKey: locator<NavigationService>().navigatorKey,
         onGenerateRoute: router.generateRoute,
-        initialRoute: routes.LoginRoute,
+        //initialRoute: routes.LoginRoute,
         localizationsDelegates: [
           _newLocaleDelegate,
           GlobalMaterialLocalizations.delegate,
@@ -85,6 +85,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final NavigationService _navigationService = locator<NavigationService>();
   SharedPreferences sharedPreferences;
   Future<Timer> loadData() async {
     return Timer(Duration(seconds: 2), onDoneLoading);
@@ -94,9 +95,9 @@ class _MyHomePageState extends State<MyHomePage> {
     sharedPreferences = await SharedPreferences.getInstance();
     var access = sharedPreferences.getString("accesstoken");
     if (access != null && access != "") {
-      NavigationService().navigateRepalceTo(routes.DashboardRoute);
+      _navigationService.navigateRepalceTo(routes.DashboardRoute);
     } else {
-      NavigationService().navigateRepalceTo(routes.LoginRoute);
+      _navigationService.navigateRepalceTo(routes.LoginRoute);
     }
   }
 

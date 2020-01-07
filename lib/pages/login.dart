@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import './dashboard.dart';
 import '../localization/app_translations.dart';
 import '../controllers/auth.dart';
 import '../models/user.dart';
 import '../utils/showappdialog.dart';
 import '../utils/navigation_service.dart';
 import '../utils/route_paths.dart' as routes;
+import '../utils/locator.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -15,6 +15,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final NavigationService _navigationService = locator<NavigationService>();
   var _formkey = GlobalKey<FormState>();
   User _user = new User();
 
@@ -118,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                                           var result =
                                               await data.login(user: _user);
                                           if (result) {
-                                            NavigationService()
+                                            _navigationService
                                                 .navigateRepalceTo(
                                                     routes.DashboardRoute);
                                             // Navigator.pushReplacement(

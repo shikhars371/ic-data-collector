@@ -7,6 +7,7 @@ import '../models/surveyAssignment.dart';
 import '../configs/configuration.dart';
 import '../utils/navigation_service.dart';
 import '../utils/route_paths.dart' as routes;
+import '../utils/locator.dart';
 
 enum AppState { Idle, Busy }
 
@@ -22,6 +23,7 @@ class TaskModel with ChangeNotifier {
   List<SurveyAssignment> get surveyAssignments => _surveyAssignments;
 
   Future<List<SurveyAssignment>> getAssignments() async {
+    final NavigationService _navigationService = locator<NavigationService>();
     try {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       setState(AppState.Busy);
@@ -31,11 +33,12 @@ class TaskModel with ChangeNotifier {
         "Authorization": preferences.getString("accesstoken")
       });
       if (responce.statusCode == 200) {
-        Iterable i = json.decode(responce.body[3]);
+        Map responseJson=json.decode(responce.body);
+        Iterable i = responseJson['data'];
         _surveyAssignments =
             i.map((model) => SurveyAssignment.fromJson(model)).toList();
       } else if (responce.statusCode == 401) {
-        NavigationService().navigateTo(routes.LoginRoute);
+        _navigationService.navigateRepalceTo(routes.LoginRoute);
       } else {
         _surveyAssignments = [];
         setState(AppState.Idle);
@@ -46,6 +49,7 @@ class TaskModel with ChangeNotifier {
       notifyListeners();
       print(e);
     }
+    setState(AppState.Idle);
     return _surveyAssignments;
   }
 }
