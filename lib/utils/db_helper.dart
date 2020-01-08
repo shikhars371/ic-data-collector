@@ -1,9 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:io' as io;
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
-class DBHelper {
+class DBHelper with ChangeNotifier {
   static Database _db;
   Future<Database> get db async {
     if (_db != null) {
@@ -21,8 +22,7 @@ class DBHelper {
   }
 
   _onCreate(Database db, int version) async {
-    await db
-        .execute('''
+    await db.execute('''
         CREATE TABLE user (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           name TEXT

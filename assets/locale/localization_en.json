@@ -68,8 +68,8 @@
     "key_demaged": "Damaged",
     "key_property_type_specified": "Property Type - Other (specified)",
     "key_property_type_unspecified": "Property Type - Other (unspecified)",
-    "key_true_personal": "True personal / judgmental / first partner reputation",
-    "key_asthma": "Asthma",
+    "key_true_personal": "True / False Personal Fame / First Partner",
+    "key_name": "Name",
     "key_surname": "Surname / surname",
     "key_wold": "Wold",
     "key_birth": "Birth",
@@ -82,7 +82,7 @@
     "key_information_and_photo": "Information and photo hint",
     "key_machine_gun": "Machine gun number / Sukuk number:",
     "key_cover_letter": "Cover Letter",
-    "key_notification_page": "Notification page",
+    "key_notification_page": "Note page",
     "key_reg_no": "registration number",
     "key_photo_note1": "Photo of Note-1",
     "key_photo_tips1": "Photo Tips - 1.",
@@ -101,5 +101,8 @@
     "key_total_release_units": "Total number of release units",
     "key_total_business_unit": "Total number of business units",
     "key_dashboard": "Dashboard",
-    "key_task":"Task"
+    "key_task":"Task",
+    "key_enter_1st_surveyor":"Enter the name ",
+    "key_uploads":"Uploads",
+    "key_fourlimit_note":"The boundary of the chain should be a parcel number or if there is no parcel there should be something written like road or sea"
 }

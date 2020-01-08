@@ -66,8 +66,8 @@ class _AppDrawerState extends State<AppDrawer> {
   }
 
   _navfunction(Widget page) {
-    Navigator.of(context).pushReplacement(
-        PageTransition(type: PageTransitionType.downToUp, child: page));
+    Navigator.of(context)
+        .push(PageTransition(type: PageTransitionType.downToUp, child: page));
   }
 
   logout() async {
