@@ -282,14 +282,16 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
 
   Widget formheader({String headerlablekey}) {
     return Container(
-      height: 30,
       decoration: BoxDecoration(
         color: Color.fromRGBO(177, 201, 224, 1),
       ),
       child: Center(
-        child: Text(
-          setapptext(key: headerlablekey),
-          style: TextStyle(fontWeight: FontWeight.bold),
+        child: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Text(
+            setapptext(key: headerlablekey),
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
       ),
     );
@@ -985,6 +987,48 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
+  Widget backbutton() {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          formval -= 1;
+        });
+      },
+      child: Container(
+        child: Row(
+          children: <Widget>[
+            Icon(Icons.arrow_back_ios),
+            Text(
+              "Back",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget nextbutton() {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          formval += 1;
+        });
+      },
+      child: Container(
+        child: Row(
+          children: <Widget>[
+            Text(
+              "Next",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Icon(Icons.arrow_forward_ios),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -1064,85 +1108,25 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               //buttom menu container
               if (formval == 0) ...[
                 Container(
-                  height: 25,
                   color: Theme.of(context).secondaryHeaderColor,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       //back button
                       SizedBox(),
-                      //menu button
-                      GestureDetector(
-                        onTap: () {
-                          print("menu");
-                        },
-                        child: Container(
-                          child: IconButton(
-                            icon: Icon(Icons.menu),
-                            onPressed: () {},
-                          ),
-                        ),
-                      ),
                       //next button
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            formval += 1;
-                          });
-                        },
-                        child: Container(
-                          child: Row(
-                            children: <Widget>[
-                              Text(
-                                "Next",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              Icon(Icons.arrow_forward_ios),
-                            ],
-                          ),
-                        ),
-                      )
+                      nextbutton()
                     ],
                   ),
                 )
               ] else if (formval == 10) ...[
                 Container(
-                  height: 25,
                   color: Theme.of(context).secondaryHeaderColor,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       //back button
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            formval -= 1;
-                          });
-                        },
-                        child: Container(
-                          child: Row(
-                            children: <Widget>[
-                              Icon(Icons.arrow_back_ios),
-                              Text(
-                                "Back",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      //menu button
-                      GestureDetector(
-                        onTap: () {
-                          print("menu");
-                        },
-                        child: Container(
-                          child: IconButton(
-                            icon: Icon(Icons.menu),
-                            onPressed: () {},
-                          ),
-                        ),
-                      ),
+                      backbutton(),
                       //next button
                       SizedBox()
                     ],
@@ -1150,62 +1134,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 )
               ] else ...[
                 Container(
-                  height: 25,
                   color: Theme.of(context).secondaryHeaderColor,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      //back button
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            formval -= 1;
-                          });
-                        },
-                        child: Container(
-                          child: Row(
-                            children: <Widget>[
-                              Icon(Icons.arrow_back_ios),
-                              Text(
-                                "Back",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      //menu button
-                      GestureDetector(
-                        onTap: () {
-                          print("menu");
-                        },
-                        child: Container(
-                          child: IconButton(
-                            icon: Icon(Icons.menu),
-                            onPressed: () {},
-                          ),
-                        ),
-                      ),
-                      //next button
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            formval += 1;
-                          });
-                        },
-                        child: Container(
-                          child: Row(
-                            children: <Widget>[
-                              Text(
-                                "Next",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              Icon(Icons.arrow_forward_ios),
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
+                    children: <Widget>[backbutton(), nextbutton()],
                   ),
                 )
               ]

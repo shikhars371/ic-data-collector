@@ -11,7 +11,7 @@ import '../utils/locator.dart';
 
 enum AppState { Idle, Busy }
 
-class TaskModel with ChangeNotifier {
+class AppSyncModel with ChangeNotifier {
   AppState _state = AppState.Idle;
   AppState get state => _state;
   void setState(AppState appState) {
@@ -19,11 +19,10 @@ class TaskModel with ChangeNotifier {
     notifyListeners();
   }
 
-  List<SurveyAssignment> _surveyAssignments = [];
-  List<SurveyAssignment> get surveyAssignments => _surveyAssignments;
-
-  Future<List<SurveyAssignment>> getAssignments() async {
+  Future<bool> appSync() async {
     final NavigationService _navigationService = locator<NavigationService>();
+    bool result = false;
+    List<SurveyAssignment> _surveyAssignments = [];
     try {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       setState(AppState.Busy);
@@ -45,7 +44,6 @@ class TaskModel with ChangeNotifier {
       } else if (responce.statusCode == 401) {
         _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);
       } else {
-        _surveyAssignments = [];
         setState(AppState.Idle);
         notifyListeners();
       }
@@ -55,6 +53,6 @@ class TaskModel with ChangeNotifier {
       print(e);
     }
     setState(AppState.Idle);
-    return _surveyAssignments;
+    return result;
   }
 }

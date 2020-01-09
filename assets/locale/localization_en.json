@@ -104,5 +104,7 @@
     "key_task":"Task",
     "key_enter_1st_surveyor":"Enter the name ",
     "key_uploads":"Uploads",
-    "key_fourlimit_note":"The boundary of the chain should be a parcel number or if there is no parcel there should be something written like road or sea"
+    "key_fourlimit_note":"The boundary of the chain should be a parcel number or if there is no parcel there should be something written like road or sea",
+    "key_language":"Language",
+    "key_app_sync":"Application Sync"
 }

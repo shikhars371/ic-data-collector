@@ -88,7 +88,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final NavigationService _navigationService = locator<NavigationService>();
   SharedPreferences sharedPreferences;
-  DBHelper dbHelper;
   Future<Timer> loadData() async {
     return Timer(Duration(seconds: 2), onDoneLoading);
   }
@@ -105,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    dbHelper = DBHelper();
+    DBHelper().initDatabase();
     loadData();
     super.initState();
   }
