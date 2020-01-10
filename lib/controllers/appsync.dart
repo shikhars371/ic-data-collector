@@ -8,8 +8,8 @@ import '../configs/configuration.dart';
 import '../utils/navigation_service.dart';
 import '../utils/route_paths.dart' as routes;
 import '../utils/locator.dart';
-
-enum AppState { Idle, Busy }
+import '../utils/db_helper.dart';
+import '../controllers/auth.dart';
 
 class AppSyncModel with ChangeNotifier {
   AppState _state = AppState.Idle;
@@ -40,6 +40,9 @@ class AppSyncModel with ChangeNotifier {
         if (i != null) {
           _surveyAssignments =
               i.map((model) => SurveyAssignment.fromJson(model)).toList();
+          int p = await DBHelper()
+              .addSurveyList(surveyAssignments: _surveyAssignments);
+          print(p);
         }
       } else if (responce.statusCode == 401) {
         _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);

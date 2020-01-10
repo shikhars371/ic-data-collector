@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:kapp/controllers/auth.dart';
+import 'package:provider/provider.dart';
 
 import '../localization/app_translations.dart';
 import '../utils/buttomnavbar.dart';
-import '../utils/db_helper.dart';
+import '../controllers/appsync.dart';
 
 class AppSetting extends StatefulWidget {
   @override
@@ -38,44 +40,42 @@ class _AppSettingState extends State<AppSetting> {
       ),
       bottomNavigationBar: appbuttomnavbar(context),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-          child: Column(
-            children: <Widget>[
-              ListTile(
-                leading: Icon(Icons.language),
-                title: Text(setapptext(key: 'key_language')),
-                onTap: () {
-                  print("language");
-                },
-              ),
-              Divider(
-                color: Colors.black54,
-              ),
-              ListTile(
-                leading: Icon(Icons.sync),
-                title: Text(setapptext(key: 'key_app_sync')),
-                onTap: () {
-                  print("app sync");
-                },
-              ),
-              Divider(
-                color: Colors.black54,
-              ),
-              RaisedButton(
-                onPressed: () {
-                  DBHelper().add(new U(id: 1, name: "saswat"));
-                },
-                child: Text("send"),
-              ),
-              RaisedButton(
-                child: Text("get"),
-                onPressed: () {
-                  DBHelper().getStudents();
-                },
-              )
-            ],
-          ),
+        child: Consumer<AppSyncModel>(
+          builder: (context, data, child) {
+            return data.state == AppState.Busy
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                    child: Column(
+                      children: <Widget>[
+                        ListTile(
+                          leading: Icon(Icons.language),
+                          title: Text(setapptext(key: 'key_language')),
+                          onTap: () {
+                            print("language");
+                          },
+                        ),
+                        Divider(
+                          color: Colors.black54,
+                        ),
+                        ListTile(
+                          leading: Icon(Icons.sync),
+                          title: Text(setapptext(key: 'key_app_sync')),
+                          onTap: () {
+                            data.appSync().then((onValue) {
+                              print(onValue);
+                            });
+                          },
+                        ),
+                        Divider(
+                          color: Colors.black54,
+                        ),
+                      ],
+                    ),
+                  );
+          },
         ),
       ),
     );

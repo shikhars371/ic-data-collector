@@ -4,7 +4,17 @@ import 'dart:io' as io;
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../models/surveyAssignment.dart';
+import '../controllers/auth.dart';
+
 class DBHelper with ChangeNotifier {
+  AppState _state = AppState.Idle;
+  AppState get state => _state;
+  void setState(AppState appState) {
+    _state = appState;
+    notifyListeners();
+  }
+
   static Database _db;
   Future<Database> get db async {
     if (_db != null) {
@@ -38,30 +48,89 @@ class DBHelper with ChangeNotifier {
     });
   }
 
-  Future<dynamic> add(U umodel) async {
+  Future<int> addSurveyList({List<SurveyAssignment> surveyAssignments}) async {
+    int result = 0;
     try {
       var dbClient = await db;
-      umodel.id = await dbClient.insert('user1', umodel.toJson());
-      return umodel;
+      for (var item in surveyAssignments) {
+        result = await dbClient.rawInsert('''
+          INSERT INTO surveylist(id,uid,assignedby,assignedto,provinceid,
+          municpalityid,nahiaid,gozarid,blockid,startdate,propertytosurvey,
+          propertysurveyed,propertyverified,propertygeoverified,
+          completiondate,completionstatus,approvestatus,createdby,updatedby,
+          ip)VALUES("${item.id}","${item.uid}","${item.assignedBy}",
+          "${item.assignedTo}","${item.provinceId}","${item.municpalityId}",
+          "${item.nahiaId}","${item.gozarId}","${item.blockId}","${item.startDate}",
+          ${item.propertyToSurvey.toInt()},${item.propertySurveyed.toInt()},
+          ${item.propertyVerified.toInt()},${item.propertyGeoverified.toInt()},
+          "${item.completionDate}","${item.completionStatus}","${item.approveStatus}",
+          "${item.createdBy}","${item.updatedBy}","${item.ip}")
+        ''');
+        // result = await dbClient.insert('surveylist', {
+        //   "id": item.id,
+        //   "uid": item.uid,
+        //   "assignedby": item.assignedBy,
+        //   "assignedto": item.assignedTo,
+        //   "provinceid": item.provinceId,
+        //   "municpalityid": item.municpalityId,
+        //   "nahiaid": item.nahiaId,
+        //   "gozarid": item.gozarId,
+        //   "blockid": item.blockId,
+        //   "startdate": item.startDate,
+        //   "propertytosurvey": item.propertyToSurvey,
+        //   "propertysurveyed": item.propertySurveyed,
+        //   "propertyverified": item.propertyVerified,
+        //   "propertygeoverified": item.propertyGeoverified,
+        //   "completiondate": item.completionDate,
+        //   "completionstatus": item.completionStatus,
+        //   "approvestatus": item.approveStatus,
+        //   "createdby": item.createdBy,
+        //   "updatedby": item.updatedBy,
+        //   "ip": item.ip
+        // });
+      }
     } catch (e) {
-      print(e);
+      print("addsurveylist db error:" + e);
     }
+    return result;
   }
 
-  Future<List<U>> getStudents() async {
-    List<U> students = [];
+  Future<List<SurveyAssignment>> getSurveys() async {
+    List<SurveyAssignment> surveys = [];
     try {
       var dbClient = await db;
-      List<Map> maps = await dbClient.query('user1', columns: ['id', 'name']);
+      List<Map> maps = await dbClient.query('surveylist');
       if (maps.length > 0) {
         for (int i = 0; i < maps.length; i++) {
-          students.add(U(id: maps[i]['id'], name: maps[i]['name']));
+          surveys.add(
+            SurveyAssignment(
+                id: maps[i]['id'],
+                uid: maps[i]['id'],
+                assignedBy: maps[i]['id'],
+                assignedTo: maps[i]['id'],
+                provinceId: maps[i]['id'],
+                municpalityId: maps[i]['id'],
+                nahiaId: maps[i]['id'],
+                gozarId: maps[i]['id'],
+                blockId: maps[i]['id'],
+                startDate: maps[i]['id'],
+                propertyToSurvey: maps[i]['id'],
+                propertySurveyed: maps[i]['id'],
+                propertyVerified: maps[i]['id'],
+                propertyGeoverified: maps[i]['id'],
+                completionDate: maps[i]['id'],
+                completionStatus: maps[i]['id'],
+                approveStatus: maps[i]['id'],
+                createdBy: maps[i]['id'],
+                updatedBy: maps[i]['id'],
+                ip: maps[i]['id']),
+          );
         }
       }
     } catch (e) {
       print(e);
     }
-    return students;
+    return surveys;
   }
 
   // Future<int> delete(int id) async {
@@ -87,14 +156,4 @@ class DBHelper with ChangeNotifier {
     var dbClient = await db;
     dbClient.close();
   }
-}
-
-class U {
-  int id;
-  String name;
-  U({this.id, this.name});
-  U.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        name = json['name'];
-  Map<String, dynamic> toJson() => {'id': id, 'name': name};
 }

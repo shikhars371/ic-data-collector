@@ -14,6 +14,7 @@ import './utils/router.dart' as router;
 import './utils/route_paths.dart' as routes;
 import './utils/appproviders.dart';
 import './utils/db_helper.dart';
+import './controllers/appsync.dart';
 
 Future<Null> main() async {
   setupLocator();
@@ -38,6 +39,12 @@ class LocalisedAppState extends State<LocalisedApp> {
   }
 
   @override
+  void dispose() {
+    DBHelper().close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
@@ -46,6 +53,9 @@ class LocalisedAppState extends State<LocalisedApp> {
         ),
         ChangeNotifierProvider(
           create: (_) => TaskModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => AppSyncModel(),
         )
       ],
       //providers: AppProviders().appproviders,
