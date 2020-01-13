@@ -321,11 +321,13 @@ class _DashboardPageState extends State<DashboardPage> {
                               color: Colors.white, size: 30.0),
                         )),
                     Padding(padding: EdgeInsets.only(bottom: 16.0)),
-                    Text('Completed',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 24.0)),
+                    Text(
+                      'Complete',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 24.0),
+                    ),
                     Text(
                       '8',
                       style: TextStyle(color: Colors.black45, fontSize: 20),

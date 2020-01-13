@@ -18,6 +18,22 @@ class _LoginPageState extends State<LoginPage> {
   final NavigationService _navigationService = locator<NavigationService>();
   var _formkey = GlobalKey<FormState>();
   User _user = new User();
+  FocusNode _email;
+  FocusNode _password;
+
+  @override
+  void initState() {
+    _email = FocusNode();
+    _password = FocusNode();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _email.dispose();
+    _password.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +88,14 @@ class _LoginPageState extends State<LoginPage> {
                                   labelText: AppTranslations.of(context)
                                       .text("key_email"),
                                 ),
+                                textInputAction: TextInputAction.next,
+                                focusNode: _email,
+                                onFieldSubmitted: (_) {
+                                  _email.unfocus();
+                                  FocusScope.of(context)
+                                      .requestFocus(_password);
+                                  setState(() {});
+                                },
                                 validator: (value) {
                                   if (value.isEmpty) {
                                     return '* requaired';
@@ -87,6 +111,26 @@ class _LoginPageState extends State<LoginPage> {
                               padding: EdgeInsets.only(left: 20, right: 20),
                               child: TextFormField(
                                 obscureText: true,
+                                focusNode: _password,
+                                textInputAction: TextInputAction.go,
+                                onFieldSubmitted: (_) async {
+                                  if (_formkey.currentState.validate()) {
+                                    _formkey.currentState.save();
+                                    var result = await data.login(user: _user);
+                                    if (result) {
+                                      _navigationService.navigateRepalceTo(
+                                          routeName: routes.DashboardRoute);
+                                    } else {
+                                      showDialogSingleButton(
+                                          context: context,
+                                          message:
+                                              'Invalid username or password.',
+                                          title: 'Warning',
+                                          buttonLabel: 'ok');
+                                    }
+                                  }
+                                  return;
+                                },
                                 decoration: InputDecoration(
                                   prefixIcon: Icon(Icons.lock),
                                   labelText: AppTranslations.of(context)
@@ -123,14 +167,6 @@ class _LoginPageState extends State<LoginPage> {
                                                 .navigateRepalceTo(
                                                     routeName:
                                                         routes.DashboardRoute);
-                                            // Navigator.pushReplacement(
-                                            //   context,
-                                            //   MaterialPageRoute(
-                                            //     builder:
-                                            //         (BuildContext context) =>
-                                            //             DashboardPage(),
-                                            //   ),
-                                            // );
                                           } else {
                                             showDialogSingleButton(
                                                 context: context,
