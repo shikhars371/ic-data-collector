@@ -1,4 +1,4 @@
-package com.example.kapp
+package com.sparc.kdatacollector
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

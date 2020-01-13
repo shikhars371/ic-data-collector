@@ -44,6 +44,7 @@ flutter:
   assets:
    - assets/images/klogo.png
    - assets/images/splashscreen.jpg
+   - assets/images/applogo.png
    - assets/locale/localization_pashto.json
    - assets/locale/localization_en.json
    - assets/locale/localozation_dari.json

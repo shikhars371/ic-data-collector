@@ -40,7 +40,12 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          color: Colors.blue,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+              Theme.of(context).primaryColor,
+              Theme.of(context).secondaryHeaderColor,
+            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+          ),
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Column(
@@ -51,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 100,
                 width: 100,
                 child: Image.asset(
-                  "assets/images/klogo.png",
+                  "assets/images/applogo.png",
                 ),
               ),
               //titel
@@ -147,45 +152,54 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                             //login button
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: 16.0),
-                              child: data.state == AppState.Busy
-                                  ? Center(
-                                      child: CircularProgressIndicator(),
-                                    )
-                                  : RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(24),
-                                      ),
-                                      onPressed: () async {
-                                        if (_formkey.currentState.validate()) {
-                                          _formkey.currentState.save();
-                                          var result =
-                                              await data.login(user: _user);
-                                          if (result) {
-                                            _navigationService
-                                                .navigateRepalceTo(
-                                                    routeName:
-                                                        routes.DashboardRoute);
-                                          } else {
-                                            showDialogSingleButton(
-                                                context: context,
-                                                message:
-                                                    'Invalid username or password.',
-                                                title: 'Warning',
-                                                buttonLabel: 'ok');
-                                          }
-                                        }
-                                        return;
-                                      },
-                                      padding: EdgeInsets.all(12),
-                                      color: Colors.lightBlueAccent,
-                                      child: Text(
-                                        AppTranslations.of(context)
-                                            .text("key_login"),
-                                        style: TextStyle(color: Colors.white),
-                                      ),
+                            GestureDetector(
+                              onTap: () async {
+                                if (_formkey.currentState.validate()) {
+                                  _formkey.currentState.save();
+                                  var result = await data.login(user: _user);
+                                  if (result) {
+                                    _navigationService.navigateRepalceTo(
+                                        routeName: routes.DashboardRoute);
+                                  } else {
+                                    showDialogSingleButton(
+                                        context: context,
+                                        message:
+                                            'Invalid username or password.',
+                                        title: 'Warning',
+                                        buttonLabel: 'ok');
+                                  }
+                                }
+                                return;
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Container(
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          blurRadius: 5.0, color: Colors.black)
+                                    ],
+                                    gradient: LinearGradient(colors: [
+                                      Theme.of(context).primaryColor,
+                                      Theme.of(context).secondaryHeaderColor
+                                    ]),
+                                  ),
+                                  margin: EdgeInsets.only(
+                                    left: MediaQuery.of(context).size.width / 5,
+                                    right:
+                                        MediaQuery.of(context).size.width / 5,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Login',
+                                      style: TextStyle(
+                                          fontSize: 20, color: Colors.white),
                                     ),
+                                  ),
+                                ),
+                              ),
                             )
                           ],
                         ),
