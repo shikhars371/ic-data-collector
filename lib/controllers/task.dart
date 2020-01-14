@@ -8,6 +8,7 @@ import '../configs/configuration.dart';
 import '../utils/navigation_service.dart';
 import '../utils/route_paths.dart' as routes;
 import '../utils/locator.dart';
+import '../utils/db_helper.dart';
 
 enum AppState { Idle, Busy }
 
@@ -25,30 +26,32 @@ class TaskModel with ChangeNotifier {
   Future<List<SurveyAssignment>> getAssignments() async {
     final NavigationService _navigationService = locator<NavigationService>();
     try {
-      SharedPreferences preferences = await SharedPreferences.getInstance();
       setState(AppState.Busy);
-      var responce = await http.get(
-          Configuration.apiurl +
-              'SurveyAssignment?assigned_to=' +
-              preferences.getString('userid'),
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": preferences.getString("accesstoken")
-          });
-      if (responce.statusCode == 200) {
-        Map responseJson = json.decode(responce.body);
-        Iterable i = responseJson['data'];
-        if (i != null) {
-          _surveyAssignments =
-              i.map((model) => SurveyAssignment.fromJson(model)).toList();
-        }
-      } else if (responce.statusCode == 401) {
-        _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);
-      } else {
-        _surveyAssignments = [];
-        setState(AppState.Idle);
-        notifyListeners();
-      }
+      _surveyAssignments = await DBHelper().getSurveys();
+      // SharedPreferences preferences = await SharedPreferences.getInstance();
+      // setState(AppState.Busy);
+      // var responce = await http.get(
+      //     Configuration.apiurl +
+      //         'SurveyAssignment?assigned_to=' +
+      //         preferences.getString('userid'),
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       "Authorization": preferences.getString("accesstoken")
+      //     });
+      // if (responce.statusCode == 200) {
+      //   Map responseJson = json.decode(responce.body);
+      //   Iterable i = responseJson['data'];
+      //   if (i != null) {
+      //     _surveyAssignments =
+      //         i.map((model) => SurveyAssignment.fromJson(model)).toList();
+      //   }
+      // } else if (responce.statusCode == 401) {
+      //   _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);
+      // } else {
+      //   _surveyAssignments = [];
+      //   setState(AppState.Idle);
+      //   notifyListeners();
+      // }
     } catch (e) {
       setState(AppState.Idle);
       notifyListeners();

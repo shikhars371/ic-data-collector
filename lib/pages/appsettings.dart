@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../localization/app_translations.dart';
 import '../utils/buttomnavbar.dart';
 import '../controllers/appsync.dart';
+import '../utils/db_helper.dart';
 
 class AppSetting extends StatefulWidget {
   @override
@@ -54,7 +55,7 @@ class _AppSettingState extends State<AppSetting> {
                           leading: Icon(Icons.language),
                           title: Text(setapptext(key: 'key_language')),
                           onTap: () {
-                            print("language");
+                            DBHelper().getSurveys();
                           },
                         ),
                         Divider(

@@ -102,28 +102,35 @@ class DBHelper with ChangeNotifier {
       List<Map> maps = await dbClient.query('surveylist');
       if (maps.length > 0) {
         for (int i = 0; i < maps.length; i++) {
+          print(maps[i]['completionstatus']);
           surveys.add(
             SurveyAssignment(
                 id: maps[i]['id'],
-                uid: maps[i]['id'],
-                assignedBy: maps[i]['id'],
-                assignedTo: maps[i]['id'],
-                provinceId: maps[i]['id'],
-                municpalityId: maps[i]['id'],
-                nahiaId: maps[i]['id'],
-                gozarId: maps[i]['id'],
-                blockId: maps[i]['id'],
-                startDate: maps[i]['id'],
-                propertyToSurvey: maps[i]['id'],
-                propertySurveyed: maps[i]['id'],
-                propertyVerified: maps[i]['id'],
-                propertyGeoverified: maps[i]['id'],
-                completionDate: maps[i]['id'],
-                completionStatus: maps[i]['id'],
-                approveStatus: maps[i]['id'],
-                createdBy: maps[i]['id'],
-                updatedBy: maps[i]['id'],
-                ip: maps[i]['id']),
+                uid: maps[i]['uid'],
+                assignedBy: maps[i]['assignedby'],
+                assignedTo: maps[i]['assignedto'],
+                provinceId: maps[i]['provinceid'],
+                municpalityId: maps[i]['municpalityid'],
+                nahiaId: maps[i]['nahiaid'],
+                gozarId: maps[i]['gozarid'],
+                blockId: maps[i]['blockid'],
+                startDate: maps[i]['startdate'],
+                propertyToSurvey:
+                    int.tryParse(maps[i]['propertytosurvey'].toString()),
+                propertySurveyed:
+                    int.tryParse(maps[i]['propertysurveyed'].toString()),
+                propertyVerified:
+                    int.tryParse(maps[i]['propertyverified'].toString()),
+                propertyGeoverified:
+                    int.tryParse(maps[i]['propertygeoverified'].toString()),
+                completionDate: maps[i]['completiondate'],
+                completionStatus:
+                    maps[i]['completionstatus'] == null ? false : true,
+                approveStatus:
+                    int.tryParse(maps[i]['approvestatus'].toString()),
+                createdBy: maps[i]['createdby'],
+                updatedBy: maps[i]['updatedby'],
+                ip: maps[i]['ip']),
           );
         }
       }
