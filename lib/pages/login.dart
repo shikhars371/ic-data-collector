@@ -152,55 +152,69 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                             //login button
-                            GestureDetector(
-                              onTap: () async {
-                                if (_formkey.currentState.validate()) {
-                                  _formkey.currentState.save();
-                                  var result = await data.login(user: _user);
-                                  if (result) {
-                                    _navigationService.navigateRepalceTo(
-                                        routeName: routes.DashboardRoute);
-                                  } else {
-                                    showDialogSingleButton(
-                                        context: context,
-                                        message:
-                                            'Invalid username or password.',
-                                        title: 'Warning',
-                                        buttonLabel: 'ok');
-                                  }
-                                }
-                                return;
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.all(10),
-                                child: Container(
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    boxShadow: [
-                                      BoxShadow(
-                                          blurRadius: 5.0, color: Colors.black)
-                                    ],
-                                    gradient: LinearGradient(colors: [
-                                      Theme.of(context).primaryColor,
-                                      Theme.of(context).secondaryHeaderColor
-                                    ]),
-                                  ),
-                                  margin: EdgeInsets.only(
-                                    left: MediaQuery.of(context).size.width / 5,
-                                    right:
-                                        MediaQuery.of(context).size.width / 5,
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      'Login',
-                                      style: TextStyle(
-                                          fontSize: 20, color: Colors.white),
+                            data.state == AppState.Busy
+                                ? Center(
+                                    child: CircularProgressIndicator(),
+                                  )
+                                : GestureDetector(
+                                    onTap: () async {
+                                      if (_formkey.currentState.validate()) {
+                                        _formkey.currentState.save();
+                                        var result =
+                                            await data.login(user: _user);
+                                        if (result) {
+                                          _navigationService.navigateRepalceTo(
+                                              routeName: routes.DashboardRoute);
+                                        } else {
+                                          showDialogSingleButton(
+                                              context: context,
+                                              message:
+                                                  'Invalid username or password.',
+                                              title: 'Warning',
+                                              buttonLabel: 'ok');
+                                        }
+                                      }
+                                      return;
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Container(
+                                        height: 30,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          boxShadow: [
+                                            BoxShadow(
+                                                blurRadius: 5.0,
+                                                color: Colors.black)
+                                          ],
+                                          gradient: LinearGradient(colors: [
+                                            Theme.of(context).primaryColor,
+                                            Theme.of(context)
+                                                .secondaryHeaderColor
+                                          ]),
+                                        ),
+                                        margin: EdgeInsets.only(
+                                          left: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              5,
+                                          right: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              5,
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            'Login',
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                ),
-                              ),
-                            )
+                                  )
                           ],
                         ),
                       );

@@ -42,7 +42,6 @@ class AppSyncModel with ChangeNotifier {
               i.map((model) => SurveyAssignment.fromJson(model)).toList();
           int p = await DBHelper()
               .addSurveyList(surveyAssignments: _surveyAssignments);
-          print(p);
         }
       } else if (responce.statusCode == 401) {
         _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);

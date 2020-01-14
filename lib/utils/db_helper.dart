@@ -53,44 +53,58 @@ class DBHelper with ChangeNotifier {
     try {
       var dbClient = await db;
       for (var item in surveyAssignments) {
-        result = await dbClient.rawInsert('''
+        bool check = await isExist(id: item.id);
+        if (!check) {
+          String sqlquery = '''
           INSERT INTO surveylist(id,uid,assignedby,assignedto,provinceid,
           municpalityid,nahiaid,gozarid,blockid,startdate,propertytosurvey,
           propertysurveyed,propertyverified,propertygeoverified,
           completiondate,completionstatus,approvestatus,createdby,updatedby,
-          ip)VALUES("${item.id}","${item.uid}","${item.assignedBy}",
-          "${item.assignedTo}","${item.provinceId}","${item.municpalityId}",
-          "${item.nahiaId}","${item.gozarId}","${item.blockId}","${item.startDate}",
-          ${item.propertyToSurvey.toInt()},${item.propertySurveyed.toInt()},
-          ${item.propertyVerified.toInt()},${item.propertyGeoverified.toInt()},
-          "${item.completionDate}","${item.completionStatus}","${item.approveStatus}",
-          "${item.createdBy}","${item.updatedBy}","${item.ip}")
-        ''');
-        // result = await dbClient.insert('surveylist', {
-        //   "id": item.id,
-        //   "uid": item.uid,
-        //   "assignedby": item.assignedBy,
-        //   "assignedto": item.assignedTo,
-        //   "provinceid": item.provinceId,
-        //   "municpalityid": item.municpalityId,
-        //   "nahiaid": item.nahiaId,
-        //   "gozarid": item.gozarId,
-        //   "blockid": item.blockId,
-        //   "startdate": item.startDate,
-        //   "propertytosurvey": item.propertyToSurvey,
-        //   "propertysurveyed": item.propertySurveyed,
-        //   "propertyverified": item.propertyVerified,
-        //   "propertygeoverified": item.propertyGeoverified,
-        //   "completiondate": item.completionDate,
-        //   "completionstatus": item.completionStatus,
-        //   "approvestatus": item.approveStatus,
-        //   "createdby": item.createdBy,
-        //   "updatedby": item.updatedBy,
-        //   "ip": item.ip
-        // });
+          ip)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+        ''';
+          List<dynamic> params = [
+            item.id,
+            item.uid,
+            item.assignedBy,
+            item.assignedTo,
+            item.provinceId,
+            item.municpalityId,
+            item.nahiaId,
+            item.gozarId,
+            item.blockId,
+            item.startDate,
+            int.tryParse(item.propertyToSurvey.toString()),
+            int.tryParse(item.propertySurveyed.toString()),
+            int.tryParse(item.propertyVerified.toString()),
+            int.tryParse(item.propertyGeoverified.toString()),
+            item.completionDate,
+            item.completionStatus,
+            item.approveStatus,
+            item.createdBy,
+            item.updatedBy,
+            item.ip
+          ];
+          result = await dbClient.rawInsert(sqlquery, params);
+        }
       }
     } catch (e) {
       print("addsurveylist db error:" + e);
+    }
+    return result;
+  }
+
+  Future<bool> isExist({String id}) async {
+    bool result = false;
+    try {
+      var dbClient = await db;
+      List<String> idvalues = [];
+      List<Map> maps = await dbClient.rawQuery("SELECT id FROM surveylist");
+      for (var item in maps) {
+        idvalues.add(item['id']);
+      }
+      result = idvalues.contains(id);
+    } catch (e) {
+      print(e);
     }
     return result;
   }
@@ -102,7 +116,6 @@ class DBHelper with ChangeNotifier {
       List<Map> maps = await dbClient.query('surveylist');
       if (maps.length > 0) {
         for (int i = 0; i < maps.length; i++) {
-          print(maps[i]['completionstatus']);
           surveys.add(
             SurveyAssignment(
                 id: maps[i]['id'],
