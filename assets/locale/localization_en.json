@@ -106,5 +106,8 @@
     "key_uploads":"Uploads",
     "key_fourlimit_note":"The boundary of the chain should be a parcel number or if there is no parcel there should be something written like road or sea",
     "key_language":"Language",
-    "key_app_sync":"Application Sync"
+    "key_app_sync":"Application Sync",
+    "key_doc_type_verification":"Document Type and Verification Circuit Documents",
+    "key_doc_type":"Document Type"
+
 }

@@ -106,7 +106,7 @@ class _TaskPageState extends State<TaskPage> {
         ),
       ),
       bottomNavigationBar: appbuttomnavbar(context),
-      drawer: AppDrawer(),
+      //drawer: AppDrawer(),
       body: Consumer<TaskModel>(
         builder: (context, data, child) {
           return data.state == AppState.Busy

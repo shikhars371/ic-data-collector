@@ -987,6 +987,21 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
+  //Document Type and Verification Circuit Documents
+  Widget form12() {
+    return Expanded(
+      child: ListView(
+        children: <Widget>[
+          
+          draftbutton(),
+          SizedBox(
+            height: 50,
+          )
+        ],
+      ),
+    );
+  }
+
   Widget backbutton() {
     return GestureDetector(
       onTap: () {
