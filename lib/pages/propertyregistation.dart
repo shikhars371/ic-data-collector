@@ -646,7 +646,25 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               radiobtnSelected: (String value) {
                 print(value);
               }),
+
+          ///release
+          ///start
+          formCardRadioButtons(
+              iscompleted: false,
+              headerlablekey: 'key_Type_of_redeemable_property',
+              radiobtnlables: [
+                setapptext(key: 'key_Palace'),
+                setapptext(key: 'key_Lease_Apartment'),
+                setapptext(key: 'key_Four_walls_no_building'),
+                setapptext(key: 'key_Under_Construction_Repairs')
+              ],
+              radiobtnSelected: (String value) {
+                print(value);
+              }),
+
+          ///end
           draftbutton(),
+
           SizedBox(
             height: 50,
           )
@@ -992,11 +1010,292 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     return Expanded(
       child: ListView(
         children: <Widget>[
-          
+          formCardRadioButtons(
+              iscompleted: false,
+              headerlablekey: 'key_doc_type',
+              radiobtnlables: [
+                setapptext(key: 'key_religious'),
+                setapptext(key: 'key_customary'),
+                setapptext(key: 'key_official_decree')
+              ],
+              radiobtnSelected: (String value) {
+                print(value);
+              }),
+
+          ///Specifications of the religious document
+          ///begin
+          formcardtextfield(
+              headerlablekey: 'key_Issued_on',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_Place_of_Issue',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_Property_Number',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_Document_Cover',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_Document_Page',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_Document_Registration_Number',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_Land_area_in_Qawwala',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formCardFileuploader(
+              isCompleted: false,
+              headerlablekey: 'key_Property_Document_Photo-1'),
+          formCardFileuploader(
+              isCompleted: false,
+              headerlablekey: 'key_Property_Document_Photo-2'),
+          formCardFileuploader(
+              isCompleted: false,
+              headerlablekey: 'key_Property_Document_Photo-3'),
+          formCardFileuploader(
+              isCompleted: false,
+              headerlablekey: 'key_Property_Document_Photo-4'),
+
+          ///end
+          ///Ordinary Document Specifications
+          ///start
+          formCardFileuploader(
+              isCompleted: false, headerlablekey: 'key_photo-1'),
+          formCardFileuploader(
+              isCompleted: false, headerlablekey: 'key_photo-1'),
+
+          ///end
           draftbutton(),
           SizedBox(
             height: 50,
           )
+        ],
+      ),
+    );
+  }
+
+  //It is lightning
+  Widget form13() {
+    return Expanded(
+      child: ListView(
+        children: <Widget>[
+          formcardtextfield(
+              headerlablekey: 'key_Meter_number',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_Common_name',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_father_name',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formCardFileuploader(
+              isCompleted: false, headerlablekey: 'key_Picture_of_Bell_Power'),
+        ],
+      ),
+    );
+  }
+
+  //Safari Booklet Specifications
+  Widget form14() {
+    return Expanded(
+      child: ListView(
+        children: <Widget>[
+          formcardtextfield(
+              headerlablekey: 'key_Common_name',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_father_name',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_Safari_Machine_Gun_Number',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_Issued_Date',
+              radiovalue: false,
+              hinttextkey: 'key_way_to_enter',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formCardFileuploader(
+              isCompleted: false,
+              headerlablekey: 'key_Picture_of_Safari_Booklet'),
+        ],
+      ),
+    );
+  }
+
+  //Type of property user
+  Widget form15() {
+    return Expanded(
+      child: ListView(
+        children: <Widget>[
+          formCardRadioButtons(
+              iscompleted: false,
+              headerlablekey: 'key_the_owner',
+              radiobtnlables: [
+                setapptext(key: 'key_yes_sir'),
+                setapptext(key: 'key_no')
+              ],
+              radiobtnSelected: (String value) {
+                print(value);
+              }),
+          formCardRadioButtons(
+              iscompleted: false,
+              headerlablekey: 'key_Master_rent',
+              radiobtnlables: [
+                setapptext(key: 'key_yes_sir'),
+                setapptext(key: 'key_no')
+              ],
+              radiobtnSelected: (String value) {
+                print(value);
+              }),
+          formCardRadioButtons(
+              iscompleted: false,
+              headerlablekey: 'key_master_recipient',
+              radiobtnlables: [
+                setapptext(key: 'key_yes_sir'),
+                setapptext(key: 'key_no')
+              ],
+              radiobtnSelected: (String value) {
+                print(value);
+              }),
+          formCardRadioButtons(
+              iscompleted: false,
+              headerlablekey: 'key_master_no_longer',
+              radiobtnlables: [
+                setapptext(key: 'key_yes_sir'),
+                setapptext(key: 'key_no')
+              ],
+              radiobtnSelected: (String value) {
+                print(value);
+              }),
+          formcardtextfield(
+              headerlablekey: 'key_specify_misconduct',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          //if yes
+        ],
+      ),
+    );
+  }
+
+  //building
+  Widget form16() {
+    return Expanded(
+      child: ListView(
+        children: <Widget>[
+          formCardRadioButtons(
+              iscompleted: false,
+              headerlablekey: 'key_does_property_building',
+              radiobtnlables: [
+                setapptext(key: 'key_yes_sir'),
+                setapptext(key: 'key_no')
+              ],
+              radiobtnSelected: (String value) {
+                print(value);
+              }),
         ],
       ),
     );

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:kapp/controllers/auth.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../localization/app_translations.dart';
 import '../utils/buttomnavbar.dart';
 import '../controllers/appsync.dart';
 import '../utils/db_helper.dart';
+import './login.dart';
 
 class AppSetting extends StatefulWidget {
   @override
@@ -68,6 +70,22 @@ class _AppSettingState extends State<AppSetting> {
                             data.appSync().then((onValue) {
                               print(onValue);
                             });
+                          },
+                        ),
+                        Divider(
+                          color: Colors.black54,
+                        ),
+                        ListTile(
+                          leading: Icon(Icons.exit_to_app),
+                          title: Text(setapptext(key: 'key_log_out')),
+                          onTap: () async{
+                            SharedPreferences pref =await SharedPreferences.getInstance();
+                            pref.clear();
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => LoginPage(),
+                              ),
+                            );
                           },
                         ),
                         Divider(
