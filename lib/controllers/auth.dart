@@ -20,20 +20,15 @@ class AuthModel with ChangeNotifier {
     setState(AppState.Busy);
     bool result = false;
     try {
-      var responce = await http.post(Configuration.apiurl + "authentication",
-          body: {
-            "strategy": "local",
-            "email": user.email.trim(),
-            "password": user.password.trim()
-          });
-      if (responce.statusCode == 201) {
+      var responce = await http.get(
+        Configuration.apiurl +
+            "auth?email=${user.email.trim()}&password=${user.password.trim()}",
+      );
+      if (responce.statusCode == 200) {
         if (responce.body.isNotEmpty) {
           saveCurrentLogin(
             json.decode(responce.body),
           );
-          // print(
-          //   json.decode(responce.body)['accessToken'],
-          // );
           result = true;
         }
       } else {
@@ -52,7 +47,7 @@ class AuthModel with ChangeNotifier {
 
 void saveCurrentLogin(Map responseJson) async {
   var preferences = await SharedPreferences.getInstance();
-  preferences.setString("accesstoken", responseJson['accessToken']);
+  preferences.setString("accesstoken", responseJson['token']);
   preferences.setString("userid", responseJson['user']['_id']);
   preferences.setString("firstname", responseJson['user']['first_name']);
   preferences.setString("lastname", responseJson['user']['last_name']);
