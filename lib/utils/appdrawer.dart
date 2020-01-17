@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:page_transition/page_transition.dart';
 
 import '../pages/login.dart';
-import '../pages/propertyregistation.dart';
+import '../utils/navigation_service.dart';
+import '../utils/route_paths.dart' as routes;
+import '../utils/locator.dart';
+import '../localization/app_translations.dart';
 
 class DrawerItem {
   String title;
@@ -19,15 +21,17 @@ class AppDrawer extends StatefulWidget {
 }
 
 class _AppDrawerState extends State<AppDrawer> {
+  final NavigationService _navigationService = locator<NavigationService>();
   int _selectedDrawerIndex = 0;
   SharedPreferences pref;
   String _user;
   String _email;
 
   final drawerItems = [
-    DrawerItem("New Tasks", Icons.dashboard), //page index = 0
-    DrawerItem("Progressive Tasks", Icons.terrain), //page index = 1
-    DrawerItem("Completed Tasks", Icons.check), //page index = 2
+    DrawerItem("Tasks", Icons.assignment), //page index = 0
+    DrawerItem("Language", Icons.language), //page index = 1
+    DrawerItem("Guide", Icons.book), //page index = 2
+    DrawerItem("Help", Icons.help), //page index = 2
   ];
   @override
   void initState() {
@@ -36,6 +40,10 @@ class _AppDrawerState extends State<AppDrawer> {
       getUserInfo();
     });
     super.initState();
+  }
+
+  String setapptext({String key}) {
+    return AppTranslations.of(context).text(key);
   }
 
   setpageindex(int index) {
@@ -61,13 +69,14 @@ class _AppDrawerState extends State<AppDrawer> {
 
   _pageNavigator(int page) {
     if (page == 0) {
-      _navfunction(PropertyRegistationPage());
+      _navigationService.navigateRepalceTo(routeName: routes.TaskRoute);
+    } else if (page == 1) {
+      _navigationService.navigateRepalceTo(routeName: routes.LanguageRoute);
+    } else if (page == 2) {
+      _navigationService.navigateRepalceTo(routeName: routes.GuideRoute);
+    } else if (page == 3) {
+      _navigationService.navigateRepalceTo(routeName: routes.HelpRoute);
     }
-  }
-
-  _navfunction(Widget page) {
-    Navigator.of(context)
-        .push(PageTransition(type: PageTransitionType.downToUp, child: page));
   }
 
   logout() async {
@@ -101,13 +110,6 @@ class _AppDrawerState extends State<AppDrawer> {
             UserAccountsDrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.blue,
-                gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Theme.of(context).primaryColor,
-                      Theme.of(context).secondaryHeaderColor,
-                    ]),
               ),
               currentAccountPicture: new CircleAvatar(
                 radius: 50.0,

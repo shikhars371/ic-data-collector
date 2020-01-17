@@ -663,6 +663,105 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               }),
 
           ///end
+          ///commercial
+          ///start
+          formCardRadioButtons(
+              iscompleted: false,
+              headerlablekey: 'key_Proprietary_Properties',
+              radiobtnlables: [
+                setapptext(key: 'key_shop'),
+                setapptext(key: 'key_Barber'),
+                setapptext(key: 'key_hotel_restaurant'),
+                setapptext(key: 'key_Restaurant'),
+                setapptext(key: 'key_Serai'),
+                setapptext(key: 'key_Warehouse'),
+                setapptext(key: 'key_Tail_Tank'),
+                setapptext(key: 'key_Pharmacy'),
+                setapptext(key: 'key_Bathroom'),
+                setapptext(key: 'key_Another'),
+              ],
+              radiobtnSelected: (String value) {
+                print(value);
+              }),
+
+          ///end
+          ///complex (Release / Business)
+          ///start
+          formCardRadioButtons(
+              iscompleted: false,
+              headerlablekey: 'key_redeemable_property',
+              radiobtnlables: [
+                setapptext(key: 'key_Palace'),
+                setapptext(key: 'key_Lease_Apartment'),
+                setapptext(key: 'key_Four_walls_no_building'),
+                setapptext(key: 'key_Under_Construction_Repairs')
+              ],
+              radiobtnSelected: (String value) {
+                print(value);
+              }),
+
+          ///end
+          ///governmental
+          ///start
+          formCardRadioButtons(
+              iscompleted: false,
+              headerlablekey: 'key_govt_proprty',
+              radiobtnlables: [
+                setapptext(key: 'key_School_Startup'),
+                setapptext(key: 'key_Secondary_school'),
+                setapptext(key: 'key_Great_school'),
+                setapptext(key: 'key_University'),
+                setapptext(key: 'key_Learning_Center'),
+                setapptext(key: 'key_hospital'),
+                setapptext(key: 'key_clinic'),
+                setapptext(key: 'key_Playground'),
+                setapptext(key: 'key_Park'),
+                setapptext(key: 'key_Military_area'),
+                setapptext(key: 'key_mosque'),
+                setapptext(key: 'key_Graveyard'),
+                setapptext(key: 'key_Pilgrimage'),
+                setapptext(key: 'key_Another')
+              ],
+              radiobtnSelected: (String value) {
+                print(value);
+              }),
+
+          ///end
+          ///Property Type - Other (specified)
+          ///start
+          formCardRadioButtons(
+              iscompleted: false,
+              headerlablekey: 'key_type_of_currentuse',
+              radiobtnlables: [
+                setapptext(key: 'key_Car_station'),
+                setapptext(key: 'key_Enough_National_Station'),
+                setapptext(key: 'key_air_square'),
+                setapptext(key: 'key_Road'),
+                setapptext(key: 'key_Wasteland'),
+                setapptext(key: 'key_agriculture'),
+                setapptext(key: 'key_Green_area'),
+                setapptext(key: 'key_Jungle'),
+                setapptext(key: 'key_abc'),
+                setapptext(key: 'key_Sea'),
+                setapptext(key: 'key_Empty_land')
+              ],
+              radiobtnSelected: (String value) {
+                print(value);
+              }),
+          ///end
+          ///Property Type - Other (unspecified)
+          ///start
+          formcardtextfield(
+              headerlablekey: 'key_current_usage',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          ///end
           draftbutton(),
 
           SizedBox(
@@ -1296,6 +1395,113 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               radiobtnSelected: (String value) {
                 print(value);
               }),
+
+          ///new building
+          ///start
+          formCardDropdown(
+              iscompleted: false,
+              headerlablekey: 'key_building_use',
+              dropdownitems: [
+                setapptext(key: 'key_release'),
+                setapptext(key: 'key_commercial'),
+                setapptext(key: 'key_govt'),
+                setapptext(key: 'key_productive'),
+                setapptext(key: 'key_general')
+              ],
+              onChanged: (value) {}),
+          formCardDropdown(
+              iscompleted: false,
+              headerlablekey: 'key_building_category',
+              dropdownitems: [
+                setapptext(key: 'key_Modern_Concrete'),
+                setapptext(key: 'key_Half_cream_and_half_baked'),
+                setapptext(key: 'key_Cream'),
+                setapptext(key: 'key_metal'),
+                setapptext(key: 'key_Another')
+              ],
+              onChanged: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_choose_another',
+              hinttextkey: '',
+              radiovalue: false,
+              onSaved: (value) {},
+              validator: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_Number_of_floors',
+              hinttextkey: '',
+              radiovalue: false,
+              onSaved: (value) {},
+              validator: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_Unit_Size',
+              hinttextkey: '',
+              radiovalue: false,
+              onSaved: (value) {},
+              validator: (value) {})
+
+          ///end
+        ],
+      ),
+    );
+  }
+
+  //Type of use
+  Widget form17() {
+    return Expanded(
+      child: ListView(
+        children: <Widget>[
+          formCardRadioButtons(
+              iscompleted: false,
+              headerlablekey: 'key_Type_of_use',
+              radiobtnlables: [
+                setapptext(key: 'key_release'),
+                setapptext(key: 'key_commercial'),
+                setapptext(key: 'key_complex'),
+                setapptext(key: 'key_govt'),
+                setapptext(key: 'key_agriculture'),
+                setapptext(key: 'key_public_land'),
+                setapptext(key: 'key_Another')
+              ])
+        ],
+      ),
+    );
+  }
+
+  //Business License
+  Widget form18() {
+    return Expanded(
+      child: ListView(
+        children: <Widget>[
+          formcardtextfield(
+              headerlablekey: 'key_how_many_business',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_howmany_business_license',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_Another',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
         ],
       ),
     );

@@ -87,26 +87,24 @@ class _TaskPageState extends State<TaskPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue,
         title: Text(
           setapptext(key: 'key_task'),
-          style: TextStyle(
-              //color: Color.fromRGBO(192, 65, 25, 1),
-              fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomRight,
-                colors: [
-                  Theme.of(context).primaryColor,
-                  Theme.of(context).secondaryHeaderColor
-                ]),
-          ),
-        ),
+        // flexibleSpace: Container(
+        //   decoration: BoxDecoration(
+        //     gradient: LinearGradient(
+        //         begin: Alignment.topCenter,
+        //         end: Alignment.bottomRight,
+        //         colors: [
+        //           Theme.of(context).primaryColor,
+        //           Theme.of(context).secondaryHeaderColor
+        //         ]),
+        //   ),
+        // ),
       ),
-      bottomNavigationBar: appbuttomnavbar(context),
-      //drawer: AppDrawer(),
+      drawer: AppDrawer(),
       body: Consumer<TaskModel>(
         builder: (context, data, child) {
           return data.state == AppState.Busy

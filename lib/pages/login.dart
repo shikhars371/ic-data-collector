@@ -40,12 +40,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
-              Theme.of(context).primaryColor,
-              Theme.of(context).secondaryHeaderColor,
-            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-          ),
+          decoration: BoxDecoration(color: Colors.blue),
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Column(
@@ -164,7 +159,7 @@ class _LoginPageState extends State<LoginPage> {
                                             await data.login(user: _user);
                                         if (result) {
                                           _navigationService.navigateRepalceTo(
-                                              routeName: routes.DashboardRoute);
+                                              routeName: routes.TaskRoute);
                                         } else {
                                           showDialogSingleButton(
                                               context: context,
@@ -181,19 +176,14 @@ class _LoginPageState extends State<LoginPage> {
                                       child: Container(
                                         height: 30,
                                         decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          boxShadow: [
-                                            BoxShadow(
-                                                blurRadius: 5.0,
-                                                color: Colors.black)
-                                          ],
-                                          gradient: LinearGradient(colors: [
-                                            Theme.of(context).primaryColor,
-                                            Theme.of(context)
-                                                .secondaryHeaderColor
-                                          ]),
-                                        ),
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                  blurRadius: 5.0,
+                                                  color: Colors.black)
+                                            ],
+                                            color: Colors.blue),
                                         margin: EdgeInsets.only(
                                           left: MediaQuery.of(context)
                                                   .size

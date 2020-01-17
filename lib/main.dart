@@ -15,7 +15,6 @@ import './utils/router.dart' as router;
 import './utils/route_paths.dart' as routes;
 import './utils/appproviders.dart';
 import './utils/db_helper.dart';
-import './controllers/appsync.dart';
 
 Future<Null> main() async {
   setupLocator();
@@ -56,9 +55,6 @@ class LocalisedAppState extends State<LocalisedApp> {
         ChangeNotifierProvider(
           create: (_) => TaskModel(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => AppSyncModel(),
-        )
       ],
       //providers: AppProviders().appproviders,
       child: MaterialApp(
@@ -108,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
     sharedPreferences = await SharedPreferences.getInstance();
     var access = sharedPreferences.getString("accesstoken");
     if (access != null && access != "") {
-      _navigationService.navigateRepalceTo(routeName: routes.DashboardRoute);
+      _navigationService.navigateRepalceTo(routeName: routes.TaskRoute);
     } else {
       _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);
     }
