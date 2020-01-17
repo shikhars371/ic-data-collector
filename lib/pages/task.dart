@@ -26,6 +26,39 @@ class _TaskPageState extends State<TaskPage> {
     super.initState();
   }
 
+  String workstatus({int completestatus, int startedstatus, int syncstatus}) {
+    String result = "";
+    if (startedstatus != null && completestatus != null && syncstatus != null) {
+      if (startedstatus == 0) {
+        result = "New Task";
+      } else if (startedstatus != 0 && completestatus == 0) {
+        result = "Processing";
+      } else if (completestatus != 0) {
+        result = "Completed";
+      } else if (syncstatus != 0) {
+        result = "Synced";
+      }
+    }
+    return result;
+  }
+
+  Color workstatuscolor(
+      {int completestatus, int startedstatus, int syncstatus}) {
+    Color result = Colors.transparent;
+    if (startedstatus != null && completestatus != null && syncstatus != null) {
+      if (startedstatus == 0) {
+        result = Color.fromRGBO(189, 148, 36, 1);
+      } else if (startedstatus != 0 && completestatus == 0) {
+        result = Colors.lightGreen;
+      } else if (completestatus != 0) {
+        result = Colors.green;
+      } else if (syncstatus != 0) {
+        result = Colors.lightBlue;
+      }
+    }
+    return result;
+  }
+
   Widget listcard(
       {String id,
       String status,
@@ -113,11 +146,6 @@ class _TaskPageState extends State<TaskPage> {
                 )
               : Column(
                   children: <Widget>[
-                    // Container(
-                    //   child: customDropDown(
-                    //       headerlable: 'Task Filter',
-                    //       items: ['Assigned', 'Processing', 'Completed']),
-                    // ),
                     Expanded(
                       child: ListView.builder(
                         itemCount: data.surveyAssignments?.isEmpty ?? true
@@ -125,12 +153,23 @@ class _TaskPageState extends State<TaskPage> {
                             : data.surveyAssignments.length,
                         itemBuilder: (context, index) {
                           return listcard(
-                              id: data.surveyAssignments[index].id?.isEmpty ??
-                                      true
+                              id: data.surveyAssignments[index].id?.isEmpty ?? true
                                   ? ""
                                   : data.surveyAssignments[index].id,
-                              status: 'Processing',
-                              statuscolor: Colors.lightGreen,
+                              status: workstatus(
+                                  completestatus:
+                                      data.surveyAssignments[index].iscompleted,
+                                  startedstatus:
+                                      data.surveyAssignments[index].isstatrted,
+                                  syncstatus:
+                                      data.surveyAssignments[index].issynced),
+                              statuscolor: workstatuscolor(
+                                  completestatus:
+                                      data.surveyAssignments[index].iscompleted,
+                                  startedstatus:
+                                      data.surveyAssignments[index].isstatrted,
+                                  syncstatus:
+                                      data.surveyAssignments[index].issynced),
                               provinance: data.surveyAssignments[index]
                                           .provinceId?.isEmpty ??
                                       true
@@ -146,12 +185,9 @@ class _TaskPageState extends State<TaskPage> {
                                       true
                                   ? ""
                                   : data.surveyAssignments[index].gozarId,
-                              area: data.surveyAssignments[index]
-                                          .propertyToSurvey ==
-                                      0
+                              area: data.surveyAssignments[index].propertyToSurvey == 0
                                   ? ""
-                                  : data
-                                      .surveyAssignments[index].propertyToSurvey
+                                  : data.surveyAssignments[index].propertyToSurvey
                                       .toString());
                         },
                       ),

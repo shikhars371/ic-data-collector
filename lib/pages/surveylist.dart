@@ -16,10 +16,76 @@ class _SurveyPageState extends State<SurveyPage> {
     return AppTranslations.of(context).text(key);
   }
 
+  Widget listcard(
+      {String id,
+      String status,
+      Color statuscolor,
+      String provinance,
+      String nahia,
+      String gozar,
+      String area}) {
+    return GestureDetector(
+      onTap: () {},
+      child: Card(
+        elevation: 3.0,
+        child: Container(
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(242, 239, 230, 1),
+          ),
+          padding: EdgeInsets.all(5.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Container(
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Wrap(
+                    direction: Axis.horizontal,
+                    children: <Widget>[
+                      IconButton(
+                        iconSize: 16,
+                        icon: Icon(Icons.edit),
+                        onPressed: () {},
+                      ),
+                      IconButton(
+                        iconSize: 16,
+                        icon: Icon(Icons.delete),
+                        onPressed: () {},
+                      ),
+                      IconButton(
+                        iconSize: 16,
+                        icon: Icon(Icons.sync),
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Column(
+                    children: <Widget>[
+                      Text("data"),
+                      Text("data"),
+                      Text("data"),
+                      Text("data"),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue,
         title: Text(
           "Survey List",
           style: TextStyle(
@@ -40,19 +106,19 @@ class _SurveyPageState extends State<SurveyPage> {
             },
           )
         ],
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomRight,
-                colors: [
-                  Theme.of(context).primaryColor,
-                  Theme.of(context).secondaryHeaderColor
-                ]),
-          ),
-        ),
       ),
-      body: Container(),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: ListView.builder(
+              itemCount: 0,
+              itemBuilder: (context, index) {
+                return listcard();
+              },
+            ),
+          )
+        ],
+      ),
     );
   }
 }

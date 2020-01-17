@@ -117,14 +117,13 @@ class _LoginPageState extends State<LoginPage> {
                                   if (_formkey.currentState.validate()) {
                                     _formkey.currentState.save();
                                     var result = await data.login(user: _user);
-                                    if (result) {
+                                    if (result == "ok") {
                                       _navigationService.navigateRepalceTo(
-                                          routeName: routes.DashboardRoute);
+                                          routeName: routes.TaskRoute);
                                     } else {
                                       showDialogSingleButton(
                                           context: context,
-                                          message:
-                                              'Invalid username or password.',
+                                          message: result,
                                           title: 'Warning',
                                           buttonLabel: 'ok');
                                     }
@@ -157,14 +156,13 @@ class _LoginPageState extends State<LoginPage> {
                                         _formkey.currentState.save();
                                         var result =
                                             await data.login(user: _user);
-                                        if (result) {
+                                        if (result == "ok") {
                                           _navigationService.navigateRepalceTo(
                                               routeName: routes.TaskRoute);
                                         } else {
                                           showDialogSingleButton(
                                               context: context,
-                                              message:
-                                                  'Invalid username or password.',
+                                              message: result,
                                               title: 'Warning',
                                               buttonLabel: 'ok');
                                         }

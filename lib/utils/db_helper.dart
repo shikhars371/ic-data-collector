@@ -41,7 +41,7 @@ class DBHelper with ChangeNotifier {
           propertyverified INTEGER, propertygeoverified INTEGER,
           completiondate TEXT,completionstatus TEXT,approvestatus INTEGER,
           createdby TEXT,updatedby TEXT,ip TEXT,isdeleted INTEGER DEFAULT 0,
-          issynced INTEGER DEFAULT 0,iscompleted INTEGER DEFAULT 0
+          issynced INTEGER DEFAULT 0,iscompleted INTEGER DEFAULT 0,isstatrted INTEGER DEFAULT 0
         )
         ''').catchError((onError) {
       print(onError);
@@ -113,37 +113,42 @@ class DBHelper with ChangeNotifier {
     List<SurveyAssignment> surveys = [];
     try {
       var dbClient = await db;
-      List<Map> maps = await dbClient.query('surveylist');
+      List<Map> maps =
+          await dbClient.rawQuery('select * from surveylist where isdeleted=0');
       if (maps.length > 0) {
         for (int i = 0; i < maps.length; i++) {
           surveys.add(
             SurveyAssignment(
-                id: maps[i]['id'],
-                uid: maps[i]['uid'],
-                assignedBy: maps[i]['assignedby'],
-                assignedTo: maps[i]['assignedto'],
-                provinceId: maps[i]['provinceid'],
-                municpalityId: maps[i]['municpalityid'],
-                nahiaId: maps[i]['nahiaid'],
-                gozarId: maps[i]['gozarid'],
-                blockId: maps[i]['blockid'],
-                startDate: maps[i]['startdate'],
-                propertyToSurvey:
-                    int.tryParse(maps[i]['propertytosurvey'].toString()),
-                propertySurveyed:
-                    int.tryParse(maps[i]['propertysurveyed'].toString()),
-                propertyVerified:
-                    int.tryParse(maps[i]['propertyverified'].toString()),
-                propertyGeoverified:
-                    int.tryParse(maps[i]['propertygeoverified'].toString()),
-                completionDate: maps[i]['completiondate'],
-                completionStatus:
-                    maps[i]['completionstatus'] == null ? false : true,
-                approveStatus:
-                    int.tryParse(maps[i]['approvestatus'].toString()),
-                createdBy: maps[i]['createdby'],
-                updatedBy: maps[i]['updatedby'],
-                ip: maps[i]['ip']),
+              id: maps[i]['id'],
+              uid: maps[i]['uid'],
+              assignedBy: maps[i]['assignedby'],
+              assignedTo: maps[i]['assignedto'],
+              provinceId: maps[i]['provinceid'],
+              municpalityId: maps[i]['municpalityid'],
+              nahiaId: maps[i]['nahiaid'],
+              gozarId: maps[i]['gozarid'],
+              blockId: maps[i]['blockid'],
+              startDate: maps[i]['startdate'],
+              propertyToSurvey:
+                  int.tryParse(maps[i]['propertytosurvey'].toString()),
+              propertySurveyed:
+                  int.tryParse(maps[i]['propertysurveyed'].toString()),
+              propertyVerified:
+                  int.tryParse(maps[i]['propertyverified'].toString()),
+              propertyGeoverified:
+                  int.tryParse(maps[i]['propertygeoverified'].toString()),
+              completionDate: maps[i]['completiondate'],
+              completionStatus:
+                  maps[i]['completionstatus'] == null ? false : true,
+              approveStatus: int.tryParse(maps[i]['approvestatus'].toString()),
+              createdBy: maps[i]['createdby'],
+              updatedBy: maps[i]['updatedby'],
+              ip: maps[i]['ip'],
+              isdeleted: maps[i]['isdeleted'],
+              issynced: maps[i]['issynced'],
+              iscompleted: maps[i]['iscompleted'],
+              isstatrted: maps[i]['isstatrted'],
+            ),
           );
         }
       }

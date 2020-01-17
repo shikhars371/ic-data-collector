@@ -19,6 +19,10 @@ class SurveyAssignment {
   String createdBy;
   String updatedBy;
   String ip;
+  int isdeleted;
+  int issynced;
+  int iscompleted;
+  int isstatrted;
 
   SurveyAssignment(
       {this.id,
@@ -40,7 +44,11 @@ class SurveyAssignment {
       this.approveStatus,
       this.createdBy,
       this.updatedBy,
-      this.ip});
+      this.ip,
+      this.isdeleted,
+      this.issynced,
+      this.iscompleted,
+      this.isstatrted});
 
   SurveyAssignment.fromJson(Map<String, dynamic> json)
       : id = json['_id'],

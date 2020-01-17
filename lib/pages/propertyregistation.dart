@@ -261,10 +261,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           boxShadow: [BoxShadow(blurRadius: 5.0, color: Colors.black)],
-          gradient: LinearGradient(colors: [
-            Theme.of(context).primaryColor,
-            Theme.of(context).secondaryHeaderColor
-          ]),
+          color: Colors.blue
         ),
         margin: EdgeInsets.only(
           left: MediaQuery.of(context).size.width / 3.5,
@@ -748,6 +745,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               radiobtnSelected: (String value) {
                 print(value);
               }),
+
           ///end
           ///Property Type - Other (unspecified)
           ///start
@@ -761,6 +759,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 }
               },
               onSaved: (value) {}),
+
           ///end
           draftbutton(),
 
@@ -1553,22 +1552,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue,
         title: Text(
           "Property Registation",
-          style: TextStyle(
-              //color: Color.fromRGBO(192, 65, 25, 1),
-              fontWeight: FontWeight.bold),
-        ),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomRight,
-                colors: [
-                  Theme.of(context).primaryColor,
-                  Theme.of(context).secondaryHeaderColor
-                ]),
-          ),
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
       body: SafeArea(

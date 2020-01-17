@@ -51,13 +51,9 @@ class TaskModel with ChangeNotifier {
           }
         } else if (responce.statusCode == 401) {
           _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);
-        } else {
-          setState(AppState.Idle);
-          notifyListeners();
         }
-      } else {
-        _surveyAssignments = await DBHelper().getSurveys();
-      }
+      } 
+      _surveyAssignments = await DBHelper().getSurveys();
     } catch (e) {
       setState(AppState.Idle);
       notifyListeners();

@@ -16,9 +16,9 @@ class AuthModel with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<bool> login({User user}) async {
+  Future<String> login({User user}) async {
     setState(AppState.Busy);
-    bool result = false;
+    String result = "Invalid username or password.";
     try {
       // var responce = await http.get(
       //   Configuration.apiurl +
@@ -32,17 +32,19 @@ class AuthModel with ChangeNotifier {
       });
       if (responce.statusCode == 201) {
         if (responce.body.isNotEmpty) {
-          saveCurrentLogin(
-            json.decode(responce.body),
-          );
-          result = true;
+          if (json.decode(responce.body)['user']['designation'] == "survey") {
+            saveCurrentLogin(
+              json.decode(responce.body),
+            );
+            result = "ok";
+          } else {
+            result = "Sorry, You are not a surveyor";
+          }
         }
-      } else {
-        result = false;
       }
     } catch (e) {
       print(e);
-      result = false;
+      result = "Invalid username or password.";
       setState(AppState.Idle);
     }
     setState(AppState.Idle);
