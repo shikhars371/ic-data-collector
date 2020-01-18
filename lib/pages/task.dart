@@ -69,7 +69,7 @@ class _TaskPageState extends State<TaskPage> {
       String area}) {
     return GestureDetector(
       onTap: () {
-        _navigationService.navigateTo(routeName: routes.SurveyRoute);
+        _navigationService.navigateTo(routeName: routes.SurveyRoute, parms: id);
       },
       child: Card(
         elevation: 3.0,
@@ -180,11 +180,10 @@ class _TaskPageState extends State<TaskPage> {
                                       true
                                   ? ""
                                   : data.surveyAssignments[index].nahiaId,
-                              gozar: data.surveyAssignments[index].gozarId
-                                          ?.isEmpty ??
-                                      true
-                                  ? ""
-                                  : data.surveyAssignments[index].gozarId,
+                              gozar:
+                                  data.surveyAssignments[index].gozarId?.isEmpty ?? true
+                                      ? ""
+                                      : data.surveyAssignments[index].gozarId,
                               area: data.surveyAssignments[index].propertyToSurvey == 0
                                   ? ""
                                   : data.surveyAssignments[index].propertyToSurvey

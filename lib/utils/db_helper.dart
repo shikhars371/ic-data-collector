@@ -6,6 +6,7 @@ import 'package:path_provider/path_provider.dart';
 
 import '../models/surveyAssignment.dart';
 import '../controllers/auth.dart';
+import '../models/localpropertydata.dart';
 
 class DBHelper with ChangeNotifier {
   AppState _state = AppState.Idle;
@@ -48,7 +49,9 @@ class DBHelper with ChangeNotifier {
     });
     await db.execute('''
       CREATE TABLE IF NOT EXISTS propertysurvey(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,taskid TEXT,
+        local_created_on TEXT DEFAULT CURRENT_TIMESTAMP,
+        local_property_key TEXT,other_key TEXT,
         first_surveyor_name TEXT,senond_surveyor_name TEXT,
         technical_support_name TEXT,property_dispte_subject_to TEXT,
         real_person_status TEXT,cityzenship_notice TEXT,issue_regarding_property TEXT,
@@ -63,7 +66,7 @@ class DBHelper with ChangeNotifier {
         property_number TEXT,document_cover TEXT,document_page TEXT,
         doc_reg_number TEXT,land_area_qawwala TEXT,property_doc_photo_1 TEXT,
         property_doc_photo_2 TEXT,property_doc_photo_3 TEXT,
-        property_doc_photo_4 TEXT,odinary_doc_photo1 TEXT,odinary_doc_photo6,
+        property_doc_photo_4 TEXT,odinary_doc_photo1 TEXT,odinary_doc_photo6 TEXT,
         use_in_property_doc TEXT,current_use_of_property TEXT,
         redeemable_property TEXT,proprietary_properties TEXT,
         govt_property TEXT,specified_current_use TEXT,unspecified_current_use_type TEXT,
@@ -83,20 +86,20 @@ class DBHelper with ChangeNotifier {
         safari_booklet_issue_date TEXT,safari_booklet_picture TEXT,property_user_owner TEXT,
         property_user_master_rent TEXT,property_user_recipient_group TEXT,
         property_user_no_longer TEXT,property_user_type_of_misconduct TEXT,
-        1st_have_building TEXT,1st_building_use TEXT,1st_building_category TEXT,
-        1st_specifyif_other TEXT,1st_no_of_floors TEXT,1st_cubie_meter TEXT,
-        2st_have_building TEXT,2st_building_use TEXT,2st_building_category TEXT,
-        2st_specifyif_other TEXT,2st_no_of_floors TEXT,2st_cubie_meter TEXT,
-        3st_have_building TEXT,3st_building_use TEXT,3st_building_category TEXT,
-        3st_specifyif_other TEXT,3st_no_of_floors TEXT,3st_cubie_meter TEXT,
-        4st_have_building TEXT,4st_building_use TEXT,4st_building_category TEXT,4st_specifyif_other TEXT,
-        4st_no_of_floors TEXT,4st_cubie_meter TEXT,5st_have_building TEXT,5st_building_use TEXT,
-        5st_building_category TEXT,5st_specifyif_other TEXT,5st_no_of_floors TEXT,
-        5st_cubie_meter TEXT,home_map TEXT,home_photo TEXT,reg_property_fertilizer TEXT,
+        fst_have_building TEXT,fst_building_use TEXT,fst_building_category TEXT,
+        fst_specifyif_other TEXT,fst_no_of_floors TEXT,fst_cubie_meter TEXT,
+        snd_have_building TEXT,snd_building_use TEXT,snd_building_category TEXT,
+        snd_specifyif_other TEXT,snd_no_of_floors TEXT,snd_cubie_meter TEXT,
+        trd_have_building TEXT,trd_building_use TEXT,trd_building_category TEXT,
+        trd_specifyif_other TEXT,trd_no_of_floors TEXT,trd_cubie_meter TEXT,
+        forth_have_building TEXT,forth_building_use TEXT,forth_building_category TEXT,forth_specifyif_other TEXT,
+        forth_no_of_floors TEXT,forth_cubie_meter TEXT,fth_have_building TEXT,fth_building_use TEXT,
+        fth_building_category TEXT,fth_specifyif_other TEXT,fth_no_of_floors TEXT,
+        fth_cubie_meter TEXT,home_map TEXT,home_photo TEXT,reg_property_fertilizer TEXT,
         area_unit_release_area TEXT,area_unit_business_area TEXT,area_unit_total_no_unit TEXT,
         area_unit_business_units TEXT
       )
-    ''').catchError((onError){
+    ''').catchError((onError) {
       print(onError);
     });
   }
@@ -211,6 +214,15 @@ class DBHelper with ChangeNotifier {
     return surveys;
   }
 
+  Future<int> addPropertySurvey(LocalPropertySurvey data) async { 
+    int result = 0;
+    try {
+
+    } catch (e) {
+      print(e);
+    }
+    return result;
+  }
   // Future<int> delete(int id) async {
   //   var dbClient = await db;
   //   return await dbClient.delete(

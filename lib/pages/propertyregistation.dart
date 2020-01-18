@@ -4,8 +4,11 @@ import 'package:grouped_buttons/grouped_buttons.dart';
 import '../localization/app_translations.dart';
 import '../utils/buttomnavbar.dart';
 import '../utils/appdrawer.dart';
+import '../models/localpropertydata.dart';
 
 class PropertyRegistationPage extends StatefulWidget {
+  PropertyRegistationPage({this.taskid});
+  final String taskid;
   @override
   _PropertyRegistationPage createState() => _PropertyRegistationPage();
 }
@@ -14,13 +17,51 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
   var _formkey = GlobalKey<FormState>();
   bool chkval = false;
   int formval = 0;
+  LocalPropertySurvey localdata;
+  void datasaver() {
+    if (formval == 0) {
+      if (_formkey.currentState.validate()) {
+        _formkey.currentState.save();
+        setState(() {
+          formval += 1;
+        });
+      }
+    } else if (formval == 1) {
+      if ((localdata.property_dispte_subject_to?.isEmpty ?? true) ||
+          (localdata.real_person_status?.isEmpty ?? true) ||
+          (localdata.cityzenship_notice?.isEmpty ?? true)) {
+        return;
+      } else {
+        setState(() {
+          formval += 1;
+        });
+      }
+    } else if (formval == 2) {
+      _formkey.currentState.save();
+      setState(() {
+        formval += 1;
+      });
+    } else if (formval == 3) {
+      if ((localdata.status_of_area_plan?.isEmpty ?? true) ||
+          (localdata.status_of_area_official?.isEmpty ?? true) ||
+          (localdata.status_of_area_regular?.isEmpty ?? true) ||
+          (localdata.slope_of_area?.isEmpty ?? true)) {
+        return;
+      } else {
+        setState(() {
+          formval += 1;
+        });
+      }
+    } else if (formval == 4) {}
+  }
 
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
   }
 
   Widget formcardtextfield(
-      {String headerlablekey,
+      {String initvalue,
+      String headerlablekey,
       bool radiovalue,
       String hinttextkey,
       Function(String) onSaved,
@@ -48,7 +89,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   Radio(
                     value: radiovalue,
                     groupValue: true,
-                    onChanged: (bool) {},
+                    onChanged: (bool value) {},
                   ),
                   Flexible(
                     child: Text(
@@ -61,8 +102,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               Padding(
                 padding: const EdgeInsets.only(left: 8, right: 8, bottom: 10),
                 child: TextFormField(
+                  initialValue: initvalue?.isEmpty ?? true ? "" : initvalue,
                   decoration: InputDecoration(
-                    hintText: setapptext(key: hinttextkey),
+                    hintText: hinttextkey?.isEmpty ?? true
+                        ? ""
+                        : setapptext(key: hinttextkey),
                   ),
                   onSaved: onSaved,
                   validator: validator,
@@ -76,10 +120,13 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
   }
 
   Widget formCardRadioButtons(
-      {bool iscompleted,
+      {String initvalue,
+      bool iscompleted,
       String headerlablekey,
       List<String> radiobtnlables,
-      Function(String) radiobtnSelected}) {
+      Function(String) radiobtnSelected,
+      bool validate = false,
+      Function(String, int) onchanged}) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -121,8 +168,18 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 child: RadioButtonGroup(
                   labels: radiobtnlables,
                   onSelected: radiobtnSelected,
+                  picked: initvalue?.isEmpty ?? true ? "" : initvalue,
+                  onChange: onchanged,
                 ),
-              )
+              ),
+              validate
+                  ? Center(
+                      child: Text(
+                        "Required",
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    )
+                  : Container()
             ],
           ),
         ),
@@ -134,6 +191,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
       {bool iscompleted,
       String headerlablekey,
       List<String> dropdownitems,
+      Function(String) onSaved,
       Function(String) onChanged}) {
     return Container(
       decoration: BoxDecoration(
@@ -172,7 +230,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 padding: const EdgeInsets.only(left: 8, right: 8, bottom: 10),
                 child: Container(
                   padding: EdgeInsets.only(left: 10, right: 10),
-                  child: DropdownButtonFormField(
+                  child: DropdownButtonFormField<String>(
                     items: dropdownitems.map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
@@ -180,7 +238,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                       );
                     }).toList(),
                     onChanged: onChanged,
-                    //onSaved: ,
+                    onSaved: onSaved,
+                    //value: ,
                   ),
                 ),
               )
@@ -259,10 +318,9 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
       child: Container(
         height: 30,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [BoxShadow(blurRadius: 5.0, color: Colors.black)],
-          color: Colors.blue
-        ),
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [BoxShadow(blurRadius: 5.0, color: Colors.black)],
+            color: Colors.blue),
         margin: EdgeInsets.only(
           left: MediaQuery.of(context).size.width / 3.5,
           right: MediaQuery.of(context).size.width / 3.5,
@@ -294,62 +352,85 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
+  //please enter the names of the providers
   Widget form1() {
     return Expanded(
       child: ListView(
         children: <Widget>[
           formcardtextfield(
               headerlablekey: 'key_first_surveyor',
-              radiovalue: false,
+              radiovalue:
+                  localdata.first_surveyor_name?.isEmpty ?? true ? false : true,
               hinttextkey: 'key_enter_1st_surveyor',
+              initvalue: localdata.first_surveyor_name,
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
                 }
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                localdata.first_surveyor_name = value.trim();
+              }),
           formcardtextfield(
               headerlablekey: 'key_second_surveyor',
-              radiovalue: false,
+              radiovalue: localdata.senond_surveyor_name?.isEmpty ?? true
+                  ? false
+                  : true,
               hinttextkey: 'key_enter_1st_surveyor',
+              initvalue: localdata.senond_surveyor_name,
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
                 }
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                localdata.senond_surveyor_name = value.trim();
+              }),
           formcardtextfield(
               headerlablekey: 'key_name_technical_support',
-              radiovalue: false,
+              radiovalue: localdata.technical_support_name?.isEmpty ?? true
+                  ? false
+                  : true,
               hinttextkey: 'key_enter_1st_surveyor',
-              validator: (value) {
-                if (value.trim().isEmpty) {
-                  return "field should not be blank";
-                }
-              },
-              onSaved: (value) {}),
-          draftbutton()
+              initvalue: localdata.technical_support_name,
+              onSaved: (value) {
+                localdata.technical_support_name = value.trim();
+              }),
         ],
       ),
     );
   }
 
+  //general info 1
   Widget form2() {
     return Expanded(
       child: ListView(
         children: <Widget>[
           formCardRadioButtons(
-              iscompleted: false,
+              iscompleted: localdata.property_dispte_subject_to?.isEmpty ?? true
+                  ? false
+                  : true,
               headerlablekey: 'key_property_disputes',
+              initvalue: localdata.property_dispte_subject_to?.isEmpty ?? true
+                  ? ""
+                  : localdata.property_dispte_subject_to,
               radiobtnlables: [
                 setapptext(key: 'key_yes_sir'),
                 setapptext(key: 'key_no')
               ],
               radiobtnSelected: (String value) {
-                print(value);
-              }),
+                localdata.property_dispte_subject_to = value;
+              },
+              onchanged: (value, index) {
+                localdata.property_dispte_subject_to = value;
+                setState(() {});
+              },
+              validate: localdata.property_dispte_subject_to?.isEmpty ?? true
+                  ? true
+                  : false),
           formCardRadioButtons(
-              iscompleted: false,
+              iscompleted:
+                  localdata.real_person_status?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_real_person',
               radiobtnlables: [
                 setapptext(key: 'key_present'),
@@ -357,100 +438,168 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 setapptext(key: 'key_died')
               ],
               radiobtnSelected: (String value) {
-                print(value);
-              }),
+                localdata.real_person_status = value;
+              },
+              initvalue: localdata.real_person_status?.isEmpty ?? true
+                  ? ""
+                  : localdata.real_person_status,
+              onchanged: (value, index) {
+                localdata.real_person_status = value;
+                setState(() {});
+              },
+              validate:
+                  localdata.real_person_status?.isEmpty ?? true ? true : false),
           formCardRadioButtons(
-              iscompleted: false,
+              iscompleted:
+                  localdata.cityzenship_notice?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_is_citizenship',
               radiobtnlables: [
                 setapptext(key: 'key_yes_sir'),
                 setapptext(key: 'key_no')
               ],
               radiobtnSelected: (String value) {
-                print(value);
-              }),
-          draftbutton()
+                localdata.cityzenship_notice = value;
+              },
+              initvalue: localdata.cityzenship_notice?.isEmpty ?? true
+                  ? ""
+                  : localdata.cityzenship_notice,
+              onchanged: (value, index) {
+                localdata.cityzenship_notice = value;
+                setState(() {});
+              },
+              validate:
+                  localdata.cityzenship_notice?.isEmpty ?? true ? true : false),
         ],
       ),
     );
   }
 
+  //general info 2
   Widget form3() {
     return Expanded(
       child: ListView(
         children: <Widget>[
           formcardtextfield(
+              initvalue: localdata.issue_regarding_property?.isEmpty ?? true
+                  ? ""
+                  : localdata.issue_regarding_property,
               headerlablekey: 'key_property_issues',
-              radiovalue: false,
-              hinttextkey: 'key_enter_1st_surveyor',
-              validator: (value) {
-                if (value.trim().isEmpty) {
-                  return "field should not be blank";
-                }
-              },
-              onSaved: (value) {}),
+              radiovalue: localdata.issue_regarding_property?.isEmpty ?? true
+                  ? false
+                  : true,
+              onSaved: (value) {
+                localdata.issue_regarding_property = value.trim();
+              }),
           formcardtextfield(
+              initvalue: localdata.municipality_ref_number?.isEmpty ?? true
+                  ? ""
+                  : localdata.municipality_ref_number,
               headerlablekey: 'key_municipal_regulation',
-              radiovalue: false,
-              hinttextkey: 'key_enter_1st_surveyor',
-              validator: (value) {
-                if (value.trim().isEmpty) {
-                  return "field should not be blank";
-                }
-              },
-              onSaved: (value) {}),
+              radiovalue: localdata.municipality_ref_number?.isEmpty ?? true
+                  ? false
+                  : true,
+              onSaved: (value) {
+                localdata.municipality_ref_number = value.trim();
+              }),
           formCardRadioButtons(
-              iscompleted: false,
+              iscompleted:
+                  localdata.natural_threaten?.isEmpty ?? true ? false : true,
+              initvalue: localdata.natural_threaten?.isEmpty ?? true
+                  ? ""
+                  : localdata.natural_threaten,
               headerlablekey: 'key_natural_factor',
               radiobtnlables: [
                 setapptext(key: 'key_yes_sir'),
                 setapptext(key: 'key_no')
               ],
               radiobtnSelected: (String value) {
-                print(value);
+                localdata.natural_threaten = value.trim();
+              },
+              onchanged: (value, index) {
+                localdata.natural_threaten = value.trim();
+                setState(() {});
               }),
-          draftbutton()
         ],
       ),
     );
   }
 
+  //the physical state of the property area
   Widget form4() {
     return Expanded(
       child: ListView(
         children: <Widget>[
           formCardRadioButtons(
-              iscompleted: false,
+              initvalue: localdata.status_of_area_plan?.isEmpty ?? true
+                  ? ""
+                  : localdata.status_of_area_plan,
+              iscompleted:
+                  localdata.status_of_area_plan?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_specify_the',
               radiobtnlables: [
                 setapptext(key: 'key_plan'),
                 setapptext(key: 'key_unplan')
               ],
               radiobtnSelected: (String value) {
-                print(value);
-              }),
+                localdata.status_of_area_plan = value;
+              },
+              onchanged: (value, index) {
+                localdata.status_of_area_plan = value;
+                setState(() {});
+              },
+              validate: localdata.status_of_area_plan?.isEmpty ?? true
+                  ? true
+                  : false),
           formCardRadioButtons(
-              iscompleted: false,
+              initvalue: localdata.status_of_area_official?.isEmpty ?? true
+                  ? ""
+                  : localdata.status_of_area_official,
+              iscompleted: localdata.status_of_area_official?.isEmpty ?? true
+                  ? false
+                  : true,
               headerlablekey: 'key_specify_the',
               radiobtnlables: [
                 setapptext(key: 'key_official'),
                 setapptext(key: 'key_unofficial')
               ],
               radiobtnSelected: (String value) {
-                print(value);
-              }),
+                localdata.status_of_area_official = value;
+              },
+              onchanged: (value, index) {
+                localdata.status_of_area_official = value;
+                setState(() {});
+              },
+              validate: localdata.status_of_area_official?.isEmpty ?? true
+                  ? true
+                  : false),
           formCardRadioButtons(
-              iscompleted: false,
+              initvalue: localdata.status_of_area_regular?.isEmpty ?? true
+                  ? ""
+                  : localdata.status_of_area_regular,
+              iscompleted: localdata.status_of_area_regular?.isEmpty ?? true
+                  ? false
+                  : true,
               headerlablekey: 'key_specify_the',
               radiobtnlables: [
                 setapptext(key: 'key_regular'),
                 setapptext(key: 'key_disorganized')
               ],
               radiobtnSelected: (String value) {
-                print(value);
-              }),
+                localdata.status_of_area_regular = value;
+              },
+              onchanged: (value, index) {
+                localdata.status_of_area_regular = value;
+                setState(() {});
+              },
+              validate: localdata.status_of_area_regular?.isEmpty ?? true
+                  ? true
+                  : false),
           formCardRadioButtons(
-              iscompleted: false,
+              initvalue: localdata.slope_of_area?.isEmpty ?? true
+                  ? ""
+                  : localdata.slope_of_area,
+              iscompleted:
+                  localdata.slope_of_area?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_specify_slope',
               radiobtnlables: [
                 setapptext(key: 'key_Smooth'),
@@ -458,9 +607,14 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 setapptext(key: 'key_slope_above_30')
               ],
               radiobtnSelected: (String value) {
-                print(value);
-              }),
-          draftbutton(),
+                localdata.slope_of_area = value;
+              },
+              onchanged: (value, index) {
+                localdata.slope_of_area = value;
+                setState(() {});
+              },
+              validate:
+                  localdata.slope_of_area?.isEmpty ?? true ? true : false),
           SizedBox(
             height: 50,
           )
@@ -476,7 +630,18 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
           formCardDropdown(
               iscompleted: false,
               headerlablekey: 'key_select_province',
-              dropdownitems: ['option 1', 'option 2', 'option 3'],
+              dropdownitems: [
+                'Cable',
+                'Nangarhar',
+                'Kandahar',
+                'Bamyan',
+                'daikundi',
+                'Kunduz',
+                'Balkh',
+                'Herat',
+                'Parwan',
+                'Farah'
+              ],
               onChanged: (value) {
                 print(value);
               }),
@@ -1530,9 +1695,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
   Widget nextbutton() {
     return GestureDetector(
       onTap: () {
-        setState(() {
-          formval += 1;
-        });
+        datasaver();
       },
       child: Container(
         child: Row(
@@ -1546,6 +1709,13 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    localdata = new LocalPropertySurvey();
+    localdata.taskid = widget.taskid;
+    super.initState();
   }
 
   @override

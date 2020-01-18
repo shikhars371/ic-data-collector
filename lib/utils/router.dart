@@ -16,7 +16,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case routers.DashboardRoute:
       return MaterialPageRoute(builder: (context) => DashboardPage());
     case routers.SurveyRoute:
-      return MaterialPageRoute(builder: (context) => SurveyPage());
+      return MaterialPageRoute(builder: (context) => SurveyPage(id: settings.arguments,));
     case routers.TaskRoute:
       return MaterialPageRoute(builder: (context) => TaskPage());
     case routers.LanguageRoute:

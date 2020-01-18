@@ -38,6 +38,19 @@ class _SurveyPageState extends State<SurveyPage> {
             children: <Widget>[
               Container(
                 child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Column(
+                    children: <Widget>[
+                      Text("data"),
+                      Text("data"),
+                      Text("data"),
+                      Text("data"),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                child: Align(
                   alignment: Alignment.topRight,
                   child: Wrap(
                     direction: Axis.horizontal,
@@ -57,19 +70,6 @@ class _SurveyPageState extends State<SurveyPage> {
                         icon: Icon(Icons.sync),
                         onPressed: () {},
                       ),
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Column(
-                    children: <Widget>[
-                      Text("data"),
-                      Text("data"),
-                      Text("data"),
-                      Text("data"),
                     ],
                   ),
                 ),
@@ -100,7 +100,9 @@ class _SurveyPageState extends State<SurveyPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => PropertyRegistationPage(),
+                  builder: (BuildContext context) => PropertyRegistationPage(
+                    taskid: widget.id,
+                  ),
                 ),
               );
             },
@@ -111,7 +113,7 @@ class _SurveyPageState extends State<SurveyPage> {
         children: <Widget>[
           Expanded(
             child: ListView.builder(
-              itemCount: 0,
+              itemCount: 1,
               itemBuilder: (context, index) {
                 return listcard();
               },
