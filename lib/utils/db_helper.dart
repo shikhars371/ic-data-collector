@@ -46,6 +46,59 @@ class DBHelper with ChangeNotifier {
         ''').catchError((onError) {
       print(onError);
     });
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS propertysurvey(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        first_surveyor_name TEXT,senond_surveyor_name TEXT,
+        technical_support_name TEXT,property_dispte_subject_to TEXT,
+        real_person_status TEXT,cityzenship_notice TEXT,issue_regarding_property TEXT,
+        municipality_ref_number TEXT,natural_threaten TEXT,
+        status_of_area_plan TEXT,status_of_area_official TEXT,
+        status_of_area_regular TEXT,slope_of_area TEXT,province TEXT,
+        city TEXT,area TEXT,pass TEXT,block TEXT,part_number TEXT,
+        unit_number TEXT,unit_in_parcel TEXT,street_name TEXT,
+        historic_site_area TEXT,land_area TEXT,property_type TEXT,
+        location_of_land_area TEXT,property_have_document TEXT,
+        document_type TEXT,issued_on TEXT,place_of_issue TEXT,
+        property_number TEXT,document_cover TEXT,document_page TEXT,
+        doc_reg_number TEXT,land_area_qawwala TEXT,property_doc_photo_1 TEXT,
+        property_doc_photo_2 TEXT,property_doc_photo_3 TEXT,
+        property_doc_photo_4 TEXT,odinary_doc_photo1 TEXT,odinary_doc_photo6,
+        use_in_property_doc TEXT,current_use_of_property TEXT,
+        redeemable_property TEXT,proprietary_properties TEXT,
+        govt_property TEXT,specified_current_use TEXT,unspecified_current_use_type TEXT,
+        number_of_business_unit TEXT,business_unit_have_no_license TEXT,business_license_another TEXT,
+        first_partner_name TEXT,first_partner_surname TEXT,first_partner_boy TEXT,
+        first_partner__father TEXT,first_partner_name_gender TEXT,
+        first_partner_name_phone TEXT,first_partner_name_email TEXT,
+        first_partner_name_property_owner TEXT,first_partner_name_mere_individuals TEXT,
+        info_photo_hint_sukuk_number TEXT,info_photo_hint_cover_note TEXT,
+        info_photo_hint_note_page TEXT,info_photo_hint_reg_no TEXT,
+        info_photo_hint_photo_note1 TEXT,info_photo_hint_photo_tips1 TEXT,
+        info_photo_hint_photo_tips2 TEXT,fore_limits_east TEXT,fore_limits_west TEXT,
+        fore_limits_south TEXT,fore_limits_north TEXT,lightning_meter_no TEXT,
+        lightning_common_name TEXT,lightning_father_name TEXT,
+        lightning_picture_bell_power TEXT,safari_booklet_common_name TEXT,
+        safari_booklet_father_name TEXT,safari_booklet_machinegun_no TEXT,
+        safari_booklet_issue_date TEXT,safari_booklet_picture TEXT,property_user_owner TEXT,
+        property_user_master_rent TEXT,property_user_recipient_group TEXT,
+        property_user_no_longer TEXT,property_user_type_of_misconduct TEXT,
+        1st_have_building TEXT,1st_building_use TEXT,1st_building_category TEXT,
+        1st_specifyif_other TEXT,1st_no_of_floors TEXT,1st_cubie_meter TEXT,
+        2st_have_building TEXT,2st_building_use TEXT,2st_building_category TEXT,
+        2st_specifyif_other TEXT,2st_no_of_floors TEXT,2st_cubie_meter TEXT,
+        3st_have_building TEXT,3st_building_use TEXT,3st_building_category TEXT,
+        3st_specifyif_other TEXT,3st_no_of_floors TEXT,3st_cubie_meter TEXT,
+        4st_have_building TEXT,4st_building_use TEXT,4st_building_category TEXT,4st_specifyif_other TEXT,
+        4st_no_of_floors TEXT,4st_cubie_meter TEXT,5st_have_building TEXT,5st_building_use TEXT,
+        5st_building_category TEXT,5st_specifyif_other TEXT,5st_no_of_floors TEXT,
+        5st_cubie_meter TEXT,home_map TEXT,home_photo TEXT,reg_property_fertilizer TEXT,
+        area_unit_release_area TEXT,area_unit_business_area TEXT,area_unit_total_no_unit TEXT,
+        area_unit_business_units TEXT
+      )
+    ''').catchError((onError){
+      print(onError);
+    });
   }
 
   Future<int> addSurveyList({List<SurveyAssignment> surveyAssignments}) async {
