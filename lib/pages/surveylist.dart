@@ -26,56 +26,56 @@ class _SurveyPageState extends State<SurveyPage> {
       String area}) {
     return GestureDetector(
       onTap: () {},
-      child: Card(
-        elevation: 3.0,
-        child: Container(
-          decoration: BoxDecoration(
-            color: Color.fromRGBO(242, 239, 230, 1),
-          ),
-          padding: EdgeInsets.all(5.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Container(
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Column(
-                    children: <Widget>[
-                      Text("data"),
-                      Text("data"),
-                      Text("data"),
-                      Text("data"),
-                    ],
-                  ),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+        ),
+        padding: EdgeInsets.all(5.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Container(
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Column(
+                  children: <Widget>[
+                    Text("data"),
+                    Text("data"),
+                    Text("data"),
+                    Text("data"),
+                  ],
                 ),
               ),
-              Container(
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Wrap(
-                    direction: Axis.horizontal,
-                    children: <Widget>[
-                      IconButton(
-                        iconSize: 16,
-                        icon: Icon(Icons.edit),
-                        onPressed: () {},
-                      ),
-                      IconButton(
-                        iconSize: 16,
-                        icon: Icon(Icons.delete),
-                        onPressed: () {},
-                      ),
-                      IconButton(
-                        iconSize: 16,
-                        icon: Icon(Icons.sync),
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
+            ),
+            Container(
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Wrap(
+                  direction: Axis.horizontal,
+                  children: <Widget>[
+                    IconButton(
+                      iconSize: 16,
+                      icon: Icon(Icons.edit),
+                      onPressed: () {},
+                    ),
+                    IconButton(
+                      iconSize: 16,
+                      icon: Icon(Icons.delete),
+                      onPressed: () {},
+                    ),
+                    IconButton(
+                      iconSize: 16,
+                      icon: Icon(Icons.sync),
+                      onPressed: () {},
+                    ),
+                  ],
                 ),
-              )
-            ],
-          ),
+              ),
+            ),
+            Divider(
+              color: Colors.black,
+            )
+          ],
         ),
       ),
     );
@@ -94,32 +94,41 @@ class _SurveyPageState extends State<SurveyPage> {
         ),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.add),
+            icon: Icon(Icons.search),
             tooltip: "add new property",
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) => PropertyRegistationPage(
-                    taskid: widget.id,
-                  ),
-                ),
-              );
-            },
+            onPressed: () {},
           )
         ],
       ),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: ListView.builder(
-              itemCount: 1,
-              itemBuilder: (context, index) {
-                return listcard();
-              },
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: ListView.builder(
+                itemCount: 2,
+                itemBuilder: (context, index) {
+                  return listcard();
+                },
+              ),
+            )
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.assignment,
+          size: 30,
+        ),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => PropertyRegistationPage(
+                taskid: widget.id,
+              ),
             ),
-          )
-        ],
+          );
+        },
       ),
     );
   }

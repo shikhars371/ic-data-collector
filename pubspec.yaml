@@ -49,7 +49,7 @@ flutter:
    - assets/locale/localization_en.json
    - assets/locale/localozation_dari.json
 
-  # example:
+  # example:arvo
   # fonts:
   #   - family: Schyler
   #     fonts:

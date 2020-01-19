@@ -60,8 +60,8 @@ class LocalisedAppState extends State<LocalisedApp> {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primaryColor: Color.fromRGBO(218, 27, 96, 1),
-          secondaryHeaderColor: Color.fromRGBO(255, 138, 0, 1),
+          primaryColor: Colors.blue,
+          secondaryHeaderColor: Colors.black,
         ),
         home: MyHomePage(),
         navigatorKey: locator<NavigationService>().navigatorKey,

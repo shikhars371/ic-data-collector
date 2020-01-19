@@ -16,6 +16,7 @@ class PropertyRegistationPage extends StatefulWidget {
 class _PropertyRegistationPage extends State<PropertyRegistationPage> {
   var _formkey = GlobalKey<FormState>();
   String ddprovinceval = "None selected";
+  String ddcity = "None selected";
   bool chkval = false;
   int formval = 0;
   LocalPropertySurvey localdata;
@@ -60,13 +61,39 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     return AppTranslations.of(context).text(key);
   }
 
+  Widget completedcheckbox({bool isCompleted}) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        height: 15,
+        width: 15,
+        decoration: BoxDecoration(
+          //color: Colors.white,
+          shape: BoxShape.rectangle,
+          border: Border.all(
+              color: isCompleted ? Colors.lightGreen : Colors.black, width: 1),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(2),
+          child: Container(
+            decoration: BoxDecoration(
+              color: isCompleted ? Colors.lightGreen : Colors.black,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget formcardtextfield(
-      {String initvalue,
+      {TextInputType keyboardtype,
+      String initvalue,
       String headerlablekey,
       bool radiovalue,
       String hinttextkey,
       Function(String) onSaved,
-      Function(String) validator}) {
+      Function(String) validator,
+      Function(String) onChanged}) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -87,11 +114,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  Radio(
-                    value: radiovalue,
-                    groupValue: true,
-                    onChanged: (bool value) {},
-                  ),
+                  completedcheckbox(isCompleted: radiovalue),
                   Flexible(
                     child: Text(
                       setapptext(key: headerlablekey),
@@ -103,6 +126,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               Padding(
                 padding: const EdgeInsets.only(left: 8, right: 8, bottom: 10),
                 child: TextFormField(
+                  keyboardType: keyboardtype,
                   initialValue: initvalue?.isEmpty ?? true ? "" : initvalue,
                   decoration: InputDecoration(
                     hintText: hinttextkey?.isEmpty ?? true
@@ -111,6 +135,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   ),
                   onSaved: onSaved,
                   validator: validator,
+                  onChanged: onChanged,
                 ),
               )
             ],
@@ -148,11 +173,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  Radio(
-                    value: iscompleted,
-                    groupValue: true,
-                    onChanged: (bool) {},
-                  ),
+                  completedcheckbox(isCompleted: iscompleted),
                   Flexible(
                     child: Padding(
                       padding: const EdgeInsets.only(right: 5),
@@ -194,6 +215,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
       List<String> dropdownitems,
       Function(String) onSaved,
       String value,
+      bool validate = false,
       Function(String) onChanged}) {
     return Container(
       decoration: BoxDecoration(
@@ -215,11 +237,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  Radio(
-                    value: iscompleted,
-                    groupValue: true,
-                    onChanged: (bool) {},
-                  ),
+                  completedcheckbox(isCompleted: iscompleted),
                   Flexible(
                     child: Text(
                       setapptext(key: headerlablekey),
@@ -244,7 +262,15 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     value: value,
                   ),
                 ),
-              )
+              ),
+              validate
+                  ? Center(
+                      child: Text(
+                        "Required",
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    )
+                  : Container()
             ],
           ),
         ),
@@ -273,11 +299,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  Radio(
-                    value: isCompleted,
-                    groupValue: true,
-                    onChanged: (bool) {},
-                  ),
+                  completedcheckbox(isCompleted: isCompleted),
                   Flexible(
                     child: Text(
                       setapptext(key: headerlablekey),
@@ -372,6 +394,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               },
               onSaved: (value) {
                 localdata.first_surveyor_name = value.trim();
+              },
+              onChanged: (value) {
+                localdata.first_surveyor_name = value.trim();
+                setState(() {});
               }),
           formcardtextfield(
               headerlablekey: 'key_second_surveyor',
@@ -387,6 +413,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               },
               onSaved: (value) {
                 localdata.senond_surveyor_name = value.trim();
+              },
+              onChanged: (value) {
+                localdata.senond_surveyor_name = value.trim();
+                setState(() {});
               }),
           formcardtextfield(
               headerlablekey: 'key_name_technical_support',
@@ -397,6 +427,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               initvalue: localdata.technical_support_name,
               onSaved: (value) {
                 localdata.technical_support_name = value.trim();
+              },
+              onChanged: (value) {
+                localdata.technical_support_name = value.trim();
+                setState(() {});
               }),
         ],
       ),
@@ -657,55 +691,127 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               },
               value: localdata.province?.isEmpty ?? true
                   ? ddprovinceval
-                  : localdata.province),
+                  : localdata.province,
+              validate: (localdata.province?.isEmpty ?? true) ||
+                      (localdata.province == "None selected")
+                  ? true
+                  : false),
           formCardDropdown(
-              iscompleted: false,
+              iscompleted: localdata.city?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_select_city',
-              dropdownitems: ['option 1', 'option 2', 'option 3'],
+              dropdownitems: [
+                'None selected',
+                'cable',
+                'jalal Abad',
+                'kandahar',
+                'Bamyan',
+                'Indigo',
+                'kunduz',
+                'Mazar Sharif',
+                'Herat',
+                'Charger',
+                'Farah'
+              ],
               onChanged: (value) {
-                print(value);
+                localdata.city = value;
+                setState(() {
+                  ddcity = value;
+                });
+              },
+              onSaved: (value) {
+                localdata.city = value;
+              },
+              value: localdata.city?.isEmpty ?? true ? ddcity : localdata.city,
+              validate: (localdata.city?.isEmpty ?? true) ||
+                      (localdata.city == "None selected")
+                  ? true
+                  : false),
+          formcardtextfield(
+              keyboardtype: TextInputType.number,
+              initvalue: localdata.area?.isEmpty ?? true ? "" : localdata.area,
+              headerlablekey: 'key_area',
+              radiovalue: localdata.area?.isEmpty ?? true ? false : true,
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                } else if (value.length > 2) {
+                  return "Two digit allowed";
+                }
+              },
+              onSaved: (value) {
+                localdata.area = value.trim();
+              },
+              onChanged: (value) {
+                localdata.area = value.trim();
+                setState(() {});
               }),
           formcardtextfield(
-              headerlablekey: 'key_area',
-              radiovalue: false,
-              hinttextkey: 'key_enter_1st_surveyor',
-              validator: (value) {
-                if (value.trim().isEmpty) {
-                  return "field should not be blank";
-                }
-              },
-              onSaved: (value) {}),
-          formcardtextfield(
+              keyboardtype: TextInputType.number,
+              initvalue: localdata.pass?.isEmpty ?? true ? "" : localdata.pass,
               headerlablekey: 'key_pass',
-              radiovalue: false,
-              hinttextkey: 'key_enter_1st_surveyor',
+              radiovalue: localdata.pass?.isEmpty ?? true ? false : true,
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
+                } else if (value.length > 2) {
+                  return "two digits allowed";
                 }
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                localdata.pass = value.trim();
+              },
+              onChanged: (value) {
+                localdata.pass = value.trim();
+                setState(() {});
+              }),
           formcardtextfield(
+              keyboardtype: TextInputType.number,
+              initvalue:
+                  localdata.block?.isEmpty ?? true ? "" : localdata.block,
               headerlablekey: 'key_block',
-              radiovalue: false,
+              radiovalue: localdata.block?.isEmpty ?? true ? false : true,
               hinttextkey: 'key_enter_1st_surveyor',
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
+                } else if (value.length > 3) {
+                  return "three digits allowed";
                 }
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                localdata.block = value.trim();
+              },
+              onChanged: (value) {
+                localdata.block = value.trim();
+                setState(() {});
+              }),
           formcardtextfield(
+              keyboardtype: TextInputType.number,
+              initvalue: localdata.part_number?.isEmpty ?? true
+                  ? ""
+                  : localdata.part_number,
               headerlablekey: 'key_part_number',
-              radiovalue: false,
+              radiovalue: localdata.part_number?.isEmpty ?? true ? false : true,
               hinttextkey: 'key_enter_1st_surveyor',
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
+                } else if (value.length > 3) {
+                  return "three digit allowed";
                 }
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                localdata.part_number = value.trim();
+              },
+              onChanged: (value) {
+                localdata.part_number = value.trim();
+                setState(() {});
+              }),
           formcardtextfield(
+              keyboardtype: TextInputType.number,
+              initvalue: localdata.unit_number?.isEmpty ?? true
+                  ? ""
+                  : localdata.unit_number,
               headerlablekey: 'key_unit_number',
               radiovalue: false,
               hinttextkey: 'key_enter_1st_surveyor',
@@ -714,7 +820,13 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   return "field should not be blank";
                 }
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                localdata.unit_number = value.trim();
+              },
+              onChanged: (value) {
+                localdata.unit_number = value.trim();
+                setState(() {});
+              }),
           formcardtextfield(
               headerlablekey: 'key_number_of_unit',
               radiovalue: false,
@@ -1797,8 +1909,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               ],
               //buttom menu container
               if (formval == 0) ...[
+                Divider(
+                  color: Colors.blueAccent,
+                ),
                 Container(
-                  color: Theme.of(context).secondaryHeaderColor,
+                  color: Colors.white,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -1810,8 +1925,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   ),
                 )
               ] else if (formval == 10) ...[
+                Divider(
+                  color: Colors.blueAccent,
+                ),
                 Container(
-                  color: Theme.of(context).secondaryHeaderColor,
+                  color: Colors.white,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -1823,8 +1941,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   ),
                 )
               ] else ...[
+                Divider(
+                  color: Colors.blueAccent,
+                ),
                 Container(
-                  color: Theme.of(context).secondaryHeaderColor,
+                  color: Colors.white,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[backbutton(), nextbutton()],
