@@ -15,6 +15,7 @@ class PropertyRegistationPage extends StatefulWidget {
 
 class _PropertyRegistationPage extends State<PropertyRegistationPage> {
   var _formkey = GlobalKey<FormState>();
+  String ddprovinceval = "None selected";
   bool chkval = false;
   int formval = 0;
   LocalPropertySurvey localdata;
@@ -192,6 +193,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
       String headerlablekey,
       List<String> dropdownitems,
       Function(String) onSaved,
+      String value,
       Function(String) onChanged}) {
     return Container(
       decoration: BoxDecoration(
@@ -239,7 +241,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     }).toList(),
                     onChanged: onChanged,
                     onSaved: onSaved,
-                    //value: ,
+                    value: value,
                   ),
                 ),
               )
@@ -628,9 +630,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
       child: ListView(
         children: <Widget>[
           formCardDropdown(
-              iscompleted: false,
+              iscompleted: localdata.province?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_select_province',
               dropdownitems: [
+                'None selected',
                 'Cable',
                 'Nangarhar',
                 'Kandahar',
@@ -643,8 +646,18 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 'Farah'
               ],
               onChanged: (value) {
-                print(value);
-              }),
+                localdata.province = value;
+
+                setState(() {
+                  ddprovinceval = value;
+                });
+              },
+              onSaved: (value) {
+                localdata.province = value;
+              },
+              value: localdata.province?.isEmpty ?? true
+                  ? ddprovinceval
+                  : localdata.province),
           formCardDropdown(
               iscompleted: false,
               headerlablekey: 'key_select_city',
