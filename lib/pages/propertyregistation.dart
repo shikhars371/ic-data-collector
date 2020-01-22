@@ -20,6 +20,35 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
   bool chkval = false;
   int formval = 0;
   LocalPropertySurvey localdata;
+  bool redeem_propertyVisible = false,
+      proprietary_visible = false,
+      govermental_visible = false,
+      property_type_other_specified = false,
+      property_type_other_Unspecified = false;
+  void showWidget(String viewVisible) {
+    setState(() {
+      if (viewVisible == "Release") {
+        redeem_propertyVisible = true;
+      } else if (viewVisible == "Commercial") {
+        proprietary_visible = true;
+      } else if (viewVisible == "Complex (Release / Business)") {
+        redeem_propertyVisible = true;
+        proprietary_visible = true;
+      } else if (viewVisible == "Governmental") {
+        govermental_visible = true;
+      } else if (viewVisible == "Property Type - Other (specified)") {
+        property_type_other_specified = true;
+      } else if (viewVisible == "Property Type - Other (unspecified)") {}
+      property_type_other_Unspecified = true;
+    });
+  }
+
+  void hideWidget(bool viewVisible) {
+    setState(() {
+      viewVisible = false;
+    });
+  }
+
   void datasaver() {
     if (formval == 0) {
       if (_formkey.currentState.validate()) {
@@ -54,7 +83,14 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
           formval += 1;
         });
       }
-    } else if (formval == 4) {}
+    } else if (formval == 4) {
+      if (_formkey.currentState.validate()) {
+        _formkey.currentState.save();
+        setState(() {
+          formval += 1;
+        });
+      }
+    }
   }
 
   String setapptext({String key}) {
@@ -728,14 +764,14 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   : false),
           formcardtextfield(
               keyboardtype: TextInputType.number,
-              initvalue: localdata.area?.isEmpty ?? true ? "" : localdata.area,
               headerlablekey: 'key_area',
               radiovalue: localdata.area?.isEmpty ?? true ? false : true,
+              hinttextkey: 'Key_number_value',
+              initvalue:
+                  localdata.area, //?.isEmpty ?? true ? "" : localdata.area
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
-                } else if (value.length > 2) {
-                  return "Two digit allowed";
                 }
               },
               onSaved: (value) {
@@ -749,6 +785,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               keyboardtype: TextInputType.number,
               initvalue: localdata.pass?.isEmpty ?? true ? "" : localdata.pass,
               headerlablekey: 'key_pass',
+              hinttextkey: 'Key_number_value',
               radiovalue: localdata.pass?.isEmpty ?? true ? false : true,
               validator: (value) {
                 if (value.trim().isEmpty) {
@@ -770,7 +807,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   localdata.block?.isEmpty ?? true ? "" : localdata.block,
               headerlablekey: 'key_block',
               radiovalue: localdata.block?.isEmpty ?? true ? false : true,
-              hinttextkey: 'key_enter_1st_surveyor',
+              hinttextkey: 'Key_number_value',
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
@@ -792,7 +829,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   : localdata.part_number,
               headerlablekey: 'key_part_number',
               radiovalue: localdata.part_number?.isEmpty ?? true ? false : true,
-              hinttextkey: 'key_enter_1st_surveyor',
+              hinttextkey: 'Key_number_value',
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
@@ -813,11 +850,13 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   ? ""
                   : localdata.unit_number,
               headerlablekey: 'key_unit_number',
-              radiovalue: false,
-              hinttextkey: 'key_enter_1st_surveyor',
+              radiovalue: localdata.unit_number?.isEmpty ?? true ? false : true,
+              hinttextkey: 'Key_number_value',
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
+                } else if (value.length > 3) {
+                  return "three digit allowed";
                 }
               },
               onSaved: (value) {
@@ -828,56 +867,95 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 setState(() {});
               }),
           formcardtextfield(
+              keyboardtype: TextInputType.number,
               headerlablekey: 'key_number_of_unit',
-              radiovalue: false,
-              hinttextkey: 'key_enter_1st_surveyor',
-              validator: (value) {
-                if (value.trim().isEmpty) {
-                  return "field should not be blank";
-                }
+              radiovalue:
+                  localdata.unit_in_parcel?.isEmpty ?? true ? false : true,
+              hinttextkey: 'Key_number_value',
+              // validator: (value) {
+              //   if (value.trim().isEmpty) {
+              //     return "field should not be blank";
+              //   }
+              // },
+              onSaved: (value) {
+                localdata.unit_in_parcel = value.trim();
               },
-              onSaved: (value) {}),
+              onChanged: (value) {
+                localdata.unit_in_parcel = value.trim();
+                setState(() {});
+              }),
           formcardtextfield(
               headerlablekey: 'key_state_name',
-              radiovalue: false,
+              radiovalue: localdata.street_name?.isEmpty ?? true ? false : true,
               hinttextkey: 'key_enter_1st_surveyor',
-              validator: (value) {
-                if (value.trim().isEmpty) {
-                  return "field should not be blank";
-                }
+              // validator: (value) {
+              //   if (value.trim().isEmpty) {
+              //     return "field should not be blank";
+              //   }
+              // },
+              onSaved: (value) {
+                localdata.street_name = value.trim();
               },
-              onSaved: (value) {}),
+              onChanged: (value) {
+                localdata.street_name = value.trim();
+                setState(() {});
+              }),
           formcardtextfield(
               headerlablekey: 'key_historycal_site',
-              radiovalue: false,
+              radiovalue:
+                  localdata.historic_site_area?.isEmpty ?? true ? false : true,
               hinttextkey: 'key_enter_1st_surveyor',
-              validator: (value) {
-                if (value.trim().isEmpty) {
-                  return "field should not be blank";
-                }
+              // validator: (value) {
+              //   if (value.trim().isEmpty) {
+              //     return "field should not be blank";
+              //   }
+              // },
+              onSaved: (value) {
+                localdata.historic_site_area = value.trim();
               },
-              onSaved: (value) {}),
+              onChanged: (value) {
+                localdata.historic_site_area = value.trim();
+                setState(() {});
+              }),
           formcardtextfield(
+              keyboardtype: TextInputType.number,
               headerlablekey: 'key_land_area',
-              radiovalue: false,
-              hinttextkey: 'key_enter_1st_surveyor',
-              validator: (value) {
-                if (value.trim().isEmpty) {
-                  return "field should not be blank";
-                }
+              radiovalue: localdata.land_area?.isEmpty ?? true ? false : true,
+              hinttextkey: 'Key_number_value',
+              // validator: (value) {
+              //   if (value.trim().isEmpty) {
+              //     return "field should not be blank";
+              //   }
+              // },
+              onSaved: (value) {
+                localdata.land_area = value.trim();
               },
-              onSaved: (value) {}),
+              onChanged: (value) {
+                localdata.land_area = value.trim();
+                setState(() {});
+              }),
           formCardRadioButtons(
-              iscompleted: false,
+              initvalue: localdata.property_user_owner?.isEmpty ?? true
+                  ? ""
+                  : localdata.property_user_owner,
+              iscompleted:
+                  localdata.property_user_owner?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_type_ownership',
               radiobtnlables: [
                 setapptext(key: 'key_solo'),
                 setapptext(key: 'key_collective')
               ],
               radiobtnSelected: (String value) {
-                print(value);
-              }),
-          draftbutton(),
+                localdata.property_user_owner = value;
+              },
+              onchanged: (value, index) {
+                localdata.property_user_owner = value;
+                setState(() {});
+              },
+              validate: localdata.property_user_owner?.isEmpty ?? true
+                  ? true
+                  : false),
+          //draftbutton(),
           SizedBox(
             height: 50,
           )
@@ -891,7 +969,12 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
       child: ListView(
         children: <Widget>[
           formCardRadioButtons(
-              iscompleted: false,
+              initvalue: localdata.location_of_land_area?.isEmpty ?? true
+                  ? ""
+                  : localdata.location_of_land_area,
+              iscompleted: localdata.location_of_land_area?.isEmpty ?? true
+                  ? false
+                  : true,
               headerlablekey: 'key_location_land',
               radiobtnlables: [
                 setapptext(key: 'key_zone_1'),
@@ -903,20 +986,44 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 setapptext(key: 'key_zone_7')
               ],
               radiobtnSelected: (String value) {
-                print(value);
-              }),
+                localdata.location_of_land_area = value;
+              },
+              onchanged: (value, index) {
+                localdata.location_of_land_area = value;
+                setState(() {});
+              },
+              validate: localdata.location_of_land_area?.isEmpty ?? true
+                  ? true
+                  : false),
           formCardRadioButtons(
-              iscompleted: false,
+              initvalue: localdata.property_have_document?.isEmpty ?? true
+                  ? ""
+                  : localdata.property_have_document,
+              iscompleted: localdata.property_have_document?.isEmpty ?? true
+                  ? false
+                  : true,
               headerlablekey: 'key_does_properties_document',
               radiobtnlables: [
                 setapptext(key: 'key_yes_sir'),
                 setapptext(key: 'key_no'),
               ],
               radiobtnSelected: (String value) {
-                print(value);
-              }),
+                localdata.property_have_document = value;
+              },
+              onchanged: (value, index) {
+                localdata.property_have_document = value;
+                setState(() {});
+              },
+              validate: localdata.property_have_document?.isEmpty ?? true
+                  ? true
+                  : false),
           formCardRadioButtons(
-              iscompleted: false,
+              initvalue: localdata.current_use_of_property?.isEmpty ?? true
+                  ? ""
+                  : localdata.current_use_of_property,
+              iscompleted: localdata.current_use_of_property?.isEmpty ?? true
+                  ? false
+                  : true,
               headerlablekey: 'key_current_use_property_type',
               radiobtnlables: [
                 setapptext(key: 'key_release'),
@@ -931,127 +1038,166 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 setapptext(key: 'key_property_type_unspecified'),
               ],
               radiobtnSelected: (String value) {
-                print(value);
+                localdata.current_use_of_property = value;
+              },
+              onchanged: (value, index) {
+                localdata.current_use_of_property = value;
+                setState(() {
+                  print(value);
+                  if (value == 'Release') {
+                    showWidget("Release");
+                  } else if (value == 'Commercial') {
+                    showWidget("Commercial");
+                  } else if (value == 'Complex (Release / Business)') {
+                    showWidget("Complex (Release / Business)");
+                  } else if (value == 'Governmental') {
+                    showWidget("viewVisible");
+                  } else if (value == 'Property Type - Other (specified)') {
+                    showWidget("Property Type - Other (specified)");
+                  } else if (value == 'Property Type - Other (unspecified)') {
+                    showWidget("Property Type - Other (unspecified)");
+                  }
+                });
               }),
 
           ///release
           ///start
-          formCardRadioButtons(
-              iscompleted: false,
-              headerlablekey: 'key_Type_of_redeemable_property',
-              radiobtnlables: [
-                setapptext(key: 'key_Palace'),
-                setapptext(key: 'key_Lease_Apartment'),
-                setapptext(key: 'key_Four_walls_no_building'),
-                setapptext(key: 'key_Under_Construction_Repairs')
-              ],
-              radiobtnSelected: (String value) {
-                print(value);
-              }),
+          Visibility(
+            maintainState: true,
+            visible: redeem_propertyVisible,
+            child: formCardRadioButtons(
+                iscompleted: false,
+                headerlablekey: 'key_Type_of_redeemable_property',
+                radiobtnlables: [
+                  setapptext(key: 'key_Palace'),
+                  setapptext(key: 'key_Lease_Apartment'),
+                  setapptext(key: 'key_Four_walls_no_building'),
+                  setapptext(key: 'key_Under_Construction_Repairs')
+                ],
+                radiobtnSelected: (String value) {
+                  print(value);
+                }),
+          ),
 
           ///end
           ///commercial
           ///start
-          formCardRadioButtons(
-              iscompleted: false,
-              headerlablekey: 'key_Proprietary_Properties',
-              radiobtnlables: [
-                setapptext(key: 'key_shop'),
-                setapptext(key: 'key_Barber'),
-                setapptext(key: 'key_hotel_restaurant'),
-                setapptext(key: 'key_Restaurant'),
-                setapptext(key: 'key_Serai'),
-                setapptext(key: 'key_Warehouse'),
-                setapptext(key: 'key_Tail_Tank'),
-                setapptext(key: 'key_Pharmacy'),
-                setapptext(key: 'key_Bathroom'),
-                setapptext(key: 'key_Another'),
-              ],
-              radiobtnSelected: (String value) {
-                print(value);
-              }),
+          Visibility(
+            maintainState: true,
+            visible: proprietary_visible,
+            child: formCardRadioButtons(
+                iscompleted: false,
+                headerlablekey: 'key_Proprietary_Properties',
+                radiobtnlables: [
+                  setapptext(key: 'key_shop'),
+                  setapptext(key: 'key_Barber'),
+                  setapptext(key: 'key_hotel_restaurant'),
+                  setapptext(key: 'key_Restaurant'),
+                  setapptext(key: 'key_Serai'),
+                  setapptext(key: 'key_Warehouse'),
+                  setapptext(key: 'key_Tail_Tank'),
+                  setapptext(key: 'key_Pharmacy'),
+                  setapptext(key: 'key_Bathroom'),
+                  setapptext(key: 'key_Another'),
+                ],
+                radiobtnSelected: (String value) {
+                  print(value);
+                }),
+          ),
 
           ///end
           ///complex (Release / Business)
           ///start
-          formCardRadioButtons(
-              iscompleted: false,
-              headerlablekey: 'key_redeemable_property',
-              radiobtnlables: [
-                setapptext(key: 'key_Palace'),
-                setapptext(key: 'key_Lease_Apartment'),
-                setapptext(key: 'key_Four_walls_no_building'),
-                setapptext(key: 'key_Under_Construction_Repairs')
-              ],
-              radiobtnSelected: (String value) {
-                print(value);
-              }),
+          // formCardRadioButtons(
+          //     iscompleted: false,
+          //     headerlablekey: 'key_redeemable_property',
+          //     radiobtnlables: [
+          //       setapptext(key: 'key_Palace'),
+          //       setapptext(key: 'key_Lease_Apartment'),
+          //       setapptext(key: 'key_Four_walls_no_building'),
+          //       setapptext(key: 'key_Under_Construction_Repairs')
+          //     ],
+          //     radiobtnSelected: (String value) {
+          //       print(value);
+          //     }),
 
           ///end
           ///governmental
           ///start
-          formCardRadioButtons(
-              iscompleted: false,
-              headerlablekey: 'key_govt_proprty',
-              radiobtnlables: [
-                setapptext(key: 'key_School_Startup'),
-                setapptext(key: 'key_Secondary_school'),
-                setapptext(key: 'key_Great_school'),
-                setapptext(key: 'key_University'),
-                setapptext(key: 'key_Learning_Center'),
-                setapptext(key: 'key_hospital'),
-                setapptext(key: 'key_clinic'),
-                setapptext(key: 'key_Playground'),
-                setapptext(key: 'key_Park'),
-                setapptext(key: 'key_Military_area'),
-                setapptext(key: 'key_mosque'),
-                setapptext(key: 'key_Graveyard'),
-                setapptext(key: 'key_Pilgrimage'),
-                setapptext(key: 'key_Another')
-              ],
-              radiobtnSelected: (String value) {
-                print(value);
-              }),
+          Visibility(
+            maintainState: true,
+            visible: govermental_visible,
+            child: formCardRadioButtons(
+                iscompleted: false,
+                headerlablekey: 'key_govt_proprty',
+                radiobtnlables: [
+                  setapptext(key: 'key_School_Startup'),
+                  setapptext(key: 'key_Secondary_school'),
+                  setapptext(key: 'key_Great_school'),
+                  setapptext(key: 'key_University'),
+                  setapptext(key: 'key_Learning_Center'),
+                  setapptext(key: 'key_hospital'),
+                  setapptext(key: 'key_clinic'),
+                  setapptext(key: 'key_Playground'),
+                  setapptext(key: 'key_Park'),
+                  setapptext(key: 'key_Military_area'),
+                  setapptext(key: 'key_mosque'),
+                  setapptext(key: 'key_Graveyard'),
+                  setapptext(key: 'key_Pilgrimage'),
+                  setapptext(key: 'key_Another')
+                ],
+                radiobtnSelected: (String value) {
+                  print(value);
+                }),
+          ),
 
           ///end
           ///Property Type - Other (specified)
           ///start
-          formCardRadioButtons(
-              iscompleted: false,
-              headerlablekey: 'key_type_of_currentuse',
-              radiobtnlables: [
-                setapptext(key: 'key_Car_station'),
-                setapptext(key: 'key_Enough_National_Station'),
-                setapptext(key: 'key_air_square'),
-                setapptext(key: 'key_Road'),
-                setapptext(key: 'key_Wasteland'),
-                setapptext(key: 'key_agriculture'),
-                setapptext(key: 'key_Green_area'),
-                setapptext(key: 'key_Jungle'),
-                setapptext(key: 'key_abc'),
-                setapptext(key: 'key_Sea'),
-                setapptext(key: 'key_Empty_land')
-              ],
-              radiobtnSelected: (String value) {
-                print(value);
-              }),
+          Visibility(
+            maintainState: true,
+            visible: property_type_other_specified,
+            child: formCardRadioButtons(
+                iscompleted: false,
+                headerlablekey: 'key_type_of_currentuse',
+                radiobtnlables: [
+                  setapptext(key: 'key_Car_station'),
+                  setapptext(key: 'key_Enough_National_Station'),
+                  setapptext(key: 'key_air_square'),
+                  setapptext(key: 'key_Road'),
+                  setapptext(key: 'key_Wasteland'),
+                  setapptext(key: 'key_agriculture'),
+                  setapptext(key: 'key_Green_area'),
+                  setapptext(key: 'key_Jungle'),
+                  setapptext(key: 'key_abc'),
+                  setapptext(key: 'key_Sea'),
+                  setapptext(key: 'key_Empty_land')
+                ],
+                radiobtnSelected: (String value) {
+                  print(value);
+                }),
+          ),
 
           ///end
           ///Property Type - Other (unspecified)
           ///start
-          formcardtextfield(
-              headerlablekey: 'key_current_usage',
-              radiovalue: false,
-              hinttextkey: 'key_enter_1st_surveyor',
-              validator: (value) {
-                if (value.trim().isEmpty) {
-                  return "field should not be blank";
-                }
-              },
-              onSaved: (value) {}),
+          Visibility(
+            maintainState: true,
+            visible: property_type_other_Unspecified,
+            child: formcardtextfield(
+                headerlablekey: 'key_current_usage',
+                radiovalue: false,
+                hinttextkey: 'key_enter_1st_surveyor',
+                validator: (value) {
+                  if (value.trim().isEmpty) {
+                    return "field should not be blank";
+                  }
+                },
+                onSaved: (value) {}),
+          ),
 
           ///end
-          draftbutton(),
+          // draftbutton(),
 
           SizedBox(
             height: 50,

@@ -200,5 +200,6 @@
     "key_current_usage": "Enter the current usage type",
     "key_tasks": "Tasks",
     "key_guide": "Guide",
-    "key_help": "Help"
+    "key_help": "Help",
+    "Key_number_value":"Enter the value"
 }

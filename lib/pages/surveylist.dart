@@ -39,10 +39,10 @@ class _SurveyPageState extends State<SurveyPage> {
                 alignment: Alignment.topLeft,
                 child: Column(
                   children: <Widget>[
-                    Text("data"),
-                    Text("data"),
-                    Text("data"),
-                    Text("data"),
+                    Text("Unit No.-",style: TextStyle(fontSize: 16),),
+                    Text("Part No.-",style: TextStyle(fontSize: 16)),
+                    Text("  Block No.-",style: TextStyle(fontSize: 16)),
+                    //Text("data"),
                   ],
                 ),
               ),
