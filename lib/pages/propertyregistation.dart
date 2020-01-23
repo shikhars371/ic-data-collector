@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
+import 'package:kapp/controllers/auth.dart';
+import 'package:provider/provider.dart';
 
 import '../localization/app_translations.dart';
-import '../utils/buttomnavbar.dart';
-import '../utils/appdrawer.dart';
 import '../models/localpropertydata.dart';
+import '../utils/db_helper.dart';
 
 class PropertyRegistationPage extends StatefulWidget {
   PropertyRegistationPage({this.taskid});
@@ -25,31 +26,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
       govermental_visible = false,
       property_type_other_specified = false,
       property_type_other_Unspecified = false;
-  void showWidget(String viewVisible) {
-    setState(() {
-      if (viewVisible == "Release") {
-        redeem_propertyVisible = true;
-      } else if (viewVisible == "Commercial") {
-        proprietary_visible = true;
-      } else if (viewVisible == "Complex (Release / Business)") {
-        redeem_propertyVisible = true;
-        proprietary_visible = true;
-      } else if (viewVisible == "Governmental") {
-        govermental_visible = true;
-      } else if (viewVisible == "Property Type - Other (specified)") {
-        property_type_other_specified = true;
-      } else if (viewVisible == "Property Type - Other (unspecified)") {}
-      property_type_other_Unspecified = true;
-    });
-  }
 
-  void hideWidget(bool viewVisible) {
-    setState(() {
-      viewVisible = false;
-    });
-  }
-
-  void datasaver() {
+  void datasaver() async {
     if (formval == 0) {
       if (_formkey.currentState.validate()) {
         _formkey.currentState.save();
@@ -84,11 +62,28 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
         });
       }
     } else if (formval == 4) {
-      if (_formkey.currentState.validate()) {
+      if (!_formkey.currentState.validate() ||
+          (localdata.province?.isEmpty ?? true) ||
+          (localdata.city?.isEmpty ?? true) ||
+          (localdata.property_user_owner?.isEmpty ?? true)) {
+        return;
+      } else {
         _formkey.currentState.save();
+        int svval = await DBHelper().addPropertySurvey(localdata);
+        print("save return" + svval.toString());
         setState(() {
           formval += 1;
         });
+      }
+    } else if (formval == 5) {
+      if (localdata.property_have_document?.isEmpty ?? true) {
+        return;
+      } else {
+        if (localdata.property_have_document == "Yes") {
+          setState(() {
+            formval += 1;
+          });
+        } else {}
       }
     }
   }
@@ -129,7 +124,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
       String hinttextkey,
       Function(String) onSaved,
       Function(String) validator,
-      Function(String) onChanged}) {
+      Function(String) onChanged,
+      Widget suffix}) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -165,6 +161,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   keyboardType: keyboardtype,
                   initialValue: initvalue?.isEmpty ?? true ? "" : initvalue,
                   decoration: InputDecoration(
+                    suffixIcon: suffix,
                     hintText: hinttextkey?.isEmpty ?? true
                         ? ""
                         : setapptext(key: hinttextkey),
@@ -561,6 +558,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   : true,
               onSaved: (value) {
                 localdata.issue_regarding_property = value.trim();
+              },
+              onChanged: (value) {
+                localdata.issue_regarding_property = value.trim();
+                setState(() {});
               }),
           formcardtextfield(
               initvalue: localdata.municipality_ref_number?.isEmpty ?? true
@@ -572,6 +573,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   : true,
               onSaved: (value) {
                 localdata.municipality_ref_number = value.trim();
+              },
+              onChanged: (value) {
+                localdata.municipality_ref_number = value.trim();
+                setState(() {});
               }),
           formCardRadioButtons(
               iscompleted:
@@ -695,6 +700,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
+  //Property Location
   Widget form5() {
     return Expanded(
       child: ListView(
@@ -717,7 +723,6 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               ],
               onChanged: (value) {
                 localdata.province = value;
-
                 setState(() {
                   ddprovinceval = value;
                 });
@@ -767,11 +772,12 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               headerlablekey: 'key_area',
               radiovalue: localdata.area?.isEmpty ?? true ? false : true,
               hinttextkey: 'Key_number_value',
-              initvalue:
-                  localdata.area, //?.isEmpty ?? true ? "" : localdata.area
+              initvalue: localdata.area?.isEmpty ?? true ? "" : localdata.area,
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
+                } else if (value.length > 2) {
+                  return "2 digit allowed";
                 }
               },
               onSaved: (value) {
@@ -867,16 +873,14 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 setState(() {});
               }),
           formcardtextfield(
+              initvalue: localdata.unit_in_parcel?.isEmpty ?? true
+                  ? ""
+                  : localdata.unit_in_parcel,
               keyboardtype: TextInputType.number,
               headerlablekey: 'key_number_of_unit',
               radiovalue:
                   localdata.unit_in_parcel?.isEmpty ?? true ? false : true,
               hinttextkey: 'Key_number_value',
-              // validator: (value) {
-              //   if (value.trim().isEmpty) {
-              //     return "field should not be blank";
-              //   }
-              // },
               onSaved: (value) {
                 localdata.unit_in_parcel = value.trim();
               },
@@ -885,14 +889,12 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 setState(() {});
               }),
           formcardtextfield(
+              initvalue: localdata.street_name?.isEmpty ?? true
+                  ? ""
+                  : localdata.street_name,
               headerlablekey: 'key_state_name',
               radiovalue: localdata.street_name?.isEmpty ?? true ? false : true,
               hinttextkey: 'key_enter_1st_surveyor',
-              // validator: (value) {
-              //   if (value.trim().isEmpty) {
-              //     return "field should not be blank";
-              //   }
-              // },
               onSaved: (value) {
                 localdata.street_name = value.trim();
               },
@@ -901,15 +903,13 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 setState(() {});
               }),
           formcardtextfield(
+              initvalue: localdata.historic_site_area?.isEmpty ?? true
+                  ? ""
+                  : localdata.historic_site_area,
               headerlablekey: 'key_historycal_site',
               radiovalue:
                   localdata.historic_site_area?.isEmpty ?? true ? false : true,
               hinttextkey: 'key_enter_1st_surveyor',
-              // validator: (value) {
-              //   if (value.trim().isEmpty) {
-              //     return "field should not be blank";
-              //   }
-              // },
               onSaved: (value) {
                 localdata.historic_site_area = value.trim();
               },
@@ -918,15 +918,13 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 setState(() {});
               }),
           formcardtextfield(
+              initvalue: localdata.land_area?.isEmpty ?? true
+                  ? ""
+                  : localdata.land_area,
               keyboardtype: TextInputType.number,
               headerlablekey: 'key_land_area',
               radiovalue: localdata.land_area?.isEmpty ?? true ? false : true,
               hinttextkey: 'Key_number_value',
-              // validator: (value) {
-              //   if (value.trim().isEmpty) {
-              //     return "field should not be blank";
-              //   }
-              // },
               onSaved: (value) {
                 localdata.land_area = value.trim();
               },
@@ -955,7 +953,6 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               validate: localdata.property_user_owner?.isEmpty ?? true
                   ? true
                   : false),
-          //draftbutton(),
           SizedBox(
             height: 50,
           )
@@ -964,6 +961,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
+  // property details
   Widget form6() {
     return Expanded(
       child: ListView(
@@ -1009,6 +1007,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               ],
               radiobtnSelected: (String value) {
                 localdata.property_have_document = value;
+                print(value);
               },
               onchanged: (value, index) {
                 localdata.property_have_document = value;
@@ -1043,30 +1042,27 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               onchanged: (value, index) {
                 localdata.current_use_of_property = value;
                 setState(() {
-                  print(value);
-                  if (value == 'Release') {
-                    showWidget("Release");
-                  } else if (value == 'Commercial') {
-                    showWidget("Commercial");
-                  } else if (value == 'Complex (Release / Business)') {
-                    showWidget("Complex (Release / Business)");
-                  } else if (value == 'Governmental') {
-                    showWidget("viewVisible");
-                  } else if (value == 'Property Type - Other (specified)') {
-                    showWidget("Property Type - Other (specified)");
-                  } else if (value == 'Property Type - Other (unspecified)') {
-                    showWidget("Property Type - Other (unspecified)");
-                  }
+                  localdata.redeemable_property = null;
+                  localdata.proprietary_properties = null;
+                  localdata.current_use_of_property = null;
+                  localdata.specified_current_use = null;
+                  localdata.unspecified_current_use_type = null;
                 });
-              }),
+              },
+              validate: localdata.current_use_of_property?.isEmpty ?? true
+                  ? true
+                  : false),
 
           ///release
           ///start
-          Visibility(
-            maintainState: true,
-            visible: redeem_propertyVisible,
-            child: formCardRadioButtons(
-                iscompleted: false,
+          if (localdata.current_use_of_property == 'Release') ...[
+            formCardRadioButtons(
+                initvalue: localdata.redeemable_property?.isEmpty ?? true
+                    ? ""
+                    : localdata.redeemable_property,
+                iscompleted: localdata.redeemable_property?.isEmpty ?? true
+                    ? false
+                    : true,
                 headerlablekey: 'key_Type_of_redeemable_property',
                 radiobtnlables: [
                   setapptext(key: 'key_Palace'),
@@ -1075,18 +1071,25 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   setapptext(key: 'key_Under_Construction_Repairs')
                 ],
                 radiobtnSelected: (String value) {
-                  print(value);
+                  localdata.redeemable_property = value;
+                },
+                onchanged: (value, index) {
+                  localdata.redeemable_property = value;
+                  setState(() {});
                 }),
-          ),
+          ],
 
           ///end
           ///commercial
           ///start
-          Visibility(
-            maintainState: true,
-            visible: proprietary_visible,
-            child: formCardRadioButtons(
-                iscompleted: false,
+          if (localdata.current_use_of_property == "Commercial") ...[
+            formCardRadioButtons(
+                initvalue: localdata.proprietary_properties?.isEmpty ?? true
+                    ? ""
+                    : localdata.proprietary_properties,
+                iscompleted: localdata.proprietary_properties?.isEmpty ?? true
+                    ? false
+                    : true,
                 headerlablekey: 'key_Proprietary_Properties',
                 radiobtnlables: [
                   setapptext(key: 'key_shop'),
@@ -1101,34 +1104,79 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   setapptext(key: 'key_Another'),
                 ],
                 radiobtnSelected: (String value) {
-                  print(value);
+                  localdata.proprietary_properties = value;
+                },
+                onchanged: (value, index) {
+                  localdata.proprietary_properties = value;
+                  setState(() {});
                 }),
-          ),
+          ],
 
           ///end
           ///complex (Release / Business)
           ///start
-          // formCardRadioButtons(
-          //     iscompleted: false,
-          //     headerlablekey: 'key_redeemable_property',
-          //     radiobtnlables: [
-          //       setapptext(key: 'key_Palace'),
-          //       setapptext(key: 'key_Lease_Apartment'),
-          //       setapptext(key: 'key_Four_walls_no_building'),
-          //       setapptext(key: 'key_Under_Construction_Repairs')
-          //     ],
-          //     radiobtnSelected: (String value) {
-          //       print(value);
-          //     }),
+          if (localdata.current_use_of_property ==
+              "Complex (Release / Business)") ...[
+            formCardRadioButtons(
+                initvalue: localdata.redeemable_property?.isEmpty ?? true
+                    ? ""
+                    : localdata.redeemable_property,
+                iscompleted: localdata.redeemable_property?.isEmpty ?? true
+                    ? false
+                    : true,
+                headerlablekey: 'key_Type_of_redeemable_property',
+                radiobtnlables: [
+                  setapptext(key: 'key_Palace'),
+                  setapptext(key: 'key_Lease_Apartment'),
+                  setapptext(key: 'key_Four_walls_no_building'),
+                  setapptext(key: 'key_Under_Construction_Repairs')
+                ],
+                radiobtnSelected: (String value) {
+                  localdata.redeemable_property = value;
+                },
+                onchanged: (value, index) {
+                  localdata.redeemable_property = value;
+                  setState(() {});
+                }),
+            formCardRadioButtons(
+                initvalue: localdata.proprietary_properties?.isEmpty ?? true
+                    ? ""
+                    : localdata.proprietary_properties,
+                iscompleted: localdata.proprietary_properties?.isEmpty ?? true
+                    ? false
+                    : true,
+                headerlablekey: 'key_Proprietary_Properties',
+                radiobtnlables: [
+                  setapptext(key: 'key_shop'),
+                  setapptext(key: 'key_Barber'),
+                  setapptext(key: 'key_hotel_restaurant'),
+                  setapptext(key: 'key_Restaurant'),
+                  setapptext(key: 'key_Serai'),
+                  setapptext(key: 'key_Warehouse'),
+                  setapptext(key: 'key_Tail_Tank'),
+                  setapptext(key: 'key_Pharmacy'),
+                  setapptext(key: 'key_Bathroom'),
+                  setapptext(key: 'key_Another'),
+                ],
+                radiobtnSelected: (String value) {
+                  localdata.proprietary_properties = value;
+                },
+                onchanged: (value, index) {
+                  localdata.proprietary_properties = value;
+                  setState(() {});
+                }),
+          ],
 
           ///end
           ///governmental
           ///start
-          Visibility(
-            maintainState: true,
-            visible: govermental_visible,
-            child: formCardRadioButtons(
-                iscompleted: false,
+          if (localdata.current_use_of_property == "Governmental") ...[
+            formCardRadioButtons(
+                initvalue: localdata.govt_property?.isEmpty ?? true
+                    ? ""
+                    : localdata.govt_property,
+                iscompleted:
+                    localdata.govt_property?.isEmpty ?? true ? false : true,
                 headerlablekey: 'key_govt_proprty',
                 radiobtnlables: [
                   setapptext(key: 'key_School_Startup'),
@@ -1147,18 +1195,26 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   setapptext(key: 'key_Another')
                 ],
                 radiobtnSelected: (String value) {
-                  print(value);
+                  localdata.govt_property = value;
+                },
+                onchanged: (value, index) {
+                  localdata.govt_property = value;
+                  setState(() {});
                 }),
-          ),
+          ],
 
           ///end
           ///Property Type - Other (specified)
           ///start
-          Visibility(
-            maintainState: true,
-            visible: property_type_other_specified,
-            child: formCardRadioButtons(
-                iscompleted: false,
+          if (localdata.current_use_of_property ==
+              "Property Type - Other (specified)") ...[
+            formCardRadioButtons(
+                initvalue: localdata.specified_current_use?.isEmpty ?? true
+                    ? ""
+                    : localdata.specified_current_use,
+                iscompleted: localdata.specified_current_use?.isEmpty ?? true
+                    ? false
+                    : true,
                 headerlablekey: 'key_type_of_currentuse',
                 radiobtnlables: [
                   setapptext(key: 'key_Car_station'),
@@ -1174,27 +1230,42 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   setapptext(key: 'key_Empty_land')
                 ],
                 radiobtnSelected: (String value) {
-                  print(value);
+                  localdata.specified_current_use = value;
+                },
+                onchanged: (value, index) {
+                  localdata.specified_current_use = value;
+                  setState(() {});
                 }),
-          ),
+          ],
 
           ///end
           ///Property Type - Other (unspecified)
           ///start
-          Visibility(
-            maintainState: true,
-            visible: property_type_other_Unspecified,
-            child: formcardtextfield(
+          if (localdata.current_use_of_property ==
+              "Property Type - Other (unspecified)") ...[
+            formcardtextfield(
+                initvalue:
+                    localdata.unspecified_current_use_type?.isEmpty ?? true
+                        ? ""
+                        : localdata.unspecified_current_use_type,
                 headerlablekey: 'key_current_usage',
-                radiovalue: false,
-                hinttextkey: 'key_enter_1st_surveyor',
+                radiovalue:
+                    localdata.unspecified_current_use_type?.isEmpty ?? true
+                        ? false
+                        : true,
                 validator: (value) {
                   if (value.trim().isEmpty) {
                     return "field should not be blank";
                   }
                 },
-                onSaved: (value) {}),
-          ),
+                onSaved: (value) {
+                  localdata.unspecified_current_use_type = value;
+                },
+                onChanged: (value) {
+                  localdata.unspecified_current_use_type = value;
+                  setState(() {});
+                })
+          ],
 
           ///end
           // draftbutton(),
@@ -1539,13 +1610,17 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
-  //Document Type and Verification Circuit Documents
+  //Document Type and Verification Circuit Documents(6)
   Widget form12() {
     return Expanded(
       child: ListView(
         children: <Widget>[
           formCardRadioButtons(
-              iscompleted: false,
+              initvalue: localdata.document_type?.isEmpty ?? true
+                  ? ""
+                  : localdata.document_type,
+              iscompleted:
+                  localdata.document_type?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_doc_type',
               radiobtnlables: [
                 setapptext(key: 'key_religious'),
@@ -1553,104 +1628,144 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 setapptext(key: 'key_official_decree')
               ],
               radiobtnSelected: (String value) {
-                print(value);
-              }),
+                localdata.document_type = value;
+              },
+              onchanged: (value, index) {
+                localdata.document_type = value;
+                setState(() {});
+              },
+              validate:
+                  localdata.document_type?.isEmpty ?? true ? true : false),
 
           ///Specifications of the religious document
           ///begin
-          formcardtextfield(
+          if (localdata.document_type == "Religious") ...[
+            formcardtextfield(
+              initvalue: localdata.issued_on?.isEmpty ?? true
+                  ? ""
+                  : localdata.issued_on,
               headerlablekey: 'key_Issued_on',
-              radiovalue: false,
-              hinttextkey: 'key_enter_1st_surveyor',
-              validator: (value) {
-                if (value.trim().isEmpty) {
-                  return "field should not be blank";
-                }
+              hinttextkey: 'key_date_format',
+              radiovalue: localdata.issued_on?.isEmpty ?? true ? false : true,
+              onSaved: (value) {
+                localdata.issued_on = value;
               },
-              onSaved: (value) {}),
-          formcardtextfield(
-              headerlablekey: 'key_Place_of_Issue',
-              radiovalue: false,
-              hinttextkey: 'key_enter_1st_surveyor',
-              validator: (value) {
-                if (value.trim().isEmpty) {
-                  return "field should not be blank";
-                }
+              onChanged: (value) {
+                localdata.issued_on = value;
+                setState(() {});
               },
-              onSaved: (value) {}),
-          formcardtextfield(
-              headerlablekey: 'key_Property_Number',
-              radiovalue: false,
-              hinttextkey: 'key_enter_1st_surveyor',
-              validator: (value) {
-                if (value.trim().isEmpty) {
-                  return "field should not be blank";
-                }
-              },
-              onSaved: (value) {}),
-          formcardtextfield(
-              headerlablekey: 'key_Document_Cover',
-              radiovalue: false,
-              hinttextkey: 'key_enter_1st_surveyor',
-              validator: (value) {
-                if (value.trim().isEmpty) {
-                  return "field should not be blank";
-                }
-              },
-              onSaved: (value) {}),
-          formcardtextfield(
-              headerlablekey: 'key_Document_Page',
-              radiovalue: false,
-              hinttextkey: 'key_enter_1st_surveyor',
-              validator: (value) {
-                if (value.trim().isEmpty) {
-                  return "field should not be blank";
-                }
-              },
-              onSaved: (value) {}),
-          formcardtextfield(
-              headerlablekey: 'key_Document_Registration_Number',
-              radiovalue: false,
-              hinttextkey: 'key_enter_1st_surveyor',
-              validator: (value) {
-                if (value.trim().isEmpty) {
-                  return "field should not be blank";
-                }
-              },
-              onSaved: (value) {}),
-          formcardtextfield(
-              headerlablekey: 'key_Land_area_in_Qawwala',
-              radiovalue: false,
-              hinttextkey: 'key_enter_1st_surveyor',
-              validator: (value) {
-                if (value.trim().isEmpty) {
-                  return "field should not be blank";
-                }
-              },
-              onSaved: (value) {}),
-          formCardFileuploader(
-              isCompleted: false,
-              headerlablekey: 'key_Property_Document_Photo-1'),
-          formCardFileuploader(
-              isCompleted: false,
-              headerlablekey: 'key_Property_Document_Photo-2'),
-          formCardFileuploader(
-              isCompleted: false,
-              headerlablekey: 'key_Property_Document_Photo-3'),
-          formCardFileuploader(
-              isCompleted: false,
-              headerlablekey: 'key_Property_Document_Photo-4'),
+            ),
+            formcardtextfield(
+                initvalue: localdata.place_of_issue?.isEmpty ?? true
+                    ? ""
+                    : localdata.place_of_issue,
+                headerlablekey: 'key_Place_of_Issue',
+                radiovalue:
+                    localdata.place_of_issue?.isEmpty ?? true ? false : true,
+                onSaved: (value) {
+                  localdata.place_of_issue = value;
+                },
+                onChanged: (value) {
+                  localdata.place_of_issue = value;
+                  setState(() {});
+                }),
+            formcardtextfield(
+                initvalue: localdata.property_number?.isEmpty ?? true
+                    ? ""
+                    : localdata.property_number,
+                headerlablekey: 'key_Property_Number',
+                radiovalue:
+                    localdata.property_number?.isEmpty ?? true ? false : true,
+                onSaved: (value) {
+                  localdata.property_number = value;
+                },
+                onChanged: (value) {
+                  localdata.property_number = value;
+                  setState(() {});
+                }),
+            formcardtextfield(
+                initvalue: localdata.document_cover?.isEmpty ?? true
+                    ? ""
+                    : localdata.document_cover,
+                headerlablekey: 'key_Document_Cover',
+                radiovalue:
+                    localdata.document_cover?.isEmpty ?? true ? false : true,
+                onSaved: (value) {
+                  localdata.document_cover = value;
+                },
+                onChanged: (value) {
+                  localdata.document_cover = value;
+                  setState(() {});
+                }),
+            formcardtextfield(
+                initvalue: localdata.document_page?.isEmpty ?? true
+                    ? ""
+                    : localdata.document_page,
+                headerlablekey: 'key_Document_Page',
+                radiovalue:
+                    localdata.document_page?.isEmpty ?? true ? false : true,
+                onSaved: (value) {
+                  localdata.document_page = value;
+                },
+                onChanged: (value) {
+                  localdata.document_page = value;
+                  setState(() {});
+                }),
+            formcardtextfield(
+                initvalue: localdata.doc_reg_number?.isEmpty ?? true
+                    ? ""
+                    : localdata.doc_reg_number,
+                headerlablekey: 'key_Document_Registration_Number',
+                radiovalue:
+                    localdata.doc_reg_number?.isEmpty ?? true ? false : true,
+                onSaved: (value) {
+                  localdata.doc_reg_number = value;
+                },
+                onChanged: (value) {
+                  localdata.doc_reg_number = value;
+                  setState(() {});
+                }),
+            formcardtextfield(
+                initvalue: localdata.land_area_qawwala?.isEmpty ?? true
+                    ? ""
+                    : localdata.land_area_qawwala,
+                headerlablekey: 'key_Land_area_in_Qawwala',
+                radiovalue:
+                    localdata.land_area_qawwala?.isEmpty ?? true ? false : true,
+                onSaved: (value) {
+                  localdata.land_area_qawwala = value;
+                },
+                onChanged: (value) {
+                  localdata.land_area_qawwala = value;
+                  setState(() {});
+                }),
+            formCardFileuploader(
+                isCompleted: false,
+                headerlablekey: 'key_Property_Document_Photo-1'),
+            formCardFileuploader(
+                isCompleted: false,
+                headerlablekey: 'key_Property_Document_Photo-2'),
+            formCardFileuploader(
+                isCompleted: false,
+                headerlablekey: 'key_Property_Document_Photo-3'),
+            formCardFileuploader(
+                isCompleted: false,
+                headerlablekey: 'key_Property_Document_Photo-4'),
+          ],
 
           ///end
           ///Ordinary Document Specifications
           ///start
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_photo-1'),
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_photo-1'),
+          if (localdata.document_type == "Customary" ||
+              localdata.document_type == "Official Decree") ...[
+            formCardFileuploader(
+                isCompleted: false, headerlablekey: 'key_photo-1'),
+            formCardFileuploader(
+                isCompleted: false, headerlablekey: 'key_photo-1'),
+          ],
 
           ///end
-          draftbutton(),
+
           SizedBox(
             height: 50,
           )
@@ -1880,7 +1995,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
-  //Type of use
+  //Type of use(7)
   Widget form17() {
     return Expanded(
       child: ListView(
@@ -1942,6 +2057,504 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
+  //Characteristics of the Earth's Partners If the Land Is Shared
+  Widget form19() {
+    return Expanded(
+      child: ListView(
+        children: <Widget>[
+          ///second partner details
+          ///start
+          formcardtextfield(
+              headerlablekey: 'key_name',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_surname',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_boy',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_father_name',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formCardRadioButtons(
+              iscompleted: false,
+              headerlablekey: 'key_gender',
+              radiobtnlables: [
+                setapptext(key: 'key_male'),
+                setapptext(key: 'key_female')
+              ],
+              radiobtnSelected: (String value) {
+                print(value);
+              }),
+          formcardtextfield(
+              headerlablekey: 'key_phone',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_email',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formCardFileuploader(
+              isCompleted: false, headerlablekey: 'key_photo_owner'),
+          formcardtextfield(
+              headerlablekey: 'key_machine_gun',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_cover_letter',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_notification_page',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_reg_no',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formCardFileuploader(
+              isCompleted: false, headerlablekey: 'key_photo_note1'),
+          formCardFileuploader(
+              isCompleted: false, headerlablekey: 'key_photo_tips1'),
+          formCardFileuploader(
+              isCompleted: false, headerlablekey: 'key_photo_tips2'),
+
+          ///end
+          ///third partner details
+          ///start
+          formcardtextfield(
+              headerlablekey: 'key_name',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_surname',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_boy',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_father_name',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formCardRadioButtons(
+              iscompleted: false,
+              headerlablekey: 'key_gender',
+              radiobtnlables: [
+                setapptext(key: 'key_male'),
+                setapptext(key: 'key_female')
+              ],
+              radiobtnSelected: (String value) {
+                print(value);
+              }),
+          formcardtextfield(
+              headerlablekey: 'key_phone',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_email',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formCardFileuploader(
+              isCompleted: false, headerlablekey: 'key_photo_owner'),
+          formcardtextfield(
+              headerlablekey: 'key_machine_gun',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_cover_letter',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_notification_page',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_reg_no',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formCardFileuploader(
+              isCompleted: false, headerlablekey: 'key_photo_note1'),
+          formCardFileuploader(
+              isCompleted: false, headerlablekey: 'key_photo_tips1'),
+          formCardFileuploader(
+              isCompleted: false, headerlablekey: 'key_photo_tips2'),
+
+          ///end
+          ///fourth partner
+          ///start
+          formcardtextfield(
+              headerlablekey: 'key_name',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_surname',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_boy',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_father_name',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formCardRadioButtons(
+              iscompleted: false,
+              headerlablekey: 'key_gender',
+              radiobtnlables: [
+                setapptext(key: 'key_male'),
+                setapptext(key: 'key_female')
+              ],
+              radiobtnSelected: (String value) {
+                print(value);
+              }),
+          formcardtextfield(
+              headerlablekey: 'key_phone',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_email',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formCardFileuploader(
+              isCompleted: false, headerlablekey: 'key_photo_owner'),
+          formcardtextfield(
+              headerlablekey: 'key_machine_gun',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_cover_letter',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_notification_page',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_reg_no',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formCardFileuploader(
+              isCompleted: false, headerlablekey: 'key_photo_note1'),
+          formCardFileuploader(
+              isCompleted: false, headerlablekey: 'key_photo_tips1'),
+          formCardFileuploader(
+              isCompleted: false, headerlablekey: 'key_photo_tips2'),
+
+          ///end
+          ///fifth partnet deatils
+          ///start
+          formcardtextfield(
+              headerlablekey: 'key_name',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_surname',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_boy',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_father_name',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formCardRadioButtons(
+              iscompleted: false,
+              headerlablekey: 'key_gender',
+              radiobtnlables: [
+                setapptext(key: 'key_male'),
+                setapptext(key: 'key_female')
+              ],
+              radiobtnSelected: (String value) {
+                print(value);
+              }),
+          formcardtextfield(
+              headerlablekey: 'key_phone',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_email',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formCardFileuploader(
+              isCompleted: false, headerlablekey: 'key_photo_owner'),
+          formcardtextfield(
+              headerlablekey: 'key_machine_gun',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_cover_letter',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_notification_page',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formcardtextfield(
+              headerlablekey: 'key_reg_no',
+              radiovalue: false,
+              hinttextkey: 'key_enter_1st_surveyor',
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onSaved: (value) {}),
+          formCardFileuploader(
+              isCompleted: false, headerlablekey: 'key_photo_note1'),
+          formCardFileuploader(
+              isCompleted: false, headerlablekey: 'key_photo_tips1'),
+          formCardFileuploader(
+              isCompleted: false, headerlablekey: 'key_photo_tips2'),
+
+          ///end
+        ],
+      ),
+    );
+  }
+
   Widget backbutton() {
     return GestureDetector(
       onTap: () {
@@ -1991,6 +2604,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
 
   @override
   Widget build(BuildContext context) {
+    print("form no:" + formval.toString());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
@@ -1999,108 +2613,118 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
-      body: SafeArea(
-        child: Form(
-          key: _formkey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              ///header
-              if (formval == 0) ...[
-                formheader(headerlablekey: 'key_provider_details')
-              ] else if (formval == 1) ...[
-                formheader(headerlablekey: 'key_general_info1')
-              ] else if (formval == 2) ...[
-                formheader(headerlablekey: 'key_general_info_2')
-              ] else if (formval == 3) ...[
-                formheader(headerlablekey: 'key_physical_state')
-              ] else if (formval == 4) ...[
-                formheader(headerlablekey: 'key_property_location')
-              ] else if (formval == 5) ...[
-                formheader(headerlablekey: 'key_property_details')
-              ] else if (formval == 6) ...[
-                formheader(headerlablekey: 'key_true_personal')
-              ] else if (formval == 7) ...[
-                formheader(headerlablekey: 'key_information_and_photo')
-              ] else if (formval == 8) ...[
-                formheader(headerlablekey: 'key_four_limits')
-              ] else if (formval == 9) ...[
-                formheader(headerlablekey: 'key_details_number')
-              ] else if (formval == 10) ...[
-                formheader(headerlablekey: 'key_uploads')
-              ],
-              //form container
-              if (formval == 0) ...[
-                form1()
-              ] else if (formval == 1) ...[
-                form2()
-              ] else if (formval == 2) ...[
-                form3()
-              ] else if (formval == 3) ...[
-                form4()
-              ] else if (formval == 4) ...[
-                form5()
-              ] else if (formval == 5) ...[
-                form6()
-              ] else if (formval == 6) ...[
-                form7()
-              ] else if (formval == 7) ...[
-                form8()
-              ] else if (formval == 8) ...[
-                form9()
-              ] else if (formval == 9) ...[
-                form10()
-              ] else ...[
-                form11()
-              ],
-              //buttom menu container
-              if (formval == 0) ...[
-                Divider(
-                  color: Colors.blueAccent,
-                ),
-                Container(
-                  color: Colors.white,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      //back button
-                      SizedBox(),
-                      //next button
-                      nextbutton()
-                    ],
-                  ),
+      body: Consumer<DBHelper>(
+        builder: (context, dbdata, child) {
+          return dbdata.state == AppState.Busy
+              ? Center(
+                  child: CircularProgressIndicator(),
                 )
-              ] else if (formval == 10) ...[
-                Divider(
-                  color: Colors.blueAccent,
-                ),
-                Container(
-                  color: Colors.white,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      //back button
-                      backbutton(),
-                      //next button
-                      SizedBox()
-                    ],
+              : SafeArea(
+                  child: Form(
+                    key: _formkey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        ///header
+                        if (formval == 0) ...[
+                          formheader(headerlablekey: 'key_provider_details')
+                        ] else if (formval == 1) ...[
+                          formheader(headerlablekey: 'key_general_info1')
+                        ] else if (formval == 2) ...[
+                          formheader(headerlablekey: 'key_general_info_2')
+                        ] else if (formval == 3) ...[
+                          formheader(headerlablekey: 'key_physical_state')
+                        ] else if (formval == 4) ...[
+                          formheader(headerlablekey: 'key_property_location')
+                        ] else if (formval == 5) ...[
+                          formheader(headerlablekey: 'key_property_details')
+                        ] else if (formval == 6) ...[
+                          formheader(
+                              headerlablekey: 'key_doc_type_verification')
+                        ] else if (formval == 7) ...[
+                          formheader(
+                              headerlablekey: 'key_information_and_photo')
+                        ] else if (formval == 8) ...[
+                          formheader(headerlablekey: 'key_four_limits')
+                        ] else if (formval == 9) ...[
+                          formheader(headerlablekey: 'key_details_number')
+                        ] else if (formval == 10) ...[
+                          formheader(headerlablekey: 'key_uploads')
+                        ],
+                        //form container
+                        if (formval == 0) ...[
+                          form1()
+                        ] else if (formval == 1) ...[
+                          form2()
+                        ] else if (formval == 2) ...[
+                          form3()
+                        ] else if (formval == 3) ...[
+                          form4()
+                        ] else if (formval == 4) ...[
+                          form5()
+                        ] else if (formval == 5) ...[
+                          form6()
+                        ] else if (formval == 6) ...[
+                          form12()
+                        ] else if (formval == 7) ...[
+                          form8()
+                        ] else if (formval == 8) ...[
+                          form9()
+                        ] else if (formval == 9) ...[
+                          form10()
+                        ] else ...[
+                          form11()
+                        ],
+                        //buttom menu container
+                        if (formval == 0) ...[
+                          Divider(
+                            color: Colors.blueAccent,
+                          ),
+                          Container(
+                            color: Colors.white,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                //back button
+                                SizedBox(),
+                                //next button
+                                nextbutton()
+                              ],
+                            ),
+                          )
+                        ] else if (formval == 10) ...[
+                          Divider(
+                            color: Colors.blueAccent,
+                          ),
+                          Container(
+                            color: Colors.white,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                //back button
+                                backbutton(),
+                                //next button
+                                SizedBox()
+                              ],
+                            ),
+                          )
+                        ] else ...[
+                          Divider(
+                            color: Colors.blueAccent,
+                          ),
+                          Container(
+                            color: Colors.white,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[backbutton(), nextbutton()],
+                            ),
+                          )
+                        ]
+                      ],
+                    ),
                   ),
-                )
-              ] else ...[
-                Divider(
-                  color: Colors.blueAccent,
-                ),
-                Container(
-                  color: Colors.white,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[backbutton(), nextbutton()],
-                  ),
-                )
-              ]
-            ],
-          ),
-        ),
+                );
+        },
       ),
     );
   }

@@ -126,6 +126,66 @@ class LocalPropertySurvey {
   String area_unit_business_area;
   String area_unit_total_no_unit;
   String area_unit_business_units;
+  String second_partner_name;
+  String second_partner_surname;
+  String second_partner_boy;
+  String second_partner_father;
+  String second_partner_gender;
+  String second_partner_phone;
+  String second_partner_email;
+  String second_partner_image;
+  String second_partner_machinegun_no;
+  String second_partner_cover_note;
+  String second_partner_note_page;
+  String second_partner_reg_no;
+  String second_partner_phote_note1;
+  String second_partner_photo_tips1;
+  String second_partner_photo_tips2;
+  String third_partner_name;
+  String third_partner_surname;
+  String third_partner_boy;
+  String third_partner_father;
+  String third_partner_gender;
+  String third_partner_phone;
+  String third_partner_email;
+  String third_partner_image;
+  String third_partner_machinegun_no;
+  String third_partner_cover_note;
+  String third_partner_note_page;
+  String third_partner_reg_no;
+  String third_partner_phote_note1;
+  String third_partner_photo_tips1;
+  String third_partner_photo_tips2;
+  String fourth_partner_name;
+  String fourth_partner_surname;
+  String fourth_partner_boy;
+  String fourth_partner_father;
+  String fourth_partner_gender;
+  String fourth_partner_phone;
+  String fourth_partner_email;
+  String fourth_partner_image;
+  String fourth_partner_machinegun_no;
+  String fourth_partner_cover_note;
+  String fourth_partner_note_page;
+  String fourth_partner_reg_no;
+  String fourth_partner_phote_note1;
+  String fourth_partner_photo_tips1;
+  String fourth_partner_photo_tips2;
+  String fifth_partner_name;
+  String fifth_partner_surname;
+  String fifth_partner_boy;
+  String fifth_partner_father;
+  String fifth_partner_gender;
+  String fifth_partner_phone;
+  String fifth_partner_email;
+  String fifth_partner_image;
+  String fifth_partner_machinegun_no;
+  String fifth_partner_cover_note;
+  String fifth_partner_note_page;
+  String fifth_partner_reg_no;
+  String fifth_partner_phote_note1;
+  String fifth_partner_photo_tips1;
+  String fifth_partner_photo_tips2;
 
   LocalPropertySurvey(
       {this.id,
@@ -254,7 +314,67 @@ class LocalPropertySurvey {
       this.area_unit_release_area,
       this.area_unit_business_area,
       this.area_unit_total_no_unit,
-      this.area_unit_business_units});
+      this.area_unit_business_units,
+      this.second_partner_name,
+      this.second_partner_surname,
+      this.second_partner_boy,
+      this.second_partner_father,
+      this.second_partner_gender,
+      this.second_partner_phone,
+      this.second_partner_email,
+      this.second_partner_image,
+      this.second_partner_machinegun_no,
+      this.second_partner_cover_note,
+      this.second_partner_note_page,
+      this.second_partner_reg_no,
+      this.second_partner_phote_note1,
+      this.second_partner_photo_tips1,
+      this.second_partner_photo_tips2,
+      this.third_partner_name,
+      this.third_partner_surname,
+      this.third_partner_boy,
+      this.third_partner_father,
+      this.third_partner_gender,
+      this.third_partner_phone,
+      this.third_partner_email,
+      this.third_partner_image,
+      this.third_partner_machinegun_no,
+      this.third_partner_cover_note,
+      this.third_partner_note_page,
+      this.third_partner_reg_no,
+      this.third_partner_phote_note1,
+      this.third_partner_photo_tips1,
+      this.third_partner_photo_tips2,
+      this.fourth_partner_name,
+      this.fourth_partner_surname,
+      this.fourth_partner_boy,
+      this.fourth_partner_father,
+      this.fourth_partner_gender,
+      this.fourth_partner_phone,
+      this.fourth_partner_email,
+      this.fourth_partner_image,
+      this.fourth_partner_machinegun_no,
+      this.fourth_partner_cover_note,
+      this.fourth_partner_note_page,
+      this.fourth_partner_reg_no,
+      this.fourth_partner_phote_note1,
+      this.fourth_partner_photo_tips1,
+      this.fourth_partner_photo_tips2,
+      this.fifth_partner_name,
+      this.fifth_partner_surname,
+      this.fifth_partner_boy,
+      this.fifth_partner_father,
+      this.fifth_partner_gender,
+      this.fifth_partner_phone,
+      this.fifth_partner_email,
+      this.fifth_partner_image,
+      this.fifth_partner_machinegun_no,
+      this.fifth_partner_cover_note,
+      this.fifth_partner_note_page,
+      this.fifth_partner_reg_no,
+      this.fifth_partner_phote_note1,
+      this.fifth_partner_photo_tips1,
+      this.fifth_partner_photo_tips2});
 
   LocalPropertySurvey.fromJson(Map<String, dynamic> json)
       : id = json['_id'],
@@ -386,7 +506,67 @@ class LocalPropertySurvey {
         area_unit_release_area = json['area_unit_release_area'],
         area_unit_business_area = json['area_unit_business_area'],
         area_unit_total_no_unit = json['area_unit_total_no_unit'],
-        area_unit_business_units = json['area_unit_business_units'];
+        area_unit_business_units = json['area_unit_business_units'],
+        second_partner_name = json['second_partner_name'],
+        second_partner_surname = json['second_partner_surname'],
+        second_partner_boy = json['second_partner_boy'],
+        second_partner_father = json['second_partner_father'],
+        second_partner_gender = json['second_partner_gender'],
+        second_partner_phone = json['second_partner_phone'],
+        second_partner_email = json['second_partner_email'],
+        second_partner_image = json['second_partner_image'],
+        second_partner_machinegun_no = json['second_partner_machinegun_no'],
+        second_partner_cover_note = json['second_partner_cover_note'],
+        second_partner_note_page = json['second_partner_note_page'],
+        second_partner_reg_no = json['second_partner_reg_no'],
+        second_partner_phote_note1 = json['second_partner_phote_note1'],
+        second_partner_photo_tips1 = json['second_partner_photo_tips1'],
+        second_partner_photo_tips2 = json['second_partner_photo_tips2'],
+        third_partner_name = json['third_partner_name'],
+        third_partner_surname = json['third_partner_surname'],
+        third_partner_boy = json['third_partner_boy'],
+        third_partner_father = json['third_partner_father'],
+        third_partner_gender = json['third_partner_gender'],
+        third_partner_phone = json['third_partner_phone'],
+        third_partner_email = json['third_partner_email'],
+        third_partner_image = json['third_partner_image'],
+        third_partner_machinegun_no = json['third_partner_machinegun_no'],
+        third_partner_cover_note = json['third_partner_cover_note'],
+        third_partner_note_page = json['third_partner_note_page'],
+        third_partner_reg_no = json['third_partner_reg_no'],
+        third_partner_phote_note1 = json['third_partner_phote_note1'],
+        third_partner_photo_tips1 = json['third_partner_photo_tips1'],
+        third_partner_photo_tips2 = json['third_partner_photo_tips2'],
+        fourth_partner_name = json['fourth_partner_name'],
+        fourth_partner_surname = json['fourth_partner_surname'],
+        fourth_partner_boy = json['fourth_partner_boy'],
+        fourth_partner_father = json['fourth_partner_father'],
+        fourth_partner_gender = json['fourth_partner_gender'],
+        fourth_partner_phone = json['fourth_partner_phone'],
+        fourth_partner_email = json['fourth_partner_email'],
+        fourth_partner_image = json['fourth_partner_image'],
+        fourth_partner_machinegun_no = json['fourth_partner_machinegun_no'],
+        fourth_partner_cover_note = json['fourth_partner_cover_note'],
+        fourth_partner_note_page = json['fourth_partner_note_page'],
+        fourth_partner_reg_no = json['fourth_partner_reg_no'],
+        fourth_partner_phote_note1 = json['fourth_partner_phote_note1'],
+        fourth_partner_photo_tips1 = json['fourth_partner_photo_tips1'],
+        fourth_partner_photo_tips2 = json['fourth_partner_photo_tips2'],
+        fifth_partner_name = json['fifth_partner_name'],
+        fifth_partner_surname = json['fifth_partner_surname'],
+        fifth_partner_boy = json['fifth_partner_boy'],
+        fifth_partner_father = json['fifth_partner_father'],
+        fifth_partner_gender = json['fifth_partner_gender'],
+        fifth_partner_phone = json['fifth_partner_phone'],
+        fifth_partner_email = json['fifth_partner_email'],
+        fifth_partner_image = json['fifth_partner_image'],
+        fifth_partner_machinegun_no = json['fifth_partner_machinegun_no'],
+        fifth_partner_cover_note = json['fifth_partner_cover_note'],
+        fifth_partner_note_page = json['fifth_partner_note_page'],
+        fifth_partner_reg_no = json['fifth_partner_reg_no'],
+        fifth_partner_phote_note1 = json['fifth_partner_phote_note1'],
+        fifth_partner_photo_tips1 = json['fifth_partner_photo_tips1'],
+        fifth_partner_photo_tips2 = json['fifth_partner_photo_tips2'];
 
   Map<String, dynamic> toJson() => {
         '_id': id,
@@ -516,6 +696,66 @@ class LocalPropertySurvey {
         'area_unit_release_area': area_unit_release_area,
         'area_unit_business_area': area_unit_business_area,
         'area_unit_total_no_unit': area_unit_total_no_unit,
-        'area_unit_business_units': area_unit_business_units
+        'area_unit_business_units': area_unit_business_units,
+        'second_partner_name': second_partner_name,
+        'second_partner_surname': second_partner_surname,
+        'second_partner_boy': second_partner_boy,
+        'second_partner_father': second_partner_father,
+        'second_partner_gender': second_partner_gender,
+        'second_partner_phone': second_partner_phone,
+        'second_partner_email': second_partner_email,
+        'second_partner_image': second_partner_image,
+        'second_partner_machinegun_no': second_partner_machinegun_no,
+        'second_partner_cover_note': second_partner_cover_note,
+        'second_partner_note_page': second_partner_note_page,
+        'second_partner_reg_no': second_partner_reg_no,
+        'second_partner_phote_note1': second_partner_phote_note1,
+        'second_partner_photo_tips1': second_partner_photo_tips1,
+        'second_partner_photo_tips2': second_partner_photo_tips2,
+        'third_partner_name': third_partner_name,
+        'third_partner_surname': third_partner_surname,
+        'third_partner_boy': third_partner_boy,
+        'third_partner_father': third_partner_father,
+        'third_partner_gender': third_partner_gender,
+        'third_partner_phone': third_partner_phone,
+        'third_partner_email': third_partner_email,
+        'third_partner_image': third_partner_image,
+        'third_partner_machinegun_no': third_partner_machinegun_no,
+        'third_partner_cover_note': third_partner_cover_note,
+        'third_partner_note_page': third_partner_note_page,
+        'third_partner_reg_no': third_partner_reg_no,
+        'third_partner_phote_note1': third_partner_phote_note1,
+        'third_partner_photo_tips1': third_partner_photo_tips1,
+        'third_partner_photo_tips2': third_partner_photo_tips2,
+        'fourth_partner_name': fourth_partner_name,
+        'fourth_partner_surname': fourth_partner_surname,
+        'fourth_partner_boy': fourth_partner_boy,
+        'fourth_partner_father': fourth_partner_father,
+        'fourth_partner_gender': fourth_partner_gender,
+        'fourth_partner_phone': fourth_partner_phone,
+        'fourth_partner_email': fourth_partner_email,
+        'fourth_partner_image': fourth_partner_image,
+        'fourth_partner_machinegun_no': fourth_partner_machinegun_no,
+        'fourth_partner_cover_note': fourth_partner_cover_note,
+        'fourth_partner_note_page': fourth_partner_note_page,
+        'fourth_partner_reg_no': fourth_partner_reg_no,
+        'fourth_partner_phote_note1': fourth_partner_phote_note1,
+        'fourth_partner_photo_tips1': fourth_partner_photo_tips1,
+        'fourth_partner_photo_tips2': fourth_partner_photo_tips2,
+        'fifth_partner_name': fifth_partner_name,
+        'fifth_partner_surname': fifth_partner_surname,
+        'fifth_partner_boy': fifth_partner_boy,
+        'fifth_partner_father': fifth_partner_father,
+        'fifth_partner_gender': fifth_partner_gender,
+        'fifth_partner_phone': fifth_partner_phone,
+        'fifth_partner_email': fifth_partner_email,
+        'fifth_partner_image': fifth_partner_image,
+        'fifth_partner_machinegun_no': fifth_partner_machinegun_no,
+        'fifth_partner_cover_note': fifth_partner_cover_note,
+        'fifth_partner_note_page': fifth_partner_note_page,
+        'fifth_partner_reg_no': fifth_partner_reg_no,
+        'fifth_partner_phote_note1': fifth_partner_phote_note1,
+        'fifth_partner_photo_tips1': fifth_partner_photo_tips1,
+        'fifth_partner_photo_tips2': fifth_partner_photo_tips2
       };
 }

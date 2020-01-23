@@ -9,7 +9,7 @@
     "key_name_technical_support": "Name of Technical Support (Collaborator)",
     "key_general_info1": "General Information: (Part I)",
     "key_property_disputes": "What property disputes are the property subject to?",
-    "key_yes_sir": "Yes sir",
+    "key_yes_sir": "Yes",
     "key_no": "No",
     "key_real_person": "Real person status",
     "key_present": "Present",
@@ -107,7 +107,7 @@
     "key_fourlimit_note": "The boundary of the chain should be a parcel number or if there is no parcel there should be something written like road or sea",
     "key_language": "Language",
     "key_app_sync": "Application Sync",
-    "key_doc_type_verification": "Document Type and Verification Circuit Documents",
+    "key_doc_type_verification": "Document Type and Circuit Documents",
     "key_doc_type": "Document Type",
     "key_religious": "Religious",
     "key_customary": "Customary",
@@ -201,5 +201,8 @@
     "key_tasks": "Tasks",
     "key_guide": "Guide",
     "key_help": "Help",
-    "Key_number_value":"Enter the value"
+    "Key_number_value": "Enter the value",
+    "key_Characteristics_of_earth": "Characteristics of the Earth's Partners If the Land Is Shared",
+    "key_boy":"Boy",
+    "key_date_format":"yyyy/mm/dd"
 }

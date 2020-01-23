@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import './route_paths.dart' as routers;
 import '../pages/login.dart';
-import '../pages/dashboard.dart';
 import '../pages/surveylist.dart';
 import '../pages/task.dart';
 import '../pages/language.dart';
@@ -13,8 +12,6 @@ Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case routers.LoginRoute:
       return MaterialPageRoute(builder: (context) => LoginPage());
-    case routers.DashboardRoute:
-      return MaterialPageRoute(builder: (context) => DashboardPage());
     case routers.SurveyRoute:
       return MaterialPageRoute(builder: (context) => SurveyPage(id: settings.arguments,));
     case routers.TaskRoute:

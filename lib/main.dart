@@ -55,6 +55,9 @@ class LocalisedAppState extends State<LocalisedApp> {
         ChangeNotifierProvider(
           create: (_) => TaskModel(),
         ),
+        ChangeNotifierProvider(
+          create: (_)=>DBHelper(),
+        )
       ],
       //providers: AppProviders().appproviders,
       child: MaterialApp(
