@@ -131,6 +131,23 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
       setState(() {
         formval += 1;
       });
+    } else if (formval == 7) {
+      setState(() {
+        formval += 1;
+      });
+    } else if (formval == 8) {
+      setState(() {
+        formval += 1;
+      });
+    }else if (formval == 9) {
+      setState(() {
+        formval += 1;
+      });
+    }
+    else if (formval == 10) {
+      setState(() {
+        formval += 1;
+      });
     }
   }
 
@@ -1339,86 +1356,186 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
         children: <Widget>[
           formcardtextfield(
               headerlablekey: 'key_name',
-              radiovalue: false,
+              radiovalue:
+                  localdata.first_partner_name_property_owner?.isEmpty ?? true
+                      ? false
+                      : true,
               hinttextkey: 'key_enter_1st_surveyor',
+              initvalue:
+                  localdata.first_partner_name_property_owner?.isEmpty ?? true
+                      ? ""
+                      : localdata.first_partner_name_property_owner,
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
                 }
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                localdata.first_partner_name_property_owner = value.trim();
+              },
+              onChanged: (value) {
+                localdata.first_partner_name_property_owner = value.trim();
+                setState(() {});
+              }),
           formcardtextfield(
               headerlablekey: 'key_surname',
-              radiovalue: false,
+              radiovalue: localdata.first_partner_surname?.isEmpty ?? true
+                  ? false
+                  : true,
               hinttextkey: 'key_enter_1st_surveyor',
+              initvalue: localdata.first_partner_surname?.isEmpty ?? true
+                  ? ""
+                  : localdata.first_partner_surname,
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
                 }
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                localdata.first_partner_surname = value.trim();
+              },
+              onChanged: (value) {
+                localdata.first_partner_surname = value.trim();
+                setState(() {});
+              }),
           formcardtextfield(
               headerlablekey: 'key_wold',
-              radiovalue: false,
+              radiovalue:
+                  localdata.first_partner_boy?.isEmpty ?? true ? false : true,
               hinttextkey: 'key_enter_1st_surveyor',
+              initvalue: localdata.first_partner_boy?.isEmpty ?? true
+                  ? ""
+                  : localdata.first_partner_boy,
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
                 }
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                localdata.first_partner_boy = value.trim();
+              },
+              onChanged: (value) {
+                localdata.first_partner_boy = value.trim();
+                setState(() {});
+              }),
           formcardtextfield(
               headerlablekey: 'key_birth',
-              radiovalue: false,
+              radiovalue: localdata.first_partner__father?.isEmpty ?? true
+                  ? false
+                  : true,
               hinttextkey: 'key_enter_1st_surveyor',
+              initvalue: localdata.first_partner__father?.isEmpty ?? true
+                  ? ""
+                  : localdata.first_partner__father,
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
                 }
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                localdata.first_partner__father = value.trim();
+              },
+              onChanged: (value) {
+                localdata.first_partner__father = value.trim();
+                setState(() {});
+              }),
           formCardRadioButtons(
-              iscompleted: false,
+              initvalue: localdata.first_partner_name_gender?.isEmpty ?? true
+                  ? ""
+                  : localdata.first_partner_name_gender,
+              iscompleted: localdata.first_partner_name_gender?.isEmpty ?? true
+                  ? false
+                  : true,
               headerlablekey: 'key_gender',
               radiobtnlables: [
                 setapptext(key: 'key_male'),
                 setapptext(key: 'key_female')
               ],
               radiobtnSelected: (String value) {
-                print(value);
+                localdata.first_partner_name_gender = value;
+              },
+              onchanged: (value, index) {
+                localdata.first_partner_name_gender = value;
+                setState(() {});
+              },
+              validate: localdata.first_partner_name_gender?.isEmpty ?? true
+                  ? true
+                  : false),
+          formcardtextfield(
+              keyboardtype: TextInputType.number,
+              headerlablekey: 'key_phone',
+              radiovalue: localdata.first_partner_name_phone?.isEmpty ?? true
+                  ? false
+                  : true,
+              hinttextkey: 'key_enter_1st_surveyor',
+              initvalue: localdata.first_partner_name_phone?.isEmpty ?? true
+                  ? ""
+                  : localdata.first_partner_name_phone,
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                } else if (value.length > 10) {
+                  return "enter valid number";
+                }
+              },
+              onSaved: (value) {
+                localdata.first_partner_name_phone = value.trim();
+              },
+              onChanged: (value) {
+                localdata.first_partner_name_phone = value.trim();
+                setState(() {});
               }),
           formcardtextfield(
-              headerlablekey: 'key_phone',
-              radiovalue: false,
-              hinttextkey: 'key_enter_1st_surveyor',
-              validator: (value) {
-                if (value.trim().isEmpty) {
-                  return "field should not be blank";
-                }
-              },
-              onSaved: (value) {}),
-          formcardtextfield(
               headerlablekey: 'key_email',
-              radiovalue: false,
+              radiovalue: localdata.first_partner_name_email?.isEmpty ?? true
+                  ? false
+                  : true,
               hinttextkey: 'key_enter_1st_surveyor',
+              initvalue: localdata.first_partner_name_email?.isEmpty ?? true
+                  ? ""
+                  : localdata.first_partner_name_email,
               validator: (value) {
-                if (value.trim().isEmpty) {
-                  return "field should not be blank";
-                }
+                Pattern pattern =
+                    r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                RegExp regex = new RegExp(pattern);
+                if (!regex.hasMatch(value))
+                  return 'Enter Valid Email';
+                else
+                  return null;
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                localdata.first_partner_name_email = value.trim();
+              },
+              onChanged: (value) {
+                localdata.first_partner_name_email = value.trim();
+                setState(() {});
+              }),
           formCardFileuploader(
               isCompleted: false, headerlablekey: 'key_photo_owner'),
           formcardtextfield(
               headerlablekey: 'key_enter_any_mere',
-              radiovalue: false,
+              radiovalue: localdata.first_partner_name_mere_individuals?.isEmpty ?? true
+                  ? false
+                  : true,
               hinttextkey: 'key_enter_1st_surveyor',
+              initvalue: localdata.first_partner_name_mere_individuals?.isEmpty ?? true
+                  ? ""
+                  : localdata.first_partner_name_mere_individuals,
+             
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
                 }
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                localdata.first_partner_name_mere_individuals=value.trim();
+              },
+              onChanged: (value){
+                localdata.first_partner_name_mere_individuals=value.trim();
+                setState(() {
+                  
+                });
+              }),
           draftbutton(),
           SizedBox(
             height: 50,
@@ -1435,44 +1552,104 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
         children: <Widget>[
           formcardtextfield(
               headerlablekey: 'key_machine_gun',
-              radiovalue: false,
+             radiovalue:
+                  localdata.second_partner_machinegun_no?.isEmpty ?? true
+                      ? false
+                      : true,
               hinttextkey: 'key_enter_1st_surveyor',
+              initvalue:
+                  localdata.second_partner_machinegun_no?.isEmpty ?? true
+                      ? ""
+                      : localdata.second_partner_machinegun_no,
+              
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
                 }
               },
-              onSaved: (value) {}),
+              onSaved: (value) {localdata.second_partner_machinegun_no=value.trim();},
+              onChanged: (value){
+                localdata.second_partner_machinegun_no=value.trim();
+                setState(() {
+                  
+                });
+    
+              }),
           formcardtextfield(
               headerlablekey: 'key_cover_letter',
-              radiovalue: false,
+              radiovalue:
+                  localdata.second_partner_cover_note?.isEmpty ?? true
+                      ? false
+                      : true,
               hinttextkey: 'key_enter_1st_surveyor',
+              initvalue:
+                  localdata.second_partner_cover_note?.isEmpty ?? true
+                      ? ""
+                      : localdata.second_partner_cover_note,
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
                 }
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                localdata.second_partner_cover_note=value.trim();
+              },
+              onChanged: (value){
+                localdata.second_partner_cover_note=value.trim();
+                setState(() {
+                  
+                });
+              }),
           formcardtextfield(
               headerlablekey: 'key_notification_page',
-              radiovalue: false,
+             radiovalue:
+                  localdata.second_partner_note_page?.isEmpty ?? true
+                      ? false
+                      : true,
               hinttextkey: 'key_enter_1st_surveyor',
+              initvalue:
+                  localdata.second_partner_note_page?.isEmpty ?? true
+                      ? ""
+                      : localdata.second_partner_note_page,
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
                 }
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                localdata.second_partner_note_page=value.trim();
+              },
+              onChanged: (value){
+                localdata.second_partner_note_page=value.trim();
+                setState(() {
+                  
+                });
+              }),
           formcardtextfield(
               headerlablekey: 'key_reg_no',
-              radiovalue: false,
+              radiovalue:
+                  localdata.second_partner_reg_no?.isEmpty ?? true
+                      ? false
+                      : true,
               hinttextkey: 'key_enter_1st_surveyor',
+              initvalue:
+                  localdata.second_partner_reg_no?.isEmpty ?? true
+                      ? ""
+                      : localdata.second_partner_reg_no,
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
                 }
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                localdata.second_partner_reg_no=value.trim();
+              },
+              onChanged: (value){
+                localdata.second_partner_reg_no=value.trim();
+                setState(() {
+                  
+                });
+              }),
           formCardFileuploader(
               isCompleted: false, headerlablekey: 'key_photo_note1'),
           formCardFileuploader(
@@ -1508,7 +1685,13 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   return "field should not be blank";
                 }
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                //localdata.number_of_business_unit = value.trim();
+              },
+              onChanged: (value) {
+                // localdata.number_of_business_unit = value.trim();
+                setState(() {});
+              }),
           formcardtextfield(
               headerlablekey: 'key_west',
               radiovalue: false,
@@ -1518,7 +1701,13 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   return "field should not be blank";
                 }
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                localdata.business_unit_have_no_license = value.trim();
+              },
+              onChanged: (value) {
+                localdata.business_unit_have_no_license = value.trim();
+                setState(() {});
+              }),
           formcardtextfield(
               headerlablekey: 'key_south',
               radiovalue: false,
@@ -2109,35 +2298,72 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
       child: ListView(
         children: <Widget>[
           formcardtextfield(
+              keyboardtype: TextInputType.number,
               headerlablekey: 'key_how_many_business',
-              radiovalue: false,
+              radiovalue: localdata.number_of_business_unit?.isEmpty ?? true
+                  ? false
+                  : true,
+              initvalue: localdata.number_of_business_unit?.isEmpty ?? true
+                  ? ""
+                  : localdata.number_of_business_unit,
               hinttextkey: 'key_enter_1st_surveyor',
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
                 }
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                localdata.number_of_business_unit = value.trim();
+              },
+              onChanged: (value) {
+                localdata.number_of_business_unit = value.trim();
+                setState(() {});
+              }),
           formcardtextfield(
+              keyboardtype: TextInputType.number,
               headerlablekey: 'key_howmany_business_license',
-              radiovalue: false,
+              radiovalue:
+                  localdata.business_unit_have_no_license?.isEmpty ?? true
+                      ? false
+                      : true,
+              initvalue:
+                  localdata.business_unit_have_no_license?.isEmpty ?? true
+                      ? ""
+                      : localdata.business_unit_have_no_license,
               hinttextkey: 'key_enter_1st_surveyor',
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
                 }
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                localdata.business_unit_have_no_license = value.trim();
+              },
+              onChanged: (value) {
+                localdata.business_unit_have_no_license = value.trim();
+                setState(() {});
+              }),
           formcardtextfield(
               headerlablekey: 'key_Another',
-              radiovalue: false,
+              radiovalue: localdata.business_license_another?.isEmpty ?? true
+                  ? false
+                  : true,
+              initvalue: localdata.business_license_another?.isEmpty ?? true
+                  ? ""
+                  : localdata.business_license_another,
               hinttextkey: 'key_enter_1st_surveyor',
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
                 }
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                localdata.business_license_another = value.trim();
+              },
+              onChanged: (value) {
+                localdata.business_license_another = value.trim();
+                setState(() {});
+              }),
         ],
       ),
     );
@@ -2152,74 +2378,183 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
           ///start
           formcardtextfield(
               headerlablekey: 'key_name',
-              radiovalue: false,
+              radiovalue:
+                  localdata.third_partner_name?.isEmpty ?? true
+                      ? false
+                      : true,
               hinttextkey: 'key_enter_1st_surveyor',
+              initvalue:
+                  localdata.third_partner_name?.isEmpty ?? true
+                      ? ""
+                      : localdata.third_partner_name,
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
                 }
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                localdata.third_partner_name=value.trim();
+              },onChanged: (value){
+                localdata.third_partner_name=value.trim();
+                setState(() {
+                  
+                });
+              }
+              ),
           formcardtextfield(
               headerlablekey: 'key_surname',
-              radiovalue: false,
+              radiovalue:
+                  localdata.third_partner_surname?.isEmpty ?? true
+                      ? false
+                      : true,
               hinttextkey: 'key_enter_1st_surveyor',
+              initvalue:
+                  localdata.third_partner_surname?.isEmpty ?? true
+                      ? ""
+                      : localdata.third_partner_surname,
+             
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
                 }
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                localdata.third_partner_surname=value.trim();
+
+              },
+              onChanged: (value){
+                 localdata.third_partner_surname=value.trim();
+setState(() {
+  
+});
+              }),
           formcardtextfield(
               headerlablekey: 'key_boy',
-              radiovalue: false,
+             radiovalue:
+                  localdata.third_partner_boy?.isEmpty ?? true
+                      ? false
+                      : true,
               hinttextkey: 'key_enter_1st_surveyor',
+              initvalue:
+                  localdata.third_partner_boy?.isEmpty ?? true
+                      ? ""
+                      : localdata.third_partner_boy,
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
                 }
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                localdata.third_partner_boy=value.trim();
+
+              },
+              onChanged: (value){
+                 localdata.third_partner_boy=value.trim();
+setState(() {
+  
+});
+              }),
           formcardtextfield(
               headerlablekey: 'key_father_name',
-              radiovalue: false,
+              radiovalue:
+                  localdata.third_partner_father?.isEmpty ?? true
+                      ? false
+                      : true,
               hinttextkey: 'key_enter_1st_surveyor',
+              initvalue:
+                  localdata.third_partner_father?.isEmpty ?? true
+                      ? ""
+                      : localdata.third_partner_father,
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
                 }
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                localdata.third_partner_father=value.trim();
+              },
+              onChanged: (value){
+                localdata.third_partner_father=value.trim();
+                setState(() {
+                  
+                });
+              }),
           formCardRadioButtons(
-              iscompleted: false,
+             initvalue: localdata.third_partner_gender?.isEmpty ?? true
+                  ? ""
+                  : localdata.third_partner_gender,
+              iscompleted:
+                  localdata.third_partner_gender?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_gender',
               radiobtnlables: [
                 setapptext(key: 'key_male'),
                 setapptext(key: 'key_female')
               ],
               radiobtnSelected: (String value) {
-                print(value);
+                localdata.third_partner_gender=value;
+              }, onchanged: (value, index) {
+                localdata.third_partner_gender = value;
+                setState(() {});
+              },
+              validate: localdata.third_partner_gender?.isEmpty ?? true
+                  ? true
+                  : false),
+          formcardtextfield(
+            keyboardtype: TextInputType.number,
+              headerlablekey: 'key_phone',
+              radiovalue:
+                  localdata.third_partner_phone?.isEmpty ?? true
+                      ? false
+                      : true,
+              hinttextkey: 'key_enter_1st_surveyor',
+              initvalue:
+                  localdata.third_partner_phone?.isEmpty ?? true
+                      ? ""
+                      : localdata.third_partner_phone,
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }else if (value.length > 10) {
+                  return "enter valid number";
+                }
+              },
+              onSaved: (value) {
+                localdata.third_partner_phone=value.trim();
+
+              },onChanged: (value){
+                 localdata.third_partner_phone=value.trim();
+                 setState(() {
+                   
+                 });
               }),
           formcardtextfield(
-              headerlablekey: 'key_phone',
-              radiovalue: false,
-              hinttextkey: 'key_enter_1st_surveyor',
-              validator: (value) {
-                if (value.trim().isEmpty) {
-                  return "field should not be blank";
-                }
-              },
-              onSaved: (value) {}),
-          formcardtextfield(
               headerlablekey: 'key_email',
-              radiovalue: false,
+              radiovalue:
+                  localdata.third_partner_email?.isEmpty ?? true
+                      ? false
+                      : true,
               hinttextkey: 'key_enter_1st_surveyor',
+              initvalue:
+                  localdata.third_partner_email?.isEmpty ?? true
+                      ? ""
+                      : localdata.third_partner_email,
               validator: (value) {
-                if (value.trim().isEmpty) {
-                  return "field should not be blank";
-                }
+                Pattern pattern =
+                    r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                RegExp regex = new RegExp(pattern);
+                if (!regex.hasMatch(value))
+                  return 'Enter Valid Email';
+                else
+                  return null;
               },
-              onSaved: (value) {}),
+              onSaved: (value) {
+                localdata.third_partner_email=value.trim();
+              },onChanged: (value){
+                localdata.third_partner_email=value.trim();
+                setState(() {
+                  
+                });
+              }),
           formCardFileuploader(
               isCompleted: false, headerlablekey: 'key_photo_owner'),
           formcardtextfield(
