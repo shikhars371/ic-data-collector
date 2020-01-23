@@ -41,5 +41,12 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<!--image picker-->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Application need to access photos from photo Library in property registation page</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Application need to access photos by camera in property registation page</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Application need to access voice during capture image for property registation page</string>
 </dict>
 </plist>

@@ -502,27 +502,51 @@ class DBHelper with ChangeNotifier {
     return result;
   }
 
-  Future<List<LocalPropertySurvey>> getpropertysurveys({String taskid}) async {
+  Future<List<LocalPropertySurvey>> getpropertysurveys(
+      {String taskid, String localkey}) async {
+    setState(AppState.Busy);
     try {
       var dbClient = await db;
-      var sqlquery = '''
+      var sqlquery = "";
+      List<dynamic> params = [];
+      if (localkey?.isEmpty ?? true) {
+        sqlquery = '''
         SELECT * FROM propertysurvey WHERE taskid=?
       ''';
-      List<dynamic> params = [taskid];
-      List<Map> result = await dbClient.rawQuery(sqlquery, params);
+        params = [taskid];
+      } else {
+        sqlquery = '''
+        SELECT * FROM propertysurvey WHERE taskid=? AND local_property_key=?
+      ''';
+        params = [taskid, localkey];
+      }
+
+      List<Map> it = await dbClient.rawQuery(sqlquery, params);
+      _propertysurveys =
+          it.map((f) => LocalPropertySurvey.frommapobject(f)).toList();
+    } catch (e) {
+      setState(AppState.Idle);
+      notifyListeners();
+      print(e);
+    }
+    setState(AppState.Idle);
+    notifyListeners();
+    return _propertysurveys;
+  }
+
+  Future<int> deletePropertySurvey({String localkey}) async {
+    int result = 0;
+    try {
+      var dbClient = await db;
+      result = await dbClient.delete('propertysurvey',
+          where: 'local_property_key=?', whereArgs: [localkey]);
+      // result = await dbClient.rawDelete(
+      //     "DELETE FROM propertysurvey WHERE local_property_key=$localkey");
     } catch (e) {
       print(e);
     }
-    return _propertysurveys;
+    return result;
   }
-  // Future<int> delete(int id) async {
-  //   var dbClient = await db;
-  //   return await dbClient.delete(
-  //     'student',
-  //     where: 'id = ?',
-  //     whereArgs: [id],
-  //   );
-  // }
 
   // Future<int> update(Student student) async {
   //   var dbClient = await db;

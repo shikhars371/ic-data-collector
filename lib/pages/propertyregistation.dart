@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:kapp/controllers/auth.dart';
 import 'package:provider/provider.dart';
 
@@ -8,8 +9,9 @@ import '../models/localpropertydata.dart';
 import '../utils/db_helper.dart';
 
 class PropertyRegistationPage extends StatefulWidget {
-  PropertyRegistationPage({this.taskid});
+  PropertyRegistationPage({this.taskid, this.surveylocalkey});
   final String taskid;
+  final String surveylocalkey;
   @override
   _PropertyRegistationPage createState() => _PropertyRegistationPage();
 }
@@ -26,6 +28,46 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
       govermental_visible = false,
       property_type_other_specified = false,
       property_type_other_Unspecified = false;
+  Future<void> imagePicker() {
+    showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (BuildContext context) {
+          return Dialog(
+            child: Container(
+              width: MediaQuery.of(context).size.height / 5,
+              height: MediaQuery.of(context).size.height / 5.5,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    GestureDetector(
+                      onTap: () async {
+                        var docimage = await ImagePicker.pickImage(
+                            source: ImageSource.gallery);
+                      },
+                      child: Text(
+                        "Gallery",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () async {
+                        var docimage = await ImagePicker.pickImage(
+                            source: ImageSource.camera);
+                      },
+                      child: Text(
+                        "camera",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
+  }
 
   void datasaver() async {
     if (formval == 0) {
@@ -85,6 +127,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
           });
         } else {}
       }
+    } else if (formval == 6) {
+      setState(() {
+        formval += 1;
+      });
     }
   }
 
@@ -348,7 +394,9 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     child: Column(
                       children: <Widget>[
                         RaisedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            imagePicker();
+                          },
                           child: Text("Click here to upload file (<10 MB)"),
                         )
                       ],
@@ -409,7 +457,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
-  //please enter the names of the providers
+  //please enter the names of the providers(0)
   Widget form1() {
     return Expanded(
       child: ListView(
@@ -419,7 +467,9 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               radiovalue:
                   localdata.first_surveyor_name?.isEmpty ?? true ? false : true,
               hinttextkey: 'key_enter_1st_surveyor',
-              initvalue: localdata.first_surveyor_name,
+              initvalue: localdata.first_surveyor_name?.isEmpty ?? true
+                  ? ""
+                  : localdata.first_surveyor_name,
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
@@ -438,7 +488,9 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   ? false
                   : true,
               hinttextkey: 'key_enter_1st_surveyor',
-              initvalue: localdata.senond_surveyor_name,
+              initvalue: localdata.senond_surveyor_name?.isEmpty ?? true
+                  ? ""
+                  : localdata.senond_surveyor_name,
               validator: (value) {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
@@ -457,7 +509,9 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   ? false
                   : true,
               hinttextkey: 'key_enter_1st_surveyor',
-              initvalue: localdata.technical_support_name,
+              initvalue: localdata.technical_support_name?.isEmpty ?? true
+                  ? ""
+                  : localdata.technical_support_name,
               onSaved: (value) {
                 localdata.technical_support_name = value.trim();
               },
@@ -470,7 +524,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
-  //general info 1
+  //general info 1(1)
   Widget form2() {
     return Expanded(
       child: ListView(
@@ -543,7 +597,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
-  //general info 2
+  //general info 2(2)
   Widget form3() {
     return Expanded(
       child: ListView(
@@ -601,7 +655,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
-  //the physical state of the property area
+  //the physical state of the property area(3)
   Widget form4() {
     return Expanded(
       child: ListView(
@@ -700,7 +754,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
-  //Property Location
+  //Property Location(4)
   Widget form5() {
     return Expanded(
       child: ListView(
@@ -961,7 +1015,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
-  // property details
+  // property details(5)
   Widget form6() {
     return Expanded(
       child: ListView(
@@ -1278,6 +1332,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
+  //true / False Personal Fame / Partner:(9)
   Widget form7() {
     return Expanded(
       child: ListView(
@@ -1373,6 +1428,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
+  //Information and photo hint(10)
   Widget form8() {
     return Expanded(
       child: ListView(
@@ -1432,6 +1488,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
+  //Four limits(12)
   Widget form9() {
     return Expanded(
       child: ListView(
@@ -1491,6 +1548,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
+  ///Details of the number and area of ​​units
+  ///(if the current use is mixed-use and commercial,
+  /// fill the following sections).(17)
+
   Widget form10() {
     return Expanded(
       child: ListView(
@@ -1544,6 +1605,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
+  //(16)
   Widget form11() {
     return Expanded(
       child: ListView(
@@ -1631,6 +1693,19 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.document_type = value;
               },
               onchanged: (value, index) {
+                localdata.issued_on = null;
+                localdata.place_of_issue = null;
+                localdata.property_number = null;
+                localdata.document_cover = null;
+                localdata.document_page = null;
+                localdata.doc_reg_number = null;
+                localdata.land_area_qawwala = null;
+                localdata.property_doc_photo_1 = null;
+                localdata.property_doc_photo_2 = null;
+                localdata.property_doc_photo_3 = null;
+                localdata.property_doc_photo_4 = null;
+                localdata.odinary_doc_photo1 = null;
+                localdata.odinary_doc_photo6 = null;
                 localdata.document_type = value;
                 setState(() {});
               },
@@ -1774,7 +1849,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
-  //It is lightning
+  //It is lightning(13)
   Widget form13() {
     return Expanded(
       child: ListView(
@@ -1816,7 +1891,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
-  //Safari Booklet Specifications
+  //Safari Booklet Specifications(14)
   Widget form14() {
     return Expanded(
       child: ListView(
@@ -1869,7 +1944,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
-  //Type of property user
+  //Type of property user(15)
   Widget form15() {
     return Expanded(
       child: ListView(
@@ -1930,7 +2005,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
-  //building
+  //building(16)
   Widget form16() {
     return Expanded(
       child: ListView(
@@ -2001,7 +2076,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
       child: ListView(
         children: <Widget>[
           formCardRadioButtons(
-              iscompleted: false,
+              initvalue: localdata.use_in_property_doc?.isEmpty ?? true
+                  ? ""
+                  : localdata.use_in_property_doc,
+              iscompleted:
+                  localdata.use_in_property_doc?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_Type_of_use',
               radiobtnlables: [
                 setapptext(key: 'key_release'),
@@ -2011,13 +2090,20 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 setapptext(key: 'key_agriculture'),
                 setapptext(key: 'key_public_land'),
                 setapptext(key: 'key_Another')
-              ])
+              ],
+              radiobtnSelected: (value) {
+                localdata.use_in_property_doc = value;
+              },
+              onchanged: (value, index) {
+                localdata.use_in_property_doc = value;
+                setState(() {});
+              })
         ],
       ),
     );
   }
 
-  //Business License
+  //Business License(8)
   Widget form18() {
     return Expanded(
       child: ListView(
@@ -2057,7 +2143,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
-  //Characteristics of the Earth's Partners If the Land Is Shared
+  //Characteristics of the Earth's Partners If the Land Is Shared(11)
   Widget form19() {
     return Expanded(
       child: ListView(
@@ -2599,6 +2685,16 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
   void initState() {
     localdata = new LocalPropertySurvey();
     localdata.taskid = widget.taskid;
+    if (!(widget.surveylocalkey?.isEmpty ?? true)) {
+      Future.delayed(Duration.zero).then((_) {
+        Provider.of<DBHelper>(context)
+            .getpropertysurveys(
+                taskid: widget.taskid, localkey: widget.surveylocalkey)
+            .then((onValue) {
+          localdata = onValue[0];
+        });
+      });
+    }
     super.initState();
   }
 
@@ -2642,8 +2738,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           formheader(
                               headerlablekey: 'key_doc_type_verification')
                         ] else if (formval == 7) ...[
-                          formheader(
-                              headerlablekey: 'key_information_and_photo')
+                          formheader(headerlablekey: 'key_type_of_use')
                         ] else if (formval == 8) ...[
                           formheader(headerlablekey: 'key_four_limits')
                         ] else if (formval == 9) ...[
@@ -2667,13 +2762,25 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         ] else if (formval == 6) ...[
                           form12()
                         ] else if (formval == 7) ...[
-                          form8()
+                          form17()
                         ] else if (formval == 8) ...[
-                          form9()
+                          form18()
                         ] else if (formval == 9) ...[
-                          form10()
-                        ] else ...[
-                          form11()
+                          form7()
+                        ] else if (formval == 10) ...[
+                          form8()
+                        ] else if (formval == 11) ...[
+                          form19()
+                        ] else if (formval == 12) ...[
+                          form9()
+                        ] else if (formval == 13) ...[
+                          form13()
+                        ] else if (formval == 14) ...[
+                          form14()
+                        ] else if (formval == 15) ...[
+                          form15()
+                        ] else if (formval == 16) ...[
+                          form16()
                         ],
                         //buttom menu container
                         if (formval == 0) ...[
@@ -2692,7 +2799,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                               ],
                             ),
                           )
-                        ] else if (formval == 10) ...[
+                        ] else if (formval == 16) ...[
                           Divider(
                             color: Colors.blueAccent,
                           ),

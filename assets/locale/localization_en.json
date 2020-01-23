@@ -203,6 +203,12 @@
     "key_help": "Help",
     "Key_number_value": "Enter the value",
     "key_Characteristics_of_earth": "Characteristics of the Earth's Partners If the Land Is Shared",
-    "key_boy":"Boy",
-    "key_date_format":"yyyy/mm/dd"
+    "key_boy": "Boy",
+    "key_date_format": "yyyy/mm/dd",
+    "key_province": "Province",
+    "key_city": "City",
+    "key_only_block": "Block",
+    "key_part": "Part",
+    "key_unit_no": "Unit No",
+    "key_type_of_use": "Type of use"
 }

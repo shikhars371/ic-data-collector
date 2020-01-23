@@ -1,5 +1,5 @@
 class LocalPropertySurvey {
-  String id;
+  int id;
   String taskid;
   String local_created_on;
   String local_property_key;
@@ -376,386 +376,389 @@ class LocalPropertySurvey {
       this.fifth_partner_photo_tips1,
       this.fifth_partner_photo_tips2});
 
-  LocalPropertySurvey.fromJson(Map<String, dynamic> json)
-      : id = json['_id'],
-        taskid = json['taskid'],
-        local_created_on = json['local_created_on'],
-        local_property_key = json['local_property_key'],
-        other_key = json['other_key'],
-        first_surveyor_name = json['first_surveyor_name'],
-        senond_surveyor_name = json['senond_surveyor_name'],
-        technical_support_name = json['technical_support_name'],
-        property_dispte_subject_to = json['property_dispte_subject_to'],
-        real_person_status = json['real_person_status'],
-        cityzenship_notice = json['cityzenship_notice'],
-        issue_regarding_property = json['issue_regarding_property'],
-        municipality_ref_number = json['municipality_ref_number'],
-        natural_threaten = json['natural_threaten'],
-        status_of_area_plan = json['status_of_area_plan'],
-        status_of_area_official = json['status_of_area_official'],
-        status_of_area_regular = json['status_of_area_regular'],
-        slope_of_area = json['slope_of_area'],
-        province = json['province'],
-        city = json['city'],
-        area = json['area'],
-        pass = json['pass'],
-        block = json['block'],
-        part_number = json['part_number'],
-        unit_number = json['unit_number'],
-        unit_in_parcel = json['unit_in_parcel'],
-        street_name = json['street_name'],
-        historic_site_area = json['historic_site_area'],
-        land_area = json['land_area'],
-        property_type = json['property_type'],
-        location_of_land_area = json['location_of_land_area'],
-        property_have_document = json['property_have_document'],
-        document_type = json['document_type'],
-        issued_on = json['issued_on'],
-        place_of_issue = json['place_of_issue'],
-        property_number = json['property_number'],
-        document_cover = json['document_cover'],
-        document_page = json['document_page'],
-        doc_reg_number = json['doc_reg_number'],
-        land_area_qawwala = json['land_area_qawwala'],
-        property_doc_photo_1 = json['property_doc_photo_1'],
-        property_doc_photo_2 = json['property_doc_photo_2'],
-        property_doc_photo_3 = json['property_doc_photo_3'],
-        property_doc_photo_4 = json['property_doc_photo_4'],
-        odinary_doc_photo1 = json['odinary_doc_photo1'],
-        odinary_doc_photo6 = json['odinary_doc_photo6'],
-        use_in_property_doc = json['use_in_property_doc'],
-        current_use_of_property = json['current_use_of_property'],
-        redeemable_property = json['redeemable_property'],
-        proprietary_properties = json['proprietary_properties'],
-        govt_property = json['govt_property'],
-        specified_current_use = json['specified_current_use'],
-        unspecified_current_use_type = json['unspecified_current_use_type'],
-        number_of_business_unit = json['number_of_business_unit'],
-        business_unit_have_no_license = json['business_unit_have_no_license'],
-        business_license_another = json['business_license_another'],
-        first_partner_name = json['first_partner_name'],
-        first_partner_surname = json['first_partner_surname'],
-        first_partner_boy = json['first_partner_boy'],
-        first_partner__father = json['first_partner__father'],
-        first_partner_name_gender = json['first_partner_name_gender'],
-        first_partner_name_phone = json['first_partner_name_phone'],
-        first_partner_name_email = json['first_partner_name_email'],
+  LocalPropertySurvey.frommapobject(Map<String, dynamic> map)
+      : id = map['id'],
+        taskid = map['taskid'],
+        local_created_on = map['local_created_on'],
+        local_property_key = map['local_property_key'],
+        other_key = map['other_key'],
+        first_surveyor_name = map['first_surveyor_name'],
+        senond_surveyor_name = map['senond_surveyor_name'],
+        technical_support_name = map['technical_support_name'],
+        property_dispte_subject_to = map['property_dispte_subject_to'],
+        real_person_status = map['real_person_status'],
+        cityzenship_notice = map['cityzenship_notice'],
+        issue_regarding_property = map['issue_regarding_property'],
+        municipality_ref_number = map['municipality_ref_number'],
+        natural_threaten = map['natural_threaten'],
+        status_of_area_plan = map['status_of_area_plan'],
+        status_of_area_official = map['status_of_area_official'],
+        status_of_area_regular = map['status_of_area_regular'],
+        slope_of_area = map['slope_of_area'],
+        province = map['province'],
+        city = map['city'],
+        area = map['area'],
+        pass = map['pass'],
+        block = map['block'],
+        part_number = map['part_number'],
+        unit_number = map['unit_number'],
+        unit_in_parcel = map['unit_in_parcel'],
+        street_name = map['street_name'],
+        historic_site_area = map['historic_site_area'],
+        land_area = map['land_area'],
+        property_type = map['property_type'],
+        location_of_land_area = map['location_of_land_area'],
+        property_have_document = map['property_have_document'],
+        document_type = map['document_type'],
+        issued_on = map['issued_on'],
+        place_of_issue = map['place_of_issue'],
+        property_number = map['property_number'],
+        document_cover = map['document_cover'],
+        document_page = map['document_page'],
+        doc_reg_number = map['doc_reg_number'],
+        land_area_qawwala = map['land_area_qawwala'],
+        property_doc_photo_1 = map['property_doc_photo_1'],
+        property_doc_photo_2 = map['property_doc_photo_2'],
+        property_doc_photo_3 = map['property_doc_photo_3'],
+        property_doc_photo_4 = map['property_doc_photo_4'],
+        odinary_doc_photo1 = map['odinary_doc_photo1'],
+        odinary_doc_photo6 = map['odinary_doc_photo6'],
+        use_in_property_doc = map['use_in_property_doc'],
+        current_use_of_property = map['current_use_of_property'],
+        redeemable_property = map['redeemable_property'],
+        proprietary_properties = map['proprietary_properties'],
+        govt_property = map['govt_property'],
+        specified_current_use = map['specified_current_use'],
+        unspecified_current_use_type = map['unspecified_current_use_type'],
+        number_of_business_unit = map['number_of_business_unit'],
+        business_unit_have_no_license = map['business_unit_have_no_license'],
+        business_license_another = map['business_license_another'],
+        first_partner_name = map['first_partner_name'],
+        first_partner_surname = map['first_partner_surname'],
+        first_partner_boy = map['first_partner_boy'],
+        first_partner__father = map['first_partner__father'],
+        first_partner_name_gender = map['first_partner_name_gender'],
+        first_partner_name_phone = map['first_partner_name_phone'],
+        first_partner_name_email = map['first_partner_name_email'],
         first_partner_name_property_owner =
-            json['first_partner_name_property_owner'],
+            map['first_partner_name_property_owner'],
         first_partner_name_mere_individuals =
-            json['first_partner_name_mere_individuals'],
-        info_photo_hint_sukuk_number = json['info_photo_hint_sukuk_number'],
-        info_photo_hint_cover_note = json['info_photo_hint_cover_note'],
-        info_photo_hint_note_page = json['info_photo_hint_note_page'],
-        info_photo_hint_reg_no = json['info_photo_hint_reg_no'],
-        info_photo_hint_photo_note1 = json['info_photo_hint_photo_note1'],
-        info_photo_hint_photo_tips1 = json['info_photo_hint_photo_tips1'],
-        info_photo_hint_photo_tips2 = json['info_photo_hint_photo_tips2'],
-        fore_limits_east = json['fore_limits_east'],
-        fore_limits_west = json['fore_limits_west'],
-        fore_limits_south = json['fore_limits_south'],
-        fore_limits_north = json['fore_limits_north'],
-        lightning_meter_no = json['lightning_meter_no'],
-        lightning_common_name = json['lightning_common_name'],
-        lightning_father_name = json['lightning_father_name'],
-        lightning_picture_bell_power = json['lightning_picture_bell_power'],
-        safari_booklet_common_name = json['safari_booklet_common_name'],
-        safari_booklet_father_name = json['safari_booklet_father_name'],
-        safari_booklet_machinegun_no = json['safari_booklet_machinegun_no'],
-        safari_booklet_issue_date = json['safari_booklet_issue_date'],
-        safari_booklet_picture = json['safari_booklet_picture'],
-        property_user_owner = json['property_user_owner'],
-        property_user_master_rent = json['property_user_master_rent'],
-        property_user_recipient_group = json['property_user_recipient_group'],
-        property_user_no_longer = json['property_user_no_longer'],
+            map['first_partner_name_mere_individuals'],
+        info_photo_hint_sukuk_number = map['info_photo_hint_sukuk_number'],
+        info_photo_hint_cover_note = map['info_photo_hint_cover_note'],
+        info_photo_hint_note_page = map['info_photo_hint_note_page'],
+        info_photo_hint_reg_no = map['info_photo_hint_reg_no'],
+        info_photo_hint_photo_note1 = map['info_photo_hint_photo_note1'],
+        info_photo_hint_photo_tips1 = map['info_photo_hint_photo_tips1'],
+        info_photo_hint_photo_tips2 = map['info_photo_hint_photo_tips2'],
+        fore_limits_east = map['fore_limits_east'],
+        fore_limits_west = map['fore_limits_west'],
+        fore_limits_south = map['fore_limits_south'],
+        fore_limits_north = map['fore_limits_north'],
+        lightning_meter_no = map['lightning_meter_no'],
+        lightning_common_name = map['lightning_common_name'],
+        lightning_father_name = map['lightning_father_name'],
+        lightning_picture_bell_power = map['lightning_picture_bell_power'],
+        safari_booklet_common_name = map['safari_booklet_common_name'],
+        safari_booklet_father_name = map['safari_booklet_father_name'],
+        safari_booklet_machinegun_no = map['safari_booklet_machinegun_no'],
+        safari_booklet_issue_date = map['safari_booklet_issue_date'],
+        safari_booklet_picture = map['safari_booklet_picture'],
+        property_user_owner = map['property_user_owner'],
+        property_user_master_rent = map['property_user_master_rent'],
+        property_user_recipient_group = map['property_user_recipient_group'],
+        property_user_no_longer = map['property_user_no_longer'],
         property_user_type_of_misconduct =
-            json['property_user_type_of_misconduct'],
-        fst_have_building = json['fst_have_building'],
-        fst_building_use = json['fst_building_use'],
-        fst_building_category = json['fst_building_category'],
-        fst_specifyif_other = json['fst_specifyif_other'],
-        fst_no_of_floors = json['fst_no_of_floors'],
-        fst_cubie_meter = json['fst_cubie_meter'],
-        snd_have_building = json['snd_have_building'],
-        snd_building_use = json['snd_building_use'],
-        snd_building_category = json['snd_building_category'],
-        snd_specifyif_other = json['snd_specifyif_other'],
-        snd_no_of_floors = json['snd_no_of_floors'],
-        snd_cubie_meter = json['snd_cubie_meter'],
-        trd_have_building = json['trd_have_building'],
-        trd_building_use = json['trd_building_use'],
-        trd_building_category = json['trd_building_category'],
-        trd_specifyif_other = json['trd_specifyif_other'],
-        trd_no_of_floors = json['trd_no_of_floors'],
-        trd_cubie_meter = json['trd_cubie_meter'],
-        forth_have_building = json['forth_have_building'],
-        forth_building_use = json['forth_building_use'],
-        forth_building_category = json['forth_building_category'],
-        forth_specifyif_other = json['forth_specifyif_other'],
-        forth_no_of_floors = json['forth_no_of_floors'],
-        forth_cubie_meter = json['forth_cubie_meter'],
-        fth_have_building = json['fth_have_building'],
-        fth_building_use = json['fth_building_use'],
-        fth_building_category = json['fth_building_category'],
-        fth_specifyif_other = json['fth_specifyif_other'],
-        fth_no_of_floors = json['fth_no_of_floors'],
-        fth_cubie_meter = json['fth_cubie_meter'],
-        home_map = json['home_map'],
-        home_photo = json['home_photo'],
-        reg_property_fertilizer = json['reg_property_fertilizer'],
-        area_unit_release_area = json['area_unit_release_area'],
-        area_unit_business_area = json['area_unit_business_area'],
-        area_unit_total_no_unit = json['area_unit_total_no_unit'],
-        area_unit_business_units = json['area_unit_business_units'],
-        second_partner_name = json['second_partner_name'],
-        second_partner_surname = json['second_partner_surname'],
-        second_partner_boy = json['second_partner_boy'],
-        second_partner_father = json['second_partner_father'],
-        second_partner_gender = json['second_partner_gender'],
-        second_partner_phone = json['second_partner_phone'],
-        second_partner_email = json['second_partner_email'],
-        second_partner_image = json['second_partner_image'],
-        second_partner_machinegun_no = json['second_partner_machinegun_no'],
-        second_partner_cover_note = json['second_partner_cover_note'],
-        second_partner_note_page = json['second_partner_note_page'],
-        second_partner_reg_no = json['second_partner_reg_no'],
-        second_partner_phote_note1 = json['second_partner_phote_note1'],
-        second_partner_photo_tips1 = json['second_partner_photo_tips1'],
-        second_partner_photo_tips2 = json['second_partner_photo_tips2'],
-        third_partner_name = json['third_partner_name'],
-        third_partner_surname = json['third_partner_surname'],
-        third_partner_boy = json['third_partner_boy'],
-        third_partner_father = json['third_partner_father'],
-        third_partner_gender = json['third_partner_gender'],
-        third_partner_phone = json['third_partner_phone'],
-        third_partner_email = json['third_partner_email'],
-        third_partner_image = json['third_partner_image'],
-        third_partner_machinegun_no = json['third_partner_machinegun_no'],
-        third_partner_cover_note = json['third_partner_cover_note'],
-        third_partner_note_page = json['third_partner_note_page'],
-        third_partner_reg_no = json['third_partner_reg_no'],
-        third_partner_phote_note1 = json['third_partner_phote_note1'],
-        third_partner_photo_tips1 = json['third_partner_photo_tips1'],
-        third_partner_photo_tips2 = json['third_partner_photo_tips2'],
-        fourth_partner_name = json['fourth_partner_name'],
-        fourth_partner_surname = json['fourth_partner_surname'],
-        fourth_partner_boy = json['fourth_partner_boy'],
-        fourth_partner_father = json['fourth_partner_father'],
-        fourth_partner_gender = json['fourth_partner_gender'],
-        fourth_partner_phone = json['fourth_partner_phone'],
-        fourth_partner_email = json['fourth_partner_email'],
-        fourth_partner_image = json['fourth_partner_image'],
-        fourth_partner_machinegun_no = json['fourth_partner_machinegun_no'],
-        fourth_partner_cover_note = json['fourth_partner_cover_note'],
-        fourth_partner_note_page = json['fourth_partner_note_page'],
-        fourth_partner_reg_no = json['fourth_partner_reg_no'],
-        fourth_partner_phote_note1 = json['fourth_partner_phote_note1'],
-        fourth_partner_photo_tips1 = json['fourth_partner_photo_tips1'],
-        fourth_partner_photo_tips2 = json['fourth_partner_photo_tips2'],
-        fifth_partner_name = json['fifth_partner_name'],
-        fifth_partner_surname = json['fifth_partner_surname'],
-        fifth_partner_boy = json['fifth_partner_boy'],
-        fifth_partner_father = json['fifth_partner_father'],
-        fifth_partner_gender = json['fifth_partner_gender'],
-        fifth_partner_phone = json['fifth_partner_phone'],
-        fifth_partner_email = json['fifth_partner_email'],
-        fifth_partner_image = json['fifth_partner_image'],
-        fifth_partner_machinegun_no = json['fifth_partner_machinegun_no'],
-        fifth_partner_cover_note = json['fifth_partner_cover_note'],
-        fifth_partner_note_page = json['fifth_partner_note_page'],
-        fifth_partner_reg_no = json['fifth_partner_reg_no'],
-        fifth_partner_phote_note1 = json['fifth_partner_phote_note1'],
-        fifth_partner_photo_tips1 = json['fifth_partner_photo_tips1'],
-        fifth_partner_photo_tips2 = json['fifth_partner_photo_tips2'];
+            map['property_user_type_of_misconduct'],
+        fst_have_building = map['fst_have_building'],
+        fst_building_use = map['fst_building_use'],
+        fst_building_category = map['fst_building_category'],
+        fst_specifyif_other = map['fst_specifyif_other'],
+        fst_no_of_floors = map['fst_no_of_floors'],
+        fst_cubie_meter = map['fst_cubie_meter'],
+        snd_have_building = map['snd_have_building'],
+        snd_building_use = map['snd_building_use'],
+        snd_building_category = map['snd_building_category'],
+        snd_specifyif_other = map['snd_specifyif_other'],
+        snd_no_of_floors = map['snd_no_of_floors'],
+        snd_cubie_meter = map['snd_cubie_meter'],
+        trd_have_building = map['trd_have_building'],
+        trd_building_use = map['trd_building_use'],
+        trd_building_category = map['trd_building_category'],
+        trd_specifyif_other = map['trd_specifyif_other'],
+        trd_no_of_floors = map['trd_no_of_floors'],
+        trd_cubie_meter = map['trd_cubie_meter'],
+        forth_have_building = map['forth_have_building'],
+        forth_building_use = map['forth_building_use'],
+        forth_building_category = map['forth_building_category'],
+        forth_specifyif_other = map['forth_specifyif_other'],
+        forth_no_of_floors = map['forth_no_of_floors'],
+        forth_cubie_meter = map['forth_cubie_meter'],
+        fth_have_building = map['fth_have_building'],
+        fth_building_use = map['fth_building_use'],
+        fth_building_category = map['fth_building_category'],
+        fth_specifyif_other = map['fth_specifyif_other'],
+        fth_no_of_floors = map['fth_no_of_floors'],
+        fth_cubie_meter = map['fth_cubie_meter'],
+        home_map = map['home_map'],
+        home_photo = map['home_photo'],
+        reg_property_fertilizer = map['reg_property_fertilizer'],
+        area_unit_release_area = map['area_unit_release_area'],
+        area_unit_business_area = map['area_unit_business_area'],
+        area_unit_total_no_unit = map['area_unit_total_no_unit'],
+        area_unit_business_units = map['area_unit_business_units'],
+        second_partner_name = map['second_partner_name'],
+        second_partner_surname = map['second_partner_surname'],
+        second_partner_boy = map['second_partner_boy'],
+        second_partner_father = map['second_partner_father'],
+        second_partner_gender = map['second_partner_gender'],
+        second_partner_phone = map['second_partner_phone'],
+        second_partner_email = map['second_partner_email'],
+        second_partner_image = map['second_partner_image'],
+        second_partner_machinegun_no = map['second_partner_machinegun_no'],
+        second_partner_cover_note = map['second_partner_cover_note'],
+        second_partner_note_page = map['second_partner_note_page'],
+        second_partner_reg_no = map['second_partner_reg_no'],
+        second_partner_phote_note1 = map['second_partner_phote_note1'],
+        second_partner_photo_tips1 = map['second_partner_photo_tips1'],
+        second_partner_photo_tips2 = map['second_partner_photo_tips2'],
+        third_partner_name = map['third_partner_name'],
+        third_partner_surname = map['third_partner_surname'],
+        third_partner_boy = map['third_partner_boy'],
+        third_partner_father = map['third_partner_father'],
+        third_partner_gender = map['third_partner_gender'],
+        third_partner_phone = map['third_partner_phone'],
+        third_partner_email = map['third_partner_email'],
+        third_partner_image = map['third_partner_image'],
+        third_partner_machinegun_no = map['third_partner_machinegun_no'],
+        third_partner_cover_note = map['third_partner_cover_note'],
+        third_partner_note_page = map['third_partner_note_page'],
+        third_partner_reg_no = map['third_partner_reg_no'],
+        third_partner_phote_note1 = map['third_partner_phote_note1'],
+        third_partner_photo_tips1 = map['third_partner_photo_tips1'],
+        third_partner_photo_tips2 = map['third_partner_photo_tips2'],
+        fourth_partner_name = map['fourth_partner_name'],
+        fourth_partner_surname = map['fourth_partner_surname'],
+        fourth_partner_boy = map['fourth_partner_boy'],
+        fourth_partner_father = map['fourth_partner_father'],
+        fourth_partner_gender = map['fourth_partner_gender'],
+        fourth_partner_phone = map['fourth_partner_phone'],
+        fourth_partner_email = map['fourth_partner_email'],
+        fourth_partner_image = map['fourth_partner_image'],
+        fourth_partner_machinegun_no = map['fourth_partner_machinegun_no'],
+        fourth_partner_cover_note = map['fourth_partner_cover_note'],
+        fourth_partner_note_page = map['fourth_partner_note_page'],
+        fourth_partner_reg_no = map['fourth_partner_reg_no'],
+        fourth_partner_phote_note1 = map['fourth_partner_phote_note1'],
+        fourth_partner_photo_tips1 = map['fourth_partner_photo_tips1'],
+        fourth_partner_photo_tips2 = map['fourth_partner_photo_tips2'],
+        fifth_partner_name = map['fifth_partner_name'],
+        fifth_partner_surname = map['fifth_partner_surname'],
+        fifth_partner_boy = map['fifth_partner_boy'],
+        fifth_partner_father = map['fifth_partner_father'],
+        fifth_partner_gender = map['fifth_partner_gender'],
+        fifth_partner_phone = map['fifth_partner_phone'],
+        fifth_partner_email = map['fifth_partner_email'],
+        fifth_partner_image = map['fifth_partner_image'],
+        fifth_partner_machinegun_no = map['fifth_partner_machinegun_no'],
+        fifth_partner_cover_note = map['fifth_partner_cover_note'],
+        fifth_partner_note_page = map['fifth_partner_note_page'],
+        fifth_partner_reg_no = map['fifth_partner_reg_no'],
+        fifth_partner_phote_note1 = map['fifth_partner_phote_note1'],
+        fifth_partner_photo_tips1 = map['fifth_partner_photo_tips1'],
+        fifth_partner_photo_tips2 = map['fifth_partner_photo_tips2'];
 
-  Map<String, dynamic> toJson() => {
-        '_id': id,
-        'taskid': taskid,
-        'local_created_on': local_created_on,
-        'local_property_key': local_property_key,
-        'other_key': other_key,
-        'first_surveyor_name': first_surveyor_name,
-        'senond_surveyor_name': senond_surveyor_name,
-        'technical_support_name': technical_support_name,
-        'property_dispte_subject_to': property_dispte_subject_to,
-        'real_person_status': real_person_status,
-        'cityzenship_notice': cityzenship_notice,
-        'issue_regarding_property': issue_regarding_property,
-        'municipality_ref_number': municipality_ref_number,
-        'natural_threaten': natural_threaten,
-        'status_of_area_plan': status_of_area_plan,
-        'status_of_area_official': status_of_area_official,
-        'status_of_area_regular': status_of_area_regular,
-        'slope_of_area': slope_of_area,
-        'province': province,
-        'city': city,
-        'area': area,
-        'pass': pass,
-        'block': block,
-        'part_number': part_number,
-        'unit_number': unit_number,
-        'unit_in_parcel': unit_in_parcel,
-        'street_name': street_name,
-        'historic_site_area': historic_site_area,
-        'land_area': land_area,
-        'property_type': property_type,
-        'location_of_land_area': location_of_land_area,
-        'property_have_document': property_have_document,
-        'document_type': document_type,
-        'issued_on': issued_on,
-        'place_of_issue': place_of_issue,
-        'property_number': property_number,
-        'document_cover': document_cover,
-        'document_page': document_page,
-        'doc_reg_number': doc_reg_number,
-        'land_area_qawwala': land_area_qawwala,
-        'property_doc_photo_1': property_doc_photo_1,
-        'property_doc_photo_2': property_doc_photo_2,
-        'property_doc_photo_3': property_doc_photo_3,
-        'property_doc_photo_4': property_doc_photo_4,
-        'odinary_doc_photo1': odinary_doc_photo1,
-        'odinary_doc_photo6': odinary_doc_photo6,
-        'use_in_property_doc': use_in_property_doc,
-        'current_use_of_property': current_use_of_property,
-        'redeemable_property': redeemable_property,
-        'proprietary_properties': proprietary_properties,
-        'govt_property': govt_property,
-        'specified_current_use': specified_current_use,
-        'unspecified_current_use_type': unspecified_current_use_type,
-        'number_of_business_unit': number_of_business_unit,
-        'business_unit_have_no_license': business_unit_have_no_license,
-        'business_license_another': business_license_another,
-        'first_partner_name': first_partner_name,
-        'first_partner_surname': first_partner_surname,
-        'first_partner_boy': first_partner_boy,
-        'first_partner__father': first_partner__father,
-        'first_partner_name_gender': first_partner_name_gender,
-        'first_partner_name_phone': first_partner_name_phone,
-        'first_partner_name_email': first_partner_name_email,
-        'first_partner_name_property_owner': first_partner_name_property_owner,
-        'first_partner_name_mere_individuals':
-            first_partner_name_mere_individuals,
-        'info_photo_hint_sukuk_number': info_photo_hint_sukuk_number,
-        'info_photo_hint_cover_note': info_photo_hint_cover_note,
-        'info_photo_hint_note_page': info_photo_hint_note_page,
-        'info_photo_hint_reg_no': info_photo_hint_reg_no,
-        'info_photo_hint_photo_note1': info_photo_hint_photo_note1,
-        'info_photo_hint_photo_tips1': info_photo_hint_photo_tips1,
-        'info_photo_hint_photo_tips2': info_photo_hint_photo_tips2,
-        'fore_limits_east': fore_limits_east,
-        'fore_limits_west': fore_limits_west,
-        'fore_limits_south': fore_limits_south,
-        'fore_limits_north': fore_limits_north,
-        'lightning_meter_no': lightning_meter_no,
-        'lightning_common_name': lightning_common_name,
-        'lightning_father_name': lightning_father_name,
-        'lightning_picture_bell_power': lightning_picture_bell_power,
-        'safari_booklet_common_name': safari_booklet_common_name,
-        'safari_booklet_father_name': safari_booklet_father_name,
-        'safari_booklet_machinegun_no': safari_booklet_machinegun_no,
-        'safari_booklet_issue_date': safari_booklet_issue_date,
-        'safari_booklet_picture': safari_booklet_picture,
-        'property_user_owner': property_user_owner,
-        'property_user_master_rent': property_user_master_rent,
-        'property_user_recipient_group': property_user_recipient_group,
-        'property_user_no_longer': property_user_no_longer,
-        'property_user_type_of_misconduct': property_user_type_of_misconduct,
-        'fst_have_building': fst_have_building,
-        'fst_building_use': fst_building_use,
-        'fst_building_category': fst_building_category,
-        'fst_specifyif_other': fst_specifyif_other,
-        'fst_no_of_floors': fst_no_of_floors,
-        'fst_cubie_meter': fst_cubie_meter,
-        'snd_have_building': snd_have_building,
-        'snd_building_use': snd_building_use,
-        'snd_building_category': snd_building_category,
-        'snd_specifyif_other': snd_specifyif_other,
-        'snd_no_of_floors': snd_no_of_floors,
-        'snd_cubie_meter': snd_cubie_meter,
-        'trd_have_building': trd_have_building,
-        'trd_building_use': trd_building_use,
-        'trd_building_category': trd_building_category,
-        'trd_specifyif_other': trd_specifyif_other,
-        'trd_no_of_floors': trd_no_of_floors,
-        'trd_cubie_meter': trd_cubie_meter,
-        'forth_have_building': forth_have_building,
-        'forth_building_use': forth_building_use,
-        'forth_building_category': forth_building_category,
-        'forth_specifyif_other': forth_specifyif_other,
-        'forth_no_of_floors': forth_no_of_floors,
-        'forth_cubie_meter': forth_cubie_meter,
-        'fth_have_building': fth_have_building,
-        'fth_building_use': fth_building_use,
-        'fth_building_category': fth_building_category,
-        'fth_specifyif_other': fth_specifyif_other,
-        'fth_no_of_floors': fth_no_of_floors,
-        'fth_cubie_meter': fth_cubie_meter,
-        'home_map': home_map,
-        'home_photo': home_photo,
-        'reg_property_fertilizer': reg_property_fertilizer,
-        'area_unit_release_area': area_unit_release_area,
-        'area_unit_business_area': area_unit_business_area,
-        'area_unit_total_no_unit': area_unit_total_no_unit,
-        'area_unit_business_units': area_unit_business_units,
-        'second_partner_name': second_partner_name,
-        'second_partner_surname': second_partner_surname,
-        'second_partner_boy': second_partner_boy,
-        'second_partner_father': second_partner_father,
-        'second_partner_gender': second_partner_gender,
-        'second_partner_phone': second_partner_phone,
-        'second_partner_email': second_partner_email,
-        'second_partner_image': second_partner_image,
-        'second_partner_machinegun_no': second_partner_machinegun_no,
-        'second_partner_cover_note': second_partner_cover_note,
-        'second_partner_note_page': second_partner_note_page,
-        'second_partner_reg_no': second_partner_reg_no,
-        'second_partner_phote_note1': second_partner_phote_note1,
-        'second_partner_photo_tips1': second_partner_photo_tips1,
-        'second_partner_photo_tips2': second_partner_photo_tips2,
-        'third_partner_name': third_partner_name,
-        'third_partner_surname': third_partner_surname,
-        'third_partner_boy': third_partner_boy,
-        'third_partner_father': third_partner_father,
-        'third_partner_gender': third_partner_gender,
-        'third_partner_phone': third_partner_phone,
-        'third_partner_email': third_partner_email,
-        'third_partner_image': third_partner_image,
-        'third_partner_machinegun_no': third_partner_machinegun_no,
-        'third_partner_cover_note': third_partner_cover_note,
-        'third_partner_note_page': third_partner_note_page,
-        'third_partner_reg_no': third_partner_reg_no,
-        'third_partner_phote_note1': third_partner_phote_note1,
-        'third_partner_photo_tips1': third_partner_photo_tips1,
-        'third_partner_photo_tips2': third_partner_photo_tips2,
-        'fourth_partner_name': fourth_partner_name,
-        'fourth_partner_surname': fourth_partner_surname,
-        'fourth_partner_boy': fourth_partner_boy,
-        'fourth_partner_father': fourth_partner_father,
-        'fourth_partner_gender': fourth_partner_gender,
-        'fourth_partner_phone': fourth_partner_phone,
-        'fourth_partner_email': fourth_partner_email,
-        'fourth_partner_image': fourth_partner_image,
-        'fourth_partner_machinegun_no': fourth_partner_machinegun_no,
-        'fourth_partner_cover_note': fourth_partner_cover_note,
-        'fourth_partner_note_page': fourth_partner_note_page,
-        'fourth_partner_reg_no': fourth_partner_reg_no,
-        'fourth_partner_phote_note1': fourth_partner_phote_note1,
-        'fourth_partner_photo_tips1': fourth_partner_photo_tips1,
-        'fourth_partner_photo_tips2': fourth_partner_photo_tips2,
-        'fifth_partner_name': fifth_partner_name,
-        'fifth_partner_surname': fifth_partner_surname,
-        'fifth_partner_boy': fifth_partner_boy,
-        'fifth_partner_father': fifth_partner_father,
-        'fifth_partner_gender': fifth_partner_gender,
-        'fifth_partner_phone': fifth_partner_phone,
-        'fifth_partner_email': fifth_partner_email,
-        'fifth_partner_image': fifth_partner_image,
-        'fifth_partner_machinegun_no': fifth_partner_machinegun_no,
-        'fifth_partner_cover_note': fifth_partner_cover_note,
-        'fifth_partner_note_page': fifth_partner_note_page,
-        'fifth_partner_reg_no': fifth_partner_reg_no,
-        'fifth_partner_phote_note1': fifth_partner_phote_note1,
-        'fifth_partner_photo_tips1': fifth_partner_photo_tips1,
-        'fifth_partner_photo_tips2': fifth_partner_photo_tips2
-      };
+  // Map<String, dynamic> toMap() {
+  //   var map = Map<String, dynamic>();
+  //   map['id'] = id;
+  //   map['taskid'] = taskid;
+  //   map['local_created_on'] = local_created_on;
+  //   map['local_property_key'] = local_property_key;
+  //   map['other_key'] = other_key;
+  //   map['first_surveyor_name'] = first_surveyor_name;
+  //   map['senond_surveyor_name'] = senond_surveyor_name;
+  //   map['technical_support_name'] = technical_support_name;
+  //   map['property_dispte_subject_to'] = property_dispte_subject_to;
+  //   map['real_person_status'] = real_person_status;
+  //   map['cityzenship_notice'] = cityzenship_notice;
+  //   map['issue_regarding_property'] = issue_regarding_property;
+  //   map['municipality_ref_number'] = municipality_ref_number;
+  //   map['natural_threaten'] = natural_threaten;
+  //   map['status_of_area_plan'] = status_of_area_plan;
+  //   map['status_of_area_official'] = status_of_area_official;
+  //   map['status_of_area_regular'] = status_of_area_regular;
+  //   map['slope_of_area'] = slope_of_area;
+  //   map['province'] = province;
+  //   map['city'] = city;
+  //   map['area'] = area;
+  //   map['pass'] = pass;
+  //   map['block'] = block;
+  //   map['part_number'] = part_number;
+  //   map['unit_number'] = unit_number;
+  //   map['unit_in_parcel'] = unit_in_parcel;
+  //   map['street_name'] = street_name;
+  //   map['historic_site_area'] = historic_site_area;
+  //   map['land_area'] = land_area;
+  //   map['property_type'] = property_type;
+  //   map['location_of_land_area'] = location_of_land_area;
+  //   map['property_have_document'] = property_have_document;
+  //   map['document_type'] = document_type;
+  //   map['issued_on'] = issued_on;
+  //   map['place_of_issue'] = place_of_issue;
+  //   map['property_number'] = property_number;
+  //   map['document_cover'] = document_cover;
+  //   map['document_page'] = document_page;
+  //   map['doc_reg_number'] = doc_reg_number;
+  //   map['land_area_qawwala'] = land_area_qawwala;
+  //   map['property_doc_photo_1'] = property_doc_photo_1;
+  //   map['property_doc_photo_2'] = property_doc_photo_2;
+  //   map['property_doc_photo_3'] = property_doc_photo_3;
+  //   map['property_doc_photo_4'] = property_doc_photo_4;
+  //   odinary_doc_photo1 = map['odinary_doc_photo1'];
+  //   odinary_doc_photo6 = map['odinary_doc_photo6'];
+  //   use_in_property_doc = map['use_in_property_doc'];
+  //   current_use_of_property = map['current_use_of_property'];
+  //   redeemable_property = map['redeemable_property'];
+  //   proprietary_properties = map['proprietary_properties'];
+  //   govt_property = map['govt_property'];
+  //   specified_current_use = map['specified_current_use'];
+  //   unspecified_current_use_type = map['unspecified_current_use_type'];
+  //   number_of_business_unit = map['number_of_business_unit'];
+  //   business_unit_have_no_license = map['business_unit_have_no_license'];
+  //   business_license_another = map['business_license_another'];
+  //   first_partner_name = map['first_partner_name'];
+  //   first_partner_surname = map['first_partner_surname'];
+  //   first_partner_boy = map['first_partner_boy'];
+  //   first_partner__father = map['first_partner__father'];
+  //   first_partner_name_gender = map['first_partner_name_gender'];
+  //   first_partner_name_phone = map['first_partner_name_phone'];
+  //   first_partner_name_email = map['first_partner_name_email'];
+  //   first_partner_name_property_owner =
+  //       map['first_partner_name_property_owner'];
+  //   first_partner_name_mere_individuals =
+  //       map['first_partner_name_mere_individuals'];
+  //   info_photo_hint_sukuk_number = map['info_photo_hint_sukuk_number'];
+  //   info_photo_hint_cover_note = map['info_photo_hint_cover_note'];
+  //   info_photo_hint_note_page = map['info_photo_hint_note_page'];
+  //   info_photo_hint_reg_no = map['info_photo_hint_reg_no'];
+  //   info_photo_hint_photo_note1 = map['info_photo_hint_photo_note1'];
+  //   info_photo_hint_photo_tips1 = map['info_photo_hint_photo_tips1'];
+  //   info_photo_hint_photo_tips2 = map['info_photo_hint_photo_tips2'];
+  //   fore_limits_east = map['fore_limits_east'];
+  //   fore_limits_west = map['fore_limits_west'];
+  //   fore_limits_south = map['fore_limits_south'];
+  //   fore_limits_north = map['fore_limits_north'];
+  //   lightning_meter_no = map['lightning_meter_no'];
+  //   lightning_common_name = map['lightning_common_name'];
+  //   lightning_father_name = map['lightning_father_name'];
+  //   lightning_picture_bell_power = map['lightning_picture_bell_power'];
+  //   safari_booklet_common_name = map['safari_booklet_common_name'];
+  //   safari_booklet_father_name = map['safari_booklet_father_name'];
+  //   safari_booklet_machinegun_no = map['safari_booklet_machinegun_no'];
+  //   safari_booklet_issue_date = map['safari_booklet_issue_date'];
+  //   safari_booklet_picture = map['safari_booklet_picture'];
+  //   property_user_owner = map['property_user_owner'];
+  //   property_user_master_rent = map['property_user_master_rent'];
+  //   property_user_recipient_group = map['property_user_recipient_group'];
+  //   property_user_no_longer = map['property_user_no_longer'];
+  //   property_user_type_of_misconduct = map['property_user_type_of_misconduct'];
+  //   fst_have_building = map['fst_have_building'];
+  //   fst_building_use = map['fst_building_use'];
+  //   fst_building_category = map['fst_building_category'];
+  //   fst_specifyif_other = map['fst_specifyif_other'];
+  //   fst_no_of_floors = map['fst_no_of_floors'];
+  //   fst_cubie_meter = map['fst_cubie_meter'];
+  //   snd_have_building = map['snd_have_building'];
+  //   snd_building_use = map['snd_building_use'];
+  //   snd_building_category = map['snd_building_category'];
+  //   snd_specifyif_other = map['snd_specifyif_other'];
+  //   snd_no_of_floors = map['snd_no_of_floors'];
+  //   snd_cubie_meter = map['snd_cubie_meter'];
+  //   trd_have_building = map['trd_have_building'];
+  //   trd_building_use = map['trd_building_use'];
+  //   trd_building_category = map['trd_building_category'];
+  //   trd_specifyif_other = map['trd_specifyif_other'];
+  //   trd_no_of_floors = map['trd_no_of_floors'];
+  //   trd_cubie_meter = map['trd_cubie_meter'];
+  //   forth_have_building = map['forth_have_building'];
+  //   forth_building_use = map['forth_building_use'];
+  //   forth_building_category = map['forth_building_category'];
+  //   forth_specifyif_other = map['forth_specifyif_other'];
+  //   forth_no_of_floors = map['forth_no_of_floors'];
+  //   forth_cubie_meter = map['forth_cubie_meter'];
+  //   fth_have_building = map['fth_have_building'];
+  //   fth_building_use = map['fth_building_use'];
+  //   fth_building_category = map['fth_building_category'];
+  //   fth_specifyif_other = map['fth_specifyif_other'];
+  //   fth_no_of_floors = map['fth_no_of_floors'];
+  //   fth_cubie_meter = map['fth_cubie_meter'];
+  //   home_map = map['home_map'];
+  //   home_photo = map['home_photo'];
+  //   reg_property_fertilizer = map['reg_property_fertilizer'];
+  //   area_unit_release_area = map['area_unit_release_area'];
+  //   area_unit_business_area = map['area_unit_business_area'];
+  //   area_unit_total_no_unit = map['area_unit_total_no_unit'];
+  //   area_unit_business_units = map['area_unit_business_units'];
+  //   second_partner_name = map['second_partner_name'];
+  //   second_partner_surname = map['second_partner_surname'];
+  //   second_partner_boy = map['second_partner_boy'];
+  //   second_partner_father = map['second_partner_father'];
+  //   second_partner_gender = map['second_partner_gender'];
+  //   second_partner_phone = map['second_partner_phone'];
+  //   second_partner_email = map['second_partner_email'];
+  //   second_partner_image = map['second_partner_image'];
+  //   second_partner_machinegun_no = map['second_partner_machinegun_no'];
+  //   second_partner_cover_note = map['second_partner_cover_note'];
+  //   second_partner_note_page = map['second_partner_note_page'];
+  //   second_partner_reg_no = map['second_partner_reg_no'];
+  //   second_partner_phote_note1 = map['second_partner_phote_note1'];
+  //   second_partner_photo_tips1 = map['second_partner_photo_tips1'];
+  //   second_partner_photo_tips2 = map['second_partner_photo_tips2'];
+  //   third_partner_name = map['third_partner_name'];
+  //   third_partner_surname = map['third_partner_surname'];
+  //   third_partner_boy = map['third_partner_boy'];
+  //   third_partner_father = map['third_partner_father'];
+  //   third_partner_gender = map['third_partner_gender'];
+  //   third_partner_phone = map['third_partner_phone'];
+  //   third_partner_email = map['third_partner_email'];
+  //   third_partner_image = map['third_partner_image'];
+  //   third_partner_machinegun_no = map['third_partner_machinegun_no'];
+  //   third_partner_cover_note = map['third_partner_cover_note'];
+  //   third_partner_note_page = map['third_partner_note_page'];
+  //   third_partner_reg_no = map['third_partner_reg_no'];
+  //   third_partner_phote_note1 = map['third_partner_phote_note1'];
+  //   third_partner_photo_tips1 = map['third_partner_photo_tips1'];
+  //   third_partner_photo_tips2 = map['third_partner_photo_tips2'];
+  //   fourth_partner_name = map['fourth_partner_name'];
+  //   fourth_partner_surname = map['fourth_partner_surname'];
+  //   fourth_partner_boy = map['fourth_partner_boy'];
+  //   fourth_partner_father = map['fourth_partner_father'];
+  //   fourth_partner_gender = map['fourth_partner_gender'];
+  //   fourth_partner_phone = map['fourth_partner_phone'];
+  //   fourth_partner_email = map['fourth_partner_email'];
+  //   fourth_partner_image = map['fourth_partner_image'];
+  //   fourth_partner_machinegun_no = map['fourth_partner_machinegun_no'];
+  //   fourth_partner_cover_note = map['fourth_partner_cover_note'];
+  //   fourth_partner_note_page = map['fourth_partner_note_page'];
+  //   fourth_partner_reg_no = map['fourth_partner_reg_no'];
+  //   fourth_partner_phote_note1 = map['fourth_partner_phote_note1'];
+  //   fourth_partner_photo_tips1 = map['fourth_partner_photo_tips1'];
+  //   fourth_partner_photo_tips2 = map['fourth_partner_photo_tips2'];
+  //   fifth_partner_name = map['fifth_partner_name'];
+  //   fifth_partner_surname = map['fifth_partner_surname'];
+  //   fifth_partner_boy = map['fifth_partner_boy'];
+  //   fifth_partner_father = map['fifth_partner_father'];
+  //   fifth_partner_gender = map['fifth_partner_gender'];
+  //   fifth_partner_phone = map['fifth_partner_phone'];
+  //   fifth_partner_email = map['fifth_partner_email'];
+  //   fifth_partner_image = map['fifth_partner_image'];
+  //   fifth_partner_machinegun_no = map['fifth_partner_machinegun_no'];
+  //   fifth_partner_cover_note = map['fifth_partner_cover_note'];
+  //   fifth_partner_note_page = map['fifth_partner_note_page'];
+  //   fifth_partner_reg_no = map['fifth_partner_reg_no'];
+  //   fifth_partner_phote_note1 = map['fifth_partner_phote_note1'];
+  //   fifth_partner_photo_tips1 = map['fifth_partner_photo_tips1'];
+  //   fifth_partner_photo_tips2 = map['fifth_partner_photo_tips2'];
+  //   return map;
+  // }
 }
