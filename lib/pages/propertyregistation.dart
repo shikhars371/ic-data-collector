@@ -7,6 +7,7 @@ import '../localization/app_translations.dart';
 import '../models/localpropertydata.dart';
 import '../utils/db_helper.dart';
 import '../controllers/auth.dart';
+import './surveylist.dart';
 
 class PropertyRegistationPage extends StatefulWidget {
   PropertyRegistationPage({this.taskid, this.surveylocalkey});
@@ -24,6 +25,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
   String ddcity = "None selected";
   bool chkval = false;
   int formval = 0;
+  String propertylocalkey;
   LocalPropertySurvey localdata;
   bool redeem_propertyVisible = false,
       proprietary_visible = false,
@@ -71,6 +73,57 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
         });
   }
 
+  Widget backbutton() {
+    return GestureDetector(
+      onTap: () {
+        if (!(propertylocalkey?.isEmpty ?? true)) {
+          if (formval == 5) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) =>
+                    SurveyPage(id: widget.taskid),
+              ),
+            );
+          }
+        }
+        setState(() {
+          formval -= 1;
+        });
+      },
+      child: Container(
+        child: Row(
+          children: <Widget>[
+            Icon(Icons.arrow_back_ios),
+            Text(
+              "Back",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget nextbutton() {
+    return GestureDetector(
+      onTap: () {
+        datasaver();
+      },
+      child: Container(
+        child: Row(
+          children: <Widget>[
+            Text(
+              "Next",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Icon(Icons.arrow_forward_ios),
+          ],
+        ),
+      ),
+    );
+  }
+
   void datasaver() async {
     if (formval == 0) {
       if (_formkey.currentState.validate()) {
@@ -109,25 +162,68 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
       if (!_formkey.currentState.validate() ||
           (localdata.province?.isEmpty ?? true) ||
           (localdata.city?.isEmpty ?? true) ||
-          (localdata.property_user_owner?.isEmpty ?? true)) {
+          (localdata.property_type?.isEmpty ?? true)) {
         return;
       } else {
         _formkey.currentState.save();
         int svval = await DBHelper().addPropertySurvey(localdata);
-        print("save return" + svval.toString());
-        setState(() {
-          formval += 1;
-        });
+        if (svval != 0) {
+          propertylocalkey = localdata.province.trim() +
+              localdata.city.trim() +
+              localdata.area.trim() +
+              localdata.pass.trim() +
+              localdata.block.trim() +
+              localdata.part_number.trim() +
+              localdata.unit_number.trim();
+          setState(() {
+            formval += 1;
+          });
+        } else {
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text(
+                    "Warning",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.red),
+                  ),
+                  content: Text(
+                      "This property Data already exist. So please go back and edit that or delete the existing and create new."),
+                  actions: <Widget>[
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text("Ok"),
+                    ),
+                  ],
+                );
+              });
+        }
       }
     } else if (formval == 5) {
-      if (localdata.property_have_document?.isEmpty ?? true) {
+      if ((localdata.property_have_document?.isEmpty ?? true) ||
+          (localdata.current_use_of_property?.isEmpty ?? true)) {
         return;
       } else {
         if (localdata.property_have_document == "Yes") {
           setState(() {
             formval += 1;
           });
-        } else {}
+        } else {
+          if ((localdata.current_use_of_property == "Commercial") ||
+              (localdata.current_use_of_property ==
+                  "Complex (Release / Business)")) {
+            setState(() {
+              formval = 8;
+            });
+          } else {
+            setState(() {
+              formval = 9;
+            });
+          }
+        }
       }
     } else if (formval == 6) {
       setState(() {
@@ -146,6 +242,38 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
         formval += 1;
       });
     } else if (formval == 10) {
+      setState(() {
+        formval += 1;
+      });
+    } else if (formval == 11) {
+      setState(() {
+        formval += 1;
+      });
+    } else if (formval == 12) {
+      setState(() {
+        formval += 1;
+      });
+    } else if (formval == 13) {
+      setState(() {
+        formval += 1;
+      });
+    } else if (formval == 14) {
+      setState(() {
+        formval += 1;
+      });
+    } else if (formval == 15) {
+      setState(() {
+        formval += 1;
+      });
+    } else if (formval == 16) {
+      setState(() {
+        formval += 1;
+      });
+    } else if (formval == 17) {
+      setState(() {
+        formval += 1;
+      });
+    } else if (formval == 18) {
       setState(() {
         formval += 1;
       });
@@ -429,29 +557,6 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   // ),
                   )
             ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget draftbutton({Function onPressed}) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        height: 30,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [BoxShadow(blurRadius: 5.0, color: Colors.black)],
-            color: Colors.blue),
-        margin: EdgeInsets.only(
-          left: MediaQuery.of(context).size.width / 3.5,
-          right: MediaQuery.of(context).size.width / 3.5,
-        ),
-        child: Center(
-          child: Text(
-            'Save as Draft',
-            style: TextStyle(fontSize: 20, color: Colors.white),
           ),
         ),
       ),
@@ -782,12 +887,12 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               headerlablekey: 'key_select_province',
               dropdownitems: [
                 'None selected',
-                'Cable',
+                'Kabul',
                 'Nangarhar',
                 'Kandahar',
                 'Bamyan',
-                'daikundi',
-                'Kunduz',
+                'Daikundi',
+                'Kundoz',
                 'Balkh',
                 'Herat',
                 'Parwan',
@@ -814,15 +919,15 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               headerlablekey: 'key_select_city',
               dropdownitems: [
                 'None selected',
-                'cable',
-                'jalal Abad',
-                'kandahar',
+                'Kabul',
+                'Jalalabad',
+                'Kandahar',
                 'Bamyan',
-                'Indigo',
-                'kunduz',
-                'Mazar Sharif',
+                'Nili',
+                'Kundoz',
+                'Mazar-E-Sharif',
                 'Herat',
-                'Charger',
+                'Charikar',
                 'Farah'
               ],
               onChanged: (value) {
@@ -1501,7 +1606,6 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.first_partner_name_mere_individuals = value.trim();
                 setState(() {});
               }),
-          draftbutton(),
           SizedBox(
             height: 50,
           )
@@ -1582,7 +1686,6 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               isCompleted: false, headerlablekey: 'key_photo_tips1'),
           formCardFileuploader(
               isCompleted: false, headerlablekey: 'key_photo_tips2'),
-          draftbutton(),
           SizedBox(
             height: 50,
           )
@@ -1682,7 +1785,6 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.fore_limits_north = value.trim();
                 setState(() {});
               }),
-          draftbutton(),
           SizedBox(
             height: 50,
           )
@@ -1700,46 +1802,65 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
       child: ListView(
         children: <Widget>[
           formcardtextfield(
+              initvalue: localdata.area_unit_release_area?.isEmpty ?? true
+                  ? ""
+                  : localdata.area_unit_release_area,
               headerlablekey: 'key_release_area',
-              radiovalue: false,
-              hinttextkey: 'key_enter_1st_surveyor',
-              validator: (value) {
-                if (value.trim().isEmpty) {
-                  return "field should not be blank";
-                }
+              radiovalue: localdata.area_unit_release_area?.isEmpty ?? true
+                  ? false
+                  : true,
+              onSaved: (value) {
+                localdata.area_unit_release_area = value;
               },
-              onSaved: (value) {}),
+              onChanged: (value) {
+                localdata.area_unit_release_area = value;
+                setState(() {});
+              }),
           formcardtextfield(
+              initvalue: localdata.area_unit_business_area?.isEmpty ?? true
+                  ? ""
+                  : localdata.area_unit_business_area,
               headerlablekey: 'key_business_area',
-              radiovalue: false,
-              hinttextkey: 'key_enter_1st_surveyor',
-              validator: (value) {
-                if (value.trim().isEmpty) {
-                  return "field should not be blank";
-                }
+              radiovalue: localdata.area_unit_business_area?.isEmpty ?? true
+                  ? false
+                  : true,
+              onSaved: (value) {
+                localdata.area_unit_business_area = value;
               },
-              onSaved: (value) {}),
+              onChanged: (value) {
+                localdata.area_unit_business_area = value;
+                setState(() {});
+              }),
           formcardtextfield(
+              initvalue: localdata.area_unit_total_no_unit?.isEmpty ?? true
+                  ? ""
+                  : localdata.area_unit_total_no_unit,
               headerlablekey: 'key_total_release_units',
-              radiovalue: false,
-              hinttextkey: 'key_enter_1st_surveyor',
-              validator: (value) {
-                if (value.trim().isEmpty) {
-                  return "field should not be blank";
-                }
+              radiovalue: localdata.area_unit_total_no_unit?.isEmpty ?? true
+                  ? false
+                  : true,
+              onSaved: (value) {
+                localdata.area_unit_total_no_unit = value;
               },
-              onSaved: (value) {}),
+              onChanged: (value) {
+                localdata.area_unit_total_no_unit = value;
+                setState(() {});
+              }),
           formcardtextfield(
+              initvalue: localdata.area_unit_business_units?.isEmpty ?? true
+                  ? ""
+                  : localdata.area_unit_business_units,
               headerlablekey: 'key_total_business_unit',
-              radiovalue: false,
-              hinttextkey: 'key_enter_1st_surveyor',
-              validator: (value) {
-                if (value.trim().isEmpty) {
-                  return "field should not be blank";
-                }
+              radiovalue: localdata.area_unit_business_units?.isEmpty ?? true
+                  ? false
+                  : true,
+              onSaved: (value) {
+                localdata.area_unit_business_units = value;
               },
-              onSaved: (value) {}),
-          draftbutton(),
+              onChanged: (value) {
+                localdata.area_unit_business_units = value;
+                setState(() {});
+              }),
           SizedBox(
             height: 50,
           )
@@ -1757,56 +1878,22 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               isCompleted: false, headerlablekey: 'key_home_map'),
           formCardFileuploader(
               isCompleted: false, headerlablekey: 'key_home_photo'),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            padding: EdgeInsets.all(10),
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        Radio(
-                          value: false,
-                          groupValue: true,
-                          onChanged: (bool) {},
-                        ),
-                        Flexible(
-                          child: Text(
-                            setapptext(key: 'key_registered_property'),
-                            style: TextStyle(),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.only(
-                            left: 8, right: 8, bottom: 10),
-                        child: Checkbox(
-                          value: chkval,
-                          onChanged: (bool value) {
-                            setState(() {
-                              chkval = !chkval;
-                            });
-                          },
-                        ))
-                  ],
-                ),
-              ),
-            ),
-          ),
-          draftbutton(),
+          formCardRadioButtons(
+              initvalue: localdata.reg_property_fertilizer?.isEmpty ?? true
+                  ? ""
+                  : localdata.reg_property_fertilizer,
+              headerlablekey: 'key_registered_property',
+              iscompleted: localdata.reg_property_fertilizer?.isEmpty ?? true
+                  ? false
+                  : true,
+              radiobtnlables: ['01-01-32-32-432-433-421'],
+              radiobtnSelected: (value) {
+                localdata.reg_property_fertilizer = value;
+              },
+              onchanged: (value, index) {
+                localdata.reg_property_fertilizer = value;
+                setState(() {});
+              }),
           SizedBox(
             height: 50,
           )
@@ -3281,46 +3368,6 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
-  Widget backbutton() {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          formval -= 1;
-        });
-      },
-      child: Container(
-        child: Row(
-          children: <Widget>[
-            Icon(Icons.arrow_back_ios),
-            Text(
-              "Back",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget nextbutton() {
-    return GestureDetector(
-      onTap: () {
-        datasaver();
-      },
-      child: Container(
-        child: Row(
-          children: <Widget>[
-            Text(
-              "Next",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Icon(Icons.arrow_forward_ios),
-          ],
-        ),
-      ),
-    );
-  }
-
   @override
   void initState() {
     localdata = new LocalPropertySurvey();
@@ -3332,6 +3379,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 taskid: widget.taskid, localkey: widget.surveylocalkey)
             .then((onValue) {
           localdata = onValue[0];
+          formval = 5;
+          propertylocalkey = localdata.local_property_key;
         });
       });
     }
@@ -3399,6 +3448,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           formheader(headerlablekey: 'key_prop_info')
                         ] else if (formval == 16) ...[
                           formheader(headerlablekey: 'key_building_info')
+                        ] else if (formval == 17) ...[
+                          formheader(headerlablekey: 'key_all_details')
+                        ] else if (formval == 18) ...[
+                          formheader(headerlablekey: 'key_final_details')
                         ],
 
                         //form container
@@ -3436,6 +3489,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           form15()
                         ] else if (formval == 16) ...[
                           form16()
+                        ] else if (formval == 17) ...[
+                          form11()
+                        ] else if (formval == 18) ...[
+                          form10()
                         ],
                         //buttom menu container
                         if (formval == 0) ...[
@@ -3454,7 +3511,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                               ],
                             ),
                           )
-                        ] else if (formval == 16) ...[
+                        ] else if (formval == 18) ...[
                           Divider(
                             color: Colors.blueAccent,
                           ),

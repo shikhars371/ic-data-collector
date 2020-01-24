@@ -217,5 +217,7 @@
     "key_safari_info": "Safari Booklet Specifications",
     "key_prop_info": "Type of property user",
     "key_building_info": "Building Information",
-    "key_cover_note": "Cover Note"
+    "key_cover_note": "Cover Note",
+    "key_all_details":"Details of the number and area of ​​units (if the current use is mixed-use and commercial, fill the following sections).",
+    "key_final_details":"Home Sketch"
 }

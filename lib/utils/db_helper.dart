@@ -468,7 +468,17 @@ class DBHelper with ChangeNotifier {
         data.fifth_partner_photo_tips1,
         data.fifth_partner_photo_tips2
       ];
-      result = await dbClient.rawInsert(sqlquery, params);
+      bool check = await ifpropertyexist(
+          localkey: data.province.trim() +
+              data.city.trim() +
+              data.area.trim() +
+              data.pass.trim() +
+              data.block.trim() +
+              data.part_number.trim() +
+              data.unit_number.trim());
+      if (!check) {
+        result = await dbClient.rawInsert(sqlquery, params);
+      }
     } catch (e) {
       setState(AppState.Idle);
       notifyListeners();
@@ -476,6 +486,21 @@ class DBHelper with ChangeNotifier {
     }
     setState(AppState.Idle);
     notifyListeners();
+    return result;
+  }
+
+  Future<bool> ifpropertyexist({String localkey}) async {
+    bool result = false;
+    try {
+      var dbClient = await db;
+      String sqlquery =
+          'SELECT local_property_key FROM propertysurvey WHERE local_property_key=?';
+      List<dynamic> params = [localkey];
+      List<Map> maps = await dbClient.rawQuery(sqlquery, params);
+      result = (maps?.isEmpty ?? true) ? false : true;
+    } catch (e) {
+      print(e);
+    }
     return result;
   }
 
@@ -781,6 +806,7 @@ class DBHelper with ChangeNotifier {
 
   Future<int> deletePropertySurvey({String localkey}) async {
     setState(AppState.Busy);
+    notifyListeners();
     int result = 0;
     try {
       var dbClient = await db;
@@ -788,9 +814,11 @@ class DBHelper with ChangeNotifier {
           where: 'local_property_key=?', whereArgs: [localkey]);
     } catch (e) {
       setState(AppState.Idle);
+      notifyListeners();
       print(e);
     }
     setState(AppState.Idle);
+    notifyListeners();
     return result;
   }
 

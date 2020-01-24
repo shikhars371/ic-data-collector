@@ -170,10 +170,16 @@ class _SurveyPageState extends State<SurveyPage> {
                               actions: <Widget>[
                                 FlatButton(
                                   onPressed: () async {
-                                    await DBHelper().deletePropertySurvey(
-                                        localkey: localsurveyid);
-                                    Navigator.pop(context);
-                                    setState(() {});
+                                    DBHelper()
+                                        .deletePropertySurvey(
+                                            localkey: localsurveyid)
+                                        .then((_) {
+                                      Navigator.pop(context);
+                                      Provider.of<DBHelper>(context)
+                                          .getpropertysurveys(
+                                              taskid: widget.id);
+                                      setState(() {});
+                                    });
                                   },
                                   child: Text(
                                     "Delete",
