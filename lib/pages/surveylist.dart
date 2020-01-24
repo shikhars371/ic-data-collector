@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kapp/controllers/auth.dart';
 import 'package:provider/provider.dart';
 
 import '../localization/app_translations.dart';
 import './propertyregistation.dart';
 import '../utils/db_helper.dart';
+import '../controllers/auth.dart';
 
 class SurveyPage extends StatefulWidget {
   SurveyPage({this.id});

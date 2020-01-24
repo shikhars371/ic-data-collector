@@ -20,6 +20,7 @@ class User {
   String municiplaityId;
   String nahiaId;
   String gozarId;
+  String mobileAccess;
   String createdBy;
   String updatedBy;
   String ip;
@@ -44,6 +45,7 @@ class User {
       this.deviceAllocationDate,
       this.provinceId,
       this.municiplaityId,
+      this.mobileAccess,
       this.nahiaId,
       this.gozarId,
       this.createdBy,
@@ -72,6 +74,7 @@ class User {
         municiplaityId = json['municiplaity_id'],
         nahiaId = json['nahia_id'],
         gozarId = json['gozar_id'],
+        mobileAccess = json['mobile_access'],
         createdBy = json['created_by'],
         updatedBy = json['upated_by'],
         ip = json['ip'];
@@ -96,6 +99,7 @@ class User {
         'device_allocation_date': deviceAllocationDate,
         'province_id': provinceId,
         'municiplaity_id': municiplaityId,
+        'mobile_access': mobileAccess,
         'nahia_id': nahiaId,
         'gozar_id': gozarId,
         'craeted_by': createdBy,

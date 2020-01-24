@@ -71,8 +71,8 @@
     "key_true_personal": "True / False Personal Fame / First Partner",
     "key_name": "Name",
     "key_surname": "Surname / surname",
-    "key_wold": "Wold",
-    "key_birth": "Birth",
+    "key_wold": "Father",
+    "key_birth": "Grand Father",
     "key_gender": "Gender",
     "key_male": "Male",
     "key_female": "Female",
@@ -202,7 +202,7 @@
     "key_guide": "Guide",
     "key_help": "Help",
     "Key_number_value": "Enter the value",
-    "key_Characteristics_of_earth": "Characteristics of the Earth's Partners If the Land Is Shared",
+    "key_Characteristics_of_earth": "Other Partner Info",
     "key_boy": "Boy",
     "key_date_format": "yyyy/mm/dd",
     "key_province": "Province",
@@ -210,5 +210,12 @@
     "key_only_block": "Block",
     "key_part": "Part",
     "key_unit_no": "Unit No",
-    "key_type_of_use": "Type of use"
+    "key_type_of_use": "Type of use",
+    "key_business_licence": "Business License",
+    "key_first_partner": "First Partner",
+    "key_lightning": "lightning Information",
+    "key_safari_info": "Safari Booklet Specifications",
+    "key_prop_info": "Type of property user",
+    "key_building_info": "Building Information",
+    "key_cover_note": "Cover Note"
 }

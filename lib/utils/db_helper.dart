@@ -124,7 +124,7 @@ class DBHelper with ChangeNotifier {
     });
     await db.execute('''
       CREATE TABLE IF NOT EXISTS applanguage(
-        id TEXT PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         language TEXT
       )
     ''').catchError((onError){
@@ -818,7 +818,6 @@ class DBHelper with ChangeNotifier {
 
   Future<int> deletePropertySurvey({String localkey}) async {
     setState(AppState.Busy);
-    notifyListeners();
     int result = 0;
     try {
       var dbClient = await db;
@@ -826,11 +825,9 @@ class DBHelper with ChangeNotifier {
           where: 'local_property_key=?', whereArgs: [localkey]);
     } catch (e) {
       setState(AppState.Idle);
-      notifyListeners();
       print(e);
     }
     setState(AppState.Idle);
-    notifyListeners();
     return result;
   }
 

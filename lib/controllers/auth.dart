@@ -32,7 +32,12 @@ class AuthModel with ChangeNotifier {
       });
       if (responce.statusCode == 201) {
         if (responce.body.isNotEmpty) {
-          if (json.decode(responce.body)['user']['designation'] == "survey") {
+          if (json
+                  .decode(responce.body)['user']['mobile_access']
+                  .toString()
+                  .toLowerCase()
+                  .trim() ==
+              "yes") {
             saveCurrentLogin(
               json.decode(responce.body),
             );
