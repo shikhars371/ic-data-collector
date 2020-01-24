@@ -37,13 +37,9 @@ class DBHelper with ChangeNotifier {
   _onCreate(Database db, int version) async {
     await db.execute('''
         CREATE TABLE IF NOT EXISTS surveylist (
-          id TEXT PRIMARY KEY UNIQUE,
-          uid TEXT ,assignedby TEXT,assignedto TEXT, provinceid TEXT,
-          municpalityid TEXT, nahiaid TEXT,gozarid TEXT,blockid TEXT,
-          startdate TEXT,propertytosurvey INTEGER,propertysurveyed INTEGER,
-          propertyverified INTEGER, propertygeoverified INTEGER,
-          completiondate TEXT,completionstatus TEXT,approvestatus INTEGER,
-          createdby TEXT,updatedby TEXT,ip TEXT,isdeleted INTEGER DEFAULT 0,
+          id TEXT PRIMARY KEY UNIQUE,province TEXT,
+          municpality TEXT, nahia TEXT,gozar TEXT,propertytosurvey INTEGER,
+          startdate TEXT,duedate TEXT,isdeleted INTEGER DEFAULT 0,
           issynced INTEGER DEFAULT 0,iscompleted INTEGER DEFAULT 0,isstatrted INTEGER DEFAULT 0
         )
         ''').catchError((onError) {
@@ -127,7 +123,7 @@ class DBHelper with ChangeNotifier {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         language TEXT
       )
-    ''').catchError((onError){
+    ''').catchError((onError) {
       print(onError);
     });
   }
@@ -140,33 +136,18 @@ class DBHelper with ChangeNotifier {
         bool check = await isExist(id: item.id);
         if (!check) {
           String sqlquery = '''
-          INSERT INTO surveylist(id,uid,assignedby,assignedto,provinceid,
-          municpalityid,nahiaid,gozarid,blockid,startdate,propertytosurvey,
-          propertysurveyed,propertyverified,propertygeoverified,
-          completiondate,completionstatus,approvestatus,createdby,updatedby,
-          ip)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+          INSERT INTO surveylist(id,province,municpality,nahia,gozar,propertytosurvey,
+          startdate,duedate)VALUES(?,?,?,?,?,?,?,?);
         ''';
           List<dynamic> params = [
             item.id,
-            item.uid,
-            item.assignedBy,
-            item.assignedTo,
-            item.provinceId,
-            item.municpalityId,
-            item.nahiaId,
-            item.gozarId,
-            item.blockId,
+            item.province,
+            item.municpality,
+            item.nahia,
+            item.gozar,
+            item.property_to_survey,
             item.startDate,
-            int.tryParse(item.propertyToSurvey.toString()),
-            int.tryParse(item.propertySurveyed.toString()),
-            int.tryParse(item.propertyVerified.toString()),
-            int.tryParse(item.propertyGeoverified.toString()),
-            item.completionDate,
-            item.completionStatus,
-            item.approveStatus,
-            item.createdBy,
-            item.updatedBy,
-            item.ip
+            item.due_date
           ];
           result = await dbClient.rawInsert(sqlquery, params);
         }
@@ -203,36 +184,18 @@ class DBHelper with ChangeNotifier {
         for (int i = 0; i < maps.length; i++) {
           surveys.add(
             SurveyAssignment(
-              id: maps[i]['id'],
-              uid: maps[i]['uid'],
-              assignedBy: maps[i]['assignedby'],
-              assignedTo: maps[i]['assignedto'],
-              provinceId: maps[i]['provinceid'],
-              municpalityId: maps[i]['municpalityid'],
-              nahiaId: maps[i]['nahiaid'],
-              gozarId: maps[i]['gozarid'],
-              blockId: maps[i]['blockid'],
-              startDate: maps[i]['startdate'],
-              propertyToSurvey:
-                  int.tryParse(maps[i]['propertytosurvey'].toString()),
-              propertySurveyed:
-                  int.tryParse(maps[i]['propertysurveyed'].toString()),
-              propertyVerified:
-                  int.tryParse(maps[i]['propertyverified'].toString()),
-              propertyGeoverified:
-                  int.tryParse(maps[i]['propertygeoverified'].toString()),
-              completionDate: maps[i]['completiondate'],
-              completionStatus:
-                  maps[i]['completionstatus'] == null ? false : true,
-              approveStatus: int.tryParse(maps[i]['approvestatus'].toString()),
-              createdBy: maps[i]['createdby'],
-              updatedBy: maps[i]['updatedby'],
-              ip: maps[i]['ip'],
-              isdeleted: maps[i]['isdeleted'],
-              issynced: maps[i]['issynced'],
-              iscompleted: maps[i]['iscompleted'],
-              isstatrted: maps[i]['isstatrted'],
-            ),
+                id: maps[i]['id'],
+                province: maps[i]['province'],
+                municpality: maps[i]['municpality'],
+                nahia: maps[i]['nahia'],
+                gozar: maps[i]['gozar'],
+                property_to_survey: maps[i]['propertytosurvey'],
+                startDate: maps[i]['startdate'],
+                due_date: maps[i]['duedate'],
+                isdeleted: maps[i]['isdeleted'],
+                iscompleted: maps[i]['iscompleted'],
+                isstatrted: maps[i]['isstatrted'],
+                issynced: maps[i]['issynced']),
           );
         }
       }

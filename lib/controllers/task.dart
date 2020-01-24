@@ -34,7 +34,7 @@ class TaskModel with ChangeNotifier {
           connectivityResult == ConnectivityResult.wifi) {
         var responce = await http.get(
             Configuration.apiurl +
-                'SurveyAssignment?assigned_to=' +
+                'SurveyAssignment?surveyer=' +
                 preferences.getString('userid'),
             headers: {
               "Content-Type": "application/json",

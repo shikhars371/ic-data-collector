@@ -1,24 +1,13 @@
 class SurveyAssignment {
   String id;
-  String uid;
-  String assignedBy;
-  String assignedTo;
-  String provinceId;
-  String municpalityId;
-  String nahiaId;
-  String gozarId;
-  String blockId;
+  String teamlead;
+  String province;
+  String municpality;
+  String nahia;
+  String gozar;
+  int property_to_survey;
   String startDate;
-  int propertyToSurvey;
-  int propertySurveyed;
-  int propertyVerified;
-  int propertyGeoverified;
-  String completionDate;
-  bool completionStatus;
-  int approveStatus;
-  String createdBy;
-  String updatedBy;
-  String ip;
+  String due_date;
   int isdeleted;
   int issynced;
   int iscompleted;
@@ -26,72 +15,39 @@ class SurveyAssignment {
 
   SurveyAssignment(
       {this.id,
-      this.uid,
-      this.assignedBy,
-      this.assignedTo,
-      this.provinceId,
-      this.municpalityId,
-      this.nahiaId,
-      this.gozarId,
-      this.blockId,
+      this.teamlead,
+      this.province,
+      this.municpality,
+      this.nahia,
+      this.gozar,
+      this.property_to_survey,
       this.startDate,
-      this.propertyToSurvey,
-      this.propertySurveyed,
-      this.propertyVerified,
-      this.propertyGeoverified,
-      this.completionDate,
-      this.completionStatus,
-      this.approveStatus,
-      this.createdBy,
-      this.updatedBy,
-      this.ip,
+      this.due_date,
       this.isdeleted,
-      this.issynced,
       this.iscompleted,
-      this.isstatrted});
+      this.isstatrted,
+      this.issynced});
 
   SurveyAssignment.fromJson(Map<String, dynamic> json)
       : id = json['_id'],
-        uid = json['uid'],
-        assignedBy = json['assigned_by'],
-        assignedTo = json['assigned_to'],
-        provinceId = json['province_id'],
-        municpalityId = json['municpality_id'],
-        nahiaId = json['nahia_id'],
-        gozarId = json['gozar_id'],
-        blockId = json['block_id'],
+        teamlead = json['teamlead'],
+        province = json['province'],
+        municpality = json['municipality'],
+        nahia = json['nahia'],
+        gozar = json['gozar'],
+        property_to_survey = json['property_to_survey'],
         startDate = json['start_date'],
-        propertyToSurvey = json['property_to_survey'],
-        propertySurveyed = json['property_surveyed'],
-        propertyVerified = json['property_verified'],
-        propertyGeoverified = json['property_geoverified'],
-        completionDate = json['completion_date'],
-        completionStatus = json['completion_status'],
-        approveStatus = json['approve_status'],
-        createdBy = json['created_by'],
-        updatedBy = json['upated_by'],
-        ip = json['ip'];
+        due_date = json['due_date'];
 
   Map<String, dynamic> toJson() => {
         '_id': id,
-        'uid': uid,
-        'assigned_by': assignedBy,
-        'assigned_to': assignedTo,
-        'province_id': provinceId,
-        'municpality_id': municpalityId,
-        'nahia_id': nahiaId,
-        'gozar_id': gozarId,
-        'block_id': blockId,
-        'current_tax': startDate,
-        'property_to_survey': propertyToSurvey,
-        'property_surveyed': propertySurveyed,
-        'property_verified': propertyVerified,
-        'property_geoverified': propertyGeoverified,
-        'completion_date': completionDate,
-        'completion_status': completionStatus,
-        'approve_status': approveStatus,
-        'craeted_by': createdBy,
-        'updated_by': updatedBy,
-        'ip': ip
+        'teamlead': teamlead,
+        'province': province,
+        'municipality': municpality,
+        'nahia': nahia,
+        'gozar': gozar,
+        'property_to_survey': property_to_survey,
+        'start_date': startDate,
+        'due_date': due_date
       };
 }

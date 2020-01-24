@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 import '../localization/app_translations.dart';
 import '../utils/appdrawer.dart';
@@ -29,9 +30,9 @@ class _TaskPageState extends State<TaskPage> {
     String result = "";
     if (startedstatus != null && completestatus != null && syncstatus != null) {
       if (startedstatus == 0) {
-        result = "New Task";
+        result = "Not Started";
       } else if (startedstatus != 0 && completestatus == 0) {
-        result = "Processing";
+        result = "In Progress";
       } else if (completestatus != 0) {
         result = "Completed";
       } else if (syncstatus != 0) {
@@ -65,7 +66,8 @@ class _TaskPageState extends State<TaskPage> {
       String provinance,
       String nahia,
       String gozar,
-      String area}) {
+      String area,
+      String assigndate}) {
     return GestureDetector(
       onTap: () {
         _navigationService.navigateTo(routeName: routes.SurveyRoute, parms: id);
@@ -81,28 +83,31 @@ class _TaskPageState extends State<TaskPage> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Align(
-                alignment: Alignment.topRight,
+                alignment: Alignment.topLeft,
+                child: Text(
+                  provinance + "-" + nahia + "-" + gozar + "-" + area,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Assigned Date -" +
+                      DateFormat.yMd().format(
+                        DateTime.parse(assigndate),
+                      ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerRight,
                 child: Text(
                   status,
                   style: TextStyle(
                       color: statuscolor, fontWeight: FontWeight.bold),
                 ),
-              ),
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text("Provinance :$provinance"),
-              ),
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text("Nahia :$nahia"),
-              ),
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text("Gozar :$gozar"),
-              ),
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text("No od Area :$area"),
               )
             ],
           ),
@@ -124,17 +129,6 @@ class _TaskPageState extends State<TaskPage> {
           setapptext(key: 'key_task'),
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        // flexibleSpace: Container(
-        //   decoration: BoxDecoration(
-        //     gradient: LinearGradient(
-        //         begin: Alignment.topCenter,
-        //         end: Alignment.bottomRight,
-        //         colors: [
-        //           Theme.of(context).primaryColor,
-        //           Theme.of(context).secondaryHeaderColor
-        //         ]),
-        //   ),
-        // ),
       ),
       drawer: AppDrawer(),
       body: Consumer<TaskModel>(
@@ -152,41 +146,52 @@ class _TaskPageState extends State<TaskPage> {
                             : data.surveyAssignments.length,
                         itemBuilder: (context, index) {
                           return listcard(
-                              id: data.surveyAssignments[index].id?.isEmpty ?? true
-                                  ? ""
-                                  : data.surveyAssignments[index].id,
-                              status: workstatus(
-                                  completestatus:
-                                      data.surveyAssignments[index].iscompleted,
-                                  startedstatus:
-                                      data.surveyAssignments[index].isstatrted,
-                                  syncstatus:
-                                      data.surveyAssignments[index].issynced),
-                              statuscolor: workstatuscolor(
-                                  completestatus:
-                                      data.surveyAssignments[index].iscompleted,
-                                  startedstatus:
-                                      data.surveyAssignments[index].isstatrted,
-                                  syncstatus:
-                                      data.surveyAssignments[index].issynced),
-                              provinance: data.surveyAssignments[index]
-                                          .provinceId?.isEmpty ??
-                                      true
-                                  ? ""
-                                  : data.surveyAssignments[index].provinceId,
-                              nahia: data.surveyAssignments[index].nahiaId
-                                          ?.isEmpty ??
-                                      true
-                                  ? ""
-                                  : data.surveyAssignments[index].nahiaId,
-                              gozar:
-                                  data.surveyAssignments[index].gozarId?.isEmpty ?? true
-                                      ? ""
-                                      : data.surveyAssignments[index].gozarId,
-                              area: data.surveyAssignments[index].propertyToSurvey == 0
-                                  ? ""
-                                  : data.surveyAssignments[index].propertyToSurvey
-                                      .toString());
+                            id: data.surveyAssignments[index].id?.isEmpty ??
+                                    true
+                                ? ""
+                                : data.surveyAssignments[index].id,
+                            provinance: data.surveyAssignments[index].province
+                                        ?.isEmpty ??
+                                    true
+                                ? ""
+                                : data.surveyAssignments[index].province,
+                            nahia:
+                                data.surveyAssignments[index].nahia?.isEmpty ??
+                                        true
+                                    ? ""
+                                    : data.surveyAssignments[index].nahia,
+                            gozar:
+                                data.surveyAssignments[index].gozar?.isEmpty ??
+                                        true
+                                    ? ""
+                                    : data.surveyAssignments[index].gozar,
+                            area: data.surveyAssignments[index]
+                                        .property_to_survey ==
+                                    null
+                                ? 0
+                                : data
+                                    .surveyAssignments[index].property_to_survey
+                                    .toString(),
+                            assigndate: data.surveyAssignments[index].startDate
+                                        ?.isEmpty ??
+                                    true
+                                ? ""
+                                : data.surveyAssignments[index].startDate,
+                            status: workstatus(
+                                completestatus:
+                                    data.surveyAssignments[index].iscompleted,
+                                startedstatus:
+                                    data.surveyAssignments[index].isstatrted,
+                                syncstatus:
+                                    data.surveyAssignments[index].issynced),
+                            statuscolor: workstatuscolor(
+                                completestatus:
+                                    data.surveyAssignments[index].iscompleted,
+                                startedstatus:
+                                    data.surveyAssignments[index].isstatrted,
+                                syncstatus:
+                                    data.surveyAssignments[index].issynced),
+                          );
                         },
                       ),
                     )
