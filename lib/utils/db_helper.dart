@@ -235,6 +235,8 @@ class DBHelper with ChangeNotifier {
   }
 
   Future<int> addPropertySurvey(LocalPropertySurvey data) async {
+    setState(AppState.Busy);
+    notifyListeners();
     int result = 0;
     try {
       var dbClient = await db;
@@ -497,6 +499,278 @@ class DBHelper with ChangeNotifier {
       ];
       result = await dbClient.rawInsert(sqlquery, params);
     } catch (e) {
+      setState(AppState.Idle);
+      notifyListeners();
+      print(e);
+    }
+    setState(AppState.Idle);
+    notifyListeners();
+    return result;
+  }
+
+  Future<int> updatePropertySurvey(
+      LocalPropertySurvey data, String localkey) async {
+    int result = 0;
+    try {
+      var dbClient = await db;
+      String sqlquery = '''
+        UPDATE propertysurvey
+        SET taskid=?,
+        local_property_key=?,other_key=?,first_surveyor_name=?,senond_surveyor_name=?,
+        technical_support_name=?,property_dispte_subject_to=?,
+        real_person_status=?,cityzenship_notice=?,issue_regarding_property=?,
+        municipality_ref_number=?,natural_threaten=?,status_of_area_plan=?,status_of_area_official=?,
+        status_of_area_regular=?,slope_of_area=?,province=?,city=?,area=?,pass=?,block=?,part_number=?,
+        unit_number=?,unit_in_parcel=?,street_name=?,historic_site_area=?,land_area=?,property_type=?,
+        location_of_land_area=?,property_have_document=?,document_type=?,issued_on=?,place_of_issue=?,
+        property_number=?,document_cover=?,document_page=?,doc_reg_number=?,land_area_qawwala=?,property_doc_photo_1=?,
+        property_doc_photo_2=?,property_doc_photo_3=?,property_doc_photo_4=?,odinary_doc_photo1=?,odinary_doc_photo6=?,
+        use_in_property_doc=?,current_use_of_property=?,redeemable_property=?,proprietary_properties=?,
+        govt_property=?,specified_current_use=?,unspecified_current_use_type=?,
+        number_of_business_unit=?,business_unit_have_no_license=?,business_license_another=?,
+        first_partner_name=?,first_partner_surname=?,first_partner_boy=?,
+        first_partner__father=?,first_partner_name_gender=?,
+        first_partner_name_phone=?,first_partner_name_email=?,
+        first_partner_name_property_owner=?,first_partner_name_mere_individuals=?,
+        info_photo_hint_sukuk_number=?,info_photo_hint_cover_note=?,
+        info_photo_hint_note_page=?,info_photo_hint_reg_no=?,
+        info_photo_hint_photo_note1=?,info_photo_hint_photo_tips1=?,
+        info_photo_hint_photo_tips2=?,fore_limits_east=?,fore_limits_west=?,
+        fore_limits_south=?,fore_limits_north=?,lightning_meter_no=?,
+        lightning_common_name=?,lightning_father_name=?,
+        lightning_picture_bell_power=?,safari_booklet_common_name=?,
+        safari_booklet_father_name=?,safari_booklet_machinegun_no=?,
+        safari_booklet_issue_date=?,safari_booklet_picture=?,property_user_owner=?,
+        property_user_master_rent=?,property_user_recipient_group=?,
+        property_user_no_longer=?,property_user_type_of_misconduct=?,
+        fst_have_building=?,fst_building_use=?,fst_building_category=?,
+        fst_specifyif_other=?,fst_no_of_floors=?,fst_cubie_meter=?,
+        snd_have_building=?,snd_building_use=?,snd_building_category=?,
+        snd_specifyif_other=?,snd_no_of_floors=?,snd_cubie_meter=?,
+        trd_have_building=?,trd_building_use=?,trd_building_category=?,
+        trd_specifyif_other=?,trd_no_of_floors=?,trd_cubie_meter=?,
+        forth_have_building=?,forth_building_use=?,forth_building_category=?,forth_specifyif_other=?,
+        forth_no_of_floors=?,forth_cubie_meter=?,fth_have_building=?,fth_building_use=?,
+        fth_building_category=?,fth_specifyif_other=?,fth_no_of_floors=?,
+        fth_cubie_meter=?,home_map=?,home_photo=?,reg_property_fertilizer=?,
+        area_unit_release_area=?,area_unit_business_area=?,area_unit_total_no_unit=?,
+        area_unit_business_units=?, second_partner_name=?,second_partner_surname=?,
+        second_partner_boy=?,second_partner_father=?,second_partner_gender=?,
+        second_partner_phone=?,second_partner_email=?,second_partner_image=?,
+        second_partner_machinegun_no=?,second_partner_cover_note=?,
+        second_partner_note_page=?,second_partner_reg_no=?,second_partner_phote_note1=?,
+        second_partner_photo_tips1=?,second_partner_photo_tips2=?,
+        third_partner_name=?,third_partner_surname=?,third_partner_boy=?,third_partner_father=?,
+        third_partner_gender=?,third_partner_phone=?,third_partner_email=?,
+        third_partner_image=?,third_partner_machinegun_no=?,third_partner_cover_note=?,
+        third_partner_note_page=?,third_partner_reg_no=?,third_partner_phote_note1=?,
+        third_partner_photo_tips1=?,third_partner_photo_tips2=?,fourth_partner_name=?,
+        fourth_partner_surname=?,fourth_partner_boy=?,fourth_partner_father=?,fourth_partner_gender=?,fourth_partner_phone=?,
+        fourth_partner_email=?,fourth_partner_image=?,fourth_partner_machinegun_no=?,
+        fourth_partner_cover_note=?,fourth_partner_note_page=?,fourth_partner_reg_no=?,
+        fourth_partner_phote_note1=?,fourth_partner_photo_tips1=?,fourth_partner_photo_tips2=?,
+        fifth_partner_name=?,fifth_partner_surname=?,fifth_partner_boy=?,fifth_partner_father=?,fifth_partner_gender=?,fifth_partner_phone=?,
+        fifth_partner_email=?,fifth_partner_image=?,fifth_partner_machinegun_no=?,fifth_partner_cover_note=?,
+        fifth_partner_note_page=?,fifth_partner_reg_no=?,fifth_partner_phote_note1=?,
+        fifth_partner_photo_tips1=?,fifth_partner_photo_tips2=?
+        WHERE local_property_key=?
+      ''';
+      List<dynamic> params = [
+        data.taskid,
+        data.province.trim() +
+            data.city.trim() +
+            data.area.trim() +
+            data.pass.trim() +
+            data.block.trim() +
+            data.part_number.trim() +
+            data.unit_number.trim(),
+        data.other_key,
+        data.first_surveyor_name,
+        data.senond_surveyor_name,
+        data.technical_support_name,
+        data.property_dispte_subject_to,
+        data.real_person_status,
+        data.cityzenship_notice,
+        data.issue_regarding_property,
+        data.municipality_ref_number,
+        data.natural_threaten,
+        data.status_of_area_plan,
+        data.status_of_area_official,
+        data.status_of_area_regular,
+        data.slope_of_area,
+        data.province,
+        data.city,
+        data.area,
+        data.pass,
+        data.block,
+        data.part_number,
+        data.unit_number,
+        data.unit_in_parcel,
+        data.street_name,
+        data.historic_site_area,
+        data.land_area,
+        data.property_type,
+        data.location_of_land_area,
+        data.property_have_document,
+        data.document_type,
+        data.issued_on,
+        data.place_of_issue,
+        data.property_number,
+        data.document_cover,
+        data.document_page,
+        data.doc_reg_number,
+        data.land_area_qawwala,
+        data.property_doc_photo_1,
+        data.property_doc_photo_2,
+        data.property_doc_photo_3,
+        data.property_doc_photo_4,
+        data.odinary_doc_photo1,
+        data.odinary_doc_photo6,
+        data.use_in_property_doc,
+        data.current_use_of_property,
+        data.redeemable_property,
+        data.proprietary_properties,
+        data.govt_property,
+        data.specified_current_use,
+        data.unspecified_current_use_type,
+        data.number_of_business_unit,
+        data.business_unit_have_no_license,
+        data.business_license_another,
+        data.first_partner_name,
+        data.first_partner_surname,
+        data.first_partner_boy,
+        data.first_partner__father,
+        data.first_partner_name_gender,
+        data.first_partner_name_phone,
+        data.first_partner_name_email,
+        data.first_partner_name_property_owner,
+        data.first_partner_name_mere_individuals,
+        data.info_photo_hint_sukuk_number,
+        data.info_photo_hint_cover_note,
+        data.info_photo_hint_note_page,
+        data.info_photo_hint_reg_no,
+        data.info_photo_hint_photo_note1,
+        data.info_photo_hint_photo_tips1,
+        data.info_photo_hint_photo_tips2,
+        data.fore_limits_east,
+        data.fore_limits_west,
+        data.fore_limits_south,
+        data.fore_limits_north,
+        data.lightning_meter_no,
+        data.lightning_common_name,
+        data.lightning_father_name,
+        data.lightning_picture_bell_power,
+        data.safari_booklet_common_name,
+        data.safari_booklet_father_name,
+        data.safari_booklet_machinegun_no,
+        data.safari_booklet_issue_date,
+        data.safari_booklet_picture,
+        data.property_user_owner,
+        data.property_user_master_rent,
+        data.property_user_recipient_group,
+        data.property_user_no_longer,
+        data.property_user_type_of_misconduct,
+        data.fst_have_building,
+        data.fst_building_use,
+        data.fst_building_category,
+        data.fst_specifyif_other,
+        data.fst_no_of_floors,
+        data.fst_cubie_meter,
+        data.snd_have_building,
+        data.snd_building_use,
+        data.snd_building_category,
+        data.snd_specifyif_other,
+        data.snd_no_of_floors,
+        data.snd_cubie_meter,
+        data.trd_have_building,
+        data.trd_building_use,
+        data.trd_building_category,
+        data.trd_specifyif_other,
+        data.trd_no_of_floors,
+        data.trd_cubie_meter,
+        data.forth_have_building,
+        data.forth_building_use,
+        data.forth_building_category,
+        data.forth_specifyif_other,
+        data.forth_no_of_floors,
+        data.forth_cubie_meter,
+        data.fth_have_building,
+        data.fth_building_use,
+        data.fth_building_category,
+        data.fth_specifyif_other,
+        data.fth_no_of_floors,
+        data.fth_cubie_meter,
+        data.home_map,
+        data.home_photo,
+        data.reg_property_fertilizer,
+        data.area_unit_release_area,
+        data.area_unit_business_area,
+        data.area_unit_total_no_unit,
+        data.area_unit_business_units,
+        data.second_partner_name,
+        data.second_partner_surname,
+        data.second_partner_boy,
+        data.second_partner_father,
+        data.second_partner_gender,
+        data.second_partner_phone,
+        data.second_partner_email,
+        data.second_partner_image,
+        data.second_partner_machinegun_no,
+        data.second_partner_cover_note,
+        data.second_partner_note_page,
+        data.second_partner_reg_no,
+        data.second_partner_phote_note1,
+        data.second_partner_photo_tips1,
+        data.second_partner_photo_tips2,
+        data.third_partner_name,
+        data.third_partner_surname,
+        data.third_partner_boy,
+        data.third_partner_father,
+        data.third_partner_gender,
+        data.third_partner_phone,
+        data.third_partner_email,
+        data.third_partner_image,
+        data.third_partner_machinegun_no,
+        data.third_partner_cover_note,
+        data.third_partner_note_page,
+        data.third_partner_reg_no,
+        data.third_partner_phote_note1,
+        data.third_partner_photo_tips1,
+        data.third_partner_photo_tips2,
+        data.fourth_partner_name,
+        data.fourth_partner_surname,
+        data.fourth_partner_boy,
+        data.fourth_partner_father,
+        data.fourth_partner_gender,
+        data.fourth_partner_phone,
+        data.fourth_partner_email,
+        data.fourth_partner_image,
+        data.fourth_partner_machinegun_no,
+        data.fourth_partner_cover_note,
+        data.fourth_partner_note_page,
+        data.fourth_partner_reg_no,
+        data.fourth_partner_phote_note1,
+        data.fourth_partner_photo_tips1,
+        data.fourth_partner_photo_tips2,
+        data.fifth_partner_name,
+        data.fifth_partner_surname,
+        data.fifth_partner_boy,
+        data.fifth_partner_father,
+        data.fifth_partner_gender,
+        data.fifth_partner_phone,
+        data.fifth_partner_email,
+        data.fifth_partner_image,
+        data.fifth_partner_machinegun_no,
+        data.fifth_partner_cover_note,
+        data.fifth_partner_note_page,
+        data.fifth_partner_reg_no,
+        data.fifth_partner_phote_note1,
+        data.fifth_partner_photo_tips1,
+        data.fifth_partner_photo_tips2,
+        localkey
+      ];
+      result = await dbClient.rawUpdate(sqlquery, params);
+    } catch (e) {
       print(e);
     }
     return result;
@@ -535,28 +809,22 @@ class DBHelper with ChangeNotifier {
   }
 
   Future<int> deletePropertySurvey({String localkey}) async {
+    setState(AppState.Busy);
+    notifyListeners();
     int result = 0;
     try {
       var dbClient = await db;
       result = await dbClient.delete('propertysurvey',
           where: 'local_property_key=?', whereArgs: [localkey]);
-      // result = await dbClient.rawDelete(
-      //     "DELETE FROM propertysurvey WHERE local_property_key=$localkey");
     } catch (e) {
+      setState(AppState.Idle);
+      notifyListeners();
       print(e);
     }
+    setState(AppState.Idle);
+    notifyListeners();
     return result;
   }
-
-  // Future<int> update(Student student) async {
-  //   var dbClient = await db;
-  //   return await dbClient.update(
-  //     'student',
-  //     student.toMap(),
-  //     where: 'id = ?',
-  //     whereArgs: [student.id],
-  //   );
-  // }
 
   Future close() async {
     var dbClient = await db;
