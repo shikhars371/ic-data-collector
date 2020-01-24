@@ -20,6 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   User _user = new User();
   FocusNode _email;
   FocusNode _password;
+  bool showpassword = true;
 
   @override
   void initState() {
@@ -110,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                             Container(
                               padding: EdgeInsets.only(left: 20, right: 20),
                               child: TextFormField(
-                                obscureText: true,
+                                obscureText: showpassword,
                                 focusNode: _password,
                                 textInputAction: TextInputAction.go,
                                 onFieldSubmitted: (_) async {
@@ -131,6 +132,16 @@ class _LoginPageState extends State<LoginPage> {
                                   return;
                                 },
                                 decoration: InputDecoration(
+                                  suffixIcon: IconButton(
+                                    icon: Icon(showpassword
+                                        ? Icons.visibility_off
+                                        : Icons.visibility),
+                                    onPressed: () {
+                                      setState(() {
+                                        showpassword = !showpassword;
+                                      });
+                                    },
+                                  ),
                                   prefixIcon: Icon(Icons.lock),
                                   labelText: AppTranslations.of(context)
                                       .text("key_password"),

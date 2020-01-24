@@ -122,6 +122,14 @@ class DBHelper with ChangeNotifier {
     ''').catchError((onError) {
       print(onError);
     });
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS applanguage(
+        id TEXT PRIMARY KEY AUTOINCREMENT,
+        language TEXT
+      )
+    ''').catchError((onError){
+      print(onError);
+    });
   }
 
   Future<int> addSurveyList({List<SurveyAssignment> surveyAssignments}) async {
