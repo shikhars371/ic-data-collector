@@ -10,6 +10,7 @@ import '../utils/db_helper.dart';
 import '../controllers/auth.dart';
 import './surveylist.dart';
 import './task.dart';
+import '../utils/imgsaver.dart';
 
 class PropertyRegistationPage extends StatefulWidget {
   PropertyRegistationPage({this.taskid, this.surveylocalkey});
@@ -632,8 +633,9 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     child: Column(
                       children: <Widget>[
                         RaisedButton(
-                          onPressed: () {
-                            imagePicker();
+                          onPressed: () async{
+                            var pathname= await imagepath(context);
+                            print(pathname);
                           },
                           child: Text("Click here to upload file (<10 MB)"),
                         )

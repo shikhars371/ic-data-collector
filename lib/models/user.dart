@@ -11,7 +11,6 @@ class User {
   String confirmPassword;
   String address;
   String activeStatus;
-  String roleId;
   String deviceName;
   String deviceModelNo;
   String deviceStatus;
@@ -38,7 +37,6 @@ class User {
       this.confirmPassword,
       this.address,
       this.activeStatus,
-      this.roleId,
       this.deviceName,
       this.deviceModelNo,
       this.deviceStatus,
@@ -65,7 +63,6 @@ class User {
         confirmPassword = json['confirm_password'],
         address = json['address'],
         activeStatus = json['active_status'],
-        roleId = json['role_id'],
         deviceName = json['decvice_name'],
         deviceModelNo = json['device_model_no'],
         deviceStatus = json['device_status'],
@@ -92,7 +89,6 @@ class User {
         'confirm_password': confirmPassword,
         'address': address,
         'active_status': activeStatus,
-        'role_id': roleId,
         'decvice_name': deviceName,
         'device_model_no': deviceModelNo,
         'device_status': deviceStatus,

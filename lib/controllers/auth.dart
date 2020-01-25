@@ -68,5 +68,4 @@ void saveCurrentLogin(Map responseJson) async {
   preferences.setString("username", responseJson['user']['user_name']);
   preferences.setString("email", responseJson['user']['email']);
   preferences.setString("activeStatus", responseJson['user']['active_status']);
-  preferences.setString("roleId", responseJson['user']['role_id']);
 }
