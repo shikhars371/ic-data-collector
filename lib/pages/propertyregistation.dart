@@ -752,10 +752,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               initvalue: localdata.property_dispte_subject_to?.isEmpty ?? true
                   ? ""
                   : localdata.property_dispte_subject_to,
-              radiobtnlables: [
-                setapptext(key: 'key_yes_sir'),
-                setapptext(key: 'key_no')
-              ],
+              radiobtnlables: ['Yes', 'No'],
               radiobtnSelected: (String value) {
                 localdata.property_dispte_subject_to = value;
               },
@@ -771,9 +768,9 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   localdata.real_person_status?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_real_person',
               radiobtnlables: [
-                setapptext(key: 'key_present'),
-                setapptext(key: 'key_absence'),
-                setapptext(key: 'key_died')
+                "Present",
+                "Absences",
+                "Died"
               ],
               radiobtnSelected: (String value) {
                 localdata.real_person_status = value;
@@ -792,8 +789,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   localdata.cityzenship_notice?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_is_citizenship',
               radiobtnlables: [
-                setapptext(key: 'key_yes_sir'),
-                setapptext(key: 'key_no')
+                "Yes",
+                "No"
               ],
               radiobtnSelected: (String value) {
                 localdata.cityzenship_notice = value;
@@ -855,8 +852,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   : localdata.natural_threaten,
               headerlablekey: 'key_natural_factor',
               radiobtnlables: [
-                setapptext(key: 'key_yes_sir'),
-                setapptext(key: 'key_no')
+                "Yes",
+                "No"
               ],
               radiobtnSelected: (String value) {
                 localdata.natural_threaten = value.trim();
@@ -883,8 +880,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   localdata.status_of_area_plan?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_specify_the',
               radiobtnlables: [
-                setapptext(key: 'key_plan'),
-                setapptext(key: 'key_unplan')
+                "Plan",
+                "Unplanned"
               ],
               radiobtnSelected: (String value) {
                 localdata.status_of_area_plan = value;
@@ -905,8 +902,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   : true,
               headerlablekey: 'key_specify_the',
               radiobtnlables: [
-                setapptext(key: 'key_official'),
-                setapptext(key: 'key_unofficial')
+                "Official",
+                "unofficial"
               ],
               radiobtnSelected: (String value) {
                 localdata.status_of_area_official = value;
@@ -927,8 +924,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   : true,
               headerlablekey: 'key_specify_the',
               radiobtnlables: [
-                setapptext(key: 'key_regular'),
-                setapptext(key: 'key_disorganized')
+                "Regular",
+                "disorganized"
               ],
               radiobtnSelected: (String value) {
                 localdata.status_of_area_regular = value;
@@ -948,9 +945,9 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   localdata.slope_of_area?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_specify_slope',
               radiobtnlables: [
-                setapptext(key: 'key_Smooth'),
-                setapptext(key: 'key_slope_30'),
-                setapptext(key: 'key_slope_above_30')
+                "Smooth",
+                "Slope up to 30%",
+                "Slope above 30%"
               ],
               radiobtnSelected: (String value) {
                 localdata.slope_of_area = value;
@@ -1209,8 +1206,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   localdata.property_type?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_type_ownership',
               radiobtnlables: [
-                setapptext(key: 'key_solo'),
-                setapptext(key: 'key_collective')
+                "Solo",
+                "Collective"
               ],
               radiobtnSelected: (String value) {
                 localdata.property_type = value;
@@ -1243,13 +1240,13 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   : true,
               headerlablekey: 'key_location_land',
               radiobtnlables: [
-                setapptext(key: 'key_zone_1'),
-                setapptext(key: 'key_zone_2'),
-                setapptext(key: 'key_zone_3'),
-                setapptext(key: 'key_zone_4'),
-                setapptext(key: 'key_zone_5'),
-                setapptext(key: 'key_zone_6'),
-                setapptext(key: 'key_zone_7')
+                "Zone 1",
+                "Zone 2",
+                "Zone 3",
+                "Zone 4",
+                "Zone 5",
+                "Zone 6",
+                "Zone 7"
               ],
               radiobtnSelected: (String value) {
                 localdata.location_of_land_area = value;
@@ -1270,8 +1267,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   : true,
               headerlablekey: 'key_does_properties_document',
               radiobtnlables: [
-                setapptext(key: 'key_yes_sir'),
-                setapptext(key: 'key_no'),
+                "Yes",
+                "No",
               ],
               radiobtnSelected: (String value) {
                 localdata.property_have_document = value;
@@ -1333,10 +1330,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     : true,
                 headerlablekey: 'key_Type_of_redeemable_property',
                 radiobtnlables: [
-                  setapptext(key: 'key_Palace'),
-                  setapptext(key: 'key_Lease_Apartment'),
-                  setapptext(key: 'key_Four_walls_no_building'),
-                  setapptext(key: 'key_Under_Construction_Repairs')
+                  "Palace",
+                  "Lease Apartment",
+                  "Four walls no building",
+                  "Under Construction Repairs"
                 ],
                 radiobtnSelected: (String value) {
                   localdata.redeemable_property = value;
@@ -1360,16 +1357,16 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     : true,
                 headerlablekey: 'key_Proprietary_Properties',
                 radiobtnlables: [
-                  setapptext(key: 'key_shop'),
-                  setapptext(key: 'key_Barber'),
-                  setapptext(key: 'key_hotel_restaurant'),
-                  setapptext(key: 'key_Restaurant'),
-                  setapptext(key: 'key_Serai'),
-                  setapptext(key: 'key_Warehouse'),
-                  setapptext(key: 'key_Tail_Tank'),
-                  setapptext(key: 'key_Pharmacy'),
-                  setapptext(key: 'key_Bathroom'),
-                  setapptext(key: 'key_Another'),
+                  "Shop",
+                  "Barber",
+                  "Hotel and Restaurant",
+                  "Restaurant",
+                  "Serai",
+                  "Warehouse",
+                  "Tail Tank",
+                  "Pharmacy",
+                  "Bathroom",
+                  "Another"
                 ],
                 radiobtnSelected: (String value) {
                   localdata.proprietary_properties = value;
@@ -1394,10 +1391,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     : true,
                 headerlablekey: 'key_Type_of_redeemable_property',
                 radiobtnlables: [
-                  setapptext(key: 'key_Palace'),
-                  setapptext(key: 'key_Lease_Apartment'),
-                  setapptext(key: 'key_Four_walls_no_building'),
-                  setapptext(key: 'key_Under_Construction_Repairs')
+                  "Palace",
+                  "Lease Apartment",
+                  "Four walls no building",
+                  "Under Construction Repairs"
                 ],
                 radiobtnSelected: (String value) {
                   localdata.redeemable_property = value;
@@ -1415,16 +1412,16 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     : true,
                 headerlablekey: 'key_Proprietary_Properties',
                 radiobtnlables: [
-                  setapptext(key: 'key_shop'),
-                  setapptext(key: 'key_Barber'),
-                  setapptext(key: 'key_hotel_restaurant'),
-                  setapptext(key: 'key_Restaurant'),
-                  setapptext(key: 'key_Serai'),
-                  setapptext(key: 'key_Warehouse'),
-                  setapptext(key: 'key_Tail_Tank'),
-                  setapptext(key: 'key_Pharmacy'),
-                  setapptext(key: 'key_Bathroom'),
-                  setapptext(key: 'key_Another'),
+                  "Shop",
+                  "Barber",
+                  "Hotel and Restaurant",
+                  "Restaurant",
+                  "Serai",
+                  "Warehouse",
+                  "Tail Tank",
+                  "Pharmacy",
+                  "Bathroom",
+                  "Another",
                 ],
                 radiobtnSelected: (String value) {
                   localdata.proprietary_properties = value;
@@ -1447,20 +1444,20 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     localdata.govt_property?.isEmpty ?? true ? false : true,
                 headerlablekey: 'key_govt_proprty',
                 radiobtnlables: [
-                  setapptext(key: 'key_School_Startup'),
-                  setapptext(key: 'key_Secondary_school'),
-                  setapptext(key: 'key_Great_school'),
-                  setapptext(key: 'key_University'),
-                  setapptext(key: 'key_Learning_Center'),
-                  setapptext(key: 'key_hospital'),
-                  setapptext(key: 'key_clinic'),
-                  setapptext(key: 'key_Playground'),
-                  setapptext(key: 'key_Park'),
-                  setapptext(key: 'key_Military_area'),
-                  setapptext(key: 'key_mosque'),
-                  setapptext(key: 'key_Graveyard'),
-                  setapptext(key: 'key_Pilgrimage'),
-                  setapptext(key: 'key_Another')
+                  "School Startup",
+                  "Secondary school",
+                  "Great school",
+                  "University",
+                  "Learning Center",
+                  "hospital",
+                  "clinic",
+                  "Playground",
+                  "Park",
+                  "Military area",
+                  "mosque",
+                  "Graveyard",
+                  "Pilgrimage / Historical abbey",
+                  "Another"
                 ],
                 radiobtnSelected: (String value) {
                   localdata.govt_property = value;
@@ -1485,17 +1482,17 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     : true,
                 headerlablekey: 'key_type_of_currentuse',
                 radiobtnlables: [
-                  setapptext(key: 'key_Car_station'),
-                  setapptext(key: 'key_Enough_National_Station'),
-                  setapptext(key: 'key_air_square'),
-                  setapptext(key: 'key_Road'),
-                  setapptext(key: 'key_Wasteland'),
-                  setapptext(key: 'key_agriculture'),
-                  setapptext(key: 'key_Green_area'),
-                  setapptext(key: 'key_Jungle'),
-                  setapptext(key: 'key_abc'),
-                  setapptext(key: 'key_Sea'),
-                  setapptext(key: 'key_Empty_land')
+                  "Car station",
+                  "Enough National Station",
+                  "air square",
+                  "Road",
+                  "Wasteland",
+                  "Agriculture",
+                  "Green area",
+                  "Jungle",
+                  "جهیل",
+                  "Sea",
+                  "Empty land"
                 ],
                 radiobtnSelected: (String value) {
                   localdata.specified_current_use = value;
@@ -1626,8 +1623,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   : true,
               headerlablekey: 'key_gender',
               radiobtnlables: [
-                setapptext(key: 'key_male'),
-                setapptext(key: 'key_female')
+                "Male",
+                "Female"
               ],
               radiobtnSelected: (String value) {
                 localdata.first_partner_name_gender = value;
@@ -2038,9 +2035,9 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   localdata.document_type?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_doc_type',
               radiobtnlables: [
-                setapptext(key: 'key_religious'),
-                setapptext(key: 'key_customary'),
-                setapptext(key: 'key_official_decree')
+                "Religious",
+                "Customary",
+                "Official Decree"
               ],
               radiobtnSelected: (String value) {
                 localdata.document_type = value;
@@ -2387,8 +2384,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.property_user_owner?.isEmpty ?? true ? false : true,
             headerlablekey: 'key_the_owner',
             radiobtnlables: [
-              setapptext(key: 'key_yes_sir'),
-              setapptext(key: 'key_no')
+              "Yes",
+              "No"
             ],
             radiobtnSelected: (String value) {
               localdata.property_user_owner = value;
@@ -2407,8 +2404,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 : true,
             headerlablekey: 'key_Master_rent',
             radiobtnlables: [
-              setapptext(key: 'key_yes_sir'),
-              setapptext(key: 'key_no')
+              "Yes",
+              "No"
             ],
             radiobtnSelected: (String value) {
               localdata.property_user_master_rent = value;
@@ -2428,8 +2425,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     : true,
             headerlablekey: 'key_master_recipient',
             radiobtnlables: [
-              setapptext(key: 'key_yes_sir'),
-              setapptext(key: 'key_no')
+              "Yes",
+              "No"
             ],
             radiobtnSelected: (String value) {
               localdata.property_user_recipient_group = value;
@@ -2448,8 +2445,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 : true,
             headerlablekey: 'key_master_no_longer',
             radiobtnlables: [
-              setapptext(key: 'key_yes_sir'),
-              setapptext(key: 'key_no')
+              "Yes",
+              "No"
             ],
             radiobtnSelected: (String value) {
               localdata.property_user_no_longer = value;
@@ -2504,8 +2501,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   localdata.fst_have_building?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_does_property_building',
               radiobtnlables: [
-                setapptext(key: 'key_yes_sir'),
-                setapptext(key: 'key_no')
+                "Yes",
+              "No"
               ],
               radiobtnSelected: (String value) {
                 localdata.fst_have_building = value;
@@ -3143,13 +3140,13 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   localdata.use_in_property_doc?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_Type_of_use',
               radiobtnlables: [
-                setapptext(key: 'key_release'),
-                setapptext(key: 'key_commercial'),
-                setapptext(key: 'key_complex'),
-                setapptext(key: 'key_govt'),
-                setapptext(key: 'key_agriculture'),
-                setapptext(key: 'key_public_land'),
-                setapptext(key: 'key_Another')
+                "Release",
+                "Commercial",
+                "Complex (Release / Business)",
+                "Governmental",
+                "Agriculture",
+                "Public land",
+                "Another"
               ],
               radiobtnSelected: (value) {
                 localdata.use_in_property_doc = value;
@@ -3322,8 +3319,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   : true,
               headerlablekey: 'key_gender',
               radiobtnlables: [
-                setapptext(key: 'key_male'),
-                setapptext(key: 'key_female')
+                "Male",
+                "Female"
               ],
               radiobtnSelected: (String value) {
                 localdata.second_partner_gender = value;
@@ -3520,8 +3517,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   : true,
               headerlablekey: 'key_gender',
               radiobtnlables: [
-                setapptext(key: 'key_male'),
-                setapptext(key: 'key_female')
+                "Male",
+                "Female"
               ],
               radiobtnSelected: (String value) {
                 localdata.third_partner_gender = value;
@@ -3705,8 +3702,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   : true,
               headerlablekey: 'key_gender',
               radiobtnlables: [
-                setapptext(key: 'key_male'),
-                setapptext(key: 'key_female')
+                "Male",
+                "Female"
               ],
               radiobtnSelected: (String value) {
                 localdata.fourth_partner_gender = value;
@@ -3893,8 +3890,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   : true,
               headerlablekey: 'key_gender',
               radiobtnlables: [
-                setapptext(key: 'key_male'),
-                setapptext(key: 'key_female')
+                "Male",
+                "Female"
               ],
               radiobtnSelected: (String value) {
                 localdata.fifth_partner_gender = value;
