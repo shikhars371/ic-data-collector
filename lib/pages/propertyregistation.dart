@@ -1948,6 +1948,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
           GestureDetector(
             onTap: () async {
               _formkey.currentState.save();
+              localdata.other_key = "1";
               var rr = await DBHelper()
                   .updatePropertySurvey(localdata, propertylocalkey);
               Navigator.pushReplacement(
