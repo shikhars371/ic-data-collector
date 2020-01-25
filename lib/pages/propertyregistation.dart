@@ -37,11 +37,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
   int formval = 0;
   String propertylocalkey;
   LocalPropertySurvey localdata;
-  bool redeem_propertyVisible = false,
-      proprietary_visible = false,
-      govermental_visible = false,
-      property_type_other_specified = false,
-      property_type_other_Unspecified = false;
+
   Future<void> imagePicker() {
     showDialog(
         context: context,
@@ -2523,62 +2519,63 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
 
           ///first building
           ///start
-          formCardDropdown(
-              iscompleted:
-                  localdata.fst_building_use?.isEmpty ?? true ? false : true,
-              headerlablekey: 'key_building_use',
-              dropdownitems: [
-                'None selected'
-                    'Release',
-                'Commercial',
-                'Governmental',
-                'Productive',
-                'General'
-              ],
-              onChanged: (value) {
-                localdata.fst_building_use = value;
-                setState(() {
-                  ddfstbuildinguse = value;
-                });
-              },
-              onSaved: (value) {
-                localdata.fst_building_use = value;
-              },
-              value: localdata.fst_building_use?.isEmpty ?? true
-                  ? ddfstbuildinguse
-                  : localdata.fst_building_use,
-              validate: (localdata.fst_building_use?.isEmpty ?? true) ||
-                      (localdata.fst_building_use == "None selected")
-                  ? true
-                  : false),
-          formCardDropdown(
-              iscompleted: localdata.fst_building_category?.isEmpty ?? true
-                  ? false
-                  : true,
-              headerlablekey: 'key_building_category',
-              dropdownitems: [
-                setapptext(key: 'key_Modern_Concrete'),
-                setapptext(key: 'key_Half_cream_and_half_baked'),
-                setapptext(key: 'key_Cream'),
-                setapptext(key: 'key_metal'),
-                setapptext(key: 'key_Another')
-              ],
-              onChanged: (value) {
-                localdata.fst_building_category = value;
-                setState(() {
-                  ddfstbuildingCategory = value;
-                });
-              },
-              onSaved: (value) {
-                localdata.fst_building_category = value;
-              },
-              value: localdata.fst_building_category?.isEmpty ?? true
-                  ? ddfstbuildingCategory
-                  : localdata.fst_building_category,
-              validate: (localdata.fst_building_category?.isEmpty ?? true) ||
-                      (localdata.fst_building_category == "None selected")
-                  ? true
-                  : false),
+          // formCardDropdown(
+          //     iscompleted:
+          //         localdata.fst_building_use?.isEmpty ?? true ? false : true,
+          //     headerlablekey: 'key_building_use',
+          //     dropdownitems: [
+          //       'None selected'
+          //           'Release',
+          //       'Commercial',
+          //       'Governmental',
+          //       'Productive',
+          //       'General'
+          //     ],
+          //     onChanged: (value) {
+          //       localdata.fst_building_use = value;
+          //       setState(() {
+          //         ddfstbuildinguse = value;
+          //       });
+          //     },
+          //     onSaved: (value) {
+          //       localdata.fst_building_use = value;
+          //     },
+          //     value: localdata.fst_building_use?.isEmpty ?? true
+          //         ? ddfstbuildinguse
+          //         : localdata.fst_building_use,
+          //     validate: (localdata.fst_building_use?.isEmpty ?? true) ||
+          //             (localdata.fst_building_use == "None selected")
+          //         ? true
+          //         : false),
+          // formCardDropdown(
+          //     iscompleted: localdata.fst_building_category?.isEmpty ?? true
+          //         ? false
+          //         : true,
+          //     headerlablekey: 'key_building_category',
+          //     dropdownitems: [
+          //       'None selected',
+          //       setapptext(key: 'key_Modern_Concrete'),
+          //       setapptext(key: 'key_Half_cream_and_half_baked'),
+          //       setapptext(key: 'key_Cream'),
+          //       setapptext(key: 'key_metal'),
+          //       setapptext(key: 'key_Another')
+          //     ],
+          //     onChanged: (value) {
+          //       localdata.fst_building_category = value;
+          //       setState(() {
+          //         ddfstbuildingCategory = value;
+          //       });
+          //     },
+          //     onSaved: (value) {
+          //       localdata.fst_building_category = value;
+          //     },
+          //     value: localdata.fst_building_category?.isEmpty ?? true
+          //         ? ddfstbuildingCategory
+          //         : localdata.fst_building_category,
+          //     validate: (localdata.fst_building_category?.isEmpty ?? true) ||
+          //             (localdata.fst_building_category == "None selected")
+          //         ? true
+          //         : false),
           formcardtextfield(
               initvalue: localdata.fst_specifyif_other?.isEmpty ?? true
                   ? ""
@@ -2643,62 +2640,63 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
           ///end
           ///second building
           ///start
-          formCardDropdown(
-              iscompleted:
-                  localdata.snd_building_use?.isEmpty ?? true ? false : true,
-              headerlablekey: 'key_building_use',
-              dropdownitems: [
-                'None selected'
-                    'Release',
-                'Commercial',
-                'Governmental',
-                'Productive',
-                'General'
-              ],
-              onChanged: (value) {
-                localdata.fst_building_use = value;
-                setState(() {
-                  ddScndbuildinguse = value;
-                });
-              },
-              onSaved: (value) {
-                localdata.fst_building_use = value;
-              },
-              value: localdata.snd_building_use?.isEmpty ?? true
-                  ? ddScndbuildinguse
-                  : localdata.snd_building_use,
-              validate: (localdata.snd_building_use?.isEmpty ?? true) ||
-                      (localdata.snd_building_use == "None selected")
-                  ? true
-                  : false),
-          formCardDropdown(
-              iscompleted: localdata.snd_building_category?.isEmpty ?? true
-                  ? false
-                  : true,
-              headerlablekey: 'key_building_category',
-              dropdownitems: [
-                setapptext(key: 'key_Modern_Concrete'),
-                setapptext(key: 'key_Half_cream_and_half_baked'),
-                setapptext(key: 'key_Cream'),
-                setapptext(key: 'key_metal'),
-                setapptext(key: 'key_Another')
-              ],
-              onChanged: (value) {
-                localdata.snd_building_category = value;
-                setState(() {
-                  ddScndbuildingCategory = value;
-                });
-              },
-              onSaved: (value) {
-                localdata.snd_building_category = value;
-              },
-              value: localdata.snd_building_category?.isEmpty ?? true
-                  ? ddScndbuildingCategory
-                  : localdata.snd_building_category,
-              validate: (localdata.snd_building_category?.isEmpty ?? true) ||
-                      (localdata.snd_building_category == "None selected")
-                  ? true
-                  : false),
+          // formCardDropdown(
+          //     iscompleted:
+          //         localdata.snd_building_use?.isEmpty ?? true ? false : true,
+          //     headerlablekey: 'key_building_use',
+          //     dropdownitems: [
+          //       'None selected'
+          //           'Release',
+          //       'Commercial',
+          //       'Governmental',
+          //       'Productive',
+          //       'General'
+          //     ],
+          //     onChanged: (value) {
+          //       localdata.fst_building_use = value;
+          //       setState(() {
+          //         ddScndbuildinguse = value;
+          //       });
+          //     },
+          //     onSaved: (value) {
+          //       localdata.fst_building_use = value;
+          //     },
+          //     value: localdata.snd_building_use?.isEmpty ?? true
+          //         ? ddScndbuildinguse
+          //         : localdata.snd_building_use,
+          //     validate: (localdata.snd_building_use?.isEmpty ?? true) ||
+          //             (localdata.snd_building_use == "None selected")
+          //         ? true
+          //         : false),
+          // formCardDropdown(
+          //     iscompleted: localdata.snd_building_category?.isEmpty ?? true
+          //         ? false
+          //         : true,
+          //     headerlablekey: 'key_building_category',
+          //     dropdownitems: [
+          //       'None selected',
+          //       setapptext(key: 'key_Modern_Concrete'),
+          //       setapptext(key: 'key_Half_cream_and_half_baked'),
+          //       setapptext(key: 'key_Cream'),
+          //       setapptext(key: 'key_metal'),
+          //       setapptext(key: 'key_Another')
+          //     ],
+          //     onChanged: (value) {
+          //       localdata.snd_building_category = value;
+          //       setState(() {
+          //         ddScndbuildingCategory = value;
+          //       });
+          //     },
+          //     onSaved: (value) {
+          //       localdata.snd_building_category = value;
+          //     },
+          //     value: localdata.snd_building_category?.isEmpty ?? true
+          //         ? ddScndbuildingCategory
+          //         : localdata.snd_building_category,
+          //     validate: (localdata.snd_building_category?.isEmpty ?? true) ||
+          //             (localdata.snd_building_category == "None selected")
+          //         ? true
+          //         : false),
           formcardtextfield(
               initvalue: localdata.snd_specifyif_other?.isEmpty ?? true
                   ? ""
@@ -2763,62 +2761,63 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
           ///end
           ///third building
           ///start
-          formCardDropdown(
-              iscompleted:
-                  localdata.trd_building_use?.isEmpty ?? true ? false : true,
-              headerlablekey: 'key_building_use',
-              dropdownitems: [
-                'None selected'
-                    'Release',
-                'Commercial',
-                'Governmental',
-                'Productive',
-                'General'
-              ],
-              onChanged: (value) {
-                localdata.trd_building_use = value;
-                setState(() {
-                  ddThirdbuildinguse = value;
-                });
-              },
-              onSaved: (value) {
-                localdata.trd_building_use = value;
-              },
-              value: localdata.trd_building_use?.isEmpty ?? true
-                  ? ddThirdbuildinguse
-                  : localdata.trd_building_use,
-              validate: (localdata.trd_building_use?.isEmpty ?? true) ||
-                      (localdata.trd_building_use == "None selected")
-                  ? true
-                  : false),
-          formCardDropdown(
-              iscompleted: localdata.trd_building_category?.isEmpty ?? true
-                  ? false
-                  : true,
-              headerlablekey: 'key_building_category',
-              dropdownitems: [
-                setapptext(key: 'key_Modern_Concrete'),
-                setapptext(key: 'key_Half_cream_and_half_baked'),
-                setapptext(key: 'key_Cream'),
-                setapptext(key: 'key_metal'),
-                setapptext(key: 'key_Another')
-              ],
-              onChanged: (value) {
-                localdata.trd_building_category = value;
-                setState(() {
-                  ddThirdbuildingCategory = value;
-                });
-              },
-              onSaved: (value) {
-                localdata.trd_building_category = value;
-              },
-              value: localdata.trd_building_category?.isEmpty ?? true
-                  ? ddThirdbuildingCategory
-                  : localdata.trd_building_category,
-              validate: (localdata.trd_building_category?.isEmpty ?? true) ||
-                      (localdata.trd_building_category == "None selected")
-                  ? true
-                  : false),
+          // formCardDropdown(
+          //     iscompleted:
+          //         localdata.trd_building_use?.isEmpty ?? true ? false : true,
+          //     headerlablekey: 'key_building_use',
+          //     dropdownitems: [
+          //       'None selected'
+          //           'Release',
+          //       'Commercial',
+          //       'Governmental',
+          //       'Productive',
+          //       'General'
+          //     ],
+          //     onChanged: (value) {
+          //       localdata.trd_building_use = value;
+          //       setState(() {
+          //         ddThirdbuildinguse = value;
+          //       });
+          //     },
+          //     onSaved: (value) {
+          //       localdata.trd_building_use = value;
+          //     },
+          //     value: localdata.trd_building_use?.isEmpty ?? true
+          //         ? ddThirdbuildinguse
+          //         : localdata.trd_building_use,
+          //     validate: (localdata.trd_building_use?.isEmpty ?? true) ||
+          //             (localdata.trd_building_use == "None selected")
+          //         ? true
+          //         : false),
+          // formCardDropdown(
+          //     iscompleted: localdata.trd_building_category?.isEmpty ?? true
+          //         ? false
+          //         : true,
+          //     headerlablekey: 'key_building_category',
+          //     dropdownitems: [
+          //       'None selected',
+          //       setapptext(key: 'key_Modern_Concrete'),
+          //       setapptext(key: 'key_Half_cream_and_half_baked'),
+          //       setapptext(key: 'key_Cream'),
+          //       setapptext(key: 'key_metal'),
+          //       setapptext(key: 'key_Another')
+          //     ],
+          //     onChanged: (value) {
+          //       localdata.trd_building_category = value;
+          //       setState(() {
+          //         ddThirdbuildingCategory = value;
+          //       });
+          //     },
+          //     onSaved: (value) {
+          //       localdata.trd_building_category = value;
+          //     },
+          //     value: localdata.trd_building_category?.isEmpty ?? true
+          //         ? ddThirdbuildingCategory
+          //         : localdata.trd_building_category,
+          //     validate: (localdata.trd_building_category?.isEmpty ?? true) ||
+          //             (localdata.trd_building_category == "None selected")
+          //         ? true
+          //         : false),
           formcardtextfield(
               initvalue: localdata.trd_specifyif_other?.isEmpty ?? true
                   ? ""
@@ -2884,70 +2883,72 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
 
           ///forth building
           ///start
-          formCardDropdown(
-              iscompleted:
-                  localdata.forth_building_use?.isEmpty ?? true ? false : true,
-              headerlablekey: 'key_building_use',
-              dropdownitems: [
-                'None selected'
-                    'Release',
-                'Commercial',
-                'Governmental',
-                'Productive',
-                'General'
-              ],
-              onChanged: (value) {
-                localdata.forth_building_use = value;
-                setState(() {
-                  ddForthbuildinguse = value;
-                });
-              },
-              onSaved: (value) {
-                localdata.forth_building_use = value;
-              },
-              value: localdata.forth_building_use?.isEmpty ?? true
-                  ? ddForthbuildinguse
-                  : localdata.forth_building_use,
-              validate: (localdata.forth_building_use?.isEmpty ?? true) ||
-                      (localdata.forth_building_use == "None selected")
-                  ? true
-                  : false),
-          formCardDropdown(
-              iscompleted: localdata.forth_building_category?.isEmpty ?? true
-                  ? false
-                  : true,
-              headerlablekey: 'key_building_category',
-              dropdownitems: [
-                setapptext(key: 'key_Modern_Concrete'),
-                setapptext(key: 'key_Half_cream_and_half_baked'),
-                setapptext(key: 'key_Cream'),
-                setapptext(key: 'key_metal'),
-                setapptext(key: 'key_Another')
-              ],
-              onChanged: (value) {
-                localdata.forth_building_category = value;
-                setState(() {
-                  ddForthbuildingCategory = value;
-                });
-              },
-              onSaved: (value) {
-                localdata.forth_building_category = value;
-              },
-              value: localdata.forth_building_category?.isEmpty ?? true
-                  ? ddForthbuildingCategory
-                  : localdata.forth_building_category,
-              validate: (localdata.forth_building_category?.isEmpty ?? true) ||
-                      (localdata.forth_building_category == "None selected")
-                  ? true
-                  : false),
+          // formCardDropdown(
+          //     iscompleted:
+          //         localdata.forth_building_use?.isEmpty ?? true ? false : true,
+          //     headerlablekey: 'key_building_use',
+          //     dropdownitems: [
+          //       'None selected'
+          //           'Release',
+          //       'Commercial',
+          //       'Governmental',
+          //       'Productive',
+          //       'General'
+          //     ],
+          //     onChanged: (value) {
+          //       localdata.forth_building_use = value;
+          //       setState(() {
+          //         ddForthbuildinguse = value;
+          //       });
+          //     },
+          //     onSaved: (value) {
+          //       localdata.forth_building_use = value;
+          //     },
+          //     value: localdata.forth_building_use?.isEmpty ?? true
+          //         ? ddForthbuildinguse
+          //         : localdata.forth_building_use,
+          //     validate: (localdata.forth_building_use?.isEmpty ?? true) ||
+          //             (localdata.forth_building_use == "None selected")
+          //         ? true
+          //         : false),
+          // formCardDropdown(
+          //     iscompleted: localdata.forth_building_category?.isEmpty ?? true
+          //         ? false
+          //         : true,
+          //     headerlablekey: 'key_building_category',
+          //     dropdownitems: [
+          //       'None selected',
+          //       setapptext(key: 'key_Modern_Concrete'),
+          //       setapptext(key: 'key_Half_cream_and_half_baked'),
+          //       setapptext(key: 'key_Cream'),
+          //       setapptext(key: 'key_metal'),
+          //       setapptext(key: 'key_Another')
+          //     ],
+          //     onChanged: (value) {
+          //       localdata.forth_building_category = value;
+          //       setState(() {
+          //         ddForthbuildingCategory = value;
+          //       });
+          //     },
+          //     onSaved: (value) {
+          //       localdata.forth_building_category = value;
+          //     },
+          //     value: localdata.forth_building_category?.isEmpty ?? true
+          //         ? ddForthbuildingCategory
+          //         : localdata.forth_building_category,
+          //     validate: (localdata.forth_building_category?.isEmpty ?? true) ||
+          //             (localdata.forth_building_category == "None selected")
+          //         ? true
+          //         : false),
           formcardtextfield(
               initvalue: localdata.forth_specifyif_other?.isEmpty ?? true
                   ? ""
                   : localdata.forth_specifyif_other,
               headerlablekey: 'key_choose_another',
               hinttextkey: '',
-              radiovalue:
-                  localdata.forth_specifyif_other?.isEmpty ?? true ? false : true,
+              radiovalue: localdata.forth_specifyif_other?.isEmpty ?? true
+                  ? false
+                  : true,
               onSaved: (value) {
                 localdata.forth_specifyif_other = value.trim();
               },
@@ -3005,62 +3006,63 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
 
           ///fifth building
           ///start
-          formCardDropdown(
-              iscompleted:
-                  localdata.fth_building_use?.isEmpty ?? true ? false : true,
-              headerlablekey: 'key_building_use',
-              dropdownitems: [
-                'None selected'
-                    'Release',
-                'Commercial',
-                'Governmental',
-                'Productive',
-                'General'
-              ],
-              onChanged: (value) {
-                localdata.fth_building_use = value;
-                setState(() {
-                  ddFifthbuildinguse = value;
-                });
-              },
-              onSaved: (value) {
-                localdata.fth_building_use = value;
-              },
-              value: localdata.fth_building_use?.isEmpty ?? true
-                  ? ddFifthbuildinguse
-                  : localdata.fth_building_use,
-              validate: (localdata.fth_building_use?.isEmpty ?? true) ||
-                      (localdata.fth_building_use == "None selected")
-                  ? true
-                  : false),
-          formCardDropdown(
-              iscompleted: localdata.fth_building_category?.isEmpty ?? true
-                  ? false
-                  : true,
-              headerlablekey: 'key_building_category',
-              dropdownitems: [
-                setapptext(key: 'key_Modern_Concrete'),
-                setapptext(key: 'key_Half_cream_and_half_baked'),
-                setapptext(key: 'key_Cream'),
-                setapptext(key: 'key_metal'),
-                setapptext(key: 'key_Another')
-              ],
-              onChanged: (value) {
-                localdata.fth_building_category = value;
-                setState(() {
-                  ddFifthbuildingCategory = value;
-                });
-              },
-              onSaved: (value) {
-                localdata.fth_building_category = value;
-              },
-              value: localdata.fth_building_category?.isEmpty ?? true
-                  ? ddFifthbuildingCategory
-                  : localdata.fth_building_category,
-              validate: (localdata.fth_building_category?.isEmpty ?? true) ||
-                      (localdata.fth_building_category == "None selected")
-                  ? true
-                  : false),
+          // formCardDropdown(
+          //     iscompleted:
+          //         localdata.fth_building_use?.isEmpty ?? true ? false : true,
+          //     headerlablekey: 'key_building_use',
+          //     dropdownitems: [
+          //       'None selected'
+          //           'Release',
+          //       'Commercial',
+          //       'Governmental',
+          //       'Productive',
+          //       'General'
+          //     ],
+          //     onChanged: (value) {
+          //       localdata.fth_building_use = value;
+          //       setState(() {
+          //         ddFifthbuildinguse = value;
+          //       });
+          //     },
+          //     onSaved: (value) {
+          //       localdata.fth_building_use = value;
+          //     },
+          //     value: localdata.fth_building_use?.isEmpty ?? true
+          //         ? ddFifthbuildinguse
+          //         : localdata.fth_building_use,
+          //     validate: (localdata.fth_building_use?.isEmpty ?? true) ||
+          //             (localdata.fth_building_use == "None selected")
+          //         ? true
+          //         : false),
+          // formCardDropdown(
+          //     iscompleted: localdata.fth_building_category?.isEmpty ?? true
+          //         ? false
+          //         : true,
+          //     headerlablekey: 'key_building_category',
+          //     dropdownitems: [
+          //       'None selected',
+          //       setapptext(key: 'key_Modern_Concrete'),
+          //       setapptext(key: 'key_Half_cream_and_half_baked'),
+          //       setapptext(key: 'key_Cream'),
+          //       setapptext(key: 'key_metal'),
+          //       setapptext(key: 'key_Another')
+          //     ],
+          //     onChanged: (value) {
+          //       localdata.fth_building_category = value;
+          //       setState(() {
+          //         ddFifthbuildingCategory = value;
+          //       });
+          //     },
+          //     onSaved: (value) {
+          //       localdata.fth_building_category = value;
+          //     },
+          //     value: localdata.fth_building_category?.isEmpty ?? true
+          //         ? ddFifthbuildingCategory
+          //         : localdata.fth_building_category,
+          //     validate: (localdata.fth_building_category?.isEmpty ?? true) ||
+          //             (localdata.fth_building_category == "None selected")
+          //         ? true
+          //         : false),
           formcardtextfield(
               initvalue: localdata.fth_specifyif_other?.isEmpty ?? true
                   ? ""
