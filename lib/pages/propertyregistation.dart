@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:image_picker/image_picker.dart';
-
 import 'package:provider/provider.dart';
 
 import '../localization/app_translations.dart';
@@ -11,6 +10,12 @@ import '../controllers/auth.dart';
 import './surveylist.dart';
 import './task.dart';
 import '../utils/imgsaver.dart';
+
+class Dpvalue {
+  String name;
+  String value;
+  Dpvalue({this.name, this.value});
+}
 
 class PropertyRegistationPage extends StatefulWidget {
   PropertyRegistationPage({this.taskid, this.surveylocalkey});
@@ -22,7 +27,7 @@ class PropertyRegistationPage extends StatefulWidget {
 
 class _PropertyRegistationPage extends State<PropertyRegistationPage> {
   var _formkey = GlobalKey<FormState>();
-  String ddprovinceval = "None selected";
+  String ddprovinceval = "0";
   String ddfstbuildinguse = "None selected";
   String ddfstbuildingCategory = "None selected";
   String ddScndbuildinguse = "None selected";
@@ -33,7 +38,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
   String ddForthbuildingCategory = "None selected";
   String ddFifthbuildinguse = "None selected";
   String ddFifthbuildingCategory = "None selected";
-  String ddcity = "None selected";
+  String ddcity = "0";
   bool chkval = false;
   int formval = 0;
   String propertylocalkey;
@@ -463,14 +468,16 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
-  Widget formCardRadioButtons(
-      {String initvalue,
-      bool iscompleted,
-      String headerlablekey,
-      List<String> radiobtnlables,
-      Function(String) radiobtnSelected,
-      bool validate = false,
-      Function(String, int) onchanged}) {
+  Widget formCardRadioButtons({
+    String initvalue,
+    bool iscompleted,
+    String headerlablekey,
+    List<String> radiobtnlables,
+    Function(String) radiobtnSelected,
+    bool validate = false,
+    Function(String, int) onchanged,
+    List<Dpvalue> datalist,
+  }) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -511,6 +518,22 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   picked: initvalue?.isEmpty ?? true ? "" : initvalue,
                   onChange: onchanged,
                 ),
+                // child: Column(
+                //   mainAxisAlignment: MainAxisAlignment.start,
+                //   children: datalist
+                //       .map((data) => RadioListTile(
+                //             title: Text("${data.name}"),
+                //             groupValue: id,
+                //             value: data.value,
+                //             onChanged: (val) {
+                //               setState(() {
+                //                 id = data.value;
+                //                 print(val);
+                //               });
+                //             },
+                //           ))
+                //       .toList(),
+                // ),
               ),
               validate
                   ? Center(
@@ -530,7 +553,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
   Widget formCardDropdown(
       {bool iscompleted,
       String headerlablekey,
-      List<String> dropdownitems,
+      List<Dpvalue> dropdownitems,
       Function(String) onSaved,
       String value,
       bool validate = false,
@@ -569,10 +592,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 child: Container(
                   padding: EdgeInsets.only(left: 10, right: 10),
                   child: DropdownButtonFormField<String>(
-                    items: dropdownitems.map((String value) {
+                    items: dropdownitems.map((Dpvalue data) {
                       return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
+                        value: data.value,
+                        child: Text(data.name),
                       );
                     }).toList(),
                     onChanged: onChanged,
@@ -633,8 +656,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     child: Column(
                       children: <Widget>[
                         RaisedButton(
-                          onPressed: () async{
-                            var pathname= await imagepath(context);
+                          onPressed: () async {
+                            var pathname = await imagepath(context);
                             print(pathname);
                           },
                           child: Text("Click here to upload file (<10 MB)"),
@@ -746,66 +769,78 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     return Expanded(
       child: ListView(
         children: <Widget>[
-          formCardRadioButtons(
+          formCardDropdown(
+              dropdownitems: [
+                Dpvalue(name: setapptext(key: 'key_none_selected'), value: "0"),
+                Dpvalue(name: setapptext(key: 'key_yes_sir'), value: "1"),
+                Dpvalue(name: setapptext(key: 'key_no'), value: "2")
+              ],
               iscompleted: localdata.property_dispte_subject_to?.isEmpty ?? true
                   ? false
                   : true,
               headerlablekey: 'key_property_disputes',
-              initvalue: localdata.property_dispte_subject_to?.isEmpty ?? true
-                  ? ""
+              value: localdata.property_dispte_subject_to?.isEmpty ?? true
+                  ? "0"
                   : localdata.property_dispte_subject_to,
-              radiobtnlables: ['Yes', 'No'],
-              radiobtnSelected: (String value) {
+              onSaved: (String value) {
                 localdata.property_dispte_subject_to = value;
               },
-              onchanged: (value, index) {
+              onChanged: (value) {
                 localdata.property_dispte_subject_to = value;
                 setState(() {});
               },
-              validate: localdata.property_dispte_subject_to?.isEmpty ?? true
-                  ? true
-                  : false),
-          formCardRadioButtons(
+              validate:
+                  ((localdata.property_dispte_subject_to?.isEmpty ?? true) ||
+                          (localdata.property_dispte_subject_to == "0"))
+                      ? true
+                      : false),
+          formCardDropdown(
               iscompleted:
                   localdata.real_person_status?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_real_person',
-              radiobtnlables: [
-                "Present",
-                "Absences",
-                "Died"
+              dropdownitems: [
+                Dpvalue(name: setapptext(key: 'key_none_selected'), value: "0"),
+                Dpvalue(name: setapptext(key: 'key_present'), value: "1"),
+                Dpvalue(name: setapptext(key: 'key_absence'), value: "3"),
+                Dpvalue(name: setapptext(key: 'key_died'), value: "2")
               ],
-              radiobtnSelected: (String value) {
+              onSaved: (String value) {
                 localdata.real_person_status = value;
               },
-              initvalue: localdata.real_person_status?.isEmpty ?? true
-                  ? ""
+              value: localdata.real_person_status?.isEmpty ?? true
+                  ? "0"
                   : localdata.real_person_status,
-              onchanged: (value, index) {
+              onChanged: (value) {
                 localdata.real_person_status = value;
                 setState(() {});
               },
-              validate:
-                  localdata.real_person_status?.isEmpty ?? true ? true : false),
-          formCardRadioButtons(
+              validate: ((localdata.real_person_status?.isEmpty ?? true) ||
+                      (localdata.real_person_status == "0"))
+                  ? true
+                  : false),
+          formCardDropdown(
               iscompleted:
                   localdata.cityzenship_notice?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_is_citizenship',
-              radiobtnlables: [
-                "Yes",
-                "No"
+              dropdownitems: [
+                Dpvalue(name: setapptext(key: 'key_none_selected'), value: "0"),
+                Dpvalue(name: setapptext(key: 'key_yes_sir'), value: "1"),
+                Dpvalue(name: setapptext(key: 'key_no'), value: "2")
               ],
-              radiobtnSelected: (String value) {
+              onSaved: (String value) {
                 localdata.cityzenship_notice = value;
               },
-              initvalue: localdata.cityzenship_notice?.isEmpty ?? true
-                  ? ""
+              value: localdata.cityzenship_notice?.isEmpty ?? true
+                  ? "0"
                   : localdata.cityzenship_notice,
-              onchanged: (value, index) {
+              onChanged: (value) {
                 localdata.cityzenship_notice = value;
                 setState(() {});
               },
-              validate:
-                  localdata.cityzenship_notice?.isEmpty ?? true ? true : false),
+              validate: ((localdata.cityzenship_notice?.isEmpty ?? true) ||
+                      (localdata.cityzenship_notice == "0"))
+                  ? true
+                  : false),
         ],
       ),
     );
@@ -853,10 +888,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   ? ""
                   : localdata.natural_threaten,
               headerlablekey: 'key_natural_factor',
-              radiobtnlables: [
-                "Yes",
-                "No"
-              ],
+              radiobtnlables: ["Yes", "No"],
               radiobtnSelected: (String value) {
                 localdata.natural_threaten = value.trim();
               },
@@ -881,10 +913,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               iscompleted:
                   localdata.status_of_area_plan?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_specify_the',
-              radiobtnlables: [
-                "Plan",
-                "Unplanned"
-              ],
+              radiobtnlables: ["Plan", "Unplanned"],
               radiobtnSelected: (String value) {
                 localdata.status_of_area_plan = value;
               },
@@ -903,10 +932,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   ? false
                   : true,
               headerlablekey: 'key_specify_the',
-              radiobtnlables: [
-                "Official",
-                "unofficial"
-              ],
+              radiobtnlables: ["Official", "unofficial"],
               radiobtnSelected: (String value) {
                 localdata.status_of_area_official = value;
               },
@@ -925,10 +951,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   ? false
                   : true,
               headerlablekey: 'key_specify_the',
-              radiobtnlables: [
-                "Regular",
-                "disorganized"
-              ],
+              radiobtnlables: ["Regular", "disorganized"],
               radiobtnSelected: (String value) {
                 localdata.status_of_area_regular = value;
               },
@@ -946,11 +969,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               iscompleted:
                   localdata.slope_of_area?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_specify_slope',
-              radiobtnlables: [
-                "Smooth",
-                "Slope up to 30%",
-                "Slope above 30%"
-              ],
+              radiobtnlables: ["Smooth", "Slope up to 30%", "Slope above 30%"],
               radiobtnSelected: (String value) {
                 localdata.slope_of_area = value;
               },
@@ -977,17 +996,17 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               iscompleted: localdata.province?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_select_province',
               dropdownitems: [
-                'None selected',
-                'Kabul',
-                'Nangarhar',
-                'Kandahar',
-                'Bamyan',
-                'Daikundi',
-                'Kundoz',
-                'Balkh',
-                'Herat',
-                'Parwan',
-                'Farah'
+                Dpvalue(name: 'None selected', value: "0"),
+                Dpvalue(name: 'Kabul', value: "01-01"),
+                Dpvalue(name: 'Nangarhar', value: "06-01"),
+                Dpvalue(name: 'Kandahar', value: "33-01"),
+                Dpvalue(name: 'Bamyan', value: "10-01"),
+                Dpvalue(name: 'Daikundi', value: "22-01"),
+                Dpvalue(name: 'Kundoz', value: "17-01"),
+                Dpvalue(name: 'Balkh', value: "18-01"),
+                Dpvalue(name: 'Herat', value: "30-01"),
+                Dpvalue(name: 'Parwan', value: "03-01"),
+                Dpvalue(name: 'Farah', value: "04-01")
               ],
               onChanged: (value) {
                 localdata.province = value;
@@ -999,7 +1018,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.province = value;
               },
               value: localdata.province?.isEmpty ?? true
-                  ? ddprovinceval
+                  ? "0"
                   : localdata.province,
               validate: (localdata.province?.isEmpty ?? true) ||
                       (localdata.province == "None selected")
@@ -1009,20 +1028,21 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               iscompleted: localdata.city?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_select_city',
               dropdownitems: [
-                'None selected',
-                'Kabul',
-                'Jalalabad',
-                'Kandahar',
-                'Bamyan',
-                'Nili',
-                'Kundoz',
-                'Mazar-E-Sharif',
-                'Herat',
-                'Charikar',
-                'Farah'
+                Dpvalue(name: 'None selected', value: "0"),
+                Dpvalue(name: 'Kabul', value: "1"),
+                Dpvalue(name: 'Jalalabad', value: "2"),
+                Dpvalue(name: 'Kandahar', value: "3"),
+                Dpvalue(name: 'Bamyan', value: "4"),
+                Dpvalue(name: 'Nili', value: "5"),
+                Dpvalue(name: 'Kundoz', value: "6"),
+                Dpvalue(name: 'Mazar-E-Sharif', value: "7"),
+                Dpvalue(name: 'Herat', value: "8"),
+                Dpvalue(name: 'Charikar', value: "9"),
+                Dpvalue(name: 'Farah', value: "10")
               ],
               onChanged: (value) {
                 localdata.city = value;
+                print(value);
                 setState(() {
                   ddcity = value;
                 });
@@ -1030,7 +1050,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               onSaved: (value) {
                 localdata.city = value;
               },
-              value: localdata.city?.isEmpty ?? true ? ddcity : localdata.city,
+              value: localdata.city?.isEmpty ?? true ? "0" : localdata.city,
               validate: (localdata.city?.isEmpty ?? true) ||
                       (localdata.city == "None selected")
                   ? true
@@ -1207,10 +1227,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               iscompleted:
                   localdata.property_type?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_type_ownership',
-              radiobtnlables: [
-                "Solo",
-                "Collective"
-              ],
+              radiobtnlables: ["Solo", "Collective"],
               radiobtnSelected: (String value) {
                 localdata.property_type = value;
               },
@@ -1624,10 +1641,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   ? false
                   : true,
               headerlablekey: 'key_gender',
-              radiobtnlables: [
-                "Male",
-                "Female"
-              ],
+              radiobtnlables: ["Male", "Female"],
               radiobtnSelected: (String value) {
                 localdata.first_partner_name_gender = value;
               },
@@ -2036,11 +2050,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               iscompleted:
                   localdata.document_type?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_doc_type',
-              radiobtnlables: [
-                "Religious",
-                "Customary",
-                "Official Decree"
-              ],
+              radiobtnlables: ["Religious", "Customary", "Official Decree"],
               radiobtnSelected: (String value) {
                 localdata.document_type = value;
               },
@@ -2385,10 +2395,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
             iscompleted:
                 localdata.property_user_owner?.isEmpty ?? true ? false : true,
             headerlablekey: 'key_the_owner',
-            radiobtnlables: [
-              "Yes",
-              "No"
-            ],
+            radiobtnlables: ["Yes", "No"],
             radiobtnSelected: (String value) {
               localdata.property_user_owner = value;
             },
@@ -2405,10 +2412,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 ? false
                 : true,
             headerlablekey: 'key_Master_rent',
-            radiobtnlables: [
-              "Yes",
-              "No"
-            ],
+            radiobtnlables: ["Yes", "No"],
             radiobtnSelected: (String value) {
               localdata.property_user_master_rent = value;
             },
@@ -2426,10 +2430,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     ? false
                     : true,
             headerlablekey: 'key_master_recipient',
-            radiobtnlables: [
-              "Yes",
-              "No"
-            ],
+            radiobtnlables: ["Yes", "No"],
             radiobtnSelected: (String value) {
               localdata.property_user_recipient_group = value;
             },
@@ -2446,10 +2447,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 ? false
                 : true,
             headerlablekey: 'key_master_no_longer',
-            radiobtnlables: [
-              "Yes",
-              "No"
-            ],
+            radiobtnlables: ["Yes", "No"],
             radiobtnSelected: (String value) {
               localdata.property_user_no_longer = value;
             },
@@ -2502,10 +2500,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               iscompleted:
                   localdata.fst_have_building?.isEmpty ?? true ? false : true,
               headerlablekey: 'key_does_property_building',
-              radiobtnlables: [
-                "Yes",
-              "No"
-              ],
+              radiobtnlables: ["Yes", "No"],
               radiobtnSelected: (String value) {
                 localdata.fst_have_building = value;
               },
@@ -3320,10 +3315,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   ? false
                   : true,
               headerlablekey: 'key_gender',
-              radiobtnlables: [
-                "Male",
-                "Female"
-              ],
+              radiobtnlables: ["Male", "Female"],
               radiobtnSelected: (String value) {
                 localdata.second_partner_gender = value;
               },
@@ -3518,10 +3510,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   ? false
                   : true,
               headerlablekey: 'key_gender',
-              radiobtnlables: [
-                "Male",
-                "Female"
-              ],
+              radiobtnlables: ["Male", "Female"],
               radiobtnSelected: (String value) {
                 localdata.third_partner_gender = value;
               },
@@ -3703,10 +3692,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   ? false
                   : true,
               headerlablekey: 'key_gender',
-              radiobtnlables: [
-                "Male",
-                "Female"
-              ],
+              radiobtnlables: ["Male", "Female"],
               radiobtnSelected: (String value) {
                 localdata.fourth_partner_gender = value;
               },
@@ -3891,10 +3877,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   ? false
                   : true,
               headerlablekey: 'key_gender',
-              radiobtnlables: [
-                "Male",
-                "Female"
-              ],
+              radiobtnlables: ["Male", "Female"],
               radiobtnSelected: (String value) {
                 localdata.fifth_partner_gender = value;
               },
@@ -4027,7 +4010,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
 
   @override
   Widget build(BuildContext context) {
-    print("form no:" + formval.toString());
+    //print("form no:" + formval.toString());
     // print("prop_type:" + localdata.property_type);
     return Scaffold(
       appBar: AppBar(

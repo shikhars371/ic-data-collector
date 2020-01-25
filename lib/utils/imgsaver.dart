@@ -11,6 +11,8 @@ Future<String> imagepath(BuildContext context) async {
     var filename = basename(image.path);
     var localfile = await image.copy('${apppath.path}/$filename');
     result = localfile.path;
-  } catch (e) {}
+  } catch (e) {
+    print(e);
+  }
   return result;
 }
