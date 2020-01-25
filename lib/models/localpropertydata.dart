@@ -186,6 +186,7 @@ class LocalPropertySurvey {
   String fifth_partner_phote_note1;
   String fifth_partner_photo_tips1;
   String fifth_partner_photo_tips2;
+  
 
   LocalPropertySurvey(
       {this.id,

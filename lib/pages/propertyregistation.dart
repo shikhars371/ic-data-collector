@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:image_picker/image_picker.dart';
+
 import 'package:provider/provider.dart';
 
 import '../localization/app_translations.dart';
@@ -8,6 +9,7 @@ import '../models/localpropertydata.dart';
 import '../utils/db_helper.dart';
 import '../controllers/auth.dart';
 import './surveylist.dart';
+import './task.dart';
 
 class PropertyRegistationPage extends StatefulWidget {
   PropertyRegistationPage({this.taskid, this.surveylocalkey});
@@ -346,8 +348,24 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
         formval += 1;
       });
     } else if (formval == 16) {
+      if (!(_formkey.currentState.validate())) {
+        return;
+      } else {
+        _formkey.currentState.save();
+        var rr =
+            await DBHelper().updatePropertySurvey(localdata, propertylocalkey);
+        setState(() {
+          formval += 1;
+        });
+      }
     } else if (formval == 17) {
-    } else if (formval == 18) {}
+      _formkey.currentState.save();
+      var rr =
+          await DBHelper().updatePropertySurvey(localdata, propertylocalkey);
+      setState(() {
+        formval += 1;
+      });
+    }
   }
 
   String setapptext({String key}) {
@@ -1927,6 +1945,40 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.area_unit_business_units = value;
                 setState(() {});
               }),
+          GestureDetector(
+            onTap: () async {
+              _formkey.currentState.save();
+              var rr = await DBHelper()
+                  .updatePropertySurvey(localdata, propertylocalkey);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => TaskPage()),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Container(
+                height: 30,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(blurRadius: 5.0, color: Colors.black)
+                    ],
+                    color: Colors.blue),
+                margin: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.width / 5,
+                  right: MediaQuery.of(context).size.width / 5,
+                ),
+                child: Center(
+                  child: Text(
+                    'Submit',
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
+          ),
           SizedBox(
             height: 50,
           )
@@ -2468,7 +2520,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               headerlablekey: 'key_building_use',
               dropdownitems: [
                 'None selected'
-                'Release',
+                    'Release',
                 'Commercial',
                 'Governmental',
                 'Productive',
