@@ -218,6 +218,10 @@
     "key_prop_info": "Type of property user",
     "key_building_info": "Building Information",
     "key_cover_note": "Cover Note",
-    "key_all_details":"Details of the number and area of ​​units (if the current use is mixed-use and commercial, fill the following sections).",
-    "key_final_details":"Home Sketch"
+    "key_all_details": "Details of the number and area of ​​units (if the current use is mixed-use and commercial, fill the following sections).",
+    "key_final_details": "Home Sketch",
+    "key_second_partner_info": "Second Partner Information",
+    "key_third_partner_info": "Third Partner Information",
+    "key_fourth_partner_info": "Foutrh Partner Information",
+    "key_fifth_partner_info": "Fifth Partner Information"
 }

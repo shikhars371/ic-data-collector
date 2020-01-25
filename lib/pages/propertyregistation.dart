@@ -207,7 +207,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
           (localdata.current_use_of_property?.isEmpty ?? true)) {
         return;
       } else {
+        _formkey.currentState.save();
         if (localdata.property_have_document == "Yes") {
+          var re = await DBHelper()
+              .updatePropertySurvey(localdata, propertylocalkey);
           setState(() {
             formval += 1;
           });
@@ -215,10 +218,14 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
           if ((localdata.current_use_of_property == "Commercial") ||
               (localdata.current_use_of_property ==
                   "Complex (Release / Business)")) {
+            var re = await DBHelper()
+                .updatePropertySurvey(localdata, propertylocalkey);
             setState(() {
               formval = 8;
             });
           } else {
+            var re = await DBHelper()
+                .updatePropertySurvey(localdata, propertylocalkey);
             setState(() {
               formval = 9;
             });
@@ -226,25 +233,60 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
         }
       }
     } else if (formval == 6) {
-      setState(() {
-        formval += 1;
-      });
+      if (!(localdata.document_type?.isEmpty ?? true)) {
+        _formkey.currentState.save();
+        var rr =
+            await DBHelper().updatePropertySurvey(localdata, propertylocalkey);
+        setState(() {
+          formval += 1;
+        });
+      }
+      return;
     } else if (formval == 7) {
-      setState(() {
-        formval += 1;
-      });
+      var rr =
+          await DBHelper().updatePropertySurvey(localdata, propertylocalkey);
+      if ((localdata.current_use_of_property == "Commercial") ||
+          (localdata.current_use_of_property ==
+              "Complex (Release / Business)")) {
+        setState(() {
+          formval += 1;
+        });
+      } else {
+        setState(() {
+          formval = 9;
+        });
+      }
     } else if (formval == 8) {
+      _formkey.currentState.save();
+      var rr =
+          await DBHelper().updatePropertySurvey(localdata, propertylocalkey);
       setState(() {
         formval += 1;
       });
     } else if (formval == 9) {
+      _formkey.currentState.save();
+      var rr =
+          await DBHelper().updatePropertySurvey(localdata, propertylocalkey);
+
       setState(() {
         formval += 1;
       });
     } else if (formval == 10) {
-      setState(() {
-        formval += 1;
-      });
+      _formkey.currentState.save();
+      var rr =
+          await DBHelper().updatePropertySurvey(localdata, propertylocalkey);
+      if (localdata.property_type == "Solo") {
+        if(localdata.current_use_of_property == "Release"){
+
+        }
+        // else if(){
+
+        // }
+      } else {
+        setState(() {
+          formval += 1;
+        });
+      }
     } else if (formval == 11) {
       setState(() {
         formval += 1;
@@ -2641,6 +2683,14 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
         children: <Widget>[
           ///second partner details
           ///start
+          Padding(
+            padding: EdgeInsets.all(5),
+            child: Center(
+              child: Text(
+                setapptext(key: 'key_second_partner_info'),
+              ),
+            ),
+          ),
           formcardtextfield(
               headerlablekey: 'key_name',
               radiovalue:
@@ -2831,6 +2881,14 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
           ///end
           ///third partner details
           ///start
+          Padding(
+            padding: EdgeInsets.all(5),
+            child: Center(
+              child: Text(
+                setapptext(key: 'key_third_partner_info'),
+              ),
+            ),
+          ),
           formcardtextfield(
               initvalue: localdata.third_partner_name?.isEmpty ?? true
                   ? ""
@@ -3008,6 +3066,14 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
           ///end
           ///fourth partner
           ///start
+          Padding(
+            padding: EdgeInsets.all(5),
+            child: Center(
+              child: Text(
+                setapptext(key: 'key_fourth_partner_info'),
+              ),
+            ),
+          ),
           formcardtextfield(
               initvalue: localdata.fourth_partner_name?.isEmpty ?? true
                   ? ""
@@ -3188,6 +3254,14 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
           ///end
           ///fifth partnet deatils
           ///start
+          Padding(
+            padding: EdgeInsets.all(5),
+            child: Center(
+              child: Text(
+                setapptext(key: 'key_fifth_partner_info'),
+              ),
+            ),
+          ),
           formcardtextfield(
               initvalue: localdata.fifth_partner_name?.isEmpty ?? true
                   ? ""
@@ -3378,6 +3452,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
             .getpropertysurveys(
                 taskid: widget.taskid, localkey: widget.surveylocalkey)
             .then((onValue) {
+          setState(() {});
           localdata = onValue[0];
           formval = 5;
           propertylocalkey = localdata.local_property_key;
@@ -3390,6 +3465,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
   @override
   Widget build(BuildContext context) {
     print("form no:" + formval.toString());
+    print("prop_type:" + localdata.property_type);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
