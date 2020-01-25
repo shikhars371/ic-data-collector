@@ -22,6 +22,14 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
   String ddprovinceval = "None selected";
   String ddfstbuildinguse = "None selected";
   String ddfstbuildingCategory = "None selected";
+  String ddScndbuildinguse = "None selected";
+  String ddScndbuildingCategory = "None selected";
+  String ddThirdbuildinguse = "None selected";
+  String ddThirdbuildingCategory = "None selected";
+  String ddForthbuildinguse = "None selected";
+  String ddForthbuildingCategory = "None selected";
+  String ddFifthbuildinguse = "None selected";
+  String ddFifthbuildingCategory = "None selected";
   String ddcity = "None selected";
   bool chkval = false;
   int formval = 0;
@@ -2460,7 +2468,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               validate:
                   localdata.fst_have_building?.isEmpty ?? true ? true : false),
 
-          ///new building
+          ///first building
           ///start
           formCardDropdown(
               iscompleted:
@@ -2468,7 +2476,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               headerlablekey: 'key_building_use',
               dropdownitems: [
                 'None selected'
-                'Release',
+                    'Release',
                 'Commercial',
                 'Governmental',
                 'Productive',
@@ -2576,6 +2584,488 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               },
               onChanged: (value) {
                 localdata.fst_cubie_meter = value.trim();
+                setState(() {});
+              }),
+
+          ///end
+          ///second building
+          ///start
+          formCardDropdown(
+              iscompleted:
+                  localdata.snd_building_use?.isEmpty ?? true ? false : true,
+              headerlablekey: 'key_building_use',
+              dropdownitems: [
+                'None selected'
+                    'Release',
+                'Commercial',
+                'Governmental',
+                'Productive',
+                'General'
+              ],
+              onChanged: (value) {
+                localdata.fst_building_use = value;
+                setState(() {
+                  ddScndbuildinguse = value;
+                });
+              },
+              onSaved: (value) {
+                localdata.fst_building_use = value;
+              },
+              value: localdata.snd_building_use?.isEmpty ?? true
+                  ? ddScndbuildinguse
+                  : localdata.snd_building_use,
+              validate: (localdata.snd_building_use?.isEmpty ?? true) ||
+                      (localdata.snd_building_use == "None selected")
+                  ? true
+                  : false),
+          formCardDropdown(
+              iscompleted: localdata.snd_building_category?.isEmpty ?? true
+                  ? false
+                  : true,
+              headerlablekey: 'key_building_category',
+              dropdownitems: [
+                setapptext(key: 'key_Modern_Concrete'),
+                setapptext(key: 'key_Half_cream_and_half_baked'),
+                setapptext(key: 'key_Cream'),
+                setapptext(key: 'key_metal'),
+                setapptext(key: 'key_Another')
+              ],
+              onChanged: (value) {
+                localdata.snd_building_category = value;
+                setState(() {
+                  ddScndbuildingCategory = value;
+                });
+              },
+              onSaved: (value) {
+                localdata.snd_building_category = value;
+              },
+              value: localdata.snd_building_category?.isEmpty ?? true
+                  ? ddScndbuildingCategory
+                  : localdata.snd_building_category,
+              validate: (localdata.snd_building_category?.isEmpty ?? true) ||
+                      (localdata.snd_building_category == "None selected")
+                  ? true
+                  : false),
+          formcardtextfield(
+              initvalue: localdata.snd_specifyif_other?.isEmpty ?? true
+                  ? ""
+                  : localdata.snd_specifyif_other,
+              headerlablekey: 'key_choose_another',
+              hinttextkey: '',
+              radiovalue:
+                  localdata.snd_specifyif_other?.isEmpty ?? true ? false : true,
+              onSaved: (value) {
+                localdata.snd_specifyif_other = value.trim();
+              },
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onChanged: (value) {
+                localdata.snd_specifyif_other = value.trim();
+                setState(() {});
+              }),
+          formcardtextfield(
+              initvalue: localdata.snd_no_of_floors?.isEmpty ?? true
+                  ? ""
+                  : localdata.snd_no_of_floors,
+              headerlablekey: 'key_Number_of_floors',
+              hinttextkey: '',
+              radiovalue:
+                  localdata.snd_no_of_floors?.isEmpty ?? true ? false : true,
+              onSaved: (value) {
+                localdata.snd_no_of_floors = value.trim();
+              },
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onChanged: (value) {
+                localdata.snd_no_of_floors = value.trim();
+                setState(() {});
+              }),
+          formcardtextfield(
+              initvalue: localdata.snd_cubie_meter?.isEmpty ?? true
+                  ? ""
+                  : localdata.snd_cubie_meter,
+              headerlablekey: 'key_Unit_Size',
+              hinttextkey: '',
+              radiovalue:
+                  localdata.snd_cubie_meter?.isEmpty ?? true ? false : true,
+              onSaved: (value) {
+                localdata.snd_cubie_meter = value.trim();
+              },
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onChanged: (value) {
+                localdata.snd_cubie_meter = value.trim();
+                setState(() {});
+              }),
+
+          ///end
+          ///third building
+          ///start
+          formCardDropdown(
+              iscompleted:
+                  localdata.trd_building_use?.isEmpty ?? true ? false : true,
+              headerlablekey: 'key_building_use',
+              dropdownitems: [
+                'None selected'
+                    'Release',
+                'Commercial',
+                'Governmental',
+                'Productive',
+                'General'
+              ],
+              onChanged: (value) {
+                localdata.trd_building_use = value;
+                setState(() {
+                  ddThirdbuildinguse = value;
+                });
+              },
+              onSaved: (value) {
+                localdata.trd_building_use = value;
+              },
+              value: localdata.trd_building_use?.isEmpty ?? true
+                  ? ddThirdbuildinguse
+                  : localdata.trd_building_use,
+              validate: (localdata.trd_building_use?.isEmpty ?? true) ||
+                      (localdata.trd_building_use == "None selected")
+                  ? true
+                  : false),
+          formCardDropdown(
+              iscompleted: localdata.trd_building_category?.isEmpty ?? true
+                  ? false
+                  : true,
+              headerlablekey: 'key_building_category',
+              dropdownitems: [
+                setapptext(key: 'key_Modern_Concrete'),
+                setapptext(key: 'key_Half_cream_and_half_baked'),
+                setapptext(key: 'key_Cream'),
+                setapptext(key: 'key_metal'),
+                setapptext(key: 'key_Another')
+              ],
+              onChanged: (value) {
+                localdata.trd_building_category = value;
+                setState(() {
+                  ddThirdbuildingCategory = value;
+                });
+              },
+              onSaved: (value) {
+                localdata.trd_building_category = value;
+              },
+              value: localdata.trd_building_category?.isEmpty ?? true
+                  ? ddThirdbuildingCategory
+                  : localdata.trd_building_category,
+              validate: (localdata.trd_building_category?.isEmpty ?? true) ||
+                      (localdata.trd_building_category == "None selected")
+                  ? true
+                  : false),
+          formcardtextfield(
+              initvalue: localdata.trd_specifyif_other?.isEmpty ?? true
+                  ? ""
+                  : localdata.trd_specifyif_other,
+              headerlablekey: 'key_choose_another',
+              hinttextkey: '',
+              radiovalue:
+                  localdata.trd_specifyif_other?.isEmpty ?? true ? false : true,
+              onSaved: (value) {
+                localdata.trd_specifyif_other = value.trim();
+              },
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onChanged: (value) {
+                localdata.trd_specifyif_other = value.trim();
+                setState(() {});
+              }),
+          formcardtextfield(
+              initvalue: localdata.trd_no_of_floors?.isEmpty ?? true
+                  ? ""
+                  : localdata.trd_no_of_floors,
+              headerlablekey: 'key_Number_of_floors',
+              hinttextkey: '',
+              radiovalue:
+                  localdata.trd_no_of_floors?.isEmpty ?? true ? false : true,
+              onSaved: (value) {
+                localdata.trd_no_of_floors = value.trim();
+              },
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onChanged: (value) {
+                localdata.trd_no_of_floors = value.trim();
+                setState(() {});
+              }),
+          formcardtextfield(
+              initvalue: localdata.trd_cubie_meter?.isEmpty ?? true
+                  ? ""
+                  : localdata.trd_cubie_meter,
+              headerlablekey: 'key_Unit_Size',
+              hinttextkey: '',
+              radiovalue:
+                  localdata.trd_cubie_meter?.isEmpty ?? true ? false : true,
+              onSaved: (value) {
+                localdata.trd_cubie_meter = value.trim();
+              },
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onChanged: (value) {
+                localdata.trd_cubie_meter = value.trim();
+                setState(() {});
+              }),
+
+          ///end
+
+          ///forth building
+          ///start
+          formCardDropdown(
+              iscompleted:
+                  localdata.forth_building_use?.isEmpty ?? true ? false : true,
+              headerlablekey: 'key_building_use',
+              dropdownitems: [
+                'None selected'
+                    'Release',
+                'Commercial',
+                'Governmental',
+                'Productive',
+                'General'
+              ],
+              onChanged: (value) {
+                localdata.forth_building_use = value;
+                setState(() {
+                  ddForthbuildinguse = value;
+                });
+              },
+              onSaved: (value) {
+                localdata.forth_building_use = value;
+              },
+              value: localdata.forth_building_use?.isEmpty ?? true
+                  ? ddForthbuildinguse
+                  : localdata.forth_building_use,
+              validate: (localdata.forth_building_use?.isEmpty ?? true) ||
+                      (localdata.forth_building_use == "None selected")
+                  ? true
+                  : false),
+          formCardDropdown(
+              iscompleted: localdata.forth_building_category?.isEmpty ?? true
+                  ? false
+                  : true,
+              headerlablekey: 'key_building_category',
+              dropdownitems: [
+                setapptext(key: 'key_Modern_Concrete'),
+                setapptext(key: 'key_Half_cream_and_half_baked'),
+                setapptext(key: 'key_Cream'),
+                setapptext(key: 'key_metal'),
+                setapptext(key: 'key_Another')
+              ],
+              onChanged: (value) {
+                localdata.forth_building_category = value;
+                setState(() {
+                  ddForthbuildingCategory = value;
+                });
+              },
+              onSaved: (value) {
+                localdata.forth_building_category = value;
+              },
+              value: localdata.forth_building_category?.isEmpty ?? true
+                  ? ddForthbuildingCategory
+                  : localdata.forth_building_category,
+              validate: (localdata.forth_building_category?.isEmpty ?? true) ||
+                      (localdata.forth_building_category == "None selected")
+                  ? true
+                  : false),
+          formcardtextfield(
+              initvalue: localdata.forth_specifyif_other?.isEmpty ?? true
+                  ? ""
+                  : localdata.forth_specifyif_other,
+              headerlablekey: 'key_choose_another',
+              hinttextkey: '',
+              radiovalue:
+                  localdata.forth_specifyif_other?.isEmpty ?? true ? false : true,
+              onSaved: (value) {
+                localdata.forth_specifyif_other = value.trim();
+              },
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onChanged: (value) {
+                localdata.forth_specifyif_other = value.trim();
+                setState(() {});
+              }),
+          formcardtextfield(
+              initvalue: localdata.forth_no_of_floors?.isEmpty ?? true
+                  ? ""
+                  : localdata.forth_no_of_floors,
+              headerlablekey: 'key_Number_of_floors',
+              hinttextkey: '',
+              radiovalue:
+                  localdata.forth_no_of_floors?.isEmpty ?? true ? false : true,
+              onSaved: (value) {
+                localdata.forth_no_of_floors = value.trim();
+              },
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onChanged: (value) {
+                localdata.forth_no_of_floors = value.trim();
+                setState(() {});
+              }),
+          formcardtextfield(
+              initvalue: localdata.forth_cubie_meter?.isEmpty ?? true
+                  ? ""
+                  : localdata.forth_cubie_meter,
+              headerlablekey: 'key_Unit_Size',
+              hinttextkey: '',
+              radiovalue:
+                  localdata.forth_cubie_meter?.isEmpty ?? true ? false : true,
+              onSaved: (value) {
+                localdata.forth_cubie_meter = value.trim();
+              },
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onChanged: (value) {
+                localdata.forth_cubie_meter = value.trim();
+                setState(() {});
+              }),
+
+          ///end
+
+          ///fifth building
+          ///start
+          formCardDropdown(
+              iscompleted:
+                  localdata.fth_building_use?.isEmpty ?? true ? false : true,
+              headerlablekey: 'key_building_use',
+              dropdownitems: [
+                'None selected'
+                    'Release',
+                'Commercial',
+                'Governmental',
+                'Productive',
+                'General'
+              ],
+              onChanged: (value) {
+                localdata.fth_building_use = value;
+                setState(() {
+                  ddFifthbuildinguse = value;
+                });
+              },
+              onSaved: (value) {
+                localdata.fth_building_use = value;
+              },
+              value: localdata.fth_building_use?.isEmpty ?? true
+                  ? ddFifthbuildinguse
+                  : localdata.fth_building_use,
+              validate: (localdata.fth_building_use?.isEmpty ?? true) ||
+                      (localdata.fth_building_use == "None selected")
+                  ? true
+                  : false),
+          formCardDropdown(
+              iscompleted: localdata.fth_building_category?.isEmpty ?? true
+                  ? false
+                  : true,
+              headerlablekey: 'key_building_category',
+              dropdownitems: [
+                setapptext(key: 'key_Modern_Concrete'),
+                setapptext(key: 'key_Half_cream_and_half_baked'),
+                setapptext(key: 'key_Cream'),
+                setapptext(key: 'key_metal'),
+                setapptext(key: 'key_Another')
+              ],
+              onChanged: (value) {
+                localdata.fth_building_category = value;
+                setState(() {
+                  ddFifthbuildingCategory = value;
+                });
+              },
+              onSaved: (value) {
+                localdata.fth_building_category = value;
+              },
+              value: localdata.fth_building_category?.isEmpty ?? true
+                  ? ddFifthbuildingCategory
+                  : localdata.fth_building_category,
+              validate: (localdata.fth_building_category?.isEmpty ?? true) ||
+                      (localdata.fth_building_category == "None selected")
+                  ? true
+                  : false),
+          formcardtextfield(
+              initvalue: localdata.fth_specifyif_other?.isEmpty ?? true
+                  ? ""
+                  : localdata.fth_specifyif_other,
+              headerlablekey: 'key_choose_another',
+              hinttextkey: '',
+              radiovalue:
+                  localdata.fth_specifyif_other?.isEmpty ?? true ? false : true,
+              onSaved: (value) {
+                localdata.fth_specifyif_other = value.trim();
+              },
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onChanged: (value) {
+                localdata.fth_specifyif_other = value.trim();
+                setState(() {});
+              }),
+          formcardtextfield(
+              initvalue: localdata.fth_no_of_floors?.isEmpty ?? true
+                  ? ""
+                  : localdata.fth_no_of_floors,
+              headerlablekey: 'key_Number_of_floors',
+              hinttextkey: '',
+              radiovalue:
+                  localdata.fth_no_of_floors?.isEmpty ?? true ? false : true,
+              onSaved: (value) {
+                localdata.fth_no_of_floors = value.trim();
+              },
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onChanged: (value) {
+                localdata.fth_no_of_floors = value.trim();
+                setState(() {});
+              }),
+          formcardtextfield(
+              initvalue: localdata.fth_cubie_meter?.isEmpty ?? true
+                  ? ""
+                  : localdata.fth_cubie_meter,
+              headerlablekey: 'key_Unit_Size',
+              hinttextkey: '',
+              radiovalue:
+                  localdata.fth_cubie_meter?.isEmpty ?? true ? false : true,
+              onSaved: (value) {
+                localdata.fth_cubie_meter = value.trim();
+              },
+              validator: (value) {
+                if (value.trim().isEmpty) {
+                  return "field should not be blank";
+                }
+              },
+              onChanged: (value) {
+                localdata.fth_cubie_meter = value.trim();
                 setState(() {});
               })
 
