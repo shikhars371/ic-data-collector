@@ -511,8 +511,7 @@ class DBHelper with ChangeNotifier {
       var dbClient = await db;
       String sqlquery = '''
         UPDATE propertysurvey
-        SET taskid=?,
-        local_property_key=?,other_key=?,first_surveyor_name=?,senond_surveyor_name=?,
+        SET other_key=?,first_surveyor_name=?,senond_surveyor_name=?,
         technical_support_name=?,property_dispte_subject_to=?,
         real_person_status=?,cityzenship_notice=?,issue_regarding_property=?,
         municipality_ref_number=?,natural_threaten=?,status_of_area_plan=?,status_of_area_official=?,
@@ -572,14 +571,6 @@ class DBHelper with ChangeNotifier {
         WHERE local_property_key=?
       ''';
       List<dynamic> params = [
-        data.taskid,
-        data.province.trim() +
-            data.city.trim() +
-            data.area.trim() +
-            data.pass.trim() +
-            data.block.trim() +
-            data.part_number.trim() +
-            data.unit_number.trim(),
         data.other_key,
         data.first_surveyor_name,
         data.senond_surveyor_name,

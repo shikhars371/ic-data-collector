@@ -84,6 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                               padding:
                                   EdgeInsets.only(top: 20, left: 20, right: 20),
                               child: TextFormField(
+                                keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
                                   prefixIcon: Icon(Icons.person_pin),
                                   labelText: AppTranslations.of(context)
