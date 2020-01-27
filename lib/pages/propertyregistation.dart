@@ -6333,14 +6333,18 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           ),
                           Container(
                             color: Colors.white,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                //back button
-                                SizedBox(),
-                                //next button
-                                nextbutton()
-                              ],
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 5, bottom: 5),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  //back button
+                                  SizedBox(),
+                                  //next button
+                                  nextbutton()
+                                ],
+                              ),
                             ),
                           )
                         ] else if (formval == 18) ...[
@@ -6349,14 +6353,18 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           ),
                           Container(
                             color: Colors.white,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                //back button
-                                backbutton(),
-                                //next button
-                                SizedBox()
-                              ],
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 5, bottom: 5),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  //back button
+                                  backbutton(),
+                                  //next button
+                                  SizedBox()
+                                ],
+                              ),
                             ),
                           )
                         ] else ...[
@@ -6365,9 +6373,13 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           ),
                           Container(
                             color: Colors.white,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[backbutton(), nextbutton()],
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 5, bottom: 5),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[backbutton(), nextbutton()],
+                              ),
                             ),
                           )
                         ]

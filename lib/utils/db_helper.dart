@@ -764,7 +764,7 @@ class DBHelper with ChangeNotifier {
   }
 
   Future<List<LocalPropertySurvey>> getpropertysurveys(
-      {String taskid, String localkey}) async {
+      {String taskid, String localkey,String searchtext}) async {
     setState(AppState.Busy);
     try {
       var dbClient = await db;
@@ -775,11 +775,16 @@ class DBHelper with ChangeNotifier {
         SELECT * FROM propertysurvey WHERE taskid=?
       ''';
         params = [taskid];
-      } else {
+      } else if(!(localkey?.isEmpty??true)){
         sqlquery = '''
         SELECT * FROM propertysurvey WHERE taskid=? AND local_property_key=?
       ''';
         params = [taskid, localkey];
+      }else if(!(localkey?.isEmpty??true)){
+        sqlquery ='''
+          SELECT * FROM propertysurvey WHERE taskid=? AND part_number LIKE ?  
+        ''';
+        params = [taskid, searchtext];
       }
 
       List<Map> it = await dbClient.rawQuery(sqlquery, params);

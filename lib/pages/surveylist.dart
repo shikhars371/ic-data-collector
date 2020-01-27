@@ -6,6 +6,7 @@ import '../localization/app_translations.dart';
 import './propertyregistation.dart';
 import '../utils/db_helper.dart';
 import '../controllers/auth.dart';
+import '../models/localpropertydata.dart';
 
 class SurveyPage extends StatefulWidget {
   SurveyPage({this.id});
@@ -240,7 +241,10 @@ class _SurveyPageState extends State<SurveyPage> {
           IconButton(
             icon: Icon(Icons.search),
             tooltip: "add new property",
-            onPressed: () {},
+            onPressed: () {
+              showSearch(
+                  context: context, delegate: SurveySearch(taskid: widget.id));
+            },
           )
         ],
       ),
@@ -291,6 +295,272 @@ class _SurveyPageState extends State<SurveyPage> {
           );
         },
       ),
+    );
+  }
+}
+
+class SurveySearch extends SearchDelegate<String> {
+  final String taskid;
+  SurveySearch({this.taskid});
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: Icon(Icons.clear),
+        onPressed: () {
+          query = "";
+        },
+      )
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: AnimatedIcon(
+        icon: AnimatedIcons.menu_arrow,
+        progress: transitionAnimation,
+      ),
+      onPressed: () {
+        close(context, null);
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return Container();
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    String setapptext({String key}) {
+      return AppTranslations.of(context).text(key);
+    }
+
+    return Container(
+      child: query.trim().length > 1
+          ? FutureBuilder(
+              future: DBHelper()
+                  .getpropertysurveys(taskid: taskid, searchtext: query),
+              builder: (context, snapshot) {
+                List<LocalPropertySurvey> ls = snapshot.data;
+                if (snapshot.connectionState == ConnectionState.done &&
+                    snapshot.hasData) {
+                  return ListView.builder(
+                    itemCount: ls.length,
+                    itemBuilder: (context,index){
+                      return Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    padding: EdgeInsets.all(5.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Container(
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: Column(
+                              children: <Widget>[
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: RichText(
+                                    text: TextSpan(
+                                      text: setapptext(key: 'key_province') +
+                                          ":-",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: ls[index].province,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.normal),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: RichText(
+                                    text: TextSpan(
+                                      text: setapptext(key: 'key_city') + ":-",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: ls[index].city,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.normal),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: RichText(
+                                    text: TextSpan(
+                                      text: setapptext(key: 'key_only_block') +
+                                          ":-",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: ls[index].block,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.normal),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: RichText(
+                                    text: TextSpan(
+                                      text: setapptext(key: 'key_part') + ":-",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: ls[index].part_number,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.normal),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: RichText(
+                                    text: TextSpan(
+                                      text:
+                                          setapptext(key: 'key_unit_no') + ":-",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: ls[index].unit_number,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.normal),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: Wrap(
+                              direction: Axis.horizontal,
+                              children: <Widget>[
+                                IconButton(
+                                  iconSize: 25,
+                                  icon: Icon(Icons.edit),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            PropertyRegistationPage(
+                                          taskid: ls[index].taskid,
+                                          surveylocalkey: ls[index].local_property_key,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                                IconButton(
+                                  iconSize: 25,
+                                  icon: Icon(Icons.delete),
+                                  onPressed: () {
+                                    showDialog(
+                                        context: context,
+                                        barrierDismissible: false,
+                                        builder: (context) {
+                                          return CupertinoAlertDialog(
+                                            title: Text(
+                                                'Are you want to delete ?'),
+                                            actions: <Widget>[
+                                              FlatButton(
+                                                onPressed: () async {
+                                                  DBHelper()
+                                                      .deletePropertySurvey(
+                                                          localkey:
+                                                              ls[index].local_property_key)
+                                                      .then((_) {
+                                                    Navigator.pop(context);
+                                                    Provider.of<DBHelper>(
+                                                            context)
+                                                        .getpropertysurveys(
+                                                            taskid: ls[index].taskid);
+                                                    
+                                                  });
+                                                },
+                                                child: Text(
+                                                  "Delete",
+                                                  style: TextStyle(
+                                                      color: Colors.red),
+                                                ),
+                                              ),
+                                              FlatButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text(
+                                                  "Cancel",
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                ),
+                                              )
+                                            ],
+                                          );
+                                        });
+                                  },
+                                ),
+                                IconButton(
+                                  iconSize: 25,
+                                  icon: Icon(Icons.sync),
+                                  onPressed: () {},
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Divider(
+                          color: Colors.black,
+                        )
+                      ],
+                    ),
+                  );
+                    },
+                  );
+                } else {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              },
+            )
+          : SizedBox(),
     );
   }
 }
