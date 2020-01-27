@@ -18,6 +18,10 @@ class DBHelper with ChangeNotifier {
 
   List<LocalPropertySurvey> _propertysurveys = [];
   List<LocalPropertySurvey> get propertysurveys => _propertysurveys;
+
+  LocalPropertySurvey _singlepropertysurveys = new LocalPropertySurvey();
+  LocalPropertySurvey get singlepropertysurveys => _singlepropertysurveys;
+
   static Database _db;
   Future<Database> get db async {
     if (_db != null) {
@@ -764,8 +768,9 @@ class DBHelper with ChangeNotifier {
   }
 
   Future<List<LocalPropertySurvey>> getpropertysurveys(
-      {String taskid, String localkey,String searchtext}) async {
+      {String taskid, String localkey, String searchtext}) async {
     setState(AppState.Busy);
+    notifyListeners();
     try {
       var dbClient = await db;
       var sqlquery = "";
@@ -775,13 +780,13 @@ class DBHelper with ChangeNotifier {
         SELECT * FROM propertysurvey WHERE taskid=?
       ''';
         params = [taskid];
-      } else if(!(localkey?.isEmpty??true)){
+      } else if (!(localkey?.isEmpty ?? true)) {
         sqlquery = '''
         SELECT * FROM propertysurvey WHERE taskid=? AND local_property_key=?
       ''';
         params = [taskid, localkey];
-      }else if(!(localkey?.isEmpty??true)){
-        sqlquery ='''
+      } else if (!(localkey?.isEmpty ?? true)) {
+        sqlquery = '''
           SELECT * FROM propertysurvey WHERE taskid=? AND part_number LIKE ?  
         ''';
         params = [taskid, searchtext];
@@ -798,6 +803,29 @@ class DBHelper with ChangeNotifier {
     setState(AppState.Idle);
     notifyListeners();
     return _propertysurveys;
+  }
+
+  Future<LocalPropertySurvey> getSingleProperty(
+      {String taskid, String localkey}) async {
+    setState(AppState.Busy);
+    notifyListeners();
+    try {
+      var dbClient = await db;
+      var sqlquery = '''
+        SELECT * FROM propertysurvey WHERE taskid=? AND local_property_key=?
+      ''';
+      List<dynamic> params = [taskid, localkey];
+      List<Map> it = await dbClient.rawQuery(sqlquery, params);
+      _singlepropertysurveys =
+          it.map((f) => LocalPropertySurvey.frommapobject(f)).first;
+    } catch (e) {
+      setState(AppState.Idle);
+      notifyListeners();
+      print(e);
+    }
+    setState(AppState.Idle);
+    notifyListeners();
+    return _singlepropertysurveys;
   }
 
   Future<int> deletePropertySurvey({String localkey}) async {

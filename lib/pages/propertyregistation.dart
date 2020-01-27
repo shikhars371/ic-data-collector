@@ -27,23 +27,12 @@ class PropertyRegistationPage extends StatefulWidget {
 
 class _PropertyRegistationPage extends State<PropertyRegistationPage> {
   var _formkey = GlobalKey<FormState>();
-  String ddprovinceval = "0";
-  String ddfstbuildinguse = "None selected";
-  String ddfstbuildingCategory = "None selected";
-  String ddScndbuildinguse = "None selected";
-  String ddScndbuildingCategory = "None selected";
-  String ddThirdbuildinguse = "None selected";
-  String ddThirdbuildingCategory = "None selected";
-  String ddForthbuildinguse = "None selected";
-  String ddForthbuildingCategory = "None selected";
-  String ddFifthbuildinguse = "None selected";
-  String ddFifthbuildingCategory = "None selected";
-  String ddcity = "0";
+
   bool chkval = false;
   int formval = 0;
   String propertylocalkey;
   LocalPropertySurvey localdata;
-  File f;
+  bool editmode = false;
 
   Future<String> appimagepicker() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
@@ -56,17 +45,17 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
   Widget backbutton() {
     return GestureDetector(
       onTap: () {
-        if (!(propertylocalkey?.isEmpty ?? true)) {
-          if (formval == 5) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) =>
-                    SurveyPage(id: widget.taskid),
-              ),
-            );
-          }
-        }
+        // if (!(propertylocalkey?.isEmpty ?? true)) {
+        //   if (formval == 5) {
+        //     Navigator.push(
+        //       context,
+        //       MaterialPageRoute(
+        //         builder: (BuildContext context) =>
+        //             SurveyPage(id: widget.taskid),
+        //       ),
+        //     );
+        //   }
+        // }
         setState(() {
           formval -= 1;
         });
@@ -136,40 +125,49 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
         return;
       } else {
         _formkey.currentState.save();
-        int svval = await DBHelper().addPropertySurvey(localdata);
-        if (svval != 0) {
-          propertylocalkey = localdata.province.trim() +
-              localdata.city.trim() +
-              localdata.area.trim() +
-              localdata.pass.trim() +
-              localdata.block.trim() +
-              localdata.part_number.trim() +
-              localdata.unit_number.trim();
+        if (editmode) {
+          await DBHelper().updatePropertySurvey(localdata, propertylocalkey);
           setState(() {
+            editmode = true;
             formval += 1;
           });
         } else {
-          showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: Text(
-                    "Warning",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.red),
-                  ),
-                  content: Text(
-                      "This property Data already exist. So please go back and edit that or delete the existing and create new."),
-                  actions: <Widget>[
-                    FlatButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text("Ok"),
+          int svval = await DBHelper().addPropertySurvey(localdata);
+          if (svval != 0) {
+            propertylocalkey = localdata.province.trim() +
+                localdata.city.trim() +
+                localdata.area.trim() +
+                localdata.pass.trim() +
+                localdata.block.trim() +
+                localdata.part_number.trim() +
+                localdata.unit_number.trim();
+            setState(() {
+              editmode = true;
+              formval += 1;
+            });
+          } else {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text(
+                      "Warning",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.red),
                     ),
-                  ],
-                );
-              });
+                    content: Text(
+                        "This property Data already exist. So please go back and edit that or delete the existing and create new."),
+                    actions: <Widget>[
+                      FlatButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text("Ok"),
+                      ),
+                    ],
+                  );
+                });
+          }
         }
       }
     } else if (formval == 5) {
@@ -851,9 +849,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               ],
               onChanged: (value) {
                 localdata.province = value;
-                setState(() {
-                  ddprovinceval = value;
-                });
+                setState(() {});
               },
               onSaved: (value) {
                 localdata.province = value;
@@ -887,10 +883,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               ],
               onChanged: (value) {
                 localdata.city = value;
-                print(value);
-                setState(() {
-                  ddcity = value;
-                });
+
+                setState(() {});
               },
               onSaved: (value) {
                 localdata.city = value;
@@ -1579,8 +1573,9 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               onChanged: (value) {
                 localdata.first_partner_name_phone = value.trim();
                 setState(() {});
-              },validator: (value){
-                if(value.length!=10){
+              },
+              validator: (value) {
+                if (value.length != 10) {
                   return "Please enter the correct mobile number";
                 }
               }),
@@ -3656,7 +3651,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   localdata.snd_building_category = value;
                 },
                 value: localdata.snd_building_category?.isEmpty ?? true
-                    ? ddScndbuildingCategory
+                    ? "0"
                     : localdata.snd_building_category,
                 validate: (value) {
                   if ((value.isEmpty) || value == "0") {
@@ -4409,8 +4404,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.second_partner_phone = value.trim();
                 setState(() {});
               },
-              validator: (value){
-                if(value.length!=10){
+              validator: (value) {
+                if (value.length != 10) {
                   return "Please enter the correct mobile number";
                 }
               }),
@@ -4896,8 +4891,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.third_partner_phone = value;
                 setState(() {});
               },
-              validator: (value){
-                if(value.length!=10){
+              validator: (value) {
+                if (value.length != 10) {
                   return "Please enter the correct mobile number";
                 }
               }),
@@ -5382,8 +5377,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.fourth_partner_phone = value;
                 setState(() {});
               },
-              validator: (value){
-                if(value.length!=10){
+              validator: (value) {
+                if (value.length != 10) {
                   return "Please enter the correct mobile number";
                 }
               }),
@@ -5869,8 +5864,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.fifth_partner_phone = value;
                 setState(() {});
               },
-              validator: (value){
-                if(value.length!=10){
+              validator: (value) {
+                if (value.length != 10) {
                   return "Please enter the correct mobile number";
                 }
               }),
@@ -6262,24 +6257,16 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     localdata.taskid = widget.taskid;
     if (!(widget.surveylocalkey?.isEmpty ?? true)) {
       Future.delayed(Duration.zero).then((_) {
-        Provider.of<DBHelper>(context)
-            .getpropertysurveys(
-                taskid: widget.taskid, localkey: widget.surveylocalkey)
-            .then((onValue) {
-          setState(() {});
-          localdata = onValue[0];
-          formval = 5;
-          propertylocalkey = localdata.local_property_key;
-        });
+        Provider.of<DBHelper>(context).getSingleProperty(
+            taskid: widget.taskid, localkey: widget.surveylocalkey);
       });
+      editmode = true;
     }
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    print("form no:" + formval.toString());
-    // print("prop_type:" + localdata.property_type);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
@@ -6290,6 +6277,12 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
       ),
       body: Consumer<DBHelper>(
         builder: (context, dbdata, child) {
+          if (!(widget.surveylocalkey?.isEmpty ?? true)) {
+            localdata = Provider.of<DBHelper>(context).singlepropertysurveys;
+            if (localdata != null) {
+              propertylocalkey = localdata.local_property_key;
+            }
+          }
           return dbdata.state == AppState.Busy
               ? Center(
                   child: CircularProgressIndicator(),
