@@ -434,7 +434,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
       List<Dpvalue> dropdownitems,
       Function(String) onSaved,
       String value,
-      bool validate = false,
+      Function(String) validate,
       Function(String) onChanged}) {
     return Container(
       decoration: BoxDecoration(
@@ -477,20 +477,13 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         child: Text(data.name),
                       );
                     }).toList(),
+                    validator: validate,
                     onChanged: onChanged,
                     onSaved: onSaved,
                     value: value,
                   ),
                 ),
               ),
-              validate
-                  ? Center(
-                      child: Text(
-                        "Required",
-                        style: TextStyle(color: Colors.red),
-                      ),
-                    )
-                  : Container()
             ],
           ),
         ),
@@ -593,7 +586,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 Dpvalue(name: setapptext(key: 'key_yes_sir'), value: "1"),
                 Dpvalue(name: setapptext(key: 'key_no'), value: "2")
               ],
-              iscompleted: localdata.property_dispte_subject_to?.isEmpty ?? true
+              iscompleted: ((localdata.property_dispte_subject_to?.isEmpty ?? true)||(localdata.property_dispte_subject_to=="0"))
                   ? false
                   : true,
               headerlablekey: 'key_property_disputes',
@@ -607,11 +600,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.property_dispte_subject_to = value;
                 setState(() {});
               },
-              validate:
-                  ((localdata.property_dispte_subject_to?.isEmpty ?? true) ||
-                          (localdata.property_dispte_subject_to == "0"))
-                      ? true
-                      : false),
+              validate: (value) {
+                if ((value.isEmpty) || value == "0") {
+                  return "required";
+                }
+              }),
           formCardDropdown(
               iscompleted:
                   localdata.real_person_status?.isEmpty ?? true ? false : true,
@@ -3985,7 +3978,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   localdata.fth_have_building = value;
                   setState(() {});
                 },
-                validate: ((localdata.fth_have_building?.isEmpty ?? true)||(localdata.fth_have_building=="0"))
+                validate: ((localdata.fth_have_building?.isEmpty ?? true) ||
+                        (localdata.fth_have_building == "0"))
                     ? true
                     : false),
           ],
