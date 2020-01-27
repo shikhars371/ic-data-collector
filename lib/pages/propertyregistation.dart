@@ -113,14 +113,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
         });
       }
     } else if (formval == 1) {
-      if ((localdata.property_dispte_subject_to == "0") ||
-          (localdata.real_person_status == "0") ||
-          (localdata.cityzenship_notice == "0") ||
-          (localdata.property_dispte_subject_to?.isEmpty ?? true) ||
-          (localdata.real_person_status?.isEmpty ?? true) ||
-          (localdata.cityzenship_notice?.isEmpty ?? true)) {
-        return;
-      } else {
+      if (_formkey.currentState.validate()) {
+        _formkey.currentState.save();
         setState(() {
           formval += 1;
         });
@@ -131,28 +125,14 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
         formval += 1;
       });
     } else if (formval == 3) {
-      if ((localdata.status_of_area_plan == "0") ||
-          (localdata.status_of_area_official == "0") ||
-          (localdata.status_of_area_regular == "0") ||
-          (localdata.slope_of_area == "0") ||
-          (localdata.status_of_area_plan?.isEmpty ?? true) ||
-          (localdata.status_of_area_official?.isEmpty ?? true) ||
-          (localdata.status_of_area_regular?.isEmpty ?? true) ||
-          (localdata.slope_of_area?.isEmpty ?? true)) {
-        return;
-      } else {
+      if (_formkey.currentState.validate()) {
+        _formkey.currentState.save();
         setState(() {
           formval += 1;
         });
       }
     } else if (formval == 4) {
-      if (!_formkey.currentState.validate() ||
-          (localdata.province?.isEmpty ?? true) ||
-          (localdata.city?.isEmpty ?? true) ||
-          (localdata.property_type?.isEmpty ?? true) ||
-          (localdata.province == "0") ||
-          (localdata.city == "0") ||
-          (localdata.property_type == "0")) {
+      if (!(_formkey.currentState.validate())) {
         return;
       } else {
         _formkey.currentState.save();
@@ -586,9 +566,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 Dpvalue(name: setapptext(key: 'key_yes_sir'), value: "1"),
                 Dpvalue(name: setapptext(key: 'key_no'), value: "2")
               ],
-              iscompleted: ((localdata.property_dispte_subject_to?.isEmpty ?? true)||(localdata.property_dispte_subject_to=="0"))
-                  ? false
-                  : true,
+              iscompleted:
+                  ((localdata.property_dispte_subject_to?.isEmpty ?? true) ||
+                          (localdata.property_dispte_subject_to == "0"))
+                      ? false
+                      : true,
               headerlablekey: 'key_property_disputes',
               value: localdata.property_dispte_subject_to?.isEmpty ?? true
                   ? "0"
@@ -606,8 +588,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 }
               }),
           formCardDropdown(
-              iscompleted:
-                  localdata.real_person_status?.isEmpty ?? true ? false : true,
+              iscompleted: ((localdata.real_person_status?.isEmpty ?? true) ||
+                      (localdata.real_person_status == "0"))
+                  ? false
+                  : true,
               headerlablekey: 'key_real_person',
               dropdownitems: [
                 Dpvalue(name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -625,13 +609,16 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.real_person_status = value;
                 setState(() {});
               },
-              validate: ((localdata.real_person_status?.isEmpty ?? true) ||
-                      (localdata.real_person_status == "0"))
-                  ? true
-                  : false),
+              validate: (value) {
+                if ((value.isEmpty) || value == "0") {
+                  return "required";
+                }
+              }),
           formCardDropdown(
-              iscompleted:
-                  localdata.cityzenship_notice?.isEmpty ?? true ? false : true,
+              iscompleted: ((localdata.cityzenship_notice?.isEmpty ?? true) ||
+                      (localdata.cityzenship_notice == "0"))
+                  ? false
+                  : true,
               headerlablekey: 'key_is_citizenship',
               dropdownitems: [
                 Dpvalue(name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -648,10 +635,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.cityzenship_notice = value;
                 setState(() {});
               },
-              validate: ((localdata.cityzenship_notice?.isEmpty ?? true) ||
-                      (localdata.cityzenship_notice == "0"))
-                  ? true
-                  : false),
+              validate: (value) {
+                if ((value.isEmpty) || value == "0") {
+                  return "required";
+                }
+              }),
         ],
       ),
     );
@@ -725,8 +713,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               value: localdata.status_of_area_plan?.isEmpty ?? true
                   ? "0"
                   : localdata.status_of_area_plan,
-              iscompleted:
-                  localdata.status_of_area_plan?.isEmpty ?? true ? false : true,
+              iscompleted: ((localdata.status_of_area_plan?.isEmpty ?? true) ||
+                      (localdata.status_of_area_plan == "0"))
+                  ? false
+                  : true,
               headerlablekey: 'key_specify_the',
               dropdownitems: [
                 Dpvalue(name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -740,16 +730,20 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.status_of_area_plan = value;
                 setState(() {});
               },
-              validate: localdata.status_of_area_plan?.isEmpty ?? true
-                  ? true
-                  : false),
+              validate: (value) {
+                if ((value.isEmpty) || value == "0") {
+                  return "required";
+                }
+              }),
           formCardDropdown(
               value: localdata.status_of_area_official?.isEmpty ?? true
                   ? "0"
                   : localdata.status_of_area_official,
-              iscompleted: localdata.status_of_area_official?.isEmpty ?? true
-                  ? false
-                  : true,
+              iscompleted:
+                  ((localdata.status_of_area_official?.isEmpty ?? true) ||
+                          (localdata.status_of_area_official == "0"))
+                      ? false
+                      : true,
               headerlablekey: 'key_specify_the',
               dropdownitems: [
                 Dpvalue(name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -763,16 +757,20 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.status_of_area_official = value;
                 setState(() {});
               },
-              validate: localdata.status_of_area_official?.isEmpty ?? true
-                  ? true
-                  : false),
+              validate: (value) {
+                if ((value.isEmpty) || value == "0") {
+                  return "required";
+                }
+              }),
           formCardDropdown(
               value: localdata.status_of_area_regular?.isEmpty ?? true
                   ? "0"
                   : localdata.status_of_area_regular,
-              iscompleted: localdata.status_of_area_regular?.isEmpty ?? true
-                  ? false
-                  : true,
+              iscompleted:
+                  ((localdata.status_of_area_regular?.isEmpty ?? true) ||
+                          (localdata.status_of_area_regular == "0"))
+                      ? false
+                      : true,
               headerlablekey: 'key_specify_the',
               dropdownitems: [
                 Dpvalue(name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -786,15 +784,19 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.status_of_area_regular = value;
                 setState(() {});
               },
-              validate: localdata.status_of_area_regular?.isEmpty ?? true
-                  ? true
-                  : false),
+              validate: (value) {
+                if ((value.isEmpty) || (value == "0")) {
+                  return "required";
+                }
+              }),
           formCardDropdown(
               value: localdata.slope_of_area?.isEmpty ?? true
                   ? "0"
                   : localdata.slope_of_area,
-              iscompleted:
-                  localdata.slope_of_area?.isEmpty ?? true ? false : true,
+              iscompleted: ((localdata.slope_of_area?.isEmpty ?? true) ||
+                      (localdata.slope_of_area == "0"))
+                  ? false
+                  : true,
               headerlablekey: 'key_specify_slope',
               dropdownitems: [
                 Dpvalue(name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -810,8 +812,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.slope_of_area = value;
                 setState(() {});
               },
-              validate:
-                  localdata.slope_of_area?.isEmpty ?? true ? true : false),
+              validate: (value) {
+                if ((value.isEmpty) || value == "0") {
+                  return "required";
+                }
+              }),
           SizedBox(
             height: 50,
           )
@@ -826,7 +831,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
       child: ListView(
         children: <Widget>[
           formCardDropdown(
-              iscompleted: localdata.province?.isEmpty ?? true ? false : true,
+              iscompleted: ((localdata.province?.isEmpty ?? true) ||
+                      (localdata.province == "0"))
+                  ? false
+                  : true,
               headerlablekey: 'key_select_province',
               dropdownitems: [
                 Dpvalue(name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -853,12 +861,16 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               value: localdata.province?.isEmpty ?? true
                   ? "0"
                   : localdata.province,
-              validate: (localdata.province?.isEmpty ?? true) ||
-                      (localdata.province == "None selected")
-                  ? true
-                  : false),
+              validate: (value) {
+                if ((value.isEmpty) || value == "0") {
+                  return "required";
+                }
+              }),
           formCardDropdown(
-              iscompleted: localdata.city?.isEmpty ?? true ? false : true,
+              iscompleted:
+                  ((localdata.city?.isEmpty ?? true) || (localdata.city == "0"))
+                      ? false
+                      : true,
               headerlablekey: 'key_select_city',
               dropdownitems: [
                 Dpvalue(name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -884,10 +896,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.city = value;
               },
               value: localdata.city?.isEmpty ?? true ? "0" : localdata.city,
-              validate: (localdata.city?.isEmpty ?? true) ||
-                      (localdata.city == "None selected")
-                  ? true
-                  : false),
+              validate: (value) {
+                if ((value.isEmpty) || value == "0") {
+                  return "required";
+                }
+              }),
           formcardtextfield(
               keyboardtype: TextInputType.number,
               headerlablekey: 'key_area',
@@ -1057,8 +1070,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               value: localdata.property_type?.isEmpty ?? true
                   ? "0"
                   : localdata.property_type,
-              iscompleted:
-                  localdata.property_type?.isEmpty ?? true ? false : true,
+              iscompleted: ((localdata.property_type?.isEmpty ?? true) ||
+                      (localdata.property_type == "0"))
+                  ? false
+                  : true,
               headerlablekey: 'key_type_ownership',
               dropdownitems: [
                 Dpvalue(name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -1072,8 +1087,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.property_type = value;
                 setState(() {});
               },
-              validate:
-                  localdata.property_type?.isEmpty ?? true ? true : false),
+              validate: (value) {
+                if ((value.isEmpty) || value == "0") {
+                  return "required";
+                }
+              }),
           SizedBox(
             height: 50,
           )
@@ -1091,9 +1109,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               value: localdata.location_of_land_area?.isEmpty ?? true
                   ? "0"
                   : localdata.location_of_land_area,
-              iscompleted: localdata.location_of_land_area?.isEmpty ?? true
-                  ? false
-                  : true,
+              iscompleted:
+                  ((localdata.location_of_land_area?.isEmpty ?? true) ||
+                          (localdata.location_of_land_area == "0"))
+                      ? false
+                      : true,
               headerlablekey: 'key_location_land',
               dropdownitems: [
                 Dpvalue(name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -1112,16 +1132,20 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.location_of_land_area = value;
                 setState(() {});
               },
-              validate: localdata.location_of_land_area?.isEmpty ?? true
-                  ? true
-                  : false),
+              validate: (value) {
+                if ((value.isEmpty) || value == "0") {
+                  return "required";
+                }
+              }),
           formCardDropdown(
               value: localdata.property_have_document?.isEmpty ?? true
                   ? "0"
                   : localdata.property_have_document,
-              iscompleted: localdata.property_have_document?.isEmpty ?? true
-                  ? false
-                  : true,
+              iscompleted:
+                  ((localdata.property_have_document?.isEmpty ?? true) ||
+                          (localdata.property_have_document == "0"))
+                      ? false
+                      : true,
               headerlablekey: 'key_does_properties_document',
               dropdownitems: [
                 Dpvalue(name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -1136,16 +1160,20 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.property_have_document = value;
                 setState(() {});
               },
-              validate: localdata.property_have_document?.isEmpty ?? true
-                  ? true
-                  : false),
+              validate: (value) {
+                if ((value.isEmpty) || value == "0") {
+                  return "required";
+                }
+              }),
           formCardDropdown(
               value: localdata.current_use_of_property?.isEmpty ?? true
                   ? "0"
                   : localdata.current_use_of_property,
-              iscompleted: localdata.current_use_of_property?.isEmpty ?? true
-                  ? false
-                  : true,
+              iscompleted:
+                  ((localdata.current_use_of_property?.isEmpty ?? true) ||
+                          (localdata.current_use_of_property == "0"))
+                      ? false
+                      : true,
               headerlablekey: 'key_current_use_property_type',
               dropdownitems: [
                 Dpvalue(name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -1176,9 +1204,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   localdata.unspecified_current_use_type = null;
                 });
               },
-              validate: localdata.current_use_of_property?.isEmpty ?? true
-                  ? true
-                  : false),
+              validate: (value) {
+                if ((value.isEmpty) || value == "0") {
+                  return "required";
+                }
+              }),
 
           ///release
           ///start
@@ -1511,9 +1541,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               value: localdata.first_partner_name_gender?.isEmpty ?? true
                   ? "0"
                   : localdata.first_partner_name_gender,
-              iscompleted: localdata.first_partner_name_gender?.isEmpty ?? true
-                  ? false
-                  : true,
+              iscompleted:
+                  ((localdata.first_partner_name_gender?.isEmpty ?? true) ||
+                          (localdata.first_partner_name_gender == "0"))
+                      ? false
+                      : true,
               headerlablekey: 'key_gender',
               dropdownitems: [
                 Dpvalue(name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -1527,9 +1559,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.first_partner_name_gender = value;
                 setState(() {});
               },
-              validate: localdata.first_partner_name_gender?.isEmpty ?? true
-                  ? true
-                  : false),
+              validate: (value) {
+                if ((value.isEmpty) || value == "0") {
+                  return "required";
+                }
+              }),
           formcardtextfield(
               keyboardtype: TextInputType.number,
               headerlablekey: 'key_phone',
@@ -2345,8 +2379,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               value: localdata.document_type?.isEmpty ?? true
                   ? "0"
                   : localdata.document_type,
-              iscompleted:
-                  localdata.document_type?.isEmpty ?? true ? false : true,
+              iscompleted: ((localdata.document_type?.isEmpty ?? true) ||
+                      (localdata.document_type == "0"))
+                  ? false
+                  : true,
               headerlablekey: 'key_doc_type',
               dropdownitems: [
                 Dpvalue(name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -2376,8 +2412,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
 
                 setState(() {});
               },
-              validate:
-                  localdata.document_type?.isEmpty ?? true ? true : false),
+              validate: (value) {
+                if ((value.isEmpty) || value == "0") {
+                  return "required";
+                }
+              }),
 
           ///Specifications of the religious document
           ///begin
@@ -3375,8 +3414,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               value: localdata.fst_have_building?.isEmpty ?? true
                   ? "0"
                   : localdata.fst_have_building,
-              iscompleted:
-                  localdata.fst_have_building?.isEmpty ?? true ? false : true,
+              iscompleted: ((localdata.fst_have_building?.isEmpty ?? true) ||
+                      (localdata.fst_have_building == "0"))
+                  ? false
+                  : true,
               headerlablekey: 'key_does_property_building',
               dropdownitems: [
                 Dpvalue(name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -3390,17 +3431,20 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.fst_have_building = value;
                 setState(() {});
               },
-              validate: ((localdata.fst_have_building?.isEmpty ?? true) ||
-                      (localdata.fst_have_building == "0"))
-                  ? true
-                  : false),
+              validate: (value) {
+                if ((value.isEmpty) || value == "0") {
+                  return "required";
+                }
+              }),
 
           ///first building
           ///start
           if (localdata.fst_have_building == "1") ...[
             formCardDropdown(
-                iscompleted:
-                    localdata.fst_building_use?.isEmpty ?? true ? false : true,
+                iscompleted: ((localdata.fst_building_use?.isEmpty ?? true) ||
+                        (localdata.fst_building_use == "0"))
+                    ? false
+                    : true,
                 headerlablekey: 'key_building_use',
                 dropdownitems: [
                   Dpvalue(
@@ -3421,14 +3465,17 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 value: localdata.fst_building_use?.isEmpty ?? true
                     ? "0"
                     : localdata.fst_building_use,
-                validate: (localdata.fst_building_use?.isEmpty ?? true) ||
-                        (localdata.fst_building_use == "0")
-                    ? true
-                    : false),
+                validate: (value) {
+                  if ((value.isEmpty) || value == "0") {
+                    return "required";
+                  }
+                }),
             formCardDropdown(
-                iscompleted: localdata.fst_building_category?.isEmpty ?? true
-                    ? false
-                    : true,
+                iscompleted:
+                    ((localdata.fst_building_category?.isEmpty ?? true) ||
+                            (localdata.fst_building_category == "0"))
+                        ? false
+                        : true,
                 headerlablekey: 'key_building_category',
                 dropdownitems: [
                   Dpvalue(
@@ -3453,10 +3500,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 value: localdata.fst_building_category?.isEmpty ?? true
                     ? "0"
                     : localdata.fst_building_category,
-                validate: (localdata.fst_building_category?.isEmpty ?? true) ||
-                        (localdata.fst_building_category == "0")
-                    ? true
-                    : false),
+                validate: (value) {
+                  if ((value.isEmpty) || value == "0") {
+                    return "required";
+                  }
+                }),
             formcardtextfield(
                 initvalue: localdata.fst_specifyif_other?.isEmpty ?? true
                     ? ""
@@ -3517,8 +3565,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 value: localdata.snd_have_building?.isEmpty ?? true
                     ? "0"
                     : localdata.snd_have_building,
-                iscompleted:
-                    localdata.snd_have_building?.isEmpty ?? true ? false : true,
+                iscompleted: ((localdata.snd_have_building?.isEmpty ?? true) ||
+                        (localdata.snd_have_building == "0"))
+                    ? false
+                    : true,
                 headerlablekey: 'key_add_building',
                 dropdownitems: [
                   Dpvalue(
@@ -3533,10 +3583,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   localdata.snd_have_building = value;
                   setState(() {});
                 },
-                validate: ((localdata.snd_have_building?.isEmpty ?? true) ||
-                        (localdata.snd_have_building == "0"))
-                    ? true
-                    : false),
+                validate: (value) {
+                  if ((value.isEmpty) || value == "0") {
+                    return "required";
+                  }
+                }),
           ],
 
           ///end
@@ -3544,8 +3595,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
           ///start
           if (localdata.snd_have_building == "1") ...[
             formCardDropdown(
-                iscompleted:
-                    localdata.snd_building_use?.isEmpty ?? true ? false : true,
+                iscompleted: ((localdata.snd_building_use?.isEmpty ?? true) ||
+                        (localdata.snd_building_use == "0"))
+                    ? false
+                    : true,
                 headerlablekey: 'key_building_use',
                 dropdownitems: [
                   Dpvalue(
@@ -3566,14 +3619,17 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 value: localdata.snd_building_use?.isEmpty ?? true
                     ? "0"
                     : localdata.snd_building_use,
-                validate: (localdata.snd_building_use?.isEmpty ?? true) ||
-                        (localdata.snd_building_use == "0")
-                    ? true
-                    : false),
+                validate: (value) {
+                  if ((value.isEmpty) || value == "0") {
+                    return "required";
+                  }
+                }),
             formCardDropdown(
-                iscompleted: localdata.snd_building_category?.isEmpty ?? true
-                    ? false
-                    : true,
+                iscompleted:
+                    ((localdata.snd_building_category?.isEmpty ?? true) ||
+                            (localdata.snd_building_category == "0"))
+                        ? false
+                        : true,
                 headerlablekey: 'key_building_category',
                 dropdownitems: [
                   Dpvalue(
@@ -3598,10 +3654,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 value: localdata.snd_building_category?.isEmpty ?? true
                     ? ddScndbuildingCategory
                     : localdata.snd_building_category,
-                validate: (localdata.snd_building_category?.isEmpty ?? true) ||
-                        (localdata.snd_building_category == "0")
-                    ? true
-                    : false),
+                validate: (value) {
+                  if ((value.isEmpty) || value == "0") {
+                    return "required";
+                  }
+                }),
             formcardtextfield(
                 initvalue: localdata.snd_specifyif_other?.isEmpty ?? true
                     ? ""
@@ -3662,8 +3719,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 value: localdata.trd_have_building?.isEmpty ?? true
                     ? "0"
                     : localdata.trd_have_building,
-                iscompleted:
-                    localdata.trd_have_building?.isEmpty ?? true ? false : true,
+                iscompleted: ((localdata.trd_have_building?.isEmpty ?? true) ||
+                        (localdata.trd_have_building == "0"))
+                    ? false
+                    : true,
                 headerlablekey: 'key_add_building',
                 dropdownitems: [
                   Dpvalue(
@@ -3678,10 +3737,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   localdata.trd_have_building = value;
                   setState(() {});
                 },
-                validate: ((localdata.trd_have_building?.isEmpty ?? true) ||
-                        (localdata.trd_have_building == "0"))
-                    ? true
-                    : false),
+                validate: (value) {
+                  if ((value.isEmpty) || value == "0") {
+                    return "required";
+                  }
+                }),
           ],
 
           ///end
@@ -3689,8 +3749,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
           ///start
           if (localdata.trd_have_building == "1") ...[
             formCardDropdown(
-                iscompleted:
-                    localdata.trd_building_use?.isEmpty ?? true ? false : true,
+                iscompleted: ((localdata.trd_building_use?.isEmpty ?? true) ||
+                        (localdata.trd_building_use == "0"))
+                    ? false
+                    : true,
                 headerlablekey: 'key_building_use',
                 dropdownitems: [
                   Dpvalue(
@@ -3711,14 +3773,17 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 value: localdata.trd_building_use?.isEmpty ?? true
                     ? "0"
                     : localdata.trd_building_use,
-                validate: (localdata.trd_building_use?.isEmpty ?? true) ||
-                        (localdata.trd_building_use == "0")
-                    ? true
-                    : false),
+                validate: (value) {
+                  if ((value.isEmpty) || value == "0") {
+                    return "required";
+                  }
+                }),
             formCardDropdown(
-                iscompleted: localdata.trd_building_category?.isEmpty ?? true
-                    ? false
-                    : true,
+                iscompleted:
+                    ((localdata.trd_building_category?.isEmpty ?? true) ||
+                            (localdata.trd_building_category == "0"))
+                        ? false
+                        : true,
                 headerlablekey: 'key_building_category',
                 dropdownitems: [
                   Dpvalue(
@@ -3743,10 +3808,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 value: localdata.trd_building_category?.isEmpty ?? true
                     ? "0"
                     : localdata.trd_building_category,
-                validate: (localdata.trd_building_category?.isEmpty ?? true) ||
-                        (localdata.trd_building_category == "0")
-                    ? true
-                    : false),
+                validate: (value) {
+                  if ((value.isEmpty) || value == "0") {
+                    return "required";
+                  }
+                }),
             formcardtextfield(
                 initvalue: localdata.trd_specifyif_other?.isEmpty ?? true
                     ? ""
@@ -3807,9 +3873,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 value: localdata.forth_have_building?.isEmpty ?? true
                     ? "0"
                     : localdata.forth_have_building,
-                iscompleted: localdata.forth_have_building?.isEmpty ?? true
-                    ? false
-                    : true,
+                iscompleted:
+                    ((localdata.forth_have_building?.isEmpty ?? true) ||
+                            (localdata.forth_have_building == "0"))
+                        ? false
+                        : true,
                 headerlablekey: 'key_add_building',
                 dropdownitems: [
                   Dpvalue(
@@ -3824,10 +3892,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   localdata.forth_have_building = value;
                   setState(() {});
                 },
-                validate: ((localdata.forth_have_building?.isEmpty ?? true) ||
-                        (localdata.forth_have_building == "0"))
-                    ? true
-                    : false),
+                validate: (value) {
+                  if ((value.isEmpty) || value == "0") {
+                    return "required";
+                  }
+                }),
           ],
 
           ///end
@@ -3836,7 +3905,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
           ///start
           if (localdata.forth_have_building == "1") ...[
             formCardDropdown(
-                iscompleted: localdata.forth_building_use?.isEmpty ?? true
+                iscompleted: ((localdata.forth_building_use?.isEmpty ?? true) ||
+                        (localdata.forth_building_use == "0"))
                     ? false
                     : true,
                 headerlablekey: 'key_building_use',
@@ -3859,14 +3929,17 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 value: localdata.forth_building_use?.isEmpty ?? true
                     ? "0"
                     : localdata.forth_building_use,
-                validate: (localdata.forth_building_use?.isEmpty ?? true) ||
-                        (localdata.forth_building_use == "0")
-                    ? true
-                    : false),
+                validate: (value) {
+                  if ((value.isEmpty) || value == "0") {
+                    return "required";
+                  }
+                }),
             formCardDropdown(
-                iscompleted: localdata.forth_building_category?.isEmpty ?? true
-                    ? false
-                    : true,
+                iscompleted:
+                    ((localdata.forth_building_category?.isEmpty ?? true) ||
+                            (localdata.forth_building_category == "0"))
+                        ? false
+                        : true,
                 headerlablekey: 'key_building_category',
                 dropdownitems: [
                   Dpvalue(
@@ -3891,11 +3964,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 value: localdata.forth_building_category?.isEmpty ?? true
                     ? "0"
                     : localdata.forth_building_category,
-                validate:
-                    (localdata.forth_building_category?.isEmpty ?? true) ||
-                            (localdata.forth_building_category == "0")
-                        ? true
-                        : false),
+                validate: (value) {
+                  if ((value.isEmpty) || value == "0") {
+                    return "required";
+                  }
+                }),
             formcardtextfield(
                 initvalue: localdata.forth_specifyif_other?.isEmpty ?? true
                     ? ""
@@ -3962,8 +4035,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 value: localdata.fth_have_building?.isEmpty ?? true
                     ? "0"
                     : localdata.fth_have_building,
-                iscompleted:
-                    localdata.fth_have_building?.isEmpty ?? true ? false : true,
+                iscompleted: ((localdata.fth_have_building?.isEmpty ?? true) ||
+                        (localdata.fth_have_building == "0"))
+                    ? false
+                    : true,
                 headerlablekey: 'key_add_building',
                 dropdownitems: [
                   Dpvalue(
@@ -3978,10 +4053,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   localdata.fth_have_building = value;
                   setState(() {});
                 },
-                validate: ((localdata.fth_have_building?.isEmpty ?? true) ||
-                        (localdata.fth_have_building == "0"))
-                    ? true
-                    : false),
+                validate: (value) {
+                  if ((value.isEmpty) || value == "0") {
+                    return "required";
+                  }
+                }),
           ],
 
           ///end
@@ -3990,8 +4066,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
           ///start
           if (localdata.fth_have_building == "1") ...[
             formCardDropdown(
-                iscompleted:
-                    localdata.fth_building_use?.isEmpty ?? true ? false : true,
+                iscompleted: ((localdata.fth_building_use?.isEmpty ?? true) ||
+                        (localdata.fth_building_use == "0"))
+                    ? false
+                    : true,
                 headerlablekey: 'key_building_use',
                 dropdownitems: [
                   Dpvalue(
@@ -4012,14 +4090,17 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 value: localdata.fth_building_use?.isEmpty ?? true
                     ? "0"
                     : localdata.fth_building_use,
-                validate: (localdata.fth_building_use?.isEmpty ?? true) ||
-                        (localdata.fth_building_use == "0")
-                    ? true
-                    : false),
+                validate: (value) {
+                  if ((value.isEmpty) || value == "0") {
+                    return "required";
+                  }
+                }),
             formCardDropdown(
-                iscompleted: localdata.fth_building_category?.isEmpty ?? true
-                    ? false
-                    : true,
+                iscompleted:
+                    ((localdata.fth_building_category?.isEmpty ?? true) ||
+                            (localdata.fth_building_category == "0"))
+                        ? false
+                        : true,
                 headerlablekey: 'key_building_category',
                 dropdownitems: [
                   Dpvalue(
@@ -4044,10 +4125,11 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 value: localdata.fth_building_category?.isEmpty ?? true
                     ? "0"
                     : localdata.fth_building_category,
-                validate: (localdata.fth_building_category?.isEmpty ?? true) ||
-                        (localdata.fth_building_category == "0")
-                    ? true
-                    : false),
+                validate: (value) {
+                  if ((value.isEmpty) || value == "0") {
+                    return "required";
+                  }
+                }),
             formcardtextfield(
                 initvalue: localdata.fth_specifyif_other?.isEmpty ?? true
                     ? ""
@@ -6138,7 +6220,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
 
   @override
   Widget build(BuildContext context) {
-    //print("form no:" + formval.toString());
+    print("form no:" + formval.toString());
     // print("prop_type:" + localdata.property_type);
     return Scaffold(
       appBar: AppBar(
