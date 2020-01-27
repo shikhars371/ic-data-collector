@@ -1579,6 +1579,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               onChanged: (value) {
                 localdata.first_partner_name_phone = value.trim();
                 setState(() {});
+              },validator: (value){
+                if(value.length!=10){
+                  return "Please enter the correct mobile number";
+                }
               }),
           formcardtextfield(
               keyboardtype: TextInputType.emailAddress,
@@ -1589,15 +1593,15 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               initvalue: localdata.first_partner_name_email?.isEmpty ?? true
                   ? ""
                   : localdata.first_partner_name_email,
-              // validator: (value) {
-              //   Pattern pattern =
-              //       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-              //   RegExp regex = new RegExp(pattern);
-              //   if (!regex.hasMatch(value))
-              //     return 'Enter Valid Email';
-              //   else
-              //     return null;
-              // },
+              validator: (value) {
+                Pattern pattern =
+                    r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                RegExp regex = new RegExp(pattern);
+                if (!regex.hasMatch(value))
+                  return 'Enter Valid Email';
+                else
+                  return null;
+              },
               onSaved: (value) {
                 localdata.first_partner_name_email = value.trim();
               },
@@ -4404,24 +4408,30 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               onChanged: (value) {
                 localdata.second_partner_phone = value.trim();
                 setState(() {});
+              },
+              validator: (value){
+                if(value.length!=10){
+                  return "Please enter the correct mobile number";
+                }
               }),
           formcardtextfield(
               headerlablekey: 'key_email',
+              keyboardtype: TextInputType.emailAddress,
               radiovalue: localdata.second_partner_email?.isEmpty ?? true
                   ? false
                   : true,
               initvalue: localdata.second_partner_email?.isEmpty ?? true
                   ? ""
                   : localdata.second_partner_email,
-              // validator: (value) {
-              //   Pattern pattern =
-              //       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-              //   RegExp regex = new RegExp(pattern);
-              //   if (!regex.hasMatch(value))
-              //     return 'Enter Valid Email';
-              //   else
-              //     return null;
-              // },
+              validator: (value) {
+                Pattern pattern =
+                    r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                RegExp regex = new RegExp(pattern);
+                if (!regex.hasMatch(value))
+                  return 'Enter Valid Email';
+                else
+                  return null;
+              },
               onSaved: (value) {
                 localdata.second_partner_email = value.trim();
               },
@@ -4876,6 +4886,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   ? ""
                   : localdata.third_partner_phone,
               headerlablekey: 'key_phone',
+              keyboardtype: TextInputType.number,
               radiovalue:
                   localdata.third_partner_phone?.isEmpty ?? true ? false : true,
               onSaved: (value) {
@@ -4884,12 +4895,18 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               onChanged: (value) {
                 localdata.third_partner_phone = value;
                 setState(() {});
+              },
+              validator: (value){
+                if(value.length!=10){
+                  return "Please enter the correct mobile number";
+                }
               }),
           formcardtextfield(
               initvalue: localdata.third_partner_email?.isEmpty ?? true
                   ? ""
                   : localdata.third_partner_email,
               headerlablekey: 'key_email',
+              keyboardtype: TextInputType.emailAddress,
               radiovalue:
                   localdata.third_partner_email?.isEmpty ?? true ? false : true,
               onSaved: (value) {
@@ -4898,6 +4915,15 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               onChanged: (value) {
                 localdata.third_partner_email = value;
                 setState(() {});
+              },
+              validator: (value) {
+                Pattern pattern =
+                    r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                RegExp regex = new RegExp(pattern);
+                if (!regex.hasMatch(value))
+                  return 'Enter Valid Email';
+                else
+                  return null;
               }),
           Container(
             decoration: BoxDecoration(
@@ -5345,6 +5371,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   ? ""
                   : localdata.fourth_partner_phone,
               headerlablekey: 'key_phone',
+              keyboardtype: TextInputType.number,
               radiovalue: localdata.fourth_partner_phone?.isEmpty ?? true
                   ? false
                   : true,
@@ -5354,12 +5381,18 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               onChanged: (value) {
                 localdata.fourth_partner_phone = value;
                 setState(() {});
+              },
+              validator: (value){
+                if(value.length!=10){
+                  return "Please enter the correct mobile number";
+                }
               }),
           formcardtextfield(
               initvalue: localdata.fourth_partner_email?.isEmpty ?? true
                   ? ""
                   : localdata.fourth_partner_email,
               headerlablekey: 'key_email',
+              keyboardtype: TextInputType.emailAddress,
               radiovalue: localdata.fourth_partner_email?.isEmpty ?? true
                   ? false
                   : true,
@@ -5369,6 +5402,15 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               onChanged: (value) {
                 localdata.fourth_partner_email = value;
                 setState(() {});
+              },
+              validator: (value) {
+                Pattern pattern =
+                    r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                RegExp regex = new RegExp(pattern);
+                if (!regex.hasMatch(value))
+                  return 'Enter Valid Email';
+                else
+                  return null;
               }),
           Container(
             decoration: BoxDecoration(
@@ -5817,6 +5859,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   ? ""
                   : localdata.fifth_partner_phone,
               headerlablekey: 'key_phone',
+              keyboardtype: TextInputType.number,
               radiovalue:
                   localdata.fifth_partner_phone?.isEmpty ?? true ? false : true,
               onSaved: (value) {
@@ -5825,12 +5868,18 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               onChanged: (value) {
                 localdata.fifth_partner_phone = value;
                 setState(() {});
+              },
+              validator: (value){
+                if(value.length!=10){
+                  return "Please enter the correct mobile number";
+                }
               }),
           formcardtextfield(
               initvalue: localdata.fifth_partner_email?.isEmpty ?? true
                   ? ""
                   : localdata.fifth_partner_email,
               headerlablekey: 'key_email',
+              keyboardtype: TextInputType.emailAddress,
               radiovalue:
                   localdata.fifth_partner_email?.isEmpty ?? true ? false : true,
               onSaved: (value) {
@@ -5839,6 +5888,15 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               onChanged: (value) {
                 localdata.fifth_partner_email = value;
                 setState(() {});
+              },
+              validator: (value) {
+                Pattern pattern =
+                    r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                RegExp regex = new RegExp(pattern);
+                if (!regex.hasMatch(value))
+                  return 'Enter Valid Email';
+                else
+                  return null;
               }),
           Container(
             decoration: BoxDecoration(
