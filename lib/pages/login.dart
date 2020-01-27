@@ -100,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                                 },
                                 validator: (value) {
                                   if (value.isEmpty) {
-                                    return '* requaired';
+                                    return '* required';
                                   }
                                 },
                                 onSaved: (value) {

@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -499,68 +498,6 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     );
   }
 
-  Widget formCardFileuploader(
-      {bool isCompleted,
-      String headerlablekey,
-      Widget button,
-      String imagesourse}) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      padding: EdgeInsets.all(10),
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Container(
-          decoration: BoxDecoration(
-            border:
-                Border.all(color: Color.fromRGBO(176, 174, 171, 1), width: 1),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  completedcheckbox(isCompleted: isCompleted),
-                  Flexible(
-                    child: Text(
-                      setapptext(key: headerlablekey),
-                      style: TextStyle(),
-                    ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8, right: 8, bottom: 10),
-                child: Container(
-                  padding: EdgeInsets.only(left: 10, right: 10, top: 10),
-                  child: Column(
-                    children: <Widget>[button == null ? SizedBox() : button],
-                  ),
-                ),
-              ),
-              Center(
-                child: Container(
-                  height: MediaQuery.of(context).size.height / 4,
-                  width: MediaQuery.of(context).size.width / 2,
-                  child: imagesourse?.isEmpty ?? true
-                      ? Center(
-                          child: Text("No image"),
-                        )
-                      : Image.file(File(
-                          "/data/user/0/com.sparc.kdatacollector/app_flutter/a76d4e9c-8e75-459c-ab0d-a2459d7e6105388722004.jpg")),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget formheader({String headerlablekey}) {
     return Container(
       decoration: BoxDecoration(
@@ -968,7 +905,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 if (value.trim().isEmpty) {
                   return "field should not be blank";
                 } else if (value.length > 2) {
-                  return "2 digit allowed";
+                  return "two digit allowed";
                 }
               },
               onSaved: (value) {
@@ -1641,8 +1578,80 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.first_partner_name_email = value.trim();
                 setState(() {});
               }),
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_photo_owner'),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        completedcheckbox(
+                            isCompleted: localdata
+                                        .first_partner_name_property_owner
+                                        ?.isEmpty ??
+                                    true
+                                ? false
+                                : true),
+                        Flexible(
+                          child: Text(
+                            setapptext(key: 'key_photo_owner'),
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            RaisedButton(
+                              child:
+                                  Text("Click here to capture image. (< 10MB)"),
+                              onPressed: () async {
+                                localdata.first_partner_name_property_owner =
+                                    await appimagepicker();
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: localdata.first_partner_name_property_owner
+                                    ?.isEmpty ??
+                                true
+                            ? Center(
+                                child: Text("No image"),
+                              )
+                            : Image.file(File(
+                                localdata.first_partner_name_property_owner)),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
           formcardtextfield(
               headerlablekey: 'key_enter_any_mere',
               radiovalue:
@@ -1734,12 +1743,222 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.info_photo_hint_reg_no = value.trim();
                 setState(() {});
               }),
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_photo_note1'),
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_photo_tips1'),
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_photo_tips2'),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        completedcheckbox(
+                            isCompleted: localdata
+                                        .info_photo_hint_photo_note1?.isEmpty ??
+                                    true
+                                ? false
+                                : true),
+                        Flexible(
+                          child: Text(
+                            setapptext(key: 'key_photo_note1'),
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            RaisedButton(
+                              child:
+                                  Text("Click here to capture image. (< 10MB)"),
+                              onPressed: () async {
+                                localdata.info_photo_hint_photo_note1 =
+                                    await appimagepicker();
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: localdata.info_photo_hint_photo_note1?.isEmpty ??
+                                true
+                            ? Center(
+                                child: Text("No image"),
+                              )
+                            : Image.file(
+                                File(localdata.info_photo_hint_photo_note1)),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        completedcheckbox(
+                            isCompleted: localdata
+                                        .info_photo_hint_photo_tips1?.isEmpty ??
+                                    true
+                                ? false
+                                : true),
+                        Flexible(
+                          child: Text(
+                            setapptext(key: 'key_photo_tips1'),
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            RaisedButton(
+                              child:
+                                  Text("Click here to capture image. (< 10MB)"),
+                              onPressed: () async {
+                                localdata.info_photo_hint_photo_tips1 =
+                                    await appimagepicker();
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: localdata.info_photo_hint_photo_tips1?.isEmpty ??
+                                true
+                            ? Center(
+                                child: Text("No image"),
+                              )
+                            : Image.file(
+                                File(localdata.info_photo_hint_photo_tips1)),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        completedcheckbox(
+                            isCompleted: localdata
+                                        .info_photo_hint_photo_tips2?.isEmpty ??
+                                    true
+                                ? false
+                                : true),
+                        Flexible(
+                          child: Text(
+                            setapptext(key: 'key_photo_tips2'),
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            RaisedButton(
+                              child:
+                                  Text("Click here to capture image. (< 10MB)"),
+                              onPressed: () async {
+                                localdata.info_photo_hint_photo_tips2 =
+                                    await appimagepicker();
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: localdata.info_photo_hint_photo_tips2?.isEmpty ??
+                                true
+                            ? Center(
+                                child: Text("No image"),
+                              )
+                            : Image.file(
+                                File(localdata.info_photo_hint_photo_tips2)),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
           SizedBox(
             height: 50,
           )
@@ -1959,10 +2178,144 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
     return Expanded(
       child: ListView(
         children: <Widget>[
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_home_map'),
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_home_photo'),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        completedcheckbox(
+                            isCompleted: localdata.home_map?.isEmpty ?? true
+                                ? false
+                                : true),
+                        Flexible(
+                          child: Text(
+                            setapptext(key: 'key_home_map'),
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            RaisedButton(
+                              child:
+                                  Text("Click here to capture image. (< 10MB)"),
+                              onPressed: () async {
+                                localdata.home_map = await appimagepicker();
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: localdata.home_map?.isEmpty ?? true
+                            ? Center(
+                                child: Text("No image"),
+                              )
+                            : Image.file(
+                                File(localdata.home_map),
+                              ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        completedcheckbox(
+                            isCompleted: localdata.home_photo?.isEmpty ?? true
+                                ? false
+                                : true),
+                        Flexible(
+                          child: Text(
+                            setapptext(key: 'key_home_photo'),
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            RaisedButton(
+                              child:
+                                  Text("Click here to capture image. (< 10MB)"),
+                              onPressed: () async {
+                                localdata.home_photo = await appimagepicker();
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: localdata.home_photo?.isEmpty ?? true
+                            ? Center(
+                                child: Text("No image"),
+                              )
+                            : Image.file(
+                                File(localdata.home_photo),
+                              ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
           formCardDropdown(
               value: localdata.reg_property_fertilizer?.isEmpty ?? true
                   ? "0"
@@ -2373,7 +2726,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         children: <Widget>[
                           completedcheckbox(
                               isCompleted:
-                                  localdata.property_doc_photo_3?.isEmpty ??
+                                  localdata.property_doc_photo_4?.isEmpty ??
                                           true
                                       ? false
                                       : true),
@@ -2423,7 +2776,6 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 ),
               ),
             ),
-            
           ],
 
           ///end
@@ -2431,10 +2783,150 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
           ///start
           if (localdata.document_type == "2" ||
               localdata.document_type == "3") ...[
-            formCardFileuploader(
-                isCompleted: false, headerlablekey: 'key_photo-1'),
-            formCardFileuploader(
-                isCompleted: false, headerlablekey: 'key_photo-1'),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              padding: EdgeInsets.all(10),
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                        color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          completedcheckbox(
+                              isCompleted:
+                                  localdata.odinary_doc_photo1?.isEmpty ?? true
+                                      ? false
+                                      : true),
+                          Flexible(
+                            child: Text(
+                              setapptext(key: 'key_photo-1'),
+                              style: TextStyle(),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 8, right: 8, bottom: 10),
+                        child: Container(
+                          padding:
+                              EdgeInsets.only(left: 10, right: 10, top: 10),
+                          child: Column(
+                            children: <Widget>[
+                              RaisedButton(
+                                child: Text(
+                                    "Click here to capture image. (< 10MB)"),
+                                onPressed: () async {
+                                  localdata.odinary_doc_photo1 =
+                                      await appimagepicker();
+                                  setState(() {});
+                                },
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      Center(
+                        child: Container(
+                          height: MediaQuery.of(context).size.height / 4,
+                          width: MediaQuery.of(context).size.width / 2,
+                          child: localdata.odinary_doc_photo1?.isEmpty ?? true
+                              ? Center(
+                                  child: Text("No image"),
+                                )
+                              : Image.file(
+                                  File(localdata.odinary_doc_photo1),
+                                ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              padding: EdgeInsets.all(10),
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                        color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          completedcheckbox(
+                              isCompleted:
+                                  localdata.odinary_doc_photo6?.isEmpty ?? true
+                                      ? false
+                                      : true),
+                          Flexible(
+                            child: Text(
+                              setapptext(key: 'key_photo-1'),
+                              style: TextStyle(),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 8, right: 8, bottom: 10),
+                        child: Container(
+                          padding:
+                              EdgeInsets.only(left: 10, right: 10, top: 10),
+                          child: Column(
+                            children: <Widget>[
+                              RaisedButton(
+                                child: Text(
+                                    "Click here to capture image. (< 10MB)"),
+                                onPressed: () async {
+                                  localdata.odinary_doc_photo6 =
+                                      await appimagepicker();
+                                  setState(() {});
+                                },
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      Center(
+                        child: Container(
+                          height: MediaQuery.of(context).size.height / 4,
+                          width: MediaQuery.of(context).size.width / 2,
+                          child: localdata.odinary_doc_photo6?.isEmpty ?? true
+                              ? Center(
+                                  child: Text("No image"),
+                                )
+                              : Image.file(
+                                  File(localdata.odinary_doc_photo6),
+                                ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ],
 
           ///end
@@ -2514,8 +3006,80 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.lightning_father_name = value.trim();
                 setState(() {});
               }),
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_Picture_of_Bell_Power'),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        completedcheckbox(
+                            isCompleted: localdata.lightning_picture_bell_power
+                                        ?.isEmpty ??
+                                    true
+                                ? false
+                                : true),
+                        Flexible(
+                          child: Text(
+                            setapptext(key: 'key_Picture_of_Bell_Power'),
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            RaisedButton(
+                              child:
+                                  Text("Click here to capture image. (< 10MB)"),
+                              onPressed: () async {
+                                localdata.lightning_picture_bell_power =
+                                    await appimagepicker();
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: localdata
+                                    .lightning_picture_bell_power?.isEmpty ??
+                                true
+                            ? Center(
+                                child: Text("No image"),
+                              )
+                            : Image.file(
+                                File(localdata.lightning_picture_bell_power),
+                              ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -2611,9 +3175,78 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.safari_booklet_issue_date = value.trim();
                 setState(() {});
               }),
-          formCardFileuploader(
-              isCompleted: false,
-              headerlablekey: 'key_Picture_of_Safari_Booklet'),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        completedcheckbox(
+                            isCompleted:
+                                localdata.safari_booklet_picture?.isEmpty ??
+                                        true
+                                    ? false
+                                    : true),
+                        Flexible(
+                          child: Text(
+                            setapptext(key: 'key_Picture_of_Safari_Booklet'),
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            RaisedButton(
+                              child:
+                                  Text("Click here to capture image. (< 10MB)"),
+                              onPressed: () async {
+                                localdata.safari_booklet_picture =
+                                    await appimagepicker();
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: localdata.safari_booklet_picture?.isEmpty ?? true
+                            ? Center(
+                                child: Text("No image"),
+                              )
+                            : Image.file(
+                                File(localdata.safari_booklet_picture),
+                              ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -2764,8 +3397,10 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.fst_have_building = value;
                 setState(() {});
               },
-              validate:
-                  localdata.fst_have_building?.isEmpty ?? true ? true : false),
+              validate: ((localdata.fst_have_building?.isEmpty ?? true) ||
+                      (localdata.fst_have_building == "0"))
+                  ? true
+                  : false),
 
           ///first building
           ///start
@@ -2817,15 +3452,13 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 ],
                 onChanged: (value) {
                   localdata.fst_building_category = value;
-                  setState(() {
-                    ddfstbuildingCategory = value;
-                  });
+                  setState(() {});
                 },
                 onSaved: (value) {
                   localdata.fst_building_category = value;
                 },
                 value: localdata.fst_building_category?.isEmpty ?? true
-                    ? ddfstbuildingCategory
+                    ? "0"
                     : localdata.fst_building_category,
                 validate: (localdata.fst_building_category?.isEmpty ?? true) ||
                         (localdata.fst_building_category == "0")
@@ -2893,7 +3526,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     : localdata.snd_have_building,
                 iscompleted:
                     localdata.snd_have_building?.isEmpty ?? true ? false : true,
-                headerlablekey: 'key_does_property_building',
+                headerlablekey: 'key_add_building',
                 dropdownitems: [
                   Dpvalue(
                       name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -2907,7 +3540,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   localdata.snd_have_building = value;
                   setState(() {});
                 },
-                validate: localdata.snd_have_building?.isEmpty ?? true
+                validate: ((localdata.snd_have_building?.isEmpty ?? true) ||
+                        (localdata.snd_have_building == "0"))
                     ? true
                     : false),
           ],
@@ -2963,9 +3597,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 ],
                 onChanged: (value) {
                   localdata.snd_building_category = value;
-                  setState(() {
-                    ddScndbuildingCategory = value;
-                  });
+                  setState(() {});
                 },
                 onSaved: (value) {
                   localdata.snd_building_category = value;
@@ -3039,7 +3671,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     : localdata.trd_have_building,
                 iscompleted:
                     localdata.trd_have_building?.isEmpty ?? true ? false : true,
-                headerlablekey: 'key_does_property_building',
+                headerlablekey: 'key_add_building',
                 dropdownitems: [
                   Dpvalue(
                       name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -3053,7 +3685,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   localdata.trd_have_building = value;
                   setState(() {});
                 },
-                validate: localdata.trd_have_building?.isEmpty ?? true
+                validate: ((localdata.trd_have_building?.isEmpty ?? true) ||
+                        (localdata.trd_have_building == "0"))
                     ? true
                     : false),
           ],
@@ -3184,7 +3817,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 iscompleted: localdata.forth_have_building?.isEmpty ?? true
                     ? false
                     : true,
-                headerlablekey: 'key_does_property_building',
+                headerlablekey: 'key_add_building',
                 dropdownitems: [
                   Dpvalue(
                       name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -3198,7 +3831,8 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   localdata.forth_have_building = value;
                   setState(() {});
                 },
-                validate: localdata.forth_have_building?.isEmpty ?? true
+                validate: ((localdata.forth_have_building?.isEmpty ?? true) ||
+                        (localdata.forth_have_building == "0"))
                     ? true
                     : false),
           ],
@@ -3224,15 +3858,13 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 ],
                 onChanged: (value) {
                   localdata.forth_building_use = value;
-                  setState(() {
-                    ddForthbuildinguse = value;
-                  });
+                  setState(() {});
                 },
                 onSaved: (value) {
                   localdata.forth_building_use = value;
                 },
                 value: localdata.forth_building_use?.isEmpty ?? true
-                    ? ddForthbuildinguse
+                    ? "0"
                     : localdata.forth_building_use,
                 validate: (localdata.forth_building_use?.isEmpty ?? true) ||
                         (localdata.forth_building_use == "0")
@@ -3339,7 +3971,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     : localdata.fth_have_building,
                 iscompleted:
                     localdata.fth_have_building?.isEmpty ?? true ? false : true,
-                headerlablekey: 'key_does_property_building',
+                headerlablekey: 'key_add_building',
                 dropdownitems: [
                   Dpvalue(
                       name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -3353,7 +3985,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   localdata.fth_have_building = value;
                   setState(() {});
                 },
-                validate: localdata.fth_have_building?.isEmpty ?? true
+                validate: ((localdata.fth_have_building?.isEmpty ?? true)||(localdata.fth_have_building=="0"))
                     ? true
                     : false),
           ],
@@ -3721,8 +4353,78 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.second_partner_email = value.trim();
                 setState(() {});
               }),
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_photo_owner'),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        completedcheckbox(
+                            isCompleted:
+                                localdata.second_partner_image?.isEmpty ?? true
+                                    ? false
+                                    : true),
+                        Flexible(
+                          child: Text(
+                            setapptext(key: 'key_photo_owner'),
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            RaisedButton(
+                              child:
+                                  Text("Click here to capture image. (< 10MB)"),
+                              onPressed: () async {
+                                localdata.second_partner_image =
+                                    await appimagepicker();
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: localdata.second_partner_image?.isEmpty ?? true
+                            ? Center(
+                                child: Text("No image"),
+                              )
+                            : Image.file(
+                                File(localdata.second_partner_image),
+                              ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+
           formcardtextfield(
               initvalue: localdata.second_partner_machinegun_no?.isEmpty ?? true
                   ? ""
@@ -3784,12 +4486,225 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.second_partner_reg_no = value;
                 setState(() {});
               }),
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_photo_note1'),
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_photo_tips1'),
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_photo_tips2'),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        completedcheckbox(
+                            isCompleted:
+                                localdata.second_partner_phote_note1?.isEmpty ??
+                                        true
+                                    ? false
+                                    : true),
+                        Flexible(
+                          child: Text(
+                            setapptext(key: 'key_photo_note1'),
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            RaisedButton(
+                              child:
+                                  Text("Click here to capture image. (< 10MB)"),
+                              onPressed: () async {
+                                localdata.second_partner_phote_note1 =
+                                    await appimagepicker();
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: localdata.second_partner_phote_note1?.isEmpty ??
+                                true
+                            ? Center(
+                                child: Text("No image"),
+                              )
+                            : Image.file(
+                                File(localdata.second_partner_phote_note1),
+                              ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        completedcheckbox(
+                            isCompleted:
+                                localdata.second_partner_photo_tips1?.isEmpty ??
+                                        true
+                                    ? false
+                                    : true),
+                        Flexible(
+                          child: Text(
+                            setapptext(key: 'key_photo_tips1'),
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            RaisedButton(
+                              child:
+                                  Text("Click here to capture image. (< 10MB)"),
+                              onPressed: () async {
+                                localdata.second_partner_photo_tips1 =
+                                    await appimagepicker();
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: localdata.second_partner_photo_tips1?.isEmpty ??
+                                true
+                            ? Center(
+                                child: Text("No image"),
+                              )
+                            : Image.file(
+                                File(localdata.second_partner_photo_tips1),
+                              ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        completedcheckbox(
+                            isCompleted:
+                                localdata.second_partner_photo_tips2?.isEmpty ??
+                                        true
+                                    ? false
+                                    : true),
+                        Flexible(
+                          child: Text(
+                            setapptext(key: 'key_photo_tips2'),
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            RaisedButton(
+                              child:
+                                  Text("Click here to capture image. (< 10MB)"),
+                              onPressed: () async {
+                                localdata.second_partner_photo_tips2 =
+                                    await appimagepicker();
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: localdata.second_partner_photo_tips2?.isEmpty ??
+                                true
+                            ? Center(
+                                child: Text("No image"),
+                              )
+                            : Image.file(
+                                File(localdata.second_partner_photo_tips2),
+                              ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
 
           ///end
           ///third partner details
@@ -3908,8 +4823,78 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.third_partner_email = value;
                 setState(() {});
               }),
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_photo_owner'),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        completedcheckbox(
+                            isCompleted:
+                                localdata.third_partner_image?.isEmpty ?? true
+                                    ? false
+                                    : true),
+                        Flexible(
+                          child: Text(
+                            setapptext(key: 'key_photo_owner'),
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            RaisedButton(
+                              child:
+                                  Text("Click here to capture image. (< 10MB)"),
+                              onPressed: () async {
+                                localdata.third_partner_image =
+                                    await appimagepicker();
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: localdata.third_partner_image?.isEmpty ?? true
+                            ? Center(
+                                child: Text("No image"),
+                              )
+                            : Image.file(
+                                File(localdata.third_partner_image),
+                              ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+
           formcardtextfield(
               initvalue: localdata.third_partner_machinegun_no?.isEmpty ?? true
                   ? ""
@@ -3970,12 +4955,225 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.third_partner_reg_no = value;
                 setState(() {});
               }),
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_photo_note1'),
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_photo_tips1'),
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_photo_tips2'),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        completedcheckbox(
+                            isCompleted:
+                                localdata.third_partner_phote_note1?.isEmpty ??
+                                        true
+                                    ? false
+                                    : true),
+                        Flexible(
+                          child: Text(
+                            setapptext(key: 'key_photo_note1'),
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            RaisedButton(
+                              child:
+                                  Text("Click here to capture image. (< 10MB)"),
+                              onPressed: () async {
+                                localdata.third_partner_phote_note1 =
+                                    await appimagepicker();
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child:
+                            localdata.third_partner_phote_note1?.isEmpty ?? true
+                                ? Center(
+                                    child: Text("No image"),
+                                  )
+                                : Image.file(
+                                    File(localdata.third_partner_phote_note1),
+                                  ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        completedcheckbox(
+                            isCompleted:
+                                localdata.third_partner_photo_tips1?.isEmpty ??
+                                        true
+                                    ? false
+                                    : true),
+                        Flexible(
+                          child: Text(
+                            setapptext(key: 'key_photo_tips1'),
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            RaisedButton(
+                              child:
+                                  Text("Click here to capture image. (< 10MB)"),
+                              onPressed: () async {
+                                localdata.third_partner_photo_tips1 =
+                                    await appimagepicker();
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child:
+                            localdata.third_partner_photo_tips1?.isEmpty ?? true
+                                ? Center(
+                                    child: Text("No image"),
+                                  )
+                                : Image.file(
+                                    File(localdata.third_partner_photo_tips1),
+                                  ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        completedcheckbox(
+                            isCompleted:
+                                localdata.third_partner_photo_tips2?.isEmpty ??
+                                        true
+                                    ? false
+                                    : true),
+                        Flexible(
+                          child: Text(
+                            setapptext(key: 'key_photo_tips2'),
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            RaisedButton(
+                              child:
+                                  Text("Click here to capture image. (< 10MB)"),
+                              onPressed: () async {
+                                localdata.third_partner_photo_tips2 =
+                                    await appimagepicker();
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child:
+                            localdata.third_partner_photo_tips2?.isEmpty ?? true
+                                ? Center(
+                                    child: Text("No image"),
+                                  )
+                                : Image.file(
+                                    File(localdata.third_partner_photo_tips2),
+                                  ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
 
           ///end
           ///fourth partner
@@ -4096,8 +5294,78 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.fourth_partner_email = value;
                 setState(() {});
               }),
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_photo_owner'),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        completedcheckbox(
+                            isCompleted:
+                                localdata.fourth_partner_image?.isEmpty ?? true
+                                    ? false
+                                    : true),
+                        Flexible(
+                          child: Text(
+                            setapptext(key: 'key_photo_owner'),
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            RaisedButton(
+                              child:
+                                  Text("Click here to capture image. (< 10MB)"),
+                              onPressed: () async {
+                                localdata.fourth_partner_image =
+                                    await appimagepicker();
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: localdata.fourth_partner_image?.isEmpty ?? true
+                            ? Center(
+                                child: Text("No image"),
+                              )
+                            : Image.file(
+                                File(localdata.fourth_partner_image),
+                              ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+
           formcardtextfield(
               initvalue: localdata.fourth_partner_machinegun_no?.isEmpty ?? true
                   ? ""
@@ -4159,12 +5427,225 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.fourth_partner_reg_no = value;
                 setState(() {});
               }),
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_photo_note1'),
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_photo_tips1'),
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_photo_tips2'),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        completedcheckbox(
+                            isCompleted:
+                                localdata.fourth_partner_phote_note1?.isEmpty ??
+                                        true
+                                    ? false
+                                    : true),
+                        Flexible(
+                          child: Text(
+                            setapptext(key: 'key_photo_note1'),
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            RaisedButton(
+                              child:
+                                  Text("Click here to capture image. (< 10MB)"),
+                              onPressed: () async {
+                                localdata.fourth_partner_phote_note1 =
+                                    await appimagepicker();
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: localdata.fourth_partner_phote_note1?.isEmpty ??
+                                true
+                            ? Center(
+                                child: Text("No image"),
+                              )
+                            : Image.file(
+                                File(localdata.fourth_partner_phote_note1),
+                              ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        completedcheckbox(
+                            isCompleted:
+                                localdata.fourth_partner_photo_tips1?.isEmpty ??
+                                        true
+                                    ? false
+                                    : true),
+                        Flexible(
+                          child: Text(
+                            setapptext(key: 'key_photo_tips1'),
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            RaisedButton(
+                              child:
+                                  Text("Click here to capture image. (< 10MB)"),
+                              onPressed: () async {
+                                localdata.fourth_partner_photo_tips1 =
+                                    await appimagepicker();
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: localdata.fourth_partner_photo_tips1?.isEmpty ??
+                                true
+                            ? Center(
+                                child: Text("No image"),
+                              )
+                            : Image.file(
+                                File(localdata.fourth_partner_photo_tips1),
+                              ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        completedcheckbox(
+                            isCompleted:
+                                localdata.fourth_partner_photo_tips2?.isEmpty ??
+                                        true
+                                    ? false
+                                    : true),
+                        Flexible(
+                          child: Text(
+                            setapptext(key: 'key_photo_tips2'),
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            RaisedButton(
+                              child:
+                                  Text("Click here to capture image. (< 10MB)"),
+                              onPressed: () async {
+                                localdata.fourth_partner_photo_tips2 =
+                                    await appimagepicker();
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: localdata.fourth_partner_photo_tips2?.isEmpty ??
+                                true
+                            ? Center(
+                                child: Text("No image"),
+                              )
+                            : Image.file(
+                                File(localdata.fourth_partner_photo_tips2),
+                              ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
 
           ///end
           ///fifth partnet deatils
@@ -4283,8 +5764,78 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.fifth_partner_email = value;
                 setState(() {});
               }),
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_photo_owner'),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        completedcheckbox(
+                            isCompleted:
+                                localdata.fifth_partner_image?.isEmpty ?? true
+                                    ? false
+                                    : true),
+                        Flexible(
+                          child: Text(
+                            setapptext(key: 'key_photo_owner'),
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            RaisedButton(
+                              child:
+                                  Text("Click here to capture image. (< 10MB)"),
+                              onPressed: () async {
+                                localdata.fifth_partner_image =
+                                    await appimagepicker();
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: localdata.fifth_partner_image?.isEmpty ?? true
+                            ? Center(
+                                child: Text("No image"),
+                              )
+                            : Image.file(
+                                File(localdata.fifth_partner_image),
+                              ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+
           formcardtextfield(
               initvalue: localdata.fifth_partner_machinegun_no?.isEmpty ?? true
                   ? ""
@@ -4345,12 +5896,225 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 localdata.fifth_partner_reg_no = value;
                 setState(() {});
               }),
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_photo_note1'),
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_photo_tips1'),
-          formCardFileuploader(
-              isCompleted: false, headerlablekey: 'key_photo_tips2'),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        completedcheckbox(
+                            isCompleted:
+                                localdata.fifth_partner_phote_note1?.isEmpty ??
+                                        true
+                                    ? false
+                                    : true),
+                        Flexible(
+                          child: Text(
+                            setapptext(key: 'key_photo_note1'),
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            RaisedButton(
+                              child:
+                                  Text("Click here to capture image. (< 10MB)"),
+                              onPressed: () async {
+                                localdata.fifth_partner_phote_note1 =
+                                    await appimagepicker();
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child:
+                            localdata.fifth_partner_phote_note1?.isEmpty ?? true
+                                ? Center(
+                                    child: Text("No image"),
+                                  )
+                                : Image.file(
+                                    File(localdata.fifth_partner_phote_note1),
+                                  ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        completedcheckbox(
+                            isCompleted:
+                                localdata.fifth_partner_photo_tips1?.isEmpty ??
+                                        true
+                                    ? false
+                                    : true),
+                        Flexible(
+                          child: Text(
+                            setapptext(key: 'key_photo_tips1'),
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            RaisedButton(
+                              child:
+                                  Text("Click here to capture image. (< 10MB)"),
+                              onPressed: () async {
+                                localdata.fifth_partner_photo_tips1 =
+                                    await appimagepicker();
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child:
+                            localdata.fifth_partner_photo_tips1?.isEmpty ?? true
+                                ? Center(
+                                    child: Text("No image"),
+                                  )
+                                : Image.file(
+                                    File(localdata.fifth_partner_photo_tips1),
+                                  ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        completedcheckbox(
+                            isCompleted:
+                                localdata.fifth_partner_photo_tips2?.isEmpty ??
+                                        true
+                                    ? false
+                                    : true),
+                        Flexible(
+                          child: Text(
+                            setapptext(key: 'key_photo_tips2'),
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        child: Column(
+                          children: <Widget>[
+                            RaisedButton(
+                              child:
+                                  Text("Click here to capture image. (< 10MB)"),
+                              onPressed: () async {
+                                localdata.fifth_partner_photo_tips2 =
+                                    await appimagepicker();
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 4,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child:
+                            localdata.fifth_partner_photo_tips2?.isEmpty ?? true
+                                ? Center(
+                                    child: Text("No image"),
+                                  )
+                                : Image.file(
+                                    File(localdata.fifth_partner_photo_tips2),
+                                  ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
 
           ///end
         ],
@@ -4386,7 +6150,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Text(
-          "Property Registation",
+          "Property Survey",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),

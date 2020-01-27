@@ -126,7 +126,7 @@
     "key_Property_Document_Photo-4": "Property Document Photo-4",
     "key_photo-1": "Photo - 1",
     "key_photo-6": "Photo - 6",
-    "key_meter_number:": "Meter number:",
+    "key_meter_number": "Meter number:",
     "key_Common_name": "Common name",
     "key_father_name": "Father's name",
     "key_Picture_of_Bell_Power": "Picture of Bell Power",
@@ -135,7 +135,7 @@
     "key_Lease_Apartment": "Lease Apartment",
     "key_Four_walls_no_building": "Four walls no building",
     "key_Under_Construction_Repairs": "Under Construction Repairs",
-    "key_Safari_Machine_Gun_Number:": "Safari Machine Gun Number:",
+    "key_Safari_Machine_Gun_Number": "Safari Machine Gun Number:",
     "key_Issued_Date": "Issued Date",
     "key_way_to_enter": "way to enter date: 01/01/25",
     "key_Picture_of_Safari_Booklet": "Picture of Safari Booklet",
@@ -239,5 +239,6 @@
     "key_Nili": "Nili",
     "key_Sharif": "Mazar-E-Sharif",
     "key_Charikar": "Charikar",
-    "key_":""
+    "key_":"",
+    "key_add_building":"Add new Building"
 }

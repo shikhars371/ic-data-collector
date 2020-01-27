@@ -142,7 +142,7 @@ class _SurveyPageState extends State<SurveyPage> {
                 direction: Axis.horizontal,
                 children: <Widget>[
                   IconButton(
-                    iconSize: 16,
+                    iconSize: 25,
                     icon: Icon(Icons.edit),
                     onPressed: () {
                       Navigator.push(
@@ -158,7 +158,7 @@ class _SurveyPageState extends State<SurveyPage> {
                     },
                   ),
                   IconButton(
-                    iconSize: 16,
+                    iconSize: 25,
                     icon: Icon(Icons.delete),
                     onPressed: () {
                       showDialog(
@@ -201,7 +201,7 @@ class _SurveyPageState extends State<SurveyPage> {
                     },
                   ),
                   IconButton(
-                    iconSize: 16,
+                    iconSize: 25,
                     icon: Icon(Icons.sync),
                     onPressed: () {},
                   ),
