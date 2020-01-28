@@ -7,6 +7,7 @@ import './propertyregistation.dart';
 import '../utils/db_helper.dart';
 import '../controllers/auth.dart';
 import '../models/localpropertydata.dart';
+import './surveyinfo.dart';
 
 class SurveyPage extends StatefulWidget {
   SurveyPage({this.id});
@@ -288,7 +289,7 @@ class _SurveyPageState extends State<SurveyPage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (BuildContext context) => PropertyRegistationPage(
+              builder: (BuildContext context) => SurveyInfoPage(
                 taskid: widget.id,
               ),
             ),
