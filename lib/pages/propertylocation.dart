@@ -18,6 +18,15 @@ class PropertyLocationPage extends StatefulWidget {
 class _PropertyLocationPageState extends State<PropertyLocationPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
+  FocusNode _area;
+  FocusNode _pass;
+  FocusNode _block;
+  FocusNode _part_number;
+  FocusNode _unit_number;
+  FocusNode _unit_in_parcel;
+  FocusNode _street_name;
+  FocusNode _historic_site_area;
+  FocusNode _land_area;
 
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
@@ -93,6 +102,15 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
     localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
     super.initState();
+    _area = new FocusNode();
+    _pass = new FocusNode();
+    _block = new FocusNode();
+    _part_number = new FocusNode();
+    _unit_number = new FocusNode();
+    _unit_in_parcel = new FocusNode();
+    _street_name = new FocusNode();
+    _historic_site_area = new FocusNode();
+    _land_area = new FocusNode();
   }
 
   @override
@@ -253,6 +271,13 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                         : true,
                                     hinttextkey:
                                         setapptext(key: 'Key_number_value'),
+                                        fieldfocus: _area,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _area.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_pass);
+                                  },
                                     initvalue: localdata.area?.isEmpty ?? true
                                         ? ""
                                         : localdata.area,
@@ -278,6 +303,13 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     headerlablekey: setapptext(key: 'key_pass'),
                                     hinttextkey:
                                         setapptext(key: 'Key_number_value'),
+                                        fieldfocus: _pass,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _pass.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_block);
+                                  },
                                     radiovalue: localdata.pass?.isEmpty ?? true
                                         ? false
                                         : true,
@@ -307,6 +339,13 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                         : true,
                                     hinttextkey:
                                         setapptext(key: 'Key_number_value'),
+                                        fieldfocus: _block,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _block.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_part_number);
+                                  },
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
                                         return "field should not be blank";
@@ -329,6 +368,13 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                             : localdata.part_number,
                                     headerlablekey:
                                         setapptext(key: 'key_part_number'),
+                                        fieldfocus: _part_number,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _part_number.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_unit_number);
+                                  },
                                     radiovalue:
                                         localdata.part_number?.isEmpty ?? true
                                             ? false
@@ -357,6 +403,13 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                             : localdata.unit_number,
                                     headerlablekey:
                                         setapptext(key: 'key_unit_number'),
+                                        fieldfocus: _unit_number,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _unit_number.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_unit_in_parcel);
+                                  },
                                     radiovalue:
                                         localdata.unit_number?.isEmpty ?? true
                                             ? false
@@ -386,6 +439,13 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     keyboardtype: TextInputType.number,
                                     headerlablekey:
                                         setapptext(key: 'key_number_of_unit'),
+                                        fieldfocus: _unit_in_parcel,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _unit_in_parcel.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_street_name);
+                                  },
                                     radiovalue:
                                         localdata.unit_in_parcel?.isEmpty ??
                                                 true
@@ -407,6 +467,13 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                             : localdata.street_name,
                                     headerlablekey:
                                         setapptext(key: 'key_state_name'),
+                                        fieldfocus: _street_name,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _street_name.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_historic_site_area);
+                                  },
                                     radiovalue:
                                         localdata.street_name?.isEmpty ?? true
                                             ? false
@@ -428,6 +495,13 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                             : localdata.historic_site_area,
                                     headerlablekey:
                                         setapptext(key: 'key_historycal_site'),
+                                        fieldfocus: _historic_site_area,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _historic_site_area.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_land_area);
+                                  },
                                     radiovalue:
                                         localdata.historic_site_area?.isEmpty ??
                                                 true
@@ -452,6 +526,11 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     keyboardtype: TextInputType.number,
                                     headerlablekey:
                                         setapptext(key: 'key_land_area'),
+                                        fieldfocus: _land_area,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _land_area.unfocus();
+                                    },
                                     radiovalue:
                                         localdata.land_area?.isEmpty ?? true
                                             ? false

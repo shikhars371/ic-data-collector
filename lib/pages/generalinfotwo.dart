@@ -18,6 +18,8 @@ class GeneralInfotwoPage extends StatefulWidget {
 class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
+  FocusNode _issue_regarding_property;
+  FocusNode _municipality_ref_number;
 
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
@@ -92,8 +94,10 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
   void initState() {
     localdata = widget.localdata;
     super.initState();
+    _issue_regarding_property = new FocusNode();
+  _municipality_ref_number = new FocusNode();
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,6 +134,13 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
                                       : localdata.issue_regarding_property,
                                   headerlablekey:
                                       setapptext(key: 'key_property_issues'),
+                                      fieldfocus: _issue_regarding_property,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _issue_regarding_property.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_municipality_ref_number);
+                                  },
                                   radiovalue: localdata.issue_regarding_property
                                               ?.isEmpty ??
                                           true
@@ -152,6 +163,11 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
                                       : localdata.municipality_ref_number,
                                   headerlablekey: setapptext(
                                       key: 'key_municipal_regulation'),
+                                      fieldfocus: _municipality_ref_number,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _municipality_ref_number.unfocus();
+                                  },
                                   radiovalue: localdata.municipality_ref_number
                                               ?.isEmpty ??
                                           true

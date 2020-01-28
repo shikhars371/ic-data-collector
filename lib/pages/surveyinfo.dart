@@ -24,6 +24,9 @@ class SurveyInfoPage extends StatefulWidget {
 class _SurveyInfoPageState extends State<SurveyInfoPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
+  FocusNode _firstsurveyor;
+  FocusNode _secondsurveyor;
+  FocusNode _technicalsupport;
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
   }
@@ -103,6 +106,9 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
   @override
   void initState() {
     localdata = new LocalPropertySurvey();
+    _firstsurveyor = new FocusNode();
+    _secondsurveyor = new FocusNode();
+    _technicalsupport = new FocusNode();
     localdata.taskid = widget.taskid;
     super.initState();
   }
@@ -136,13 +142,22 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
-                                  headerlablekey: setapptext(key:'key_first_surveyor'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_first_surveyor'),
                                   radiovalue:
                                       localdata.first_surveyor_name?.isEmpty ??
                                               true
                                           ? false
                                           : true,
-                                  hinttextkey: setapptext(key:'key_enter_1st_surveyor'),
+                                  hinttextkey:
+                                      setapptext(key: 'key_enter_1st_surveyor'),
+                                  fieldfocus: _firstsurveyor,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _firstsurveyor.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_secondsurveyor);
+                                  },
                                   initvalue:
                                       localdata.first_surveyor_name?.isEmpty ??
                                               true
@@ -163,13 +178,22 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  headerlablekey: setapptext(key:'key_second_surveyor'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_second_surveyor'),
                                   radiovalue:
                                       localdata.senond_surveyor_name?.isEmpty ??
                                               true
                                           ? false
                                           : true,
-                                  hinttextkey: setapptext(key:'key_enter_1st_surveyor'),
+                                  hinttextkey:
+                                      setapptext(key: 'key_enter_1st_surveyor'),
+                                  fieldfocus: _secondsurveyor,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _secondsurveyor.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_technicalsupport);
+                                  },
                                   initvalue:
                                       localdata.senond_surveyor_name?.isEmpty ??
                                               true
@@ -190,13 +214,20 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  headerlablekey: setapptext(key:'key_name_technical_support'),
+                                  headerlablekey: setapptext(
+                                      key: 'key_name_technical_support'),
                                   radiovalue: localdata.technical_support_name
                                               ?.isEmpty ??
                                           true
                                       ? false
                                       : true,
-                                  hinttextkey: setapptext(key:'key_enter_1st_surveyor'),
+                                  hinttextkey:
+                                      setapptext(key: 'key_enter_1st_surveyor'),
+                                  fieldfocus: _technicalsupport,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _technicalsupport.unfocus();
+                                  },
                                   initvalue: localdata.technical_support_name
                                               ?.isEmpty ??
                                           true
