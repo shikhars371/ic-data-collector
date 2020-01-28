@@ -8,6 +8,7 @@ import '../controllers/auth.dart';
 import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
 import '../widgets/appformcards.dart';
+import './firstpartnerinfo.dart';
 
 class BusinessLicensePage extends StatefulWidget {
   BusinessLicensePage({this.localdata});
@@ -55,7 +56,14 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
           return;
         } else {
           _formkey.currentState.save();
-          // Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context)=>),);
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => FirstPartnerPage(
+                localdata: localdata,
+              ),
+            ),
+          );
         }
       },
       child: Container(
