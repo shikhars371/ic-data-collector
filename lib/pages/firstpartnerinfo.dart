@@ -21,6 +21,12 @@ class FirstPartnerPage extends StatefulWidget {
 class _FirstPartnerPageState extends State<FirstPartnerPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
+  FocusNode _first_partner_name_property_owner;
+FocusNode _first_partner_surname;
+FocusNode _first_partner_boy;
+FocusNode _first_partner__father;
+FocusNode _first_partner_name_phone;
+FocusNode _first_partner_name_email;
   Future<String> appimagepicker() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
     var apppath = await getApplicationDocumentsDirectory();
@@ -103,6 +109,12 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
     localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
     super.initState();
+    _first_partner_name_property_owner = new FocusNode();
+_first_partner_surname = new FocusNode();
+_first_partner_boy = new FocusNode();
+_first_partner__father = new FocusNode();
+_first_partner_name_phone = new FocusNode();
+_first_partner_name_email = new FocusNode();
   }
 
   @override
@@ -134,7 +146,14 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
-                                  headerlablekey: 'key_name',
+                                  headerlablekey:  setapptext(key: 'key_name'),
+                                  fieldfocus: _first_partner_name_property_owner,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _first_partner_name_property_owner.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_first_partner_surname);
+                                  },
                                   radiovalue: localdata
                                               .first_partner_name_property_owner
                                               ?.isEmpty ??
@@ -165,7 +184,14 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  headerlablekey: 'key_surname',
+                                  headerlablekey:  setapptext(key: 'key_surname'),
+                                  fieldfocus: _first_partner_surname,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _first_partner_surname.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_first_partner_boy);
+                                  },
                                   radiovalue: localdata
                                               .first_partner_surname?.isEmpty ??
                                           true
@@ -186,7 +212,14 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  headerlablekey: 'key_wold',
+                                  headerlablekey:  setapptext(key: 'key_wold'),
+                                  fieldfocus: _first_partner_boy,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _first_partner_boy.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_first_partner__father);
+                                  },
                                   radiovalue:
                                       localdata.first_partner_boy?.isEmpty ??
                                               true
@@ -205,7 +238,11 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  headerlablekey: 'key_birth',
+                                  headerlablekey: setapptext(key:  'key_birth'),
+                                  fieldfocus: _first_partner__father,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _first_partner__father.unfocus(); },
                                   radiovalue: localdata
                                               .first_partner__father?.isEmpty ??
                                           true
@@ -240,7 +277,7 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                               "0"))
                                       ? false
                                       : true,
-                                  headerlablekey: 'key_gender',
+                                  headerlablekey: setapptext(key:  'key_gender'),
                                   dropdownitems: [
                                     Dpvalue(
                                         name: setapptext(
@@ -267,7 +304,14 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                   }),
                               formcardtextfield(
                                   keyboardtype: TextInputType.number,
-                                  headerlablekey: 'key_phone',
+                                  headerlablekey:  setapptext(key: 'key_phone'),
+                                  fieldfocus: _first_partner_name_phone,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _first_partner_name_phone.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_first_partner_name_email);
+                                  },
                                   radiovalue: localdata.first_partner_name_phone
                                               ?.isEmpty ??
                                           true
@@ -294,7 +338,11 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                   }),
                               formcardtextfield(
                                   keyboardtype: TextInputType.emailAddress,
-                                  headerlablekey: 'key_email',
+                                  headerlablekey:  setapptext(key: 'key_email'),
+                                  fieldfocus: _first_partner_name_email,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _first_partner_name_email.unfocus(); },
                                   radiovalue: localdata.first_partner_name_email
                                               ?.isEmpty ??
                                           true
@@ -411,7 +459,7 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                 ),
                               ),
                               formcardtextfield(
-                                  headerlablekey: 'key_enter_any_mere',
+                                  headerlablekey:  setapptext(key: 'key_enter_any_mere'),
                                   radiovalue: localdata
                                               .first_partner_name_mere_individuals
                                               ?.isEmpty ??

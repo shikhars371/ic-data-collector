@@ -143,7 +143,7 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
                                             true
                                         ? false
                                         : true,
-                                headerlablekey: 'key_the_owner',
+                                headerlablekey:setapptext(key:  'key_the_owner'),
                                 dropdownitems: [
                                   Dpvalue(
                                       name:
@@ -175,7 +175,7 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
                                         true
                                     ? false
                                     : true,
-                                headerlablekey: 'key_Master_rent',
+                                headerlablekey:setapptext(key:  'key_Master_rent'),
                                 dropdownitems: [
                                   Dpvalue(
                                       name:
@@ -208,7 +208,7 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
                                         true
                                     ? false
                                     : true,
-                                headerlablekey: 'key_master_recipient',
+                                headerlablekey:setapptext(key:  'key_master_recipient'),
                                 dropdownitems: [
                                   Dpvalue(
                                       name:
@@ -242,7 +242,7 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
                                         true
                                     ? false
                                     : true,
-                                headerlablekey: 'key_master_no_longer',
+                                headerlablekey:setapptext(key:  'key_master_no_longer'),
                                 dropdownitems: [
                                   Dpvalue(
                                       name:
@@ -272,14 +272,14 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
                                         ? ""
                                         : localdata
                                             .property_user_type_of_misconduct,
-                                    headerlablekey: 'key_specify_misconduct',
+                                    headerlablekey: setapptext(key: 'key_specify_misconduct'),
                                     radiovalue: localdata
                                                 .property_user_type_of_misconduct
                                                 ?.isEmpty ??
                                             true
                                         ? false
                                         : true,
-                                    hinttextkey: 'key_enter_1st_surveyor',
+                                    hinttextkey:setapptext(key:  'key_enter_1st_surveyor'),
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
                                         return "field should not be blank";

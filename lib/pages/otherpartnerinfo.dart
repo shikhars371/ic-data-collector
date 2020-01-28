@@ -21,6 +21,47 @@ class OtherPartnerInfoPage extends StatefulWidget {
 class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
+ FocusNode  _second_partner_name;
+FocusNode _second_partner_surname;
+FocusNode _second_partner_boy;
+FocusNode _second_partner_father;
+FocusNode _second_partner_phone;
+FocusNode _second_partner_email;
+FocusNode _second_partner_machinegun_no;
+FocusNode _second_partner_cover_note;
+FocusNode _second_partner_note_page;
+FocusNode _second_partner_reg_no;
+FocusNode _third_partner_name;
+FocusNode _third_partner_surname;
+FocusNode _third_partner_boy;
+FocusNode _third_partner_father;
+FocusNode _third_partner_phone;
+FocusNode _third_partner_email;
+FocusNode _third_partner_machinegun_no;
+FocusNode _third_partner_cover_note;
+FocusNode _third_partner_note_page;
+FocusNode _third_partner_reg_no;
+FocusNode _fourth_partner_name;
+FocusNode _fourth_partner_surname;
+FocusNode _fourth_partner_boy;
+FocusNode _fourth_partner_father;
+FocusNode _fourth_partner_phone;
+FocusNode _fourth_partner_email;
+FocusNode _fourth_partner_machinegun_no;
+FocusNode _fourth_partner_cover_note;
+FocusNode _fourth_partner_note_page;
+FocusNode _fourth_partner_reg_no;
+FocusNode _fifth_partner_name;
+FocusNode _fifth_partner_surname;
+FocusNode _fifth_partner_boy;
+FocusNode _fifth_partner_father;
+FocusNode _fifth_partner_phone;
+FocusNode _fifth_partner_email;
+FocusNode _fifth_partner_machinegun_no;
+FocusNode _fifth_partner_cover_note;
+FocusNode _fifth_partner_note_page;
+FocusNode _fifth_partner_reg_no;
+
   Future<String> appimagepicker() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
     var apppath = await getApplicationDocumentsDirectory();
@@ -103,6 +144,47 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
     localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
     super.initState();
+    _second_partner_name = new FocusNode();
+_second_partner_surname = new FocusNode();
+_second_partner_boy = new FocusNode();
+_second_partner_father = new FocusNode();
+_second_partner_phone = new FocusNode();
+_second_partner_email = new FocusNode();
+_second_partner_machinegun_no = new FocusNode();
+_second_partner_cover_note = new FocusNode();
+_second_partner_note_page = new FocusNode();
+_second_partner_reg_no = new FocusNode();
+_third_partner_name = new FocusNode();
+_third_partner_surname = new FocusNode();
+_third_partner_boy = new FocusNode();
+_third_partner_father = new FocusNode();
+_third_partner_phone = new FocusNode();
+_third_partner_email = new FocusNode();
+_third_partner_machinegun_no = new FocusNode();
+_third_partner_cover_note = new FocusNode();
+_third_partner_note_page = new FocusNode();
+_third_partner_reg_no = new FocusNode();
+_fourth_partner_name = new FocusNode();
+_fourth_partner_surname = new FocusNode();
+_fourth_partner_boy = new FocusNode();
+_fourth_partner_father = new FocusNode();
+_fourth_partner_phone = new FocusNode();
+_fourth_partner_email = new FocusNode();
+_fourth_partner_machinegun_no = new FocusNode();
+_fourth_partner_cover_note = new FocusNode();
+_fourth_partner_note_page = new FocusNode();
+_fourth_partner_reg_no = new FocusNode();
+_fifth_partner_name = new FocusNode();
+_fifth_partner_surname = new FocusNode();
+_fifth_partner_boy = new FocusNode();
+_fifth_partner_father = new FocusNode();
+_fifth_partner_phone = new FocusNode();
+_fifth_partner_email = new FocusNode();
+_fifth_partner_machinegun_no = new FocusNode();
+_fifth_partner_cover_note = new FocusNode();
+_fifth_partner_note_page = new FocusNode();
+_fifth_partner_reg_no = new FocusNode();
+
   }
 
   @override
@@ -144,7 +226,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                 ),
                               ),
                               formcardtextfield(
-                                  headerlablekey: 'key_name',
+                                  headerlablekey:setapptext(key:  'key_name'),
+                                  fieldfocus: _second_partner_name,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _second_partner_name.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_second_partner_surname);
+                                  },
+
                                   radiovalue:
                                       localdata.second_partner_name?.isEmpty ??
                                               true
@@ -165,7 +255,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  headerlablekey: 'key_surname',
+                                  headerlablekey: setapptext(key: 'key_surname'),
+                                  fieldfocus: _second_partner_surname,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _second_partner_surname.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_second_partner_boy);
+                                  },
+
                                   radiovalue: localdata.second_partner_surname
                                               ?.isEmpty ??
                                           true
@@ -186,7 +284,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  headerlablekey: 'key_boy',
+                                  headerlablekey:setapptext(key:  'key_boy'),
+                                  fieldfocus: _second_partner_boy,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _second_partner_boy.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_second_partner_father);
+                                  },
+
                                   radiovalue:
                                       localdata.second_partner_boy?.isEmpty ??
                                               true
@@ -205,7 +311,11 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  headerlablekey: 'key_father_name',
+                                  headerlablekey:setapptext(key:  'key_father_name'),
+                                  fieldfocus: _second_partner_father,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _second_partner_father.unfocus(); },
                                   radiovalue: localdata
                                               .second_partner_father?.isEmpty ??
                                           true
@@ -236,7 +346,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? false
                                       : true,
-                                  headerlablekey: 'key_gender',
+                                  headerlablekey: setapptext(key: 'key_gender'),
                                   dropdownitems: [
                                     Dpvalue(
                                         name: setapptext(
@@ -258,7 +368,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   keyboardtype: TextInputType.number,
-                                  headerlablekey: 'key_phone',
+                                  headerlablekey:setapptext(key:  'key_phone'),
+                                  fieldfocus: _second_partner_phone,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _second_partner_phone.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_second_partner_email);
+                                  },
+
                                   radiovalue:
                                       localdata.second_partner_phone?.isEmpty ??
                                               true
@@ -284,7 +402,11 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     }
                                   }),
                               formcardtextfield(
-                                  headerlablekey: 'key_email',
+                                  headerlablekey: setapptext(key: 'key_email'),
+                                  fieldfocus: _second_partner_email,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _second_partner_email.unfocus(); },
                                   keyboardtype: TextInputType.emailAddress,
                                   radiovalue:
                                       localdata.second_partner_email?.isEmpty ??
@@ -411,7 +533,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.second_partner_machinegun_no,
-                                  headerlablekey: 'key_machine_gun',
+                                  headerlablekey:setapptext(key:  'key_machine_gun'),
+                                  fieldfocus: _second_partner_machinegun_no,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _second_partner_machinegun_no.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_second_partner_cover_note);
+                                  },
+
                                   radiovalue: localdata
                                               .second_partner_machinegun_no
                                               ?.isEmpty ??
@@ -433,7 +563,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.second_partner_cover_note,
-                                  headerlablekey: 'key_cover_letter',
+                                  headerlablekey: setapptext(key: 'key_cover_letter'),
+                                  fieldfocus: _second_partner_cover_note,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _second_partner_cover_note.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_second_partner_note_page);
+                                  },
+
                                   radiovalue: localdata
                                               .second_partner_cover_note
                                               ?.isEmpty ??
@@ -453,7 +591,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.second_partner_note_page,
-                                  headerlablekey: 'key_notification_page',
+                                  headerlablekey: setapptext(key: 'key_notification_page'),
+                                  fieldfocus: _second_partner_note_page,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _second_partner_note_page.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_second_partner_reg_no);
+                                  },
+
                                   radiovalue: localdata.second_partner_note_page
                                               ?.isEmpty ??
                                           true
@@ -472,7 +618,11 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.second_partner_reg_no,
-                                  headerlablekey: 'key_reg_no',
+                                  headerlablekey:setapptext(key:  'key_reg_no'),
+                                  fieldfocus: _second_partner_reg_no,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _second_partner_reg_no.unfocus(); },
                                   radiovalue: localdata
                                               .second_partner_reg_no?.isEmpty ??
                                           true
@@ -770,7 +920,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.third_partner_name,
-                                  headerlablekey: 'key_name',
+                                  headerlablekey: setapptext(key: 'key_name'),
+                                  fieldfocus: _third_partner_name,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _third_partner_name.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_third_partner_surname);
+                                  },
+
                                   radiovalue:
                                       localdata.third_partner_name?.isEmpty ??
                                               true
@@ -789,7 +947,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.third_partner_surname,
-                                  headerlablekey: 'key_surname',
+                                  headerlablekey:setapptext(key:  'key_surname'),
+                                  fieldfocus: _third_partner_surname,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _third_partner_surname.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_third_partner_boy);
+                                  },
+
                                   radiovalue: localdata
                                               .third_partner_surname?.isEmpty ??
                                           true
@@ -808,7 +974,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.third_partner_boy,
-                                  headerlablekey: 'key_boy',
+                                  headerlablekey: setapptext(key: 'key_boy'),
+                                  fieldfocus: _third_partner_boy,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _third_partner_boy.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_third_partner_father);
+                                  },
+
                                   radiovalue:
                                       localdata.third_partner_boy?.isEmpty ??
                                               true
@@ -827,7 +1001,11 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.third_partner_father,
-                                  headerlablekey: 'key_father_name',
+                                  headerlablekey: setapptext(key: 'key_father_name'),
+                                  fieldfocus: _third_partner_father,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _third_partner_father.unfocus(); },
                                   radiovalue:
                                       localdata.third_partner_father?.isEmpty ??
                                               true
@@ -851,7 +1029,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? false
                                           : true,
-                                  headerlablekey: 'key_gender',
+                                  headerlablekey:setapptext(key:  'key_gender'),
                                   dropdownitems: [
                                     Dpvalue(
                                         name: setapptext(
@@ -877,7 +1055,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.third_partner_phone,
-                                  headerlablekey: 'key_phone',
+                                  headerlablekey:setapptext(key:  'key_phone'),
+                                  fieldfocus: _third_partner_phone,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _third_partner_phone.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_third_partner_email);
+                                  },
+
                                   keyboardtype: TextInputType.number,
                                   radiovalue:
                                       localdata.third_partner_phone?.isEmpty ??
@@ -902,7 +1088,11 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.third_partner_email,
-                                  headerlablekey: 'key_email',
+                                  headerlablekey: setapptext(key: 'key_email'),
+                                  fieldfocus: _third_partner_email,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _third_partner_email.unfocus(); },
                                   keyboardtype: TextInputType.emailAddress,
                                   radiovalue:
                                       localdata.third_partner_email?.isEmpty ??
@@ -1021,7 +1211,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.third_partner_machinegun_no,
-                                  headerlablekey: 'key_machine_gun',
+                                  headerlablekey: setapptext(key: 'key_machine_gun'),
+                                  fieldfocus: _third_partner_machinegun_no,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _third_partner_machinegun_no.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_third_partner_cover_note);
+                                  },
+
                                   radiovalue: localdata
                                               .third_partner_machinegun_no
                                               ?.isEmpty ??
@@ -1043,7 +1241,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.third_partner_cover_note,
-                                  headerlablekey: 'key_cover_letter',
+                                  headerlablekey: setapptext(key: 'key_cover_letter'),
+                                  fieldfocus: _third_partner_cover_note,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _third_partner_cover_note.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_third_partner_note_page);
+                                  },
+
                                   radiovalue: localdata.third_partner_cover_note
                                               ?.isEmpty ??
                                           true
@@ -1062,7 +1268,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.third_partner_note_page,
-                                  headerlablekey: 'key_notification_page',
+                                  headerlablekey:setapptext(key:  'key_notification_page'),
+                                  fieldfocus: _third_partner_note_page,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _third_partner_note_page.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_third_partner_reg_no);
+                                  },
+
                                   radiovalue: localdata.third_partner_note_page
                                               ?.isEmpty ??
                                           true
@@ -1081,7 +1295,11 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.third_partner_reg_no,
-                                  headerlablekey: 'key_reg_no',
+                                  headerlablekey: setapptext(key: 'key_reg_no'),
+                                  fieldfocus: _third_partner_reg_no,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _third_partner_reg_no.unfocus(); },
                                   radiovalue:
                                       localdata.third_partner_reg_no?.isEmpty ??
                                               true
@@ -1379,7 +1597,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.fourth_partner_name,
-                                  headerlablekey: 'key_name',
+                                  headerlablekey: setapptext(key: 'key_name'),
+                                  fieldfocus: _fourth_partner_name,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _fourth_partner_name.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_fourth_partner_surname);
+                                  },
+
                                   radiovalue:
                                       localdata.fourth_partner_name?.isEmpty ??
                                               true
@@ -1398,7 +1624,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.fourth_partner_surname,
-                                  headerlablekey: 'key_surname',
+                                  headerlablekey: setapptext(key: 'key_surname'),
+                                  fieldfocus: _fourth_partner_surname,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _fourth_partner_surname.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_fourth_partner_boy);
+                                  },
+
                                   radiovalue: localdata.fourth_partner_surname
                                               ?.isEmpty ??
                                           true
@@ -1417,7 +1651,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.fourth_partner_boy,
-                                  headerlablekey: 'key_boy',
+                                  headerlablekey: setapptext(key: 'key_boy'),
+                                  fieldfocus: _fourth_partner_boy,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _fourth_partner_boy.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_fourth_partner_father);
+                                  },
+
                                   radiovalue:
                                       localdata.fourth_partner_boy?.isEmpty ??
                                               true
@@ -1436,7 +1678,11 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.fourth_partner_father,
-                                  headerlablekey: 'key_father_name',
+                                  headerlablekey:setapptext(key:  'key_father_name'),
+                                  fieldfocus: _fourth_partner_father,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _fourth_partner_father.unfocus(); },
                                   radiovalue: localdata
                                               .fourth_partner_father?.isEmpty ??
                                           true
@@ -1460,7 +1706,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? false
                                       : true,
-                                  headerlablekey: 'key_gender',
+                                  headerlablekey: setapptext(key: 'key_gender'),
                                   dropdownitems: [
                                     Dpvalue(
                                         name: setapptext(
@@ -1486,7 +1732,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.fourth_partner_phone,
-                                  headerlablekey: 'key_phone',
+                                  headerlablekey:setapptext(key:  'key_phone'),
+                                  fieldfocus: _fourth_partner_phone,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _fourth_partner_phone.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_fourth_partner_email);
+                                  },
+
                                   keyboardtype: TextInputType.number,
                                   radiovalue:
                                       localdata.fourth_partner_phone?.isEmpty ??
@@ -1511,7 +1765,11 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.fourth_partner_email,
-                                  headerlablekey: 'key_email',
+                                  headerlablekey:setapptext(key:  'key_email'),
+                                  fieldfocus: _fourth_partner_email,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _fourth_partner_email.unfocus(); },
                                   keyboardtype: TextInputType.emailAddress,
                                   radiovalue:
                                       localdata.fourth_partner_email?.isEmpty ??
@@ -1631,7 +1889,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.fourth_partner_machinegun_no,
-                                  headerlablekey: 'key_machine_gun',
+                                  headerlablekey: setapptext(key: 'key_machine_gun'),
+                                  fieldfocus: _fourth_partner_machinegun_no,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _fourth_partner_machinegun_no.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_fourth_partner_cover_note);
+                                  },
+
                                   radiovalue: localdata
                                               .fourth_partner_machinegun_no
                                               ?.isEmpty ??
@@ -1653,7 +1919,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.fourth_partner_cover_note,
-                                  headerlablekey: 'key_cover_letter',
+                                  headerlablekey: setapptext(key: 'key_cover_letter'),
+                                  fieldfocus: _fourth_partner_cover_note,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _fourth_partner_cover_note.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_fourth_partner_note_page);
+                                  },
+
                                   radiovalue: localdata
                                               .fourth_partner_cover_note
                                               ?.isEmpty ??
@@ -1673,7 +1947,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.fourth_partner_note_page,
-                                  headerlablekey: 'key_notification_page',
+                                  headerlablekey: setapptext(key: 'key_notification_page'),
+                                  fieldfocus: _fourth_partner_note_page,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _fourth_partner_note_page.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_fourth_partner_reg_no);
+                                  },
+
                                   radiovalue: localdata.fourth_partner_note_page
                                               ?.isEmpty ??
                                           true
@@ -1692,7 +1974,11 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.fourth_partner_reg_no,
-                                  headerlablekey: 'key_reg_no',
+                                  headerlablekey:setapptext(key:  'key_reg_no'),
+                                  fieldfocus: _fourth_partner_reg_no,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _fourth_partner_reg_no.unfocus(); },
                                   radiovalue: localdata
                                               .fourth_partner_reg_no?.isEmpty ??
                                           true
@@ -1990,7 +2276,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.fifth_partner_name,
-                                  headerlablekey: 'key_name',
+                                  headerlablekey:setapptext(key:  'key_name'),
+                                  fieldfocus: _fifth_partner_name,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _fifth_partner_name.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_fifth_partner_surname);
+                                  },
+
                                   radiovalue:
                                       localdata.fifth_partner_name?.isEmpty ??
                                               true
@@ -2009,7 +2303,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.fifth_partner_surname,
-                                  headerlablekey: 'key_surname',
+                                  headerlablekey: setapptext(key: 'key_surname'),
+                                  fieldfocus: _fifth_partner_surname,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _fifth_partner_surname.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_fifth_partner_boy);
+                                  },
+
                                   radiovalue: localdata
                                               .fifth_partner_surname?.isEmpty ??
                                           true
@@ -2028,7 +2330,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.fifth_partner_boy,
-                                  headerlablekey: 'key_boy',
+                                  headerlablekey:setapptext(key:  'key_boy'),
+                                  fieldfocus: _fifth_partner_boy,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _fifth_partner_boy.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_fifth_partner_father);
+                                  },
+
                                   radiovalue:
                                       localdata.fifth_partner_boy?.isEmpty ??
                                               true
@@ -2047,7 +2357,11 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.fifth_partner_father,
-                                  headerlablekey: 'key_father_name',
+                                  headerlablekey:setapptext(key:  'key_father_name'),
+                                  fieldfocus: _fifth_partner_father,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _fifth_partner_father.unfocus(); },
                                   radiovalue:
                                       localdata.fifth_partner_father?.isEmpty ??
                                               true
@@ -2071,7 +2385,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? false
                                           : true,
-                                  headerlablekey: 'key_gender',
+                                  headerlablekey:setapptext(key:  'key_gender'),
                                   dropdownitems: [
                                     Dpvalue(
                                         name: setapptext(
@@ -2097,7 +2411,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.fifth_partner_phone,
-                                  headerlablekey: 'key_phone',
+                                  headerlablekey:setapptext(key:  'key_phone'),
+                                  fieldfocus: _fifth_partner_phone,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _fifth_partner_phone.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_fifth_partner_email);
+                                  },
+
                                   keyboardtype: TextInputType.number,
                                   radiovalue:
                                       localdata.fifth_partner_phone?.isEmpty ??
@@ -2122,7 +2444,11 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.fifth_partner_email,
-                                  headerlablekey: 'key_email',
+                                  headerlablekey:setapptext(key:  'key_email'),
+                                  fieldfocus: _fifth_partner_email,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _fifth_partner_email.unfocus(); },
                                   keyboardtype: TextInputType.emailAddress,
                                   radiovalue:
                                       localdata.fifth_partner_email?.isEmpty ??
@@ -2241,7 +2567,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.fifth_partner_machinegun_no,
-                                  headerlablekey: 'key_machine_gun',
+                                  headerlablekey:setapptext(key:  'key_machine_gun'),
+                                  fieldfocus: _fifth_partner_machinegun_no,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _fifth_partner_machinegun_no.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_fifth_partner_cover_note);
+                                  },
+
                                   radiovalue: localdata
                                               .fifth_partner_machinegun_no
                                               ?.isEmpty ??
@@ -2263,7 +2597,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.fifth_partner_cover_note,
-                                  headerlablekey: 'key_cover_letter',
+                                  headerlablekey:setapptext(key:  'key_cover_letter'),
+                                  fieldfocus: _fifth_partner_cover_note,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _fifth_partner_cover_note.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_fifth_partner_note_page);
+                                  },
+
                                   radiovalue: localdata.fifth_partner_cover_note
                                               ?.isEmpty ??
                                           true
@@ -2282,7 +2624,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.fifth_partner_note_page,
-                                  headerlablekey: 'key_notification_page',
+                                  headerlablekey:setapptext(key:  'key_notification_page'),
+                                  fieldfocus: _fifth_partner_note_page,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _fifth_partner_note_page.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_fifth_partner_reg_no);
+                                  },
+
                                   radiovalue: localdata.fifth_partner_note_page
                                               ?.isEmpty ??
                                           true
@@ -2301,7 +2651,11 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.fifth_partner_reg_no,
-                                  headerlablekey: 'key_reg_no',
+                                  headerlablekey:setapptext(key:  'key_reg_no'),
+                                  fieldfocus: _fifth_partner_reg_no,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _fifth_partner_reg_no.unfocus(); },
                                   radiovalue:
                                       localdata.fifth_partner_reg_no?.isEmpty ??
                                               true

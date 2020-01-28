@@ -21,6 +21,9 @@ class LightingInfoPage extends StatefulWidget {
 class _LightingInfoPageState extends State<LightingInfoPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
+  FocusNode _lightning_meter_no;
+FocusNode _lightning_common_name;
+FocusNode _lightning_father_name;
   Future<String> appimagepicker() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
     var apppath = await getApplicationDocumentsDirectory();
@@ -103,6 +106,9 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
     localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
     super.initState();
+    _lightning_meter_no = new FocusNode();
+_lightning_common_name = new FocusNode();
+_lightning_father_name = new FocusNode();
   }
 
   @override
@@ -139,13 +145,20 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                               true
                                           ? ""
                                           : localdata.lightning_meter_no,
-                                  headerlablekey: 'key_meter_number',
+                                  headerlablekey: setapptext(key: 'key_meter_number'),
+                                  fieldfocus: _lightning_meter_no,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _lightning_meter_no.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_lightning_common_name);
+                                  },
                                   radiovalue:
                                       localdata.lightning_meter_no?.isEmpty ??
                                               true
                                           ? false
                                           : true,
-                                  hinttextkey: 'key_enter_1st_surveyor',
+                                  hinttextkey: setapptext(key: 'key_enter_1st_surveyor'),
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
                                       return "field should not be blank";
@@ -164,13 +177,20 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                           true
                                       ? ""
                                       : localdata.lightning_common_name,
-                                  headerlablekey: 'key_Common_name',
+                                  headerlablekey:setapptext(key:  'key_Common_name'),
+                                  fieldfocus: _lightning_common_name,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _lightning_common_name.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_lightning_father_name);
+                                  },
                                   radiovalue: localdata
                                               .lightning_common_name?.isEmpty ??
                                           true
                                       ? false
                                       : true,
-                                  hinttextkey: 'key_enter_1st_surveyor',
+                                  hinttextkey: setapptext(key: 'key_enter_1st_surveyor'),
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
                                       return "field should not be blank";
@@ -191,13 +211,17 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                           true
                                       ? ""
                                       : localdata.lightning_father_name,
-                                  headerlablekey: 'key_father_name',
+                                  headerlablekey: setapptext(key: 'key_father_name'),
+                                  fieldfocus: _lightning_father_name,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _lightning_father_name.unfocus(); },
                                   radiovalue: localdata
                                               .lightning_father_name?.isEmpty ??
                                           true
                                       ? false
                                       : true,
-                                  hinttextkey: 'key_enter_1st_surveyor',
+                                  hinttextkey: setapptext(key: 'key_enter_1st_surveyor'),
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
                                       return "field should not be blank";

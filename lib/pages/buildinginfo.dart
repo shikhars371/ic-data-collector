@@ -21,6 +21,21 @@ class BuildingInfoPage extends StatefulWidget {
 class _BuildingInfoPageState extends State<BuildingInfoPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
+  FocusNode _fst_specifyif_other;
+FocusNode _fst_no_of_floors;
+FocusNode _fst_cubie_meter;
+FocusNode _snd_specifyif_other;
+FocusNode _snd_no_of_floors;
+FocusNode _snd_cubie_meter;
+FocusNode _trd_specifyif_other;
+FocusNode _trd_no_of_floors;
+FocusNode _trd_cubie_meter;
+FocusNode _forth_specifyif_other;
+FocusNode _forth_no_of_floors;
+FocusNode _forth_cubie_meter;
+FocusNode _fth_specifyif_other;
+FocusNode _fth_no_of_floors;
+FocusNode _fth_cubie_meter;
   Future<String> appimagepicker() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
     var apppath = await getApplicationDocumentsDirectory();
@@ -103,6 +118,21 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
     localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
     super.initState();
+    _fst_specifyif_other = new FocusNode();
+_fst_no_of_floors = new FocusNode();
+_fst_cubie_meter = new FocusNode();
+_snd_specifyif_other = new FocusNode();
+_snd_no_of_floors = new FocusNode();
+_snd_cubie_meter = new FocusNode();
+_trd_specifyif_other = new FocusNode();
+_trd_no_of_floors = new FocusNode();
+_trd_cubie_meter = new FocusNode();
+_forth_specifyif_other = new FocusNode();
+_forth_no_of_floors = new FocusNode();
+_forth_cubie_meter = new FocusNode();
+_fth_specifyif_other = new FocusNode();
+_fth_no_of_floors = new FocusNode();
+_fth_cubie_meter = new FocusNode();
   }
 
   @override
@@ -141,7 +171,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                       (localdata.fst_have_building == "0"))
                   ? false
                   : true,
-              headerlablekey: 'key_does_property_building',
+              headerlablekey:setapptext(key:  'key_does_property_building'),
               dropdownitems: [
                 Dpvalue(name: setapptext(key: 'key_none_selected'), value: "0"),
                 Dpvalue(name: setapptext(key: 'key_yes_sir'), value: "1"),
@@ -168,7 +198,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                         (localdata.fst_building_use == "0"))
                     ? false
                     : true,
-                headerlablekey: 'key_building_use',
+                headerlablekey: setapptext(key: 'key_building_use'),
                 dropdownitems: [
                   Dpvalue(
                       name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -199,7 +229,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                             (localdata.fst_building_category == "0"))
                         ? false
                         : true,
-                headerlablekey: 'key_building_category',
+                headerlablekey: setapptext(key: 'key_building_category'),
                 dropdownitems: [
                   Dpvalue(
                       name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -232,7 +262,14 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                 initvalue: localdata.fst_specifyif_other?.isEmpty ?? true
                     ? ""
                     : localdata.fst_specifyif_other,
-                headerlablekey: 'key_choose_another',
+                headerlablekey: setapptext(key: 'key_choose_another'),
+                fieldfocus: _fst_specifyif_other,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _fst_specifyif_other.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_fst_no_of_floors);
+                                  },
                 hinttextkey: '',
                 radiovalue: localdata.fst_specifyif_other?.isEmpty ?? true
                     ? false
@@ -248,7 +285,14 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                 initvalue: localdata.fst_no_of_floors?.isEmpty ?? true
                     ? ""
                     : localdata.fst_no_of_floors,
-                headerlablekey: 'key_Number_of_floors',
+                headerlablekey:setapptext(key:  'key_Number_of_floors'),
+                fieldfocus: _fst_no_of_floors,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _fst_no_of_floors.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_fst_cubie_meter);
+                                  },
                 hinttextkey: '',
                 radiovalue:
                     localdata.fst_no_of_floors?.isEmpty ?? true ? false : true,
@@ -268,7 +312,12 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                 initvalue: localdata.fst_cubie_meter?.isEmpty ?? true
                     ? ""
                     : localdata.fst_cubie_meter,
-                headerlablekey: 'key_Unit_Size',
+                headerlablekey:setapptext(key:  'key_Unit_Size'),
+                fieldfocus: _fst_cubie_meter,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _fst_cubie_meter.unfocus(); },
+
                 hinttextkey: '',
                 radiovalue:
                     localdata.fst_cubie_meter?.isEmpty ?? true ? false : true,
@@ -292,7 +341,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                         (localdata.snd_have_building == "0"))
                     ? false
                     : true,
-                headerlablekey: 'key_add_building',
+                headerlablekey:setapptext(key:  'key_add_building'),
                 dropdownitems: [
                   Dpvalue(
                       name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -353,7 +402,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                             (localdata.snd_building_category == "0"))
                         ? false
                         : true,
-                headerlablekey: 'key_building_category',
+                headerlablekey: setapptext(key: 'key_building_category'),
                 dropdownitems: [
                   Dpvalue(
                       name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -386,7 +435,14 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                 initvalue: localdata.snd_specifyif_other?.isEmpty ?? true
                     ? ""
                     : localdata.snd_specifyif_other,
-                headerlablekey: 'key_choose_another',
+                headerlablekey: setapptext(key: 'key_choose_another'),
+                fieldfocus: _snd_specifyif_other,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _snd_specifyif_other.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_snd_no_of_floors);
+                                  },
                 hinttextkey: '',
                 radiovalue: localdata.snd_specifyif_other?.isEmpty ?? true
                     ? false
@@ -402,7 +458,14 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                 initvalue: localdata.snd_no_of_floors?.isEmpty ?? true
                     ? ""
                     : localdata.snd_no_of_floors,
-                headerlablekey: 'key_Number_of_floors',
+                headerlablekey: setapptext(key: 'key_Number_of_floors'),
+                 fieldfocus: _snd_no_of_floors,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _snd_no_of_floors.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_snd_cubie_meter);
+                                  },
                 hinttextkey: '',
                 radiovalue:
                     localdata.snd_no_of_floors?.isEmpty ?? true ? false : true,
@@ -422,7 +485,11 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                 initvalue: localdata.snd_cubie_meter?.isEmpty ?? true
                     ? ""
                     : localdata.snd_cubie_meter,
-                headerlablekey: 'key_Unit_Size',
+                headerlablekey: setapptext(key: 'key_Unit_Size'),
+                      fieldfocus: _snd_cubie_meter,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _snd_cubie_meter.unfocus(); },
                 hinttextkey: '',
                 radiovalue:
                     localdata.snd_cubie_meter?.isEmpty ?? true ? false : true,
@@ -446,7 +513,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                         (localdata.trd_have_building == "0"))
                     ? false
                     : true,
-                headerlablekey: 'key_add_building',
+                headerlablekey:setapptext(key:  'key_add_building'),
                 dropdownitems: [
                   Dpvalue(
                       name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -476,7 +543,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                         (localdata.trd_building_use == "0"))
                     ? false
                     : true,
-                headerlablekey: 'key_building_use',
+                headerlablekey: setapptext(key: 'key_building_use'),
                 dropdownitems: [
                   Dpvalue(
                       name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -507,7 +574,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                             (localdata.trd_building_category == "0"))
                         ? false
                         : true,
-                headerlablekey: 'key_building_category',
+                headerlablekey: setapptext(key: 'key_building_category'),
                 dropdownitems: [
                   Dpvalue(
                       name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -540,7 +607,14 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                 initvalue: localdata.trd_specifyif_other?.isEmpty ?? true
                     ? ""
                     : localdata.trd_specifyif_other,
-                headerlablekey: 'key_choose_another',
+                headerlablekey:setapptext(key:  'key_choose_another'),
+                fieldfocus: _trd_specifyif_other,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _trd_specifyif_other.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_trd_no_of_floors);
+                                  },
                 hinttextkey: '',
                 radiovalue: localdata.trd_specifyif_other?.isEmpty ?? true
                     ? false
@@ -556,7 +630,14 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                 initvalue: localdata.trd_no_of_floors?.isEmpty ?? true
                     ? ""
                     : localdata.trd_no_of_floors,
-                headerlablekey: 'key_Number_of_floors',
+                headerlablekey: setapptext(key: 'key_Number_of_floors'),
+                   fieldfocus: _trd_no_of_floors,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _trd_no_of_floors.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_trd_cubie_meter);
+                                  },
                 hinttextkey: '',
                 radiovalue:
                     localdata.trd_no_of_floors?.isEmpty ?? true ? false : true,
@@ -576,7 +657,11 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                 initvalue: localdata.trd_cubie_meter?.isEmpty ?? true
                     ? ""
                     : localdata.trd_cubie_meter,
-                headerlablekey: 'key_Unit_Size',
+                headerlablekey: setapptext(key: 'key_Unit_Size'),
+                 fieldfocus: _trd_cubie_meter,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _trd_cubie_meter.unfocus(); },
                 hinttextkey: '',
                 radiovalue:
                     localdata.trd_cubie_meter?.isEmpty ?? true ? false : true,
@@ -601,7 +686,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                             (localdata.forth_have_building == "0"))
                         ? false
                         : true,
-                headerlablekey: 'key_add_building',
+                headerlablekey: setapptext(key: 'key_add_building'),
                 dropdownitems: [
                   Dpvalue(
                       name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -632,7 +717,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                         (localdata.forth_building_use == "0"))
                     ? false
                     : true,
-                headerlablekey: 'key_building_use',
+                headerlablekey:setapptext(key:  'key_building_use'),
                 dropdownitems: [
                   Dpvalue(
                       name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -663,7 +748,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                             (localdata.forth_building_category == "0"))
                         ? false
                         : true,
-                headerlablekey: 'key_building_category',
+                headerlablekey: setapptext(key: 'key_building_category'),
                 dropdownitems: [
                   Dpvalue(
                       name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -696,7 +781,14 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                 initvalue: localdata.forth_specifyif_other?.isEmpty ?? true
                     ? ""
                     : localdata.forth_specifyif_other,
-                headerlablekey: 'key_choose_another',
+                headerlablekey: setapptext(key: 'key_choose_another'),
+                fieldfocus: _forth_specifyif_other,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _forth_specifyif_other.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_forth_no_of_floors);
+                                  },
                 hinttextkey: '',
                 radiovalue: localdata.forth_specifyif_other?.isEmpty ?? true
                     ? false
@@ -717,7 +809,14 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                 initvalue: localdata.forth_no_of_floors?.isEmpty ?? true
                     ? ""
                     : localdata.forth_no_of_floors,
-                headerlablekey: 'key_Number_of_floors',
+                headerlablekey: setapptext(key: 'key_Number_of_floors'),
+                 fieldfocus: _forth_no_of_floors,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _forth_no_of_floors.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_forth_cubie_meter);
+                                  },
                 hinttextkey: '',
                 radiovalue: localdata.forth_no_of_floors?.isEmpty ?? true
                     ? false
@@ -738,7 +837,11 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                 initvalue: localdata.forth_cubie_meter?.isEmpty ?? true
                     ? ""
                     : localdata.forth_cubie_meter,
-                headerlablekey: 'key_Unit_Size',
+                headerlablekey: setapptext(key: 'key_Unit_Size'),
+                  fieldfocus: _forth_cubie_meter,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _forth_cubie_meter.unfocus(); },
                 hinttextkey: '',
                 radiovalue:
                     localdata.forth_cubie_meter?.isEmpty ?? true ? false : true,
@@ -762,7 +865,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                         (localdata.fth_have_building == "0"))
                     ? false
                     : true,
-                headerlablekey: 'key_add_building',
+                headerlablekey: setapptext(key: 'key_add_building'),
                 dropdownitems: [
                   Dpvalue(
                       name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -793,7 +896,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                         (localdata.fth_building_use == "0"))
                     ? false
                     : true,
-                headerlablekey: 'key_building_use',
+                headerlablekey: setapptext(key: 'key_building_use'),
                 dropdownitems: [
                   Dpvalue(
                       name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -824,7 +927,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                             (localdata.fth_building_category == "0"))
                         ? false
                         : true,
-                headerlablekey: 'key_building_category',
+                headerlablekey: setapptext(key: 'key_building_category'),
                 dropdownitems: [
                   Dpvalue(
                       name: setapptext(key: 'key_none_selected'), value: "0"),
@@ -857,7 +960,14 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                 initvalue: localdata.fth_specifyif_other?.isEmpty ?? true
                     ? ""
                     : localdata.fth_specifyif_other,
-                headerlablekey: 'key_choose_another',
+                headerlablekey: setapptext(key: 'key_choose_another'),
+                fieldfocus: _fth_specifyif_other,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _fth_specifyif_other.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_fth_no_of_floors);
+                                  },
                 hinttextkey: '',
                 radiovalue: localdata.fth_specifyif_other?.isEmpty ?? true
                     ? false
@@ -878,7 +988,15 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                 initvalue: localdata.fth_no_of_floors?.isEmpty ?? true
                     ? ""
                     : localdata.fth_no_of_floors,
-                headerlablekey: 'key_Number_of_floors',
+                headerlablekey: setapptext(key: 'key_Number_of_floors'),
+                fieldfocus: _fth_no_of_floors,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _fth_no_of_floors.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_fth_cubie_meter);
+                                  },
+
                 hinttextkey: '',
                 radiovalue:
                     localdata.fth_no_of_floors?.isEmpty ?? true ? false : true,
@@ -898,7 +1016,11 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                 initvalue: localdata.fth_cubie_meter?.isEmpty ?? true
                     ? ""
                     : localdata.fth_cubie_meter,
-                headerlablekey: 'key_Unit_Size',
+                headerlablekey:setapptext(key:  'key_Unit_Size'),
+                 fieldfocus: _fth_cubie_meter,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _fth_cubie_meter.unfocus(); },
                 hinttextkey: '',
                 radiovalue:
                     localdata.fth_cubie_meter?.isEmpty ?? true ? false : true,

@@ -21,6 +21,10 @@ class SafariBookletPage extends StatefulWidget {
 class _SafariBookletPageState extends State<SafariBookletPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
+  FocusNode _safari_booklet_common_name;
+FocusNode _safari_booklet_father_name;
+FocusNode _safari_booklet_machinegun_no;
+FocusNode _safari_booklet_issue_date;
   Future<String> appimagepicker() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
     var apppath = await getApplicationDocumentsDirectory();
@@ -103,6 +107,10 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
     localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
     super.initState();
+    _safari_booklet_common_name = new FocusNode();
+_safari_booklet_father_name = new FocusNode();
+_safari_booklet_machinegun_no = new FocusNode();
+_safari_booklet_issue_date = new FocusNode();
   }
 
   @override
@@ -140,14 +148,21 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                           true
                                       ? ""
                                       : localdata.safari_booklet_common_name,
-                                  headerlablekey: 'key_Common_name',
+                                  headerlablekey: setapptext(key: 'key_Common_name'),
+                                  fieldfocus: _safari_booklet_common_name,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _safari_booklet_common_name.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_safari_booklet_father_name);
+                                  },
                                   radiovalue: localdata
                                               .safari_booklet_common_name
                                               ?.isEmpty ??
                                           true
                                       ? false
                                       : true,
-                                  hinttextkey: 'key_enter_1st_surveyor',
+                                  hinttextkey:setapptext(key:  'key_enter_1st_surveyor'),
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
                                       return "field should not be blank";
@@ -169,14 +184,21 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                           true
                                       ? ""
                                       : localdata.safari_booklet_father_name,
-                                  headerlablekey: 'key_father_name',
+                                  headerlablekey:setapptext(key:  'key_father_name'),
+                                  fieldfocus: _safari_booklet_father_name,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _safari_booklet_father_name.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_safari_booklet_machinegun_no);
+                                  },
                                   radiovalue: localdata
                                               .safari_booklet_father_name
                                               ?.isEmpty ??
                                           true
                                       ? false
                                       : true,
-                                  hinttextkey: 'key_enter_1st_surveyor',
+                                  hinttextkey:setapptext(key:  'key_enter_1st_surveyor'),
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
                                       return "field should not be blank";
@@ -198,15 +220,22 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                           true
                                       ? ""
                                       : localdata.safari_booklet_machinegun_no,
-                                  headerlablekey:
-                                      'key_Safari_Machine_Gun_Number',
+                                  headerlablekey:setapptext(key: 
+                                      'key_Safari_Machine_Gun_Number'),
+                                      fieldfocus: _safari_booklet_machinegun_no,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _safari_booklet_machinegun_no.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_safari_booklet_issue_date);
+                                  },
                                   radiovalue: localdata
                                               .safari_booklet_machinegun_no
                                               ?.isEmpty ??
                                           true
                                       ? false
                                       : true,
-                                  hinttextkey: 'key_enter_1st_surveyor',
+                                  hinttextkey: setapptext(key: 'key_enter_1st_surveyor'),
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
                                       return "field should not be blank";
@@ -222,19 +251,24 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                keyboardtype: TextInputType.datetime,
                                   initvalue: localdata.safari_booklet_issue_date
                                               ?.isEmpty ??
                                           true
                                       ? ""
                                       : localdata.safari_booklet_issue_date,
-                                  headerlablekey: 'key_Issued_Date',
+                                  headerlablekey: setapptext(key: 'key_Issued_Date'),
+                                  fieldfocus: _safari_booklet_issue_date,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _safari_booklet_issue_date.unfocus(); },
                                   radiovalue: localdata
                                               .safari_booklet_issue_date
                                               ?.isEmpty ??
                                           true
                                       ? false
                                       : true,
-                                  hinttextkey: 'key_way_to_enter',
+                                  hinttextkey: setapptext(key: 'key_way_to_enter'),
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
                                       return "field should not be blank";

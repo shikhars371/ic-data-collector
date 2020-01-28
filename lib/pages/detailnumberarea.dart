@@ -309,7 +309,7 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                           true
                                       ? "0"
                                       : localdata.reg_property_fertilizer,
-                                  headerlablekey: 'key_registered_property',
+                                  headerlablekey: setapptext(key: 'key_registered_property'),
                                   iscompleted: localdata.reg_property_fertilizer
                                               ?.isEmpty ??
                                           true

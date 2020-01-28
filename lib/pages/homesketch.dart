@@ -20,6 +20,11 @@ class HomeSketchPage extends StatefulWidget {
 class _HomeSketchPageState extends State<HomeSketchPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
+  FocusNode _area_unit_release_area;
+FocusNode _area_unit_business_area;
+FocusNode _area_unit_total_no_unit;
+FocusNode _area_unit_business_units;
+
   Future<String> appimagepicker() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
     var apppath = await getApplicationDocumentsDirectory();
@@ -95,6 +100,11 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
     localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
     super.initState();
+    _area_unit_release_area = new FocusNode();
+_area_unit_business_area = new FocusNode();
+_area_unit_total_no_unit = new FocusNode();
+_area_unit_business_units = new FocusNode();
+
   }
 
   @override
@@ -120,7 +130,7 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         //header
-                        formheader(headerlablekey: 'key_all_details'),
+                        formheader(headerlablekey: 'key_final_details'),
                         //body
                         Expanded(
                           child: ListView(
@@ -131,7 +141,14 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                           true
                                       ? ""
                                       : localdata.area_unit_release_area,
-                                  headerlablekey: 'key_release_area',
+                                  headerlablekey: setapptext(key: 'key_release_area'),
+                                  fieldfocus: _area_unit_release_area,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _area_unit_release_area.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_area_unit_business_area);
+                                  },
                                   radiovalue: localdata.area_unit_release_area
                                               ?.isEmpty ??
                                           true
@@ -150,7 +167,14 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                           true
                                       ? ""
                                       : localdata.area_unit_business_area,
-                                  headerlablekey: 'key_business_area',
+                                  headerlablekey: setapptext(key: 'key_business_area'),
+                                  fieldfocus: _area_unit_business_area,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _area_unit_business_area.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_area_unit_total_no_unit);
+                                  },
                                   radiovalue: localdata.area_unit_business_area
                                               ?.isEmpty ??
                                           true
@@ -169,7 +193,14 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                           true
                                       ? ""
                                       : localdata.area_unit_total_no_unit,
-                                  headerlablekey: 'key_total_release_units',
+                                  headerlablekey: setapptext(key: 'key_total_release_units'),
+                                  fieldfocus: _area_unit_total_no_unit,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _area_unit_total_no_unit.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_area_unit_business_units);
+                                  },
                                   radiovalue: localdata.area_unit_total_no_unit
                                               ?.isEmpty ??
                                           true
@@ -188,7 +219,12 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                           true
                                       ? ""
                                       : localdata.area_unit_business_units,
-                                  headerlablekey: 'key_total_business_unit',
+                                  headerlablekey: setapptext(key: 'key_total_business_unit'),
+                                   fieldfocus: _area_unit_business_units,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _area_unit_business_units.unfocus(); },
+
                                   radiovalue: localdata.area_unit_business_units
                                               ?.isEmpty ??
                                           true
