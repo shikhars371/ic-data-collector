@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:kapp/pages/firstpartnerinfo.dart';
+import 'package:kapp/pages/fourlimit.dart';
 import 'package:kapp/pages/otherpartnerinfo.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
@@ -57,14 +59,27 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
           return;
         } else {
           _formkey.currentState.save();
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => OtherPartnerInfoPage(
-                localdata: localdata,
+          await DBHelper()
+              .updatePropertySurvey(localdata, localdata.local_property_key);
+          if (localdata.property_type == "1") {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => FourLimitPage(
+                  localdata: localdata,
+                ),
               ),
-            ),
-          );
+            );
+          } else {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => OtherPartnerInfoPage(
+                  localdata: localdata,
+                ),
+              ),
+            );
+          }
         }
       },
       child: Container(
@@ -83,7 +98,16 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
 
   Widget backbutton() {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => FirstPartnerPage(
+              localdata: localdata,
+            ),
+          ),
+        );
+      },
       child: Container(
         child: Row(
           children: <Widget>[

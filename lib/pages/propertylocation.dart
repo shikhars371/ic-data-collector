@@ -7,6 +7,7 @@ import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
 import '../widgets/appformcards.dart';
 import './propertydetails.dart';
+import './physicalstate.dart';
 
 class PropertyLocationPage extends StatefulWidget {
   PropertyLocationPage({this.localdata});
@@ -47,14 +48,61 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
           return;
         } else {
           _formkey.currentState.save();
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => PropertyDetailsPage(
-                localdata: localdata,
+          //in edit mode
+          if (localdata.editmode == 1) {
+            await DBHelper()
+                .updatePropertySurvey(localdata, localdata.local_property_key);
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => PropertyDetailsPage(
+                  localdata: localdata,
+                ),
               ),
-            ),
-          );
+            );
+          } else {
+            localdata.editmode = 1;
+            localdata.local_property_key = localdata.province +
+                localdata.city +
+                localdata.area +
+                localdata.pass +
+                localdata.block +
+                localdata.part_number +
+                localdata.unit_number;
+            int svval = await DBHelper().addPropertySurvey(localdata);
+            if (svval == 0) {
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text(
+                        "Warning",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.red),
+                      ),
+                      content: Text(
+                          "This property Data already exist. So please go back and edit that or delete the existing and create new."),
+                      actions: <Widget>[
+                        FlatButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text("Ok"),
+                        ),
+                      ],
+                    );
+                  });
+            } else {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => PropertyDetailsPage(
+                    localdata: localdata,
+                  ),
+                ),
+              );
+            }
+          }
         }
       },
       child: Container(
@@ -73,7 +121,16 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
 
   Widget backbutton() {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => PhysicalStatePropertyPage(
+              localdata: localdata,
+            ),
+          ),
+        );
+      },
       child: Container(
         child: Row(
           children: <Widget>[

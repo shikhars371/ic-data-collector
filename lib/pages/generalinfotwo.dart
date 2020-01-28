@@ -7,6 +7,7 @@ import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
 import '../widgets/appformcards.dart';
 import './physicalstate.dart';
+import './generalinfoone.dart';
 
 class GeneralInfotwoPage extends StatefulWidget {
   GeneralInfotwoPage({this.localdata});
@@ -73,7 +74,16 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
 
   Widget backbutton() {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => GeneralInfoOnePage(
+              localdata: localdata,
+            ),
+          ),
+        );
+      },
       child: Container(
         child: Row(
           children: <Widget>[

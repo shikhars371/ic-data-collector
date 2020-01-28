@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:kapp/pages/fourlimit.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -10,6 +11,7 @@ import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
 import '../widgets/appformcards.dart';
 import './detailnumberarea.dart';
+import './typepropertyuser.dart';
 
 class BuildingInfoPage extends StatefulWidget {
   BuildingInfoPage({this.localdata});
@@ -57,6 +59,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
           return;
         } else {
           _formkey.currentState.save();
+          await DBHelper().updatePropertySurvey(localdata, localdata.local_property_key);
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -83,7 +86,27 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
 
   Widget backbutton() {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        if(localdata.current_use_of_property=="6"){
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => FourLimitPage(
+                localdata: localdata,
+              ),
+            ),
+          );
+        }else{
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => TypePropertyUserPage(
+                localdata: localdata,
+              ),
+            ),
+          );
+        }
+      },
       child: Container(
         child: Row(
           children: <Widget>[

@@ -9,6 +9,8 @@ import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
 import '../widgets/appformcards.dart';
 import './businesslicense.dart';
+import './docverification.dart';
+import './firstpartnerinfo.dart';
 
 class TypeOfUsePage extends StatefulWidget {
   TypeOfUsePage({this.localdata});
@@ -56,14 +58,28 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
           return;
         } else {
           _formkey.currentState.save();
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => BusinessLicensePage(
-                localdata: localdata,
+          await DBHelper()
+              .updatePropertySurvey(localdata, localdata.local_property_key);
+          if ((localdata.current_use_of_property == "2") ||
+              (localdata.current_use_of_property == "3")) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => BusinessLicensePage(
+                  localdata: localdata,
+                ),
               ),
-            ),
-          );
+            );
+          } else {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => FirstPartnerPage(
+                  localdata: localdata,
+                ),
+              ),
+            );
+          }
         }
       },
       child: Container(
@@ -82,7 +98,16 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
 
   Widget backbutton() {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => DocVerificationPage(
+              localdata: localdata,
+            ),
+          ),
+        );
+      },
       child: Container(
         child: Row(
           children: <Widget>[

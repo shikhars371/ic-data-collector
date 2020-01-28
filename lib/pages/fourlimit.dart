@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:kapp/pages/infophotonint.dart';
+import 'package:kapp/pages/otherpartnerinfo.dart';
+import 'package:kapp/pages/typeofuse.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -9,6 +12,7 @@ import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
 import '../widgets/appformcards.dart';
 import './lightinginfo.dart';
+import './buildinginfo.dart';
 
 class FourLimitPage extends StatefulWidget {
   FourLimitPage({this.localdata});
@@ -56,14 +60,45 @@ class _FourLimitPageState extends State<FourLimitPage> {
           return;
         } else {
           _formkey.currentState.save();
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => LightingInfoPage(
-                localdata: localdata,
+          await DBHelper()
+              .updatePropertySurvey(localdata, localdata.local_property_key);
+          if (localdata.current_use_of_property == "6") {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => BuildingInfoPage(
+                  localdata: localdata,
+                ),
               ),
-            ),
-          );
+            );
+          } else if (localdata.current_use_of_property == "7") {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => TypeOfUsePage(
+                  localdata: localdata,
+                ),
+              ),
+            );
+          } else if (localdata.current_use_of_property == "10") {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => TypeOfUsePage(
+                  localdata: localdata,
+                ),
+              ),
+            );
+          } else {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => LightingInfoPage(
+                  localdata: localdata,
+                ),
+              ),
+            );
+          }
         }
       },
       child: Container(
@@ -82,7 +117,27 @@ class _FourLimitPageState extends State<FourLimitPage> {
 
   Widget backbutton() {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        if (localdata.property_type == "1") {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => InfoPhotoHintPage(
+                localdata: localdata,
+              ),
+            ),
+          );
+        } else {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => OtherPartnerInfoPage(
+                localdata: localdata,
+              ),
+            ),
+          );
+        }
+      },
       child: Container(
         child: Row(
           children: <Widget>[

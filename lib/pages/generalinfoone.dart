@@ -7,6 +7,7 @@ import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
 import '../widgets/appformcards.dart';
 import './generalinfotwo.dart';
+import './surveyinfo.dart';
 
 class GeneralInfoOnePage extends StatefulWidget {
   GeneralInfoOnePage({this.localdata});
@@ -73,7 +74,16 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
 
   Widget backbutton() {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => SurveyInfoPage(
+              localdata: localdata,
+            ),
+          ),
+        );
+      },
       child: Container(
         child: Row(
           children: <Widget>[
@@ -90,6 +100,7 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
 
   @override
   void initState() {
+    localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
     super.initState();
   }

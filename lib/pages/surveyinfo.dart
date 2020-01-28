@@ -8,15 +8,11 @@ import '../controllers/auth.dart';
 import './generalinfoone.dart';
 import '../widgets/appformcards.dart';
 
-class Dpvalue {
-  String name;
-  String value;
-  Dpvalue({this.name, this.value});
-}
-
 class SurveyInfoPage extends StatefulWidget {
-  SurveyInfoPage({this.taskid});
+  SurveyInfoPage({this.localdata, this.taskid, this.localsurveykey});
+  final LocalPropertySurvey localdata;
   final String taskid;
+  final String localsurveykey;
   @override
   _SurveyInfoPageState createState() => _SurveyInfoPageState();
 }
@@ -104,11 +100,21 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
   void initState() {
     localdata = new LocalPropertySurvey();
     localdata.taskid = widget.taskid;
+    if (widget.localdata != null) {
+      localdata = widget.localdata;
+    }
+    if (!(widget.localsurveykey?.isEmpty ?? true)) {
+      Future.delayed(Duration.zero).then((_) {
+        Provider.of<DBHelper>(context).getSingleProperty(
+            taskid: widget.taskid, localkey: widget.localsurveykey);
+      });
+    }
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    localdata = Provider.of<DBHelper>(context).singlepropertysurveys;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
@@ -136,13 +142,15 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
-                                  headerlablekey: setapptext(key:'key_first_surveyor'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_first_surveyor'),
                                   radiovalue:
                                       localdata.first_surveyor_name?.isEmpty ??
                                               true
                                           ? false
                                           : true,
-                                  hinttextkey: setapptext(key:'key_enter_1st_surveyor'),
+                                  hinttextkey:
+                                      setapptext(key: 'key_enter_1st_surveyor'),
                                   initvalue:
                                       localdata.first_surveyor_name?.isEmpty ??
                                               true
@@ -163,13 +171,15 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  headerlablekey: setapptext(key:'key_second_surveyor'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_second_surveyor'),
                                   radiovalue:
                                       localdata.senond_surveyor_name?.isEmpty ??
                                               true
                                           ? false
                                           : true,
-                                  hinttextkey: setapptext(key:'key_enter_1st_surveyor'),
+                                  hinttextkey:
+                                      setapptext(key: 'key_enter_1st_surveyor'),
                                   initvalue:
                                       localdata.senond_surveyor_name?.isEmpty ??
                                               true
@@ -190,13 +200,15 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  headerlablekey: setapptext(key:'key_name_technical_support'),
+                                  headerlablekey: setapptext(
+                                      key: 'key_name_technical_support'),
                                   radiovalue: localdata.technical_support_name
                                               ?.isEmpty ??
                                           true
                                       ? false
                                       : true,
-                                  hinttextkey: setapptext(key:'key_enter_1st_surveyor'),
+                                  hinttextkey:
+                                      setapptext(key: 'key_enter_1st_surveyor'),
                                   initvalue: localdata.technical_support_name
                                               ?.isEmpty ??
                                           true
