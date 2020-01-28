@@ -8,15 +8,11 @@ import '../controllers/auth.dart';
 import './generalinfoone.dart';
 import '../widgets/appformcards.dart';
 
-class Dpvalue {
-  String name;
-  String value;
-  Dpvalue({this.name, this.value});
-}
-
 class SurveyInfoPage extends StatefulWidget {
-  SurveyInfoPage({this.taskid});
+  SurveyInfoPage({this.localdata, this.taskid, this.localsurveykey});
+  final LocalPropertySurvey localdata;
   final String taskid;
+  final String localsurveykey;
   @override
   _SurveyInfoPageState createState() => _SurveyInfoPageState();
 }
@@ -110,11 +106,21 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
     _secondsurveyor = new FocusNode();
     _technicalsupport = new FocusNode();
     localdata.taskid = widget.taskid;
+    if (widget.localdata != null) {
+      localdata = widget.localdata;
+    }
+    if (!(widget.localsurveykey?.isEmpty ?? true)) {
+      Future.delayed(Duration.zero).then((_) {
+        Provider.of<DBHelper>(context).getSingleProperty(
+            taskid: widget.taskid, localkey: widget.localsurveykey);
+      });
+    }
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    localdata = Provider.of<DBHelper>(context).singlepropertysurveys;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,

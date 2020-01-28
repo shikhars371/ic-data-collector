@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:kapp/pages/lightinginfo.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -61,6 +62,8 @@ FocusNode _safari_booklet_issue_date;
           return;
         } else {
           _formkey.currentState.save();
+          await DBHelper()
+              .updatePropertySurvey(localdata, localdata.local_property_key);
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -87,7 +90,16 @@ FocusNode _safari_booklet_issue_date;
 
   Widget backbutton() {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => LightingInfoPage(
+              localdata: localdata,
+            ),
+          ),
+        );
+      },
       child: Container(
         child: Row(
           children: <Widget>[

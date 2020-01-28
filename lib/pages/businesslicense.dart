@@ -9,6 +9,8 @@ import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
 import '../widgets/appformcards.dart';
 import './firstpartnerinfo.dart';
+import './typeofuse.dart';
+import './propertydetails.dart';
 
 class BusinessLicensePage extends StatefulWidget {
   BusinessLicensePage({this.localdata});
@@ -60,6 +62,9 @@ FocusNode _business_license_another;
           return;
         } else {
           _formkey.currentState.save();
+          await DBHelper()
+              .updatePropertySurvey(localdata, localdata.local_property_key);
+
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -86,7 +91,27 @@ FocusNode _business_license_another;
 
   Widget backbutton() {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        if (localdata.property_have_document == "1") {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => TypeOfUsePage(
+                localdata: localdata,
+              ),
+            ),
+          );
+        } else {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => PropertyDetailsPage(
+                localdata: localdata,
+              ),
+            ),
+          );
+        }
+      },
       child: Container(
         child: Row(
           children: <Widget>[

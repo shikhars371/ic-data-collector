@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kapp/pages/fourlimit.dart';
+import 'package:kapp/pages/infophotonint.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -98,6 +99,8 @@ FocusNode _fifth_partner_reg_no;
           return;
         } else {
           _formkey.currentState.save();
+          await DBHelper()
+              .updatePropertySurvey(localdata, localdata.local_property_key);
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -124,7 +127,16 @@ FocusNode _fifth_partner_reg_no;
 
   Widget backbutton() {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => InfoPhotoHintPage(
+              localdata: localdata,
+            ),
+          ),
+        );
+      },
       child: Container(
         child: Row(
           children: <Widget>[
@@ -210,7 +222,8 @@ _fifth_partner_reg_no = new FocusNode();
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         //header
-                        formheader(headerlablekey: 'key_Characteristics_of_earth'),
+                        formheader(
+                            headerlablekey: 'key_Characteristics_of_earth'),
                         //body
                         Expanded(
                           child: ListView(

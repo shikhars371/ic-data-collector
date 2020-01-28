@@ -10,6 +10,9 @@ import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
 import '../widgets/appformcards.dart';
 import './infophotonint.dart';
+import './businesslicense.dart';
+import './typeofuse.dart';
+import './propertydetails.dart';
 
 class FirstPartnerPage extends StatefulWidget {
   FirstPartnerPage({this.localdata});
@@ -63,6 +66,8 @@ FocusNode _first_partner_name_email;
           return;
         } else {
           _formkey.currentState.save();
+          await DBHelper()
+              .updatePropertySurvey(localdata, localdata.local_property_key);
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -89,7 +94,51 @@ FocusNode _first_partner_name_email;
 
   Widget backbutton() {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        if (localdata.property_have_document == "1") {
+          if ((localdata.current_use_of_property == "2") ||
+              (localdata.current_use_of_property == "3")) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => BusinessLicensePage(
+                  localdata: localdata,
+                ),
+              ),
+            );
+          } else {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => TypeOfUsePage(
+                  localdata: localdata,
+                ),
+              ),
+            );
+          }
+        } else {
+          if ((localdata.current_use_of_property == "2") ||
+              (localdata.current_use_of_property == "3")) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => BusinessLicensePage(
+                  localdata: localdata,
+                ),
+              ),
+            );
+          } else {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => PropertyDetailsPage(
+                  localdata: localdata,
+                ),
+              ),
+            );
+          }
+        }
+      },
       child: Container(
         child: Row(
           children: <Widget>[

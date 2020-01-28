@@ -7,6 +7,7 @@ import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
 import '../widgets/appformcards.dart';
 import './propertylocation.dart';
+import './generalinfotwo.dart';
 
 class PhysicalStatePropertyPage extends StatefulWidget {
   PhysicalStatePropertyPage({this.localdata});
@@ -73,7 +74,16 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
 
   Widget backbutton() {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => GeneralInfotwoPage(
+              localdata: localdata,
+            ),
+          ),
+        );
+      },
       child: Container(
         child: Row(
           children: <Widget>[

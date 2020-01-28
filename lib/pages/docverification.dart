@@ -10,6 +10,7 @@ import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
 import '../widgets/appformcards.dart';
 import './typeofuse.dart';
+import './propertydetails.dart';
 
 class DocVerificationPage extends StatefulWidget {
   DocVerificationPage({this.localdata});
@@ -64,6 +65,8 @@ FocusNode _land_area_qawwala;
           return;
         } else {
           _formkey.currentState.save();
+          await DBHelper()
+              .updatePropertySurvey(localdata, localdata.local_property_key);
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -90,7 +93,16 @@ FocusNode _land_area_qawwala;
 
   Widget backbutton() {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => PropertyDetailsPage(
+              localdata: localdata,
+            ),
+          ),
+        );
+      },
       child: Container(
         child: Row(
           children: <Widget>[

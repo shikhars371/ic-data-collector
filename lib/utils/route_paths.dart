@@ -5,3 +5,5 @@ const String TaskRoute = 'TaskPage';
 const String LanguageRoute = 'LanguagePage';
 const String GuideRoute = 'GuidePage';
 const String HelpRoute = 'HelpPage';
+const String SurveyInfo = "SurveyInfoPage";
+const String GeneralInfoOne = "GeneralInfoPage";

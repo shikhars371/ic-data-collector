@@ -9,6 +9,8 @@ import '../controllers/auth.dart';
 import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
 import '../widgets/appformcards.dart';
+import './detailnumberarea.dart';
+import './task.dart';
 
 class HomeSketchPage extends StatefulWidget {
   HomeSketchPage({this.localdata});
@@ -80,7 +82,16 @@ FocusNode _area_unit_business_units;
 
   Widget backbutton() {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => DetailsNumberAreaPage(
+              localdata: localdata,
+            ),
+          ),
+        );
+      },
       child: Container(
         child: Row(
           children: <Widget>[
@@ -238,7 +249,18 @@ _area_unit_business_units = new FocusNode();
                                     setState(() {});
                                   }),
                               GestureDetector(
-                                onTap: () async {},
+                                onTap: () async {
+                                  _formkey.currentState.save();
+                                  localdata.other_key = "1";
+                                  await DBHelper().updatePropertySurvey(
+                                      localdata, localdata.local_property_key);
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            TaskPage()),
+                                  );
+                                },
                                 child: Padding(
                                   padding: const EdgeInsets.all(10),
                                   child: Container(
@@ -289,8 +311,10 @@ _area_unit_business_units = new FocusNode();
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
+                                      //back button
                                       backbutton(),
-                                      nextbutton()
+                                      //next button
+                                      SizedBox()
                                     ],
                                   ),
                                 ),
