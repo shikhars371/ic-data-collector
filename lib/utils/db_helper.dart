@@ -281,13 +281,7 @@ class DBHelper with ChangeNotifier {
       ''';
       List<dynamic> params = [
         data.taskid,
-        data.province.trim() +
-            data.city.trim() +
-            data.area.trim() +
-            data.pass.trim() +
-            data.block.trim() +
-            data.part_number.trim() +
-            data.unit_number.trim(),
+        data.local_property_key,
         data.other_key,
         data.first_surveyor_name,
         data.senond_surveyor_name,
@@ -474,14 +468,7 @@ class DBHelper with ChangeNotifier {
         data.formval,
         data.editmode
       ];
-      bool check = await ifpropertyexist(
-          localkey: data.province.trim() +
-              data.city.trim() +
-              data.area.trim() +
-              data.pass.trim() +
-              data.block.trim() +
-              data.part_number.trim() +
-              data.unit_number.trim());
+      bool check = await ifpropertyexist(localkey: data.local_property_key);
       if (!check) {
         result = await dbClient.rawInsert(sqlquery, params);
       }
@@ -781,7 +768,7 @@ class DBHelper with ChangeNotifier {
       List<dynamic> params = [];
       if (localkey?.isEmpty ?? true) {
         sqlquery = '''
-        SELECT * FROM propertysurvey WHERE taskid=?
+        SELECT * FROM propertysurvey
       ''';
         params = [taskid];
       } else if (!(localkey?.isEmpty ?? true)) {

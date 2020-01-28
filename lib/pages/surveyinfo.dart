@@ -1,16 +1,18 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../localization/app_translations.dart';
 import '../models/localpropertydata.dart';
 import '../utils/db_helper.dart';
 import '../controllers/auth.dart';
-import './surveylist.dart';
-import './task.dart';
+import './generalinfoone.dart';
 import '../widgets/appformcards.dart';
+
+class Dpvalue {
+  String name;
+  String value;
+  Dpvalue({this.name, this.value});
+}
 
 class SurveyInfoPage extends StatefulWidget {
   SurveyInfoPage({this.taskid});
@@ -45,8 +47,20 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
 
   Widget nextbutton() {
     return GestureDetector(
-      onTap: () {
-        
+      onTap: () async {
+        if (!(_formkey.currentState.validate())) {
+          return;
+        } else {
+          _formkey.currentState.save();
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => GeneralInfoOnePage(
+                localdata: localdata,
+              ),
+            ),
+          );
+        }
       },
       child: Container(
         child: Row(
@@ -57,6 +71,30 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
             ),
             Icon(Icons.arrow_forward_ios),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget completedcheckbox({bool isCompleted}) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        height: 15,
+        width: 15,
+        decoration: BoxDecoration(
+          //color: Colors.white,
+          shape: BoxShape.rectangle,
+          border: Border.all(
+              color: isCompleted ? Colors.lightGreen : Colors.black, width: 1),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(2),
+          child: Container(
+            decoration: BoxDecoration(
+              color: isCompleted ? Colors.lightGreen : Colors.black,
+            ),
+          ),
         ),
       ),
     );
@@ -98,7 +136,7 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
-                                  headerlablekey:setapptext(key: 'key_first_surveyor') ,
+                                  headerlablekey: setapptext(key:'key_first_surveyor'),
                                   radiovalue:
                                       localdata.first_surveyor_name?.isEmpty ??
                                               true
