@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:validators/validators.dart';
 
 import '../models/localpropertydata.dart';
 import '../controllers/auth.dart';
@@ -25,11 +26,11 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
   FocusNode _first_partner_name_property_owner;
-FocusNode _first_partner_surname;
-FocusNode _first_partner_boy;
-FocusNode _first_partner__father;
-FocusNode _first_partner_name_phone;
-FocusNode _first_partner_name_email;
+  FocusNode _first_partner_surname;
+  FocusNode _first_partner_boy;
+  FocusNode _first_partner__father;
+  FocusNode _first_partner_name_phone;
+  FocusNode _first_partner_name_email;
   Future<String> appimagepicker() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
     var apppath = await getApplicationDocumentsDirectory();
@@ -159,11 +160,11 @@ FocusNode _first_partner_name_email;
     localdata = widget.localdata;
     super.initState();
     _first_partner_name_property_owner = new FocusNode();
-_first_partner_surname = new FocusNode();
-_first_partner_boy = new FocusNode();
-_first_partner__father = new FocusNode();
-_first_partner_name_phone = new FocusNode();
-_first_partner_name_email = new FocusNode();
+    _first_partner_surname = new FocusNode();
+    _first_partner_boy = new FocusNode();
+    _first_partner__father = new FocusNode();
+    _first_partner_name_phone = new FocusNode();
+    _first_partner_name_email = new FocusNode();
   }
 
   @override
@@ -195,11 +196,13 @@ _first_partner_name_email = new FocusNode();
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
-                                  headerlablekey:  setapptext(key: 'key_name'),
-                                  fieldfocus: _first_partner_name_property_owner,
+                                  headerlablekey: setapptext(key: 'key_name'),
+                                  fieldfocus:
+                                      _first_partner_name_property_owner,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
-                                    _first_partner_name_property_owner.unfocus();
+                                    _first_partner_name_property_owner
+                                        .unfocus();
                                     FocusScope.of(context)
                                         .requestFocus(_first_partner_surname);
                                   },
@@ -218,7 +221,11 @@ _first_partner_name_email = new FocusNode();
                                           .first_partner_name_property_owner,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
-                                      return setapptext(key: 'key_field_not_blank');
+                                      return setapptext(
+                                          key: 'key_field_not_blank');
+                                    } else if (!(isAlpha(value))) {
+                                      return setapptext(
+                                          key: 'key_text_format_error');
                                     }
                                   },
                                   onSaved: (value) {
@@ -233,7 +240,8 @@ _first_partner_name_email = new FocusNode();
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  headerlablekey:  setapptext(key: 'key_surname'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_surname'),
                                   fieldfocus: _first_partner_surname,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -251,6 +259,11 @@ _first_partner_name_email = new FocusNode();
                                           true
                                       ? ""
                                       : localdata.first_partner_surname,
+                                  validator: (value) {
+                                    if (!(isAlpha(value))) {
+                          return setapptext(key: 'key_text_format_error');
+                        }
+                                  },
                                   onSaved: (value) {
                                     localdata.first_partner_surname =
                                         value.trim();
@@ -261,7 +274,7 @@ _first_partner_name_email = new FocusNode();
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  headerlablekey:  setapptext(key: 'key_wold'),
+                                  headerlablekey: setapptext(key: 'key_wold'),
                                   fieldfocus: _first_partner_boy,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -279,6 +292,11 @@ _first_partner_name_email = new FocusNode();
                                               true
                                           ? ""
                                           : localdata.first_partner_boy,
+                                          validator: (value) {
+                                            if (!(isAlpha(value))) {
+                          return setapptext(key: 'key_text_format_error');
+                        }
+                                          },
                                   onSaved: (value) {
                                     localdata.first_partner_boy = value.trim();
                                   },
@@ -287,11 +305,12 @@ _first_partner_name_email = new FocusNode();
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  headerlablekey: setapptext(key:  'key_birth'),
+                                  headerlablekey: setapptext(key: 'key_birth'),
                                   fieldfocus: _first_partner__father,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
-                                    _first_partner__father.unfocus(); },
+                                    _first_partner__father.unfocus();
+                                  },
                                   radiovalue: localdata
                                               .first_partner__father?.isEmpty ??
                                           true
@@ -302,6 +321,11 @@ _first_partner_name_email = new FocusNode();
                                           true
                                       ? ""
                                       : localdata.first_partner__father,
+                                      validator: (value){
+                                        if (!(isAlpha(value))) {
+                          return setapptext(key: 'key_text_format_error');
+                        }
+                                      },
                                   onSaved: (value) {
                                     localdata.first_partner__father =
                                         value.trim();
@@ -326,7 +350,7 @@ _first_partner_name_email = new FocusNode();
                                               "0"))
                                       ? false
                                       : true,
-                                  headerlablekey: setapptext(key:  'key_gender'),
+                                  headerlablekey: setapptext(key: 'key_gender'),
                                   dropdownitems: [
                                     Dpvalue(
                                         name: setapptext(
@@ -353,13 +377,13 @@ _first_partner_name_email = new FocusNode();
                                   }),
                               formcardtextfield(
                                   keyboardtype: TextInputType.number,
-                                  headerlablekey:  setapptext(key: 'key_phone'),
+                                  headerlablekey: setapptext(key: 'key_phone'),
                                   fieldfocus: _first_partner_name_phone,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
                                     _first_partner_name_phone.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_first_partner_name_email);
+                                    FocusScope.of(context).requestFocus(
+                                        _first_partner_name_email);
                                   },
                                   radiovalue: localdata.first_partner_name_phone
                                               ?.isEmpty ??
@@ -382,16 +406,18 @@ _first_partner_name_email = new FocusNode();
                                   },
                                   validator: (value) {
                                     if (value.length != 10) {
-                                      return setapptext(key: 'key_mobile_field');
+                                      return setapptext(
+                                          key: 'key_mobile_field');
                                     }
                                   }),
                               formcardtextfield(
                                   keyboardtype: TextInputType.emailAddress,
-                                  headerlablekey:  setapptext(key: 'key_email'),
+                                  headerlablekey: setapptext(key: 'key_email'),
                                   fieldfocus: _first_partner_name_email,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
-                                    _first_partner_name_email.unfocus(); },
+                                    _first_partner_name_email.unfocus();
+                                  },
                                   radiovalue: localdata.first_partner_name_email
                                               ?.isEmpty ??
                                           true
@@ -468,8 +494,9 @@ _first_partner_name_email = new FocusNode();
                                             child: Column(
                                               children: <Widget>[
                                                 RaisedButton(
-                                                  child: Text(
-                                                      setapptext(key: 'key_capture_image')),
+                                                  child: Text(setapptext(
+                                                      key:
+                                                          'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .first_partner_name_property_owner =
@@ -496,7 +523,8 @@ _first_partner_name_email = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text(setapptext(key: 'key_no_image')),
+                                                    child: Text(setapptext(
+                                                        key: 'key_no_image')),
                                                   )
                                                 : Image.file(File(localdata
                                                     .first_partner_name_property_owner)),
@@ -508,7 +536,8 @@ _first_partner_name_email = new FocusNode();
                                 ),
                               ),
                               formcardtextfield(
-                                  headerlablekey:  setapptext(key: 'key_enter_any_mere'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_enter_any_mere'),
                                   radiovalue: localdata
                                               .first_partner_name_mere_individuals
                                               ?.isEmpty ??
@@ -549,8 +578,8 @@ _first_partner_name_email = new FocusNode();
                               Container(
                                 color: Colors.blue,
                                 child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 10, bottom: 10),
+                                  padding: const EdgeInsets.only(
+                                      top: 10, bottom: 10),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,

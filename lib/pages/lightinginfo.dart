@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:kapp/pages/fourlimit.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:validators/validators.dart';
 
 import '../models/localpropertydata.dart';
 import '../controllers/auth.dart';
@@ -238,6 +239,9 @@ _lightning_father_name = new FocusNode();
                                     if (value.trim().isEmpty) {
                                       return setapptext(key: 'key_field_not_blank');
                                     }
+                                    else if (!(isAlpha(value))) {
+                          return setapptext(key: 'key_text_format_error');
+                        }
                                   },
                                   onSaved: (value) {
                                     localdata.lightning_father_name =

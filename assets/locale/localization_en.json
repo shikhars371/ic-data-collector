@@ -137,15 +137,15 @@
     "key_Under_Construction_Repairs": "Under Construction Repairs",
     "key_Safari_Machine_Gun_Number": "Safari Machine Gun Number:",
     "key_Issued_Date": "Issued Date",
-    "key_way_to_enter": "way to enter date: 01/01/25",
+    "key_way_to_enter": "yyyy-mm-dd",
     "key_Picture_of_Safari_Booklet": "Picture of Safari Booklet",
-    "key_the_owner": "the owner",
+    "key_the_owner": "The owner",
     "key_Master_rent": "Master, rent",
     "key_master_recipient": "Master, the recipient group",
     "key_master_no_longer": "Master, no longer",
     "key_specify_misconduct": "Specify the type of misconduct",
     "key_does_property_building": "Does this property have a building?",
-    "key_building_use": "type of building use",
+    "key_building_use": "Type of building use",
     "key_general": "General",
     "key_building_category": "Building Category",
     "key_Modern_Concrete": "Modern Concrete",
@@ -265,5 +265,7 @@
     "key_in_progress" : "In Progress",
     "key_completed" : "Completed",
     "key_synced" : "Synced",
-    "key_assigned_date" : "Assigned Date -"
+    "key_assigned_date" : "Assigned Date -",
+    "key_date_format_error" : "Enter in correct date format",
+    "key_text_format_error" : "Only alphabets are allowed"
 }

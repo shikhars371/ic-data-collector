@@ -362,6 +362,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                  keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.fst_no_of_floors?.isEmpty ??
                                                 true
@@ -396,6 +397,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                  keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.fst_cubie_meter?.isEmpty ??
                                                 true
@@ -479,7 +481,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                             (localdata.snd_building_use == "0"))
                                         ? false
                                         : true,
-                                    headerlablekey: 'key_building_use',
+                                    headerlablekey: setapptext(key: 'key_building_use'),
                                     dropdownitems: [
                                       Dpvalue(
                                           name: setapptext(
@@ -606,6 +608,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                  keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.snd_no_of_floors?.isEmpty ??
                                                 true
@@ -640,6 +643,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                  keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.snd_cubie_meter?.isEmpty ??
                                                 true
@@ -851,6 +855,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                  keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.trd_no_of_floors?.isEmpty ??
                                                 true
@@ -885,6 +890,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                  keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.trd_cubie_meter?.isEmpty ??
                                                 true
@@ -1105,6 +1111,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                  keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.forth_no_of_floors?.isEmpty ??
                                                 true
@@ -1140,6 +1147,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                  keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.forth_cubie_meter?.isEmpty ??
                                                 true
@@ -1358,6 +1366,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                  keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.fth_no_of_floors?.isEmpty ??
                                                 true
@@ -1391,6 +1400,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                  keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.fth_cubie_meter?.isEmpty ??
                                                 true

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:validators/validators.dart';
 
 import '../localization/app_translations.dart';
 import '../models/localpropertydata.dart';
@@ -131,6 +132,8 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                       validator: (value) {
                         if (value.trim().isEmpty) {
                           return setapptext(key: 'key_field_not_blank');
+                        } else if (!(isAlpha(value))) {
+                          return setapptext(key: 'key_text_format_error');
                         }
                       },
                       onSaved: (value) {
@@ -159,6 +162,8 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                       validator: (value) {
                         if (value.trim().isEmpty) {
                           return setapptext(key: 'key_field_not_blank');
+                        } else if (!(isAlpha(value))) {
+                          return setapptext(key: 'key_text_format_error');
                         }
                       },
                       onSaved: (value) {
@@ -185,6 +190,11 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                           localdata.technical_support_name?.isEmpty ?? true
                               ? ""
                               : localdata.technical_support_name,
+                      validator:(value){
+                        if (!(isAlpha(value))) {
+                          return setapptext(key: 'key_text_format_error');
+                        }
+                      } ,
                       onSaved: (value) {
                         localdata.technical_support_name = value.trim();
                       },

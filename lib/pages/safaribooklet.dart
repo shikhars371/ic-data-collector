@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:kapp/pages/lightinginfo.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:validators/validators.dart';
 
 import '../models/localpropertydata.dart';
 import '../controllers/auth.dart';
@@ -215,6 +216,9 @@ _safari_booklet_issue_date = new FocusNode();
                                     if (value.trim().isEmpty) {
                                       return setapptext(key: 'key_field_not_blank');
                                     }
+                                    else if (!(isAlpha(value))) {
+                          return setapptext(key: 'key_text_format_error');
+                        }
                                   },
                                   onSaved: (value) {
                                     localdata.safari_booklet_father_name =
@@ -251,6 +255,10 @@ _safari_booklet_issue_date = new FocusNode();
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
                                       return setapptext(key: 'key_field_not_blank');
+
+                                    }
+                                    else if(!(isDate(value))){
+                                      return setapptext(key: 'key_date_format_error');
                                     }
                                   },
                                   onSaved: (value) {
