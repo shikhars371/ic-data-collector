@@ -231,9 +231,18 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                                 ? Center(
                                                     child: Text(setapptext(key: 'key_no_image')),
                                                   )
-                                                : Image.file(
-                                                    File(localdata.home_map),
-                                                  ),
+                                                 : File(localdata
+                                                            .home_map)
+                                                        .existsSync()
+                                                    ? Image.file(
+                                                        File(localdata
+                                                            .home_map),
+                                                      )
+                                                    : Center(
+                                                        child: Text(setapptext(
+                                                            key:
+                                                                'key_no_image')),
+                                                      ),
                                           ),
                                         )
                                       ],
@@ -317,9 +326,18 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                                 ? Center(
                                                     child: Text(setapptext(key: 'key_no_image')),
                                                   )
-                                                : Image.file(
-                                                    File(localdata.home_photo),
-                                                  ),
+                                                 : File(localdata
+                                                            .home_photo)
+                                                        .existsSync()
+                                                    ? Image.file(
+                                                        File(localdata
+                                                            .home_photo),
+                                                      )
+                                                    : Center(
+                                                        child: Text(setapptext(
+                                                            key:
+                                                                'key_no_image')),
+                                                      ),
                                           ),
                                         )
                                       ],

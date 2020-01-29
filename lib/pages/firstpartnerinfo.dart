@@ -261,8 +261,9 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                       : localdata.first_partner_surname,
                                   validator: (value) {
                                     if (!(isAlpha(value))) {
-                          return setapptext(key: 'key_text_format_error');
-                        }
+                                      return setapptext(
+                                          key: 'key_text_format_error');
+                                    }
                                   },
                                   onSaved: (value) {
                                     localdata.first_partner_surname =
@@ -292,11 +293,12 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                               true
                                           ? ""
                                           : localdata.first_partner_boy,
-                                          validator: (value) {
-                                            if (!(isAlpha(value))) {
-                          return setapptext(key: 'key_text_format_error');
-                        }
-                                          },
+                                  validator: (value) {
+                                    if (!(isAlpha(value))) {
+                                      return setapptext(
+                                          key: 'key_text_format_error');
+                                    }
+                                  },
                                   onSaved: (value) {
                                     localdata.first_partner_boy = value.trim();
                                   },
@@ -321,11 +323,12 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                           true
                                       ? ""
                                       : localdata.first_partner__father,
-                                      validator: (value){
-                                        if (!(isAlpha(value))) {
-                          return setapptext(key: 'key_text_format_error');
-                        }
-                                      },
+                                  validator: (value) {
+                                    if (!(isAlpha(value))) {
+                                      return setapptext(
+                                          key: 'key_text_format_error');
+                                    }
+                                  },
                                   onSaved: (value) {
                                     localdata.first_partner__father =
                                         value.trim();
@@ -523,11 +526,19 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text(setapptext(
-                                                        key: 'key_no_image')),
+                                                    child: Text(
+                                                      setapptext(
+                                                          key: 'key_no_image'),
+                                                    ),
                                                   )
-                                                : Image.file(File(localdata
-                                                    .first_partner_name_property_owner)),
+                                                :File(localdata
+                                                    .first_partner_name_property_owner).existsSync()? Image.file(File(localdata
+                                                    .first_partner_name_property_owner)):Center(
+                                                    child: Text(
+                                                      setapptext(
+                                                          key: 'key_no_image'),
+                                                    ),
+                                                  ),
                                           ),
                                         )
                                       ],
