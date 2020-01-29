@@ -519,12 +519,18 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text(setapptext(
-                                                        key: 'key_no_image')),
+                                                    child: Text(
+                                                      setapptext(
+                                                          key: 'key_no_image'),
+                                                    ),
                                                   )
-                                                : Image.file(
-                                                    File(localdata
-                                                        .first_partner_name_property_owner),
+                                                :File(localdata
+                                                    .first_partner_name_property_owner).existsSync()? Image.file(File(localdata
+                                                    .first_partner_name_property_owner)):Center(
+                                                    child: Text(
+                                                      setapptext(
+                                                          key: 'key_no_image'),
+                                                    ),
                                                   ),
                                           ),
                                         )

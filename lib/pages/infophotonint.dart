@@ -362,8 +362,18 @@ _info_photo_hint_reg_no = new FocusNode();
                                                 ? Center(
                                                     child: Text(setapptext(key: 'key_no_image')),
                                                   )
-                                                : Image.file(File(localdata
-                                                    .info_photo_hint_photo_note1)),
+                                                : File(localdata
+                                                            .info_photo_hint_photo_note1)
+                                                        .existsSync()
+                                                    ? Image.file(
+                                                        File(localdata
+                                                            .info_photo_hint_photo_note1),
+                                                      )
+                                                    : Center(
+                                                        child: Text(setapptext(
+                                                            key:
+                                                                'key_no_image')),
+                                                      ),
                                           ),
                                         )
                                       ],
@@ -449,8 +459,18 @@ _info_photo_hint_reg_no = new FocusNode();
                                                 ? Center(
                                                     child: Text(setapptext(key: 'key_no_image')),
                                                   )
-                                                : Image.file(File(localdata
-                                                    .info_photo_hint_photo_tips1)),
+                                               : File(localdata
+                                                            .info_photo_hint_photo_tips1)
+                                                        .existsSync()
+                                                    ? Image.file(
+                                                        File(localdata
+                                                            .info_photo_hint_photo_tips1),
+                                                      )
+                                                    : Center(
+                                                        child: Text(setapptext(
+                                                            key:
+                                                                'key_no_image')),
+                                                      ),
                                           ),
                                         )
                                       ],
@@ -536,8 +556,18 @@ _info_photo_hint_reg_no = new FocusNode();
                                                 ? Center(
                                                     child: Text(setapptext(key: 'key_no_image')),
                                                   )
-                                                : Image.file(File(localdata
-                                                    .info_photo_hint_photo_tips2)),
+                                                 : File(localdata
+                                                            .info_photo_hint_photo_tips2)
+                                                        .existsSync()
+                                                    ? Image.file(
+                                                        File(localdata
+                                                            .info_photo_hint_photo_tips2),
+                                                      )
+                                                    : Center(
+                                                        child: Text(setapptext(
+                                                            key:
+                                                                'key_no_image')),
+                                                      ),
                                           ),
                                         )
                                       ],
