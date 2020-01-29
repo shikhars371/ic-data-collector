@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +19,12 @@ import './utils/appproviders.dart';
 import './utils/db_helper.dart';
 
 Future<Null> main() async {
+  FlutterError.onError = (FlutterErrorDetails details) {
+    FlutterError.dumpErrorToConsole(details);
+    if (kReleaseMode) {
+      exit(1);
+    }
+  };
   setupLocator();
   runApp(LocalisedApp());
 }
@@ -56,7 +64,7 @@ class LocalisedAppState extends State<LocalisedApp> {
           create: (_) => TaskModel(),
         ),
         ChangeNotifierProvider(
-          create: (_)=>DBHelper(),
+          create: (_) => DBHelper(),
         )
       ],
       //providers: AppProviders().appproviders,

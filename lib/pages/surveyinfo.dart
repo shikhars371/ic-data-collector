@@ -100,6 +100,132 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
     );
   }
 
+  Widget safeBody() {
+    return SafeArea(
+      child: Form(
+        key: _formkey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            //header
+            formheader(headerlablekey: 'key_provider_details'),
+            //body
+            Expanded(
+              child: ListView(
+                children: <Widget>[
+                  formcardtextfield(
+                      headerlablekey: setapptext(key: 'key_first_surveyor'),
+                      radiovalue: localdata.first_surveyor_name?.isEmpty ?? true
+                          ? false
+                          : true,
+                      hinttextkey: setapptext(key: 'key_enter_1st_surveyor'),
+                      fieldfocus: _firstsurveyor,
+                      textInputAction: TextInputAction.next,
+                      onFieldSubmitted: (_) {
+                        _firstsurveyor.unfocus();
+                        FocusScope.of(context).requestFocus(_secondsurveyor);
+                      },
+                      initvalue: localdata.first_surveyor_name?.isEmpty ?? true
+                          ? ""
+                          : localdata.first_surveyor_name,
+                      validator: (value) {
+                        if (value.trim().isEmpty) {
+                          return setapptext(key: 'key_field_not_blank');
+                        }
+                      },
+                      onSaved: (value) {
+                        localdata.first_surveyor_name = value.trim();
+                      },
+                      onChanged: (value) {
+                        localdata.first_surveyor_name = value.trim();
+                        setState(() {});
+                      }),
+                  formcardtextfield(
+                      headerlablekey: setapptext(key: 'key_second_surveyor'),
+                      radiovalue:
+                          localdata.senond_surveyor_name?.isEmpty ?? true
+                              ? false
+                              : true,
+                      hinttextkey: setapptext(key: 'key_enter_1st_surveyor'),
+                      fieldfocus: _secondsurveyor,
+                      textInputAction: TextInputAction.next,
+                      onFieldSubmitted: (_) {
+                        _secondsurveyor.unfocus();
+                        FocusScope.of(context).requestFocus(_technicalsupport);
+                      },
+                      initvalue: localdata.senond_surveyor_name?.isEmpty ?? true
+                          ? ""
+                          : localdata.senond_surveyor_name,
+                      validator: (value) {
+                        if (value.trim().isEmpty) {
+                          return setapptext(key: 'key_field_not_blank');
+                        }
+                      },
+                      onSaved: (value) {
+                        localdata.senond_surveyor_name = value.trim();
+                      },
+                      onChanged: (value) {
+                        localdata.senond_surveyor_name = value.trim();
+                        setState(() {});
+                      }),
+                  formcardtextfield(
+                      headerlablekey:
+                          setapptext(key: 'key_name_technical_support'),
+                      radiovalue:
+                          localdata.technical_support_name?.isEmpty ?? true
+                              ? false
+                              : true,
+                      hinttextkey: setapptext(key: 'key_enter_1st_surveyor'),
+                      fieldfocus: _technicalsupport,
+                      textInputAction: TextInputAction.done,
+                      onFieldSubmitted: (_) {
+                        _technicalsupport.unfocus();
+                      },
+                      initvalue:
+                          localdata.technical_support_name?.isEmpty ?? true
+                              ? ""
+                              : localdata.technical_support_name,
+                      onSaved: (value) {
+                        localdata.technical_support_name = value.trim();
+                      },
+                      onChanged: (value) {
+                        localdata.technical_support_name = value.trim();
+                        setState(() {});
+                      }),
+                ],
+              ),
+            ),
+            //footer
+            Container(
+              child: Column(
+                children: <Widget>[
+                  Divider(
+                    color: Colors.blueAccent,
+                  ),
+                  Container(
+                    color: Colors.blue,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          //back button
+                          SizedBox(),
+                          //next button
+                          nextbutton()
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   void initState() {
     localdata = new LocalPropertySurvey();
@@ -122,6 +248,7 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
   Widget build(BuildContext context) {
     if (!(widget.localsurveykey?.isEmpty ?? true)) {
       localdata = Provider.of<DBHelper>(context).singlepropertysurveys;
+      localdata.editmode = 1;
     }
     return Scaffold(
       appBar: AppBar(
@@ -137,154 +264,9 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
               ? Center(
                   child: CircularProgressIndicator(),
                 )
-              : SafeArea(
-                  child: Form(
-                    key: _formkey,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        //header
-                        formheader(headerlablekey: 'key_provider_details'),
-                        //body
-                        Expanded(
-                          child: ListView(
-                            children: <Widget>[
-                              formcardtextfield(
-                                  headerlablekey:
-                                      setapptext(key: 'key_first_surveyor'),
-                                  radiovalue:
-                                      localdata.first_surveyor_name?.isEmpty ??
-                                              true
-                                          ? false
-                                          : true,
-                                  hinttextkey:
-                                      setapptext(key: 'key_enter_1st_surveyor'),
-                                  fieldfocus: _firstsurveyor,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _firstsurveyor.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_secondsurveyor);
-                                  },
-                                  initvalue:
-                                      localdata.first_surveyor_name?.isEmpty ??
-                                              true
-                                          ? ""
-                                          : localdata.first_surveyor_name,
-                                  validator: (value) {
-                                    if (value.trim().isEmpty) {
-                                      return setapptext(key: 'key_field_not_blank');
-                                    }
-                                  },
-                                  onSaved: (value) {
-                                    localdata.first_surveyor_name =
-                                        value.trim();
-                                  },
-                                  onChanged: (value) {
-                                    localdata.first_surveyor_name =
-                                        value.trim();
-                                    setState(() {});
-                                  }),
-                              formcardtextfield(
-                                  headerlablekey:
-                                      setapptext(key: 'key_second_surveyor'),
-                                  radiovalue:
-                                      localdata.senond_surveyor_name?.isEmpty ??
-                                              true
-                                          ? false
-                                          : true,
-                                  hinttextkey:
-                                      setapptext(key: 'key_enter_1st_surveyor'),
-                                  fieldfocus: _secondsurveyor,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _secondsurveyor.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_technicalsupport);
-                                  },
-                                  initvalue:
-                                      localdata.senond_surveyor_name?.isEmpty ??
-                                              true
-                                          ? ""
-                                          : localdata.senond_surveyor_name,
-                                  validator: (value) {
-                                    if (value.trim().isEmpty) {
-                                      return setapptext(key: 'key_field_not_blank');
-                                    }
-                                  },
-                                  onSaved: (value) {
-                                    localdata.senond_surveyor_name =
-                                        value.trim();
-                                  },
-                                  onChanged: (value) {
-                                    localdata.senond_surveyor_name =
-                                        value.trim();
-                                    setState(() {});
-                                  }),
-                              formcardtextfield(
-                                  headerlablekey: setapptext(
-                                      key: 'key_name_technical_support'),
-                                  radiovalue: localdata.technical_support_name
-                                              ?.isEmpty ??
-                                          true
-                                      ? false
-                                      : true,
-                                  hinttextkey:
-                                      setapptext(key: 'key_enter_1st_surveyor'),
-                                  fieldfocus: _technicalsupport,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) {
-                                    _technicalsupport.unfocus();
-                                  },
-                                  initvalue: localdata.technical_support_name
-                                              ?.isEmpty ??
-                                          true
-                                      ? ""
-                                      : localdata.technical_support_name,
-                                  onSaved: (value) {
-                                    localdata.technical_support_name =
-                                        value.trim();
-                                  },
-                                  onChanged: (value) {
-                                    localdata.technical_support_name =
-                                        value.trim();
-                                    setState(() {});
-                                  }),
-                            ],
-                          ),
-                        ),
-
-                        //footer
-                        Container(
-                          child: Column(
-                            children: <Widget>[
-                              Divider(
-                                color: Colors.blueAccent,
-                              ),
-                              Container(
-                                color: Colors.blue,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 10, bottom: 10),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      //back button
-                                      SizedBox(),
-                                      //next button
-                                      nextbutton()
-                                    ],
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                );
+              : (!(widget.localsurveykey?.isEmpty ?? true))
+                  ? safeBody()
+                  : safeBody();
         },
       ),
     );

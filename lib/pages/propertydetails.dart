@@ -647,9 +647,12 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                             true
                                         ? "o"
                                         : localdata.specified_current_use,
-                                    iscompleted: localdata.specified_current_use
-                                                ?.isEmpty ??
-                                            true
+                                    iscompleted: ((localdata
+                                                    .specified_current_use
+                                                    ?.isEmpty ??
+                                                true) ||
+                                            (localdata.specified_current_use ==
+                                                "0"))
                                         ? false
                                         : true,
                                     headerlablekey: setapptext(
@@ -732,7 +735,8 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                         : true,
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return setapptext(key: 'key_field_not_blank');
+                                        return setapptext(
+                                            key: 'key_field_not_blank');
                                       }
                                     },
                                     onSaved: (value) {
@@ -765,8 +769,8 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                               Container(
                                 color: Colors.blue,
                                 child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 10, bottom: 10),
+                                  padding: const EdgeInsets.only(
+                                      top: 10, bottom: 10),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
