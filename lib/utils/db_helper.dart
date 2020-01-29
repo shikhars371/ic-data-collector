@@ -768,7 +768,7 @@ class DBHelper with ChangeNotifier {
       List<dynamic> params = [];
       if (localkey?.isEmpty ?? true) {
         sqlquery = '''
-        SELECT * FROM propertysurvey
+        SELECT * FROM propertysurvey WHERE taskid=?
       ''';
         params = [taskid];
       } else if (!(localkey?.isEmpty ?? true)) {
@@ -834,6 +834,23 @@ class DBHelper with ChangeNotifier {
     }
     setState(AppState.Idle);
     notifyListeners();
+    return result;
+  }
+
+  Future<int> updateTaskStatus({String taskid}) async {
+    int result = 0;
+    try {
+      var dbClient = await db;
+      String query = '''
+        UPDATE surveylist 
+        set isstatrted = 1
+        WHERE id =?
+      ''';
+      List<dynamic> params = [taskid];
+      result = await dbClient.rawUpdate(query, params);
+    } catch (e) {
+      print(e);
+    }
     return result;
   }
 

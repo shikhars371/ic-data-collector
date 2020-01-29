@@ -369,10 +369,10 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                 color: Colors.blueAccent,
                               ),
                               Container(
-                                color: Colors.white,
+                                color: Colors.blue,
                                 child: Padding(
                                   padding:
-                                      const EdgeInsets.only(top: 5, bottom: 5),
+                                      const EdgeInsets.only(top: 10, bottom: 10),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,

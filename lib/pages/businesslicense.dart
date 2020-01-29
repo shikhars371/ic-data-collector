@@ -23,8 +23,8 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
   FocusNode _number_of_business_unit;
-FocusNode _business_unit_have_no_license;
-FocusNode _business_license_another;
+  FocusNode _business_unit_have_no_license;
+  FocusNode _business_license_another;
 
   Future<String> appimagepicker() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
@@ -132,9 +132,8 @@ FocusNode _business_license_another;
     localdata = widget.localdata;
     super.initState();
     _number_of_business_unit = new FocusNode();
-_business_unit_have_no_license = new FocusNode();
-_business_license_another = new FocusNode();
-
+    _business_unit_have_no_license = new FocusNode();
+    _business_license_another = new FocusNode();
   }
 
   @override
@@ -169,12 +168,12 @@ _business_license_another = new FocusNode();
                                   keyboardtype: TextInputType.number,
                                   headerlablekey:
                                       setapptext(key: 'key_how_many_business'),
-                                      fieldfocus: _number_of_business_unit,
+                                  fieldfocus: _number_of_business_unit,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
                                     _number_of_business_unit.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_business_unit_have_no_license);
+                                    FocusScope.of(context).requestFocus(
+                                        _business_unit_have_no_license);
                                   },
                                   radiovalue: localdata.number_of_business_unit
                                               ?.isEmpty ??
@@ -201,12 +200,12 @@ _business_license_another = new FocusNode();
                                   keyboardtype: TextInputType.number,
                                   headerlablekey: setapptext(
                                       key: 'key_howmany_business_license'),
-                                      fieldfocus: _business_unit_have_no_license,
+                                  fieldfocus: _business_unit_have_no_license,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
                                     _business_unit_have_no_license.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_business_license_another);
+                                    FocusScope.of(context).requestFocus(
+                                        _business_license_another);
                                   },
                                   radiovalue: localdata
                                               .business_unit_have_no_license
@@ -234,10 +233,11 @@ _business_license_another = new FocusNode();
                               formcardtextfield(
                                   headerlablekey:
                                       setapptext(key: 'key_Another'),
-                                      fieldfocus: _business_license_another,
+                                  fieldfocus: _business_license_another,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
-                                    _business_license_another.unfocus(); },
+                                    _business_license_another.unfocus();
+                                  },
                                   radiovalue: localdata.business_license_another
                                               ?.isEmpty ??
                                           true
@@ -270,10 +270,10 @@ _business_license_another = new FocusNode();
                                 color: Colors.blueAccent,
                               ),
                               Container(
-                                color: Colors.white,
+                                color: Colors.blue,
                                 child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 5, bottom: 5),
+                                  padding: const EdgeInsets.only(
+                                      top: 10, bottom: 10),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,

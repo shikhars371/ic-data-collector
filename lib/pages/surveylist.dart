@@ -52,7 +52,7 @@ class _SurveyPageState extends State<SurveyPage> {
                             fontWeight: FontWeight.bold, color: Colors.black),
                         children: <TextSpan>[
                           TextSpan(
-                            text: provinance,
+                            text: getProvincename(provinance),
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.normal),
@@ -70,7 +70,7 @@ class _SurveyPageState extends State<SurveyPage> {
                             fontWeight: FontWeight.bold, color: Colors.black),
                         children: <TextSpan>[
                           TextSpan(
-                            text: city,
+                            text: getCity(city),
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.normal),
@@ -218,11 +218,89 @@ class _SurveyPageState extends State<SurveyPage> {
     );
   }
 
+  String getProvincename(String id) {
+    var result = "";
+    switch (id) {
+      case "01-01":
+        result = "Kabul";
+        break;
+      case "06-01":
+        result = "Nangarhar";
+        break;
+      case "33-01":
+        result = "Kandahar";
+        break;
+      case "10-01":
+        result = "Bamyan";
+        break;
+      case "22-01":
+        result = "Daikundi";
+        break;
+      case "17-01":
+        result = "Kundoz";
+        break;
+      case "18-01":
+        result = "Balkh";
+        break;
+      case "30-01":
+        result = "Herat";
+        break;
+      case "03-01":
+        result = "Parwan";
+        break;
+      case "04-01":
+        result = "Farah";
+        break;
+      default:
+        result = id;
+    }
+    return result;
+  }
+
+  String getCity(String id) {
+    var result = "";
+    switch (id) {
+      case "1":
+        result = "Kabul";
+        break;
+      case "2":
+        result = "Jalalabad";
+        break;
+      case "3":
+        result = "Kandahar";
+        break;
+      case "4":
+        result = "Bamyan";
+        break;
+      case "5":
+        result = "Nili";
+        break;
+      case "6":
+        result = "Kundoz";
+        break;
+      case "7":
+        result = "Sharif";
+        break;
+      case "8":
+        result = "Herat";
+        break;
+      case "9":
+        result = "Charikar";
+        break;
+      case "10":
+        result = "Farah";
+        break;
+      default:
+        result = id;
+    }
+    return result;
+  }
+
   @override
   void initState() {
-    Future.delayed(Duration.zero).then((_) {
-      Provider.of<DBHelper>(context).getpropertysurveys(taskid: widget.id);
-    });
+    // Future.delayed(Duration.zero).then((_) {
+    //   Provider.of<DBHelper>(context).getpropertysurveys(taskid: widget.id);
+    // });
     super.initState();
   }
 
@@ -248,35 +326,38 @@ class _SurveyPageState extends State<SurveyPage> {
           )
         ],
       ),
-      body: Consumer<DBHelper>(
-        builder: (context, dbdata, child) {
-          return dbdata.state == AppState.Busy
-              ? Center(child: CircularProgressIndicator())
-              : SafeArea(
-                  child: Column(
-                    children: <Widget>[
-                      Expanded(
-                        child: ListView.builder(
-                          itemCount: dbdata.propertysurveys?.isEmpty ?? true
-                              ? 0
-                              : dbdata.propertysurveys.length,
-                          itemBuilder: (context, index) {
-                            return listcard(
-                                localsurveyid: dbdata
-                                    .propertysurveys[index].local_property_key,
-                                provinance:
-                                    dbdata.propertysurveys[index].province,
-                                city: dbdata.propertysurveys[index].city,
-                                block: dbdata.propertysurveys[index].block,
-                                part: dbdata.propertysurveys[index].part_number,
-                                unitno:
-                                    dbdata.propertysurveys[index].unit_number);
-                          },
-                        ),
-                      )
-                    ],
-                  ),
-                );
+      body: FutureBuilder(
+        future: DBHelper().getpropertysurveys(taskid: widget.id),
+        builder:
+            (context, AsyncSnapshot<List<LocalPropertySurvey>> surveydata) {
+          if (surveydata.connectionState == ConnectionState.done &&
+              surveydata.hasData) {
+            List<LocalPropertySurvey> dbdata = surveydata.data;
+            return SafeArea(
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: dbdata?.isEmpty ?? true ? 0 : dbdata.length,
+                      itemBuilder: (context, index) {
+                        return listcard(
+                            localsurveyid: dbdata[index].local_property_key,
+                            provinance: dbdata[index].province,
+                            city: dbdata[index].city,
+                            block: dbdata[index].block,
+                            part: dbdata[index].part_number,
+                            unitno: dbdata[index].unit_number);
+                      },
+                    ),
+                  )
+                ],
+              ),
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
         },
       ),
       floatingActionButton: FloatingActionButton(

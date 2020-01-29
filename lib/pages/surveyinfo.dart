@@ -51,6 +51,7 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
           return;
         } else {
           _formkey.currentState.save();
+          localdata.taskid = widget.taskid;
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -260,10 +261,10 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                 color: Colors.blueAccent,
                               ),
                               Container(
-                                color: Colors.white,
+                                color: Colors.blue,
                                 child: Padding(
                                   padding:
-                                      const EdgeInsets.only(top: 5, bottom: 5),
+                                      const EdgeInsets.only(top: 10, bottom: 10),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,

@@ -102,6 +102,7 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
 
   @override
   void initState() {
+    localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
     super.initState();
     _issue_regarding_property = new FocusNode();
