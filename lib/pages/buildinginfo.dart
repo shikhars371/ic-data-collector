@@ -123,7 +123,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
         }
       },
       child: Container(
-        
         child: Row(
           children: <Widget>[
             Icon(Icons.arrow_back_ios),
@@ -221,7 +220,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   },
                                   validate: (value) {
                                     if ((value.isEmpty) || value == "0") {
-                                      return "required";
+                                      return setapptext(key: 'key_required');
                                     }
                                   }),
 
@@ -274,7 +273,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                             : localdata.fst_building_use,
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
-                                        return "required";
+                                        return setapptext(key: 'key_required');
                                       }
                                     }),
                                 formCardDropdown(
@@ -329,7 +328,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                         : localdata.fst_building_category,
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
-                                        return "required";
+                                        return setapptext(key: 'key_required');
                                       }
                                     }),
                                 formcardtextfield(
@@ -388,7 +387,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return "field should not be blank";
+                                        return setapptext(
+                                            key: 'key_field_not_blank');
                                       }
                                     },
                                     onChanged: (value) {
@@ -419,7 +419,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return "field should not be blank";
+                                        return setapptext(
+                                            key: 'key_field_not_blank');
                                       }
                                     },
                                     onChanged: (value) {
@@ -462,7 +463,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
-                                        return "required";
+                                        return setapptext(key: 'key_required');
                                       }
                                     }),
                               ],
@@ -516,7 +517,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                             : localdata.snd_building_use,
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
-                                        return "required";
+                                        return setapptext(key: 'key_required');
                                       }
                                     }),
                                 formCardDropdown(
@@ -571,7 +572,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                         : localdata.snd_building_category,
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
-                                        return "required";
+                                        return setapptext(key: 'key_required');
                                       }
                                     }),
                                 formcardtextfield(
@@ -630,7 +631,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return "field should not be blank";
+                                        return setapptext(
+                                            key: 'key_field_not_blank');
                                       }
                                     },
                                     onChanged: (value) {
@@ -661,7 +663,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return "field should not be blank";
+                                        return setapptext(
+                                            key: 'key_field_not_blank');
                                       }
                                     },
                                     onChanged: (value) {
@@ -704,7 +707,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
-                                        return "required";
+                                        return setapptext(key: 'key_required');
                                       }
                                     }),
                               ],
@@ -759,7 +762,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                             : localdata.trd_building_use,
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
-                                        return "required";
+                                        return setapptext(key: 'key_required');
                                       }
                                     }),
                                 formCardDropdown(
@@ -814,7 +817,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                         : localdata.trd_building_category,
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
-                                        return "required";
+                                        return setapptext(key: 'key_required');
                                       }
                                     }),
                                 formcardtextfield(
@@ -873,7 +876,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return "field should not be blank";
+                                        return setapptext(
+                                            key: 'key_field_not_blank');
                                       }
                                     },
                                     onChanged: (value) {
@@ -904,7 +908,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return "field should not be blank";
+                                        return setapptext(
+                                            key: 'key_field_not_blank');
                                       }
                                     },
                                     onChanged: (value) {
@@ -947,7 +952,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
-                                        return "required";
+                                        return setapptext(key: 'key_required');
                                       }
                                     }),
                               ],
@@ -1004,7 +1009,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                             : localdata.forth_building_use,
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
-                                        return "required";
+                                        return setapptext(key: 'key_required');
                                       }
                                     }),
                                 formCardDropdown(
@@ -1060,7 +1065,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                         : localdata.forth_building_category,
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
-                                        return "required";
+                                        return setapptext(key: 'key_required');
                                       }
                                     }),
                                 formcardtextfield(
@@ -1090,7 +1095,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return "field should not be blank";
+                                        return setapptext(
+                                            key: 'key_field_not_blank');
                                       }
                                     },
                                     onChanged: (value) {
@@ -1125,7 +1131,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return "field should not be blank";
+                                        return setapptext(key: 'key_field_not_blank');
                                       }
                                     },
                                     onChanged: (value) {
@@ -1158,7 +1164,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return "field should not be blank";
+                                        return setapptext(key: 'key_field_not_blank');
                                       }
                                     },
                                     onChanged: (value) {
@@ -1202,7 +1208,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
-                                        return "required";
+                                        return setapptext(key: 'key_required');
                                       }
                                     }),
                               ],
@@ -1258,7 +1264,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                             : localdata.fth_building_use,
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
-                                        return "required";
+                                        return setapptext(key: 'key_required');
                                       }
                                     }),
                                 formCardDropdown(
@@ -1313,7 +1319,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                         : localdata.fth_building_category,
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
-                                        return "required";
+                                        return setapptext(key: 'key_required');
                                       }
                                     }),
                                 formcardtextfield(
@@ -1343,7 +1349,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return "field should not be blank";
+                                        return setapptext(key: 'key_field_not_blank');
                                       }
                                     },
                                     onChanged: (value) {
@@ -1377,7 +1383,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return "field should not be blank";
+                                        return setapptext(key: 'key_field_not_blank');
                                       }
                                     },
                                     onChanged: (value) {
@@ -1408,7 +1414,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return "field should not be blank";
+                                        return setapptext(key: 'key_field_not_blank');
                                       }
                                     },
                                     onChanged: (value) {
@@ -1431,8 +1437,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                               Container(
                                 color: Colors.blue,
                                 child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 10, bottom: 10),
+                                  padding: const EdgeInsets.only(
+                                      top: 10, bottom: 10),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,

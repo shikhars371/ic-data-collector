@@ -257,7 +257,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                         : localdata.province,
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
-                                        return "required";
+                                        return setapptext(key: 'key_required');
                                       }
                                     }),
                                 formCardDropdown(
@@ -343,7 +343,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                       if (value.trim().isEmpty) {
                                         return "field should not be blank";
                                       } else if (value.length != 2) {
-                                        return "Should be two digit";
+                                        return setapptext(key: 'key_two_digit');
                                       }
                                     },
                                     onSaved: (value) {

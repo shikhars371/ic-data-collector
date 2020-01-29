@@ -35,11 +35,11 @@
     "key_property_location": "Property Location",
     "key_select_province": "Select the province.",
     "key_select_city": "Select a city.",
-    "key_area": "Area: (two-digit number)",
-    "key_pass": "Pass: (two-digit number)",
-    "key_block": "Block: (three-digit number)",
-    "key_part_number": "Part Number: (three-digit number)",
-    "key_unit_number": "Unit Number: (Three-digit Number)",
+    "key_area": "Area: (2-digit number)",
+    "key_pass": "Pass: (2-digit number)",
+    "key_block": "Block: (3-digit number)",
+    "key_part_number": "Part Number: (3-digit number)",
+    "key_unit_number": "Unit Number: (3-digit Number)",
     "key_number_of_unit": "Number of Units in Parcel",
     "key_state_name": "Street Name",
     "key_historycal_site": "Historical site of the area",
@@ -240,5 +240,8 @@
     "key_Sharif": "Mazar-E-Sharif",
     "key_Charikar": "Charikar",
     "key_":"ABC",
-    "key_add_building":"Add new Building"
+    "key_add_building":"Add new Building",
+    "key_required":"required",
+    "key_two_digit":"Should be 2 digit",
+    "key_field_not_blank":"field should not be blank"
 }

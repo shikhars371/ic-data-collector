@@ -211,7 +211,7 @@ _land_area_qawwala = new FocusNode();
                                   },
                                   validate: (value) {
                                     if ((value.isEmpty) || value == "0") {
-                                      return "required";
+                                      return setapptext(key: 'key_required');
                                     }
                                   }),
 
