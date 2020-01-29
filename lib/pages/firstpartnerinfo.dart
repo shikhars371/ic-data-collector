@@ -206,19 +206,16 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                     FocusScope.of(context)
                                         .requestFocus(_first_partner_surname);
                                   },
-                                  radiovalue: localdata
-                                              .first_partner_name_property_owner
-                                              ?.isEmpty ??
-                                          true
-                                      ? false
-                                      : true,
-                                  initvalue: localdata
-                                              .first_partner_name_property_owner
-                                              ?.isEmpty ??
-                                          true
-                                      ? ""
-                                      : localdata
-                                          .first_partner_name_property_owner,
+                                  radiovalue:
+                                      localdata.first_partner_name?.isEmpty ??
+                                              true
+                                          ? false
+                                          : true,
+                                  initvalue:
+                                      localdata.first_partner_name?.isEmpty ??
+                                              true
+                                          ? ""
+                                          : localdata.first_partner_name,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
                                       return setapptext(
@@ -229,14 +226,10 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                     }
                                   },
                                   onSaved: (value) {
-                                    localdata
-                                            .first_partner_name_property_owner =
-                                        value.trim();
+                                    localdata.first_partner_name = value.trim();
                                   },
                                   onChanged: (value) {
-                                    localdata
-                                            .first_partner_name_property_owner =
-                                        value.trim();
+                                    localdata.first_partner_name = value.trim();
                                     setState(() {});
                                   }),
                               formcardtextfield(
@@ -261,8 +254,9 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                       : localdata.first_partner_surname,
                                   validator: (value) {
                                     if (!(isAlpha(value))) {
-                          return setapptext(key: 'key_text_format_error');
-                        }
+                                      return setapptext(
+                                          key: 'key_text_format_error');
+                                    }
                                   },
                                   onSaved: (value) {
                                     localdata.first_partner_surname =
@@ -292,11 +286,12 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                               true
                                           ? ""
                                           : localdata.first_partner_boy,
-                                          validator: (value) {
-                                            if (!(isAlpha(value))) {
-                          return setapptext(key: 'key_text_format_error');
-                        }
-                                          },
+                                  validator: (value) {
+                                    if (!(isAlpha(value))) {
+                                      return setapptext(
+                                          key: 'key_text_format_error');
+                                    }
+                                  },
                                   onSaved: (value) {
                                     localdata.first_partner_boy = value.trim();
                                   },
@@ -321,11 +316,12 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                           true
                                       ? ""
                                       : localdata.first_partner__father,
-                                      validator: (value){
-                                        if (!(isAlpha(value))) {
-                          return setapptext(key: 'key_text_format_error');
-                        }
-                                      },
+                                  validator: (value) {
+                                    if (!(isAlpha(value))) {
+                                      return setapptext(
+                                          key: 'key_text_format_error');
+                                    }
+                                  },
                                   onSaved: (value) {
                                     localdata.first_partner__father =
                                         value.trim();
@@ -526,8 +522,10 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                                     child: Text(setapptext(
                                                         key: 'key_no_image')),
                                                   )
-                                                : Image.file(File(localdata
-                                                    .first_partner_name_property_owner)),
+                                                : Image.file(
+                                                    File(localdata
+                                                        .first_partner_name_property_owner),
+                                                  ),
                                           ),
                                         )
                                       ],
