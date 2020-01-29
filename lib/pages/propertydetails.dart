@@ -645,7 +645,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                     value: localdata.specified_current_use
                                                 ?.isEmpty ??
                                             true
-                                        ? "o"
+                                        ? "0"
                                         : localdata.specified_current_use,
                                     iscompleted: ((localdata
                                                     .specified_current_use
