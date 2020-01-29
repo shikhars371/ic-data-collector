@@ -70,7 +70,6 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
               ),
             );
           } else {
-            localdata.editmode = 1;
             localdata.local_property_key = localdata.province +
                 localdata.city +
                 localdata.area +
@@ -102,6 +101,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                     );
                   });
             } else {
+              localdata.editmode = 1;
               await DBHelper().updateTaskStatus(taskid: localdata.taskid);
               Navigator.pushReplacement(
                 context,
@@ -654,10 +654,10 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                   color: Colors.blueAccent,
                                 ),
                                 Container(
-                                  color: Colors.white,
+                                  color: Colors.blue,
                                   child: Padding(
                                     padding: const EdgeInsets.only(
-                                        top: 5, bottom: 5),
+                                        top: 10, bottom: 10),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,

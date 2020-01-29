@@ -106,7 +106,6 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
     _firstsurveyor = new FocusNode();
     _secondsurveyor = new FocusNode();
     _technicalsupport = new FocusNode();
-    localdata.taskid = widget.taskid;
     if (widget.localdata != null) {
       localdata = widget.localdata;
     }
@@ -121,7 +120,9 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
 
   @override
   Widget build(BuildContext context) {
-    localdata = Provider.of<DBHelper>(context).singlepropertysurveys;
+    if (!(widget.localsurveykey?.isEmpty ?? true)) {
+      localdata = Provider.of<DBHelper>(context).singlepropertysurveys;
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
@@ -263,8 +264,8 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                               Container(
                                 color: Colors.blue,
                                 child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 10, bottom: 10),
+                                  padding: const EdgeInsets.only(
+                                      top: 10, bottom: 10),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
