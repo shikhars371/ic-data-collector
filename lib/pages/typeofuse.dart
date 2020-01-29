@@ -86,7 +86,7 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
         child: Row(
           children: <Widget>[
             Text(
-              "Next",
+              setapptext(key: 'key_next'),
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Icon(Icons.arrow_forward_ios),
@@ -113,7 +113,7 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
           children: <Widget>[
             Icon(Icons.arrow_back_ios),
             Text(
-              "Back",
+              setapptext(key: 'key_back'),
               style: TextStyle(fontWeight: FontWeight.bold),
             )
           ],
@@ -135,7 +135,7 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Text(
-          "Property Survey",
+          setapptext(key: 'key_property_survey'),
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),

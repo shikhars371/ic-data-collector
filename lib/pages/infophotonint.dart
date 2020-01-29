@@ -91,7 +91,7 @@ FocusNode _info_photo_hint_reg_no;
         child: Row(
           children: <Widget>[
             Text(
-              "Next",
+              setapptext(key: 'key_next'),
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Icon(Icons.arrow_forward_ios),
@@ -118,7 +118,7 @@ FocusNode _info_photo_hint_reg_no;
           children: <Widget>[
             Icon(Icons.arrow_back_ios),
             Text(
-              "Back",
+              setapptext(key: 'key_back'),
               style: TextStyle(fontWeight: FontWeight.bold),
             )
           ],
@@ -145,7 +145,7 @@ _info_photo_hint_reg_no = new FocusNode();
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Text(
-          "Property Survey",
+          setapptext(key: 'key_property_survey'),
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
@@ -333,7 +333,7 @@ _info_photo_hint_reg_no = new FocusNode();
                                               children: <Widget>[
                                                 RaisedButton(
                                                   child: Text(
-                                                      "Click here to capture image. (< 10MB)"),
+                                                      setapptext(key: 'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .info_photo_hint_photo_note1 =
@@ -360,7 +360,7 @@ _info_photo_hint_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text("No image"),
+                                                    child: Text(setapptext(key: 'key_no_image')),
                                                   )
                                                 : Image.file(File(localdata
                                                     .info_photo_hint_photo_note1)),
@@ -420,7 +420,7 @@ _info_photo_hint_reg_no = new FocusNode();
                                               children: <Widget>[
                                                 RaisedButton(
                                                   child: Text(
-                                                      "Click here to capture image. (< 10MB)"),
+                                                      setapptext(key: 'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .info_photo_hint_photo_tips1 =
@@ -447,7 +447,7 @@ _info_photo_hint_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text("No image"),
+                                                    child: Text(setapptext(key: 'key_no_image')),
                                                   )
                                                 : Image.file(File(localdata
                                                     .info_photo_hint_photo_tips1)),
@@ -507,7 +507,7 @@ _info_photo_hint_reg_no = new FocusNode();
                                               children: <Widget>[
                                                 RaisedButton(
                                                   child: Text(
-                                                      "Click here to capture image. (< 10MB)"),
+                                                      setapptext(key: 'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .info_photo_hint_photo_tips2 =
@@ -534,7 +534,7 @@ _info_photo_hint_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text("No image"),
+                                                    child: Text(setapptext(key: 'key_no_image')),
                                                   )
                                                 : Image.file(File(localdata
                                                     .info_photo_hint_photo_tips2)),

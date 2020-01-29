@@ -110,7 +110,7 @@ FocusNode _fore_limits_north;
         child: Row(
           children: <Widget>[
             Text(
-              "Next",
+              setapptext(key: 'key_next'),
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Icon(Icons.arrow_forward_ios),
@@ -148,7 +148,7 @@ FocusNode _fore_limits_north;
           children: <Widget>[
             Icon(Icons.arrow_back_ios),
             Text(
-              "Back",
+              setapptext(key: 'key_back'),
               style: TextStyle(fontWeight: FontWeight.bold),
             )
           ],
@@ -174,7 +174,7 @@ _fore_limits_north = new FocusNode();
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Text(
-          "Property Survey",
+          setapptext(key: 'key_property_survey'),
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
@@ -218,7 +218,7 @@ _fore_limits_north = new FocusNode();
                                           : true,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
-                                      return "field should not be blank";
+                                      return setapptext(key: 'key_field_not_blank');
                                     }
                                   },
                                   onSaved: (value) {
@@ -250,7 +250,7 @@ _fore_limits_north = new FocusNode();
                                           : true,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
-                                      return "field should not be blank";
+                                      return setapptext(key: 'key_field_not_blank');
                                     }
                                   },
                                   onSaved: (value) {
@@ -282,7 +282,7 @@ _fore_limits_north = new FocusNode();
                                           : true,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
-                                      return "field should not be blank";
+                                      return setapptext(key: 'key_field_not_blank');
                                     }
                                   },
                                   onSaved: (value) {
@@ -310,7 +310,7 @@ _fore_limits_north = new FocusNode();
                                           : true,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
-                                      return "field should not be blank";
+                                      return setapptext(key: 'key_field_not_blank');
                                     }
                                   },
                                   onSaved: (value) {

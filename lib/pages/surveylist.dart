@@ -167,7 +167,7 @@ class _SurveyPageState extends State<SurveyPage> {
                           barrierDismissible: false,
                           builder: (context) {
                             return CupertinoAlertDialog(
-                              title: Text('Are you want to delete ?'),
+                              title: Text(setapptext(key: 'key_want_to_delete')),
                               actions: <Widget>[
                                 FlatButton(
                                   onPressed: () async {
@@ -183,7 +183,7 @@ class _SurveyPageState extends State<SurveyPage> {
                                     });
                                   },
                                   child: Text(
-                                    "Delete",
+                                    setapptext(key: 'key_delete'),
                                     style: TextStyle(color: Colors.red),
                                   ),
                                 ),
@@ -192,7 +192,7 @@ class _SurveyPageState extends State<SurveyPage> {
                                     Navigator.pop(context);
                                   },
                                   child: Text(
-                                    "Cancel",
+                                    setapptext(key: 'key_cancel'),
                                     style: TextStyle(color: Colors.black),
                                   ),
                                 )
@@ -310,7 +310,7 @@ class _SurveyPageState extends State<SurveyPage> {
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Text(
-          "Survey List",
+          setapptext(key: 'key_survey_list'),
           style: TextStyle(
               //color: Color.fromRGBO(192, 65, 25, 1),
               fontWeight: FontWeight.bold),
@@ -318,7 +318,7 @@ class _SurveyPageState extends State<SurveyPage> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),
-            tooltip: "add new property",
+            tooltip: setapptext(key: 'key_add_property'),
             onPressed: () {
               showSearch(
                   context: context, delegate: SurveySearch(taskid: widget.id));
@@ -589,7 +589,7 @@ class SurveySearch extends SearchDelegate<String> {
                                             builder: (context) {
                                               return CupertinoAlertDialog(
                                                 title: Text(
-                                                    'Are you want to delete ?'),
+                                                    setapptext(key: 'key_want_to_delete')),
                                                 actions: <Widget>[
                                                   FlatButton(
                                                     onPressed: () async {
@@ -609,7 +609,7 @@ class SurveySearch extends SearchDelegate<String> {
                                                       });
                                                     },
                                                     child: Text(
-                                                      "Delete",
+                                                      setapptext(key: 'key_delete'),
                                                       style: TextStyle(
                                                           color: Colors.red),
                                                     ),
@@ -619,7 +619,7 @@ class SurveySearch extends SearchDelegate<String> {
                                                       Navigator.pop(context);
                                                     },
                                                     child: Text(
-                                                      "Cancel",
+                                                      setapptext(key: 'key_cancel'),
                                                       style: TextStyle(
                                                           color: Colors.black),
                                                     ),

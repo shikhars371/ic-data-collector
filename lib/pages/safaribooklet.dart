@@ -78,7 +78,7 @@ FocusNode _safari_booklet_issue_date;
         child: Row(
           children: <Widget>[
             Text(
-              "Next",
+              setapptext(key: 'key_next'),
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Icon(Icons.arrow_forward_ios),
@@ -105,7 +105,7 @@ FocusNode _safari_booklet_issue_date;
           children: <Widget>[
             Icon(Icons.arrow_back_ios),
             Text(
-              "Back",
+              setapptext(key: 'key_back'),
               style: TextStyle(fontWeight: FontWeight.bold),
             )
           ],
@@ -131,7 +131,7 @@ _safari_booklet_issue_date = new FocusNode();
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Text(
-          "Property Survey",
+          setapptext(key: 'key_property_survey'),
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
@@ -177,7 +177,7 @@ _safari_booklet_issue_date = new FocusNode();
                                   hinttextkey:setapptext(key:  'key_enter_1st_surveyor'),
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
-                                      return "field should not be blank";
+                                      return setapptext(key: 'key_field_not_blank');
                                     }
                                   },
                                   onSaved: (value) {
@@ -213,7 +213,7 @@ _safari_booklet_issue_date = new FocusNode();
                                   hinttextkey:setapptext(key:  'key_enter_1st_surveyor'),
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
-                                      return "field should not be blank";
+                                      return setapptext(key: 'key_field_not_blank');
                                     }
                                   },
                                   onSaved: (value) {
@@ -250,7 +250,7 @@ _safari_booklet_issue_date = new FocusNode();
                                   hinttextkey: setapptext(key: 'key_enter_1st_surveyor'),
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
-                                      return "field should not be blank";
+                                      return setapptext(key: 'key_field_not_blank');
                                     }
                                   },
                                   onSaved: (value) {
@@ -283,7 +283,7 @@ _safari_booklet_issue_date = new FocusNode();
                                   hinttextkey: setapptext(key: 'key_way_to_enter'),
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
-                                      return "field should not be blank";
+                                      return setapptext(key: 'key_field_not_blank');
                                     }
                                   },
                                   onSaved: (value) {
@@ -345,7 +345,7 @@ _safari_booklet_issue_date = new FocusNode();
                                               children: <Widget>[
                                                 RaisedButton(
                                                   child: Text(
-                                                      "Click here to capture image. (< 10MB)"),
+                                                      setapptext(key: 'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .safari_booklet_picture =
@@ -372,7 +372,7 @@ _safari_booklet_issue_date = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text("No image"),
+                                                    child: Text(setapptext(key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata

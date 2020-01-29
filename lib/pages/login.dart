@@ -22,6 +22,9 @@ class _LoginPageState extends State<LoginPage> {
   FocusNode _password;
   bool showpassword = true;
 
+  String setapptext({String key}) {
+    return AppTranslations.of(context).text(key);
+  }
   @override
   void initState() {
     _email = FocusNode();
@@ -58,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
               //titel
               Container(
                 child: Text(
-                  "OC Data Collector",
+                  setapptext(key: 'key_login_app_titel'),
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 30,
@@ -100,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                                 },
                                 validator: (value) {
                                   if (value.isEmpty) {
-                                    return '* required';
+                                    return setapptext(key: 'key_required');
                                   }
                                 },
                                 onSaved: (value) {
@@ -149,7 +152,7 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                                 validator: (value) {
                                   if (value.isEmpty) {
-                                    return '* required';
+                                    return setapptext(key: 'key_required');
                                   }
                                 },
                                 onSaved: (value) {
@@ -206,7 +209,7 @@ class _LoginPageState extends State<LoginPage> {
                                         ),
                                         child: Center(
                                           child: Text(
-                                            'Login',
+                                            setapptext(key: 'key_login'),
                                             style: TextStyle(
                                                 fontSize: 20,
                                                 color: Colors.white),

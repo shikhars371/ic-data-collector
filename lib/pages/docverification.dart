@@ -81,7 +81,7 @@ FocusNode _land_area_qawwala;
         child: Row(
           children: <Widget>[
             Text(
-              "Next",
+              setapptext(key: 'key_next'),
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Icon(Icons.arrow_forward_ios),
@@ -108,7 +108,7 @@ FocusNode _land_area_qawwala;
           children: <Widget>[
             Icon(Icons.arrow_back_ios),
             Text(
-              "Back",
+              setapptext(key: 'key_back'),
               style: TextStyle(fontWeight: FontWeight.bold),
             )
           ],
@@ -137,7 +137,7 @@ _land_area_qawwala = new FocusNode();
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Text(
-          "Property Survey",
+          setapptext(key: 'key_property_survey'),
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
@@ -455,7 +455,7 @@ _land_area_qawwala = new FocusNode();
                                                 children: <Widget>[
                                                   RaisedButton(
                                                     child: Text(
-                                                        "Click here to capture image. (< 10MB)"),
+                                                        setapptext(key: 'key_capture_image')),
                                                     onPressed: () async {
                                                       localdata
                                                               .property_doc_photo_1 =
@@ -482,7 +482,7 @@ _land_area_qawwala = new FocusNode();
                                                           ?.isEmpty ??
                                                       true
                                                   ? Center(
-                                                      child: Text("No image"),
+                                                      child: Text(setapptext(key: 'key_no_image')),
                                                     )
                                                   : Image.file(File(localdata
                                                       .property_doc_photo_1)),
@@ -543,7 +543,7 @@ _land_area_qawwala = new FocusNode();
                                                 children: <Widget>[
                                                   RaisedButton(
                                                     child: Text(
-                                                        "Click here to capture image. (< 10MB)"),
+                                                        setapptext(key: 'key_capture_image')),
                                                     onPressed: () async {
                                                       localdata
                                                               .property_doc_photo_2 =
@@ -570,7 +570,7 @@ _land_area_qawwala = new FocusNode();
                                                           ?.isEmpty ??
                                                       true
                                                   ? Center(
-                                                      child: Text("No image"),
+                                                      child: Text(setapptext(key: 'key_no_image')),
                                                     )
                                                   : Image.file(File(localdata
                                                       .property_doc_photo_2)),
@@ -631,7 +631,7 @@ _land_area_qawwala = new FocusNode();
                                                 children: <Widget>[
                                                   RaisedButton(
                                                     child: Text(
-                                                        "Click here to capture image. (< 10MB)"),
+                                                        setapptext(key: 'key_capture_image')),
                                                     onPressed: () async {
                                                       localdata
                                                               .property_doc_photo_3 =
@@ -658,7 +658,7 @@ _land_area_qawwala = new FocusNode();
                                                           ?.isEmpty ??
                                                       true
                                                   ? Center(
-                                                      child: Text("No image"),
+                                                      child: Text(setapptext(key: 'key_no_image')),
                                                     )
                                                   : Image.file(File(localdata
                                                       .property_doc_photo_3)),
@@ -719,7 +719,7 @@ _land_area_qawwala = new FocusNode();
                                                 children: <Widget>[
                                                   RaisedButton(
                                                     child: Text(
-                                                        "Click here to capture image. (< 10MB)"),
+                                                        setapptext(key: 'key_capture_image')),
                                                     onPressed: () async {
                                                       localdata
                                                               .property_doc_photo_4 =
@@ -746,7 +746,7 @@ _land_area_qawwala = new FocusNode();
                                                           ?.isEmpty ??
                                                       true
                                                   ? Center(
-                                                      child: Text("No image"),
+                                                      child: Text(setapptext(key: 'key_no_image')),
                                                     )
                                                   : Image.file(File(localdata
                                                       .property_doc_photo_4)),
@@ -813,7 +813,7 @@ _land_area_qawwala = new FocusNode();
                                                 children: <Widget>[
                                                   RaisedButton(
                                                     child: Text(
-                                                        "Click here to capture image. (< 10MB)"),
+                                                        setapptext(key: 'key_capture_image')),
                                                     onPressed: () async {
                                                       localdata
                                                               .odinary_doc_photo1 =
@@ -840,7 +840,7 @@ _land_area_qawwala = new FocusNode();
                                                           ?.isEmpty ??
                                                       true
                                                   ? Center(
-                                                      child: Text("No image"),
+                                                      child: Text(setapptext(key: 'key_no_image')),
                                                     )
                                                   : Image.file(
                                                       File(localdata
@@ -902,7 +902,7 @@ _land_area_qawwala = new FocusNode();
                                                 children: <Widget>[
                                                   RaisedButton(
                                                     child: Text(
-                                                        "Click here to capture image. (< 10MB)"),
+                                                        setapptext(key: 'key_capture_image')),
                                                     onPressed: () async {
                                                       localdata
                                                               .odinary_doc_photo6 =
@@ -929,7 +929,7 @@ _land_area_qawwala = new FocusNode();
                                                           ?.isEmpty ??
                                                       true
                                                   ? Center(
-                                                      child: Text("No image"),
+                                                      child: Text(setapptext(key: 'key_no_image')),
                                                     )
                                                   : Image.file(
                                                       File(localdata

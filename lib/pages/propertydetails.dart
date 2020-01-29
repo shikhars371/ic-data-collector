@@ -89,7 +89,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
         child: Row(
           children: <Widget>[
             Text(
-              "Next",
+              setapptext(key: 'key_next'),
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Icon(Icons.arrow_forward_ios),
@@ -116,7 +116,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
           children: <Widget>[
             Icon(Icons.arrow_back_ios),
             Text(
-              "Back",
+              setapptext(key: 'key_back'),
               style: TextStyle(fontWeight: FontWeight.bold),
             )
           ],
@@ -138,7 +138,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Text(
-          "Property Survey",
+          setapptext(key: 'key_property_survey'),
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
@@ -211,7 +211,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                   },
                                   validate: (value) {
                                     if ((value.isEmpty) || value == "0") {
-                                      return "required";
+                                      return setapptext(key: 'key_required');
                                     }
                                   }),
                               formCardDropdown(
@@ -252,7 +252,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                   },
                                   validate: (value) {
                                     if ((value.isEmpty) || value == "0") {
-                                      return "required";
+                                      return setapptext(key: 'key_required');
                                     }
                                   }),
                               formCardDropdown(
@@ -327,7 +327,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                   },
                                   validate: (value) {
                                     if ((value.isEmpty) || value == "0") {
-                                      return "required";
+                                      return setapptext(key: 'key_required');
                                     }
                                   }),
 
@@ -732,7 +732,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                         : true,
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return "field should not be blank";
+                                        return setapptext(key: 'key_field_not_blank');
                                       }
                                     },
                                     onSaved: (value) {

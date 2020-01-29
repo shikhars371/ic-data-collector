@@ -74,7 +74,7 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
         child: Row(
           children: <Widget>[
             Text(
-              "Next",
+              setapptext(key: 'key_next'),
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Icon(Icons.arrow_forward_ios),
@@ -113,7 +113,7 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
           children: <Widget>[
             Icon(Icons.arrow_back_ios),
             Text(
-              "Back",
+              setapptext(key: 'key_back'),
               style: TextStyle(fontWeight: FontWeight.bold),
             )
           ],
@@ -135,7 +135,7 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Text(
-          "Property Survey",
+          setapptext(key: 'key_property_survey'),
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
@@ -204,7 +204,7 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                               children: <Widget>[
                                                 RaisedButton(
                                                   child: Text(
-                                                      "Click here to capture image. (< 10MB)"),
+                                                      setapptext(key: 'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata.home_map =
                                                         await appimagepicker();
@@ -229,7 +229,7 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                                         .home_map?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text("No image"),
+                                                    child: Text(setapptext(key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata.home_map),
@@ -290,7 +290,7 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                               children: <Widget>[
                                                 RaisedButton(
                                                   child: Text(
-                                                      "Click here to capture image. (< 10MB)"),
+                                                      setapptext(key: 'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata.home_photo =
                                                         await appimagepicker();
@@ -315,7 +315,7 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                                         .home_photo?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text("No image"),
+                                                    child: Text(setapptext(key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata.home_photo),

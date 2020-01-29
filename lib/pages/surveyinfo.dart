@@ -66,7 +66,7 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
         child: Row(
           children: <Widget>[
             Text(
-              "Next",
+              setapptext(key: 'key_next'),
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Icon(Icons.arrow_forward_ios),
@@ -127,7 +127,7 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Text(
-          "Property Survey",
+          setapptext(key: 'key_property_survey'),
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
@@ -173,7 +173,7 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                           : localdata.first_surveyor_name,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
-                                      return "field should not be blank";
+                                      return setapptext(key: 'key_field_not_blank');
                                     }
                                   },
                                   onSaved: (value) {
@@ -209,7 +209,7 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                           : localdata.senond_surveyor_name,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
-                                      return "field should not be blank";
+                                      return setapptext(key: 'key_field_not_blank');
                                     }
                                   },
                                   onSaved: (value) {

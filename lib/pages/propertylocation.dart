@@ -119,7 +119,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
         child: Row(
           children: <Widget>[
             Text(
-              "Next",
+              setapptext(key: 'key_next'),
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Icon(Icons.arrow_forward_ios),
@@ -146,7 +146,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
           children: <Widget>[
             Icon(Icons.arrow_back_ios),
             Text(
-              "Back",
+              setapptext(key: 'key_back'),
               style: TextStyle(fontWeight: FontWeight.bold),
             )
           ],
@@ -177,7 +177,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
         appBar: AppBar(
           backgroundColor: Colors.blue,
           title: Text(
-            "Property Survey",
+            setapptext(key: 'key_property_survey'),
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
@@ -318,7 +318,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                         : localdata.city,
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
-                                        return "required";
+                                        return setapptext(key: 'key_required');
                                       }
                                     }),
                                 formcardtextfield(
@@ -341,7 +341,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                         : localdata.area,
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return "field should not be blank";
+                                        return setapptext(key: 'key_field_not_blank');
                                       } else if (value.length != 2) {
                                         return setapptext(key: 'key_two_digit');
                                       }
@@ -373,9 +373,9 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                         : true,
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return "field should not be blank";
+                                        return setapptext(key: 'key_field_not_blank');
                                       } else if (value.length != 2) {
-                                        return "Should be two digits";
+                                        return setapptext(key: 'key_two_digit');
                                       }
                                     },
                                     onSaved: (value) {
@@ -406,9 +406,9 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     },
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return "field should not be blank";
+                                        return setapptext(key: 'key_field_not_blank');
                                       } else if (value.length != 3) {
-                                        return "Should be three digit";
+                                        return setapptext(key: 'key_three_digit');
                                       }
                                     },
                                     onSaved: (value) {
@@ -441,9 +441,9 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                         setapptext(key: 'Key_number_value'),
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return "field should not be blank";
+                                        return setapptext(key: 'key_field_not_blank');
                                       } else if (value.length != 3) {
-                                        return "Should be three digit";
+                                        return setapptext(key: 'key_three_digit');
                                       }
                                     },
                                     onSaved: (value) {
@@ -476,9 +476,9 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                         setapptext(key: 'Key_number_value'),
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return "field should not be blank";
+                                        return setapptext(key: 'key_field_not_blank');
                                       } else if (value.length != 3) {
-                                        return "Should be three digit";
+                                        return setapptext(key: 'key_three_digit');
                                       }
                                     },
                                     onSaved: (value) {
@@ -637,7 +637,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     },
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
-                                        return "required";
+                                        return setapptext(key: 'key_required');
                                       }
                                     }),
                                 SizedBox(

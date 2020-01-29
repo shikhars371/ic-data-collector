@@ -82,7 +82,7 @@ FocusNode _first_partner_name_email;
         child: Row(
           children: <Widget>[
             Text(
-              "Next",
+              setapptext(key: 'key_next'),
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Icon(Icons.arrow_forward_ios),
@@ -144,7 +144,7 @@ FocusNode _first_partner_name_email;
           children: <Widget>[
             Icon(Icons.arrow_back_ios),
             Text(
-              "Back",
+              setapptext(key: 'key_back'),
               style: TextStyle(fontWeight: FontWeight.bold),
             )
           ],
@@ -172,7 +172,7 @@ _first_partner_name_email = new FocusNode();
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Text(
-          "Property Survey",
+          setapptext(key: 'key_property_survey'),
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
@@ -218,7 +218,7 @@ _first_partner_name_email = new FocusNode();
                                           .first_partner_name_property_owner,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
-                                      return "field should not be blank";
+                                      return setapptext(key: 'key_field_not_blank');
                                     }
                                   },
                                   onSaved: (value) {
@@ -348,7 +348,7 @@ _first_partner_name_email = new FocusNode();
                                   },
                                   validate: (value) {
                                     if ((value.isEmpty) || value == "0") {
-                                      return "required";
+                                      return setapptext(key: 'key_required');
                                     }
                                   }),
                               formcardtextfield(
@@ -382,7 +382,7 @@ _first_partner_name_email = new FocusNode();
                                   },
                                   validator: (value) {
                                     if (value.length != 10) {
-                                      return "Please enter the correct mobile number";
+                                      return setapptext(key: 'key_mobile_field');
                                     }
                                   }),
                               formcardtextfield(
@@ -407,7 +407,7 @@ _first_partner_name_email = new FocusNode();
                                         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
                                     RegExp regex = new RegExp(pattern);
                                     if (!regex.hasMatch(value))
-                                      return 'Enter Valid Email';
+                                      return setapptext(key: 'key_email_field');
                                     else
                                       return null;
                                   },
@@ -469,7 +469,7 @@ _first_partner_name_email = new FocusNode();
                                               children: <Widget>[
                                                 RaisedButton(
                                                   child: Text(
-                                                      "Click here to capture image. (< 10MB)"),
+                                                      setapptext(key: 'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .first_partner_name_property_owner =
@@ -496,7 +496,7 @@ _first_partner_name_email = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text("No image"),
+                                                    child: Text(setapptext(key: 'key_no_image')),
                                                   )
                                                 : Image.file(File(localdata
                                                     .first_partner_name_property_owner)),

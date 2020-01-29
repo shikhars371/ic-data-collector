@@ -62,7 +62,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
         child: Row(
           children: <Widget>[
             Text(
-              "Next",
+              setapptext(key: 'key_next'),
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Icon(Icons.arrow_forward_ios),
@@ -89,7 +89,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
           children: <Widget>[
             Icon(Icons.arrow_back_ios),
             Text(
-              "Back",
+              setapptext(key: 'key_back'),
               style: TextStyle(fontWeight: FontWeight.bold),
             )
           ],
@@ -111,7 +111,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Text(
-          "Property Survey",
+          setapptext(key: 'key_property_survey'),
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
@@ -169,7 +169,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                   },
                                   validate: (value) {
                                     if ((value.isEmpty) || value == "0") {
-                                      return "required";
+                                      return setapptext(key: 'key_required');
                                     }
                                   }),
                               formCardDropdown(
@@ -209,7 +209,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                   },
                                   validate: (value) {
                                     if ((value.isEmpty) || value == "0") {
-                                      return "required";
+                                      return setapptext(key: 'key_required');
                                     }
                                   }),
                               formCardDropdown(
@@ -250,7 +250,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                   },
                                   validate: (value) {
                                     if ((value.isEmpty) || (value == "0")) {
-                                      return "required";
+                                      return setapptext(key: 'key_required');
                                     }
                                   }),
                               formCardDropdown(
@@ -291,7 +291,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                   },
                                   validate: (value) {
                                     if ((value.isEmpty) || value == "0") {
-                                      return "required";
+                                      return setapptext(key: 'key_required');
                                     }
                                   }),
                               SizedBox(

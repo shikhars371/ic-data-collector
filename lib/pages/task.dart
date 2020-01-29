@@ -31,13 +31,13 @@ class _TaskPageState extends State<TaskPage> {
     String result = "";
     if (startedstatus != null && completestatus != null && syncstatus != null) {
       if (startedstatus == 0) {
-        result = "Not Started";
+        result = setapptext(key: 'key_not_started');
       } else if (startedstatus != 0 && completestatus == 0) {
-        result = "In Progress";
+        result = setapptext(key: 'key_in_progress');
       } else if (completestatus != 0) {
-        result = "Completed";
+        result = setapptext(key: 'key_completed');
       } else if (syncstatus != 0) {
-        result = "Synced";
+        result = setapptext(key: 'key_synced');
       }
     }
     return result;
@@ -96,7 +96,7 @@ class _TaskPageState extends State<TaskPage> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Assigned Date -" +
+                  setapptext(key: 'key_assigned_date') +
                       DateFormat.yMd().format(
                         DateTime.parse(assigndate),
                       ),

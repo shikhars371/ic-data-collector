@@ -115,7 +115,7 @@ FocusNode _fifth_partner_reg_no;
         child: Row(
           children: <Widget>[
             Text(
-              "Next",
+              setapptext(key: 'key_next'),
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Icon(Icons.arrow_forward_ios),
@@ -142,7 +142,7 @@ FocusNode _fifth_partner_reg_no;
           children: <Widget>[
             Icon(Icons.arrow_back_ios),
             Text(
-              "Back",
+              setapptext(key: 'key_back'),
               style: TextStyle(fontWeight: FontWeight.bold),
             )
           ],
@@ -205,7 +205,7 @@ _fifth_partner_reg_no = new FocusNode();
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Text(
-          "Property Survey",
+          setapptext(key: 'key_property_survey'),
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
@@ -411,7 +411,7 @@ _fifth_partner_reg_no = new FocusNode();
                                   },
                                   validator: (value) {
                                     if (value.length != 10) {
-                                      return "Please enter the correct mobile number";
+                                      return setapptext(key: 'key_mobile_field');
                                     }
                                   }),
                               formcardtextfield(
@@ -436,7 +436,7 @@ _fifth_partner_reg_no = new FocusNode();
                                         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
                                     RegExp regex = new RegExp(pattern);
                                     if (!regex.hasMatch(value))
-                                      return 'Enter Valid Email';
+                                      return setapptext(key: 'key_email_field');
                                     else
                                       return null;
                                   },
@@ -498,7 +498,7 @@ _fifth_partner_reg_no = new FocusNode();
                                               children: <Widget>[
                                                 RaisedButton(
                                                   child: Text(
-                                                      "Click here to capture image. (< 10MB)"),
+                                                      setapptext(key: 'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .second_partner_image =
@@ -525,7 +525,7 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text("No image"),
+                                                    child: Text(setapptext(key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -697,7 +697,7 @@ _fifth_partner_reg_no = new FocusNode();
                                               children: <Widget>[
                                                 RaisedButton(
                                                   child: Text(
-                                                      "Click here to capture image. (< 10MB)"),
+                                                      setapptext(key: 'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .second_partner_phote_note1 =
@@ -724,7 +724,7 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text("No image"),
+                                                    child: Text(setapptext(key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -786,7 +786,7 @@ _fifth_partner_reg_no = new FocusNode();
                                               children: <Widget>[
                                                 RaisedButton(
                                                   child: Text(
-                                                      "Click here to capture image. (< 10MB)"),
+                                                      setapptext(key: 'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .second_partner_photo_tips1 =
@@ -813,7 +813,7 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text("No image"),
+                                                    child: Text(setapptext(key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -875,7 +875,7 @@ _fifth_partner_reg_no = new FocusNode();
                                               children: <Widget>[
                                                 RaisedButton(
                                                   child: Text(
-                                                      "Click here to capture image. (< 10MB)"),
+                                                      setapptext(key: 'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .second_partner_photo_tips2 =
@@ -902,7 +902,7 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text("No image"),
+                                                    child: Text(setapptext(key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -1092,7 +1092,7 @@ _fifth_partner_reg_no = new FocusNode();
                                   },
                                   validator: (value) {
                                     if (value.length != 10) {
-                                      return "Please enter the correct mobile number";
+                                      return setapptext(key: 'key_mobile_field');
                                     }
                                   }),
                               formcardtextfield(
@@ -1124,7 +1124,7 @@ _fifth_partner_reg_no = new FocusNode();
                                         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
                                     RegExp regex = new RegExp(pattern);
                                     if (!regex.hasMatch(value))
-                                      return 'Enter Valid Email';
+                                      return setapptext(key: 'key_email_field');
                                     else
                                       return null;
                                   }),
@@ -1177,7 +1177,7 @@ _fifth_partner_reg_no = new FocusNode();
                                               children: <Widget>[
                                                 RaisedButton(
                                                   child: Text(
-                                                      "Click here to capture image. (< 10MB)"),
+                                                      setapptext(key: 'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .third_partner_image =
@@ -1203,7 +1203,7 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text("No image"),
+                                                    child: Text(setapptext(key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -1374,7 +1374,7 @@ _fifth_partner_reg_no = new FocusNode();
                                               children: <Widget>[
                                                 RaisedButton(
                                                   child: Text(
-                                                      "Click here to capture image. (< 10MB)"),
+                                                      setapptext(key: 'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .third_partner_phote_note1 =
@@ -1401,7 +1401,7 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text("No image"),
+                                                    child: Text(setapptext(key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -1463,7 +1463,7 @@ _fifth_partner_reg_no = new FocusNode();
                                               children: <Widget>[
                                                 RaisedButton(
                                                   child: Text(
-                                                      "Click here to capture image. (< 10MB)"),
+                                                      setapptext(key: 'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .third_partner_photo_tips1 =
@@ -1490,7 +1490,7 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text("No image"),
+                                                    child: Text(setapptext(key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -1552,7 +1552,7 @@ _fifth_partner_reg_no = new FocusNode();
                                               children: <Widget>[
                                                 RaisedButton(
                                                   child: Text(
-                                                      "Click here to capture image. (< 10MB)"),
+                                                      setapptext(key: 'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .third_partner_photo_tips2 =
@@ -1579,7 +1579,7 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text("No image"),
+                                                    child: Text(setapptext(key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -1769,7 +1769,7 @@ _fifth_partner_reg_no = new FocusNode();
                                   },
                                   validator: (value) {
                                     if (value.length != 10) {
-                                      return "Please enter the correct mobile number";
+                                      return setapptext(key: 'key_mobile_field');
                                     }
                                   }),
                               formcardtextfield(
@@ -1801,7 +1801,7 @@ _fifth_partner_reg_no = new FocusNode();
                                         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
                                     RegExp regex = new RegExp(pattern);
                                     if (!regex.hasMatch(value))
-                                      return 'Enter Valid Email';
+                                      return setapptext(key: 'key_email_field');
                                     else
                                       return null;
                                   }),
@@ -1854,7 +1854,7 @@ _fifth_partner_reg_no = new FocusNode();
                                               children: <Widget>[
                                                 RaisedButton(
                                                   child: Text(
-                                                      "Click here to capture image. (< 10MB)"),
+                                                      setapptext(key: 'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .fourth_partner_image =
@@ -1881,7 +1881,7 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text("No image"),
+                                                    child: Text(setapptext(key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -2053,7 +2053,7 @@ _fifth_partner_reg_no = new FocusNode();
                                               children: <Widget>[
                                                 RaisedButton(
                                                   child: Text(
-                                                      "Click here to capture image. (< 10MB)"),
+                                                      setapptext(key: 'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .fourth_partner_phote_note1 =
@@ -2080,7 +2080,7 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text("No image"),
+                                                    child: Text(setapptext(key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -2142,7 +2142,7 @@ _fifth_partner_reg_no = new FocusNode();
                                               children: <Widget>[
                                                 RaisedButton(
                                                   child: Text(
-                                                      "Click here to capture image. (< 10MB)"),
+                                                      setapptext(key: 'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .fourth_partner_photo_tips1 =
@@ -2169,7 +2169,7 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text("No image"),
+                                                    child: Text(setapptext(key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -2231,7 +2231,7 @@ _fifth_partner_reg_no = new FocusNode();
                                               children: <Widget>[
                                                 RaisedButton(
                                                   child: Text(
-                                                      "Click here to capture image. (< 10MB)"),
+                                                      setapptext(key: 'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .fourth_partner_photo_tips2 =
@@ -2258,7 +2258,7 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text("No image"),
+                                                    child: Text(setapptext(key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -2448,7 +2448,7 @@ _fifth_partner_reg_no = new FocusNode();
                                   },
                                   validator: (value) {
                                     if (value.length != 10) {
-                                      return "Please enter the correct mobile number";
+                                      return setapptext(key: 'key_mobile_field');
                                     }
                                   }),
                               formcardtextfield(
@@ -2480,7 +2480,7 @@ _fifth_partner_reg_no = new FocusNode();
                                         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
                                     RegExp regex = new RegExp(pattern);
                                     if (!regex.hasMatch(value))
-                                      return 'Enter Valid Email';
+                                      return setapptext(key: 'key_email_field');
                                     else
                                       return null;
                                   }),
@@ -2533,7 +2533,7 @@ _fifth_partner_reg_no = new FocusNode();
                                               children: <Widget>[
                                                 RaisedButton(
                                                   child: Text(
-                                                      "Click here to capture image. (< 10MB)"),
+                                                      setapptext(key: 'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .fifth_partner_image =
@@ -2559,7 +2559,7 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text("No image"),
+                                                    child: Text(setapptext(key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -2730,7 +2730,7 @@ _fifth_partner_reg_no = new FocusNode();
                                               children: <Widget>[
                                                 RaisedButton(
                                                   child: Text(
-                                                      "Click here to capture image. (< 10MB)"),
+                                                      setapptext(key: 'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .fifth_partner_phote_note1 =
@@ -2757,7 +2757,7 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text("No image"),
+                                                    child: Text(setapptext(key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -2819,7 +2819,7 @@ _fifth_partner_reg_no = new FocusNode();
                                               children: <Widget>[
                                                 RaisedButton(
                                                   child: Text(
-                                                      "Click here to capture image. (< 10MB)"),
+                                                      setapptext(key: 'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .fifth_partner_photo_tips1 =
@@ -2846,7 +2846,7 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text("No image"),
+                                                    child: Text(setapptext(key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -2908,7 +2908,7 @@ _fifth_partner_reg_no = new FocusNode();
                                               children: <Widget>[
                                                 RaisedButton(
                                                   child: Text(
-                                                      "Click here to capture image. (< 10MB)"),
+                                                      setapptext(key: 'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .fifth_partner_photo_tips2 =
@@ -2935,7 +2935,7 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text("No image"),
+                                                    child: Text(setapptext(key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata

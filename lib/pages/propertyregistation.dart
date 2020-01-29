@@ -65,7 +65,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
           children: <Widget>[
             Icon(Icons.arrow_back_ios),
             Text(
-              "Back",
+              setapptext(key: 'key_back'),
               style: TextStyle(fontWeight: FontWeight.bold),
             )
           ],
@@ -83,7 +83,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
         child: Row(
           children: <Widget>[
             Text(
-              "Next",
+              setapptext(key: 'key_next'),
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Icon(Icons.arrow_forward_ios),
@@ -151,18 +151,18 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 builder: (BuildContext context) {
                   return AlertDialog(
                     title: Text(
-                      "Warning",
+                      setapptext(key: 'key_warning'),
                       style: TextStyle(
                           fontWeight: FontWeight.bold, color: Colors.red),
                     ),
                     content: Text(
-                        "This property Data already exist. So please go back and edit that or delete the existing and create new."),
+                        setapptext(key: 'key_data_exist')),
                     actions: <Widget>[
                       FlatButton(
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        child: Text("Ok"),
+                        child: Text(setapptext(key: 'key_ok')),
                       ),
                     ],
                   );
@@ -501,7 +501,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   : localdata.first_surveyor_name,
               validator: (value) {
                 if (value.trim().isEmpty) {
-                  return "field should not be blank";
+                  return setapptext(key: 'key_field_not_blank');
                 }
               },
               onSaved: (value) {
@@ -522,7 +522,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   : localdata.senond_surveyor_name,
               validator: (value) {
                 if (value.trim().isEmpty) {
-                  return "field should not be blank";
+                  return setapptext(key: 'key_field_not_blank');
                 }
               },
               onSaved: (value) {
@@ -582,7 +582,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               },
               validate: (value) {
                 if ((value.isEmpty) || value == "0") {
-                  return "required";
+                  return setapptext(key: 'key_required');
                 }
               }),
           formCardDropdown(
@@ -609,7 +609,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               },
               validate: (value) {
                 if ((value.isEmpty) || value == "0") {
-                  return "required";
+                  return setapptext(key: 'key_required');
                 }
               }),
           formCardDropdown(
@@ -635,7 +635,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               },
               validate: (value) {
                 if ((value.isEmpty) || value == "0") {
-                  return "required";
+                  return setapptext(key: 'key_required');
                 }
               }),
         ],
@@ -730,7 +730,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               },
               validate: (value) {
                 if ((value.isEmpty) || value == "0") {
-                  return "required";
+                  return setapptext(key: 'key_required');
                 }
               }),
           formCardDropdown(
@@ -757,7 +757,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               },
               validate: (value) {
                 if ((value.isEmpty) || value == "0") {
-                  return "required";
+                  return setapptext(key: 'key_required');
                 }
               }),
           formCardDropdown(
@@ -784,7 +784,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               },
               validate: (value) {
                 if ((value.isEmpty) || (value == "0")) {
-                  return "required";
+                  return setapptext(key: 'key_required');
                 }
               }),
           formCardDropdown(
@@ -812,7 +812,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               },
               validate: (value) {
                 if ((value.isEmpty) || value == "0") {
-                  return "required";
+                  return setapptext(key: 'key_required');
                 }
               }),
           SizedBox(
@@ -859,7 +859,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   : localdata.province,
               validate: (value) {
                 if ((value.isEmpty) || value == "0") {
-                  return "required";
+                  return setapptext(key: 'key_required');
                 }
               }),
           formCardDropdown(
@@ -892,7 +892,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               value: localdata.city?.isEmpty ?? true ? "0" : localdata.city,
               validate: (value) {
                 if ((value.isEmpty) || value == "0") {
-                  return "required";
+                  return setapptext(key: 'key_required');
                 }
               }),
           formcardtextfield(
@@ -903,9 +903,9 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               initvalue: localdata.area?.isEmpty ?? true ? "" : localdata.area,
               validator: (value) {
                 if (value.trim().isEmpty) {
-                  return "field should not be blank";
+                  return setapptext(key: 'key_field_not_blank');
                 } else if (value.length > 2) {
-                  return "two digit allowed";
+                  return setapptext(key: 'key_two_digit');
                 }
               },
               onSaved: (value) {
@@ -923,9 +923,9 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               radiovalue: localdata.pass?.isEmpty ?? true ? false : true,
               validator: (value) {
                 if (value.trim().isEmpty) {
-                  return "field should not be blank";
+                  return setapptext(key: 'key_field_not_blank');
                 } else if (value.length > 2) {
-                  return "two digits allowed";
+                  return setapptext(key: 'key_two_digit');
                 }
               },
               onSaved: (value) {
@@ -944,9 +944,9 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               hinttextkey: 'Key_number_value',
               validator: (value) {
                 if (value.trim().isEmpty) {
-                  return "field should not be blank";
+                  return setapptext(key: 'key_field_not_blank');
                 } else if (value.length > 3) {
-                  return "three digits allowed";
+                  return setapptext(key: 'key_three_digit');
                 }
               },
               onSaved: (value) {
@@ -966,9 +966,9 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               hinttextkey: 'Key_number_value',
               validator: (value) {
                 if (value.trim().isEmpty) {
-                  return "field should not be blank";
+                  return setapptext(key: 'key_field_not_blank');
                 } else if (value.length > 3) {
-                  return "three digit allowed";
+                  return setapptext(key: 'key_three_digit');
                 }
               },
               onSaved: (value) {
@@ -988,9 +988,9 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               hinttextkey: 'Key_number_value',
               validator: (value) {
                 if (value.trim().isEmpty) {
-                  return "field should not be blank";
+                  return setapptext(key: 'key_field_not_blank');
                 } else if (value.length > 3) {
-                  return "three digit allowed";
+                  return setapptext(key: 'key_three_digit');
                 }
               },
               onSaved: (value) {
@@ -1083,7 +1083,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               },
               validate: (value) {
                 if ((value.isEmpty) || value == "0") {
-                  return "required";
+                  return setapptext(key: 'key_required');
                 }
               }),
           SizedBox(
@@ -1128,7 +1128,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               },
               validate: (value) {
                 if ((value.isEmpty) || value == "0") {
-                  return "required";
+                  return setapptext(key: 'key_required');
                 }
               }),
           formCardDropdown(
@@ -1156,7 +1156,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               },
               validate: (value) {
                 if ((value.isEmpty) || value == "0") {
-                  return "required";
+                  return setapptext(key: 'key_required');
                 }
               }),
           formCardDropdown(
@@ -1200,7 +1200,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               },
               validate: (value) {
                 if ((value.isEmpty) || value == "0") {
-                  return "required";
+                  return setapptext(key: 'key_required');
                 }
               }),
 
@@ -1437,7 +1437,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         : true,
                 validator: (value) {
                   if (value.trim().isEmpty) {
-                    return "field should not be blank";
+                    return setapptext(key: 'key_field_not_blank');
                   }
                 },
                 onSaved: (value) {
@@ -1477,7 +1477,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                       : localdata.first_partner_name_property_owner,
               validator: (value) {
                 if (value.trim().isEmpty) {
-                  return "field should not be blank";
+                  return setapptext(key: 'key_field_not_blank');
                 }
               },
               onSaved: (value) {
@@ -1555,7 +1555,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               },
               validate: (value) {
                 if ((value.isEmpty) || value == "0") {
-                  return "required";
+                  return setapptext(key: 'key_required');
                 }
               }),
           formcardtextfield(
@@ -1576,7 +1576,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               },
               validator: (value) {
                 if (value.length != 10) {
-                  return "Please enter the correct mobile number";
+                  return setapptext(key: 'key_mobile_field');
                 }
               }),
           formcardtextfield(
@@ -1593,7 +1593,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
                 RegExp regex = new RegExp(pattern);
                 if (!regex.hasMatch(value))
-                  return 'Enter Valid Email';
+                  return setapptext(key: 'key_email_field');
                 else
                   return null;
               },
@@ -1648,7 +1648,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           children: <Widget>[
                             RaisedButton(
                               child:
-                                  Text("Click here to capture image. (< 10MB)"),
+                                  Text(setapptext(key: 'key_capture_image')),
                               onPressed: () async {
                                 localdata.first_partner_name_property_owner =
                                     await appimagepicker();
@@ -1667,7 +1667,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                                     ?.isEmpty ??
                                 true
                             ? Center(
-                                child: Text("No image"),
+                                child: Text(setapptext(key: 'key_no_image')),
                               )
                             : Image.file(File(
                                 localdata.first_partner_name_property_owner)),
@@ -1812,7 +1812,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           children: <Widget>[
                             RaisedButton(
                               child:
-                                  Text("Click here to capture image. (< 10MB)"),
+                                  Text(setapptext(key: 'key_capture_image')),
                               onPressed: () async {
                                 localdata.info_photo_hint_photo_note1 =
                                     await appimagepicker();
@@ -1830,7 +1830,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         child: localdata.info_photo_hint_photo_note1?.isEmpty ??
                                 true
                             ? Center(
-                                child: Text("No image"),
+                                child: Text(setapptext(key: 'key_no_image')),
                               )
                             : Image.file(
                                 File(localdata.info_photo_hint_photo_note1)),
@@ -1884,7 +1884,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           children: <Widget>[
                             RaisedButton(
                               child:
-                                  Text("Click here to capture image. (< 10MB)"),
+                                  Text(setapptext(key: 'key_capture_image')),
                               onPressed: () async {
                                 localdata.info_photo_hint_photo_tips1 =
                                     await appimagepicker();
@@ -1902,7 +1902,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         child: localdata.info_photo_hint_photo_tips1?.isEmpty ??
                                 true
                             ? Center(
-                                child: Text("No image"),
+                                child: Text(setapptext(key: 'key_no_image')),
                               )
                             : Image.file(
                                 File(localdata.info_photo_hint_photo_tips1)),
@@ -1956,7 +1956,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           children: <Widget>[
                             RaisedButton(
                               child:
-                                  Text("Click here to capture image. (< 10MB)"),
+                                  Text(setapptext(key: 'key_capture_image')),
                               onPressed: () async {
                                 localdata.info_photo_hint_photo_tips2 =
                                     await appimagepicker();
@@ -1974,7 +1974,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         child: localdata.info_photo_hint_photo_tips2?.isEmpty ??
                                 true
                             ? Center(
-                                child: Text("No image"),
+                                child: Text(setapptext(key: 'key_no_image')),
                               )
                             : Image.file(
                                 File(localdata.info_photo_hint_photo_tips2)),
@@ -2013,7 +2013,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   localdata.fore_limits_east?.isEmpty ?? true ? false : true,
               validator: (value) {
                 if (value.trim().isEmpty) {
-                  return "field should not be blank";
+                  return setapptext(key: 'key_field_not_blank');
                 }
               },
               onSaved: (value) {
@@ -2032,7 +2032,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   localdata.fore_limits_west?.isEmpty ?? true ? false : true,
               validator: (value) {
                 if (value.trim().isEmpty) {
-                  return "field should not be blank";
+                  return setapptext(key: 'key_field_not_blank');
                 }
               },
               onSaved: (value) {
@@ -2051,7 +2051,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   localdata.fore_limits_south?.isEmpty ?? true ? false : true,
               validator: (value) {
                 if (value.trim().isEmpty) {
-                  return "field should not be blank";
+                  return setapptext(key: 'key_field_not_blank');
                 }
               },
               onSaved: (value) {
@@ -2070,7 +2070,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                   localdata.fore_limits_north?.isEmpty ?? true ? false : true,
               validator: (value) {
                 if (value.trim().isEmpty) {
-                  return "field should not be blank";
+                  return setapptext(key: 'key_field_not_blank');
                 }
               },
               onSaved: (value) {
@@ -2184,7 +2184,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 ),
                 child: Center(
                   child: Text(
-                    'Submit',
+                    setapptext(key: 'key_submit'),
                     style: TextStyle(fontSize: 20, color: Colors.white),
                   ),
                 ),
@@ -2245,7 +2245,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           children: <Widget>[
                             RaisedButton(
                               child:
-                                  Text("Click here to capture image. (< 10MB)"),
+                                  Text(setapptext(key: 'key_capture_image')),
                               onPressed: () async {
                                 localdata.home_map = await appimagepicker();
                                 setState(() {});
@@ -2261,7 +2261,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         width: MediaQuery.of(context).size.width / 2,
                         child: localdata.home_map?.isEmpty ?? true
                             ? Center(
-                                child: Text("No image"),
+                                child: Text(setapptext(key: 'key_no_image')),
                               )
                             : Image.file(
                                 File(localdata.home_map),
@@ -2314,7 +2314,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           children: <Widget>[
                             RaisedButton(
                               child:
-                                  Text("Click here to capture image. (< 10MB)"),
+                                  Text(setapptext(key: 'key_capture_image')),
                               onPressed: () async {
                                 localdata.home_photo = await appimagepicker();
                                 setState(() {});
@@ -2330,7 +2330,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         width: MediaQuery.of(context).size.width / 2,
                         child: localdata.home_photo?.isEmpty ?? true
                             ? Center(
-                                child: Text("No image"),
+                                child: Text(setapptext(key: 'key_no_image')),
                               )
                             : Image.file(
                                 File(localdata.home_photo),
@@ -2413,7 +2413,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               },
               validate: (value) {
                 if ((value.isEmpty) || value == "0") {
-                  return "required";
+                  return setapptext(key: 'key_required');
                 }
               }),
 
@@ -2563,7 +2563,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                             children: <Widget>[
                               RaisedButton(
                                 child: Text(
-                                    "Click here to capture image. (< 10MB)"),
+                                    setapptext(key: 'key_capture_image')),
                                 onPressed: () async {
                                   localdata.property_doc_photo_1 =
                                       await appimagepicker();
@@ -2580,7 +2580,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           width: MediaQuery.of(context).size.width / 2,
                           child: localdata.property_doc_photo_1?.isEmpty ?? true
                               ? Center(
-                                  child: Text("No image"),
+                                  child: Text(setapptext(key: 'key_no_image')),
                                 )
                               : Image.file(
                                   File(localdata.property_doc_photo_1)),
@@ -2635,7 +2635,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                             children: <Widget>[
                               RaisedButton(
                                 child: Text(
-                                    "Click here to capture image. (< 10MB)"),
+                                    setapptext(key: 'key_capture_image')),
                                 onPressed: () async {
                                   localdata.property_doc_photo_2 =
                                       await appimagepicker();
@@ -2652,7 +2652,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           width: MediaQuery.of(context).size.width / 2,
                           child: localdata.property_doc_photo_2?.isEmpty ?? true
                               ? Center(
-                                  child: Text("No image"),
+                                  child: Text(setapptext(key: 'key_no_image')),
                                 )
                               : Image.file(
                                   File(localdata.property_doc_photo_2)),
@@ -2707,7 +2707,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                             children: <Widget>[
                               RaisedButton(
                                 child: Text(
-                                    "Click here to capture image. (< 10MB)"),
+                                    setapptext(key: 'key_capture_image')),
                                 onPressed: () async {
                                   localdata.property_doc_photo_3 =
                                       await appimagepicker();
@@ -2724,7 +2724,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           width: MediaQuery.of(context).size.width / 2,
                           child: localdata.property_doc_photo_3?.isEmpty ?? true
                               ? Center(
-                                  child: Text("No image"),
+                                  child: Text(setapptext(key: 'key_no_image')),
                                 )
                               : Image.file(
                                   File(localdata.property_doc_photo_3)),
@@ -2779,7 +2779,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                             children: <Widget>[
                               RaisedButton(
                                 child: Text(
-                                    "Click here to capture image. (< 10MB)"),
+                                    setapptext(key: 'key_capture_image')),
                                 onPressed: () async {
                                   localdata.property_doc_photo_4 =
                                       await appimagepicker();
@@ -2796,7 +2796,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           width: MediaQuery.of(context).size.width / 2,
                           child: localdata.property_doc_photo_4?.isEmpty ?? true
                               ? Center(
-                                  child: Text("No image"),
+                                  child: Text(setapptext(key: 'key_no_image')),
                                 )
                               : Image.file(
                                   File(localdata.property_doc_photo_4)),
@@ -2857,7 +2857,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                             children: <Widget>[
                               RaisedButton(
                                 child: Text(
-                                    "Click here to capture image. (< 10MB)"),
+                                    setapptext(key: 'key_capture_image')),
                                 onPressed: () async {
                                   localdata.odinary_doc_photo1 =
                                       await appimagepicker();
@@ -2874,7 +2874,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           width: MediaQuery.of(context).size.width / 2,
                           child: localdata.odinary_doc_photo1?.isEmpty ?? true
                               ? Center(
-                                  child: Text("No image"),
+                                  child: Text(setapptext(key: 'key_no_image')),
                                 )
                               : Image.file(
                                   File(localdata.odinary_doc_photo1),
@@ -2929,7 +2929,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                             children: <Widget>[
                               RaisedButton(
                                 child: Text(
-                                    "Click here to capture image. (< 10MB)"),
+                                    setapptext(key: 'key_capture_image')),
                                 onPressed: () async {
                                   localdata.odinary_doc_photo6 =
                                       await appimagepicker();
@@ -2946,7 +2946,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           width: MediaQuery.of(context).size.width / 2,
                           child: localdata.odinary_doc_photo6?.isEmpty ?? true
                               ? Center(
-                                  child: Text("No image"),
+                                  child: Text(setapptext(key: 'key_no_image')),
                                 )
                               : Image.file(
                                   File(localdata.odinary_doc_photo6),
@@ -2985,7 +2985,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               hinttextkey: 'key_enter_1st_surveyor',
               validator: (value) {
                 if (value.trim().isEmpty) {
-                  return "field should not be blank";
+                  return setapptext(key: 'key_field_not_blank');
                 }
               },
               onSaved: (value) {
@@ -3006,7 +3006,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               hinttextkey: 'key_enter_1st_surveyor',
               validator: (value) {
                 if (value.trim().isEmpty) {
-                  return "field should not be blank";
+                  return setapptext(key: 'key_field_not_blank');
                 }
               },
               onSaved: (value) {
@@ -3027,7 +3027,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               hinttextkey: 'key_enter_1st_surveyor',
               validator: (value) {
                 if (value.trim().isEmpty) {
-                  return "field should not be blank";
+                  return setapptext(key: 'key_field_not_blank');
                 }
               },
               onSaved: (value) {
@@ -3080,7 +3080,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           children: <Widget>[
                             RaisedButton(
                               child:
-                                  Text("Click here to capture image. (< 10MB)"),
+                                  Text(setapptext(key: 'key_capture_image')),
                               onPressed: () async {
                                 localdata.lightning_picture_bell_power =
                                     await appimagepicker();
@@ -3099,7 +3099,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                                     .lightning_picture_bell_power?.isEmpty ??
                                 true
                             ? Center(
-                                child: Text("No image"),
+                                child: Text(setapptext(key: 'key_no_image')),
                               )
                             : Image.file(
                                 File(localdata.lightning_picture_bell_power),
@@ -3132,7 +3132,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               hinttextkey: 'key_enter_1st_surveyor',
               validator: (value) {
                 if (value.trim().isEmpty) {
-                  return "field should not be blank";
+                  return setapptext(key: 'key_field_not_blank');
                 }
               },
               onSaved: (value) {
@@ -3153,7 +3153,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               hinttextkey: 'key_enter_1st_surveyor',
               validator: (value) {
                 if (value.trim().isEmpty) {
-                  return "field should not be blank";
+                  return setapptext(key: 'key_field_not_blank');
                 }
               },
               onSaved: (value) {
@@ -3175,7 +3175,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               hinttextkey: 'key_enter_1st_surveyor',
               validator: (value) {
                 if (value.trim().isEmpty) {
-                  return "field should not be blank";
+                  return setapptext(key: 'key_field_not_blank');
                 }
               },
               onSaved: (value) {
@@ -3196,7 +3196,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               hinttextkey: 'key_way_to_enter',
               validator: (value) {
                 if (value.trim().isEmpty) {
-                  return "field should not be blank";
+                  return setapptext(key: 'key_field_not_blank');
                 }
               },
               onSaved: (value) {
@@ -3249,7 +3249,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           children: <Widget>[
                             RaisedButton(
                               child:
-                                  Text("Click here to capture image. (< 10MB)"),
+                                  Text(setapptext(key: 'key_capture_image')),
                               onPressed: () async {
                                 localdata.safari_booklet_picture =
                                     await appimagepicker();
@@ -3266,7 +3266,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         width: MediaQuery.of(context).size.width / 2,
                         child: localdata.safari_booklet_picture?.isEmpty ?? true
                             ? Center(
-                                child: Text("No image"),
+                                child: Text(setapptext(key: 'key_no_image')),
                               )
                             : Image.file(
                                 File(localdata.safari_booklet_picture),
@@ -3386,7 +3386,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 hinttextkey: 'key_enter_1st_surveyor',
                 validator: (value) {
                   if (value.trim().isEmpty) {
-                    return "field should not be blank";
+                    return setapptext(key: 'key_field_not_blank');
                   }
                 },
                 onSaved: (value) {
@@ -3432,7 +3432,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               },
               validate: (value) {
                 if ((value.isEmpty) || value == "0") {
-                  return "required";
+                  return setapptext(key: 'key_required');
                 }
               }),
 
@@ -3466,7 +3466,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     : localdata.fst_building_use,
                 validate: (value) {
                   if ((value.isEmpty) || value == "0") {
-                    return "required";
+                    return setapptext(key: 'key_required');
                   }
                 }),
             formCardDropdown(
@@ -3501,7 +3501,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     : localdata.fst_building_category,
                 validate: (value) {
                   if ((value.isEmpty) || value == "0") {
-                    return "required";
+                    return setapptext(key: 'key_required');
                   }
                 }),
             formcardtextfield(
@@ -3533,7 +3533,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 },
                 validator: (value) {
                   if (value.trim().isEmpty) {
-                    return "field should not be blank";
+                    return setapptext(key: 'key_field_not_blank');
                   }
                 },
                 onChanged: (value) {
@@ -3553,7 +3553,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 },
                 validator: (value) {
                   if (value.trim().isEmpty) {
-                    return "field should not be blank";
+                    return setapptext(key: 'key_field_not_blank');
                   }
                 },
                 onChanged: (value) {
@@ -3584,7 +3584,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 },
                 validate: (value) {
                   if ((value.isEmpty) || value == "0") {
-                    return "required";
+                    return setapptext(key: 'key_required');
                   }
                 }),
           ],
@@ -3620,7 +3620,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     : localdata.snd_building_use,
                 validate: (value) {
                   if ((value.isEmpty) || value == "0") {
-                    return "required";
+                    return setapptext(key: 'key_required');
                   }
                 }),
             formCardDropdown(
@@ -3655,7 +3655,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     : localdata.snd_building_category,
                 validate: (value) {
                   if ((value.isEmpty) || value == "0") {
-                    return "required";
+                    return setapptext(key: 'key_required');
                   }
                 }),
             formcardtextfield(
@@ -3687,7 +3687,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 },
                 validator: (value) {
                   if (value.trim().isEmpty) {
-                    return "field should not be blank";
+                    return setapptext(key: 'key_field_not_blank');
                   }
                 },
                 onChanged: (value) {
@@ -3707,7 +3707,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 },
                 validator: (value) {
                   if (value.trim().isEmpty) {
-                    return "field should not be blank";
+                    return setapptext(key: 'key_field_not_blank');
                   }
                 },
                 onChanged: (value) {
@@ -3738,7 +3738,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 },
                 validate: (value) {
                   if ((value.isEmpty) || value == "0") {
-                    return "required";
+                    return setapptext(key: 'key_required');
                   }
                 }),
           ],
@@ -3774,7 +3774,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     : localdata.trd_building_use,
                 validate: (value) {
                   if ((value.isEmpty) || value == "0") {
-                    return "required";
+                    return setapptext(key: 'key_required');
                   }
                 }),
             formCardDropdown(
@@ -3809,7 +3809,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     : localdata.trd_building_category,
                 validate: (value) {
                   if ((value.isEmpty) || value == "0") {
-                    return "required";
+                    return setapptext(key: 'key_required');
                   }
                 }),
             formcardtextfield(
@@ -3841,7 +3841,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 },
                 validator: (value) {
                   if (value.trim().isEmpty) {
-                    return "field should not be blank";
+                    return setapptext(key: 'key_field_not_blank');
                   }
                 },
                 onChanged: (value) {
@@ -3861,7 +3861,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 },
                 validator: (value) {
                   if (value.trim().isEmpty) {
-                    return "field should not be blank";
+                    return setapptext(key: 'key_field_not_blank');
                   }
                 },
                 onChanged: (value) {
@@ -3893,7 +3893,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 },
                 validate: (value) {
                   if ((value.isEmpty) || value == "0") {
-                    return "required";
+                    return setapptext(key: 'key_required');
                   }
                 }),
           ],
@@ -3930,7 +3930,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     : localdata.forth_building_use,
                 validate: (value) {
                   if ((value.isEmpty) || value == "0") {
-                    return "required";
+                    return setapptext(key: 'key_required');
                   }
                 }),
             formCardDropdown(
@@ -3965,7 +3965,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     : localdata.forth_building_category,
                 validate: (value) {
                   if ((value.isEmpty) || value == "0") {
-                    return "required";
+                    return setapptext(key: 'key_required');
                   }
                 }),
             formcardtextfield(
@@ -3982,7 +3982,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 },
                 validator: (value) {
                   if (value.trim().isEmpty) {
-                    return "field should not be blank";
+                    return setapptext(key: 'key_field_not_blank');
                   }
                 },
                 onChanged: (value) {
@@ -4003,7 +4003,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 },
                 validator: (value) {
                   if (value.trim().isEmpty) {
-                    return "field should not be blank";
+                    return setapptext(key: 'key_field_not_blank');
                   }
                 },
                 onChanged: (value) {
@@ -4023,7 +4023,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 },
                 validator: (value) {
                   if (value.trim().isEmpty) {
-                    return "field should not be blank";
+                    return setapptext(key: 'key_field_not_blank');
                   }
                 },
                 onChanged: (value) {
@@ -4054,7 +4054,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 },
                 validate: (value) {
                   if ((value.isEmpty) || value == "0") {
-                    return "required";
+                    return setapptext(key: 'key_required');
                   }
                 }),
           ],
@@ -4091,7 +4091,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     : localdata.fth_building_use,
                 validate: (value) {
                   if ((value.isEmpty) || value == "0") {
-                    return "required";
+                    return setapptext(key: 'key_required');
                   }
                 }),
             formCardDropdown(
@@ -4126,7 +4126,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     : localdata.fth_building_category,
                 validate: (value) {
                   if ((value.isEmpty) || value == "0") {
-                    return "required";
+                    return setapptext(key: 'key_required');
                   }
                 }),
             formcardtextfield(
@@ -4143,7 +4143,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 },
                 validator: (value) {
                   if (value.trim().isEmpty) {
-                    return "field should not be blank";
+                    return setapptext(key: 'key_field_not_blank');
                   }
                 },
                 onChanged: (value) {
@@ -4163,7 +4163,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 },
                 validator: (value) {
                   if (value.trim().isEmpty) {
-                    return "field should not be blank";
+                    return setapptext(key: 'key_field_not_blank');
                   }
                 },
                 onChanged: (value) {
@@ -4183,7 +4183,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 },
                 validator: (value) {
                   if (value.trim().isEmpty) {
-                    return "field should not be blank";
+                    return setapptext(key: 'key_field_not_blank');
                   }
                 },
                 onChanged: (value) {
@@ -4406,7 +4406,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               },
               validator: (value) {
                 if (value.length != 10) {
-                  return "Please enter the correct mobile number";
+                  return setapptext(key: 'key_mobile_field');
                 }
               }),
           formcardtextfield(
@@ -4423,7 +4423,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
                 RegExp regex = new RegExp(pattern);
                 if (!regex.hasMatch(value))
-                  return 'Enter Valid Email';
+                  return setapptext(key: 'key_email_field');
                 else
                   return null;
               },
@@ -4476,7 +4476,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           children: <Widget>[
                             RaisedButton(
                               child:
-                                  Text("Click here to capture image. (< 10MB)"),
+                                  Text(setapptext(key: 'key_capture_image')),
                               onPressed: () async {
                                 localdata.second_partner_image =
                                     await appimagepicker();
@@ -4493,7 +4493,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         width: MediaQuery.of(context).size.width / 2,
                         child: localdata.second_partner_image?.isEmpty ?? true
                             ? Center(
-                                child: Text("No image"),
+                                child: Text(setapptext(key: 'key_no_image')),
                               )
                             : Image.file(
                                 File(localdata.second_partner_image),
@@ -4610,7 +4610,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           children: <Widget>[
                             RaisedButton(
                               child:
-                                  Text("Click here to capture image. (< 10MB)"),
+                                  Text(setapptext(key: 'key_capture_image')),
                               onPressed: () async {
                                 localdata.second_partner_phote_note1 =
                                     await appimagepicker();
@@ -4628,7 +4628,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         child: localdata.second_partner_phote_note1?.isEmpty ??
                                 true
                             ? Center(
-                                child: Text("No image"),
+                                child: Text(setapptext(key: 'key_no_image')),
                               )
                             : Image.file(
                                 File(localdata.second_partner_phote_note1),
@@ -4683,7 +4683,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           children: <Widget>[
                             RaisedButton(
                               child:
-                                  Text("Click here to capture image. (< 10MB)"),
+                                  Text(setapptext(key: 'key_capture_image')),
                               onPressed: () async {
                                 localdata.second_partner_photo_tips1 =
                                     await appimagepicker();
@@ -4701,7 +4701,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         child: localdata.second_partner_photo_tips1?.isEmpty ??
                                 true
                             ? Center(
-                                child: Text("No image"),
+                                child: Text(setapptext(key: 'key_no_image')),
                               )
                             : Image.file(
                                 File(localdata.second_partner_photo_tips1),
@@ -4756,7 +4756,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           children: <Widget>[
                             RaisedButton(
                               child:
-                                  Text("Click here to capture image. (< 10MB)"),
+                                  Text(setapptext(key: 'key_capture_image')),
                               onPressed: () async {
                                 localdata.second_partner_photo_tips2 =
                                     await appimagepicker();
@@ -4774,7 +4774,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         child: localdata.second_partner_photo_tips2?.isEmpty ??
                                 true
                             ? Center(
-                                child: Text("No image"),
+                                child: Text(setapptext(key: 'key_no_image')),
                               )
                             : Image.file(
                                 File(localdata.second_partner_photo_tips2),
@@ -4893,7 +4893,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               },
               validator: (value) {
                 if (value.length != 10) {
-                  return "Please enter the correct mobile number";
+                  return setapptext(key: 'key_mobile_field');
                 }
               }),
           formcardtextfield(
@@ -4916,7 +4916,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
                 RegExp regex = new RegExp(pattern);
                 if (!regex.hasMatch(value))
-                  return 'Enter Valid Email';
+                  return setapptext(key: 'key_email_field');
                 else
                   return null;
               }),
@@ -4962,7 +4962,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           children: <Widget>[
                             RaisedButton(
                               child:
-                                  Text("Click here to capture image. (< 10MB)"),
+                                  Text(setapptext(key: 'key_capture_image')),
                               onPressed: () async {
                                 localdata.third_partner_image =
                                     await appimagepicker();
@@ -4979,7 +4979,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         width: MediaQuery.of(context).size.width / 2,
                         child: localdata.third_partner_image?.isEmpty ?? true
                             ? Center(
-                                child: Text("No image"),
+                                child: Text(setapptext(key: 'key_no_image')),
                               )
                             : Image.file(
                                 File(localdata.third_partner_image),
@@ -5095,7 +5095,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           children: <Widget>[
                             RaisedButton(
                               child:
-                                  Text("Click here to capture image. (< 10MB)"),
+                                  Text(setapptext(key: 'key_capture_image')),
                               onPressed: () async {
                                 localdata.third_partner_phote_note1 =
                                     await appimagepicker();
@@ -5113,7 +5113,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         child:
                             localdata.third_partner_phote_note1?.isEmpty ?? true
                                 ? Center(
-                                    child: Text("No image"),
+                                    child: Text(setapptext(key: 'key_no_image')),
                                   )
                                 : Image.file(
                                     File(localdata.third_partner_phote_note1),
@@ -5168,7 +5168,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           children: <Widget>[
                             RaisedButton(
                               child:
-                                  Text("Click here to capture image. (< 10MB)"),
+                                  Text(setapptext(key: 'key_capture_image')),
                               onPressed: () async {
                                 localdata.third_partner_photo_tips1 =
                                     await appimagepicker();
@@ -5186,7 +5186,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         child:
                             localdata.third_partner_photo_tips1?.isEmpty ?? true
                                 ? Center(
-                                    child: Text("No image"),
+                                    child: Text(setapptext(key: 'key_no_image')),
                                   )
                                 : Image.file(
                                     File(localdata.third_partner_photo_tips1),
@@ -5241,7 +5241,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           children: <Widget>[
                             RaisedButton(
                               child:
-                                  Text("Click here to capture image. (< 10MB)"),
+                                  Text(setapptext(key: 'key_capture_image')),
                               onPressed: () async {
                                 localdata.third_partner_photo_tips2 =
                                     await appimagepicker();
@@ -5259,7 +5259,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         child:
                             localdata.third_partner_photo_tips2?.isEmpty ?? true
                                 ? Center(
-                                    child: Text("No image"),
+                                    child: Text(setapptext(key: 'key_no_image')),
                                   )
                                 : Image.file(
                                     File(localdata.third_partner_photo_tips2),
@@ -5379,7 +5379,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               },
               validator: (value) {
                 if (value.length != 10) {
-                  return "Please enter the correct mobile number";
+                  return setapptext(key: 'key_mobile_field');
                 }
               }),
           formcardtextfield(
@@ -5403,7 +5403,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
                 RegExp regex = new RegExp(pattern);
                 if (!regex.hasMatch(value))
-                  return 'Enter Valid Email';
+                  return setapptext(key: 'key_email_field');
                 else
                   return null;
               }),
@@ -5449,7 +5449,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           children: <Widget>[
                             RaisedButton(
                               child:
-                                  Text("Click here to capture image. (< 10MB)"),
+                                  Text(setapptext(key: 'key_capture_image')),
                               onPressed: () async {
                                 localdata.fourth_partner_image =
                                     await appimagepicker();
@@ -5466,7 +5466,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         width: MediaQuery.of(context).size.width / 2,
                         child: localdata.fourth_partner_image?.isEmpty ?? true
                             ? Center(
-                                child: Text("No image"),
+                                child: Text(setapptext(key: 'key_no_image')),
                               )
                             : Image.file(
                                 File(localdata.fourth_partner_image),
@@ -5583,7 +5583,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           children: <Widget>[
                             RaisedButton(
                               child:
-                                  Text("Click here to capture image. (< 10MB)"),
+                                  Text(setapptext(key: 'key_capture_image')),
                               onPressed: () async {
                                 localdata.fourth_partner_phote_note1 =
                                     await appimagepicker();
@@ -5601,7 +5601,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         child: localdata.fourth_partner_phote_note1?.isEmpty ??
                                 true
                             ? Center(
-                                child: Text("No image"),
+                                child: Text(setapptext(key: 'key_no_image')),
                               )
                             : Image.file(
                                 File(localdata.fourth_partner_phote_note1),
@@ -5656,7 +5656,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           children: <Widget>[
                             RaisedButton(
                               child:
-                                  Text("Click here to capture image. (< 10MB)"),
+                                  Text(setapptext(key: 'key_capture_image')),
                               onPressed: () async {
                                 localdata.fourth_partner_photo_tips1 =
                                     await appimagepicker();
@@ -5674,7 +5674,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         child: localdata.fourth_partner_photo_tips1?.isEmpty ??
                                 true
                             ? Center(
-                                child: Text("No image"),
+                                child: Text(setapptext(key: 'key_no_image')),
                               )
                             : Image.file(
                                 File(localdata.fourth_partner_photo_tips1),
@@ -5729,7 +5729,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           children: <Widget>[
                             RaisedButton(
                               child:
-                                  Text("Click here to capture image. (< 10MB)"),
+                                  Text(setapptext(key: 'key_capture_image')),
                               onPressed: () async {
                                 localdata.fourth_partner_photo_tips2 =
                                     await appimagepicker();
@@ -5747,7 +5747,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         child: localdata.fourth_partner_photo_tips2?.isEmpty ??
                                 true
                             ? Center(
-                                child: Text("No image"),
+                                child: Text(setapptext(key: 'key_no_image')),
                               )
                             : Image.file(
                                 File(localdata.fourth_partner_photo_tips2),
@@ -5866,7 +5866,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               },
               validator: (value) {
                 if (value.length != 10) {
-                  return "Please enter the correct mobile number";
+                  return setapptext(key: 'key_mobile_field');
                 }
               }),
           formcardtextfield(
@@ -5889,7 +5889,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
                 RegExp regex = new RegExp(pattern);
                 if (!regex.hasMatch(value))
-                  return 'Enter Valid Email';
+                  return setapptext(key: 'key_email_field');
                 else
                   return null;
               }),
@@ -5935,7 +5935,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           children: <Widget>[
                             RaisedButton(
                               child:
-                                  Text("Click here to capture image. (< 10MB)"),
+                                  Text(setapptext(key: 'key_capture_image')),
                               onPressed: () async {
                                 localdata.fifth_partner_image =
                                     await appimagepicker();
@@ -5952,7 +5952,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         width: MediaQuery.of(context).size.width / 2,
                         child: localdata.fifth_partner_image?.isEmpty ?? true
                             ? Center(
-                                child: Text("No image"),
+                                child: Text(setapptext(key: 'key_no_image')),
                               )
                             : Image.file(
                                 File(localdata.fifth_partner_image),
@@ -6068,7 +6068,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           children: <Widget>[
                             RaisedButton(
                               child:
-                                  Text("Click here to capture image. (< 10MB)"),
+                                  Text(setapptext(key: 'key_capture_image')),
                               onPressed: () async {
                                 localdata.fifth_partner_phote_note1 =
                                     await appimagepicker();
@@ -6086,7 +6086,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         child:
                             localdata.fifth_partner_phote_note1?.isEmpty ?? true
                                 ? Center(
-                                    child: Text("No image"),
+                                    child: Text(setapptext(key: 'key_no_image')),
                                   )
                                 : Image.file(
                                     File(localdata.fifth_partner_phote_note1),
@@ -6141,7 +6141,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           children: <Widget>[
                             RaisedButton(
                               child:
-                                  Text("Click here to capture image. (< 10MB)"),
+                                  Text(setapptext(key: 'key_capture_image')),
                               onPressed: () async {
                                 localdata.fifth_partner_photo_tips1 =
                                     await appimagepicker();
@@ -6159,7 +6159,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         child:
                             localdata.fifth_partner_photo_tips1?.isEmpty ?? true
                                 ? Center(
-                                    child: Text("No image"),
+                                    child: Text(setapptext(key: 'key_no_image')),
                                   )
                                 : Image.file(
                                     File(localdata.fifth_partner_photo_tips1),
@@ -6214,7 +6214,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                           children: <Widget>[
                             RaisedButton(
                               child:
-                                  Text("Click here to capture image. (< 10MB)"),
+                                  Text(setapptext(key: 'key_capture_image')),
                               onPressed: () async {
                                 localdata.fifth_partner_photo_tips2 =
                                     await appimagepicker();
@@ -6232,7 +6232,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                         child:
                             localdata.fifth_partner_photo_tips2?.isEmpty ?? true
                                 ? Center(
-                                    child: Text("No image"),
+                                    child: Text(setapptext(key: 'key_no_image')),
                                   )
                                 : Image.file(
                                     File(localdata.fifth_partner_photo_tips2),
@@ -6271,7 +6271,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Text(
-          "Property Survey",
+          setapptext(key: 'key_property_survey'),
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
