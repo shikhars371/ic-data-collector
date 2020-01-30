@@ -53,6 +53,10 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
         } else {
           _formkey.currentState.save();
           localdata.taskid = widget.surveyAssignment.id;
+          if (localdata.editmode == 1) {
+            localdata = Provider.of<DBHelper>(context).singlepropertysurveys;
+            localdata.editmode = 1;
+          }
           if (widget.surveyAssignment != null) {
             localdata.first_surveyor_name =
                 widget.surveyAssignment.surveyoronename;
@@ -139,12 +143,15 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
     if (!(widget.localsurveykey?.isEmpty ?? true)) {
-      localdata = Provider.of<DBHelper>(context).singlepropertysurveys;
       localdata.editmode = 1;
     }
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
@@ -155,6 +162,7 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
       ),
       body: Consumer<DBHelper>(
         builder: (context, dbdata, child) {
+          // localdata = dbdata.singlepropertysurveys;
           return dbdata.state == AppState.Busy
               ? Center(
                   child: CircularProgressIndicator(),

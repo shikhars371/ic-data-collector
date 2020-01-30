@@ -835,7 +835,7 @@ class DBHelper with ChangeNotifier {
         SELECT * FROM propertysurvey WHERE taskid=? AND local_property_key=?
       ''';
         params = [taskid, localkey];
-      } else if (!(localkey?.isEmpty ?? true)) {
+      } else if (!(searchtext?.isEmpty ?? true)) {
         sqlquery = '''
           SELECT * FROM propertysurvey WHERE taskid=? AND part_number LIKE ?  
         ''';
