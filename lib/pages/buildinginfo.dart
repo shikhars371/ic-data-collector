@@ -216,7 +216,41 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   },
                                   onChanged: (value) {
                                     localdata.fst_have_building = value;
-                                    setState(() {});
+                                    setState(() {
+                                      localdata.fst_have_building = null;
+                                      localdata.fst_building_category = null;
+                                      localdata.fst_specifyif_other = null;
+                                      localdata.fst_no_of_floors = null;
+                                      localdata.fst_cubie_meter = null;
+                                      localdata.snd_have_building = null;
+                                      localdata.snd_building_use = null;
+                                      localdata.snd_building_category = null;
+                                      localdata.snd_no_of_floors = null;
+                                      localdata.snd_cubie_meter = null;
+                                      localdata.trd_have_building = null;
+                                      localdata.snd_building_category = null;
+                                      localdata.snd_specifyif_other = null;
+                                      localdata.snd_no_of_floors = null;
+                                      localdata.snd_cubie_meter = null;
+                                      localdata.trd_have_building = null;
+                                      localdata.trd_building_use = null;
+                                      localdata.trd_building_category = null;
+                                      localdata.trd_specifyif_other = null;
+                                      localdata.trd_no_of_floors = null;
+                                      localdata.trd_cubie_meter = null;
+                                      localdata.forth_have_building = null;
+                                      localdata.forth_building_use = null;
+                                      localdata.forth_building_category = null;
+                                      localdata.forth_specifyif_other = null;
+                                      localdata.forth_no_of_floors = null;
+                                      localdata.forth_cubie_meter = null;
+                                      localdata.fth_have_building = null;
+                                      localdata.fth_building_use = null;
+                                      localdata.fth_building_category = null;
+                                      localdata.fth_specifyif_other = null;
+                                      localdata.fth_no_of_floors = null;
+                                      localdata.fth_cubie_meter = null;
+                                    });
                                   },
                                   validate: (value) {
                                     if ((value.isEmpty) || value == "0") {
@@ -362,7 +396,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
-                                  keyboardtype: TextInputType.number,
+                                    keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.fst_no_of_floors?.isEmpty ??
                                                 true
@@ -397,7 +431,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
-                                  keyboardtype: TextInputType.number,
+                                    keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.fst_cubie_meter?.isEmpty ??
                                                 true
@@ -461,7 +495,36 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     onChanged: (value) {
                                       localdata.snd_have_building = value;
-                                      setState(() {});
+                                      setState(() {
+                                        localdata.snd_building_use = null;
+                                        localdata.snd_building_category = null;
+                                        localdata.snd_no_of_floors = null;
+                                        localdata.snd_cubie_meter = null;
+                                        localdata.trd_have_building = null;
+                                        localdata.snd_building_category = null;
+                                        localdata.snd_specifyif_other = null;
+                                        localdata.snd_no_of_floors = null;
+                                        localdata.snd_cubie_meter = null;
+                                        localdata.trd_have_building = null;
+                                        localdata.trd_building_use = null;
+                                        localdata.trd_building_category = null;
+                                        localdata.trd_specifyif_other = null;
+                                        localdata.trd_no_of_floors = null;
+                                        localdata.trd_cubie_meter = null;
+                                        localdata.forth_have_building = null;
+                                        localdata.forth_building_use = null;
+                                        localdata.forth_building_category =
+                                            null;
+                                        localdata.forth_specifyif_other = null;
+                                        localdata.forth_no_of_floors = null;
+                                        localdata.forth_cubie_meter = null;
+                                        localdata.fth_have_building = null;
+                                        localdata.fth_building_use = null;
+                                        localdata.fth_building_category = null;
+                                        localdata.fth_specifyif_other = null;
+                                        localdata.fth_no_of_floors = null;
+                                        localdata.fth_cubie_meter = null;
+                                      });
                                     },
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
@@ -481,7 +544,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                             (localdata.snd_building_use == "0"))
                                         ? false
                                         : true,
-                                    headerlablekey: setapptext(key: 'key_building_use'),
+                                    headerlablekey:
+                                        setapptext(key: 'key_building_use'),
                                     dropdownitems: [
                                       Dpvalue(
                                           name: setapptext(
@@ -506,11 +570,11 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                           value: "5"),
                                     ],
                                     onChanged: (value) {
-                                      localdata.fst_building_use = value;
+                                      localdata.snd_building_use = value;
                                       setState(() {});
                                     },
                                     onSaved: (value) {
-                                      localdata.fst_building_use = value;
+                                      localdata.snd_building_use = value;
                                     },
                                     value:
                                         localdata.snd_building_use?.isEmpty ??
@@ -608,7 +672,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
-                                  keyboardtype: TextInputType.number,
+                                    keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.snd_no_of_floors?.isEmpty ??
                                                 true
@@ -623,7 +687,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       FocusScope.of(context)
                                           .requestFocus(_snd_cubie_meter);
                                     },
-                                    hinttextkey: '',
                                     radiovalue:
                                         localdata.snd_no_of_floors?.isEmpty ??
                                                 true
@@ -643,7 +706,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
-                                  keyboardtype: TextInputType.number,
+                                    keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.snd_cubie_meter?.isEmpty ??
                                                 true
@@ -656,7 +719,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     onFieldSubmitted: (_) {
                                       _snd_cubie_meter.unfocus();
                                     },
-                                    hinttextkey: '',
                                     radiovalue:
                                         localdata.snd_cubie_meter?.isEmpty ??
                                                 true
@@ -707,7 +769,31 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     onChanged: (value) {
                                       localdata.trd_have_building = value;
-                                      setState(() {});
+                                      setState(() {
+                                        localdata.snd_building_category = null;
+                                        localdata.snd_specifyif_other = null;
+                                        localdata.snd_no_of_floors = null;
+                                        localdata.snd_cubie_meter = null;
+                                        localdata.trd_have_building = null;
+                                        localdata.trd_building_use = null;
+                                        localdata.trd_building_category = null;
+                                        localdata.trd_specifyif_other = null;
+                                        localdata.trd_no_of_floors = null;
+                                        localdata.trd_cubie_meter = null;
+                                        localdata.forth_have_building = null;
+                                        localdata.forth_building_use = null;
+                                        localdata.forth_building_category =
+                                            null;
+                                        localdata.forth_specifyif_other = null;
+                                        localdata.forth_no_of_floors = null;
+                                        localdata.forth_cubie_meter = null;
+                                        localdata.fth_have_building = null;
+                                        localdata.fth_building_use = null;
+                                        localdata.fth_building_category = null;
+                                        localdata.fth_specifyif_other = null;
+                                        localdata.fth_no_of_floors = null;
+                                        localdata.fth_cubie_meter = null;
+                                      });
                                     },
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
@@ -855,7 +941,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
-                                  keyboardtype: TextInputType.number,
+                                    keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.trd_no_of_floors?.isEmpty ??
                                                 true
@@ -890,7 +976,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
-                                  keyboardtype: TextInputType.number,
+                                    keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.trd_cubie_meter?.isEmpty ??
                                                 true
@@ -954,7 +1040,20 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     onChanged: (value) {
                                       localdata.forth_have_building = value;
-                                      setState(() {});
+                                      setState(() {
+                                        localdata.forth_building_use = null;
+                                        localdata.forth_building_category =
+                                            null;
+                                        localdata.forth_specifyif_other = null;
+                                        localdata.forth_no_of_floors = null;
+                                        localdata.forth_cubie_meter = null;
+                                        localdata.fth_have_building = null;
+                                        localdata.fth_building_use = null;
+                                        localdata.fth_building_category = null;
+                                        localdata.fth_specifyif_other = null;
+                                        localdata.fth_no_of_floors = null;
+                                        localdata.fth_cubie_meter = null;
+                                      });
                                     },
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
@@ -1111,7 +1210,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
-                                  keyboardtype: TextInputType.number,
+                                    keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.forth_no_of_floors?.isEmpty ??
                                                 true
@@ -1138,7 +1237,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return setapptext(key: 'key_field_not_blank');
+                                        return setapptext(
+                                            key: 'key_field_not_blank');
                                       }
                                     },
                                     onChanged: (value) {
@@ -1147,7 +1247,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
-                                  keyboardtype: TextInputType.number,
+                                    keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.forth_cubie_meter?.isEmpty ??
                                                 true
@@ -1172,7 +1272,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return setapptext(key: 'key_field_not_blank');
+                                        return setapptext(
+                                            key: 'key_field_not_blank');
                                       }
                                     },
                                     onChanged: (value) {
@@ -1212,7 +1313,13 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     onChanged: (value) {
                                       localdata.fth_have_building = value;
-                                      setState(() {});
+                                      setState(() {
+                                        localdata.fth_building_use = null;
+                                        localdata.fth_building_category = null;
+                                        localdata.fth_specifyif_other = null;
+                                        localdata.fth_no_of_floors = null;
+                                        localdata.fth_cubie_meter = null;
+                                      });
                                     },
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
@@ -1357,7 +1464,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return setapptext(key: 'key_field_not_blank');
+                                        return setapptext(
+                                            key: 'key_field_not_blank');
                                       }
                                     },
                                     onChanged: (value) {
@@ -1366,7 +1474,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
-                                  keyboardtype: TextInputType.number,
+                                    keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.fth_no_of_floors?.isEmpty ??
                                                 true
@@ -1381,7 +1489,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       FocusScope.of(context)
                                           .requestFocus(_fth_cubie_meter);
                                     },
-                                    hinttextkey: '',
                                     radiovalue:
                                         localdata.fth_no_of_floors?.isEmpty ??
                                                 true
@@ -1392,7 +1499,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return setapptext(key: 'key_field_not_blank');
+                                        return setapptext(
+                                            key: 'key_field_not_blank');
                                       }
                                     },
                                     onChanged: (value) {
@@ -1400,7 +1508,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
-                                  keyboardtype: TextInputType.number,
+                                    keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.fth_cubie_meter?.isEmpty ??
                                                 true
@@ -1424,7 +1532,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     },
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return setapptext(key: 'key_field_not_blank');
+                                        return setapptext(
+                                            key: 'key_field_not_blank');
                                       }
                                     },
                                     onChanged: (value) {
