@@ -66,6 +66,8 @@ Widget formcardtextfield(
                 Flexible(
                   child: Text(
                     headerlablekey,
+                    overflow: TextOverflow.visible,
+                    maxLines: 2,
                     style: TextStyle(),
                   ),
                 ),

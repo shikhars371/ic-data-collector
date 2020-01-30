@@ -886,7 +886,7 @@ _land_area_qawwala = new FocusNode();
                                               Flexible(
                                                 child: Text(
                                                   setapptext(
-                                                      key: 'key_photo-1'),
+                                                      key: 'key_photo-2'),
                                                   style: TextStyle(),
                                                 ),
                                               ),

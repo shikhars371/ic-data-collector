@@ -224,6 +224,7 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
                                   onChanged: (value) {
                                     localdata.natural_threaten = value.trim();
                                     _municipality_ref_number.unfocus();
+                                    _issue_regarding_property.unfocus();
                                     setState(() {});
                                   }),
                             ],

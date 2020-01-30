@@ -26,9 +26,9 @@ class _FourLimitPageState extends State<FourLimitPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
   FocusNode _fore_limits_east;
-FocusNode _fore_limits_west;
-FocusNode _fore_limits_south;
-FocusNode _fore_limits_north;
+  FocusNode _fore_limits_west;
+  FocusNode _fore_limits_south;
+  FocusNode _fore_limits_north;
 
   Future<String> appimagepicker() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
@@ -164,9 +164,9 @@ FocusNode _fore_limits_north;
     localdata = widget.localdata;
     super.initState();
     _fore_limits_east = new FocusNode();
-_fore_limits_west = new FocusNode();
-_fore_limits_south = new FocusNode();
-_fore_limits_north = new FocusNode();
+    _fore_limits_west = new FocusNode();
+    _fore_limits_south = new FocusNode();
+    _fore_limits_north = new FocusNode();
   }
 
   @override
@@ -199,6 +199,26 @@ _fore_limits_north = new FocusNode();
                             children: <Widget>[
                               formcardtextfield(
                                   initvalue:
+                                      localdata.boundaryinfonote?.isEmpty ??
+                                              true
+                                          ? ""
+                                          : localdata.boundaryinfonote,
+                                  headerlablekey: setapptext(key: 'key_property_note'),
+                                  textInputAction: TextInputAction.next,
+                                  radiovalue:
+                                      localdata.boundaryinfonote?.isEmpty ??
+                                              true
+                                          ? false
+                                          : true,
+                                  onSaved: (value) {
+                                    localdata.boundaryinfonote = value.trim();
+                                  },
+                                  onChanged: (value) {
+                                    localdata.boundaryinfonote = value.trim();
+                                    setState(() {});
+                                  }),
+                              formcardtextfield(
+                                  initvalue:
                                       localdata.fore_limits_east?.isEmpty ??
                                               true
                                           ? ""
@@ -211,7 +231,6 @@ _fore_limits_north = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_fore_limits_west);
                                   },
-
                                   radiovalue:
                                       localdata.fore_limits_east?.isEmpty ??
                                               true
@@ -219,7 +238,8 @@ _fore_limits_north = new FocusNode();
                                           : true,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
-                                      return setapptext(key: 'key_field_not_blank');
+                                      return setapptext(
+                                          key: 'key_field_not_blank');
                                     }
                                   },
                                   onSaved: (value) {
@@ -235,7 +255,7 @@ _fore_limits_north = new FocusNode();
                                               true
                                           ? ""
                                           : localdata.fore_limits_west,
-                                  headerlablekey:setapptext(key:  'key_west'),
+                                  headerlablekey: setapptext(key: 'key_west'),
                                   fieldfocus: _fore_limits_west,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -243,7 +263,6 @@ _fore_limits_north = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_fore_limits_south);
                                   },
-
                                   radiovalue:
                                       localdata.fore_limits_west?.isEmpty ??
                                               true
@@ -251,7 +270,8 @@ _fore_limits_north = new FocusNode();
                                           : true,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
-                                      return setapptext(key: 'key_field_not_blank');
+                                      return setapptext(
+                                          key: 'key_field_not_blank');
                                     }
                                   },
                                   onSaved: (value) {
@@ -267,7 +287,7 @@ _fore_limits_north = new FocusNode();
                                               true
                                           ? ""
                                           : localdata.fore_limits_south,
-                                  headerlablekey:setapptext(key:  'key_south'),
+                                  headerlablekey: setapptext(key: 'key_south'),
                                   fieldfocus: _fore_limits_south,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -275,7 +295,6 @@ _fore_limits_north = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_fore_limits_north);
                                   },
-
                                   radiovalue:
                                       localdata.fore_limits_south?.isEmpty ??
                                               true
@@ -283,7 +302,8 @@ _fore_limits_north = new FocusNode();
                                           : true,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
-                                      return setapptext(key: 'key_field_not_blank');
+                                      return setapptext(
+                                          key: 'key_field_not_blank');
                                     }
                                   },
                                   onSaved: (value) {
@@ -299,11 +319,12 @@ _fore_limits_north = new FocusNode();
                                               true
                                           ? ""
                                           : localdata.fore_limits_north,
-                                  headerlablekey:setapptext(key:  'key_north'),
+                                  headerlablekey: setapptext(key: 'key_north'),
                                   fieldfocus: _fore_limits_north,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
-                                    _fore_limits_north.unfocus(); },
+                                    _fore_limits_north.unfocus();
+                                  },
                                   radiovalue:
                                       localdata.fore_limits_north?.isEmpty ??
                                               true
@@ -311,7 +332,8 @@ _fore_limits_north = new FocusNode();
                                           : true,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
-                                      return setapptext(key: 'key_field_not_blank');
+                                      return setapptext(
+                                          key: 'key_field_not_blank');
                                     }
                                   },
                                   onSaved: (value) {
@@ -337,8 +359,8 @@ _fore_limits_north = new FocusNode();
                               Container(
                                 color: Colors.blue,
                                 child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 10, bottom: 10),
+                                  padding: const EdgeInsets.only(
+                                      top: 10, bottom: 10),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,

@@ -402,9 +402,11 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                     setState(() {});
                                   },
                                   validator: (value) {
+                                    if (!(value.isEmpty ?? true)){
                                     if (value.length != 10) {
                                       return setapptext(
                                           key: 'key_mobile_field');
+                                    }
                                     }
                                   }),
                               formcardtextfield(
@@ -426,6 +428,7 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                       ? ""
                                       : localdata.first_partner_name_email,
                                   validator: (value) {
+                                    if (!(value.isEmpty ?? true)){
                                     Pattern pattern =
                                         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
                                     RegExp regex = new RegExp(pattern);
@@ -433,6 +436,7 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                       return setapptext(key: 'key_email_field');
                                     else
                                       return null;
+                                    }
                                   },
                                   onSaved: (value) {
                                     localdata.first_partner_name_email =
