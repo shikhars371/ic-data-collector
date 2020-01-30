@@ -5,11 +5,9 @@ import 'package:intl/intl.dart';
 import '../localization/app_translations.dart';
 import '../utils/appdrawer.dart';
 import '../controllers/task.dart';
-import './surveylist.dart';
 import '../utils/navigation_service.dart';
 import '../utils/route_paths.dart' as routes;
 import '../utils/locator.dart';
-import '../utils/db_helper.dart';
 import '../models/surveyAssignment.dart';
 
 class TaskPage extends StatefulWidget {
@@ -61,7 +59,7 @@ class _TaskPageState extends State<TaskPage> {
   }
 
   Widget listcard(
-      {String id,
+      {SurveyAssignment id,
       String status,
       Color statuscolor,
       String provinance,
@@ -145,9 +143,9 @@ class _TaskPageState extends State<TaskPage> {
                     itemCount: data?.isEmpty ?? true ? 0 : data.length,
                     itemBuilder: (context, index) {
                       return listcard(
-                        id: data[index].id?.isEmpty ?? true
-                            ? ""
-                            : data[index].id,
+                        id: data[index] == null
+                            ? new SurveyAssignment()
+                            : data[index],
                         provinance: data[index].province?.isEmpty ?? true
                             ? ""
                             : data[index].province,
@@ -184,74 +182,6 @@ class _TaskPageState extends State<TaskPage> {
           }
         },
       ),
-      //  Consumer<TaskModel>(
-      //   builder: (context, data, child) {
-      //     return data.state == AppState.Busy
-      //         ? Center(
-      //             child: CircularProgressIndicator(),
-      //           )
-      //         : Column(
-      //             children: <Widget>[
-      //               Expanded(
-      //                 child: ListView.builder(
-      //                   itemCount: data.surveyAssignments?.isEmpty ?? true
-      //                       ? 0
-      //                       : data.surveyAssignments.length,
-      //                   itemBuilder: (context, index) {
-      //                     return listcard(
-      //                       id: data.surveyAssignments[index].id?.isEmpty ??
-      //                               true
-      //                           ? ""
-      //                           : data.surveyAssignments[index].id,
-      //                       provinance: data.surveyAssignments[index].province
-      //                                   ?.isEmpty ??
-      //                               true
-      //                           ? ""
-      //                           : data.surveyAssignments[index].province,
-      //                       nahia:
-      //                           data.surveyAssignments[index].nahia?.isEmpty ??
-      //                                   true
-      //                               ? ""
-      //                               : data.surveyAssignments[index].nahia,
-      //                       gozar:
-      //                           data.surveyAssignments[index].gozar?.isEmpty ??
-      //                                   true
-      //                               ? ""
-      //                               : data.surveyAssignments[index].gozar,
-      //                       area: data.surveyAssignments[index]
-      //                                   .property_to_survey ==
-      //                               null
-      //                           ? 0
-      //                           : data
-      //                               .surveyAssignments[index].property_to_survey
-      //                               .toString(),
-      //                       assigndate: data.surveyAssignments[index].startDate
-      //                                   ?.isEmpty ??
-      //                               true
-      //                           ? ""
-      //                           : data.surveyAssignments[index].startDate,
-      //                       status: workstatus(
-      //                           completestatus:
-      //                               data.surveyAssignments[index].iscompleted,
-      //                           startedstatus:
-      //                               data.surveyAssignments[index].isstatrted,
-      //                           syncstatus:
-      //                               data.surveyAssignments[index].issynced),
-      //                       statuscolor: workstatuscolor(
-      //                           completestatus:
-      //                               data.surveyAssignments[index].iscompleted,
-      //                           startedstatus:
-      //                               data.surveyAssignments[index].isstatrted,
-      //                           syncstatus:
-      //                               data.surveyAssignments[index].issynced),
-      //                     );
-      //                   },
-      //                 ),
-      //               )
-      //             ],
-      //           );
-      //   },
-      // ),
     );
   }
 }

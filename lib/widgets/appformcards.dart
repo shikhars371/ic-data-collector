@@ -42,7 +42,8 @@ Widget formcardtextfield(
     FocusNode fieldfocus,
     TextInputAction textInputAction,
     void Function(String) onFieldSubmitted,
-    Widget suffix}) {
+    Widget suffix,
+    bool enable}) {
   return Container(
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(10),
@@ -76,9 +77,11 @@ Widget formcardtextfield(
             Padding(
               padding: const EdgeInsets.only(left: 8, right: 8, bottom: 10),
               child: TextFormField(
+                enabled: enable,
                 keyboardType: keyboardtype,
                 initialValue: initvalue?.isEmpty ?? true ? "" : initvalue,
                 decoration: InputDecoration(
+                  errorStyle: TextStyle(color: Colors.redAccent),
                   suffixIcon: suffix,
                   hintText: hinttextkey?.isEmpty ?? true ? "" : hinttextkey,
                 ),
@@ -88,6 +91,7 @@ Widget formcardtextfield(
                 focusNode: fieldfocus,
                 textInputAction: textInputAction,
                 onFieldSubmitted: onFieldSubmitted,
+                
               ),
             )
           ],
@@ -150,6 +154,7 @@ Widget formCardDropdown(
                   onChanged: onChanged,
                   onSaved: onSaved,
                   value: value,
+                  
                 ),
               ),
             ),

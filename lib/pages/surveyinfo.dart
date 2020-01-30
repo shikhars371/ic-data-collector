@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:validators/validators.dart';
 
 import '../localization/app_translations.dart';
 import '../models/localpropertydata.dart';
@@ -8,12 +7,13 @@ import '../utils/db_helper.dart';
 import '../controllers/auth.dart';
 import './generalinfoone.dart';
 import '../widgets/appformcards.dart';
+import '../models/surveyAssignment.dart';
 
 class SurveyInfoPage extends StatefulWidget {
-  SurveyInfoPage({this.localdata, this.taskid, this.localsurveykey});
+  SurveyInfoPage({this.localdata, this.localsurveykey, this.surveyAssignment});
   final LocalPropertySurvey localdata;
-  final String taskid;
   final String localsurveykey;
+  final SurveyAssignment surveyAssignment;
   @override
   _SurveyInfoPageState createState() => _SurveyInfoPageState();
 }
@@ -52,7 +52,20 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
           return;
         } else {
           _formkey.currentState.save();
-          localdata.taskid = widget.taskid;
+          localdata.taskid = widget.surveyAssignment.id;
+          if (widget.surveyAssignment != null) {
+            localdata.first_surveyor_name =
+                widget.surveyAssignment.surveyoronename;
+            localdata.senond_surveyor_name =
+                widget.surveyAssignment.surveyortwoname;
+            localdata.technical_support_name =
+                widget.surveyAssignment.teamleadname;
+            localdata.province = widget.surveyAssignment.province;
+            localdata.city = widget.surveyAssignment.municpality;
+            localdata.area = widget.surveyAssignment.nahia;
+            localdata.pass = widget.surveyAssignment.gozar;
+            localdata.block = widget.surveyAssignment.block;
+          }
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -101,141 +114,6 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
     );
   }
 
-  Widget safeBody() {
-    return SafeArea(
-      child: Form(
-        key: _formkey,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            //header
-            formheader(headerlablekey: 'key_provider_details'),
-            //body
-            Expanded(
-              child: ListView(
-                children: <Widget>[
-                  formcardtextfield(
-                      headerlablekey: setapptext(key: 'key_first_surveyor'),
-                      radiovalue: localdata.first_surveyor_name?.isEmpty ?? true
-                          ? false
-                          : true,
-                      hinttextkey: setapptext(key: 'key_enter_1st_surveyor'),
-                      fieldfocus: _firstsurveyor,
-                      textInputAction: TextInputAction.next,
-                      onFieldSubmitted: (_) {
-                        _firstsurveyor.unfocus();
-                        FocusScope.of(context).requestFocus(_secondsurveyor);
-                      },
-                      initvalue: localdata.first_surveyor_name?.isEmpty ?? true
-                          ? ""
-                          : localdata.first_surveyor_name,
-                      validator: (value) {
-                        if (value.trim().isEmpty) {
-                          return setapptext(key: 'key_field_not_blank');
-                        } else if (!RegExp(r'^[a-zA-Z_ ]*$').hasMatch(value)) {
-                          return setapptext(key: 'key_text_format_error');
-                        }
-                      },
-                      onSaved: (value) {
-                        localdata.first_surveyor_name = value.trim();
-                      },
-                      onChanged: (value) {
-                        localdata.first_surveyor_name = value.trim();
-                        setState(() {});
-                      }),
-                  formcardtextfield(
-                      headerlablekey: setapptext(key: 'key_second_surveyor'),
-                      radiovalue:
-                          localdata.senond_surveyor_name?.isEmpty ?? true
-                              ? false
-                              : true,
-                      hinttextkey: setapptext(key: 'key_enter_1st_surveyor'),
-                      fieldfocus: _secondsurveyor,
-                      textInputAction: TextInputAction.next,
-                      onFieldSubmitted: (_) {
-                        _secondsurveyor.unfocus();
-                        FocusScope.of(context).requestFocus(_technicalsupport);
-                      },
-                      initvalue: localdata.senond_surveyor_name?.isEmpty ?? true
-                          ? ""
-                          : localdata.senond_surveyor_name,
-                      validator: (value) {
-                        if (value.trim().isEmpty) {
-                          return setapptext(key: 'key_field_not_blank');
-                        } else if (!RegExp(r'^[a-zA-Z_ ]*$').hasMatch(value)) {
-                          return setapptext(key: 'key_text_format_error');
-                        }
-                      },
-                      onSaved: (value) {
-                        localdata.senond_surveyor_name = value.trim();
-                      },
-                      onChanged: (value) {
-                        localdata.senond_surveyor_name = value.trim();
-                        setState(() {});
-                      }),
-                  formcardtextfield(
-                      headerlablekey:
-                          setapptext(key: 'key_name_technical_support'),
-                      radiovalue:
-                          localdata.technical_support_name?.isEmpty ?? true
-                              ? false
-                              : true,
-                      hinttextkey: setapptext(key: 'key_enter_1st_surveyor'),
-                      fieldfocus: _technicalsupport,
-                      textInputAction: TextInputAction.done,
-                      onFieldSubmitted: (_) {
-                        _technicalsupport.unfocus();
-                      },
-                      initvalue:
-                          localdata.technical_support_name?.isEmpty ?? true
-                              ? ""
-                              : localdata.technical_support_name,
-                      validator:(value){
-                        if (!RegExp(r'^[a-zA-Z_ ]*$').hasMatch(value)) {
-                          return setapptext(key: 'key_text_format_error');
-                        }
-                      } ,
-                      onSaved: (value) {
-                        localdata.technical_support_name = value.trim();
-                      },
-                      onChanged: (value) {
-                        localdata.technical_support_name = value.trim();
-                        setState(() {});
-                      }),
-                ],
-              ),
-            ),
-            //footer
-            Container(
-              child: Column(
-                children: <Widget>[
-                  Divider(
-                    color: Colors.blueAccent,
-                  ),
-                  Container(
-                    color: Colors.blue,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 10, bottom: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          //back button
-                          SizedBox(),
-                          //next button
-                          nextbutton()
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
   @override
   void initState() {
     localdata = new LocalPropertySurvey();
@@ -245,10 +123,16 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
     if (widget.localdata != null) {
       localdata = widget.localdata;
     }
+    if (widget.surveyAssignment != null) {
+      localdata.first_surveyor_name = widget.surveyAssignment.surveyoronename;
+      localdata.senond_surveyor_name = widget.surveyAssignment.surveyortwoname;
+      localdata.technical_support_name = widget.surveyAssignment.teamleadname;
+    }
     if (!(widget.localsurveykey?.isEmpty ?? true)) {
       Future.delayed(Duration.zero).then((_) {
         Provider.of<DBHelper>(context).getSingleProperty(
-            taskid: widget.taskid, localkey: widget.localsurveykey);
+            taskid: widget.surveyAssignment.id,
+            localkey: widget.localsurveykey);
       });
     }
     super.initState();
@@ -260,6 +144,7 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
       localdata = Provider.of<DBHelper>(context).singlepropertysurveys;
       localdata.editmode = 1;
     }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
@@ -287,6 +172,7 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
+                                  enable: false,
                                   headerlablekey:
                                       setapptext(key: 'key_first_surveyor'),
                                   radiovalue:
@@ -312,8 +198,8 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                     if (value.trim().isEmpty) {
                                       return setapptext(
                                           key: 'key_field_not_blank');
-                                    }
-                                    else if (!RegExp(r'^[a-zA-Z_ ]*$').hasMatch(value)) {
+                                    } else if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                        .hasMatch(value)) {
                                       return setapptext(
                                           key: 'key_text_format_error');
                                     }
@@ -328,6 +214,7 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable: false,
                                   headerlablekey:
                                       setapptext(key: 'key_second_surveyor'),
                                   radiovalue:
@@ -353,7 +240,8 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                     if (value.trim().isEmpty) {
                                       return setapptext(
                                           key: 'key_field_not_blank');
-                                    } else if (!RegExp(r'^[a-zA-Z_ ]*$').hasMatch(value)) {
+                                    } else if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                        .hasMatch(value)) {
                                       return setapptext(
                                           key: 'key_text_format_error');
                                     }
@@ -368,6 +256,7 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable: false,
                                   headerlablekey: setapptext(
                                       key: 'key_name_technical_support'),
                                   radiovalue: localdata.technical_support_name
@@ -387,8 +276,9 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                           true
                                       ? ""
                                       : localdata.technical_support_name,
-                                       validator: (value) {
-                                    if (!RegExp(r'^[a-zA-Z_ ]*$').hasMatch(value)) {
+                                  validator: (value) {
+                                    if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                        .hasMatch(value)) {
                                       return setapptext(
                                           key: 'key_text_format_error');
                                     }

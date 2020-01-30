@@ -5,13 +5,14 @@ import 'package:provider/provider.dart';
 import '../localization/app_translations.dart';
 import './propertyregistation.dart';
 import '../utils/db_helper.dart';
-import '../controllers/auth.dart';
 import '../models/localpropertydata.dart';
 import './surveyinfo.dart';
+import '../models/surveyAssignment.dart';
 
 class SurveyPage extends StatefulWidget {
-  SurveyPage({this.id});
-  final String id;
+  SurveyPage({this.surveyassignment});
+
+  final SurveyAssignment surveyassignment;
   @override
   _SurveyPageState createState() => _SurveyPageState();
 }
@@ -160,7 +161,7 @@ class _SurveyPageState extends State<SurveyPage> {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) => SurveyInfoPage(
-                            taskid: widget.id,
+                            surveyAssignment: widget.surveyassignment,
                             localsurveykey: localsurveyid,
                           ),
                         ),
@@ -188,7 +189,8 @@ class _SurveyPageState extends State<SurveyPage> {
                                       Navigator.pop(context);
                                       Provider.of<DBHelper>(context)
                                           .getpropertysurveys(
-                                              taskid: widget.id);
+                                              taskid:
+                                                  widget.surveyassignment.id);
                                       setState(() {});
                                     });
                                   },
@@ -342,9 +344,6 @@ class _SurveyPageState extends State<SurveyPage> {
 
   @override
   void initState() {
-    // Future.delayed(Duration.zero).then((_) {
-    //   Provider.of<DBHelper>(context).getpropertysurveys(taskid: widget.id);
-    // });
     super.initState();
   }
 
@@ -365,13 +364,15 @@ class _SurveyPageState extends State<SurveyPage> {
             tooltip: setapptext(key: 'key_add_property'),
             onPressed: () {
               showSearch(
-                  context: context, delegate: SurveySearch(taskid: widget.id));
+                  context: context,
+                  delegate: SurveySearch(taskid: widget.surveyassignment.id));
             },
           )
         ],
       ),
       body: FutureBuilder(
-        future: DBHelper().getpropertysurveys(taskid: widget.id),
+        future:
+            DBHelper().getpropertysurveys(taskid: widget.surveyassignment.id),
         builder:
             (context, AsyncSnapshot<List<LocalPropertySurvey>> surveydata) {
           if (surveydata.connectionState == ConnectionState.done &&
@@ -417,7 +418,7 @@ class _SurveyPageState extends State<SurveyPage> {
             context,
             MaterialPageRoute(
               builder: (BuildContext context) => SurveyInfoPage(
-                taskid: widget.id,
+                surveyAssignment: widget.surveyassignment,
               ),
             ),
           );

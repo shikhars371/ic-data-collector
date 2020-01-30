@@ -322,6 +322,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                       }
                                     }),
                                 formcardtextfield(
+                                    enable: false,
                                     keyboardtype: TextInputType.number,
                                     headerlablekey: setapptext(key: 'key_area'),
                                     radiovalue: localdata.area?.isEmpty ?? true
@@ -341,7 +342,8 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                         : localdata.area,
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return setapptext(key: 'key_field_not_blank');
+                                        return setapptext(
+                                            key: 'key_field_not_blank');
                                       } else if (value.length != 2) {
                                         return setapptext(key: 'key_two_digit');
                                       }
@@ -354,6 +356,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                    enable: false,
                                     keyboardtype: TextInputType.number,
                                     initvalue: localdata.pass?.isEmpty ?? true
                                         ? ""
@@ -373,7 +376,8 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                         : true,
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return setapptext(key: 'key_field_not_blank');
+                                        return setapptext(
+                                            key: 'key_field_not_blank');
                                       } else if (value.length != 2) {
                                         return setapptext(key: 'key_two_digit');
                                       }
@@ -386,6 +390,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                    enable: false,
                                     keyboardtype: TextInputType.number,
                                     initvalue: localdata.block?.isEmpty ?? true
                                         ? ""
@@ -406,9 +411,11 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     },
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return setapptext(key: 'key_field_not_blank');
+                                        return setapptext(
+                                            key: 'key_field_not_blank');
                                       } else if (value.length != 3) {
-                                        return setapptext(key: 'key_three_digit');
+                                        return setapptext(
+                                            key: 'key_three_digit');
                                       }
                                     },
                                     onSaved: (value) {
@@ -441,9 +448,11 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                         setapptext(key: 'Key_number_value'),
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return setapptext(key: 'key_field_not_blank');
+                                        return setapptext(
+                                            key: 'key_field_not_blank');
                                       } else if (value.length != 3) {
-                                        return setapptext(key: 'key_three_digit');
+                                        return setapptext(
+                                            key: 'key_three_digit');
                                       }
                                     },
                                     onSaved: (value) {
@@ -476,9 +485,11 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                         setapptext(key: 'Key_number_value'),
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return setapptext(key: 'key_field_not_blank');
+                                        return setapptext(
+                                            key: 'key_field_not_blank');
                                       } else if (value.length != 3) {
-                                        return setapptext(key: 'key_three_digit');
+                                        return setapptext(
+                                            key: 'key_three_digit');
                                       }
                                     },
                                     onSaved: (value) {
