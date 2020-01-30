@@ -217,7 +217,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   onChanged: (value) {
                                     localdata.fst_have_building = value;
                                     setState(() {
-                                      localdata.fst_have_building = null;
+                                      localdata.fst_building_use = null;
                                       localdata.fst_building_category = null;
                                       localdata.fst_specifyif_other = null;
                                       localdata.fst_no_of_floors = null;
@@ -261,6 +261,17 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                               ///first building
                               ///start
                               if (localdata.fst_have_building == "1") ...[
+                                Container(
+                                  padding: EdgeInsets.only(top: 7, bottom: 7),
+                                  child: Center(
+                                    child: Text(
+                                      "First Building Information",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                                 formCardDropdown(
                                     iscompleted: ((localdata.fst_building_use
                                                     ?.isEmpty ??
@@ -501,11 +512,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                         localdata.snd_no_of_floors = null;
                                         localdata.snd_cubie_meter = null;
                                         localdata.trd_have_building = null;
-                                        localdata.snd_building_category = null;
-                                        localdata.snd_specifyif_other = null;
-                                        localdata.snd_no_of_floors = null;
-                                        localdata.snd_cubie_meter = null;
-                                        localdata.trd_have_building = null;
                                         localdata.trd_building_use = null;
                                         localdata.trd_building_category = null;
                                         localdata.trd_specifyif_other = null;
@@ -537,6 +543,17 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                               ///second building
                               ///start
                               if (localdata.snd_have_building == "1") ...[
+                                Container(
+                                  padding: EdgeInsets.only(top: 7, bottom: 7),
+                                  child: Center(
+                                    child: Text(
+                                      "Second Building Information",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                                 formCardDropdown(
                                     iscompleted: ((localdata.snd_building_use
                                                     ?.isEmpty ??
@@ -806,6 +823,17 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                               ///third building
                               ///start
                               if (localdata.trd_have_building == "1") ...[
+                                Container(
+                                  padding: EdgeInsets.only(top: 7, bottom: 7),
+                                  child: Center(
+                                    child: Text(
+                                      "Third Building Information",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                                 formCardDropdown(
                                     iscompleted: ((localdata.trd_building_use
                                                     ?.isEmpty ??
@@ -1067,6 +1095,17 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                               ///forth building
                               ///start
                               if (localdata.forth_have_building == "1") ...[
+                                Container(
+                                  padding: EdgeInsets.only(top: 7, bottom: 7),
+                                  child: Center(
+                                    child: Text(
+                                      "Fourth Building Information",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                                 formCardDropdown(
                                     iscompleted: ((localdata.forth_building_use
                                                     ?.isEmpty ??
@@ -1333,6 +1372,17 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                               ///fifth building
                               ///start
                               if (localdata.fth_have_building == "1") ...[
+                                Container(
+                                  padding: EdgeInsets.only(top: 7, bottom: 7),
+                                  child: Center(
+                                    child: Text(
+                                      "Fifth Building Information",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                                 formCardDropdown(
                                     iscompleted: ((localdata.fth_building_use
                                                     ?.isEmpty ??
