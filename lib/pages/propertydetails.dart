@@ -340,9 +340,9 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                             true
                                         ? "0"
                                         : localdata.redeemable_property,
-                                    iscompleted: localdata
+                                    iscompleted: ((localdata
                                                 .redeemable_property?.isEmpty ??
-                                            true
+                                            true)||(localdata.redeemable_property=="0"))
                                         ? false
                                         : true,
                                     headerlablekey: setapptext(
@@ -389,10 +389,10 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                             true
                                         ? "0"
                                         : localdata.proprietary_properties,
-                                    iscompleted: localdata
+                                    iscompleted: ((localdata
                                                 .proprietary_properties
-                                                ?.isEmpty ??
-                                            true
+                                                ?.isEmpty ?? true)||(localdata.proprietary_properties=="0"))
+                                            
                                         ? false
                                         : true,
                                     headerlablekey: setapptext(
@@ -566,9 +566,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                             ? "0"
                                             : localdata.govt_property,
                                     iscompleted:
-                                        localdata.govt_property?.isEmpty ?? true
-                                            ? false
-                                            : true,
+                                         ((localdata.govt_property?.isEmpty ?? true)||(localdata.govt_property=="0")),
                                     headerlablekey:
                                         setapptext(key: 'key_govt_proprty'),
                                     dropdownitems: [

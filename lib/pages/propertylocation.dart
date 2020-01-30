@@ -633,6 +633,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     },
                                     onChanged: (value) {
                                       localdata.property_type = value;
+                                      _land_area.unfocus();
                                       setState(() {});
                                     },
                                     validate: (value) {
