@@ -217,10 +217,12 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                           ? ""
                                           : localdata.first_partner_name,
                                   validator: (value) {
+                                    Pattern textpattern = r'^[a-zA-Z_ ]*$';
+                                    RegExp textregex = new RegExp(textpattern);
                                     if (value.trim().isEmpty) {
                                       return setapptext(
                                           key: 'key_field_not_blank');
-                                    } else if (!(isAlpha(value))) {
+                                    } else if (!textregex.hasMatch(value)) {
                                       return setapptext(
                                           key: 'key_text_format_error');
                                     }
@@ -524,14 +526,18 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                                           key: 'key_no_image'),
                                                     ),
                                                   )
-                                                :File(localdata
-                                                    .first_partner_name_property_owner).existsSync()? Image.file(File(localdata
-                                                    .first_partner_name_property_owner)):Center(
-                                                    child: Text(
-                                                      setapptext(
-                                                          key: 'key_no_image'),
-                                                    ),
-                                                  ),
+                                                : File(localdata
+                                                            .first_partner_name_property_owner)
+                                                        .existsSync()
+                                                    ? Image.file(File(localdata
+                                                        .first_partner_name_property_owner))
+                                                    : Center(
+                                                        child: Text(
+                                                          setapptext(
+                                                              key:
+                                                                  'key_no_image'),
+                                                        ),
+                                                      ),
                                           ),
                                         )
                                       ],
