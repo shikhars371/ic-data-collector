@@ -222,7 +222,7 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                       return setapptext(
                                           key: 'key_field_not_blank');
                                     }
-                                    else if (!(isAlpha(value))) {
+                                    else if (!RegExp(r'^[a-zA-Z_ ]*$').hasMatch(value)) {
                           return setapptext(key: 'key_text_format_error');
                         }
                                   },
@@ -264,11 +264,7 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                       return setapptext(key: 'key_field_not_blank');
 
                                     }
-                                    else if(!(isDate(value))){
-                                      return setapptext(key: 'key_date_format_error');
-                                      return setapptext(
-                                          key: 'key_field_not_blank');
-                                    }
+                                    
                                   },
                                   onSaved: (value) {
                                     localdata.safari_booklet_machinegun_no =
@@ -303,6 +299,11 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                       setapptext(key: 'key_way_to_enter'),
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
+                                      return setapptext(
+                                          key: 'key_field_not_blank');
+                                    }
+                                    else if(!(isDate(value))){
+                                      return setapptext(key: 'key_date_format_error');
                                       return setapptext(
                                           key: 'key_field_not_blank');
                                     }
