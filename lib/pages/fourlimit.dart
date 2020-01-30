@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:kapp/pages/detailnumberarea.dart';
 import 'package:kapp/pages/infophotonint.dart';
 import 'package:kapp/pages/otherpartnerinfo.dart';
 import 'package:kapp/pages/typeofuse.dart';
@@ -80,7 +81,7 @@ FocusNode _fore_limits_north;
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (BuildContext context) => TypeOfUsePage(
+                builder: (BuildContext context) => DetailsNumberAreaPage(
                   localdata: localdata,
                 ),
               ),

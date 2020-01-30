@@ -23,9 +23,9 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
   FocusNode _area_unit_release_area;
-FocusNode _area_unit_business_area;
-FocusNode _area_unit_total_no_unit;
-FocusNode _area_unit_business_units;
+  FocusNode _area_unit_business_area;
+  FocusNode _area_unit_total_no_unit;
+  FocusNode _area_unit_business_units;
 
   Future<String> appimagepicker() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
@@ -112,10 +112,9 @@ FocusNode _area_unit_business_units;
     localdata = widget.localdata;
     super.initState();
     _area_unit_release_area = new FocusNode();
-_area_unit_business_area = new FocusNode();
-_area_unit_total_no_unit = new FocusNode();
-_area_unit_business_units = new FocusNode();
-
+    _area_unit_business_area = new FocusNode();
+    _area_unit_total_no_unit = new FocusNode();
+    _area_unit_business_units = new FocusNode();
   }
 
   @override
@@ -152,7 +151,8 @@ _area_unit_business_units = new FocusNode();
                                           true
                                       ? ""
                                       : localdata.area_unit_release_area,
-                                  headerlablekey: setapptext(key: 'key_release_area'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_release_area'),
                                   fieldfocus: _area_unit_release_area,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -178,7 +178,8 @@ _area_unit_business_units = new FocusNode();
                                           true
                                       ? ""
                                       : localdata.area_unit_business_area,
-                                  headerlablekey: setapptext(key: 'key_business_area'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_business_area'),
                                   fieldfocus: _area_unit_business_area,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -204,13 +205,14 @@ _area_unit_business_units = new FocusNode();
                                           true
                                       ? ""
                                       : localdata.area_unit_total_no_unit,
-                                  headerlablekey: setapptext(key: 'key_total_release_units'),
+                                  headerlablekey: setapptext(
+                                      key: 'key_total_release_units'),
                                   fieldfocus: _area_unit_total_no_unit,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
                                     _area_unit_total_no_unit.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_area_unit_business_units);
+                                    FocusScope.of(context).requestFocus(
+                                        _area_unit_business_units);
                                   },
                                   radiovalue: localdata.area_unit_total_no_unit
                                               ?.isEmpty ??
@@ -230,12 +232,13 @@ _area_unit_business_units = new FocusNode();
                                           true
                                       ? ""
                                       : localdata.area_unit_business_units,
-                                  headerlablekey: setapptext(key: 'key_total_business_unit'),
-                                   fieldfocus: _area_unit_business_units,
+                                  headerlablekey: setapptext(
+                                      key: 'key_total_business_unit'),
+                                  fieldfocus: _area_unit_business_units,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
-                                    _area_unit_business_units.unfocus(); },
-
+                                    _area_unit_business_units.unfocus();
+                                  },
                                   radiovalue: localdata.area_unit_business_units
                                               ?.isEmpty ??
                                           true
@@ -252,13 +255,15 @@ _area_unit_business_units = new FocusNode();
                                 onTap: () async {
                                   _formkey.currentState.save();
                                   localdata.other_key = "1";
+                                  localdata.isdrafted = 1;
                                   await DBHelper().updatePropertySurvey(
                                       localdata, localdata.local_property_key);
                                   Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            TaskPage()),
+                                      builder: (BuildContext context) =>
+                                          TaskPage(),
+                                    ),
                                   );
                                 },
                                 child: Padding(
@@ -305,8 +310,8 @@ _area_unit_business_units = new FocusNode();
                               Container(
                                 color: Colors.blue,
                                 child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 10, bottom: 10),
+                                  padding: const EdgeInsets.only(
+                                      top: 10, bottom: 10),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,

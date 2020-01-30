@@ -106,9 +106,9 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
     localdata = widget.localdata;
     super.initState();
     _issue_regarding_property = new FocusNode();
-  _municipality_ref_number = new FocusNode();
+    _municipality_ref_number = new FocusNode();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -145,7 +145,7 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
                                       : localdata.issue_regarding_property,
                                   headerlablekey:
                                       setapptext(key: 'key_property_issues'),
-                                      fieldfocus: _issue_regarding_property,
+                                  fieldfocus: _issue_regarding_property,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
                                     _issue_regarding_property.unfocus();
@@ -174,7 +174,7 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
                                       : localdata.municipality_ref_number,
                                   headerlablekey: setapptext(
                                       key: 'key_municipal_regulation'),
-                                      fieldfocus: _municipality_ref_number,
+                                  fieldfocus: _municipality_ref_number,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
                                     _municipality_ref_number.unfocus();
@@ -194,11 +194,12 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
                                     setState(() {});
                                   }),
                               formCardDropdown(
-                                  iscompleted:
-                                      localdata.natural_threaten?.isEmpty ??
-                                              true
-                                          ? false
-                                          : true,
+                                  iscompleted: ((localdata
+                                                  .natural_threaten?.isEmpty ??
+                                              true) ||
+                                          (localdata.natural_threaten == "0"))
+                                      ? false
+                                      : true,
                                   value: localdata.natural_threaten?.isEmpty ??
                                           true
                                       ? "0"
@@ -238,8 +239,8 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
                               Container(
                                 color: Colors.blue,
                                 child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 10, bottom: 10),
+                                  padding: const EdgeInsets.only(
+                                      top: 10, bottom: 10),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
