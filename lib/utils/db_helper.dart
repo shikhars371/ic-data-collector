@@ -41,8 +41,11 @@ class DBHelper with ChangeNotifier {
   _onCreate(Database db, int version) async {
     await db.execute('''
         CREATE TABLE IF NOT EXISTS surveylist (
-          id TEXT PRIMARY KEY UNIQUE,province TEXT,
-          municpality TEXT, nahia TEXT,gozar TEXT,propertytosurvey INTEGER,
+          id TEXT PRIMARY KEY UNIQUE,teamlead TEXT,
+          teamleadname TEXT,surveyorone TEXT,surveyortwo TEXT,
+          surveyoronename TEXT,surveyortwoname TEXT,
+          province TEXT,municpality TEXT, nahia TEXT,gozar TEXT,
+          block TEXT,propertytosurvey INTEGER,
           startdate TEXT,duedate TEXT,isdeleted INTEGER DEFAULT 0,
           issynced INTEGER DEFAULT 0,iscompleted INTEGER DEFAULT 0,isstatrted INTEGER DEFAULT 0
         )
@@ -141,15 +144,24 @@ class DBHelper with ChangeNotifier {
         bool check = await isExist(id: item.id);
         if (!check) {
           String sqlquery = '''
-          INSERT INTO surveylist(id,province,municpality,nahia,gozar,propertytosurvey,
-          startdate,duedate)VALUES(?,?,?,?,?,?,?,?);
+          INSERT INTO surveylist(
+          id,teamlead,teamleadname,surveyorone,surveyortwo,
+          surveyoronename,surveyortwoname,province,municpality,
+          nahia,gozar,block,propertytosurvey,startdate,duedate)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
         ''';
           List<dynamic> params = [
             item.id,
+            item.teamlead,
+            item.teamleadname,
+            item.surveyor1,
+            item.surveyor2,
+            item.surveyoronename,
+            item.surveyortwoname,
             item.province,
             item.municpality,
             item.nahia,
             item.gozar,
+            item.block,
             item.property_to_survey,
             item.startDate,
             item.due_date
@@ -190,10 +202,17 @@ class DBHelper with ChangeNotifier {
           surveys.add(
             SurveyAssignment(
                 id: maps[i]['id'],
+                teamlead: maps[i]['teamlead'],
+                teamleadname: maps[i]['teamleadname'],
+                surveyor1: maps[i]['surveyorone'],
+                surveyor2: maps[i]['surveyortwo'],
+                surveyoronename: maps[i]['surveyoronename'],
+                surveyortwoname: maps[i]['surveyortwoname'],
                 province: maps[i]['province'],
                 municpality: maps[i]['municpality'],
                 nahia: maps[i]['nahia'],
                 gozar: maps[i]['gozar'],
+                block: maps[i]['block'],
                 property_to_survey: maps[i]['propertytosurvey'],
                 startDate: maps[i]['startdate'],
                 due_date: maps[i]['duedate'],
