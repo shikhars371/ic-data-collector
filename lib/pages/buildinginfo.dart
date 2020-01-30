@@ -509,6 +509,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {
                                         localdata.snd_building_use = null;
                                         localdata.snd_building_category = null;
+                                        localdata.snd_specifyif_other = null;
                                         localdata.snd_no_of_floors = null;
                                         localdata.snd_cubie_meter = null;
                                         localdata.trd_have_building = null;
@@ -787,11 +788,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     onChanged: (value) {
                                       localdata.trd_have_building = value;
                                       setState(() {
-                                        localdata.snd_building_category = null;
-                                        localdata.snd_specifyif_other = null;
-                                        localdata.snd_no_of_floors = null;
-                                        localdata.snd_cubie_meter = null;
-                                        localdata.trd_have_building = null;
                                         localdata.trd_building_use = null;
                                         localdata.trd_building_category = null;
                                         localdata.trd_specifyif_other = null;
