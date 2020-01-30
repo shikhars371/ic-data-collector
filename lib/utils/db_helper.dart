@@ -121,7 +121,7 @@ class DBHelper with ChangeNotifier {
         fifth_partner_email TEXT,fifth_partner_image TEXT,fifth_partner_machinegun_no TEXT,fifth_partner_cover_note TEXT,
         fifth_partner_note_page TEXT,fifth_partner_reg_no TEXT,fifth_partner_phote_note1 TEXT,
         fifth_partner_photo_tips1 TEXT,fifth_partner_photo_tips2 TEXT,formval INTEGER,editmode INTEGER,
-        isdrafted INTEGER DEFAULT 0
+        isdrafted INTEGER DEFAULT 0,boundaryinfonote TEXT
       )
     ''').catchError((onError) {
       print(onError);
@@ -329,11 +329,11 @@ class DBHelper with ChangeNotifier {
         fifth_partner_name,fifth_partner_surname,fifth_partner_boy,fifth_partner_father,fifth_partner_gender,fifth_partner_phone,
         fifth_partner_email,fifth_partner_image,fifth_partner_machinegun_no,fifth_partner_cover_note,
         fifth_partner_note_page,fifth_partner_reg_no,fifth_partner_phote_note1,
-        fifth_partner_photo_tips1,fifth_partner_photo_tips2,formval,editmode)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
+        fifth_partner_photo_tips1,fifth_partner_photo_tips2,formval,editmode,boundaryinfonote)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
         ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
         ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
         ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
-        ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
       ''';
       List<dynamic> params = [
         data.taskid,
@@ -522,7 +522,8 @@ class DBHelper with ChangeNotifier {
         data.fifth_partner_photo_tips1,
         data.fifth_partner_photo_tips2,
         data.formval,
-        data.editmode
+        data.editmode,
+        data.boundaryinfonote
       ];
       bool check = await ifpropertyexist(localkey: data.local_property_key);
       if (!check) {
@@ -616,7 +617,7 @@ class DBHelper with ChangeNotifier {
         fifth_partner_name=?,fifth_partner_surname=?,fifth_partner_boy=?,fifth_partner_father=?,fifth_partner_gender=?,fifth_partner_phone=?,
         fifth_partner_email=?,fifth_partner_image=?,fifth_partner_machinegun_no=?,fifth_partner_cover_note=?,
         fifth_partner_note_page=?,fifth_partner_reg_no=?,fifth_partner_phote_note1=?,
-        fifth_partner_photo_tips1=?,fifth_partner_photo_tips2=?,formval=?,editmode=?,isdrafted=?
+        fifth_partner_photo_tips1=?,fifth_partner_photo_tips2=?,formval=?,editmode=?,isdrafted=?,boundaryinfonote=?
         WHERE local_property_key=?
       ''';
       List<dynamic> params = [
@@ -806,6 +807,7 @@ class DBHelper with ChangeNotifier {
         data.formval,
         data.editmode,
         data.isdrafted,
+        data.boundaryinfonote,
         localkey
       ];
       result = await dbClient.rawUpdate(sqlquery, params);

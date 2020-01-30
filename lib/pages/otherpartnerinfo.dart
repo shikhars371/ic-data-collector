@@ -22,46 +22,46 @@ class OtherPartnerInfoPage extends StatefulWidget {
 class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
- FocusNode  _second_partner_name;
-FocusNode _second_partner_surname;
-FocusNode _second_partner_boy;
-FocusNode _second_partner_father;
-FocusNode _second_partner_phone;
-FocusNode _second_partner_email;
-FocusNode _second_partner_machinegun_no;
-FocusNode _second_partner_cover_note;
-FocusNode _second_partner_note_page;
-FocusNode _second_partner_reg_no;
-FocusNode _third_partner_name;
-FocusNode _third_partner_surname;
-FocusNode _third_partner_boy;
-FocusNode _third_partner_father;
-FocusNode _third_partner_phone;
-FocusNode _third_partner_email;
-FocusNode _third_partner_machinegun_no;
-FocusNode _third_partner_cover_note;
-FocusNode _third_partner_note_page;
-FocusNode _third_partner_reg_no;
-FocusNode _fourth_partner_name;
-FocusNode _fourth_partner_surname;
-FocusNode _fourth_partner_boy;
-FocusNode _fourth_partner_father;
-FocusNode _fourth_partner_phone;
-FocusNode _fourth_partner_email;
-FocusNode _fourth_partner_machinegun_no;
-FocusNode _fourth_partner_cover_note;
-FocusNode _fourth_partner_note_page;
-FocusNode _fourth_partner_reg_no;
-FocusNode _fifth_partner_name;
-FocusNode _fifth_partner_surname;
-FocusNode _fifth_partner_boy;
-FocusNode _fifth_partner_father;
-FocusNode _fifth_partner_phone;
-FocusNode _fifth_partner_email;
-FocusNode _fifth_partner_machinegun_no;
-FocusNode _fifth_partner_cover_note;
-FocusNode _fifth_partner_note_page;
-FocusNode _fifth_partner_reg_no;
+  FocusNode _second_partner_name;
+  FocusNode _second_partner_surname;
+  FocusNode _second_partner_boy;
+  FocusNode _second_partner_father;
+  FocusNode _second_partner_phone;
+  FocusNode _second_partner_email;
+  FocusNode _second_partner_machinegun_no;
+  FocusNode _second_partner_cover_note;
+  FocusNode _second_partner_note_page;
+  FocusNode _second_partner_reg_no;
+  FocusNode _third_partner_name;
+  FocusNode _third_partner_surname;
+  FocusNode _third_partner_boy;
+  FocusNode _third_partner_father;
+  FocusNode _third_partner_phone;
+  FocusNode _third_partner_email;
+  FocusNode _third_partner_machinegun_no;
+  FocusNode _third_partner_cover_note;
+  FocusNode _third_partner_note_page;
+  FocusNode _third_partner_reg_no;
+  FocusNode _fourth_partner_name;
+  FocusNode _fourth_partner_surname;
+  FocusNode _fourth_partner_boy;
+  FocusNode _fourth_partner_father;
+  FocusNode _fourth_partner_phone;
+  FocusNode _fourth_partner_email;
+  FocusNode _fourth_partner_machinegun_no;
+  FocusNode _fourth_partner_cover_note;
+  FocusNode _fourth_partner_note_page;
+  FocusNode _fourth_partner_reg_no;
+  FocusNode _fifth_partner_name;
+  FocusNode _fifth_partner_surname;
+  FocusNode _fifth_partner_boy;
+  FocusNode _fifth_partner_father;
+  FocusNode _fifth_partner_phone;
+  FocusNode _fifth_partner_email;
+  FocusNode _fifth_partner_machinegun_no;
+  FocusNode _fifth_partner_cover_note;
+  FocusNode _fifth_partner_note_page;
+  FocusNode _fifth_partner_reg_no;
 
   Future<String> appimagepicker() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
@@ -157,46 +157,45 @@ FocusNode _fifth_partner_reg_no;
     localdata = widget.localdata;
     super.initState();
     _second_partner_name = new FocusNode();
-_second_partner_surname = new FocusNode();
-_second_partner_boy = new FocusNode();
-_second_partner_father = new FocusNode();
-_second_partner_phone = new FocusNode();
-_second_partner_email = new FocusNode();
-_second_partner_machinegun_no = new FocusNode();
-_second_partner_cover_note = new FocusNode();
-_second_partner_note_page = new FocusNode();
-_second_partner_reg_no = new FocusNode();
-_third_partner_name = new FocusNode();
-_third_partner_surname = new FocusNode();
-_third_partner_boy = new FocusNode();
-_third_partner_father = new FocusNode();
-_third_partner_phone = new FocusNode();
-_third_partner_email = new FocusNode();
-_third_partner_machinegun_no = new FocusNode();
-_third_partner_cover_note = new FocusNode();
-_third_partner_note_page = new FocusNode();
-_third_partner_reg_no = new FocusNode();
-_fourth_partner_name = new FocusNode();
-_fourth_partner_surname = new FocusNode();
-_fourth_partner_boy = new FocusNode();
-_fourth_partner_father = new FocusNode();
-_fourth_partner_phone = new FocusNode();
-_fourth_partner_email = new FocusNode();
-_fourth_partner_machinegun_no = new FocusNode();
-_fourth_partner_cover_note = new FocusNode();
-_fourth_partner_note_page = new FocusNode();
-_fourth_partner_reg_no = new FocusNode();
-_fifth_partner_name = new FocusNode();
-_fifth_partner_surname = new FocusNode();
-_fifth_partner_boy = new FocusNode();
-_fifth_partner_father = new FocusNode();
-_fifth_partner_phone = new FocusNode();
-_fifth_partner_email = new FocusNode();
-_fifth_partner_machinegun_no = new FocusNode();
-_fifth_partner_cover_note = new FocusNode();
-_fifth_partner_note_page = new FocusNode();
-_fifth_partner_reg_no = new FocusNode();
-
+    _second_partner_surname = new FocusNode();
+    _second_partner_boy = new FocusNode();
+    _second_partner_father = new FocusNode();
+    _second_partner_phone = new FocusNode();
+    _second_partner_email = new FocusNode();
+    _second_partner_machinegun_no = new FocusNode();
+    _second_partner_cover_note = new FocusNode();
+    _second_partner_note_page = new FocusNode();
+    _second_partner_reg_no = new FocusNode();
+    _third_partner_name = new FocusNode();
+    _third_partner_surname = new FocusNode();
+    _third_partner_boy = new FocusNode();
+    _third_partner_father = new FocusNode();
+    _third_partner_phone = new FocusNode();
+    _third_partner_email = new FocusNode();
+    _third_partner_machinegun_no = new FocusNode();
+    _third_partner_cover_note = new FocusNode();
+    _third_partner_note_page = new FocusNode();
+    _third_partner_reg_no = new FocusNode();
+    _fourth_partner_name = new FocusNode();
+    _fourth_partner_surname = new FocusNode();
+    _fourth_partner_boy = new FocusNode();
+    _fourth_partner_father = new FocusNode();
+    _fourth_partner_phone = new FocusNode();
+    _fourth_partner_email = new FocusNode();
+    _fourth_partner_machinegun_no = new FocusNode();
+    _fourth_partner_cover_note = new FocusNode();
+    _fourth_partner_note_page = new FocusNode();
+    _fourth_partner_reg_no = new FocusNode();
+    _fifth_partner_name = new FocusNode();
+    _fifth_partner_surname = new FocusNode();
+    _fifth_partner_boy = new FocusNode();
+    _fifth_partner_father = new FocusNode();
+    _fifth_partner_phone = new FocusNode();
+    _fifth_partner_email = new FocusNode();
+    _fifth_partner_machinegun_no = new FocusNode();
+    _fifth_partner_cover_note = new FocusNode();
+    _fifth_partner_note_page = new FocusNode();
+    _fifth_partner_reg_no = new FocusNode();
   }
 
   @override
@@ -239,7 +238,7 @@ _fifth_partner_reg_no = new FocusNode();
                                 ),
                               ),
                               formcardtextfield(
-                                  headerlablekey:setapptext(key:  'key_name'),
+                                  headerlablekey: setapptext(key: 'key_name'),
                                   fieldfocus: _second_partner_name,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -247,7 +246,6 @@ _fifth_partner_reg_no = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_second_partner_surname);
                                   },
-
                                   radiovalue:
                                       localdata.second_partner_name?.isEmpty ??
                                               true
@@ -268,7 +266,8 @@ _fifth_partner_reg_no = new FocusNode();
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  headerlablekey: setapptext(key: 'key_surname'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_surname'),
                                   fieldfocus: _second_partner_surname,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -276,7 +275,6 @@ _fifth_partner_reg_no = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_second_partner_boy);
                                   },
-
                                   radiovalue: localdata.second_partner_surname
                                               ?.isEmpty ??
                                           true
@@ -297,7 +295,7 @@ _fifth_partner_reg_no = new FocusNode();
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  headerlablekey:setapptext(key:  'key_boy'),
+                                  headerlablekey: setapptext(key: 'key_boy'),
                                   fieldfocus: _second_partner_boy,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -305,7 +303,6 @@ _fifth_partner_reg_no = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_second_partner_father);
                                   },
-
                                   radiovalue:
                                       localdata.second_partner_boy?.isEmpty ??
                                               true
@@ -324,11 +321,13 @@ _fifth_partner_reg_no = new FocusNode();
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  headerlablekey:setapptext(key:  'key_father_name'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_father_name'),
                                   fieldfocus: _second_partner_father,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
-                                    _second_partner_father.unfocus(); },
+                                    _second_partner_father.unfocus();
+                                  },
                                   radiovalue: localdata
                                               .second_partner_father?.isEmpty ??
                                           true
@@ -381,7 +380,7 @@ _fifth_partner_reg_no = new FocusNode();
                                   }),
                               formcardtextfield(
                                   keyboardtype: TextInputType.number,
-                                  headerlablekey:setapptext(key:  'key_phone'),
+                                  headerlablekey: setapptext(key: 'key_phone'),
                                   fieldfocus: _second_partner_phone,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -389,7 +388,6 @@ _fifth_partner_reg_no = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_second_partner_email);
                                   },
-
                                   radiovalue:
                                       localdata.second_partner_phone?.isEmpty ??
                                               true
@@ -410,8 +408,11 @@ _fifth_partner_reg_no = new FocusNode();
                                     setState(() {});
                                   },
                                   validator: (value) {
-                                    if (value.length != 10) {
-                                      return setapptext(key: 'key_mobile_field');
+                                    if (!(value.isEmpty ?? true)) {
+                                      if (value.length != 10) {
+                                        return setapptext(
+                                            key: 'key_mobile_field');
+                                      }
                                     }
                                   }),
                               formcardtextfield(
@@ -419,7 +420,8 @@ _fifth_partner_reg_no = new FocusNode();
                                   fieldfocus: _second_partner_email,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
-                                    _second_partner_email.unfocus(); },
+                                    _second_partner_email.unfocus();
+                                  },
                                   keyboardtype: TextInputType.emailAddress,
                                   radiovalue:
                                       localdata.second_partner_email?.isEmpty ??
@@ -432,6 +434,7 @@ _fifth_partner_reg_no = new FocusNode();
                                           ? ""
                                           : localdata.second_partner_email,
                                   validator: (value) {
+                                    if (!(value.isEmpty ?? true)){
                                     Pattern pattern =
                                         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
                                     RegExp regex = new RegExp(pattern);
@@ -439,6 +442,7 @@ _fifth_partner_reg_no = new FocusNode();
                                       return setapptext(key: 'key_email_field');
                                     else
                                       return null;
+                                  }
                                   },
                                   onSaved: (value) {
                                     localdata.second_partner_email =
@@ -497,8 +501,9 @@ _fifth_partner_reg_no = new FocusNode();
                                             child: Column(
                                               children: <Widget>[
                                                 RaisedButton(
-                                                  child: Text(
-                                                      setapptext(key: 'key_capture_image')),
+                                                  child: Text(setapptext(
+                                                      key:
+                                                          'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .second_partner_image =
@@ -525,7 +530,8 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text(setapptext(key: 'key_no_image')),
+                                                    child: Text(setapptext(
+                                                        key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -546,15 +552,15 @@ _fifth_partner_reg_no = new FocusNode();
                                           true
                                       ? ""
                                       : localdata.second_partner_machinegun_no,
-                                  headerlablekey:setapptext(key:  'key_machine_gun'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_machine_gun'),
                                   fieldfocus: _second_partner_machinegun_no,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
                                     _second_partner_machinegun_no.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_second_partner_cover_note);
+                                    FocusScope.of(context).requestFocus(
+                                        _second_partner_cover_note);
                                   },
-
                                   radiovalue: localdata
                                               .second_partner_machinegun_no
                                               ?.isEmpty ??
@@ -576,15 +582,15 @@ _fifth_partner_reg_no = new FocusNode();
                                           true
                                       ? ""
                                       : localdata.second_partner_cover_note,
-                                  headerlablekey: setapptext(key: 'key_cover_letter'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_cover_letter'),
                                   fieldfocus: _second_partner_cover_note,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
                                     _second_partner_cover_note.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_second_partner_note_page);
+                                    FocusScope.of(context).requestFocus(
+                                        _second_partner_note_page);
                                   },
-
                                   radiovalue: localdata
                                               .second_partner_cover_note
                                               ?.isEmpty ??
@@ -604,7 +610,8 @@ _fifth_partner_reg_no = new FocusNode();
                                           true
                                       ? ""
                                       : localdata.second_partner_note_page,
-                                  headerlablekey: setapptext(key: 'key_notification_page'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_notification_page'),
                                   fieldfocus: _second_partner_note_page,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -612,7 +619,6 @@ _fifth_partner_reg_no = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_second_partner_reg_no);
                                   },
-
                                   radiovalue: localdata.second_partner_note_page
                                               ?.isEmpty ??
                                           true
@@ -631,11 +637,12 @@ _fifth_partner_reg_no = new FocusNode();
                                           true
                                       ? ""
                                       : localdata.second_partner_reg_no,
-                                  headerlablekey:setapptext(key:  'key_reg_no'),
+                                  headerlablekey: setapptext(key: 'key_reg_no'),
                                   fieldfocus: _second_partner_reg_no,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
-                                    _second_partner_reg_no.unfocus(); },
+                                    _second_partner_reg_no.unfocus();
+                                  },
                                   radiovalue: localdata
                                               .second_partner_reg_no?.isEmpty ??
                                           true
@@ -696,8 +703,9 @@ _fifth_partner_reg_no = new FocusNode();
                                             child: Column(
                                               children: <Widget>[
                                                 RaisedButton(
-                                                  child: Text(
-                                                      setapptext(key: 'key_capture_image')),
+                                                  child: Text(setapptext(
+                                                      key:
+                                                          'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .second_partner_phote_note1 =
@@ -724,7 +732,8 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text(setapptext(key: 'key_no_image')),
+                                                    child: Text(setapptext(
+                                                        key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -785,8 +794,9 @@ _fifth_partner_reg_no = new FocusNode();
                                             child: Column(
                                               children: <Widget>[
                                                 RaisedButton(
-                                                  child: Text(
-                                                      setapptext(key: 'key_capture_image')),
+                                                  child: Text(setapptext(
+                                                      key:
+                                                          'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .second_partner_photo_tips1 =
@@ -813,7 +823,8 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text(setapptext(key: 'key_no_image')),
+                                                    child: Text(setapptext(
+                                                        key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -874,8 +885,9 @@ _fifth_partner_reg_no = new FocusNode();
                                             child: Column(
                                               children: <Widget>[
                                                 RaisedButton(
-                                                  child: Text(
-                                                      setapptext(key: 'key_capture_image')),
+                                                  child: Text(setapptext(
+                                                      key:
+                                                          'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .second_partner_photo_tips2 =
@@ -902,7 +914,8 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text(setapptext(key: 'key_no_image')),
+                                                    child: Text(setapptext(
+                                                        key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -941,7 +954,6 @@ _fifth_partner_reg_no = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_third_partner_surname);
                                   },
-
                                   radiovalue:
                                       localdata.third_partner_name?.isEmpty ??
                                               true
@@ -960,7 +972,8 @@ _fifth_partner_reg_no = new FocusNode();
                                           true
                                       ? ""
                                       : localdata.third_partner_surname,
-                                  headerlablekey:setapptext(key:  'key_surname'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_surname'),
                                   fieldfocus: _third_partner_surname,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -968,7 +981,6 @@ _fifth_partner_reg_no = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_third_partner_boy);
                                   },
-
                                   radiovalue: localdata
                                               .third_partner_surname?.isEmpty ??
                                           true
@@ -995,7 +1007,6 @@ _fifth_partner_reg_no = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_third_partner_father);
                                   },
-
                                   radiovalue:
                                       localdata.third_partner_boy?.isEmpty ??
                                               true
@@ -1014,11 +1025,13 @@ _fifth_partner_reg_no = new FocusNode();
                                               true
                                           ? ""
                                           : localdata.third_partner_father,
-                                  headerlablekey: setapptext(key: 'key_father_name'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_father_name'),
                                   fieldfocus: _third_partner_father,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
-                                    _third_partner_father.unfocus(); },
+                                    _third_partner_father.unfocus();
+                                  },
                                   radiovalue:
                                       localdata.third_partner_father?.isEmpty ??
                                               true
@@ -1042,7 +1055,7 @@ _fifth_partner_reg_no = new FocusNode();
                                               true
                                           ? false
                                           : true,
-                                  headerlablekey:setapptext(key:  'key_gender'),
+                                  headerlablekey: setapptext(key: 'key_gender'),
                                   dropdownitems: [
                                     Dpvalue(
                                         name: setapptext(
@@ -1068,7 +1081,7 @@ _fifth_partner_reg_no = new FocusNode();
                                               true
                                           ? ""
                                           : localdata.third_partner_phone,
-                                  headerlablekey:setapptext(key:  'key_phone'),
+                                  headerlablekey: setapptext(key: 'key_phone'),
                                   fieldfocus: _third_partner_phone,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -1076,7 +1089,6 @@ _fifth_partner_reg_no = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_third_partner_email);
                                   },
-
                                   keyboardtype: TextInputType.number,
                                   radiovalue:
                                       localdata.third_partner_phone?.isEmpty ??
@@ -1091,8 +1103,11 @@ _fifth_partner_reg_no = new FocusNode();
                                     setState(() {});
                                   },
                                   validator: (value) {
+                                    if (!(value.isEmpty ?? true)){
                                     if (value.length != 10) {
-                                      return setapptext(key: 'key_mobile_field');
+                                      return setapptext(
+                                          key: 'key_mobile_field');
+                                    }
                                     }
                                   }),
                               formcardtextfield(
@@ -1105,7 +1120,8 @@ _fifth_partner_reg_no = new FocusNode();
                                   fieldfocus: _third_partner_email,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
-                                    _third_partner_email.unfocus(); },
+                                    _third_partner_email.unfocus();
+                                  },
                                   keyboardtype: TextInputType.emailAddress,
                                   radiovalue:
                                       localdata.third_partner_email?.isEmpty ??
@@ -1119,14 +1135,16 @@ _fifth_partner_reg_no = new FocusNode();
                                     localdata.third_partner_email = value;
                                     setState(() {});
                                   },
-                                  validator: (value) {
+                                  validator: (value) 
+                                  {
+                                    if (!(value.isEmpty ?? true)){
                                     Pattern pattern =
                                         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
                                     RegExp regex = new RegExp(pattern);
                                     if (!regex.hasMatch(value))
                                       return setapptext(key: 'key_email_field');
                                     else
-                                      return null;
+                                      return null;}
                                   }),
                               Container(
                                 decoration: BoxDecoration(
@@ -1176,8 +1194,9 @@ _fifth_partner_reg_no = new FocusNode();
                                             child: Column(
                                               children: <Widget>[
                                                 RaisedButton(
-                                                  child: Text(
-                                                      setapptext(key: 'key_capture_image')),
+                                                  child: Text(setapptext(
+                                                      key:
+                                                          'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .third_partner_image =
@@ -1203,7 +1222,8 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text(setapptext(key: 'key_no_image')),
+                                                    child: Text(setapptext(
+                                                        key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -1224,15 +1244,15 @@ _fifth_partner_reg_no = new FocusNode();
                                           true
                                       ? ""
                                       : localdata.third_partner_machinegun_no,
-                                  headerlablekey: setapptext(key: 'key_machine_gun'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_machine_gun'),
                                   fieldfocus: _third_partner_machinegun_no,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
                                     _third_partner_machinegun_no.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_third_partner_cover_note);
+                                    FocusScope.of(context).requestFocus(
+                                        _third_partner_cover_note);
                                   },
-
                                   radiovalue: localdata
                                               .third_partner_machinegun_no
                                               ?.isEmpty ??
@@ -1254,7 +1274,8 @@ _fifth_partner_reg_no = new FocusNode();
                                           true
                                       ? ""
                                       : localdata.third_partner_cover_note,
-                                  headerlablekey: setapptext(key: 'key_cover_letter'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_cover_letter'),
                                   fieldfocus: _third_partner_cover_note,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -1262,7 +1283,6 @@ _fifth_partner_reg_no = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_third_partner_note_page);
                                   },
-
                                   radiovalue: localdata.third_partner_cover_note
                                               ?.isEmpty ??
                                           true
@@ -1281,7 +1301,8 @@ _fifth_partner_reg_no = new FocusNode();
                                           true
                                       ? ""
                                       : localdata.third_partner_note_page,
-                                  headerlablekey:setapptext(key:  'key_notification_page'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_notification_page'),
                                   fieldfocus: _third_partner_note_page,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -1289,7 +1310,6 @@ _fifth_partner_reg_no = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_third_partner_reg_no);
                                   },
-
                                   radiovalue: localdata.third_partner_note_page
                                               ?.isEmpty ??
                                           true
@@ -1312,7 +1332,8 @@ _fifth_partner_reg_no = new FocusNode();
                                   fieldfocus: _third_partner_reg_no,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
-                                    _third_partner_reg_no.unfocus(); },
+                                    _third_partner_reg_no.unfocus();
+                                  },
                                   radiovalue:
                                       localdata.third_partner_reg_no?.isEmpty ??
                                               true
@@ -1373,8 +1394,9 @@ _fifth_partner_reg_no = new FocusNode();
                                             child: Column(
                                               children: <Widget>[
                                                 RaisedButton(
-                                                  child: Text(
-                                                      setapptext(key: 'key_capture_image')),
+                                                  child: Text(setapptext(
+                                                      key:
+                                                          'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .third_partner_phote_note1 =
@@ -1401,7 +1423,8 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text(setapptext(key: 'key_no_image')),
+                                                    child: Text(setapptext(
+                                                        key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -1462,8 +1485,9 @@ _fifth_partner_reg_no = new FocusNode();
                                             child: Column(
                                               children: <Widget>[
                                                 RaisedButton(
-                                                  child: Text(
-                                                      setapptext(key: 'key_capture_image')),
+                                                  child: Text(setapptext(
+                                                      key:
+                                                          'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .third_partner_photo_tips1 =
@@ -1490,7 +1514,8 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text(setapptext(key: 'key_no_image')),
+                                                    child: Text(setapptext(
+                                                        key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -1551,8 +1576,9 @@ _fifth_partner_reg_no = new FocusNode();
                                             child: Column(
                                               children: <Widget>[
                                                 RaisedButton(
-                                                  child: Text(
-                                                      setapptext(key: 'key_capture_image')),
+                                                  child: Text(setapptext(
+                                                      key:
+                                                          'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .third_partner_photo_tips2 =
@@ -1579,7 +1605,8 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text(setapptext(key: 'key_no_image')),
+                                                    child: Text(setapptext(
+                                                        key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -1618,7 +1645,6 @@ _fifth_partner_reg_no = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_fourth_partner_surname);
                                   },
-
                                   radiovalue:
                                       localdata.fourth_partner_name?.isEmpty ??
                                               true
@@ -1637,7 +1663,8 @@ _fifth_partner_reg_no = new FocusNode();
                                           true
                                       ? ""
                                       : localdata.fourth_partner_surname,
-                                  headerlablekey: setapptext(key: 'key_surname'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_surname'),
                                   fieldfocus: _fourth_partner_surname,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -1645,7 +1672,6 @@ _fifth_partner_reg_no = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_fourth_partner_boy);
                                   },
-
                                   radiovalue: localdata.fourth_partner_surname
                                               ?.isEmpty ??
                                           true
@@ -1672,7 +1698,6 @@ _fifth_partner_reg_no = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_fourth_partner_father);
                                   },
-
                                   radiovalue:
                                       localdata.fourth_partner_boy?.isEmpty ??
                                               true
@@ -1691,11 +1716,13 @@ _fifth_partner_reg_no = new FocusNode();
                                           true
                                       ? ""
                                       : localdata.fourth_partner_father,
-                                  headerlablekey:setapptext(key:  'key_father_name'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_father_name'),
                                   fieldfocus: _fourth_partner_father,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
-                                    _fourth_partner_father.unfocus(); },
+                                    _fourth_partner_father.unfocus();
+                                  },
                                   radiovalue: localdata
                                               .fourth_partner_father?.isEmpty ??
                                           true
@@ -1745,7 +1772,7 @@ _fifth_partner_reg_no = new FocusNode();
                                               true
                                           ? ""
                                           : localdata.fourth_partner_phone,
-                                  headerlablekey:setapptext(key:  'key_phone'),
+                                  headerlablekey: setapptext(key: 'key_phone'),
                                   fieldfocus: _fourth_partner_phone,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -1753,7 +1780,6 @@ _fifth_partner_reg_no = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_fourth_partner_email);
                                   },
-
                                   keyboardtype: TextInputType.number,
                                   radiovalue:
                                       localdata.fourth_partner_phone?.isEmpty ??
@@ -1768,9 +1794,12 @@ _fifth_partner_reg_no = new FocusNode();
                                     setState(() {});
                                   },
                                   validator: (value) {
+                                    if (!(value.isEmpty ?? true)){
                                     if (value.length != 10) {
-                                      return setapptext(key: 'key_mobile_field');
+                                      return setapptext(
+                                          key: 'key_mobile_field');
                                     }
+                                  }
                                   }),
                               formcardtextfield(
                                   initvalue:
@@ -1778,11 +1807,12 @@ _fifth_partner_reg_no = new FocusNode();
                                               true
                                           ? ""
                                           : localdata.fourth_partner_email,
-                                  headerlablekey:setapptext(key:  'key_email'),
+                                  headerlablekey: setapptext(key: 'key_email'),
                                   fieldfocus: _fourth_partner_email,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
-                                    _fourth_partner_email.unfocus(); },
+                                    _fourth_partner_email.unfocus();
+                                  },
                                   keyboardtype: TextInputType.emailAddress,
                                   radiovalue:
                                       localdata.fourth_partner_email?.isEmpty ??
@@ -1797,13 +1827,14 @@ _fifth_partner_reg_no = new FocusNode();
                                     setState(() {});
                                   },
                                   validator: (value) {
+                                    if (!(value.isEmpty ?? true)){
                                     Pattern pattern =
                                         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
                                     RegExp regex = new RegExp(pattern);
                                     if (!regex.hasMatch(value))
                                       return setapptext(key: 'key_email_field');
                                     else
-                                      return null;
+                                      return null;}
                                   }),
                               Container(
                                 decoration: BoxDecoration(
@@ -1853,8 +1884,9 @@ _fifth_partner_reg_no = new FocusNode();
                                             child: Column(
                                               children: <Widget>[
                                                 RaisedButton(
-                                                  child: Text(
-                                                      setapptext(key: 'key_capture_image')),
+                                                  child: Text(setapptext(
+                                                      key:
+                                                          'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .fourth_partner_image =
@@ -1881,7 +1913,8 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text(setapptext(key: 'key_no_image')),
+                                                    child: Text(setapptext(
+                                                        key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -1902,15 +1935,15 @@ _fifth_partner_reg_no = new FocusNode();
                                           true
                                       ? ""
                                       : localdata.fourth_partner_machinegun_no,
-                                  headerlablekey: setapptext(key: 'key_machine_gun'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_machine_gun'),
                                   fieldfocus: _fourth_partner_machinegun_no,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
                                     _fourth_partner_machinegun_no.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_fourth_partner_cover_note);
+                                    FocusScope.of(context).requestFocus(
+                                        _fourth_partner_cover_note);
                                   },
-
                                   radiovalue: localdata
                                               .fourth_partner_machinegun_no
                                               ?.isEmpty ??
@@ -1932,15 +1965,15 @@ _fifth_partner_reg_no = new FocusNode();
                                           true
                                       ? ""
                                       : localdata.fourth_partner_cover_note,
-                                  headerlablekey: setapptext(key: 'key_cover_letter'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_cover_letter'),
                                   fieldfocus: _fourth_partner_cover_note,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
                                     _fourth_partner_cover_note.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_fourth_partner_note_page);
+                                    FocusScope.of(context).requestFocus(
+                                        _fourth_partner_note_page);
                                   },
-
                                   radiovalue: localdata
                                               .fourth_partner_cover_note
                                               ?.isEmpty ??
@@ -1960,7 +1993,8 @@ _fifth_partner_reg_no = new FocusNode();
                                           true
                                       ? ""
                                       : localdata.fourth_partner_note_page,
-                                  headerlablekey: setapptext(key: 'key_notification_page'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_notification_page'),
                                   fieldfocus: _fourth_partner_note_page,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -1968,7 +2002,6 @@ _fifth_partner_reg_no = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_fourth_partner_reg_no);
                                   },
-
                                   radiovalue: localdata.fourth_partner_note_page
                                               ?.isEmpty ??
                                           true
@@ -1987,11 +2020,12 @@ _fifth_partner_reg_no = new FocusNode();
                                           true
                                       ? ""
                                       : localdata.fourth_partner_reg_no,
-                                  headerlablekey:setapptext(key:  'key_reg_no'),
+                                  headerlablekey: setapptext(key: 'key_reg_no'),
                                   fieldfocus: _fourth_partner_reg_no,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
-                                    _fourth_partner_reg_no.unfocus(); },
+                                    _fourth_partner_reg_no.unfocus();
+                                  },
                                   radiovalue: localdata
                                               .fourth_partner_reg_no?.isEmpty ??
                                           true
@@ -2052,8 +2086,9 @@ _fifth_partner_reg_no = new FocusNode();
                                             child: Column(
                                               children: <Widget>[
                                                 RaisedButton(
-                                                  child: Text(
-                                                      setapptext(key: 'key_capture_image')),
+                                                  child: Text(setapptext(
+                                                      key:
+                                                          'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .fourth_partner_phote_note1 =
@@ -2080,7 +2115,8 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text(setapptext(key: 'key_no_image')),
+                                                    child: Text(setapptext(
+                                                        key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -2141,8 +2177,9 @@ _fifth_partner_reg_no = new FocusNode();
                                             child: Column(
                                               children: <Widget>[
                                                 RaisedButton(
-                                                  child: Text(
-                                                      setapptext(key: 'key_capture_image')),
+                                                  child: Text(setapptext(
+                                                      key:
+                                                          'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .fourth_partner_photo_tips1 =
@@ -2169,7 +2206,8 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text(setapptext(key: 'key_no_image')),
+                                                    child: Text(setapptext(
+                                                        key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -2230,8 +2268,9 @@ _fifth_partner_reg_no = new FocusNode();
                                             child: Column(
                                               children: <Widget>[
                                                 RaisedButton(
-                                                  child: Text(
-                                                      setapptext(key: 'key_capture_image')),
+                                                  child: Text(setapptext(
+                                                      key:
+                                                          'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .fourth_partner_photo_tips2 =
@@ -2258,7 +2297,8 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text(setapptext(key: 'key_no_image')),
+                                                    child: Text(setapptext(
+                                                        key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -2289,7 +2329,7 @@ _fifth_partner_reg_no = new FocusNode();
                                               true
                                           ? ""
                                           : localdata.fifth_partner_name,
-                                  headerlablekey:setapptext(key:  'key_name'),
+                                  headerlablekey: setapptext(key: 'key_name'),
                                   fieldfocus: _fifth_partner_name,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -2297,7 +2337,6 @@ _fifth_partner_reg_no = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_fifth_partner_surname);
                                   },
-
                                   radiovalue:
                                       localdata.fifth_partner_name?.isEmpty ??
                                               true
@@ -2316,7 +2355,8 @@ _fifth_partner_reg_no = new FocusNode();
                                           true
                                       ? ""
                                       : localdata.fifth_partner_surname,
-                                  headerlablekey: setapptext(key: 'key_surname'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_surname'),
                                   fieldfocus: _fifth_partner_surname,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -2324,7 +2364,6 @@ _fifth_partner_reg_no = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_fifth_partner_boy);
                                   },
-
                                   radiovalue: localdata
                                               .fifth_partner_surname?.isEmpty ??
                                           true
@@ -2343,7 +2382,7 @@ _fifth_partner_reg_no = new FocusNode();
                                               true
                                           ? ""
                                           : localdata.fifth_partner_boy,
-                                  headerlablekey:setapptext(key:  'key_boy'),
+                                  headerlablekey: setapptext(key: 'key_boy'),
                                   fieldfocus: _fifth_partner_boy,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -2351,7 +2390,6 @@ _fifth_partner_reg_no = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_fifth_partner_father);
                                   },
-
                                   radiovalue:
                                       localdata.fifth_partner_boy?.isEmpty ??
                                               true
@@ -2370,11 +2408,13 @@ _fifth_partner_reg_no = new FocusNode();
                                               true
                                           ? ""
                                           : localdata.fifth_partner_father,
-                                  headerlablekey:setapptext(key:  'key_father_name'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_father_name'),
                                   fieldfocus: _fifth_partner_father,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
-                                    _fifth_partner_father.unfocus(); },
+                                    _fifth_partner_father.unfocus();
+                                  },
                                   radiovalue:
                                       localdata.fifth_partner_father?.isEmpty ??
                                               true
@@ -2398,7 +2438,7 @@ _fifth_partner_reg_no = new FocusNode();
                                               true
                                           ? false
                                           : true,
-                                  headerlablekey:setapptext(key:  'key_gender'),
+                                  headerlablekey: setapptext(key: 'key_gender'),
                                   dropdownitems: [
                                     Dpvalue(
                                         name: setapptext(
@@ -2424,7 +2464,7 @@ _fifth_partner_reg_no = new FocusNode();
                                               true
                                           ? ""
                                           : localdata.fifth_partner_phone,
-                                  headerlablekey:setapptext(key:  'key_phone'),
+                                  headerlablekey: setapptext(key: 'key_phone'),
                                   fieldfocus: _fifth_partner_phone,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -2432,7 +2472,6 @@ _fifth_partner_reg_no = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_fifth_partner_email);
                                   },
-
                                   keyboardtype: TextInputType.number,
                                   radiovalue:
                                       localdata.fifth_partner_phone?.isEmpty ??
@@ -2447,8 +2486,11 @@ _fifth_partner_reg_no = new FocusNode();
                                     setState(() {});
                                   },
                                   validator: (value) {
+                                    if (!(value.isEmpty ?? true)){
                                     if (value.length != 10) {
-                                      return setapptext(key: 'key_mobile_field');
+                                      return setapptext(
+                                          key: 'key_mobile_field');
+                                    }
                                     }
                                   }),
                               formcardtextfield(
@@ -2457,11 +2499,12 @@ _fifth_partner_reg_no = new FocusNode();
                                               true
                                           ? ""
                                           : localdata.fifth_partner_email,
-                                  headerlablekey:setapptext(key:  'key_email'),
+                                  headerlablekey: setapptext(key: 'key_email'),
                                   fieldfocus: _fifth_partner_email,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
-                                    _fifth_partner_email.unfocus(); },
+                                    _fifth_partner_email.unfocus();
+                                  },
                                   keyboardtype: TextInputType.emailAddress,
                                   radiovalue:
                                       localdata.fifth_partner_email?.isEmpty ??
@@ -2476,6 +2519,7 @@ _fifth_partner_reg_no = new FocusNode();
                                     setState(() {});
                                   },
                                   validator: (value) {
+                                    if (!(value.isEmpty ?? true)){
                                     Pattern pattern =
                                         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
                                     RegExp regex = new RegExp(pattern);
@@ -2483,6 +2527,7 @@ _fifth_partner_reg_no = new FocusNode();
                                       return setapptext(key: 'key_email_field');
                                     else
                                       return null;
+                                    }
                                   }),
                               Container(
                                 decoration: BoxDecoration(
@@ -2532,8 +2577,9 @@ _fifth_partner_reg_no = new FocusNode();
                                             child: Column(
                                               children: <Widget>[
                                                 RaisedButton(
-                                                  child: Text(
-                                                      setapptext(key: 'key_capture_image')),
+                                                  child: Text(setapptext(
+                                                      key:
+                                                          'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .fifth_partner_image =
@@ -2559,7 +2605,8 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text(setapptext(key: 'key_no_image')),
+                                                    child: Text(setapptext(
+                                                        key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -2580,15 +2627,15 @@ _fifth_partner_reg_no = new FocusNode();
                                           true
                                       ? ""
                                       : localdata.fifth_partner_machinegun_no,
-                                  headerlablekey:setapptext(key:  'key_machine_gun'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_machine_gun'),
                                   fieldfocus: _fifth_partner_machinegun_no,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
                                     _fifth_partner_machinegun_no.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_fifth_partner_cover_note);
+                                    FocusScope.of(context).requestFocus(
+                                        _fifth_partner_cover_note);
                                   },
-
                                   radiovalue: localdata
                                               .fifth_partner_machinegun_no
                                               ?.isEmpty ??
@@ -2610,7 +2657,8 @@ _fifth_partner_reg_no = new FocusNode();
                                           true
                                       ? ""
                                       : localdata.fifth_partner_cover_note,
-                                  headerlablekey:setapptext(key:  'key_cover_letter'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_cover_letter'),
                                   fieldfocus: _fifth_partner_cover_note,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -2618,7 +2666,6 @@ _fifth_partner_reg_no = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_fifth_partner_note_page);
                                   },
-
                                   radiovalue: localdata.fifth_partner_cover_note
                                               ?.isEmpty ??
                                           true
@@ -2637,7 +2684,8 @@ _fifth_partner_reg_no = new FocusNode();
                                           true
                                       ? ""
                                       : localdata.fifth_partner_note_page,
-                                  headerlablekey:setapptext(key:  'key_notification_page'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_notification_page'),
                                   fieldfocus: _fifth_partner_note_page,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -2645,7 +2693,6 @@ _fifth_partner_reg_no = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_fifth_partner_reg_no);
                                   },
-
                                   radiovalue: localdata.fifth_partner_note_page
                                               ?.isEmpty ??
                                           true
@@ -2664,11 +2711,12 @@ _fifth_partner_reg_no = new FocusNode();
                                               true
                                           ? ""
                                           : localdata.fifth_partner_reg_no,
-                                  headerlablekey:setapptext(key:  'key_reg_no'),
+                                  headerlablekey: setapptext(key: 'key_reg_no'),
                                   fieldfocus: _fifth_partner_reg_no,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
-                                    _fifth_partner_reg_no.unfocus(); },
+                                    _fifth_partner_reg_no.unfocus();
+                                  },
                                   radiovalue:
                                       localdata.fifth_partner_reg_no?.isEmpty ??
                                               true
@@ -2729,8 +2777,9 @@ _fifth_partner_reg_no = new FocusNode();
                                             child: Column(
                                               children: <Widget>[
                                                 RaisedButton(
-                                                  child: Text(
-                                                      setapptext(key: 'key_capture_image')),
+                                                  child: Text(setapptext(
+                                                      key:
+                                                          'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .fifth_partner_phote_note1 =
@@ -2757,7 +2806,8 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text(setapptext(key: 'key_no_image')),
+                                                    child: Text(setapptext(
+                                                        key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -2818,8 +2868,9 @@ _fifth_partner_reg_no = new FocusNode();
                                             child: Column(
                                               children: <Widget>[
                                                 RaisedButton(
-                                                  child: Text(
-                                                      setapptext(key: 'key_capture_image')),
+                                                  child: Text(setapptext(
+                                                      key:
+                                                          'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .fifth_partner_photo_tips1 =
@@ -2846,7 +2897,8 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text(setapptext(key: 'key_no_image')),
+                                                    child: Text(setapptext(
+                                                        key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -2907,8 +2959,9 @@ _fifth_partner_reg_no = new FocusNode();
                                             child: Column(
                                               children: <Widget>[
                                                 RaisedButton(
-                                                  child: Text(
-                                                      setapptext(key: 'key_capture_image')),
+                                                  child: Text(setapptext(
+                                                      key:
+                                                          'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .fifth_partner_photo_tips2 =
@@ -2935,7 +2988,8 @@ _fifth_partner_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text(setapptext(key: 'key_no_image')),
+                                                    child: Text(setapptext(
+                                                        key: 'key_no_image')),
                                                   )
                                                 : Image.file(
                                                     File(localdata
@@ -2963,8 +3017,8 @@ _fifth_partner_reg_no = new FocusNode();
                               Container(
                                 color: Colors.blue,
                                 child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 10, bottom: 10),
+                                  padding: const EdgeInsets.only(
+                                      top: 10, bottom: 10),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,

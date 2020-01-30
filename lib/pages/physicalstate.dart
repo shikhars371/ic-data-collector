@@ -187,7 +187,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                       ? false
                                       : true,
                                   headerlablekey:
-                                      setapptext(key: 'key_specify_the'),
+                                      setapptext(key: 'key_Property_Rights'),
                                   dropdownitems: [
                                     Dpvalue(
                                         name: setapptext(
@@ -227,7 +227,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                       ? false
                                       : true,
                                   headerlablekey:
-                                      setapptext(key: 'key_specify_the'),
+                                      setapptext(key: 'key_Property_Type'),
                                   dropdownitems: [
                                     Dpvalue(
                                         name: setapptext(
@@ -238,7 +238,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                         value: "1"),
                                     Dpvalue(
                                         name:
-                                            setapptext(key: 'key_disorganized'),
+                                            setapptext(key: 'key_no'),
                                         value: "2")
                                   ],
                                   onSaved: (String value) {
