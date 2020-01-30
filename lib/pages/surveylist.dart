@@ -21,15 +21,16 @@ class _SurveyPageState extends State<SurveyPage> {
     return AppTranslations.of(context).text(key);
   }
 
-  Widget listcard(
-      {String localsurveyid,
-      String status,
-      Color statuscolor,
-      String provinance,
-      String city,
-      String block,
-      String part,
-      String unitno}) {
+  Widget listcard({
+    String localsurveyid,
+    String status,
+    Color statuscolor,
+    String provinance,
+    String city,
+    String block,
+    String part,
+    String unitno,
+  }) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -133,6 +134,14 @@ class _SurveyPageState extends State<SurveyPage> {
                       ),
                     ),
                   ),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Text(
+                      status,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: statuscolor),
+                    ),
+                  )
                 ],
               ),
             ),
@@ -167,7 +176,8 @@ class _SurveyPageState extends State<SurveyPage> {
                           barrierDismissible: false,
                           builder: (context) {
                             return CupertinoAlertDialog(
-                              title: Text(setapptext(key: 'key_want_to_delete')),
+                              title:
+                                  Text(setapptext(key: 'key_want_to_delete')),
                               actions: <Widget>[
                                 FlatButton(
                                   onPressed: () async {
@@ -296,6 +306,40 @@ class _SurveyPageState extends State<SurveyPage> {
     return result;
   }
 
+  String getStatus(int status) {
+    var result = "";
+    switch (status) {
+      case 0: //Drafted
+        result = "Drafted";
+        break;
+      case 1: //Completed
+        result = "Completed";
+        break;
+      case 2: //Synced
+        result = "Synced";
+        break;
+      default:
+        result = "";
+    }
+    return result;
+  }
+
+  Color getStatusColor(int status) {
+    Color result = Colors.transparent;
+    switch (status) {
+      case 0: //Drafted
+        result = Color.fromRGBO(189, 148, 36, 1);
+        break;
+      case 1: //Completed
+        result = Colors.lightGreen;
+        break;
+      case 2: //Synced
+        result = Colors.lightBlue;
+        break;
+    }
+    return result;
+  }
+
   @override
   void initState() {
     // Future.delayed(Duration.zero).then((_) {
@@ -341,12 +385,15 @@ class _SurveyPageState extends State<SurveyPage> {
                       itemCount: dbdata?.isEmpty ?? true ? 0 : dbdata.length,
                       itemBuilder: (context, index) {
                         return listcard(
-                            localsurveyid: dbdata[index].local_property_key,
-                            provinance: dbdata[index].province,
-                            city: dbdata[index].city,
-                            block: dbdata[index].block,
-                            part: dbdata[index].part_number,
-                            unitno: dbdata[index].unit_number);
+                          localsurveyid: dbdata[index].local_property_key,
+                          provinance: dbdata[index].province,
+                          city: dbdata[index].city,
+                          block: dbdata[index].block,
+                          part: dbdata[index].part_number,
+                          unitno: dbdata[index].unit_number,
+                          status: getStatus(dbdata[index].isdrafted),
+                          statuscolor: getStatusColor(dbdata[index].isdrafted),
+                        );
                       },
                     ),
                   )
@@ -588,8 +635,8 @@ class SurveySearch extends SearchDelegate<String> {
                                             barrierDismissible: false,
                                             builder: (context) {
                                               return CupertinoAlertDialog(
-                                                title: Text(
-                                                    setapptext(key: 'key_want_to_delete')),
+                                                title: Text(setapptext(
+                                                    key: 'key_want_to_delete')),
                                                 actions: <Widget>[
                                                   FlatButton(
                                                     onPressed: () async {
@@ -609,7 +656,8 @@ class SurveySearch extends SearchDelegate<String> {
                                                       });
                                                     },
                                                     child: Text(
-                                                      setapptext(key: 'key_delete'),
+                                                      setapptext(
+                                                          key: 'key_delete'),
                                                       style: TextStyle(
                                                           color: Colors.red),
                                                     ),
@@ -619,7 +667,8 @@ class SurveySearch extends SearchDelegate<String> {
                                                       Navigator.pop(context);
                                                     },
                                                     child: Text(
-                                                      setapptext(key: 'key_cancel'),
+                                                      setapptext(
+                                                          key: 'key_cancel'),
                                                       style: TextStyle(
                                                           color: Colors.black),
                                                     ),

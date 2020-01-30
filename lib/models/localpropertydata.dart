@@ -188,7 +188,7 @@ class LocalPropertySurvey {
   String fifth_partner_photo_tips2;
   int formval;
   int editmode;
-  
+  int isdrafted;
 
   LocalPropertySurvey(
       {this.id,
@@ -377,7 +377,10 @@ class LocalPropertySurvey {
       this.fifth_partner_reg_no,
       this.fifth_partner_phote_note1,
       this.fifth_partner_photo_tips1,
-      this.fifth_partner_photo_tips2,this.formval,this.editmode});
+      this.fifth_partner_photo_tips2,
+      this.formval,
+      this.editmode,
+      this.isdrafted});
 
   LocalPropertySurvey.frommapobject(Map<String, dynamic> map)
       : id = map['id'],
@@ -570,8 +573,9 @@ class LocalPropertySurvey {
         fifth_partner_phote_note1 = map['fifth_partner_phote_note1'],
         fifth_partner_photo_tips1 = map['fifth_partner_photo_tips1'],
         fifth_partner_photo_tips2 = map['fifth_partner_photo_tips2'],
-        formval=map['formval'],
-        editmode = map['editmode'];
+        formval = map['formval'],
+        editmode = map['editmode'],
+        isdrafted = map['isdrafted'];
 
   // Map<String, dynamic> toMap() {
   //   var map = Map<String, dynamic>();
