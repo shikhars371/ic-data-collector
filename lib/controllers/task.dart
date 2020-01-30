@@ -45,6 +45,8 @@ class TaskModel with ChangeNotifier {
           if ((i != null) || (i.isNotEmpty)) {
             _surveyAssignments =
                 i.map((model) => SurveyAssignment.fromJson(model)).toList();
+            _surveyAssignments =
+                await addNames(assignmentlist: _surveyAssignments);
             await DBHelper()
                 .addSurveyList(surveyAssignments: _surveyAssignments);
           }
@@ -81,5 +83,23 @@ class TaskModel with ChangeNotifier {
       print(e);
     }
     return result;
+  }
+
+  Future<List<SurveyAssignment>> addNames(
+      {List<SurveyAssignment> assignmentlist}) async {
+    List<SurveyAssignment> modifiedassignment = [];
+    try {
+      if (assignmentlist.isNotEmpty) {
+        for (SurveyAssignment item in assignmentlist) {
+          item.teamleadname = await getUserName(userid: item.teamlead);
+          item.surveyoronename = await getUserName(userid: item.surveyor1);
+          item.surveyortwoname = await getUserName(userid: item.surveyor2);
+          modifiedassignment.add(item);
+        }
+      }
+    } catch (e) {
+      print(e);
+    }
+    return modifiedassignment;
   }
 }
