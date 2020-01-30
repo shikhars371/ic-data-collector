@@ -42,7 +42,7 @@ class TaskModel with ChangeNotifier {
         if (responce.statusCode == 200) {
           Map responseJson = json.decode(responce.body);
           Iterable i = responseJson['data'];
-          if (i != null) {
+          if ((i != null) || (i.isNotEmpty)) {
             _surveyAssignments =
                 i.map((model) => SurveyAssignment.fromJson(model)).toList();
             await DBHelper()
@@ -73,7 +73,7 @@ class TaskModel with ChangeNotifier {
       });
       if (responce.statusCode == 200) {
         Map responseJson = json.decode(responce.body);
-        result = responseJson['first_name'] +" "+ responseJson['last_name'];
+        result = responseJson['first_name'] + " " + responseJson['last_name'];
       } else if (responce.statusCode == 401) {
         _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);
       }
