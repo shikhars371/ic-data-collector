@@ -248,7 +248,7 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                     if (value.trim().isEmpty) {
                                       return setapptext(
                                           key: 'key_field_not_blank');
-                                    } else if (!(isAlpha(value))) {
+                                    } else if (!RegExp(r'^[a-zA-Z_ ]*$').hasMatch(value)) {
                                       return setapptext(
                                           key: 'key_text_format_error');
                                     }
