@@ -149,12 +149,14 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
                                         true
                                     ? "0"
                                     : localdata.property_user_owner,
-                                iscompleted:
-                                    localdata.property_user_owner?.isEmpty ??
-                                            true
-                                        ? false
-                                        : true,
-                                headerlablekey:setapptext(key:  'key_the_owner'),
+                                iscompleted: ((localdata
+                                                .property_user_owner?.isEmpty ??
+                                            true) ||
+                                        (localdata.property_user_owner == "0"))
+                                    ? false
+                                    : true,
+                                headerlablekey:
+                                    setapptext(key: 'key_the_owner'),
                                 dropdownitems: [
                                   Dpvalue(
                                       name:
@@ -181,12 +183,16 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
                                         true
                                     ? "0"
                                     : localdata.property_user_master_rent,
-                                iscompleted: localdata.property_user_master_rent
-                                            ?.isEmpty ??
-                                        true
+                                iscompleted: ((localdata
+                                                .property_user_master_rent
+                                                ?.isEmpty ??
+                                            true) ||
+                                        (localdata.property_user_master_rent ==
+                                            "0"))
                                     ? false
                                     : true,
-                                headerlablekey:setapptext(key:  'key_Master_rent'),
+                                headerlablekey:
+                                    setapptext(key: 'key_Master_rent'),
                                 dropdownitems: [
                                   Dpvalue(
                                       name:
@@ -213,13 +219,17 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
                                         true
                                     ? "0"
                                     : localdata.property_user_recipient_group,
-                                iscompleted: localdata
-                                            .property_user_recipient_group
-                                            ?.isEmpty ??
-                                        true
+                                iscompleted: ((localdata
+                                                .property_user_recipient_group
+                                                ?.isEmpty ??
+                                            true) ||
+                                        (localdata
+                                                .property_user_recipient_group ==
+                                            "0"))
                                     ? false
                                     : true,
-                                headerlablekey:setapptext(key:  'key_master_recipient'),
+                                headerlablekey:
+                                    setapptext(key: 'key_master_recipient'),
                                 dropdownitems: [
                                   Dpvalue(
                                       name:
@@ -248,12 +258,15 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
                                         true
                                     ? "0"
                                     : localdata.property_user_no_longer,
-                                iscompleted: localdata
-                                            .property_user_no_longer?.isEmpty ??
-                                        true
+                                iscompleted: ((localdata.property_user_no_longer
+                                                ?.isEmpty ??
+                                            true) ||
+                                        (localdata.property_user_no_longer ==
+                                            "0"))
                                     ? false
                                     : true,
-                                headerlablekey:setapptext(key:  'key_master_no_longer'),
+                                headerlablekey:
+                                    setapptext(key: 'key_master_no_longer'),
                                 dropdownitems: [
                                   Dpvalue(
                                       name:
@@ -283,17 +296,20 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
                                         ? ""
                                         : localdata
                                             .property_user_type_of_misconduct,
-                                    headerlablekey: setapptext(key: 'key_specify_misconduct'),
+                                    headerlablekey: setapptext(
+                                        key: 'key_specify_misconduct'),
                                     radiovalue: localdata
                                                 .property_user_type_of_misconduct
                                                 ?.isEmpty ??
                                             true
                                         ? false
                                         : true,
-                                    hinttextkey:setapptext(key:  'key_enter_1st_surveyor'),
+                                    hinttextkey: setapptext(
+                                        key: 'key_enter_1st_surveyor'),
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
-                                        return setapptext(key: 'key_field_not_blank');
+                                        return setapptext(
+                                            key: 'key_field_not_blank');
                                       }
                                     },
                                     onSaved: (value) {
@@ -323,8 +339,8 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
                               Container(
                                 color: Colors.blue,
                                 child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 10, bottom: 10),
+                                  padding: const EdgeInsets.only(
+                                      top: 10, bottom: 10),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
