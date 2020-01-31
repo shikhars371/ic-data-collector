@@ -3020,7 +3020,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               initvalue: localdata.lightning_father_name?.isEmpty ?? true
                   ? ""
                   : localdata.lightning_father_name,
-              headerlablekey: 'key_father_name',
+              headerlablekey: 'key_birth',
               radiovalue: localdata.lightning_father_name?.isEmpty ?? true
                   ? false
                   : true,
@@ -3146,7 +3146,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               initvalue: localdata.safari_booklet_father_name?.isEmpty ?? true
                   ? ""
                   : localdata.safari_booklet_father_name,
-              headerlablekey: 'key_father_name',
+              headerlablekey: 'key_birth',
               radiovalue: localdata.safari_booklet_father_name?.isEmpty ?? true
                   ? false
                   : true,
@@ -4340,7 +4340,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 setState(() {});
               }),
           formcardtextfield(
-              headerlablekey: 'key_boy',
+              headerlablekey: 'key_wold',
               radiovalue:
                   localdata.second_partner_boy?.isEmpty ?? true ? false : true,
               initvalue: localdata.second_partner_boy?.isEmpty ?? true
@@ -4354,7 +4354,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
                 setState(() {});
               }),
           formcardtextfield(
-              headerlablekey: 'key_father_name',
+              headerlablekey: 'key_birth',
               radiovalue: localdata.second_partner_father?.isEmpty ?? true
                   ? false
                   : true,
@@ -4831,7 +4831,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               initvalue: localdata.third_partner_boy?.isEmpty ?? true
                   ? ""
                   : localdata.third_partner_boy,
-              headerlablekey: 'key_boy',
+              headerlablekey: 'key_wold',
               radiovalue:
                   localdata.third_partner_boy?.isEmpty ?? true ? false : true,
               onSaved: (value) {
@@ -4845,7 +4845,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               initvalue: localdata.third_partner_father?.isEmpty ?? true
                   ? ""
                   : localdata.third_partner_father,
-              headerlablekey: 'key_father_name',
+              headerlablekey: 'key_birth',
               radiovalue: localdata.third_partner_father?.isEmpty ?? true
                   ? false
                   : true,
@@ -5316,7 +5316,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               initvalue: localdata.fourth_partner_boy?.isEmpty ?? true
                   ? ""
                   : localdata.fourth_partner_boy,
-              headerlablekey: 'key_boy',
+              headerlablekey: 'key_wold',
               radiovalue:
                   localdata.fourth_partner_boy?.isEmpty ?? true ? false : true,
               onSaved: (value) {
@@ -5330,7 +5330,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               initvalue: localdata.fourth_partner_father?.isEmpty ?? true
                   ? ""
                   : localdata.fourth_partner_father,
-              headerlablekey: 'key_father_name',
+              headerlablekey: 'key_birth',
               radiovalue: localdata.fourth_partner_father?.isEmpty ?? true
                   ? false
                   : true,
@@ -5804,7 +5804,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               initvalue: localdata.fifth_partner_boy?.isEmpty ?? true
                   ? ""
                   : localdata.fifth_partner_boy,
-              headerlablekey: 'key_boy',
+              headerlablekey: 'key_wold',
               radiovalue:
                   localdata.fifth_partner_boy?.isEmpty ?? true ? false : true,
               onSaved: (value) {
@@ -5818,7 +5818,7 @@ class _PropertyRegistationPage extends State<PropertyRegistationPage> {
               initvalue: localdata.fifth_partner_father?.isEmpty ?? true
                   ? ""
                   : localdata.fifth_partner_father,
-              headerlablekey: 'key_father_name',
+              headerlablekey: 'key_birth',
               radiovalue: localdata.fifth_partner_father?.isEmpty ?? true
                   ? false
                   : true,

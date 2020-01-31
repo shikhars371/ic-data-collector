@@ -256,6 +256,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.second_partner_name,
+                                  validator: (value) {
+                                    if (!(value?.isEmpty ?? true)) {
+                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                          .hasMatch(value)) {
+                                        return setapptext(
+                                            key: 'key_text_format_error');
+                                      }
+                                    }
+                                  },
                                   onSaved: (value) {
                                     localdata.second_partner_name =
                                         value.trim();
@@ -285,6 +294,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.second_partner_surname,
+                                      validator: (value) {
+                                    if (!(value?.isEmpty ?? true)) {
+                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                          .hasMatch(value)) {
+                                        return setapptext(
+                                            key: 'key_text_format_error');
+                                      }
+                                    }
+                                  },
                                   onSaved: (value) {
                                     localdata.second_partner_surname =
                                         value.trim();
@@ -295,7 +313,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  headerlablekey: setapptext(key: 'key_boy'),
+                                  headerlablekey: setapptext(key: 'key_wold'),
                                   fieldfocus: _second_partner_boy,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -313,6 +331,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.second_partner_boy,
+                                          validator: (value) {
+                                    if (!(value?.isEmpty ?? true)) {
+                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                          .hasMatch(value)) {
+                                        return setapptext(
+                                            key: 'key_text_format_error');
+                                      }
+                                    }
+                                  },
                                   onSaved: (value) {
                                     localdata.second_partner_boy = value.trim();
                                   },
@@ -321,8 +348,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  headerlablekey:
-                                      setapptext(key: 'key_father_name'),
+                                  headerlablekey: setapptext(key: 'key_birth'),
                                   fieldfocus: _second_partner_father,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
@@ -338,6 +364,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.second_partner_father,
+                                      validator: (value) {
+                                    if (!(value?.isEmpty ?? true)) {
+                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                          .hasMatch(value)) {
+                                        return setapptext(
+                                            key: 'key_text_format_error');
+                                      }
+                                    }
+                                  },
                                   onSaved: (value) {
                                     localdata.second_partner_father =
                                         value.trim();
@@ -434,15 +469,16 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ? ""
                                           : localdata.second_partner_email,
                                   validator: (value) {
-                                    if (!(value.isEmpty ?? true)){
-                                    Pattern pattern =
-                                        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                                    RegExp regex = new RegExp(pattern);
-                                    if (!regex.hasMatch(value))
-                                      return setapptext(key: 'key_email_field');
-                                    else
-                                      return null;
-                                  }
+                                    if (!(value.isEmpty ?? true)) {
+                                      Pattern pattern =
+                                          r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                                      RegExp regex = new RegExp(pattern);
+                                      if (!regex.hasMatch(value))
+                                        return setapptext(
+                                            key: 'key_email_field');
+                                      else
+                                        return null;
+                                    }
                                   },
                                   onSaved: (value) {
                                     localdata.second_partner_email =
@@ -959,6 +995,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? false
                                           : true,
+                                          validator: (value) {
+                                    if (!(value?.isEmpty ?? true)) {
+                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                          .hasMatch(value)) {
+                                        return setapptext(
+                                            key: 'key_text_format_error');
+                                      }
+                                    }
+                                  },
                                   onSaved: (value) {
                                     localdata.third_partner_name = value;
                                   },
@@ -986,6 +1031,16 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? false
                                       : true,
+                                      validator: (value) {
+                                    if (!(value?.isEmpty ?? true)) {
+                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                          .hasMatch(value)) {
+                                        return setapptext(
+                                            key: 'key_text_format_error');
+                                      }
+                                    }
+                                  },
+
                                   onSaved: (value) {
                                     localdata.third_partner_surname = value;
                                   },
@@ -999,7 +1054,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.third_partner_boy,
-                                  headerlablekey: setapptext(key: 'key_boy'),
+                                  headerlablekey: setapptext(key: 'key_wold'),
                                   fieldfocus: _third_partner_boy,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -1012,6 +1067,16 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? false
                                           : true,
+                                          validator: (value) {
+                                    if (!(value?.isEmpty ?? true)) {
+                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                          .hasMatch(value)) {
+                                        return setapptext(
+                                            key: 'key_text_format_error');
+                                      }
+                                    }
+                                  },
+
                                   onSaved: (value) {
                                     localdata.third_partner_boy = value;
                                   },
@@ -1025,8 +1090,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.third_partner_father,
-                                  headerlablekey:
-                                      setapptext(key: 'key_father_name'),
+                                  headerlablekey: setapptext(key: 'key_birth'),
                                   fieldfocus: _third_partner_father,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
@@ -1037,6 +1101,16 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? false
                                           : true,
+                                          validator: (value) {
+                                    if (!(value?.isEmpty ?? true)) {
+                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                          .hasMatch(value)) {
+                                        return setapptext(
+                                            key: 'key_text_format_error');
+                                      }
+                                    }
+                                  },
+
                                   onSaved: (value) {
                                     localdata.third_partner_father = value;
                                   },
@@ -1103,11 +1177,11 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   },
                                   validator: (value) {
-                                    if (!(value.isEmpty ?? true)){
-                                    if (value.length != 10) {
-                                      return setapptext(
-                                          key: 'key_mobile_field');
-                                    }
+                                    if (!(value.isEmpty ?? true)) {
+                                      if (value.length != 10) {
+                                        return setapptext(
+                                            key: 'key_mobile_field');
+                                      }
                                     }
                                   }),
                               formcardtextfield(
@@ -1135,16 +1209,17 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     localdata.third_partner_email = value;
                                     setState(() {});
                                   },
-                                  validator: (value) 
-                                  {
-                                    if (!(value.isEmpty ?? true)){
-                                    Pattern pattern =
-                                        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                                    RegExp regex = new RegExp(pattern);
-                                    if (!regex.hasMatch(value))
-                                      return setapptext(key: 'key_email_field');
-                                    else
-                                      return null;}
+                                  validator: (value) {
+                                    if (!(value.isEmpty ?? true)) {
+                                      Pattern pattern =
+                                          r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                                      RegExp regex = new RegExp(pattern);
+                                      if (!regex.hasMatch(value))
+                                        return setapptext(
+                                            key: 'key_email_field');
+                                      else
+                                        return null;
+                                    }
                                   }),
                               Container(
                                 decoration: BoxDecoration(
@@ -1650,6 +1725,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? false
                                           : true,
+                                          validator: (value) {
+                                    if (!(value?.isEmpty ?? true)) {
+                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                          .hasMatch(value)) {
+                                        return setapptext(
+                                            key: 'key_text_format_error');
+                                      }
+                                    }
+                                  },
                                   onSaved: (value) {
                                     localdata.fourth_partner_name = value;
                                   },
@@ -1677,6 +1761,16 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? false
                                       : true,
+                                      validator: (value) {
+                                    if (!(value?.isEmpty ?? true)) {
+                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                          .hasMatch(value)) {
+                                        return setapptext(
+                                            key: 'key_text_format_error');
+                                      }
+                                    }
+                                  },
+
                                   onSaved: (value) {
                                     localdata.fourth_partner_surname = value;
                                   },
@@ -1690,7 +1784,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.fourth_partner_boy,
-                                  headerlablekey: setapptext(key: 'key_boy'),
+                                  headerlablekey: setapptext(key: 'key_wold'),
                                   fieldfocus: _fourth_partner_boy,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -1703,6 +1797,16 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? false
                                           : true,
+                                          validator: (value) {
+                                    if (!(value?.isEmpty ?? true)) {
+                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                          .hasMatch(value)) {
+                                        return setapptext(
+                                            key: 'key_text_format_error');
+                                      }
+                                    }
+                                  },
+
                                   onSaved: (value) {
                                     localdata.fourth_partner_boy = value;
                                   },
@@ -1716,8 +1820,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.fourth_partner_father,
-                                  headerlablekey:
-                                      setapptext(key: 'key_father_name'),
+                                  headerlablekey: setapptext(key: 'key_birth'),
                                   fieldfocus: _fourth_partner_father,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
@@ -1728,6 +1831,16 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? false
                                       : true,
+                                      validator: (value) {
+                                    if (!(value?.isEmpty ?? true)) {
+                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                          .hasMatch(value)) {
+                                        return setapptext(
+                                            key: 'key_text_format_error');
+                                      }
+                                    }
+                                  },
+
                                   onSaved: (value) {
                                     localdata.fourth_partner_father = value;
                                   },
@@ -1794,12 +1907,12 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   },
                                   validator: (value) {
-                                    if (!(value.isEmpty ?? true)){
-                                    if (value.length != 10) {
-                                      return setapptext(
-                                          key: 'key_mobile_field');
+                                    if (!(value.isEmpty ?? true)) {
+                                      if (value.length != 10) {
+                                        return setapptext(
+                                            key: 'key_mobile_field');
+                                      }
                                     }
-                                  }
                                   }),
                               formcardtextfield(
                                   initvalue:
@@ -1827,14 +1940,16 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   },
                                   validator: (value) {
-                                    if (!(value.isEmpty ?? true)){
-                                    Pattern pattern =
-                                        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                                    RegExp regex = new RegExp(pattern);
-                                    if (!regex.hasMatch(value))
-                                      return setapptext(key: 'key_email_field');
-                                    else
-                                      return null;}
+                                    if (!(value.isEmpty ?? true)) {
+                                      Pattern pattern =
+                                          r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                                      RegExp regex = new RegExp(pattern);
+                                      if (!regex.hasMatch(value))
+                                        return setapptext(
+                                            key: 'key_email_field');
+                                      else
+                                        return null;
+                                    }
                                   }),
                               Container(
                                 decoration: BoxDecoration(
@@ -2342,6 +2457,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? false
                                           : true,
+                                          validator: (value) {
+                                    if (!(value?.isEmpty ?? true)) {
+                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                          .hasMatch(value)) {
+                                        return setapptext(
+                                            key: 'key_text_format_error');
+                                      }
+                                    }
+                                  },
                                   onSaved: (value) {
                                     localdata.fifth_partner_name = value;
                                   },
@@ -2369,6 +2493,16 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? false
                                       : true,
+                                      validator: (value) {
+                                    if (!(value?.isEmpty ?? true)) {
+                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                          .hasMatch(value)) {
+                                        return setapptext(
+                                            key: 'key_text_format_error');
+                                      }
+                                    }
+                                  },
+
                                   onSaved: (value) {
                                     localdata.fifth_partner_surname = value;
                                   },
@@ -2382,7 +2516,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.fifth_partner_boy,
-                                  headerlablekey: setapptext(key: 'key_boy'),
+                                  headerlablekey: setapptext(key: 'key_wold'),
                                   fieldfocus: _fifth_partner_boy,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -2395,6 +2529,16 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? false
                                           : true,
+                                          validator: (value) {
+                                    if (!(value?.isEmpty ?? true)) {
+                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                          .hasMatch(value)) {
+                                        return setapptext(
+                                            key: 'key_text_format_error');
+                                      }
+                                    }
+                                  },
+
                                   onSaved: (value) {
                                     localdata.fifth_partner_boy = value;
                                   },
@@ -2408,8 +2552,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.fifth_partner_father,
-                                  headerlablekey:
-                                      setapptext(key: 'key_father_name'),
+                                  headerlablekey: setapptext(key: 'key_birth'),
                                   fieldfocus: _fifth_partner_father,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
@@ -2420,6 +2563,16 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? false
                                           : true,
+                                          validator: (value) {
+                                    if (!(value?.isEmpty ?? true)) {
+                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                          .hasMatch(value)) {
+                                        return setapptext(
+                                            key: 'key_text_format_error');
+                                      }
+                                    }
+                                  },
+
                                   onSaved: (value) {
                                     localdata.fifth_partner_father = value;
                                   },
@@ -2486,11 +2639,11 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   },
                                   validator: (value) {
-                                    if (!(value.isEmpty ?? true)){
-                                    if (value.length != 10) {
-                                      return setapptext(
-                                          key: 'key_mobile_field');
-                                    }
+                                    if (!(value.isEmpty ?? true)) {
+                                      if (value.length != 10) {
+                                        return setapptext(
+                                            key: 'key_mobile_field');
+                                      }
                                     }
                                   }),
                               formcardtextfield(
@@ -2519,14 +2672,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   },
                                   validator: (value) {
-                                    if (!(value.isEmpty ?? true)){
-                                    Pattern pattern =
-                                        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                                    RegExp regex = new RegExp(pattern);
-                                    if (!regex.hasMatch(value))
-                                      return setapptext(key: 'key_email_field');
-                                    else
-                                      return null;
+                                    if (!(value.isEmpty ?? true)) {
+                                      Pattern pattern =
+                                          r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                                      RegExp regex = new RegExp(pattern);
+                                      if (!regex.hasMatch(value))
+                                        return setapptext(
+                                            key: 'key_email_field');
+                                      else
+                                        return null;
                                     }
                                   }),
                               Container(

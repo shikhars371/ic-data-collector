@@ -214,6 +214,15 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                       return setapptext(
                                           key: 'key_field_not_blank');
                                     }
+                                    else if 
+                                    (!(value?.isEmpty ?? true)) {
+                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                          .hasMatch(value)) {
+                                        return setapptext(key: 'key_text_format_error');
+                                         
+                                      }
+                                    }
+                                  
                                   },
                                   onSaved: (value) {
                                     localdata.lightning_common_name =
@@ -231,7 +240,7 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                       ? ""
                                       : localdata.lightning_father_name,
                                   headerlablekey:
-                                      setapptext(key: 'key_father_name'),
+                                      setapptext(key: 'key_birth'),
                                   fieldfocus: _lightning_father_name,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {

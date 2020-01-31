@@ -201,7 +201,7 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                       ? ""
                                       : localdata.safari_booklet_father_name,
                                   headerlablekey:
-                                      setapptext(key: 'key_father_name'),
+                                      setapptext(key: 'key_birth'),
                                   fieldfocus: _safari_booklet_father_name,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
