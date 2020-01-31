@@ -68,6 +68,7 @@ Widget formcardtextfield(
                   child: Text(
                     headerlablekey,
                     overflow: TextOverflow.visible,
+                    softWrap: true,
                     maxLines: 2,
                     style: TextStyle(),
                   ),
@@ -91,7 +92,6 @@ Widget formcardtextfield(
                 focusNode: fieldfocus,
                 textInputAction: textInputAction,
                 onFieldSubmitted: onFieldSubmitted,
-                
               ),
             )
           ],
@@ -154,7 +154,6 @@ Widget formCardDropdown(
                   onChanged: onChanged,
                   onSaved: onSaved,
                   value: value,
-                  
                 ),
               ),
             ),
