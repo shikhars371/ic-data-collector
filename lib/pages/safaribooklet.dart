@@ -182,6 +182,10 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                     if (value.trim().isEmpty) {
                                       return setapptext(
                                           key: 'key_field_not_blank');
+                                    } else if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                        .hasMatch(value)) {
+                                      return setapptext(
+                                          key: 'key_text_format_error');
                                     }
                                   },
                                   onSaved: (value) {
@@ -200,8 +204,7 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                           true
                                       ? ""
                                       : localdata.safari_booklet_father_name,
-                                  headerlablekey:
-                                      setapptext(key: 'key_birth'),
+                                  headerlablekey: setapptext(key: 'key_birth'),
                                   fieldfocus: _safari_booklet_father_name,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -221,10 +224,11 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                     if (value.trim().isEmpty) {
                                       return setapptext(
                                           key: 'key_field_not_blank');
+                                    } else if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                        .hasMatch(value)) {
+                                      return setapptext(
+                                          key: 'key_text_format_error');
                                     }
-                                    else if (!RegExp(r'^[a-zA-Z_ ]*$').hasMatch(value)) {
-                          return setapptext(key: 'key_text_format_error');
-                        }
                                   },
                                   onSaved: (value) {
                                     localdata.safari_booklet_father_name =
@@ -261,10 +265,9 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                       setapptext(key: 'key_enter_1st_surveyor'),
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
-                                      return setapptext(key: 'key_field_not_blank');
-
+                                      return setapptext(
+                                          key: 'key_field_not_blank');
                                     }
-                                    
                                   },
                                   onSaved: (value) {
                                     localdata.safari_booklet_machinegun_no =
@@ -301,9 +304,9 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                     if (value.trim().isEmpty) {
                                       return setapptext(
                                           key: 'key_field_not_blank');
-                                    }
-                                    else if(!(isDate(value))){
-                                      return setapptext(key: 'key_date_format_error');
+                                    } else if (!(isDate(value))) {
+                                      return setapptext(
+                                          key: 'key_date_format_error');
                                       return setapptext(
                                           key: 'key_field_not_blank');
                                     }
