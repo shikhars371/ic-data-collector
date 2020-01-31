@@ -59,7 +59,8 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
           return;
         } else {
           _formkey.currentState.save();
-          await DBHelper().updatePropertySurvey(localdata, localdata.local_property_key);
+          await DBHelper()
+              .updatePropertySurvey(localdata, localdata.local_property_key);
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -87,7 +88,7 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
   Widget backbutton() {
     return GestureDetector(
       onTap: () {
-        if(localdata.current_use_of_property=="10"){
+        if (localdata.current_use_of_property == "10") {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -96,7 +97,7 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
               ),
             ),
           );
-        }else{
+        } else {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -106,7 +107,6 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
             ),
           );
         }
-        
       },
       child: Container(
         child: Row(
@@ -203,8 +203,9 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                             child: Column(
                                               children: <Widget>[
                                                 RaisedButton(
-                                                  child: Text(
-                                                      setapptext(key: 'key_capture_image')),
+                                                  child: Text(setapptext(
+                                                      key:
+                                                          'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata.home_map =
                                                         await appimagepicker();
@@ -229,14 +230,14 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                                         .home_map?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text(setapptext(key: 'key_no_image')),
+                                                    child: Text(setapptext(
+                                                        key: 'key_no_image')),
                                                   )
-                                                 : File(localdata
-                                                            .home_map)
+                                                : File(localdata.home_map)
                                                         .existsSync()
                                                     ? Image.file(
-                                                        File(localdata
-                                                            .home_map),
+                                                        File(
+                                                            localdata.home_map),
                                                       )
                                                     : Center(
                                                         child: Text(setapptext(
@@ -298,8 +299,9 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                             child: Column(
                                               children: <Widget>[
                                                 RaisedButton(
-                                                  child: Text(
-                                                      setapptext(key: 'key_capture_image')),
+                                                  child: Text(setapptext(
+                                                      key:
+                                                          'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata.home_photo =
                                                         await appimagepicker();
@@ -324,10 +326,10 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                                         .home_photo?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text(setapptext(key: 'key_no_image')),
+                                                    child: Text(setapptext(
+                                                        key: 'key_no_image')),
                                                   )
-                                                 : File(localdata
-                                                            .home_photo)
+                                                : File(localdata.home_photo)
                                                         .existsSync()
                                                     ? Image.file(
                                                         File(localdata
@@ -351,10 +353,14 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                           true
                                       ? "0"
                                       : localdata.reg_property_fertilizer,
-                                  headerlablekey: setapptext(key: 'key_registered_property'),
-                                  iscompleted: localdata.reg_property_fertilizer
-                                              ?.isEmpty ??
-                                          true
+                                  headerlablekey: setapptext(
+                                      key: 'key_registered_property'),
+                                  iscompleted: ((localdata
+                                                  .reg_property_fertilizer
+                                                  ?.isEmpty ??
+                                              true) ||
+                                          (localdata.reg_property_fertilizer ==
+                                              "0"))
                                       ? false
                                       : true,
                                   dropdownitems: [
@@ -389,8 +395,8 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                               Container(
                                 color: Colors.blue,
                                 child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 10, bottom: 10),
+                                  padding: const EdgeInsets.only(
+                                      top: 10, bottom: 10),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,

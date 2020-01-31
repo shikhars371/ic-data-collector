@@ -222,27 +222,28 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                               if (localdata.document_type == "1") ...[
                                 formcardtextfield(
                                   keyboardtype: TextInputType.datetime,
-                                  suffix: IconButton(
-                                    icon: Icon(Icons.date_range),
-                                    onPressed: () {
-                                      DatePicker.showDatePicker(context,
-                                          showTitleActions: true,
-                                          onConfirm: (date) {
-                                        setState(() {
-                                          localdata.issued_on =
-                                              DateFormat('yyyy/MM/dd')
-                                                  .format(date);
-                                        });
-                                      }, onChanged: (date) {
-                                        setState(() {
-                                          localdata.issued_on =
-                                              DateFormat('yyyy/MM/dd')
-                                                  .format(date);
-                                        });
-                                      });
-                                      setState(() {});
-                                    },
-                                  ),
+                                  // suffix: IconButton(
+                                  //   icon: Icon(Icons.date_range),
+                                  //   onPressed: () {
+                                  //     DatePicker.showDatePicker(context,
+                                  //         showTitleActions: true,
+                                  //         onConfirm: (date) {
+                                  //       setState(() {
+                                  //         localdata.issued_on =
+                                  //             DateFormat('yyyy/MM/dd')
+                                  //                 .format(date)
+                                  //                 .toString();
+                                  //       });
+                                  //     }, onChanged: (date) {
+                                  //       setState(() {
+                                  //         localdata.issued_on =
+                                  //             DateFormat('yyyy/MM/dd')
+                                  //                 .format(date)
+                                  //                 .toString();
+                                  //       });
+                                  //     });
+                                  //   },
+                                  // ),
                                   initvalue:
                                       localdata.issued_on?.isEmpty ?? true
                                           ? ""

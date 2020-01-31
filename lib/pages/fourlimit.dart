@@ -91,7 +91,7 @@ class _FourLimitPageState extends State<FourLimitPage> {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (BuildContext context) => TypeOfUsePage(
+                builder: (BuildContext context) => DetailsNumberAreaPage(
                   localdata: localdata,
                 ),
               ),
@@ -205,7 +205,8 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                               true
                                           ? ""
                                           : localdata.boundaryinfonote,
-                                  headerlablekey: setapptext(key: 'key_property_note'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_property_note'),
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
                                     _boundaryinfonote.unfocus();
