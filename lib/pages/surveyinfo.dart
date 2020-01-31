@@ -52,7 +52,12 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
           return;
         } else {
           _formkey.currentState.save();
-          localdata.taskid = widget.surveyAssignment.id;
+          if (widget.localdata != null) {
+            localdata = widget.localdata;
+          }
+          if (widget.surveyAssignment != null) {
+            localdata.taskid = widget.surveyAssignment.id;
+          }
           if (localdata.editmode == 1) {
             localdata = Provider.of<DBHelper>(context).singlepropertysurveys;
             localdata.editmode = 1;

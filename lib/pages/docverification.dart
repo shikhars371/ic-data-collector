@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:intl/intl.dart';
 
 import '../models/localpropertydata.dart';
 import '../controllers/auth.dart';
@@ -23,12 +25,12 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
   FocusNode _issued_on;
-FocusNode _place_of_issue;
-FocusNode _property_number;
-FocusNode _document_cover;
-FocusNode _document_page;
-FocusNode _doc_reg_number;
-FocusNode _land_area_qawwala;
+  FocusNode _place_of_issue;
+  FocusNode _property_number;
+  FocusNode _document_cover;
+  FocusNode _document_page;
+  FocusNode _doc_reg_number;
+  FocusNode _land_area_qawwala;
   Future<String> appimagepicker() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
     var apppath = await getApplicationDocumentsDirectory();
@@ -123,12 +125,12 @@ FocusNode _land_area_qawwala;
     localdata = widget.localdata;
     super.initState();
     _issued_on = new FocusNode();
-_place_of_issue = new FocusNode();
-_property_number = new FocusNode();
-_document_cover = new FocusNode();
-_document_page = new FocusNode();
-_doc_reg_number = new FocusNode();
-_land_area_qawwala = new FocusNode();
+    _place_of_issue = new FocusNode();
+    _property_number = new FocusNode();
+    _document_cover = new FocusNode();
+    _document_page = new FocusNode();
+    _doc_reg_number = new FocusNode();
+    _land_area_qawwala = new FocusNode();
   }
 
   @override
@@ -220,13 +222,34 @@ _land_area_qawwala = new FocusNode();
                               if (localdata.document_type == "1") ...[
                                 formcardtextfield(
                                   keyboardtype: TextInputType.datetime,
+                                  suffix: IconButton(
+                                    icon: Icon(Icons.date_range),
+                                    onPressed: () {
+                                      DatePicker.showDatePicker(context,
+                                          showTitleActions: true,
+                                          onConfirm: (date) {
+                                        setState(() {
+                                          localdata.issued_on =
+                                              DateFormat('yyyy/MM/dd')
+                                                  .format(date);
+                                        });
+                                      }, onChanged: (date) {
+                                        setState(() {
+                                          localdata.issued_on =
+                                              DateFormat('yyyy/MM/dd')
+                                                  .format(date);
+                                        });
+                                      });
+                                      setState(() {});
+                                    },
+                                  ),
                                   initvalue:
                                       localdata.issued_on?.isEmpty ?? true
                                           ? ""
                                           : localdata.issued_on,
                                   headerlablekey:
                                       setapptext(key: 'key_Issued_on'),
-                                      fieldfocus: _issued_on,
+                                  fieldfocus: _issued_on,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
                                     _issued_on.unfocus();
@@ -255,13 +278,13 @@ _land_area_qawwala = new FocusNode();
                                             : localdata.place_of_issue,
                                     headerlablekey:
                                         setapptext(key: 'key_Place_of_Issue'),
-                                        fieldfocus: _place_of_issue,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _place_of_issue.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_property_number);
-                                  },
+                                    fieldfocus: _place_of_issue,
+                                    textInputAction: TextInputAction.next,
+                                    onFieldSubmitted: (_) {
+                                      _place_of_issue.unfocus();
+                                      FocusScope.of(context)
+                                          .requestFocus(_property_number);
+                                    },
                                     radiovalue:
                                         localdata.place_of_issue?.isEmpty ??
                                                 true
@@ -282,13 +305,13 @@ _land_area_qawwala = new FocusNode();
                                             : localdata.property_number,
                                     headerlablekey:
                                         setapptext(key: 'key_Property_Number'),
-                                        fieldfocus: _property_number,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _property_number.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_document_cover);
-                                  },
+                                    fieldfocus: _property_number,
+                                    textInputAction: TextInputAction.next,
+                                    onFieldSubmitted: (_) {
+                                      _property_number.unfocus();
+                                      FocusScope.of(context)
+                                          .requestFocus(_document_cover);
+                                    },
                                     radiovalue:
                                         localdata.property_number?.isEmpty ??
                                                 true
@@ -309,13 +332,13 @@ _land_area_qawwala = new FocusNode();
                                             : localdata.document_cover,
                                     headerlablekey:
                                         setapptext(key: 'key_Document_Cover'),
-                                        fieldfocus: _document_cover,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _document_cover.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_document_page);
-                                  },
+                                    fieldfocus: _document_cover,
+                                    textInputAction: TextInputAction.next,
+                                    onFieldSubmitted: (_) {
+                                      _document_cover.unfocus();
+                                      FocusScope.of(context)
+                                          .requestFocus(_document_page);
+                                    },
                                     radiovalue:
                                         localdata.document_cover?.isEmpty ??
                                                 true
@@ -335,13 +358,13 @@ _land_area_qawwala = new FocusNode();
                                             : localdata.document_page,
                                     headerlablekey:
                                         setapptext(key: 'key_Document_Page'),
-                                        fieldfocus: _document_page,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _document_page.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_doc_reg_number);
-                                  },
+                                    fieldfocus: _document_page,
+                                    textInputAction: TextInputAction.next,
+                                    onFieldSubmitted: (_) {
+                                      _document_page.unfocus();
+                                      FocusScope.of(context)
+                                          .requestFocus(_doc_reg_number);
+                                    },
                                     radiovalue:
                                         localdata.document_page?.isEmpty ?? true
                                             ? false
@@ -362,13 +385,13 @@ _land_area_qawwala = new FocusNode();
                                     headerlablekey: setapptext(
                                         key:
                                             'key_Document_Registration_Number'),
-                                            fieldfocus: _doc_reg_number,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _doc_reg_number.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_land_area_qawwala);
-                                  },
+                                    fieldfocus: _doc_reg_number,
+                                    textInputAction: TextInputAction.next,
+                                    onFieldSubmitted: (_) {
+                                      _doc_reg_number.unfocus();
+                                      FocusScope.of(context)
+                                          .requestFocus(_land_area_qawwala);
+                                    },
                                     radiovalue:
                                         localdata.doc_reg_number?.isEmpty ??
                                                 true
@@ -389,10 +412,11 @@ _land_area_qawwala = new FocusNode();
                                             : localdata.land_area_qawwala,
                                     headerlablekey: setapptext(
                                         key: 'key_Land_area_in_Qawwala'),
-                                        fieldfocus: _land_area_qawwala,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) {
-                                    _land_area_qawwala.unfocus(); },
+                                    fieldfocus: _land_area_qawwala,
+                                    textInputAction: TextInputAction.done,
+                                    onFieldSubmitted: (_) {
+                                      _land_area_qawwala.unfocus();
+                                    },
                                     radiovalue:
                                         localdata.land_area_qawwala?.isEmpty ??
                                                 true
@@ -454,8 +478,9 @@ _land_area_qawwala = new FocusNode();
                                               child: Column(
                                                 children: <Widget>[
                                                   RaisedButton(
-                                                    child: Text(
-                                                        setapptext(key: 'key_capture_image')),
+                                                    child: Text(setapptext(
+                                                        key:
+                                                            'key_capture_image')),
                                                     onPressed: () async {
                                                       localdata
                                                               .property_doc_photo_1 =
@@ -482,7 +507,8 @@ _land_area_qawwala = new FocusNode();
                                                           ?.isEmpty ??
                                                       true
                                                   ? Center(
-                                                      child: Text(setapptext(key: 'key_no_image')),
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
                                                     )
                                                   : Image.file(File(localdata
                                                       .property_doc_photo_1)),
@@ -542,8 +568,9 @@ _land_area_qawwala = new FocusNode();
                                               child: Column(
                                                 children: <Widget>[
                                                   RaisedButton(
-                                                    child: Text(
-                                                        setapptext(key: 'key_capture_image')),
+                                                    child: Text(setapptext(
+                                                        key:
+                                                            'key_capture_image')),
                                                     onPressed: () async {
                                                       localdata
                                                               .property_doc_photo_2 =
@@ -570,7 +597,8 @@ _land_area_qawwala = new FocusNode();
                                                           ?.isEmpty ??
                                                       true
                                                   ? Center(
-                                                      child: Text(setapptext(key: 'key_no_image')),
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
                                                     )
                                                   : Image.file(File(localdata
                                                       .property_doc_photo_2)),
@@ -630,8 +658,9 @@ _land_area_qawwala = new FocusNode();
                                               child: Column(
                                                 children: <Widget>[
                                                   RaisedButton(
-                                                    child: Text(
-                                                        setapptext(key: 'key_capture_image')),
+                                                    child: Text(setapptext(
+                                                        key:
+                                                            'key_capture_image')),
                                                     onPressed: () async {
                                                       localdata
                                                               .property_doc_photo_3 =
@@ -658,7 +687,8 @@ _land_area_qawwala = new FocusNode();
                                                           ?.isEmpty ??
                                                       true
                                                   ? Center(
-                                                      child: Text(setapptext(key: 'key_no_image')),
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
                                                     )
                                                   : Image.file(File(localdata
                                                       .property_doc_photo_3)),
@@ -718,8 +748,9 @@ _land_area_qawwala = new FocusNode();
                                               child: Column(
                                                 children: <Widget>[
                                                   RaisedButton(
-                                                    child: Text(
-                                                        setapptext(key: 'key_capture_image')),
+                                                    child: Text(setapptext(
+                                                        key:
+                                                            'key_capture_image')),
                                                     onPressed: () async {
                                                       localdata
                                                               .property_doc_photo_4 =
@@ -746,7 +777,8 @@ _land_area_qawwala = new FocusNode();
                                                           ?.isEmpty ??
                                                       true
                                                   ? Center(
-                                                      child: Text(setapptext(key: 'key_no_image')),
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
                                                     )
                                                   : Image.file(File(localdata
                                                       .property_doc_photo_4)),
@@ -812,8 +844,9 @@ _land_area_qawwala = new FocusNode();
                                               child: Column(
                                                 children: <Widget>[
                                                   RaisedButton(
-                                                    child: Text(
-                                                        setapptext(key: 'key_capture_image')),
+                                                    child: Text(setapptext(
+                                                        key:
+                                                            'key_capture_image')),
                                                     onPressed: () async {
                                                       localdata
                                                               .odinary_doc_photo1 =
@@ -840,7 +873,8 @@ _land_area_qawwala = new FocusNode();
                                                           ?.isEmpty ??
                                                       true
                                                   ? Center(
-                                                      child: Text(setapptext(key: 'key_no_image')),
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
                                                     )
                                                   : Image.file(
                                                       File(localdata
@@ -901,8 +935,9 @@ _land_area_qawwala = new FocusNode();
                                               child: Column(
                                                 children: <Widget>[
                                                   RaisedButton(
-                                                    child: Text(
-                                                        setapptext(key: 'key_capture_image')),
+                                                    child: Text(setapptext(
+                                                        key:
+                                                            'key_capture_image')),
                                                     onPressed: () async {
                                                       localdata
                                                               .odinary_doc_photo6 =
@@ -929,7 +964,8 @@ _land_area_qawwala = new FocusNode();
                                                           ?.isEmpty ??
                                                       true
                                                   ? Center(
-                                                      child: Text(setapptext(key: 'key_no_image')),
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
                                                     )
                                                   : Image.file(
                                                       File(localdata
@@ -962,8 +998,8 @@ _land_area_qawwala = new FocusNode();
                               Container(
                                 color: Colors.blue,
                                 child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 10, bottom: 10),
+                                  padding: const EdgeInsets.only(
+                                      top: 10, bottom: 10),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,

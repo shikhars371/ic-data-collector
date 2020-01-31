@@ -29,6 +29,7 @@ class _FourLimitPageState extends State<FourLimitPage> {
   FocusNode _fore_limits_west;
   FocusNode _fore_limits_south;
   FocusNode _fore_limits_north;
+  FocusNode _boundaryinfonote;
 
   Future<String> appimagepicker() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
@@ -167,6 +168,7 @@ class _FourLimitPageState extends State<FourLimitPage> {
     _fore_limits_west = new FocusNode();
     _fore_limits_south = new FocusNode();
     _fore_limits_north = new FocusNode();
+    _boundaryinfonote = new FocusNode();
   }
 
   @override
@@ -205,6 +207,11 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                           : localdata.boundaryinfonote,
                                   headerlablekey: setapptext(key: 'key_property_note'),
                                   textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _boundaryinfonote.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_fore_limits_east);
+                                  },
                                   radiovalue:
                                       localdata.boundaryinfonote?.isEmpty ??
                                               true
