@@ -413,7 +413,10 @@ class _SurveyPageState extends State<SurveyPage> {
           Icons.assignment,
           size: 30,
         ),
-        onPressed: () {
+        onPressed: () async {
+          await DBHelper().currentsurveycount(
+              assignedcount: widget.surveyassignment.property_to_survey,
+              taskid: widget.surveyassignment.id);
           Navigator.push(
             context,
             MaterialPageRoute(

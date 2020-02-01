@@ -913,6 +913,21 @@ class DBHelper with ChangeNotifier {
     return result;
   }
 
+  Future<bool> currentsurveycount({int assignedcount, String taskid}) async {
+    bool result = false;
+    try {
+      var dbClient = await db;
+      List<Map> maps = await dbClient.rawQuery(
+          'select COUNT(id) as P FROM propertysurvey WHER taskid=?', [taskid]);
+      // String k = maps[0];
+      print(maps[0]);
+      //result = assignedcount > int.tryParse(r) ? false : true;
+    } catch (e) {
+      print(e);
+    }
+    return result;
+  }
+
   Future close() async {
     var dbClient = await db;
     dbClient.close();
