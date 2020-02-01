@@ -4,7 +4,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:kapp/pages/fourlimit.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:validators/validators.dart';
 
 import '../models/localpropertydata.dart';
 import '../controllers/auth.dart';

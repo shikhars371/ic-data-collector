@@ -31,6 +31,7 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
   FocusNode _document_page;
   FocusNode _doc_reg_number;
   FocusNode _land_area_qawwala;
+  bool enable = false;
   Future<String> appimagepicker() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
     var apppath = await getApplicationDocumentsDirectory();
@@ -66,17 +67,37 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
         if (!(_formkey.currentState.validate())) {
           return;
         } else {
-          _formkey.currentState.save();
-          await DBHelper()
-              .updatePropertySurvey(localdata, localdata.local_property_key);
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => TypeOfUsePage(
-                localdata: localdata,
+          if (localdata.document_type == "1") {
+            if (localdata.issued_on?.isEmpty ?? true) {
+              setState(() {
+                enable = true;
+              });
+            } else {
+              _formkey.currentState.save();
+              await DBHelper().updatePropertySurvey(
+                  localdata, localdata.local_property_key);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => TypeOfUsePage(
+                    localdata: localdata,
+                  ),
+                ),
+              );
+            }
+          } else {
+            _formkey.currentState.save();
+            await DBHelper()
+                .updatePropertySurvey(localdata, localdata.local_property_key);
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => TypeOfUsePage(
+                  localdata: localdata,
+                ),
               ),
-            ),
-          );
+            );
+          }
         }
       },
       child: Container(
@@ -220,56 +241,114 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                               ///Specifications of the religious document
                               ///begin
                               if (localdata.document_type == "1") ...[
-                                formcardtextfield(
-                                  keyboardtype: TextInputType.datetime,
-                                  // suffix: IconButton(
-                                  //   icon: Icon(Icons.date_range),
-                                  //   onPressed: () {
-                                  //     DatePicker.showDatePicker(context,
-                                  //         showTitleActions: true,
-                                  //         onConfirm: (date) {
-                                  //       setState(() {
-                                  //         localdata.issued_on =
-                                  //             DateFormat('yyyy/MM/dd')
-                                  //                 .format(date)
-                                  //                 .toString();
-                                  //       });
-                                  //     }, onChanged: (date) {
-                                  //       setState(() {
-                                  //         localdata.issued_on =
-                                  //             DateFormat('yyyy/MM/dd')
-                                  //                 .format(date)
-                                  //                 .toString();
-                                  //       });
-                                  //     });
-                                  //   },
-                                  // ),
-                                  initvalue:
-                                      localdata.issued_on?.isEmpty ?? true
-                                          ? ""
-                                          : localdata.issued_on,
-                                  headerlablekey:
-                                      setapptext(key: 'key_Issued_on'),
-                                  fieldfocus: _issued_on,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _issued_on.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_place_of_issue);
-                                  },
-                                  hinttextkey:
-                                      setapptext(key: 'key_date_format'),
-                                  radiovalue:
-                                      localdata.issued_on?.isEmpty ?? true
-                                          ? false
-                                          : true,
-                                  onSaved: (value) {
-                                    localdata.issued_on = value;
-                                  },
-                                  onChanged: (value) {
-                                    localdata.issued_on = value;
-                                    setState(() {});
-                                  },
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  padding: EdgeInsets.all(10),
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                            color: Color.fromRGBO(
+                                                176, 174, 171, 1),
+                                            width: 1),
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Row(
+                                            children: <Widget>[
+                                              completedcheckbox(
+                                                  isCompleted: localdata
+                                                              .issued_on
+                                                              ?.isEmpty ??
+                                                          true
+                                                      ? false
+                                                      : true),
+                                              Flexible(
+                                                child: Text(
+                                                  setapptext(
+                                                      key: 'key_Issued_on'),
+                                                  overflow:
+                                                      TextOverflow.visible,
+                                                  softWrap: true,
+                                                  maxLines: 2,
+                                                  style: TextStyle(),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 8,
+                                                right: 8,
+                                                bottom: 5,
+                                                top: 15),
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                DatePicker.showDatePicker(
+                                                    context, onChanged: (date) {
+                                                  localdata.issued_on =
+                                                      DateFormat('yyyy/MM/dd')
+                                                          .format(date)
+                                                          .toString();
+                                                  setState(() {
+                                                    enable = false;
+                                                  });
+                                                }, onConfirm: (date) {
+                                                  localdata.issued_on =
+                                                      DateFormat('yyyy/MM/dd')
+                                                          .format(date)
+                                                          .toString();
+                                                  setState(() {
+                                                    enable = false;
+                                                  });
+                                                });
+                                              },
+                                              child: AbsorbPointer(
+                                                child: Text(localdata.issued_on
+                                                            ?.isEmpty ??
+                                                        true
+                                                    ? "Not Set"
+                                                    : localdata.issued_on),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 5, right: 5),
+                                            child: Divider(
+                                              color: enable
+                                                  ? Colors.red
+                                                  : Colors.black,
+                                            ),
+                                          ),
+                                          enable
+                                              ? Container(
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 10.0),
+                                                    child: Text(
+                                                      setapptext(
+                                                          key: "key_required"),
+                                                      style: TextStyle(
+                                                          color: Colors.red,
+                                                          fontSize: 13),
+                                                    ),
+                                                  ),
+                                                )
+                                              : SizedBox()
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                 ),
                                 formcardtextfield(
                                     initvalue:

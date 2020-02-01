@@ -4,7 +4,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:kapp/pages/lightinginfo.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:validators/validators.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:intl/intl.dart';
 
 import '../models/localpropertydata.dart';
 import '../controllers/auth.dart';
@@ -179,13 +180,12 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                   hinttextkey:
                                       setapptext(key: 'key_enter_1st_surveyor'),
                                   validator: (value) {
-                                    if (value.trim().isEmpty) {
-                                      return setapptext(
-                                          key: 'key_field_not_blank');
-                                    } else if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                        .hasMatch(value)) {
-                                      return setapptext(
-                                          key: 'key_text_format_error');
+                                    if (value.isNotEmpty) {
+                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                          .hasMatch(value)) {
+                                        return setapptext(
+                                            key: 'key_text_format_error');
+                                      }
                                     }
                                   },
                                   onSaved: (value) {
@@ -221,13 +221,12 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                   hinttextkey:
                                       setapptext(key: 'key_enter_1st_surveyor'),
                                   validator: (value) {
-                                    if (value.trim().isEmpty) {
-                                      return setapptext(
-                                          key: 'key_field_not_blank');
-                                    } else if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                        .hasMatch(value)) {
-                                      return setapptext(
-                                          key: 'key_text_format_error');
+                                    if (value.isNotEmpty) {
+                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                          .hasMatch(value)) {
+                                        return setapptext(
+                                            key: 'key_text_format_error');
+                                      }
                                     }
                                   },
                                   onSaved: (value) {
@@ -263,12 +262,12 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                       : true,
                                   hinttextkey:
                                       setapptext(key: 'key_enter_1st_surveyor'),
-                                  validator: (value) {
-                                    if (value.trim().isEmpty) {
-                                      return setapptext(
-                                          key: 'key_field_not_blank');
-                                    }
-                                  },
+                                  // validator: (value) {
+                                  //   if (value.trim().isEmpty) {
+                                  //     return setapptext(
+                                  //         key: 'key_field_not_blank');
+                                  //   }
+                                  // },
                                   onSaved: (value) {
                                     localdata.safari_booklet_machinegun_no =
                                         value.trim();
@@ -278,48 +277,138 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                         value.trim();
                                     setState(() {});
                                   }),
-                              formcardtextfield(
-                                  keyboardtype: TextInputType.datetime,
-                                  initvalue: localdata.safari_booklet_issue_date
-                                              ?.isEmpty ??
-                                          true
-                                      ? ""
-                                      : localdata.safari_booklet_issue_date,
-                                  headerlablekey:
-                                      setapptext(key: 'key_Issued_Date'),
-                                  fieldfocus: _safari_booklet_issue_date,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) {
-                                    _safari_booklet_issue_date.unfocus();
-                                  },
-                                  radiovalue: localdata
-                                              .safari_booklet_issue_date
-                                              ?.isEmpty ??
-                                          true
-                                      ? false
-                                      : true,
-                                  hinttextkey:
-                                      setapptext(key: 'key_way_to_enter'),
-                                  validator: (value) {
-                                    if (value.trim().isEmpty) {
-                                      return setapptext(
-                                          key: 'key_field_not_blank');
-                                    } else if (!(isDate(value))) {
-                                      return setapptext(
-                                          key: 'key_date_format_error');
-                                      return setapptext(
-                                          key: 'key_field_not_blank');
-                                    }
-                                  },
-                                  onSaved: (value) {
-                                    localdata.safari_booklet_issue_date =
-                                        value.trim();
-                                  },
-                                  onChanged: (value) {
-                                    localdata.safari_booklet_issue_date =
-                                        value.trim();
-                                    setState(() {});
-                                  }),
+                              // formcardtextfield(
+                              //     keyboardtype: TextInputType.datetime,
+                              //     initvalue: localdata.safari_booklet_issue_date
+                              //                 ?.isEmpty ??
+                              //             true
+                              //         ? ""
+                              //         : localdata.safari_booklet_issue_date,
+                              //     headerlablekey:
+                              //         setapptext(key: 'key_Issued_Date'),
+                              //     fieldfocus: _safari_booklet_issue_date,
+                              //     textInputAction: TextInputAction.done,
+                              //     onFieldSubmitted: (_) {
+                              //       _safari_booklet_issue_date.unfocus();
+                              //     },
+                              //     radiovalue: localdata
+                              //                 .safari_booklet_issue_date
+                              //                 ?.isEmpty ??
+                              //             true
+                              //         ? false
+                              //         : true,
+                              //     hinttextkey:
+                              //         setapptext(key: 'key_way_to_enter'),
+                              //     validator: (value) {
+                              //       if (value.trim().isEmpty) {
+                              //         return setapptext(
+                              //             key: 'key_field_not_blank');
+                              //       } else if (!(isDate(value))) {
+                              //         return setapptext(
+                              //             key: 'key_date_format_error');
+                              //         return setapptext(
+                              //             key: 'key_field_not_blank');
+                              //       }
+                              //     },
+                              //     onSaved: (value) {
+                              //       localdata.safari_booklet_issue_date =
+                              //           value.trim();
+                              //     },
+                              //     onChanged: (value) {
+                              //       localdata.safari_booklet_issue_date =
+                              //           value.trim();
+                              //       setState(() {});
+                              //     }),
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                padding: EdgeInsets.all(10),
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color:
+                                              Color.fromRGBO(176, 174, 171, 1),
+                                          width: 1),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Row(
+                                          children: <Widget>[
+                                            completedcheckbox(
+                                                isCompleted: localdata
+                                                            .safari_booklet_issue_date
+                                                            ?.isEmpty ??
+                                                        true
+                                                    ? false
+                                                    : true),
+                                            Flexible(
+                                              child: Text(
+                                                setapptext(
+                                                    key: 'key_Issued_on'),
+                                                overflow: TextOverflow.visible,
+                                                softWrap: true,
+                                                maxLines: 2,
+                                                style: TextStyle(),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8,
+                                              right: 8,
+                                              bottom: 5,
+                                              top: 15),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              DatePicker.showDatePicker(context,
+                                                  onChanged: (date) {
+                                                localdata
+                                                        .safari_booklet_issue_date =
+                                                    DateFormat('yyyy/MM/dd')
+                                                        .format(date)
+                                                        .toString();
+                                                setState(() {});
+                                              }, onConfirm: (date) {
+                                                localdata
+                                                        .safari_booklet_issue_date =
+                                                    DateFormat('yyyy/MM/dd')
+                                                        .format(date)
+                                                        .toString();
+                                                setState(() {});
+                                              });
+                                            },
+                                            child: AbsorbPointer(
+                                              child: Text(localdata
+                                                          .safari_booklet_issue_date
+                                                          ?.isEmpty ??
+                                                      true
+                                                  ? "Not Set"
+                                                  : localdata
+                                                      .safari_booklet_issue_date),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 5, right: 5),
+                                          child: Divider(
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
                               Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
