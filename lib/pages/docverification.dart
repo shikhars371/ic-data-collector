@@ -286,10 +286,7 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
-                                                left: 8,
-                                                right: 8,
-                                                bottom: 5,
-                                                top: 15),
+                                                left: 8, right: 8, top: 8),
                                             child: GestureDetector(
                                               onTap: () {
                                                 DatePicker.showDatePicker(
@@ -312,11 +309,50 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                 });
                                               },
                                               child: AbsorbPointer(
-                                                child: Text(localdata.issued_on
-                                                            ?.isEmpty ??
-                                                        true
-                                                    ? "Not Set"
-                                                    : localdata.issued_on),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: <Widget>[
+                                                    Text(localdata.issued_on
+                                                                ?.isEmpty ??
+                                                            true
+                                                        ? "Not Set"
+                                                        : localdata.issued_on),
+                                                    IconButton(
+                                                        icon: Icon(
+                                                            Icons.date_range),
+                                                        onPressed: () {
+                                                          DatePicker
+                                                              .showDatePicker(
+                                                                  context,
+                                                                  onChanged:
+                                                                      (date) {
+                                                            localdata
+                                                                    .issued_on =
+                                                                DateFormat(
+                                                                        'yyyy/MM/dd')
+                                                                    .format(
+                                                                        date)
+                                                                    .toString();
+                                                            setState(() {
+                                                              enable = false;
+                                                            });
+                                                          }, onConfirm: (date) {
+                                                            localdata
+                                                                    .issued_on =
+                                                                DateFormat(
+                                                                        'yyyy/MM/dd')
+                                                                    .format(
+                                                                        date)
+                                                                    .toString();
+                                                            setState(() {
+                                                              enable = false;
+                                                            });
+                                                          });
+                                                        })
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ),

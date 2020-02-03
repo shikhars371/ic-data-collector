@@ -277,48 +277,6 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                         value.trim();
                                     setState(() {});
                                   }),
-                              // formcardtextfield(
-                              //     keyboardtype: TextInputType.datetime,
-                              //     initvalue: localdata.safari_booklet_issue_date
-                              //                 ?.isEmpty ??
-                              //             true
-                              //         ? ""
-                              //         : localdata.safari_booklet_issue_date,
-                              //     headerlablekey:
-                              //         setapptext(key: 'key_Issued_Date'),
-                              //     fieldfocus: _safari_booklet_issue_date,
-                              //     textInputAction: TextInputAction.done,
-                              //     onFieldSubmitted: (_) {
-                              //       _safari_booklet_issue_date.unfocus();
-                              //     },
-                              //     radiovalue: localdata
-                              //                 .safari_booklet_issue_date
-                              //                 ?.isEmpty ??
-                              //             true
-                              //         ? false
-                              //         : true,
-                              //     hinttextkey:
-                              //         setapptext(key: 'key_way_to_enter'),
-                              //     validator: (value) {
-                              //       if (value.trim().isEmpty) {
-                              //         return setapptext(
-                              //             key: 'key_field_not_blank');
-                              //       } else if (!(isDate(value))) {
-                              //         return setapptext(
-                              //             key: 'key_date_format_error');
-                              //         return setapptext(
-                              //             key: 'key_field_not_blank');
-                              //       }
-                              //     },
-                              //     onSaved: (value) {
-                              //       localdata.safari_booklet_issue_date =
-                              //           value.trim();
-                              //     },
-                              //     onChanged: (value) {
-                              //       localdata.safari_booklet_issue_date =
-                              //           value.trim();
-                              //       setState(() {});
-                              //     }),
                               Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
@@ -363,10 +321,7 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(
-                                              left: 8,
-                                              right: 8,
-                                              bottom: 5,
-                                              top: 15),
+                                              left: 8, right: 8, top: 8),
                                           child: GestureDetector(
                                             onTap: () {
                                               DatePicker.showDatePicker(context,
@@ -387,13 +342,47 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                               });
                                             },
                                             child: AbsorbPointer(
-                                              child: Text(localdata
-                                                          .safari_booklet_issue_date
-                                                          ?.isEmpty ??
-                                                      true
-                                                  ? "Not Set"
-                                                  : localdata
-                                                      .safari_booklet_issue_date),
+                                              child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(localdata
+                                                                .safari_booklet_issue_date
+                                                                ?.isEmpty ??
+                                                            true
+                                                        ? "Not Set"
+                                                        : localdata
+                                                            .safari_booklet_issue_date),
+                                                    IconButton(
+                                                        icon: Icon(
+                                                            Icons.date_range),
+                                                        onPressed: () {
+                                                          DatePicker
+                                                              .showDatePicker(
+                                                                  context,
+                                                                  onChanged:
+                                                                      (date) {
+                                                            localdata
+                                                                    .safari_booklet_issue_date =
+                                                                DateFormat(
+                                                                        'yyyy/MM/dd')
+                                                                    .format(
+                                                                        date)
+                                                                    .toString();
+                                                            setState(() {});
+                                                          }, onConfirm: (date) {
+                                                            localdata
+                                                                    .safari_booklet_issue_date =
+                                                                DateFormat(
+                                                                        'yyyy/MM/dd')
+                                                                    .format(
+                                                                        date)
+                                                                    .toString();
+                                                            setState(() {});
+                                                          });
+                                                        })
+                                                  ]),
                                             ),
                                           ),
                                         ),

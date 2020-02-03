@@ -173,12 +173,12 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                           : true,
                                   hinttextkey:
                                       setapptext(key: 'key_enter_1st_surveyor'),
-                                  validator: (value) {
-                                    if (value.trim().isEmpty) {
-                                      return setapptext(
-                                          key: 'key_field_not_blank');
-                                    }
-                                  },
+                                  // validator: (value) {
+                                  //   if (value.trim().isEmpty) {
+                                  //     return setapptext(
+                                  //         key: 'key_field_not_blank');
+                                  //   }
+                                  // },
                                   onSaved: (value) {
                                     localdata.lightning_meter_no = value.trim();
                                   },
@@ -209,19 +209,13 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                   hinttextkey:
                                       setapptext(key: 'key_enter_1st_surveyor'),
                                   validator: (value) {
-                                    if (value.trim().isEmpty) {
-                                      return setapptext(
-                                          key: 'key_field_not_blank');
-                                    }
-                                    else if 
-                                    (!(value?.isEmpty ?? true)) {
+                                    if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
                                           .hasMatch(value)) {
-                                        return setapptext(key: 'key_text_format_error');
-                                         
+                                        return setapptext(
+                                            key: 'key_text_format_error');
                                       }
                                     }
-                                  
                                   },
                                   onSaved: (value) {
                                     localdata.lightning_common_name =
@@ -238,8 +232,7 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                           true
                                       ? ""
                                       : localdata.lightning_father_name,
-                                  headerlablekey:
-                                      setapptext(key: 'key_birth'),
+                                  headerlablekey: setapptext(key: 'key_birth'),
                                   fieldfocus: _lightning_father_name,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
@@ -253,12 +246,12 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                   hinttextkey:
                                       setapptext(key: 'key_enter_1st_surveyor'),
                                   validator: (value) {
-                                    if (value.trim().isEmpty) {
-                                      return setapptext(
-                                          key: 'key_field_not_blank');
-                                    } else if (!RegExp(r'^[a-zA-Z_ ]*$').hasMatch(value)) {
-                                      return setapptext(
-                                          key: 'key_text_format_error');
+                                    if (!(value?.isEmpty ?? true)) {
+                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                          .hasMatch(value)) {
+                                        return setapptext(
+                                            key: 'key_text_format_error');
+                                      }
                                     }
                                   },
                                   onSaved: (value) {

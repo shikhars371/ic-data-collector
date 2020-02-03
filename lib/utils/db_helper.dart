@@ -918,10 +918,9 @@ class DBHelper with ChangeNotifier {
     try {
       var dbClient = await db;
       List<Map> maps = await dbClient.rawQuery(
-          'select COUNT(id) as P FROM propertysurvey WHER taskid=?', [taskid]);
-      // String k = maps[0];
-      print(maps[0]);
-      //result = assignedcount > int.tryParse(r) ? false : true;
+          '''select COUNT(id) as P FROM propertysurvey WHERE taskid=?''',
+          [taskid]);
+      result = assignedcount > maps[0]['P'] ? false : true;
     } catch (e) {
       print(e);
     }
