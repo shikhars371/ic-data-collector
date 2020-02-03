@@ -269,5 +269,6 @@
     "key_text_format_error": "Only alphabets are allowed",
     "key_Property_Rights": "Property Rights",
     "key_Property_Type":"Property Type",
-    "key_property_note" : "Property Note"
+    "key_property_note" : "Property Note",
+    "key_survey_excid":"Survey can't more than the assignd."
 }

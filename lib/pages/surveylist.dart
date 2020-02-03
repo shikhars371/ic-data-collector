@@ -414,17 +414,42 @@ class _SurveyPageState extends State<SurveyPage> {
           size: 30,
         ),
         onPressed: () async {
-          await DBHelper().currentsurveycount(
+          var result = await DBHelper().currentsurveycount(
               assignedcount: widget.surveyassignment.property_to_survey,
               taskid: widget.surveyassignment.id);
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => SurveyInfoPage(
-                surveyAssignment: widget.surveyassignment,
+          if (result) {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text(
+                      "Warning",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.red),
+                    ),
+                    content: Text(setapptext(key: 'key_survey_excid')),
+                    actions: <Widget>[
+                      FlatButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          setapptext(key: 'key_ok'),
+                        ),
+                      ),
+                    ],
+                  );
+                });
+          } else {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => SurveyInfoPage(
+                  surveyAssignment: widget.surveyassignment,
+                ),
               ),
-            ),
-          );
+            );
+          }
         },
       ),
     );
