@@ -539,6 +539,20 @@ class DBHelper with ChangeNotifier {
     return result;
   }
 
+  Future<bool> ifexistUnitNo({String unitno}) async {
+    bool result = true;
+    try {
+      var dbClient = await db;
+      List<Map> maps = await dbClient.rawQuery(
+          'SELECT unit_number FROM propertysurvey WHERE unit_number=?',
+          [unitno]);
+      result = (maps?.isEmpty ?? true) ? false : true;
+    } catch (e) {
+      print(e);
+    }
+    return result;
+  }
+
   Future<bool> ifpropertyexist({String localkey}) async {
     bool result = false;
     try {

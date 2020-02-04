@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -33,13 +31,13 @@ class _GuidePageState extends State<GuidePage> {
       drawer: AppDrawer(),
       body: Column(
         children: <Widget>[
-          IconButton(
-              icon: Icon(Icons.cloud_upload),
-              onPressed: () async {
-                var imagefile =
-                    await ImagePicker.pickImage(source: ImageSource.camera);
-                await FileUpload().fu(file: imagefile);
-              })
+          // IconButton(
+          //     icon: Icon(Icons.cloud_upload),
+          //     onPressed: () async {
+          //       var imagefile =
+          //           await ImagePicker.pickImage(source: ImageSource.camera);
+          //       await FileUpload().fu(file: imagefile);
+          //     })
         ],
       ),
     );

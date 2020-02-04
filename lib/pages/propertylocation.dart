@@ -77,8 +77,9 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                 localdata.block +
                 localdata.part_number +
                 localdata.unit_number;
-            int svval = await DBHelper().addPropertySurvey(localdata);
-            if (svval == 0) {
+            bool checkunitno =
+                await DBHelper().ifexistUnitNo(unitno: localdata.unit_number);
+            if (checkunitno) {
               showDialog(
                   context: context,
                   builder: (BuildContext context) {
@@ -88,8 +89,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold, color: Colors.red),
                       ),
-                      content: Text(
-                          "This property Data already exist. So please go back and edit that or delete the existing and create new."),
+                      content: Text("Unit Number Already Exist"),
                       actions: <Widget>[
                         FlatButton(
                           onPressed: () {
@@ -101,16 +101,41 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                     );
                   });
             } else {
-              localdata.editmode = 1;
-              await DBHelper().updateTaskStatus(taskid: localdata.taskid);
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) => PropertyDetailsPage(
-                    localdata: localdata,
+              int svval = await DBHelper().addPropertySurvey(localdata);
+              if (svval == 0) {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text(
+                          "Warning",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.red),
+                        ),
+                        content: Text(
+                            "This property Data already exist. So please go back and edit that or delete the existing and create new."),
+                        actions: <Widget>[
+                          FlatButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text("Ok"),
+                          ),
+                        ],
+                      );
+                    });
+              } else {
+                localdata.editmode = 1;
+                await DBHelper().updateTaskStatus(taskid: localdata.taskid);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => PropertyDetailsPage(
+                      localdata: localdata,
+                    ),
                   ),
-                ),
-              );
+                );
+              }
             }
           }
         }
