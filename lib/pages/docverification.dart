@@ -594,9 +594,11 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                               child: Column(
                                                 children: <Widget>[
                                                   RaisedButton(
-                                                    child: Text(setapptext(
-                                                        key:
-                                                            'key_capture_image')),
+                                                    child: Text(
+                                                      setapptext(
+                                                          key:
+                                                              'key_capture_image'),
+                                                    ),
                                                     onPressed: () async {
                                                       localdata
                                                               .property_doc_photo_1 =
@@ -626,8 +628,10 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                       child: Text(setapptext(
                                                           key: 'key_no_image')),
                                                     )
-                                                  : Image.file(File(localdata
-                                                      .property_doc_photo_1)),
+                                                  : Image.file(
+                                                      File(localdata
+                                                          .property_doc_photo_1),
+                                                    ),
                                             ),
                                           )
                                         ],

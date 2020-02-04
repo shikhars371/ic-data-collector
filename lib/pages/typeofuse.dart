@@ -163,11 +163,13 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
                                               true
                                           ? "0"
                                           : localdata.use_in_property_doc,
-                                  iscompleted:
-                                      localdata.use_in_property_doc?.isEmpty ??
-                                              true
-                                          ? false
-                                          : true,
+                                  iscompleted: ((localdata.use_in_property_doc
+                                                  ?.isEmpty ??
+                                              true) ||
+                                          (localdata.use_in_property_doc ==
+                                              "0"))
+                                      ? false
+                                      : true,
                                   headerlablekey:
                                       setapptext(key: 'key_Type_of_use'),
                                   dropdownitems: [
@@ -222,8 +224,8 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
                               Container(
                                 color: Colors.blue,
                                 child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 10, bottom: 10),
+                                  padding: const EdgeInsets.only(
+                                      top: 10, bottom: 10),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
