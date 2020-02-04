@@ -17,6 +17,7 @@ import './utils/router.dart' as router;
 import './utils/route_paths.dart' as routes;
 import './utils/appproviders.dart';
 import './utils/db_helper.dart';
+import './controllers/fileupload.dart';
 
 Future<Null> main() async {
   FlutterError.onError = (FlutterErrorDetails details) {
@@ -65,6 +66,9 @@ class LocalisedAppState extends State<LocalisedApp> {
         ),
         ChangeNotifierProvider(
           create: (_) => DBHelper(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => FileUpload(),
         )
       ],
       //providers: AppProviders().appproviders,

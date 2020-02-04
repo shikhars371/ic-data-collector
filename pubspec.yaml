@@ -27,6 +27,7 @@ dependencies:
   intl: ^0.16.0
   sentry: ^3.0.1
   validators: ^2.0.0+1
+  dio: ^3.0.8
 
 dev_dependencies:
   flutter_test:
