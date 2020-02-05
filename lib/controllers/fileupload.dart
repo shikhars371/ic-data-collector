@@ -11,18 +11,23 @@ import 'package:dio/adapter.dart';
 import '../models/user.dart';
 import '../configs/configuration.dart';
 import './auth.dart';
+import '../utils/navigation_service.dart';
+import '../utils/route_paths.dart' as routes;
+import '../utils/locator.dart';
 
 typedef void OnUploadProgressCallback(int sentBytes, int totalBytes);
 
 class FileUpload with ChangeNotifier {
   AppState _state = AppState.Idle;
   AppState get state => _state;
+  final NavigationService _navigationService = locator<NavigationService>();
   void setState(AppState appState) {
     _state = appState;
     notifyListeners();
   }
 
-  Future<String> fileUpload({File file}) async {
+  Future<String> fileUpload(
+      {File file, OnUploadProgressCallback uploadpreogress}) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     try {
       var dio = Dio();
@@ -38,8 +43,16 @@ class FileUpload with ChangeNotifier {
       });
       var responce = await dio.post(url, options: options, data: f,
           onSendProgress: (sent, total) {
-        print("sent" + sent.toString() + "total" + total.toString());
+        uploadpreogress(sent, total);
       });
+      if(responce.statusCode==201){
+        //data uploaded
+      }else if(responce.statusCode==401){
+        //unauthorized
+        _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);
+      }else{
+
+      }
     } catch (e) {
       print(e);
     }

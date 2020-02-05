@@ -190,6 +190,36 @@ class LocalPropertySurvey {
   int editmode;
   int isdrafted;
   String boundaryinfonote;
+  int isreldocphoto1;
+  int isreldocphoto2;
+  int isreldocphoto3;
+  int isreldocphoto4;
+  int isoddocphoto1;
+  int isoddocphoto6;
+  int isfirstpartner_photo;
+  int isinfophotonote1;
+  int isinfophototips1;
+  int isinfophototips2;
+  int issecond_partner_photo;
+  int issecond_partner_photo_note1;
+  int issecond_partner_photo_tips1;
+  int issecond_partner_photo_tips2;
+  int isthird_partner_photo;
+  int isthird_partner_photo_note1;
+  int isthird_partner_photo_tips1;
+  int isthird_partner_photo_tips2;
+  int isfourth_partner_photo;
+  int isfourth_partner_photo_note1;
+  int isfourth_partner_photo_tips1;
+  int isfourth_partner_photo_tips2;
+  int isfifth_partner_photo;
+  int isfifth_partner_photo_note1;
+  int isfifth_partner_photo_tips1;
+  int isfifth_partner_photo_tips2;
+  int ismeter_pic_bill_power;
+  int issafari_booklet_pic;
+  int ishome_sketch_map;
+  int ishome_photo;
 
   LocalPropertySurvey(
       {this.id,
@@ -382,7 +412,37 @@ class LocalPropertySurvey {
       this.formval,
       this.editmode,
       this.isdrafted,
-      this.boundaryinfonote});
+      this.boundaryinfonote,
+      this.isreldocphoto1,
+      this.isreldocphoto2,
+      this.isreldocphoto3,
+      this.isreldocphoto4,
+      this.isoddocphoto1,
+      this.isoddocphoto6,
+      this.isfirstpartner_photo,
+      this.isinfophotonote1,
+      this.isinfophototips1,
+      this.isinfophototips2,
+      this.issecond_partner_photo,
+      this.issecond_partner_photo_note1,
+      this.issecond_partner_photo_tips1,
+      this.issecond_partner_photo_tips2,
+      this.isthird_partner_photo,
+      this.isthird_partner_photo_note1,
+      this.isthird_partner_photo_tips1,
+      this.isthird_partner_photo_tips2,
+      this.isfourth_partner_photo,
+      this.isfourth_partner_photo_note1,
+      this.isfourth_partner_photo_tips1,
+      this.isfourth_partner_photo_tips2,
+      this.isfifth_partner_photo,
+      this.isfifth_partner_photo_note1,
+      this.isfifth_partner_photo_tips1,
+      this.isfifth_partner_photo_tips2,
+      this.ismeter_pic_bill_power,
+      this.issafari_booklet_pic,
+      this.ishome_sketch_map,
+      this.ishome_photo});
 
   LocalPropertySurvey.frommapobject(Map<String, dynamic> map)
       : id = map['id'],
@@ -578,7 +638,37 @@ class LocalPropertySurvey {
         formval = map['formval'],
         editmode = map['editmode'],
         isdrafted = map['isdrafted'],
-        boundaryinfonote = map['boundaryinfonote'];
+        boundaryinfonote = map['boundaryinfonote'],
+        isreldocphoto1 = map['isreldocphoto1'],
+        isreldocphoto2 = map['isreldocphoto2'],
+        isreldocphoto3 = map['isreldocphoto3'],
+        isreldocphoto4 = map['isreldocphoto4'],
+        isoddocphoto1 = map['isoddocphoto1'],
+        isoddocphoto6 = map['isoddocphoto6'],
+        isfirstpartner_photo = map['isfirstpartner_photo'],
+        isinfophotonote1 = map['isinfophotonote1'],
+        isinfophototips1 = map['isinfophototips1'],
+        isinfophototips2 = map['isinfophototips2'],
+        issecond_partner_photo = map['issecond_partner_photo'],
+        issecond_partner_photo_note1 = map['issecond_partner_photo_note1'],
+        issecond_partner_photo_tips1 = map['issecond_partner_photo_tips1'],
+        issecond_partner_photo_tips2 = map['issecond_partner_photo_tips2'],
+        isthird_partner_photo = map['isthird_partner_photo'],
+        isthird_partner_photo_note1 = map['isthird_partner_photo_note1'],
+        isthird_partner_photo_tips1 = map['isthird_partner_photo_tips1'],
+        isthird_partner_photo_tips2 = map['isthird_partner_photo_tips2'],
+        isfourth_partner_photo = map['isfourth_partner_photo'],
+        isfourth_partner_photo_note1 = map['isfourth_partner_photo_note1'],
+        isfourth_partner_photo_tips1 = map['isfourth_partner_photo_tips1'],
+        isfourth_partner_photo_tips2 = map['isfourth_partner_photo_tips2'],
+        isfifth_partner_photo = map['isfifth_partner_photo'],
+        isfifth_partner_photo_note1 = map['isfifth_partner_photo_note1'],
+        isfifth_partner_photo_tips1 = map['isfifth_partner_photo_tips1'],
+        isfifth_partner_photo_tips2 = map['isfifth_partner_photo_tips2'],
+        ismeter_pic_bill_power = map['ismeter_pic_bill_power'],
+        issafari_booklet_pic = map['issafari_booklet_pic'],
+        ishome_sketch_map = map['ishome_sketch_map'],
+        ishome_photo = map['ishome_photo'];
 
   // Map<String, dynamic> toMap() {
   //   var map = Map<String, dynamic>();

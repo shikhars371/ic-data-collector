@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../localization/app_translations.dart';
-import './propertyregistation.dart';
 import '../utils/db_helper.dart';
 import '../models/localpropertydata.dart';
 import './surveyinfo.dart';
@@ -365,7 +364,8 @@ class _SurveyPageState extends State<SurveyPage> {
             onPressed: () {
               showSearch(
                   context: context,
-                  delegate: SurveySearch(taskid: widget.surveyassignment.id));
+                  delegate:
+                      SurveySearch(surveyassignment: widget.surveyassignment));
             },
           )
         ],
@@ -457,8 +457,8 @@ class _SurveyPageState extends State<SurveyPage> {
 }
 
 class SurveySearch extends SearchDelegate<String> {
-  final String taskid;
-  SurveySearch({this.taskid});
+  final SurveyAssignment surveyassignment;
+  SurveySearch({this.surveyassignment});
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -499,8 +499,8 @@ class SurveySearch extends SearchDelegate<String> {
     return Container(
       child: query.trim().length > 1
           ? FutureBuilder(
-              future: DBHelper()
-                  .getpropertysurveys(taskid: taskid, searchtext: query),
+              future: DBHelper().getpropertysurveys(
+                  taskid: surveyassignment.id, searchtext: query),
               builder: (context, snapshot) {
                 List<LocalPropertySurvey> ls = snapshot.data;
                 if (snapshot.connectionState == ConnectionState.done &&
@@ -646,9 +646,10 @@ class SurveySearch extends SearchDelegate<String> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (BuildContext context) =>
-                                                PropertyRegistationPage(
-                                              taskid: ls[index].taskid,
-                                              surveylocalkey:
+                                                SurveyInfoPage(
+                                              surveyAssignment:
+                                                  surveyassignment,
+                                              localsurveykey:
                                                   ls[index].local_property_key,
                                             ),
                                           ),
