@@ -188,7 +188,7 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                   }),
                               formcardtextfield(
                                   initvalue: localdata
-                                              .lightning_common_name?.isEmpty ??
+                                              .lightning_meter_no?.isEmpty ??
                                           true
                                       ? ""
                                       : localdata.lightning_common_name,

@@ -56,7 +56,7 @@ class DBHelper with ChangeNotifier {
       CREATE TABLE IF NOT EXISTS propertysurvey(
         id INTEGER PRIMARY KEY AUTOINCREMENT,taskid TEXT,
         local_created_on TEXT DEFAULT CURRENT_TIMESTAMP,
-        local_property_key TEXT,other_key TEXT,
+        local_property_key TEXT,other_key TEXT,surveyoroneid TEXT,surveyortwoid TEXT,surveyleadid TEXT,
         first_surveyor_name TEXT,senond_surveyor_name TEXT,
         technical_support_name TEXT,property_dispte_subject_to TEXT,
         real_person_status TEXT,cityzenship_notice TEXT,issue_regarding_property TEXT,
@@ -72,7 +72,7 @@ class DBHelper with ChangeNotifier {
         doc_reg_number TEXT,land_area_qawwala TEXT,property_doc_photo_1 TEXT,
         property_doc_photo_2 TEXT,property_doc_photo_3 TEXT,
         property_doc_photo_4 TEXT,odinary_doc_photo1 TEXT,odinary_doc_photo6 TEXT,
-        use_in_property_doc TEXT,current_use_of_property TEXT,
+        use_in_property_doc TEXT,current_use_of_property TEXT,type_of_use_other TEXT,
         redeemable_property TEXT,proprietary_properties TEXT,
         govt_property TEXT,specified_current_use TEXT,unspecified_current_use_type TEXT,
         number_of_business_unit TEXT,business_unit_have_no_license TEXT,business_license_another TEXT,
@@ -151,7 +151,8 @@ class DBHelper with ChangeNotifier {
         ismeter_pic_bill_power INTEGER DEFAULT 0,
         issafari_booklet_pic INTEGER DEFAULT 0,
         ishome_sketch_map INTEGER DEFAULT 0,
-        ishome_photo INTEGER DEFAULT 0
+        ishome_photo INTEGER DEFAULT 0,
+        surveyenddate TEXT
       )
     ''').catchError((onError) {
       print(onError);
@@ -269,6 +270,9 @@ class DBHelper with ChangeNotifier {
         INSERT INTO propertysurvey(taskid,
         local_property_key,
         other_key,
+        surveyoroneid,
+        surveyortwoid,
+        surveyleadid,
         first_surveyor_name,
         senond_surveyor_name,
         technical_support_name,
@@ -312,6 +316,7 @@ class DBHelper with ChangeNotifier {
         odinary_doc_photo6,
         use_in_property_doc,
         current_use_of_property,
+        type_of_use_other,
         redeemable_property,proprietary_properties,
         govt_property,specified_current_use,unspecified_current_use_type,
         number_of_business_unit,business_unit_have_no_license,business_license_another,
@@ -359,8 +364,8 @@ class DBHelper with ChangeNotifier {
         fifth_partner_name,fifth_partner_surname,fifth_partner_boy,fifth_partner_father,fifth_partner_gender,fifth_partner_phone,
         fifth_partner_email,fifth_partner_image,fifth_partner_machinegun_no,fifth_partner_cover_note,
         fifth_partner_note_page,fifth_partner_reg_no,fifth_partner_phote_note1,
-        fifth_partner_photo_tips1,fifth_partner_photo_tips2,formval,editmode,boundaryinfonote)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
-        ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
+        fifth_partner_photo_tips1,fifth_partner_photo_tips2,formval,editmode,boundaryinfonote)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
+        ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
         ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
         ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
         ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
@@ -369,6 +374,9 @@ class DBHelper with ChangeNotifier {
         data.taskid,
         data.local_property_key,
         data.other_key,
+        data.surveyoroneid,
+        data.surveyortwoid,
+        data.surveyleadid,
         data.first_surveyor_name,
         data.senond_surveyor_name,
         data.technical_support_name,
@@ -412,6 +420,7 @@ class DBHelper with ChangeNotifier {
         data.odinary_doc_photo6,
         data.use_in_property_doc,
         data.current_use_of_property,
+        data.type_of_use_other,
         data.redeemable_property,
         data.proprietary_properties,
         data.govt_property,
@@ -605,7 +614,8 @@ class DBHelper with ChangeNotifier {
       var dbClient = await db;
       String sqlquery = '''
         UPDATE propertysurvey
-        SET other_key=?,first_surveyor_name=?,senond_surveyor_name=?,
+        SET other_key=?,surveyoroneid=?,surveyortwoid=?,surveyleadid=?,
+        first_surveyor_name=?,senond_surveyor_name=?,
         technical_support_name=?,property_dispte_subject_to=?,
         real_person_status=?,cityzenship_notice=?,issue_regarding_property=?,
         municipality_ref_number=?,natural_threaten=?,status_of_area_plan=?,status_of_area_official=?,
@@ -614,7 +624,7 @@ class DBHelper with ChangeNotifier {
         location_of_land_area=?,property_have_document=?,document_type=?,issued_on=?,place_of_issue=?,
         property_number=?,document_cover=?,document_page=?,doc_reg_number=?,land_area_qawwala=?,property_doc_photo_1=?,
         property_doc_photo_2=?,property_doc_photo_3=?,property_doc_photo_4=?,odinary_doc_photo1=?,odinary_doc_photo6=?,
-        use_in_property_doc=?,current_use_of_property=?,redeemable_property=?,proprietary_properties=?,
+        use_in_property_doc=?,current_use_of_property=?,type_of_use_other=?,redeemable_property=?,proprietary_properties=?,
         govt_property=?,specified_current_use=?,unspecified_current_use_type=?,
         number_of_business_unit=?,business_unit_have_no_license=?,business_license_another=?,
         first_partner_name=?,first_partner_surname=?,first_partner_boy=?,
@@ -691,11 +701,15 @@ class DBHelper with ChangeNotifier {
         ismeter_pic_bill_power =?,
         issafari_booklet_pic =?,
         ishome_sketch_map =?,
-        ishome_photo =?
+        ishome_photo =?,
+        surveyenddate=?
         WHERE local_property_key=?
       ''';
       List<dynamic> params = [
         data.other_key,
+        data.surveyoroneid,
+        data.surveyortwoid,
+        data.surveyleadid,
         data.first_surveyor_name,
         data.senond_surveyor_name,
         data.technical_support_name,
@@ -739,6 +753,7 @@ class DBHelper with ChangeNotifier {
         data.odinary_doc_photo6,
         data.use_in_property_doc,
         data.current_use_of_property,
+        data.type_of_use_other,
         data.redeemable_property,
         data.proprietary_properties,
         data.govt_property,
@@ -912,6 +927,7 @@ class DBHelper with ChangeNotifier {
         data.issafari_booklet_pic,
         data.ishome_sketch_map,
         data.ishome_photo,
+        data.surveyenddate,
         localkey
       ];
       result = await dbClient.rawUpdate(sqlquery, params);

@@ -28,6 +28,7 @@ dependencies:
   sentry: ^3.0.1
   validators: ^2.0.0+1
   dio: ^3.0.8
+  device_info: ^0.4.1+4
 
 dev_dependencies:
   flutter_test:

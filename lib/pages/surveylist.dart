@@ -7,6 +7,7 @@ import '../utils/db_helper.dart';
 import '../models/localpropertydata.dart';
 import './surveyinfo.dart';
 import '../models/surveyAssignment.dart';
+import '../controllers/appsync.dart';
 
 class SurveyPage extends StatefulWidget {
   SurveyPage({this.surveyassignment});
@@ -21,16 +22,7 @@ class _SurveyPageState extends State<SurveyPage> {
     return AppTranslations.of(context).text(key);
   }
 
-  Widget listcard({
-    String localsurveyid,
-    String status,
-    Color statuscolor,
-    String provinance,
-    String city,
-    String block,
-    String part,
-    String unitno,
-  }) {
+  Widget listcard({LocalPropertySurvey surveydata}) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -53,7 +45,7 @@ class _SurveyPageState extends State<SurveyPage> {
                             fontWeight: FontWeight.bold, color: Colors.black),
                         children: <TextSpan>[
                           TextSpan(
-                            text: getProvincename(provinance),
+                            text: getProvincename(surveydata.province),
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.normal),
@@ -71,7 +63,7 @@ class _SurveyPageState extends State<SurveyPage> {
                             fontWeight: FontWeight.bold, color: Colors.black),
                         children: <TextSpan>[
                           TextSpan(
-                            text: getCity(city),
+                            text: getCity(surveydata.city),
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.normal),
@@ -89,7 +81,7 @@ class _SurveyPageState extends State<SurveyPage> {
                             fontWeight: FontWeight.bold, color: Colors.black),
                         children: <TextSpan>[
                           TextSpan(
-                            text: block,
+                            text: surveydata.block,
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.normal),
@@ -107,7 +99,7 @@ class _SurveyPageState extends State<SurveyPage> {
                             fontWeight: FontWeight.bold, color: Colors.black),
                         children: <TextSpan>[
                           TextSpan(
-                            text: part,
+                            text: surveydata.part_number,
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.normal),
@@ -125,7 +117,7 @@ class _SurveyPageState extends State<SurveyPage> {
                             fontWeight: FontWeight.bold, color: Colors.black),
                         children: <TextSpan>[
                           TextSpan(
-                            text: unitno,
+                            text: surveydata.unit_number,
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.normal),
@@ -137,9 +129,10 @@ class _SurveyPageState extends State<SurveyPage> {
                   Align(
                     alignment: Alignment.topRight,
                     child: Text(
-                      status,
+                      getStatus(surveydata.isdrafted),
                       style: TextStyle(
-                          fontWeight: FontWeight.bold, color: statuscolor),
+                          fontWeight: FontWeight.bold,
+                          color: getStatusColor(surveydata.isdrafted)),
                     ),
                   )
                 ],
@@ -161,7 +154,7 @@ class _SurveyPageState extends State<SurveyPage> {
                         MaterialPageRoute(
                           builder: (BuildContext context) => SurveyInfoPage(
                             surveyAssignment: widget.surveyassignment,
-                            localsurveykey: localsurveyid,
+                            localsurveykey: surveydata.local_property_key,
                           ),
                         ),
                       );
@@ -183,7 +176,8 @@ class _SurveyPageState extends State<SurveyPage> {
                                   onPressed: () async {
                                     DBHelper()
                                         .deletePropertySurvey(
-                                            localkey: localsurveyid)
+                                            localkey:
+                                                surveydata.local_property_key)
                                         .then((_) {
                                       Navigator.pop(context);
                                       Provider.of<DBHelper>(context)
@@ -214,8 +208,37 @@ class _SurveyPageState extends State<SurveyPage> {
                   ),
                   IconButton(
                     iconSize: 25,
-                    icon: Icon(Icons.sync),
-                    onPressed: () {},
+                    icon: Icon(
+                        surveydata.isdrafted == 2 ? Icons.check : Icons.sync),
+                    onPressed: () async {
+                      if (surveydata.isdrafted == 1) {
+                        //completed
+                        await AppSync().syncData(propertydata: surveydata);
+                      } else if (surveydata.isdrafted == 0) {
+                        //if drafted
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text(
+                                  "Warning",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.red),
+                                ),
+                                content: Text("Please complete the survey before sync."),
+                                actions: <Widget>[
+                                  FlatButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text("Ok"),
+                                  ),
+                                ],
+                              );
+                            });
+                      }
+                    },
                   ),
                 ],
               ),
@@ -385,16 +408,7 @@ class _SurveyPageState extends State<SurveyPage> {
                     child: ListView.builder(
                       itemCount: dbdata?.isEmpty ?? true ? 0 : dbdata.length,
                       itemBuilder: (context, index) {
-                        return listcard(
-                          localsurveyid: dbdata[index].local_property_key,
-                          provinance: dbdata[index].province,
-                          city: dbdata[index].city,
-                          block: dbdata[index].block,
-                          part: dbdata[index].part_number,
-                          unitno: dbdata[index].unit_number,
-                          status: getStatus(dbdata[index].isdrafted),
-                          statuscolor: getStatusColor(dbdata[index].isdrafted),
-                        );
+                        return listcard(surveydata: dbdata[index]);
                       },
                     ),
                   )

@@ -210,7 +210,31 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
                                   onChanged: (value) {
                                     localdata.use_in_property_doc = value;
                                     setState(() {});
-                                  })
+                                  }),
+                              if (localdata.use_in_property_doc == "8") ...[
+                                formcardtextfield(
+                                    headerlablekey:
+                                        setapptext(key: 'key_Another'),
+                                    radiovalue:
+                                        localdata.type_of_use_other?.isEmpty ??
+                                                true
+                                            ? false
+                                            : true,
+                                    initvalue:
+                                        localdata.type_of_use_other?.isEmpty ??
+                                                true
+                                            ? ""
+                                            : localdata.type_of_use_other,
+                                    onSaved: (value) {
+                                      localdata.type_of_use_other =
+                                          value.trim();
+                                    },
+                                    onChanged: (value) {
+                                      localdata.type_of_use_other =
+                                          value.trim();
+                                      setState(() {});
+                                    }),
+                              ]
                             ],
                           ),
                         ),

@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
@@ -104,6 +103,99 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
         ),
       ),
     );
+  }
+
+  void updatePhotoStatus() {
+    if (!(localdata.property_doc_photo_1?.isEmpty ?? true)) {
+      localdata.isreldocphoto1 = 1;
+    }
+    if (!(localdata.property_doc_photo_2?.isEmpty ?? true)) {
+      localdata.isreldocphoto2 = 1;
+    }
+    if (!(localdata.property_doc_photo_3?.isEmpty ?? true)) {
+      localdata.isreldocphoto3 = 1;
+    }
+    if (!(localdata.property_doc_photo_4?.isEmpty ?? true)) {
+      localdata.isreldocphoto4 = 1;
+    }
+    if (!(localdata.odinary_doc_photo1?.isEmpty ?? true)) {
+      localdata.isoddocphoto1 = 1;
+    }
+    if (!(localdata.odinary_doc_photo6?.isEmpty ?? true)) {
+      localdata.isoddocphoto6 = 1;
+    }
+    if (!(localdata.first_partner_name_property_owner?.isEmpty ?? true)) {
+      localdata.isfirstpartner_photo = 1;
+    }
+    if (!(localdata.info_photo_hint_photo_note1?.isEmpty ?? true)) {
+      localdata.isinfophotonote1 = 1;
+    }
+    if (!(localdata.info_photo_hint_photo_tips1?.isEmpty ?? true)) {
+      localdata.isinfophototips1 = 1;
+    }
+    if (!(localdata.info_photo_hint_photo_tips2?.isEmpty ?? true)) {
+      localdata.isinfophototips2 = 1;
+    }
+    if (!(localdata.second_partner_image?.isEmpty ?? true)) {
+      localdata.issecond_partner_photo = 1;
+    }
+    if (!(localdata.second_partner_phote_note1?.isEmpty ?? true)) {
+      localdata.issecond_partner_photo_note1 = 1;
+    }
+    if (!(localdata.second_partner_photo_tips1?.isEmpty ?? true)) {
+      localdata.issecond_partner_photo_tips1 = 1;
+    }
+    if (!(localdata.second_partner_photo_tips2?.isEmpty ?? true)) {
+      localdata.issecond_partner_photo_tips2 = 1;
+    }
+    if (!(localdata.third_partner_image?.isEmpty ?? true)) {
+      localdata.isfifth_partner_photo = 1;
+    }
+    if (!(localdata.third_partner_phote_note1?.isEmpty ?? true)) {
+      localdata.isthird_partner_photo_note1 = 1;
+    }
+    if (!(localdata.third_partner_photo_tips1?.isEmpty ?? true)) {
+      localdata.isthird_partner_photo_tips1 = 1;
+    }
+    if (!(localdata.third_partner_photo_tips2?.isEmpty ?? true)) {
+      localdata.isthird_partner_photo_tips2 = 1;
+    }
+    if (!(localdata.fourth_partner_image?.isEmpty ?? true)) {
+      localdata.isfourth_partner_photo = 1;
+    }
+    if (!(localdata.fourth_partner_phote_note1?.isEmpty ?? true)) {
+      localdata.isfourth_partner_photo_note1 = 1;
+    }
+    if (!(localdata.fourth_partner_photo_tips1?.isEmpty ?? true)) {
+      localdata.isfourth_partner_photo_tips1 = 1;
+    }
+    if (!(localdata.fourth_partner_photo_tips2?.isEmpty ?? true)) {
+      localdata.isfourth_partner_photo_tips2 = 1;
+    }
+    if (!(localdata.fifth_partner_image?.isEmpty ?? true)) {
+      localdata.isfifth_partner_photo = 1;
+    }
+    if (!(localdata.fifth_partner_phote_note1?.isEmpty ?? true)) {
+      localdata.isfifth_partner_photo_note1 = 1;
+    }
+    if (!(localdata.fifth_partner_photo_tips1?.isEmpty ?? true)) {
+      localdata.isfifth_partner_photo_tips1 = 1;
+    }
+    if (!(localdata.fifth_partner_photo_tips2?.isEmpty ?? true)) {
+      localdata.isfifth_partner_photo_tips2 = 1;
+    }
+    if (!(localdata.lightning_picture_bell_power?.isEmpty ?? true)) {
+      localdata.ismeter_pic_bill_power = 1;
+    }
+    if (!(localdata.safari_booklet_picture?.isEmpty ?? true)) {
+      localdata.issafari_booklet_pic = 1;
+    }
+    if (!(localdata.home_map?.isEmpty ?? true)) {
+      localdata.ishome_sketch_map = 1;
+    }
+    if (!(localdata.home_photo?.isEmpty ?? true)) {
+      localdata.ishome_photo = 1;
+    }
   }
 
   @override
@@ -256,6 +348,9 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                   _formkey.currentState.save();
                                   localdata.other_key = "1";
                                   localdata.isdrafted = 1;
+                                  localdata.surveyenddate =
+                                      DateTime.now().toString();
+                                  updatePhotoStatus();
                                   await DBHelper().updatePropertySurvey(
                                       localdata, localdata.local_property_key);
                                   Navigator.pushReplacement(

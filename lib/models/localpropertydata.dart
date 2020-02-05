@@ -47,6 +47,7 @@ class LocalPropertySurvey {
   String odinary_doc_photo6;
   String use_in_property_doc;
   String current_use_of_property;
+  String type_of_use_other;
   String redeemable_property;
   String proprietary_properties;
   String govt_property;
@@ -220,6 +221,10 @@ class LocalPropertySurvey {
   int issafari_booklet_pic;
   int ishome_sketch_map;
   int ishome_photo;
+  String surveyenddate;
+  String surveyoroneid;
+  String surveyortwoid;
+  String surveyleadid;
 
   LocalPropertySurvey(
       {this.id,
@@ -270,6 +275,7 @@ class LocalPropertySurvey {
       this.odinary_doc_photo6,
       this.use_in_property_doc,
       this.current_use_of_property,
+      this.type_of_use_other,
       this.redeemable_property,
       this.proprietary_properties,
       this.govt_property,
@@ -442,7 +448,11 @@ class LocalPropertySurvey {
       this.ismeter_pic_bill_power,
       this.issafari_booklet_pic,
       this.ishome_sketch_map,
-      this.ishome_photo});
+      this.ishome_photo,
+      this.surveyenddate,
+      this.surveyoroneid,
+      this.surveyortwoid,
+      this.surveyleadid});
 
   LocalPropertySurvey.frommapobject(Map<String, dynamic> map)
       : id = map['id'],
@@ -464,6 +474,7 @@ class LocalPropertySurvey {
         status_of_area_regular = map['status_of_area_regular'],
         slope_of_area = map['slope_of_area'],
         province = map['province'],
+        type_of_use_other = map['type_of_use_other'],
         city = map['city'],
         area = map['area'],
         pass = map['pass'],
@@ -668,7 +679,11 @@ class LocalPropertySurvey {
         ismeter_pic_bill_power = map['ismeter_pic_bill_power'],
         issafari_booklet_pic = map['issafari_booklet_pic'],
         ishome_sketch_map = map['ishome_sketch_map'],
-        ishome_photo = map['ishome_photo'];
+        ishome_photo = map['ishome_photo'],
+        surveyenddate = map['surveyenddate'],
+        surveyoroneid = map['surveyoroneid'],
+        surveyortwoid = map['surveyortwoid'],
+        surveyleadid = map['surveyleadid'];
 
   // Map<String, dynamic> toMap() {
   //   var map = Map<String, dynamic>();

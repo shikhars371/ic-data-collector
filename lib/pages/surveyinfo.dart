@@ -74,6 +74,9 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
             localdata.area = widget.surveyAssignment.nahia;
             localdata.pass = widget.surveyAssignment.gozar;
             localdata.block = widget.surveyAssignment.block;
+            localdata.surveyoroneid = widget.surveyAssignment.surveyor1;
+            localdata.surveyortwoid = widget.surveyAssignment.surveyor2;
+            localdata.surveyleadid = widget.surveyAssignment.teamlead;
           }
           Navigator.pushReplacement(
             context,
