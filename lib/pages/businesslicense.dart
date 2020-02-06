@@ -26,14 +26,6 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
   FocusNode _business_unit_have_no_license;
   FocusNode _business_license_another;
 
-  Future<String> appimagepicker() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
-    var apppath = await getApplicationDocumentsDirectory();
-    var filename = image.path.split("/").last;
-    var localfile = await image.copy('${apppath.path}/$filename');
-    return localfile.path;
-  }
-
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
   }

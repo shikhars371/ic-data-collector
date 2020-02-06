@@ -7,8 +7,8 @@ import '../utils/route_paths.dart' as routes;
 import '../utils/locator.dart';
 import '../localization/app_translations.dart';
 import '../utils/appdrawer.dart';
-import '../controllers/fileupload.dart';
 import '../controllers/auth.dart';
+import '../controllers/appsync.dart';
 
 class GuidePage extends StatefulWidget {
   @override
@@ -58,7 +58,7 @@ class _GuidePageState extends State<GuidePage> {
         ),
       ),
       drawer: AppDrawer(),
-      body: Consumer<FileUpload>(builder: (context, data, child) {
+      body: Consumer<AppSync>(builder: (context, data, child) {
         return data.state == AppState.Busy
             ? Center(
                 child: CircularProgressIndicator(),
@@ -69,15 +69,15 @@ class _GuidePageState extends State<GuidePage> {
                       icon: Icon(Icons.cloud_upload),
                       onPressed: () async {
                         var imagefile = await ImagePicker.pickImage(
-                            source: ImageSource.gallery);
+                            source: ImageSource.camera,imageQuality: 20);
                         if (imagefile == null) {
                           return;
                         }
                         _setUploadProgress(0, 0);
                         try {
-                          await FileUpload().fileUpload(
-                              file: imagefile,
-                              uploadpreogress: _setUploadProgress);
+                          // await AppSync().fs(
+                          //     file: imagefile,
+                          //     uploadpreogress: _setUploadProgress);
                         } catch (e) {
                           print(e);
                         }

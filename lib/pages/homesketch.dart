@@ -26,14 +26,6 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
   FocusNode _area_unit_total_no_unit;
   FocusNode _area_unit_business_units;
 
-  Future<String> appimagepicker() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
-    var apppath = await getApplicationDocumentsDirectory();
-    var filename = image.path.split("/").last;
-    var localfile = await image.copy('${apppath.path}/$filename');
-    return localfile.path;
-  }
-
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
   }
@@ -149,7 +141,7 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
       localdata.issecond_partner_photo_tips2 = 1;
     }
     if (!(localdata.third_partner_image?.isEmpty ?? true)) {
-      localdata.isfifth_partner_photo = 1;
+      localdata.isthird_partner_photo = 1;
     }
     if (!(localdata.third_partner_phote_note1?.isEmpty ?? true)) {
       localdata.isthird_partner_photo_note1 = 1;

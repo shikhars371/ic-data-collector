@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 
 class Dpvalue {
   String name;
   String value;
   Dpvalue({this.name, this.value});
+}
+
+Future<String> appimagepicker() async {
+  var image =
+      await ImagePicker.pickImage(source: ImageSource.camera, imageQuality: 30);
+  var apppath = await getApplicationDocumentsDirectory();
+  var filename = image.path.split("/").last;
+  var localfile = await image.copy('${apppath.path}/$filename');
+  return localfile.path;
 }
 
 Widget completedcheckbox({bool isCompleted}) {

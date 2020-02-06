@@ -31,13 +31,6 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
   FocusNode _first_partner__father;
   FocusNode _first_partner_name_phone;
   FocusNode _first_partner_name_email;
-  Future<String> appimagepicker() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
-    var apppath = await getApplicationDocumentsDirectory();
-    var filename = image.path.split("/").last;
-    var localfile = await image.copy('${apppath.path}/$filename');
-    return localfile.path;
-  }
 
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);

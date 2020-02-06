@@ -63,14 +63,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
   FocusNode _fifth_partner_note_page;
   FocusNode _fifth_partner_reg_no;
 
-  Future<String> appimagepicker() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
-    var apppath = await getApplicationDocumentsDirectory();
-    var filename = image.path.split("/").last;
-    var localfile = await image.copy('${apppath.path}/$filename');
-    return localfile.path;
-  }
-
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
   }

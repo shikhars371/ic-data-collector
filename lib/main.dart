@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 
 import './controllers/auth.dart';
 import './controllers/task.dart';
+import './controllers/appsync.dart';
 import './localization/app_translations_delegate.dart';
 import './localization/application.dart';
 import './utils/locator.dart';
@@ -17,7 +18,6 @@ import './utils/router.dart' as router;
 import './utils/route_paths.dart' as routes;
 import './utils/appproviders.dart';
 import './utils/db_helper.dart';
-import './controllers/fileupload.dart';
 
 Future<Null> main() async {
   FlutterError.onError = (FlutterErrorDetails details) {
@@ -68,7 +68,7 @@ class LocalisedAppState extends State<LocalisedApp> {
           create: (_) => DBHelper(),
         ),
         ChangeNotifierProvider(
-          create: (_) => FileUpload(),
+          create: (_) => AppSync(),
         )
       ],
       //providers: AppProviders().appproviders,

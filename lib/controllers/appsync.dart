@@ -4,10 +4,18 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:device_info/device_info.dart';
+import 'package:dio/dio.dart';
+import 'package:path/path.dart';
 
 import './auth.dart';
 import '../models/localpropertydata.dart';
 import '../configs/configuration.dart';
+import '../utils/navigation_service.dart';
+import '../utils/route_paths.dart' as routes;
+import '../utils/locator.dart';
+import '../utils/db_helper.dart';
+
+typedef void OnUploadProgressCallback(int sentBytes, int totalBytes);
 
 class AppSync with ChangeNotifier {
   AppState _state = AppState.Idle;
@@ -16,6 +24,8 @@ class AppSync with ChangeNotifier {
     _state = appState;
     notifyListeners();
   }
+
+  final NavigationService _navigationService = locator<NavigationService>();
 
   Future<bool> syncData({LocalPropertySurvey propertydata}) async {
     bool result = false;
@@ -315,7 +325,8 @@ class AppSync with ChangeNotifier {
             "supporting_surveyor_id": propertydata.surveyleadid,
             "authority": "Survey Lead"
           };
-      var responce = await http.post(Configuration.apiurl + "propertyinformation",
+      var responce = await http.post(
+          Configuration.apiurl + "propertyinformation",
           body: json.encode(inputdata()),
           headers: {
             "Content-Type": "application/json",
@@ -323,10 +334,303 @@ class AppSync with ChangeNotifier {
           });
       if (responce.statusCode == 201) {
         //success
+        result = true;
       }
     } catch (e) {
       print(e);
     }
     return result;
+  }
+
+  Future<bool> isFilesUploaded({LocalPropertySurvey propertydata}) async {
+    bool result = false;
+    try {
+      if (propertydata.isreldocphoto1 == 1) {}
+      if (propertydata.isreldocphoto2 == 1) {}
+      if (propertydata.isreldocphoto3 == 1) {}
+      if (propertydata.isreldocphoto4 == 1) {}
+      if (propertydata.isoddocphoto1 == 1) {}
+      if (propertydata.isoddocphoto6 == 1) {}
+      if (propertydata.isfirstpartner_photo == 1) {}
+      if (propertydata.isinfophotonote1 == 1) {}
+      if (propertydata.isinfophototips1 == 1) {}
+      if (propertydata.isinfophototips2 == 1) {}
+      if (propertydata.issecond_partner_photo == 1) {}
+      if (propertydata.issecond_partner_photo_note1 == 1) {}
+      if (propertydata.issecond_partner_photo_tips1 == 1) {}
+      if (propertydata.issecond_partner_photo_tips2 == 1) {}
+      if (propertydata.isthird_partner_photo == 1) {}
+      if (propertydata.isthird_partner_photo_note1 == 1) {}
+      if (propertydata.isthird_partner_photo_tips1 == 1) {}
+      if (propertydata.isthird_partner_photo_tips2 == 1) {}
+      if (propertydata.isfourth_partner_photo == 1) {}
+      if (propertydata.isfourth_partner_photo_note1 == 1) {}
+      if (propertydata.isfourth_partner_photo_tips1 == 1) {}
+      if (propertydata.isfourth_partner_photo_tips2 == 1) {}
+      if (propertydata.isfifth_partner_photo == 1) {}
+      if (propertydata.isfifth_partner_photo_note1 == 1) {}
+      if (propertydata.isfifth_partner_photo_tips1 == 1) {}
+      if (propertydata.isfifth_partner_photo_tips2 == 1) {}
+      if (propertydata.ismeter_pic_bill_power == 1) {}
+      if (propertydata.issafari_booklet_pic == 1) {}
+      if (propertydata.ishome_sketch_map == 1) {}
+      if (propertydata.ishome_photo == 1) {}
+    } catch (e) {
+      print(e);
+    }
+    return result;
+  }
+
+  List<String> dataFileList({LocalPropertySurvey propertydata}) {
+    List<String> avaiblefiles = [];
+    try {
+      if (propertydata.isreldocphoto1 == 1) {
+        avaiblefiles.add(propertydata.property_doc_photo_1);
+      }
+      if (propertydata.isreldocphoto2 == 1) {
+        avaiblefiles.add(propertydata.property_doc_photo_2);
+      }
+      if (propertydata.isreldocphoto3 == 1) {
+        avaiblefiles.add(propertydata.property_doc_photo_3);
+      }
+      if (propertydata.isreldocphoto4 == 1) {
+        avaiblefiles.add(propertydata.property_doc_photo_4);
+      }
+      if (propertydata.isoddocphoto1 == 1) {
+        avaiblefiles.add(propertydata.odinary_doc_photo1);
+      }
+      if (propertydata.isoddocphoto6 == 1) {
+        avaiblefiles.add(propertydata.odinary_doc_photo6);
+      }
+      if (propertydata.isfirstpartner_photo == 1) {
+        avaiblefiles.add(propertydata.first_partner_name_property_owner);
+      }
+      if (propertydata.isinfophotonote1 == 1) {
+        avaiblefiles.add(propertydata.info_photo_hint_photo_note1);
+      }
+      if (propertydata.isinfophototips1 == 1) {
+        avaiblefiles.add(propertydata.info_photo_hint_photo_tips1);
+      }
+      if (propertydata.isinfophototips2 == 1) {
+        avaiblefiles.add(propertydata.info_photo_hint_photo_tips2);
+      }
+      if (propertydata.issecond_partner_photo == 1) {
+        avaiblefiles.add(propertydata.second_partner_image);
+      }
+      if (propertydata.issecond_partner_photo_note1 == 1) {
+        avaiblefiles.add(propertydata.second_partner_phote_note1);
+      }
+      if (propertydata.issecond_partner_photo_tips1 == 1) {
+        avaiblefiles.add(propertydata.second_partner_photo_tips1);
+      }
+      if (propertydata.issecond_partner_photo_tips2 == 1) {
+        avaiblefiles.add(propertydata.second_partner_photo_tips2);
+      }
+      if (propertydata.isthird_partner_photo == 1) {
+        avaiblefiles.add(propertydata.third_partner_image);
+      }
+      if (propertydata.isthird_partner_photo_note1 == 1) {
+        avaiblefiles.add(propertydata.third_partner_phote_note1);
+      }
+      if (propertydata.isthird_partner_photo_tips1 == 1) {
+        avaiblefiles.add(propertydata.third_partner_photo_tips1);
+      }
+      if (propertydata.isthird_partner_photo_tips2 == 1) {
+        avaiblefiles.add(propertydata.third_partner_photo_tips2);
+      }
+      if (propertydata.isfourth_partner_photo == 1) {
+        avaiblefiles.add(propertydata.fourth_partner_image);
+      }
+      if (propertydata.isfourth_partner_photo_note1 == 1) {
+        avaiblefiles.add(propertydata.fourth_partner_phote_note1);
+      }
+      if (propertydata.isfourth_partner_photo_tips1 == 1) {
+        avaiblefiles.add(propertydata.fourth_partner_photo_tips1);
+      }
+      if (propertydata.isfourth_partner_photo_tips2 == 1) {
+        avaiblefiles.add(propertydata.fourth_partner_photo_tips2);
+      }
+      if (propertydata.isfifth_partner_photo == 1) {
+        avaiblefiles.add(propertydata.fifth_partner_image);
+      }
+      if (propertydata.isfifth_partner_photo_note1 == 1) {
+        avaiblefiles.add(propertydata.fifth_partner_phote_note1);
+      }
+      if (propertydata.isfifth_partner_photo_tips1 == 1) {
+        avaiblefiles.add(propertydata.fifth_partner_photo_tips1);
+      }
+      if (propertydata.isfifth_partner_photo_tips2 == 1) {
+        avaiblefiles.add(propertydata.fifth_partner_photo_tips2);
+      }
+      if (propertydata.ismeter_pic_bill_power == 1) {
+        avaiblefiles.add(propertydata.lightning_picture_bell_power);
+      }
+      if (propertydata.issafari_booklet_pic == 1) {
+        avaiblefiles.add(propertydata.safari_booklet_picture);
+      }
+      if (propertydata.ishome_sketch_map == 1) {
+        avaiblefiles.add(propertydata.home_map);
+      }
+      if (propertydata.ishome_photo == 1) {
+        avaiblefiles.add(propertydata.home_photo);
+      }
+    } catch (e) {
+      print(e);
+    }
+    return avaiblefiles;
+  }
+
+  Future<FormData> imageForm({LocalPropertySurvey propertydata}) async {
+    FormData f = new FormData();
+    try {
+      List<String> data = dataFileList(propertydata: propertydata);
+      List<dynamic> formdata = [];
+      for (var item in data) {
+        formdata
+            .add(await MultipartFile.fromFile(item, filename: basename(item)));
+      }
+      f = FormData.fromMap({"files": formdata});
+    } catch (e) {
+      print(e);
+    }
+    return f;
+  }
+
+  Future<bool> fileUpload(
+      {LocalPropertySurvey propertydata,
+      OnUploadProgressCallback uploadpreogress}) async {
+    bool result = false;
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    try {
+      var dio = Dio();
+      final url = Configuration.apiurl + "surveydata";
+      Options options = new Options(
+        headers: {
+          "Authorization": preferences.getString("accesstoken"),
+        },
+      );
+      // var f = FormData.fromMap({
+      //   "files": await MultipartFile.fromFile(file.path,
+      //       filename: basename(file.path)),
+      // });
+      var f = await imageForm(propertydata: propertydata);
+      var responce = await dio.post(url, options: options, data: f,
+          onSendProgress: (sent, total) {
+        print(sent.toString() + "-" + total.toString());
+        //uploadpreogress(sent, total);
+      });
+      if (responce.statusCode == 201) {
+        //data uploaded
+        await updateUploadstatus(propertydata: propertydata);
+        var r = await syncData(propertydata: propertydata);
+        result = r ? true : false;
+      } else if (responce.statusCode == 401) {
+        //unauthorized
+        _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);
+      }
+    } catch (e) {
+      print(e);
+    }
+    return result;
+  }
+
+  Future<void> updateUploadstatus({LocalPropertySurvey propertydata}) async {
+    try {
+      LocalPropertySurvey datatodb = propertydata;
+      if (propertydata.isreldocphoto1 == 1) {
+        datatodb.isreldocphoto1 = 2;
+      }
+      if (propertydata.isreldocphoto2 == 1) {
+        datatodb.isreldocphoto2 = 2;
+      }
+      if (propertydata.isreldocphoto3 == 1) {
+        datatodb.isreldocphoto3 = 2;
+      }
+      if (propertydata.isreldocphoto4 == 1) {
+        datatodb.isreldocphoto4 = 2;
+      }
+      if (propertydata.isoddocphoto1 == 1) {
+        datatodb.isoddocphoto1 = 2;
+      }
+      if (propertydata.isoddocphoto6 == 1) {
+        datatodb.isoddocphoto6 = 2;
+      }
+      if (propertydata.isfirstpartner_photo == 1) {
+        datatodb.isfirstpartner_photo = 2;
+      }
+      if (propertydata.isinfophotonote1 == 1) {
+        datatodb.isinfophotonote1 = 2;
+      }
+      if (propertydata.isinfophototips1 == 1) {
+        datatodb.isinfophototips1 = 2;
+      }
+      if (propertydata.isinfophototips2 == 1) {
+        datatodb.isinfophototips2 = 2;
+      }
+      if (propertydata.issecond_partner_photo == 1) {
+        datatodb.issecond_partner_photo = 2;
+      }
+      if (propertydata.issecond_partner_photo_note1 == 1) {
+        datatodb.issecond_partner_photo_note1 = 2;
+      }
+      if (propertydata.issecond_partner_photo_tips1 == 1) {
+        datatodb.issecond_partner_photo_tips1 = 2;
+      }
+      if (propertydata.issecond_partner_photo_tips2 == 1) {
+        datatodb.issecond_partner_photo_tips2 = 2;
+      }
+      if (propertydata.isthird_partner_photo == 1) {
+        datatodb.isthird_partner_photo = 2;
+      }
+      if (propertydata.isthird_partner_photo_note1 == 1) {
+        datatodb.isthird_partner_photo_note1 = 2;
+      }
+      if (propertydata.isthird_partner_photo_tips1 == 1) {
+        datatodb.isthird_partner_photo_tips1 = 2;
+      }
+      if (propertydata.isthird_partner_photo_tips2 == 1) {
+        datatodb.isthird_partner_photo_tips2 = 2;
+      }
+      if (propertydata.isfourth_partner_photo == 1) {
+        datatodb.isfourth_partner_photo = 2;
+      }
+      if (propertydata.isfourth_partner_photo_note1 == 1) {
+        datatodb.isfourth_partner_photo_note1 = 2;
+      }
+      if (propertydata.isfourth_partner_photo_tips1 == 1) {
+        datatodb.isfourth_partner_photo_tips1 = 2;
+      }
+      if (propertydata.isfourth_partner_photo_tips2 == 1) {
+        datatodb.isfourth_partner_photo_tips2 = 2;
+      }
+      if (propertydata.isfifth_partner_photo == 1) {
+        datatodb.isfifth_partner_photo = 2;
+      }
+      if (propertydata.isfifth_partner_photo_note1 == 1) {
+        datatodb.isfifth_partner_photo_note1 = 2;
+      }
+      if (propertydata.isfifth_partner_photo_tips1 == 1) {
+        datatodb.isfifth_partner_photo_tips1 = 2;
+      }
+      if (propertydata.isfifth_partner_photo_tips2 == 1) {
+        datatodb.isfifth_partner_photo_tips2 = 2;
+      }
+      if (propertydata.ismeter_pic_bill_power == 1) {
+        datatodb.ismeter_pic_bill_power = 2;
+      }
+      if (propertydata.issafari_booklet_pic == 1) {
+        datatodb.issafari_booklet_pic = 2;
+      }
+      if (propertydata.ishome_sketch_map == 1) {
+        datatodb.ishome_sketch_map = 2;
+      }
+      if (propertydata.ishome_photo == 1) {
+        datatodb.ishome_photo = 2;
+      }
+      await DBHelper()
+          .updatePropertySurvey(datatodb, datatodb.local_property_key);
+    } catch (e) {
+      print(e);
+    }
   }
 }

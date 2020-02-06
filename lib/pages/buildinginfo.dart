@@ -37,13 +37,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
   FocusNode _fth_specifyif_other;
   FocusNode _fth_no_of_floors;
   FocusNode _fth_cubie_meter;
-  Future<String> appimagepicker() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
-    var apppath = await getApplicationDocumentsDirectory();
-    var filename = image.path.split("/").last;
-    var localfile = await image.copy('${apppath.path}/$filename');
-    return localfile.path;
-  }
 
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);

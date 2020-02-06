@@ -213,7 +213,30 @@ class _SurveyPageState extends State<SurveyPage> {
                     onPressed: () async {
                       if (surveydata.isdrafted == 1) {
                         //completed
-                        await AppSync().syncData(propertydata: surveydata);
+                        bool result= await AppSync().fileUpload(propertydata: surveydata);
+                        if(result){
+                           showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text(
+                                  "Done",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.red),
+                                ),
+                                content: Text("sync done"),
+                                actions: <Widget>[
+                                  FlatButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text("Ok"),
+                                  ),
+                                ],
+                              );
+                            });
+                        }
                       } else if (surveydata.isdrafted == 0) {
                         //if drafted
                         showDialog(

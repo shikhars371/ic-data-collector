@@ -23,13 +23,6 @@ class DetailsNumberAreaPage extends StatefulWidget {
 class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
-  Future<String> appimagepicker() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
-    var apppath = await getApplicationDocumentsDirectory();
-    var filename = image.path.split("/").last;
-    var localfile = await image.copy('${apppath.path}/$filename');
-    return localfile.path;
-  }
 
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
