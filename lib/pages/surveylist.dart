@@ -22,7 +22,36 @@ class _SurveyPageState extends State<SurveyPage> {
     return AppTranslations.of(context).text(key);
   }
 
+  double progressval = 0.0;
+
+  static double remap(
+      double value,
+      double originalMinValue,
+      double originalMaxValue,
+      double translatedMinValue,
+      double translatedMaxValue) {
+    if (originalMaxValue - originalMinValue == 0) return 0;
+    return (value - originalMinValue) /
+            (originalMaxValue - originalMinValue) *
+            (translatedMaxValue - translatedMinValue) +
+        translatedMinValue;
+  }
+
+  void _setUploadProgress(int sentBytes, int totalBytes) {
+    double __progressValue =
+        remap(sentBytes.toDouble(), 0, totalBytes.toDouble(), 0, 1);
+
+    __progressValue = double.parse(__progressValue.toStringAsFixed(2));
+
+    if (__progressValue != progressval)
+      setState(() {
+        progressval = __progressValue;
+      });
+  }
+
   Widget listcard({LocalPropertySurvey surveydata}) {
+    bool isprogress = false;
+    _setUploadProgress(0, 0);
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -211,32 +240,40 @@ class _SurveyPageState extends State<SurveyPage> {
                     icon: Icon(
                         surveydata.isdrafted == 2 ? Icons.check : Icons.sync),
                     onPressed: () async {
+                      setState(() {
+                        isprogress = true;
+                      });
                       if (surveydata.isdrafted == 1) {
                         //completed
-                        bool result= await AppSync().fileUpload(propertydata: surveydata);
-                        if(result){
-                           showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text(
-                                  "Done",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.red),
-                                ),
-                                content: Text("sync done"),
-                                actions: <Widget>[
-                                  FlatButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text("Ok"),
+                        bool result = await AppSync().fileUpload(
+                            propertydata: surveydata,
+                            uploadpreogress: _setUploadProgress);
+                        if (result) {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text(
+                                    "Done",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.red),
                                   ),
-                                ],
-                              );
-                            });
+                                  content: Text("sync done"),
+                                  actions: <Widget>[
+                                    FlatButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text("Ok"),
+                                    ),
+                                  ],
+                                );
+                              });
                         }
+                        setState(() {
+                          isprogress = false;
+                        });
                       } else if (surveydata.isdrafted == 0) {
                         //if drafted
                         showDialog(
@@ -249,7 +286,8 @@ class _SurveyPageState extends State<SurveyPage> {
                                       fontWeight: FontWeight.bold,
                                       color: Colors.red),
                                 ),
-                                content: Text("Please complete the survey before sync."),
+                                content: Text(
+                                    "Please complete the survey before sync."),
                                 actions: <Widget>[
                                   FlatButton(
                                     onPressed: () {
@@ -269,10 +307,20 @@ class _SurveyPageState extends State<SurveyPage> {
           ),
           Divider(
             color: Colors.black,
-          )
+          ),
+          isprogress
+              ? Container(
+                  padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                  child: LinearProgressIndicator(value: progressval),
+                )
+              : SizedBox()
         ],
       ),
     );
+  }
+
+  Widget syncProgress() {
+    
   }
 
   String getProvincename(String id) {

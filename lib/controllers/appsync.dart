@@ -87,14 +87,28 @@ class AppSync with ChangeNotifier {
               "doc_page_no": propertydata.document_page,
               "doc_reg_no": propertydata.doc_reg_number,
               "doc_property_area": propertydata.land_area_qawwala,
-              "doc_img_1": propertydata.property_doc_photo_1,
-              "doc_img_2": propertydata.property_doc_photo_2,
-              "doc_img_3": propertydata.property_doc_photo_3,
-              "doc_img_4": propertydata.property_doc_photo_4
+              "doc_img_1": propertydata.property_doc_photo_1?.isEmpty ?? true
+                  ? ""
+                  : (propertydata.property_doc_photo_1),
+              "doc_img_2": propertydata.property_doc_photo_2?.isEmpty ?? true
+                  ? ""
+                  : basename(propertydata.property_doc_photo_2),
+              "doc_img_3": propertydata.property_doc_photo_3?.isEmpty ?? true
+                  ? ""
+                  : basename(propertydata.property_doc_photo_3),
+              "doc_img_4": propertydata.property_doc_photo_4?.isEmpty ?? true
+                  ? ""
+                  : basename(propertydata.property_doc_photo_4)
             },
             "local_doc_specification": {
-              "local_doc_img_1": propertydata.odinary_doc_photo1,
-              "local_doc_img_2": propertydata.odinary_doc_photo6
+              "local_doc_img_1":
+                  propertydata.odinary_doc_photo1?.isEmpty ?? true
+                      ? ""
+                      : basename(propertydata.odinary_doc_photo1),
+              "local_doc_img_2":
+                  propertydata.odinary_doc_photo6?.isEmpty ?? true
+                      ? ""
+                      : basename(propertydata.odinary_doc_photo6)
             },
             "property_given_usage_type": propertydata.use_in_property_doc,
             "property_other_usage_type": propertydata.type_of_use_other,
@@ -118,7 +132,9 @@ class AppSync with ChangeNotifier {
               "gender": propertydata.first_partner_name_gender,
               "phone_no": propertydata.first_partner_name_phone,
               "emal": propertydata.first_partner_name_email,
-              "photo_person": propertydata.first_partner_name_property_owner,
+              "photo_person": propertydata.first_partner_name_property_owner?.isEmpty ?? true
+                  ? ""
+                  : basename(propertydata.first_partner_name_property_owner),
               "note_person": propertydata.first_partner_name_mere_individuals
             },
             "tazkira_information": {
@@ -126,9 +142,18 @@ class AppSync with ChangeNotifier {
               "tazkira_volume_no": propertydata.info_photo_hint_cover_note,
               "tazkira_page_no": propertydata.info_photo_hint_note_page,
               "tazkira_reg_no": propertydata.info_photo_hint_reg_no,
-              "tazkira_image_1": propertydata.info_photo_hint_photo_note1,
-              "tazkira_image_2": propertydata.info_photo_hint_photo_tips1,
-              "tazkira_image_3": propertydata.info_photo_hint_photo_tips2
+              "tazkira_image_1":
+                  propertydata.info_photo_hint_photo_note1?.isEmpty ?? true
+                      ? ""
+                      : basename(propertydata.info_photo_hint_photo_note1),
+              "tazkira_image_2":
+                  propertydata.info_photo_hint_photo_tips1?.isEmpty ?? true
+                      ? ""
+                      : basename(propertydata.info_photo_hint_photo_tips1),
+              "tazkira_image_3":
+                  propertydata.info_photo_hint_photo_tips2?.isEmpty ?? true
+                      ? ""
+                      : basename(propertydata.info_photo_hint_photo_tips2)
             },
             "property_partners_information": {
               "second_partner_info": "",
@@ -139,15 +164,26 @@ class AppSync with ChangeNotifier {
               "p2_gender": propertydata.second_partner_gender,
               "p2_phone_no": propertydata.second_partner_phone,
               "p2_email": propertydata.second_partner_email,
-              "p2_photo": propertydata.second_partner_image,
+              "p2_photo": propertydata.second_partner_image?.isEmpty ?? true
+                  ? ""
+                  : basename(propertydata.second_partner_image),
               "p2_tazkira_info": "",
               "p2_tazkira_serial_no": propertydata.second_partner_machinegun_no,
               "p2_tazkira_volume_no": propertydata.second_partner_cover_note,
               "p2_tazkira_page_no": propertydata.second_partner_note_page,
               "p2_tazkira_reg_no": propertydata.second_partner_reg_no,
-              "p2_tazkira_image_1": propertydata.second_partner_phote_note1,
-              "p2_tazkira_image_2": propertydata.second_partner_photo_tips1,
-              "p2_tazkira_image_3": propertydata.second_partner_photo_tips2,
+              "p2_tazkira_image_1":
+                  propertydata.second_partner_phote_note1?.isEmpty ?? true
+                      ? ""
+                      : basename(propertydata.second_partner_phote_note1),
+              "p2_tazkira_image_2":
+                  propertydata.second_partner_photo_tips1?.isEmpty ?? true
+                      ? ""
+                      : basename(propertydata.second_partner_photo_tips1),
+              "p2_tazkira_image_3":
+                  propertydata.second_partner_photo_tips2?.isEmpty ?? true
+                      ? ""
+                      : basename(propertydata.second_partner_photo_tips2),
               "third_partner_info": "",
               "p3_name": propertydata.third_partner_name,
               "p3_surname": propertydata.third_partner_surname,
@@ -156,15 +192,26 @@ class AppSync with ChangeNotifier {
               "p3_gender": propertydata.third_partner_gender,
               "p3_phone_no": propertydata.third_partner_phone,
               "p3_email": propertydata.third_partner_email,
-              "p3_photo": propertydata.third_partner_image,
+              "p3_photo": propertydata.third_partner_image?.isEmpty ?? true
+                  ? ""
+                  : basename(propertydata.third_partner_image),
               "p3_tazkira_info": "",
               "p3_tazkira_serial_no": propertydata.third_partner_machinegun_no,
               "p3_tazkira_volume_no": propertydata.third_partner_cover_note,
               "p3_tazkira_page_no": propertydata.third_partner_note_page,
               "p3_tazkira_reg_no": propertydata.third_partner_reg_no,
-              "p3_tazkira_image_1": propertydata.third_partner_phote_note1,
-              "p3_tazkira_image_2": propertydata.third_partner_photo_tips1,
-              "p3_tazkira_image_3": propertydata.third_partner_photo_tips2,
+              "p3_tazkira_image_1":
+                  propertydata.third_partner_phote_note1?.isEmpty ?? true
+                      ? ""
+                      : basename(propertydata.third_partner_phote_note1),
+              "p3_tazkira_image_2":
+                  propertydata.third_partner_photo_tips1?.isEmpty ?? true
+                      ? ""
+                      : basename(propertydata.third_partner_photo_tips1),
+              "p3_tazkira_image_3":
+                  propertydata.third_partner_photo_tips2?.isEmpty ?? true
+                      ? ""
+                      : basename(propertydata.third_partner_photo_tips2),
               "fourth_partner_info": "",
               "p4_name": propertydata.fourth_partner_name,
               "p4_surname": propertydata.fourth_partner_surname,
@@ -173,15 +220,26 @@ class AppSync with ChangeNotifier {
               "p4_gender": propertydata.fourth_partner_gender,
               "p4_phone_no": propertydata.fourth_partner_phone,
               "p4_email": propertydata.fourth_partner_email,
-              "p4_photo": propertydata.fourth_partner_image,
+              "p4_photo": propertydata.fourth_partner_image?.isEmpty ?? true
+                  ? ""
+                  : basename(propertydata.fourth_partner_image),
               "p4_tazkira_info": "",
               "p4_tazkira_serial_no": propertydata.fourth_partner_machinegun_no,
               "p4_tazkira_volume_no": propertydata.fourth_partner_cover_note,
               "p4_tazkira_page_no": propertydata.fourth_partner_note_page,
               "p4_tazkira_reg_no": propertydata.fourth_partner_reg_no,
-              "p4_tazkira_image_1": propertydata.fourth_partner_phote_note1,
-              "p4_tazkira_image_2": propertydata.fourth_partner_photo_tips1,
-              "p4_tazkira_image_3": propertydata.fourth_partner_photo_tips2,
+              "p4_tazkira_image_1":
+                  propertydata.fourth_partner_phote_note1?.isEmpty ?? true
+                      ? ""
+                      : basename(propertydata.fourth_partner_phote_note1),
+              "p4_tazkira_image_2":
+                  propertydata.fourth_partner_photo_tips1?.isEmpty ?? true
+                      ? ""
+                      : basename(propertydata.fourth_partner_photo_tips1),
+              "p4_tazkira_image_3":
+                  propertydata.fourth_partner_photo_tips2?.isEmpty ?? true
+                      ? ""
+                      : basename(propertydata.fourth_partner_photo_tips2),
               "fifth_partner_info": "",
               "p5_name": propertydata.fifth_partner_name,
               "p5_surname": propertydata.fifth_partner_surname,
@@ -190,15 +248,26 @@ class AppSync with ChangeNotifier {
               "p5_gender": propertydata.fifth_partner_gender,
               "p5_phone_no": propertydata.fifth_partner_phone,
               "p5_email": propertydata.fifth_partner_email,
-              "p5_photo": propertydata.fifth_partner_image,
+              "p5_photo": propertydata.fifth_partner_image?.isEmpty ?? true
+                  ? ""
+                  : basename(propertydata.fifth_partner_image),
               "p5_tazkira_info": "",
               "p5_tazkira_serial_no": propertydata.fifth_partner_machinegun_no,
               "p5_tazkira_volume_no": propertydata.fifth_partner_cover_note,
               "p5_tazkira_page_no": propertydata.fifth_partner_note_page,
               "p5_tazkira_reg_no": propertydata.fifth_partner_reg_no,
-              "p5_tazkira_image_1": propertydata.fifth_partner_phote_note1,
-              "p5_tazkira_image_2": propertydata.fifth_partner_photo_tips1,
-              "p5_tazkira_image_3": propertydata.fifth_partner_photo_tips2,
+              "p5_tazkira_image_1":
+                  propertydata.fifth_partner_phote_note1?.isEmpty ?? true
+                      ? ""
+                      : basename(propertydata.fifth_partner_phote_note1),
+              "p5_tazkira_image_2":
+                  propertydata.fifth_partner_photo_tips1?.isEmpty ?? true
+                      ? ""
+                      : basename(propertydata.fifth_partner_photo_tips1),
+              "p5_tazkira_image_3":
+                  propertydata.fifth_partner_photo_tips2?.isEmpty ?? true
+                      ? ""
+                      : basename(propertydata.fifth_partner_photo_tips2),
               "partners_note": ""
             },
             "property_boundaries_info": {
@@ -212,7 +281,10 @@ class AppSync with ChangeNotifier {
               "meter_no": propertydata.lightning_meter_no,
               "customer_name": propertydata.lightning_meter_no,
               "cuntomer_father_name": propertydata.lightning_father_name,
-              "ebill_img": propertydata.lightning_picture_bell_power
+              "ebill_img":
+                  propertydata.lightning_picture_bell_power?.isEmpty ?? true
+                      ? ""
+                      : basename(propertydata.lightning_picture_bell_power)
             },
             "sanitation_booklet_info": {
               "cust_name": propertydata.safari_booklet_common_name,
@@ -220,7 +292,10 @@ class AppSync with ChangeNotifier {
               "sanitation_booklet_serial_no":
                   propertydata.safari_booklet_machinegun_no,
               "issue_date": propertydata.safari_booklet_issue_date,
-              "sanitation_booklet_img": propertydata.safari_booklet_picture
+              "sanitation_booklet_img":
+                  propertydata.safari_booklet_picture?.isEmpty ?? true
+                      ? ""
+                      : basename(propertydata.safari_booklet_picture)
             },
             "property_user_info": {
               "owner_occupier": propertydata.property_user_owner,
@@ -273,8 +348,12 @@ class AppSync with ChangeNotifier {
                 "building_5_volume": propertydata.fth_cubie_meter
               }
             },
-            "Sketch": propertydata.home_map,
-            "HouseImage": propertydata.home_photo,
+            "Sketch": propertydata.home_map?.isEmpty ?? true
+                ? ""
+                : basename(propertydata.home_map),
+            "HouseImage": propertydata.home_photo?.isEmpty ?? true
+                ? ""
+                : basename(propertydata.home_photo),
             "code": propertydata.reg_property_fertilizer,
             "Units_Info": {
               "Residential_Area": propertydata.area_unit_release_area,
@@ -336,45 +415,6 @@ class AppSync with ChangeNotifier {
         //success
         result = true;
       }
-    } catch (e) {
-      print(e);
-    }
-    return result;
-  }
-
-  Future<bool> isFilesUploaded({LocalPropertySurvey propertydata}) async {
-    bool result = false;
-    try {
-      if (propertydata.isreldocphoto1 == 1) {}
-      if (propertydata.isreldocphoto2 == 1) {}
-      if (propertydata.isreldocphoto3 == 1) {}
-      if (propertydata.isreldocphoto4 == 1) {}
-      if (propertydata.isoddocphoto1 == 1) {}
-      if (propertydata.isoddocphoto6 == 1) {}
-      if (propertydata.isfirstpartner_photo == 1) {}
-      if (propertydata.isinfophotonote1 == 1) {}
-      if (propertydata.isinfophototips1 == 1) {}
-      if (propertydata.isinfophototips2 == 1) {}
-      if (propertydata.issecond_partner_photo == 1) {}
-      if (propertydata.issecond_partner_photo_note1 == 1) {}
-      if (propertydata.issecond_partner_photo_tips1 == 1) {}
-      if (propertydata.issecond_partner_photo_tips2 == 1) {}
-      if (propertydata.isthird_partner_photo == 1) {}
-      if (propertydata.isthird_partner_photo_note1 == 1) {}
-      if (propertydata.isthird_partner_photo_tips1 == 1) {}
-      if (propertydata.isthird_partner_photo_tips2 == 1) {}
-      if (propertydata.isfourth_partner_photo == 1) {}
-      if (propertydata.isfourth_partner_photo_note1 == 1) {}
-      if (propertydata.isfourth_partner_photo_tips1 == 1) {}
-      if (propertydata.isfourth_partner_photo_tips2 == 1) {}
-      if (propertydata.isfifth_partner_photo == 1) {}
-      if (propertydata.isfifth_partner_photo_note1 == 1) {}
-      if (propertydata.isfifth_partner_photo_tips1 == 1) {}
-      if (propertydata.isfifth_partner_photo_tips2 == 1) {}
-      if (propertydata.ismeter_pic_bill_power == 1) {}
-      if (propertydata.issafari_booklet_pic == 1) {}
-      if (propertydata.ishome_sketch_map == 1) {}
-      if (propertydata.ishome_photo == 1) {}
     } catch (e) {
       print(e);
     }
@@ -480,28 +520,13 @@ class AppSync with ChangeNotifier {
     return avaiblefiles;
   }
 
-  Future<FormData> imageForm({LocalPropertySurvey propertydata}) async {
-    FormData f = new FormData();
-    try {
-      List<String> data = dataFileList(propertydata: propertydata);
-      List<dynamic> formdata = [];
-      for (var item in data) {
-        formdata
-            .add(await MultipartFile.fromFile(item, filename: basename(item)));
-      }
-      f = FormData.fromMap({"files": formdata});
-    } catch (e) {
-      print(e);
-    }
-    return f;
-  }
-
   Future<bool> fileUpload(
       {LocalPropertySurvey propertydata,
       OnUploadProgressCallback uploadpreogress}) async {
     bool result = false;
     SharedPreferences preferences = await SharedPreferences.getInstance();
     try {
+      Response<dynamic> responce;
       var dio = Dio();
       final url = Configuration.apiurl + "surveydata";
       Options options = new Options(
@@ -509,25 +534,31 @@ class AppSync with ChangeNotifier {
           "Authorization": preferences.getString("accesstoken"),
         },
       );
-      // var f = FormData.fromMap({
-      //   "files": await MultipartFile.fromFile(file.path,
-      //       filename: basename(file.path)),
-      // });
-      var f = await imageForm(propertydata: propertydata);
-      var responce = await dio.post(url, options: options, data: f,
-          onSendProgress: (sent, total) {
-        print(sent.toString() + "-" + total.toString());
-        //uploadpreogress(sent, total);
-      });
+      List<String> data = dataFileList(propertydata: propertydata);
+      for (var item in data) {
+        var f = FormData.fromMap({
+          "files": await MultipartFile.fromFile(item, filename: basename(item)),
+        });
+        responce = await dio.post(url, options: options, data: f,
+            onSendProgress: (sent, total) {
+          print(sent.toString() + "-" + total.toString());
+          //uploadpreogress(sent, total);
+        });
+        if (!(responce.statusCode == 201)) {
+          break;
+        } else if (responce.statusCode == 401) {
+          //unauthorized
+          _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);
+        }
+      }
       if (responce.statusCode == 201) {
         //data uploaded
         await updateUploadstatus(propertydata: propertydata);
         var r = await syncData(propertydata: propertydata);
         result = r ? true : false;
-      } else if (responce.statusCode == 401) {
-        //unauthorized
-        _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);
-      }
+        propertydata.isdrafted = 2;
+        await updateUploadstatus(propertydata: propertydata);
+      } else {}
     } catch (e) {
       print(e);
     }

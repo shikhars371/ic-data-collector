@@ -20,33 +20,6 @@ class _GuidePageState extends State<GuidePage> {
     return AppTranslations.of(context).text(key);
   }
 
-  double progressval = 0.0;
-
-  static double remap(
-      double value,
-      double originalMinValue,
-      double originalMaxValue,
-      double translatedMinValue,
-      double translatedMaxValue) {
-    if (originalMaxValue - originalMinValue == 0) return 0;
-    return (value - originalMinValue) /
-            (originalMaxValue - originalMinValue) *
-            (translatedMaxValue - translatedMinValue) +
-        translatedMinValue;
-  }
-
-  void _setUploadProgress(int sentBytes, int totalBytes) {
-    double __progressValue =
-        remap(sentBytes.toDouble(), 0, totalBytes.toDouble(), 0, 1);
-
-    __progressValue = double.parse(__progressValue.toStringAsFixed(2));
-
-    if (__progressValue != progressval)
-      setState(() {
-        progressval = __progressValue;
-      });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,29 +37,7 @@ class _GuidePageState extends State<GuidePage> {
                 child: CircularProgressIndicator(),
               )
             : Column(
-                children: <Widget>[
-                  IconButton(
-                      icon: Icon(Icons.cloud_upload),
-                      onPressed: () async {
-                        var imagefile = await ImagePicker.pickImage(
-                            source: ImageSource.camera,imageQuality: 20);
-                        if (imagefile == null) {
-                          return;
-                        }
-                        _setUploadProgress(0, 0);
-                        try {
-                          // await AppSync().fs(
-                          //     file: imagefile,
-                          //     uploadpreogress: _setUploadProgress);
-                        } catch (e) {
-                          print(e);
-                        }
-                      }),
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                    child: LinearProgressIndicator(value: progressval),
-                  )
-                ],
+                children: <Widget>[],
               );
       }),
     );
