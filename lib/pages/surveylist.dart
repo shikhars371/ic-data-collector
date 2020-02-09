@@ -24,34 +24,9 @@ class _SurveyPageState extends State<SurveyPage> {
 
   double progressval = 0.0;
 
-  static double remap(
-      double value,
-      double originalMinValue,
-      double originalMaxValue,
-      double translatedMinValue,
-      double translatedMaxValue) {
-    if (originalMaxValue - originalMinValue == 0) return 0;
-    return (value - originalMinValue) /
-            (originalMaxValue - originalMinValue) *
-            (translatedMaxValue - translatedMinValue) +
-        translatedMinValue;
-  }
-
-  void _setUploadProgress(int sentBytes, int totalBytes) {
-    double __progressValue =
-        remap(sentBytes.toDouble(), 0, totalBytes.toDouble(), 0, 1);
-
-    __progressValue = double.parse(__progressValue.toStringAsFixed(2));
-
-    if (__progressValue != progressval)
-      setState(() {
-        progressval = __progressValue;
-      });
-  }
-
   Widget listcard({LocalPropertySurvey surveydata}) {
-    bool isprogress = false;
-    _setUploadProgress(0, 0);
+    //bool isprogress = false;
+    //_setUploadProgress(0, 0);
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -240,40 +215,14 @@ class _SurveyPageState extends State<SurveyPage> {
                     icon: Icon(
                         surveydata.isdrafted == 2 ? Icons.check : Icons.sync),
                     onPressed: () async {
-                      setState(() {
-                        isprogress = true;
-                      });
                       if (surveydata.isdrafted == 1) {
                         //completed
-                        bool result = await AppSync().fileUpload(
-                            propertydata: surveydata,
-                            uploadpreogress: _setUploadProgress);
-                        if (result) {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: Text(
-                                    "Done",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.red),
-                                  ),
-                                  content: Text("sync done"),
-                                  actions: <Widget>[
-                                    FlatButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: Text("Ok"),
-                                    ),
-                                  ],
-                                );
-                              });
-                        }
-                        setState(() {
-                          isprogress = false;
-                        });
+                        showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (BuildContext context) {
+                              return UploadData(propertydata: surveydata);
+                            });
                       } else if (surveydata.isdrafted == 0) {
                         //if drafted
                         showDialog(
@@ -308,20 +257,12 @@ class _SurveyPageState extends State<SurveyPage> {
           Divider(
             color: Colors.black,
           ),
-          isprogress
-              ? Container(
-                  padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                  child: LinearProgressIndicator(value: progressval),
-                )
-              : SizedBox()
         ],
       ),
     );
   }
 
-  Widget syncProgress() {
-    
-  }
+  Widget syncProgress() {}
 
   String getProvincename(String id) {
     var result = "";
@@ -818,6 +759,82 @@ class SurveySearch extends SearchDelegate<String> {
               },
             )
           : SizedBox(),
+    );
+  }
+}
+
+class UploadData extends StatefulWidget {
+  UploadData({this.propertydata});
+  final LocalPropertySurvey propertydata;
+  @override
+  _UploadDataState createState() => _UploadDataState();
+}
+
+class _UploadDataState extends State<UploadData> {
+  double progressval = 0.0;
+  String msgvalue = "";
+  void _setUploadProgress(int sentBytes, int totalBytes) {
+    double __progressValue =
+        remap(sentBytes.toDouble(), 0, totalBytes.toDouble(), 0, 1);
+
+    __progressValue = double.parse(__progressValue.toStringAsFixed(2));
+
+    if (__progressValue != progressval)
+      setState(() {
+        progressval = __progressValue;
+      });
+  }
+
+  static double remap(
+      double value,
+      double originalMinValue,
+      double originalMaxValue,
+      double translatedMinValue,
+      double translatedMaxValue) {
+    if (originalMaxValue - originalMinValue == 0) return 0;
+    return (value - originalMinValue) /
+            (originalMaxValue - originalMinValue) *
+            (translatedMaxValue - translatedMinValue) +
+        translatedMinValue;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _setUploadProgress(0, 0);
+    return AlertDialog(
+      content: Column(
+        children: <Widget>[
+          //progress bar
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+            child: LinearProgressIndicator(value: progressval),
+          ),
+          //start button
+          Container(
+            child: RaisedButton(
+              onPressed: () async {
+                var result = await AppSync().fileUpload(
+                    propertydata: widget.propertydata,
+                    uploadpreogress: _setUploadProgress);
+                if (result) {
+                  setState(() {
+                    msgvalue = "Sync Completed";
+                  });
+                } else {
+                  setState(() {
+                    msgvalue = "Sync Failed";
+                  });
+                }
+              },
+              child: Text("Start"),
+            ),
+          ),
+          //message
+          Container(
+            child: Text(msgvalue),
+          )
+        ],
+      ),
     );
   }
 }
