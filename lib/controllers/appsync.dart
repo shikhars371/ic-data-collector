@@ -132,7 +132,9 @@ class AppSync with ChangeNotifier {
               "gender": propertydata.first_partner_name_gender,
               "phone_no": propertydata.first_partner_name_phone,
               "emal": propertydata.first_partner_name_email,
-              "photo_person": propertydata.first_partner_name_property_owner?.isEmpty ?? true
+              "photo_person": propertydata
+                          .first_partner_name_property_owner?.isEmpty ??
+                      true
                   ? ""
                   : basename(propertydata.first_partner_name_property_owner),
               "note_person": propertydata.first_partner_name_mere_individuals
@@ -394,10 +396,13 @@ class AppSync with ChangeNotifier {
             "key": "",
             "status": "Survey Completed",
             "upin": propertydata.province +
-                propertydata.city +
+                "-" +
                 propertydata.area +
+                "-" +
                 propertydata.pass +
+                "-" +
                 propertydata.block +
+                "-" +
                 propertydata.part_number,
             "surveyor1_id": propertydata.surveyoroneid,
             "surveyor2_id": propertydata.surveyortwoid,
@@ -535,30 +540,37 @@ class AppSync with ChangeNotifier {
         },
       );
       List<String> data = dataFileList(propertydata: propertydata);
-      for (var item in data) {
-        var f = FormData.fromMap({
-          "files": await MultipartFile.fromFile(item, filename: basename(item)),
-        });
-        responce = await dio.post(url, options: options, data: f,
-            onSendProgress: (sent, total) {
-          print(sent.toString() + "-" + total.toString());
-          //uploadpreogress(sent, total);
-        });
-        if (!(responce.statusCode == 201)) {
-          break;
-        } else if (responce.statusCode == 401) {
-          //unauthorized
-          _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);
+      if (!(data?.isEmpty ?? true)) {
+        for (var item in data) {
+          var f = FormData.fromMap({
+            "files":
+                await MultipartFile.fromFile(item, filename: basename(item)),
+          });
+          responce = await dio.post(url, options: options, data: f,
+              onSendProgress: (sent, total) {
+            uploadpreogress(sent, total);
+          });
+          if (!(responce.statusCode == 201)) {
+            break;
+          } else if (responce.statusCode == 401) {
+            //unauthorized
+            _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);
+          }
         }
-      }
-      if (responce.statusCode == 201) {
-        //data uploaded
-        await updateUploadstatus(propertydata: propertydata);
+        if (responce.statusCode == 201) {
+          //data uploaded
+          await updateUploadstatus(propertydata: propertydata);
+          var r = await syncData(propertydata: propertydata);
+          result = r ? true : false;
+          propertydata.isdrafted = 2;
+          await updateUploadstatus(propertydata: propertydata);
+        } else {}
+      } else {
         var r = await syncData(propertydata: propertydata);
         result = r ? true : false;
         propertydata.isdrafted = 2;
         await updateUploadstatus(propertydata: propertydata);
-      } else {}
+      }
     } catch (e) {
       print(e);
     }

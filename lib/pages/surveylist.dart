@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:connectivity/connectivity.dart';
 
 import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
@@ -149,21 +150,24 @@ class _SurveyPageState extends State<SurveyPage> {
               child: Wrap(
                 direction: Axis.horizontal,
                 children: <Widget>[
-                  IconButton(
-                    iconSize: 25,
-                    icon: Icon(Icons.edit),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (BuildContext context) => SurveyInfoPage(
-                            surveyAssignment: widget.surveyassignment,
-                            localsurveykey: surveydata.local_property_key,
-                          ),
+                  surveydata.isdrafted == 2
+                      ? SizedBox()
+                      : IconButton(
+                          iconSize: 25,
+                          icon: Icon(Icons.edit),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    SurveyInfoPage(
+                                  surveyAssignment: widget.surveyassignment,
+                                  localsurveykey: surveydata.local_property_key,
+                                ),
+                              ),
+                            );
+                          },
                         ),
-                      );
-                    },
-                  ),
                   IconButton(
                     iconSize: 25,
                     icon: Icon(Icons.delete),
@@ -210,46 +214,50 @@ class _SurveyPageState extends State<SurveyPage> {
                           });
                     },
                   ),
-                  IconButton(
-                    iconSize: 25,
-                    icon: Icon(
-                        surveydata.isdrafted == 2 ? Icons.check : Icons.sync),
-                    onPressed: () async {
-                      if (surveydata.isdrafted == 1) {
-                        //completed
-                        showDialog(
-                            context: context,
-                            barrierDismissible: false,
-                            builder: (BuildContext context) {
-                              return UploadData(propertydata: surveydata);
-                            });
-                      } else if (surveydata.isdrafted == 0) {
-                        //if drafted
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text(
-                                  "Warning",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.red),
-                                ),
-                                content: Text(
-                                    "Please complete the survey before sync."),
-                                actions: <Widget>[
-                                  FlatButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text("Ok"),
-                                  ),
-                                ],
-                              );
-                            });
-                      }
-                    },
-                  ),
+                  surveydata.isdrafted == 2
+                      ? SizedBox()
+                      : IconButton(
+                          iconSize: 25,
+                          icon: Icon(Icons.sync),
+                          onPressed: () async {
+                            if (surveydata.isdrafted == 1) {
+                              //completed
+                              var result = await showDialog<bool>(
+                                  context: context,
+                                  barrierDismissible: false,
+                                  builder: (BuildContext context) {
+                                    return UploadData(propertydata: surveydata);
+                                  });
+                              if (!(result)) {
+                                setState(() {});
+                              }
+                            } else if (surveydata.isdrafted == 0) {
+                              //if drafted
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text(
+                                        "Warning",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.red),
+                                      ),
+                                      content: Text(
+                                          "Please complete the survey before sync."),
+                                      actions: <Widget>[
+                                        FlatButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text("Ok"),
+                                        ),
+                                      ],
+                                    );
+                                  });
+                            }
+                          },
+                        ),
                 ],
               ),
             ),
@@ -773,6 +781,7 @@ class UploadData extends StatefulWidget {
 class _UploadDataState extends State<UploadData> {
   double progressval = 0.0;
   String msgvalue = "";
+  bool selectenable = true;
   void _setUploadProgress(int sentBytes, int totalBytes) {
     double __progressValue =
         remap(sentBytes.toDouble(), 0, totalBytes.toDouble(), 0, 1);
@@ -807,38 +816,102 @@ class _UploadDataState extends State<UploadData> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      content: Column(
-        children: <Widget>[
-          //progress bar
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-            child: LinearProgressIndicator(value: progressval),
-          ),
-          //start button
-          Container(
-            child: RaisedButton(
-              onPressed: () async {
-                var result = await AppSync().fileUpload(
-                    propertydata: widget.propertydata,
-                    uploadpreogress: _setUploadProgress);
-                if (result) {
-                  setState(() {
-                    msgvalue = "Sync Completed";
-                  });
-                } else {
-                  setState(() {
-                    msgvalue = "Sync Failed";
-                  });
-                }
-              },
-              child: Text("Start"),
+      content: Container(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: Text(
+                "Sync Survey Data",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
-          ),
-          //message
-          Container(
-            child: Text(msgvalue),
-          )
-        ],
+            //progress bar
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+              child: LinearProgressIndicator(value: progressval),
+            ),
+            //start button
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                child: Wrap(
+                  direction: Axis.horizontal,
+                  children: <Widget>[
+                    RaisedButton(
+                      onPressed: selectenable
+                          ? () async {
+                              var connectivityResult =
+                                  await (Connectivity().checkConnectivity());
+                              if (connectivityResult ==
+                                      ConnectivityResult.mobile ||
+                                  connectivityResult ==
+                                      ConnectivityResult.wifi) {
+                                setState(() {
+                                  msgvalue = "Sync Progressing";
+                                });
+                                var result = await AppSync().fileUpload(
+                                    propertydata: widget.propertydata,
+                                    uploadpreogress: _setUploadProgress);
+                                if (result) {
+                                  setState(() {
+                                    msgvalue = "Sync Completed";
+                                    selectenable = false;
+                                  });
+                                } else {
+                                  setState(() {
+                                    msgvalue = "Sync Failed";
+                                  });
+                                }
+                              } else {
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Text(
+                                          "Warning",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.red),
+                                        ),
+                                        content: Text(
+                                            "Please check your internet connection"),
+                                        actions: <Widget>[
+                                          FlatButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text("Ok"),
+                                          ),
+                                        ],
+                                      );
+                                    });
+                              }
+                            }
+                          : null,
+                      child: Text("Start"),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    RaisedButton(
+                      onPressed: () {
+                        setState(() {});
+                        Navigator.of(context).pop(false);
+                      },
+                      child: Text("Cancel"),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            //message
+            Container(
+              child: Text(msgvalue),
+            )
+          ],
+        ),
       ),
     );
   }
