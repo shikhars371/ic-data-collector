@@ -799,8 +799,13 @@ class _UploadDataState extends State<UploadData> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     _setUploadProgress(0, 0);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return AlertDialog(
       content: Column(
         children: <Widget>[
