@@ -85,17 +85,19 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                   builder: (BuildContext context) {
                     return AlertDialog(
                       title: Text(
-                        "Warning",
+                        setapptext(key: 'key_warning'),
                         style: TextStyle(
                             fontWeight: FontWeight.bold, color: Colors.red),
                       ),
-                      content: Text("Unit Number Already Exist"),
+                      content: Text(
+                        setapptext(key: 'key_unit_exist'),
+                      ),
                       actions: <Widget>[
                         FlatButton(
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          child: Text("Ok"),
+                          child: Text(setapptext(key: 'key_ok')),
                         ),
                       ],
                     );
@@ -108,18 +110,19 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                     builder: (BuildContext context) {
                       return AlertDialog(
                         title: Text(
-                          "Warning",
+                          setapptext(key: 'key_warning'),
                           style: TextStyle(
                               fontWeight: FontWeight.bold, color: Colors.red),
                         ),
-                        content: Text(
-                            "This property Data already exist. So please go back and edit that or delete the existing and create new."),
+                        content: Text(setapptext(key: 'key_prop_data_exide')),
                         actions: <Widget>[
                           FlatButton(
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            child: Text("Ok"),
+                            child: Text(
+                              setapptext(key: 'key_ok'),
+                            ),
                           ),
                         ],
                       );

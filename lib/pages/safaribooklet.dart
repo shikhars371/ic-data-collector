@@ -343,7 +343,7 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                                                 .safari_booklet_issue_date
                                                                 ?.isEmpty ??
                                                             true
-                                                        ? "Not Set"
+                                                        ? setapptext(key:'kwy_notset')
                                                         : localdata
                                                             .safari_booklet_issue_date),
                                                     IconButton(

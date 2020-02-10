@@ -238,19 +238,21 @@ class _SurveyPageState extends State<SurveyPage> {
                                   builder: (BuildContext context) {
                                     return AlertDialog(
                                       title: Text(
-                                        "Warning",
+                                        setapptext(key: 'key_warning'),
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.red),
                                       ),
                                       content: Text(
-                                          "Please complete the survey before sync."),
+                                          setapptext(key: 'key_comp_sync')),
                                       actions: <Widget>[
                                         FlatButton(
                                           onPressed: () {
                                             Navigator.pop(context);
                                           },
-                                          child: Text("Ok"),
+                                          child: Text(
+                                            setapptext(key: 'key_ok'),
+                                          ),
                                         ),
                                       ],
                                     );
@@ -270,40 +272,38 @@ class _SurveyPageState extends State<SurveyPage> {
     );
   }
 
-  Widget syncProgress() {}
-
   String getProvincename(String id) {
     var result = "";
     switch (id) {
       case "01-01":
-        result = "Kabul";
+        result = setapptext(key: 'key_kabul');
         break;
       case "06-01":
-        result = "Nangarhar";
+        result = setapptext(key: 'key_nangarhar');
         break;
       case "33-01":
-        result = "Kandahar";
+        result = setapptext(key: 'key_Kandahar');
         break;
       case "10-01":
-        result = "Bamyan";
+        result = setapptext(key: 'key_Bamyan');
         break;
       case "22-01":
-        result = "Daikundi";
+        result = setapptext(key: 'key_Daikundi');
         break;
       case "17-01":
-        result = "Kundoz";
+        result = setapptext(key: 'key_Kundoz');
         break;
       case "18-01":
-        result = "Balkh";
+        result = setapptext(key: 'key_Balkh');
         break;
       case "30-01":
-        result = "Herat";
+        result = setapptext(key: 'key_Herat');
         break;
       case "03-01":
-        result = "Parwan";
+        result = setapptext(key: 'key_Parwan');
         break;
       case "04-01":
-        result = "Farah";
+        result = setapptext(key: 'key_Farah');
         break;
       default:
         result = id;
@@ -315,34 +315,34 @@ class _SurveyPageState extends State<SurveyPage> {
     var result = "";
     switch (id) {
       case "1":
-        result = "Kabul";
+        result = setapptext(key: 'key_kabul');
         break;
       case "2":
-        result = "Jalalabad";
+        result = setapptext(key: 'key_Jalalabad');
         break;
       case "3":
-        result = "Kandahar";
+        result = setapptext(key: 'key_Kandahar');
         break;
       case "4":
-        result = "Bamyan";
+        result = setapptext(key: 'key_Bamyan');
         break;
       case "5":
-        result = "Nili";
+        result = setapptext(key: 'key_Nili');
         break;
       case "6":
-        result = "Kundoz";
+        result = setapptext(key: 'key_Kundoz');
         break;
       case "7":
-        result = "Sharif";
+        result = setapptext(key: 'key_Sharif');
         break;
       case "8":
-        result = "Herat";
+        result = setapptext(key: 'key_Herat');
         break;
       case "9":
-        result = "Charikar";
+        result = setapptext(key: 'key_Charikar');
         break;
       case "10":
-        result = "Farah";
+        result = setapptext(key: 'key_Farah');
         break;
       default:
         result = id;
@@ -354,13 +354,13 @@ class _SurveyPageState extends State<SurveyPage> {
     var result = "";
     switch (status) {
       case 0: //Drafted
-        result = "Drafted";
+        result = setapptext(key: 'key_Drafted');
         break;
       case 1: //Completed
-        result = "Completed";
+        result = setapptext(key: 'key_completed');
         break;
       case 2: //Synced
-        result = "Synced";
+        result = setapptext(key: 'key_synced');
         break;
       default:
         result = "";
@@ -457,7 +457,7 @@ class _SurveyPageState extends State<SurveyPage> {
                 builder: (BuildContext context) {
                   return AlertDialog(
                     title: Text(
-                      "Warning",
+                      setapptext(key: 'key_warning'),
                       style: TextStyle(
                           fontWeight: FontWeight.bold, color: Colors.red),
                     ),
@@ -779,6 +779,10 @@ class UploadData extends StatefulWidget {
 }
 
 class _UploadDataState extends State<UploadData> {
+  String setapptext({String key}) {
+    return AppTranslations.of(context).text(key);
+  }
+
   double progressval = 0.0;
   String msgvalue = "";
   bool selectenable = true;
@@ -823,7 +827,7 @@ class _UploadDataState extends State<UploadData> {
             Padding(
               padding: EdgeInsets.all(10),
               child: Text(
-                "Sync Survey Data",
+                setapptext(key: 'key_sync_survey_data'),
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
@@ -849,19 +853,22 @@ class _UploadDataState extends State<UploadData> {
                                   connectivityResult ==
                                       ConnectivityResult.wifi) {
                                 setState(() {
-                                  msgvalue = "Sync Progressing";
+                                  msgvalue =
+                                      setapptext(key: 'key_sync_progress');
                                 });
                                 var result = await AppSync().fileUpload(
                                     propertydata: widget.propertydata,
                                     uploadpreogress: _setUploadProgress);
                                 if (result) {
                                   setState(() {
-                                    msgvalue = "Sync Completed";
+                                    msgvalue =
+                                        setapptext(key: 'key_sync_completed');
                                     selectenable = false;
                                   });
                                 } else {
                                   setState(() {
-                                    msgvalue = "Sync Failed";
+                                    msgvalue =
+                                        setapptext(key: 'key_sync_failed');
                                   });
                                 }
                               } else {
@@ -870,19 +877,21 @@ class _UploadDataState extends State<UploadData> {
                                     builder: (BuildContext context) {
                                       return AlertDialog(
                                         title: Text(
-                                          "Warning",
+                                          setapptext(key: 'key_warning'),
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               color: Colors.red),
                                         ),
-                                        content: Text(
-                                            "Please check your internet connection"),
+                                        content: Text(setapptext(
+                                            key: 'key_ckeck_internet')),
                                         actions: <Widget>[
                                           FlatButton(
                                             onPressed: () {
                                               Navigator.pop(context);
                                             },
-                                            child: Text("Ok"),
+                                            child: Text(
+                                              setapptext(key: 'key_ok'),
+                                            ),
                                           ),
                                         ],
                                       );
@@ -890,18 +899,19 @@ class _UploadDataState extends State<UploadData> {
                               }
                             }
                           : null,
-                      child: Text("Start"),
+                      child: Text(setapptext(key: 'key_start')),
                     ),
                     SizedBox(
                       width: 10,
                     ),
                     RaisedButton(
-                      onPressed: () {
-                        setState(() {});
-                        Navigator.of(context).pop(false);
-                      },
-                      child: Text("Cancel"),
-                    )
+                        onPressed: () {
+                          setState(() {});
+                          Navigator.of(context).pop(false);
+                        },
+                        child: Text(
+                          setapptext(key: "key_Cancel"),
+                        ))
                   ],
                 ),
               ),

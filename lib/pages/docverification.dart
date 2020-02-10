@@ -310,7 +310,7 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                     Text(localdata.issued_on
                                                                 ?.isEmpty ??
                                                             true
-                                                        ? "Not Set"
+                                                        ? setapptext(key:'kwy_notset')
                                                         : localdata.issued_on),
                                                     IconButton(
                                                         icon: Icon(

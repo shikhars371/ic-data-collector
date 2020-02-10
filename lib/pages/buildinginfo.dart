@@ -258,7 +258,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   padding: EdgeInsets.only(top: 7, bottom: 7),
                                   child: Center(
                                     child: Text(
-                                      "First Building Information",
+                                      setapptext(key: 'key_fst_building_info'),
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -541,7 +541,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   padding: EdgeInsets.only(top: 7, bottom: 7),
                                   child: Center(
                                     child: Text(
-                                      "Second Building Information",
+                                      setapptext(
+                                          key: 'key_second_building_info'),
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -816,7 +817,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   padding: EdgeInsets.only(top: 7, bottom: 7),
                                   child: Center(
                                     child: Text(
-                                      "Third Building Information",
+                                      setapptext(
+                                          key: 'key_third_building_info'),
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -1088,7 +1090,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   padding: EdgeInsets.only(top: 7, bottom: 7),
                                   child: Center(
                                     child: Text(
-                                      "Fourth Building Information",
+                                      setapptext(
+                                          key: 'key_fourth_building_info'),
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -1365,7 +1368,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   padding: EdgeInsets.only(top: 7, bottom: 7),
                                   child: Center(
                                     child: Text(
-                                      "Fifth Building Information",
+                                      setapptext(
+                                          key: 'key_fifth_builging_info'),
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                       ),
