@@ -74,6 +74,7 @@ class LocalisedAppState extends State<LocalisedApp> {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          fontFamily: 'Arvo',
           primaryColor: Colors.blue,
           secondaryHeaderColor: Colors.black,
         ),
