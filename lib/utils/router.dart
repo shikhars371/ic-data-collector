@@ -8,6 +8,7 @@ import '../pages/language.dart';
 import '../pages/guide.dart';
 import '../pages/help.dart';
 import '../pages/surveyinfo.dart';
+import '../main.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -25,6 +26,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => HelpPage());
     case routers.SurveyInfo:
       return MaterialPageRoute(builder: (context) => SurveyInfoPage(localdata: settings.arguments,));
+    case routers.Homepage:
+      return MaterialPageRoute(builder: (context) => MyHomePage());
     default:
       return MaterialPageRoute(
         builder: (context) => Scaffold(

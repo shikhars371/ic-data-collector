@@ -19,6 +19,9 @@ class DBHelper with ChangeNotifier {
   List<LocalPropertySurvey> _propertysurveys = [];
   List<LocalPropertySurvey> get propertysurveys => _propertysurveys;
 
+  int _currentLanguageIndex = 0;
+  int get currentLanguageIndex => _currentLanguageIndex;
+
   LocalPropertySurvey _singlepropertysurveys = new LocalPropertySurvey();
   LocalPropertySurvey get singlepropertysurveys => _singlepropertysurveys;
 
@@ -159,9 +162,13 @@ class DBHelper with ChangeNotifier {
     });
     await db.execute('''
       CREATE TABLE IF NOT EXISTS applanguage(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        language TEXT
+        language TEXT,languageval INTEGER
       )
+    ''').catchError((onError) {
+      print(onError);
+    });
+    await db.execute('''
+      INSERT INTO applanguage(language,languageval)VALUES('English',0)
     ''').catchError((onError) {
       print(onError);
     });
@@ -1045,6 +1052,41 @@ class DBHelper with ChangeNotifier {
       print(e);
     }
     return result;
+  }
+
+  Future<int> changeLanguage({String lang, int langvalue}) async {
+    int result = 0;
+    setState(AppState.Busy);
+    notifyListeners();
+    try {
+      var dbClient = await db;
+      String sqlquery = 'UPDATE applanguage SET language=?,languageval=?';
+      List<dynamic> params = [lang, langvalue];
+      result = await dbClient.rawUpdate(sqlquery, params);
+    } catch (e) {
+      print(e);
+    }
+    setState(AppState.Idle);
+    notifyListeners();
+    return result;
+  }
+
+  Future<int> getLanguage() async {
+    setState(AppState.Busy);
+    notifyListeners();
+    try {
+      var dbClient = await db;
+      List<Map> it =
+          await dbClient.rawQuery("select languageval from applanguage");
+      if (it.length > 0) {
+        _currentLanguageIndex = it[0]['languageval'];
+      }
+    } catch (e) {
+      print(e);
+    }
+    setState(AppState.Idle);
+    notifyListeners();
+    return _currentLanguageIndex;
   }
 
   Future close() async {

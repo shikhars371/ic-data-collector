@@ -7,3 +7,4 @@ const String GuideRoute = 'GuidePage';
 const String HelpRoute = 'HelpPage';
 const String SurveyInfo = "SurveyInfoPage";
 const String GeneralInfoOne = "GeneralInfoPage";
+const String Homepage = "Homepage";

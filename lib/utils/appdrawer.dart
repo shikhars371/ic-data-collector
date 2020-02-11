@@ -28,10 +28,10 @@ class _AppDrawerState extends State<AppDrawer> {
   String _email;
 
   final drawerItems = [
-    DrawerItem("Tasks", Icons.assignment), //page index = 0
-    DrawerItem("Language", Icons.language), //page index = 1
-    DrawerItem("Guide", Icons.book), //page index = 2
-    DrawerItem("Help", Icons.help), //page index = 2
+    DrawerItem("key_tasks", Icons.assignment), //page index = 0
+    DrawerItem("key_language", Icons.language), //page index = 1
+    DrawerItem("key_guide", Icons.book), //page index = 2
+    DrawerItem("key_help", Icons.help), //page index = 2
   ];
   @override
   void initState() {
@@ -96,7 +96,7 @@ class _AppDrawerState extends State<AppDrawer> {
       drawerOptions.add(
         new ListTile(
           leading: new Icon(d.icon),
-          title: new Text(d.title),
+          title: new Text(setapptext(key: d.title)),
           selected: i == _selectedDrawerIndex,
           onTap: () => _onSelectItem(i),
         ),

@@ -51,7 +51,7 @@ flutter:
    - assets/images/applogo.png
    - assets/locale/localization_pashto.json
    - assets/locale/localization_en.json
-   - assets/locale/localozation_dari.json
+   - assets/locale/localization_dari.json
 
   # example:arvo
   # fonts:

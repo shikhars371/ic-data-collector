@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:kapp/localization/app_translations.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
@@ -16,7 +17,6 @@ import './utils/locator.dart';
 import './utils/navigation_service.dart';
 import './utils/router.dart' as router;
 import './utils/route_paths.dart' as routes;
-import './utils/appproviders.dart';
 import './utils/db_helper.dart';
 
 Future<Null> main() async {
@@ -71,7 +71,6 @@ class LocalisedAppState extends State<LocalisedApp> {
           create: (_) => AppSync(),
         )
       ],
-      //providers: AppProviders().appproviders,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
@@ -81,7 +80,6 @@ class LocalisedAppState extends State<LocalisedApp> {
         home: MyHomePage(),
         navigatorKey: locator<NavigationService>().navigatorKey,
         onGenerateRoute: router.generateRoute,
-        //initialRoute: routes.LoginRoute,
         localizationsDelegates: [
           _newLocaleDelegate,
           GlobalMaterialLocalizations.delegate,
@@ -115,6 +113,23 @@ class _MyHomePageState extends State<MyHomePage> {
     return Timer(Duration(seconds: 2), onDoneLoading);
   }
 
+  String getLocaleCode({int id}) {
+    String result = "en";
+    switch (id) {
+      case 0:
+        result = "en";
+        break;
+      case 1:
+        result = "pashto";
+        break;
+      case 2:
+        result = "dari";
+        break;
+      default:
+    }
+    return result;
+  }
+
   void onDoneLoading() async {
     sharedPreferences = await SharedPreferences.getInstance();
     var access = sharedPreferences.getString("accesstoken");
@@ -127,6 +142,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
+    Future.delayed(Duration.zero).then((_) {
+      Provider.of<DBHelper>(context).getLanguage();
+    });
     DBHelper().initDatabase();
     loadData();
     super.initState();
@@ -134,14 +152,19 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // height: MediaQuery.of(context).size.height,
-      // width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage('assets/images/splashscreen.jpg'),
-            fit: BoxFit.fill),
-      ),
-    );
+    return Consumer<DBHelper>(builder: (context, data, child) {
+      AppTranslations.load(
+        Locale(
+          getLocaleCode(id: data.currentLanguageIndex),
+        ),
+      );
+      return Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/images/splashscreen.jpg'),
+              fit: BoxFit.fill),
+        ),
+      );
+    });
   }
 }
