@@ -591,11 +591,13 @@ class AppSync with ChangeNotifier {
           "Authorization": preferences.getString("accesstoken")
         });
         if (responce.statusCode == 200) {
-          String surveyor1 = json.decode(responce.body)['surveyor_1'];
-          String surveyor2 = json.decode(responce.body)['surveyor_2'];
-          if ((surveyor1 == preferences.getString('userid')) ||
-              (surveyor2 == preferences.getString('userid'))) {
-            result = true;
+          if (json.decode(responce.body)['active_status'].toString() == "0") {
+            String surveyor1 = json.decode(responce.body)['surveyor_1'];
+            String surveyor2 = json.decode(responce.body)['surveyor_2'];
+            if ((surveyor1 == preferences.getString('userid')) ||
+                (surveyor2 == preferences.getString('userid'))) {
+              result = true;
+            }
           }
         } else if (responce.statusCode == 401) {
           AuthModel().generateRefreshToken().then((_) {

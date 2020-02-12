@@ -27,248 +27,172 @@ class _SurveyPageState extends State<SurveyPage> {
   double progressval = 0.0;
 
   Widget listcard({LocalPropertySurvey surveydata}) {
-    //bool isprogress = false;
-    //_setUploadProgress(0, 0);
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
       ),
       padding: EdgeInsets.all(5.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Container(
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Column(
+      child: Card(
+        elevation: 4.0,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.only(left: 5),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text(getProvincename(surveydata.province) +
+                    "-" +
+                    getCity(surveydata.city) +
+                    "-" +
+                    surveydata.block +
+                    "-" +
+                    surveydata.part_number +
+                    "-" +
+                    surveydata.unit_number),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 5.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Align(
                     alignment: Alignment.topLeft,
-                    child: RichText(
-                      text: TextSpan(
-                        text: setapptext(key: 'key_province') + ":-",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.black),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: getProvincename(surveydata.province),
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: RichText(
-                      text: TextSpan(
-                        text: setapptext(key: 'key_city') + ":-",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.black),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: getCity(surveydata.city),
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: RichText(
-                      text: TextSpan(
-                        text: setapptext(key: 'key_only_block') + ":-",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.black),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: surveydata.block,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: RichText(
-                      text: TextSpan(
-                        text: setapptext(key: 'key_part') + ":-",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.black),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: surveydata.part_number,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: RichText(
-                      text: TextSpan(
-                        text: setapptext(key: 'key_unit_no') + ":-",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.black),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: surveydata.unit_number,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal),
-                          )
-                        ],
+                    child: Text(
+                      getStatus(surveydata.isdrafted),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: getStatusColor(surveydata.isdrafted),
                       ),
                     ),
                   ),
                   Align(
                     alignment: Alignment.topRight,
-                    child: Text(
-                      getStatus(surveydata.isdrafted),
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: getStatusColor(surveydata.isdrafted)),
+                    child: Wrap(
+                      direction: Axis.horizontal,
+                      children: <Widget>[
+                        surveydata.isdrafted == 2
+                            ? SizedBox()
+                            : IconButton(
+                                iconSize: 25,
+                                icon: Icon(Icons.edit,color: Colors.blue,),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          SurveyInfoPage(
+                                        surveyAssignment:
+                                            widget.surveyassignment,
+                                        localsurveykey:
+                                            surveydata.local_property_key,
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                        IconButton(
+                          iconSize: 25,
+                          icon: Icon(Icons.delete,color: Colors.redAccent,),
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (context) {
+                                  return CupertinoAlertDialog(
+                                    title: Text(
+                                        setapptext(key: 'key_want_to_delete')),
+                                    actions: <Widget>[
+                                      FlatButton(
+                                        onPressed: () async {
+                                          DBHelper()
+                                              .deletePropertySurvey(
+                                                  localkey: surveydata
+                                                      .local_property_key)
+                                              .then((_) {
+                                            Navigator.pop(context);
+                                            Provider.of<DBHelper>(context)
+                                                .getpropertysurveys(
+                                                    taskid: widget
+                                                        .surveyassignment.id);
+                                            setState(() {});
+                                          });
+                                        },
+                                        child: Text(
+                                          setapptext(key: 'key_delete'),
+                                          style: TextStyle(color: Colors.red),
+                                        ),
+                                      ),
+                                      FlatButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text(
+                                          setapptext(key: 'key_cancel'),
+                                          style: TextStyle(color: Colors.black),
+                                        ),
+                                      )
+                                    ],
+                                  );
+                                });
+                          },
+                        ),
+                        surveydata.isdrafted == 2
+                            ? SizedBox()
+                            : IconButton(
+                                iconSize: 25,
+                                icon: Icon(Icons.file_upload,color: Colors.green,),
+                                onPressed: () async {
+                                  if (surveydata.isdrafted == 1) {
+                                    //completed
+                                    var result = await showDialog<bool>(
+                                        context: context,
+                                        barrierDismissible: false,
+                                        builder: (BuildContext context) {
+                                          return UploadData(
+                                              propertydata: surveydata);
+                                        });
+                                    if (!(result)) {
+                                      setState(() {});
+                                    }
+                                  } else if (surveydata.isdrafted == 0) {
+                                    //if drafted
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text(
+                                              setapptext(key: 'key_warning'),
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.red),
+                                            ),
+                                            content: Text(setapptext(
+                                                key: 'key_comp_sync')),
+                                            actions: <Widget>[
+                                              FlatButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text(
+                                                  setapptext(key: 'key_ok'),
+                                                ),
+                                              ),
+                                            ],
+                                          );
+                                        });
+                                  }
+                                },
+                              ),
+                      ],
                     ),
                   )
                 ],
               ),
             ),
-          ),
-          Container(
-            child: Align(
-              alignment: Alignment.topRight,
-              child: Wrap(
-                direction: Axis.horizontal,
-                children: <Widget>[
-                  surveydata.isdrafted == 2
-                      ? SizedBox()
-                      : IconButton(
-                          iconSize: 25,
-                          icon: Icon(Icons.edit),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    SurveyInfoPage(
-                                  surveyAssignment: widget.surveyassignment,
-                                  localsurveykey: surveydata.local_property_key,
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                  IconButton(
-                    iconSize: 25,
-                    icon: Icon(Icons.delete),
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          barrierDismissible: false,
-                          builder: (context) {
-                            return CupertinoAlertDialog(
-                              title:
-                                  Text(setapptext(key: 'key_want_to_delete')),
-                              actions: <Widget>[
-                                FlatButton(
-                                  onPressed: () async {
-                                    DBHelper()
-                                        .deletePropertySurvey(
-                                            localkey:
-                                                surveydata.local_property_key)
-                                        .then((_) {
-                                      Navigator.pop(context);
-                                      Provider.of<DBHelper>(context)
-                                          .getpropertysurveys(
-                                              taskid:
-                                                  widget.surveyassignment.id);
-                                      setState(() {});
-                                    });
-                                  },
-                                  child: Text(
-                                    setapptext(key: 'key_delete'),
-                                    style: TextStyle(color: Colors.red),
-                                  ),
-                                ),
-                                FlatButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: Text(
-                                    setapptext(key: 'key_cancel'),
-                                    style: TextStyle(color: Colors.black),
-                                  ),
-                                )
-                              ],
-                            );
-                          });
-                    },
-                  ),
-                  surveydata.isdrafted == 2
-                      ? SizedBox()
-                      : IconButton(
-                          iconSize: 25,
-                          icon: Icon(Icons.sync),
-                          onPressed: () async {
-                            if (surveydata.isdrafted == 1) {
-                              //completed
-                              var result = await showDialog<bool>(
-                                  context: context,
-                                  barrierDismissible: false,
-                                  builder: (BuildContext context) {
-                                    return UploadData(propertydata: surveydata);
-                                  });
-                              if (!(result)) {
-                                setState(() {});
-                              }
-                            } else if (surveydata.isdrafted == 0) {
-                              //if drafted
-                              showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      title: Text(
-                                        setapptext(key: 'key_warning'),
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.red),
-                                      ),
-                                      content: Text(
-                                          setapptext(key: 'key_comp_sync')),
-                                      actions: <Widget>[
-                                        FlatButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Text(
-                                            setapptext(key: 'key_ok'),
-                                          ),
-                                        ),
-                                      ],
-                                    );
-                                  });
-                            }
-                          },
-                        ),
-                ],
-              ),
-            ),
-          ),
-          Divider(
-            color: Colors.black,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -264,7 +264,7 @@
     "key_in_progress": "In Progress",
     "key_completed": "Completed",
     "key_synced": "Synced",
-    "key_assigned_date": "Assigned Date -",
+    "key_assigned_date": "Date Assigned",
     "key_date_format_error": "Enter in correct date format",
     "key_text_format_error": "Only alphabets are allowed",
     "key_Property_Rights": "Property Rights",
@@ -290,5 +290,8 @@
     "key_Drafted": "Drafted",
     "key_validate_user_data": "Validating User Data",
     "key_uservalidate_msg": "Task is changed.Please Contact your admin. Press ok to delete the task or cancel to ignore.",
-    "key_something_wrong":"Something Went wrong.Please try Again"
+    "key_something_wrong": "Something Went wrong.Please try Again",
+    "key_status": "Status",
+    "key_continue": "Continue",
+    "key_gozar":"Gozar"
 }

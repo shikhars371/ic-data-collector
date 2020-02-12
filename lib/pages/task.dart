@@ -67,49 +67,84 @@ class _TaskPageState extends State<TaskPage> {
       String gozar,
       String area,
       String assigndate}) {
-    return GestureDetector(
-      onTap: () {
-        _navigationService.navigateTo(routeName: routes.SurveyRoute, parms: id);
-      },
-      child: Card(
-        elevation: 3.0,
-        child: Container(
-          decoration: BoxDecoration(
-            color: Color.fromRGBO(242, 239, 230, 1),
-          ),
-          padding: EdgeInsets.all(5.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  provinance + "-" + nahia + "-" + gozar + "-" + area,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
+    return Card(
+      elevation: 3.0,
+      child: Container(
+        decoration: BoxDecoration(
+            //color: Color.fromRGBO(242, 239, 230, 1),
+            ),
+        padding: EdgeInsets.all(5.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Align(
+              alignment: Alignment.topCenter,
+              child: Text(
+                provinance + "-" + nahia + "-" + gozar + "-" + area,
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              SizedBox(
-                height: 10,
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  setapptext(key: 'key_assigned_date') +
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Wrap(
+                  direction: Axis.vertical,
+                  children: <Widget>[
+                    Text(
+                      setapptext(key: 'key_assigned_date'),
+                    ),
+                    Text(
                       DateFormat.yMd().format(
                         DateTime.parse(assigndate),
                       ),
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )
+                  ],
+                ),
+                Wrap(
+                  direction: Axis.vertical,
+                  children: <Widget>[
+                    Text(
+                      setapptext(key: 'key_status'),
+                    ),
+                    Text(
+                      status,
+                      style: TextStyle(
+                          color: statuscolor, fontWeight: FontWeight.bold),
+                    )
+                  ],
+                ),
+              ],
+            ),
+            GestureDetector(
+              onTap: () {
+                _navigationService.navigateTo(
+                    routeName: routes.SurveyRoute, parms: id);
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Container(
+                  height: 20,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(blurRadius: 5.0, color: Colors.black)
+                      ],
+                      color: Colors.blue),
+                  margin: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.width / 3.5,
+                    right: MediaQuery.of(context).size.width / 3.5,
+                  ),
+                  child: Center(
+                    child: Text(
+                      setapptext(key: 'key_continue'),
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
+                  ),
                 ),
               ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  status,
-                  style: TextStyle(
-                      color: statuscolor, fontWeight: FontWeight.bold),
-                ),
-              )
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );
