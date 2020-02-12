@@ -9,6 +9,7 @@ import '../models/localpropertydata.dart';
 import './surveyinfo.dart';
 import '../models/surveyAssignment.dart';
 import '../controllers/appsync.dart';
+import './task.dart';
 
 class SurveyPage extends StatefulWidget {
   SurveyPage({this.surveyassignment});
@@ -854,22 +855,118 @@ class _UploadDataState extends State<UploadData> {
                                       ConnectivityResult.wifi) {
                                 setState(() {
                                   msgvalue =
-                                      setapptext(key: 'key_sync_progress');
+                                      setapptext(key: 'key_validate_user_data');
                                 });
-                                var result = await AppSync().fileUpload(
-                                    propertydata: widget.propertydata,
-                                    uploadpreogress: _setUploadProgress);
-                                if (result) {
+                                var r = await AppSync().validateUserData(
+                                    taskid: widget.propertydata.taskid);
+                                if (r) {
                                   setState(() {
                                     msgvalue =
-                                        setapptext(key: 'key_sync_completed');
-                                    selectenable = false;
+                                        setapptext(key: 'key_sync_progress');
                                   });
+                                  var result = await AppSync().fileUpload(
+                                      propertydata: widget.propertydata,
+                                      uploadpreogress: _setUploadProgress);
+                                  if (result) {
+                                    setState(() {
+                                      msgvalue =
+                                          setapptext(key: 'key_sync_completed');
+                                      selectenable = false;
+                                    });
+                                  } else {
+                                    setState(() {
+                                      msgvalue =
+                                          setapptext(key: 'key_sync_failed');
+                                    });
+                                  }
                                 } else {
                                   setState(() {
                                     msgvalue =
                                         setapptext(key: 'key_sync_failed');
                                   });
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: Text(
+                                            setapptext(key: 'key_warning'),
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.red),
+                                          ),
+                                          content: Text(
+                                            setapptext(
+                                                key: 'key_uservalidate_msg'),
+                                          ),
+                                          actions: <Widget>[
+                                            FlatButton(
+                                              onPressed: () async {
+                                                //delete whole task and its property survey
+                                                int res = await DBHelper()
+                                                    .deleteSurveyList(
+                                                        id: widget.propertydata
+                                                            .taskid);
+                                                if (res != 0) {
+                                                  Navigator.pushReplacement(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (BuildContext
+                                                              context) =>
+                                                          TaskPage(),
+                                                    ),
+                                                  );
+                                                } else {
+                                                  showDialog(
+                                                      context: context,
+                                                      builder: (BuildContext
+                                                          context) {
+                                                        return AlertDialog(
+                                                          title: Text(
+                                                            setapptext(
+                                                                key:
+                                                                    'key_warning'),
+                                                            style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                color:
+                                                                    Colors.red),
+                                                          ),
+                                                          content: Text(setapptext(
+                                                              key:
+                                                                  'key_something_wrong')),
+                                                          actions: <Widget>[
+                                                            FlatButton(
+                                                              onPressed: () {
+                                                                Navigator.pop(
+                                                                    context);
+                                                              },
+                                                              child: Text(
+                                                                setapptext(
+                                                                    key:
+                                                                        'key_ok'),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        );
+                                                      });
+                                                }
+                                              },
+                                              child: Text(
+                                                setapptext(key: 'key_ok'),
+                                              ),
+                                            ),
+                                            FlatButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text(
+                                                setapptext(key: 'key_Cancel'),
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      });
                                 }
                               } else {
                                 showDialog(

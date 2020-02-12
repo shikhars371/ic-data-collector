@@ -49,7 +49,7 @@ class DBHelper with ChangeNotifier {
           surveyoronename TEXT,surveyortwoname TEXT,
           province TEXT,municpality TEXT, nahia TEXT,gozar TEXT,
           block TEXT,propertytosurvey INTEGER,
-          startdate TEXT,duedate TEXT,isdeleted INTEGER DEFAULT 0,
+          startdate TEXT,duedate TEXT,updatedate TEXT,isdeleted INTEGER DEFAULT 0,
           issynced INTEGER DEFAULT 0,iscompleted INTEGER DEFAULT 0,isstatrted INTEGER DEFAULT 0
         )
         ''').catchError((onError) {
@@ -185,7 +185,7 @@ class DBHelper with ChangeNotifier {
           INSERT INTO surveylist(
           id,teamlead,teamleadname,surveyorone,surveyortwo,
           surveyoronename,surveyortwoname,province,municpality,
-          nahia,gozar,block,propertytosurvey,startdate,duedate)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+          nahia,gozar,block,propertytosurvey,startdate,duedate,updatedate)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
         ''';
           List<dynamic> params = [
             item.id,
@@ -202,9 +202,12 @@ class DBHelper with ChangeNotifier {
             item.block,
             item.property_to_survey,
             item.startDate,
-            item.due_date
+            item.due_date,
+            item.updatedate
           ];
           result = await dbClient.rawInsert(sqlquery, params);
+        } else {
+          await updateSurveyList(surveyAssignment: item);
         }
       }
     } catch (e) {
@@ -213,16 +216,66 @@ class DBHelper with ChangeNotifier {
     return result;
   }
 
+  Future<int> updateSurveyList({SurveyAssignment surveyAssignment}) async {
+    int result = 0;
+    try {
+      var dbClient = await db;
+
+      ///check if server update is changed
+      List<Map> surveylistmap = await dbClient.rawQuery('''
+        SELECT updatedate FROM surveylist WHERE id=?
+      ''', [surveyAssignment.id]);
+      if (surveylistmap.length > 0) {
+        ///if data exist
+        String currentupdatedate = surveylistmap[0]['updatedate'];
+        if (currentupdatedate != surveyAssignment.updatedate) {
+          ///if update date changed
+          String sqlquery = '''
+          UPDATE surveylist
+          SET propertytosurvey=?,startdate=?,duedate=?,updatedate=?
+          WHERE id=?
+       ''';
+          List<dynamic> params = [
+            surveyAssignment.property_to_survey,
+            surveyAssignment.startDate,
+            surveyAssignment.due_date,
+            surveyAssignment.updatedate,
+            surveyAssignment.id
+          ];
+          result = await dbClient.rawUpdate(sqlquery, params);
+        }
+      }
+    } catch (e) {
+      print(e);
+    }
+    return result;
+  }
+
+  Future<int> deleteSurveyList({String id}) async {
+    int result = 0;
+    try {
+      var dbClient = await db;
+      result = await dbClient
+          .delete('propertysurvey', where: 'taskid=?', whereArgs: [id]);
+      if (result != 0) {
+        result =
+            await dbClient.delete('surveylist', where: 'id=?', whereArgs: [id]);
+      }
+    } catch (e) {
+      print(e);
+    }
+    return result;
+  }
+
   Future<bool> isExist({String id}) async {
     bool result = false;
     try {
       var dbClient = await db;
-      List<String> idvalues = [];
-      List<Map> maps = await dbClient.rawQuery("SELECT id FROM surveylist");
-      for (var item in maps) {
-        idvalues.add(item['id']);
+      List<Map> maps =
+          await dbClient.rawQuery("SELECT id FROM surveylist WHERE id=?", [id]);
+      if (maps.length > 0) {
+        result = true;
       }
-      result = idvalues.contains(id);
     } catch (e) {
       print(e);
     }

@@ -19,6 +19,7 @@ class SurveyAssignment {
   int issynced;
   int iscompleted;
   int isstatrted;
+  String updatedate;
 
   SurveyAssignment(
       {this.id,
@@ -40,7 +41,8 @@ class SurveyAssignment {
       this.isdeleted,
       this.iscompleted,
       this.isstatrted,
-      this.issynced});
+      this.issynced,
+      this.updatedate});
 
   SurveyAssignment.fromJson(Map<String, dynamic> json)
       : id = json['_id'],
@@ -55,7 +57,8 @@ class SurveyAssignment {
         property_to_survey = json['property_to_survey'],
         startDate = json['start_date'],
         due_date = json['due_date'],
-        taskStatus = json['task_status'];
+        taskStatus = json['task_status'],
+        updatedate = json['updatedAt'];
 
   Map<String, dynamic> toJson() => {
         '_id': id,
@@ -70,6 +73,7 @@ class SurveyAssignment {
         'property_to_survey': property_to_survey,
         'start_date': startDate,
         'due_date': due_date,
-        'task_status': taskStatus
+        'task_status': taskStatus,
+        'updatedAt': updatedate
       };
 }

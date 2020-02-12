@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:kapp/controllers/auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:connectivity/connectivity.dart';
 
@@ -23,7 +24,6 @@ class TaskModel with ChangeNotifier {
 
   List<SurveyAssignment> _surveyAssignments = [];
   List<SurveyAssignment> get surveyAssignments => _surveyAssignments;
-  final NavigationService _navigationService = locator<NavigationService>();
 
   Future<List<SurveyAssignment>> getAssignments() async {
     var connectivityResult = await (Connectivity().checkConnectivity());
@@ -51,7 +51,9 @@ class TaskModel with ChangeNotifier {
                 .addSurveyList(surveyAssignments: _surveyAssignments);
           }
         } else if (responce.statusCode == 401) {
-          _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);
+          AuthModel().generateRefreshToken().then((_) {
+            getAssignments();
+          });
         }
       }
       _surveyAssignments = await DBHelper().getSurveys();
@@ -77,7 +79,9 @@ class TaskModel with ChangeNotifier {
         Map responseJson = json.decode(responce.body);
         result = responseJson['first_name'] + " " + responseJson['last_name'];
       } else if (responce.statusCode == 401) {
-        _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);
+        AuthModel().generateRefreshToken().then((_) {
+          getUserName(userid: userid);
+        });
       }
     } catch (e) {
       print(e);

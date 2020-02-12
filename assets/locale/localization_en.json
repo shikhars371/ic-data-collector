@@ -285,7 +285,10 @@
     "key_start": "Start",
     "key_Cancel": "Cancel",
     "key_sync_progress": "Sync Progressing",
-    "key_sync_completed":"Sync Completed",
-    "key_sync_failed":"Sync Failed",
-    "key_Drafted":"Drafted"
+    "key_sync_completed": "Sync Completed",
+    "key_sync_failed": "Sync Failed",
+    "key_Drafted": "Drafted",
+    "key_validate_user_data": "Validating User Data",
+    "key_uservalidate_msg": "Task is changed.Please Contact your admin. Press ok to delete the task or cancel to ignore.",
+    "key_something_wrong":"Something Went wrong.Please try Again"
 }

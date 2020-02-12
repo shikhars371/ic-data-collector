@@ -10,9 +10,6 @@ import 'package:path/path.dart';
 import './auth.dart';
 import '../models/localpropertydata.dart';
 import '../configs/configuration.dart';
-import '../utils/navigation_service.dart';
-import '../utils/route_paths.dart' as routes;
-import '../utils/locator.dart';
 import '../utils/db_helper.dart';
 
 typedef void OnUploadProgressCallback(int sentBytes, int totalBytes);
@@ -24,8 +21,6 @@ class AppSync with ChangeNotifier {
     _state = appState;
     notifyListeners();
   }
-
-  final NavigationService _navigationService = locator<NavigationService>();
 
   Future<bool> syncData({LocalPropertySurvey propertydata}) async {
     bool result = false;
@@ -369,7 +364,7 @@ class AppSync with ChangeNotifier {
             "deviceid": deviceuniqueid,
             "meta": {
               "instanceID": "",
-              "_id": "",
+              "_id": propertydata.taskid,
               "_uuid": "",
               "_submission_time": "",
               "_index": "",
@@ -419,6 +414,10 @@ class AppSync with ChangeNotifier {
       if (responce.statusCode == 201) {
         //success
         result = true;
+      } else if (responce.statusCode == 401) {
+        AuthModel().generateRefreshToken().then((_) {
+          syncData(propertydata: propertydata);
+        });
       }
     } catch (e) {
       print(e);
@@ -554,7 +553,10 @@ class AppSync with ChangeNotifier {
             break;
           } else if (responce.statusCode == 401) {
             //unauthorized
-            _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);
+            AuthModel().generateRefreshToken().then((_) {
+              fileUpload(
+                  propertydata: propertydata, uploadpreogress: uploadpreogress);
+            });
           }
         }
         if (responce.statusCode == 201) {
@@ -574,6 +576,38 @@ class AppSync with ChangeNotifier {
     } catch (e) {
       print(e);
     }
+    return result;
+  }
+
+  Future<bool> validateUserData({String taskid}) async {
+    setState(AppState.Busy);
+    bool result = false;
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    try {
+      if (!(taskid?.isEmpty ?? true)) {
+        var responce = await http
+            .get(Configuration.apiurl + "taskassignment/$taskid", headers: {
+          "Content-Type": "application/json",
+          "Authorization": preferences.getString("accesstoken")
+        });
+        if (responce.statusCode == 200) {
+          String surveyor1 = json.decode(responce.body)['surveyor_1'];
+          String surveyor2 = json.decode(responce.body)['surveyor_2'];
+          if ((surveyor1 == preferences.getString('userid')) ||
+              (surveyor2 == preferences.getString('userid'))) {
+            result = true;
+          }
+        } else if (responce.statusCode == 401) {
+          AuthModel().generateRefreshToken().then((_) {
+            validateUserData(taskid: taskid);
+          });
+        }
+      }
+    } catch (e) {
+      setState(AppState.Idle);
+      print(e);
+    }
+    setState(AppState.Idle);
     return result;
   }
 

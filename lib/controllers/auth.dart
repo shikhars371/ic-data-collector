@@ -5,10 +5,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/user.dart';
 import '../configs/configuration.dart';
+import '../utils/navigation_service.dart';
+import '../utils/route_paths.dart' as routes;
+import '../utils/locator.dart';
 
 enum AppState { Idle, Busy }
 
 class AuthModel with ChangeNotifier {
+  final NavigationService _navigationService = locator<NavigationService>();
   AppState _state = AppState.Idle;
   AppState get state => _state;
   void setState(AppState appState) {
@@ -20,10 +24,6 @@ class AuthModel with ChangeNotifier {
     setState(AppState.Busy);
     String result = "Invalid username or password.";
     try {
-      // var responce = await http.get(
-      //   Configuration.apiurl +
-      //       "auth?email=${user.email.trim()}&password=${user.password.trim()}",
-      // );
       var responce =
           await http.post(Configuration.apiurl + "authentication", body: {
         "strategy": "local",
@@ -39,8 +39,8 @@ class AuthModel with ChangeNotifier {
                   .trim() ==
               "yes") {
             saveCurrentLogin(
-              json.decode(responce.body),
-            );
+                responseJson: json.decode(responce.body),
+                password: user.password);
             result = "ok";
           } else {
             result = "Sorry, You are not a surveyor";
@@ -56,9 +56,32 @@ class AuthModel with ChangeNotifier {
     notifyListeners();
     return result;
   }
+  //if jwt token expired it generate new token
+  Future<void> generateRefreshToken() async {
+    setState(AppState.Busy);
+    try {
+      var preferences = await SharedPreferences.getInstance();
+      var responce =
+          await http.post(Configuration.apiurl + "authentication", body: {
+        "strategy": "local",
+        "email": preferences.getString('email'),
+        "password": preferences.getString('userpass')
+      });
+      if (responce.statusCode == 201) {
+        preferences.setString(
+            "accesstoken", json.decode(responce.body)['accessToken']);
+      } else {
+        _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);
+      }
+    } catch (e) {
+      setState(AppState.Idle);
+      print(e);
+    }
+    setState(AppState.Idle);
+  }
 }
 
-void saveCurrentLogin(Map responseJson) async {
+void saveCurrentLogin({Map responseJson, String password}) async {
   var preferences = await SharedPreferences.getInstance();
   preferences.setString("accesstoken", responseJson['accessToken']);
   preferences.setString("userid", responseJson['user']['_id']);
@@ -68,4 +91,5 @@ void saveCurrentLogin(Map responseJson) async {
   preferences.setString("username", responseJson['user']['user_name']);
   preferences.setString("email", responseJson['user']['email']);
   preferences.setString("activeStatus", responseJson['user']['active_status']);
+  preferences.setString("userpass", password.trim());
 }
