@@ -31,15 +31,12 @@ class _GuidePageState extends State<GuidePage> {
         ),
       ),
       drawer: AppDrawer(),
-      body: Consumer<AppSync>(builder: (context, data, child) {
-        return data.state == AppState.Busy
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : Column(
-                children: <Widget>[],
-              );
-      }),
+      body: Container(
+          child: FlatButton(
+              onPressed: () {
+                throw "Test exception";
+              },
+              child: Text("Error"))),
     );
   }
 }

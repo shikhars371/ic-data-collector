@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:device_info/device_info.dart';
 import 'package:dio/dio.dart';
 import 'package:path/path.dart';
+import 'package:catcher/catcher_plugin.dart';
 
 import './auth.dart';
 import '../models/localpropertydata.dart';
@@ -419,8 +420,8 @@ class AppSync with ChangeNotifier {
           syncData(propertydata: propertydata);
         });
       }
-    } catch (e) {
-      print(e);
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
     }
     return result;
   }
@@ -518,8 +519,8 @@ class AppSync with ChangeNotifier {
       if (propertydata.ishome_photo == 1) {
         avaiblefiles.add(propertydata.home_photo);
       }
-    } catch (e) {
-      print(e);
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
     }
     return avaiblefiles;
   }
@@ -573,8 +574,8 @@ class AppSync with ChangeNotifier {
         propertydata.isdrafted = 2;
         await updateUploadstatus(propertydata: propertydata);
       }
-    } catch (e) {
-      print(e);
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
     }
     return result;
   }
@@ -605,9 +606,8 @@ class AppSync with ChangeNotifier {
           });
         }
       }
-    } catch (e) {
-      setState(AppState.Idle);
-      print(e);
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
     }
     setState(AppState.Idle);
     return result;
@@ -708,8 +708,8 @@ class AppSync with ChangeNotifier {
       }
       await DBHelper()
           .updatePropertySurvey(datatodb, datatodb.local_property_key);
-    } catch (e) {
-      print(e);
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
     }
   }
 }

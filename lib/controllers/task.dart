@@ -4,12 +4,10 @@ import 'package:http/http.dart' as http;
 import 'package:kapp/controllers/auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:catcher/catcher_plugin.dart';
 
 import '../models/surveyAssignment.dart';
 import '../configs/configuration.dart';
-import '../utils/navigation_service.dart';
-import '../utils/route_paths.dart' as routes;
-import '../utils/locator.dart';
 import '../utils/db_helper.dart';
 
 enum AppState { Idle, Busy }
@@ -57,10 +55,9 @@ class TaskModel with ChangeNotifier {
         }
       }
       _surveyAssignments = await DBHelper().getSurveys();
-    } catch (e) {
+    } catch (error, stackTrace) {
       setState(AppState.Idle);
-      notifyListeners();
-      print(e);
+      Catcher.reportCheckedError(error, stackTrace);
     }
     setState(AppState.Idle);
     return _surveyAssignments;
@@ -83,8 +80,8 @@ class TaskModel with ChangeNotifier {
           getUserName(userid: userid);
         });
       }
-    } catch (e) {
-      print(e);
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
     }
     return result;
   }
@@ -101,8 +98,8 @@ class TaskModel with ChangeNotifier {
           modifiedassignment.add(item);
         }
       }
-    } catch (e) {
-      print(e);
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
     }
     return modifiedassignment;
   }

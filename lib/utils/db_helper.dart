@@ -3,6 +3,7 @@ import 'package:sqflite/sqflite.dart';
 import 'dart:io' as io;
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:catcher/catcher_plugin.dart';
 
 import '../models/surveyAssignment.dart';
 import '../controllers/auth.dart';
@@ -210,8 +211,8 @@ class DBHelper with ChangeNotifier {
           await updateSurveyList(surveyAssignment: item);
         }
       }
-    } catch (e) {
-      print("addsurveylist db error:" + e);
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
     }
     return result;
   }
@@ -245,8 +246,8 @@ class DBHelper with ChangeNotifier {
           result = await dbClient.rawUpdate(sqlquery, params);
         }
       }
-    } catch (e) {
-      print(e);
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
     }
     return result;
   }
@@ -261,8 +262,8 @@ class DBHelper with ChangeNotifier {
         result =
             await dbClient.delete('surveylist', where: 'id=?', whereArgs: [id]);
       }
-    } catch (e) {
-      print(e);
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
     }
     return result;
   }
@@ -276,8 +277,8 @@ class DBHelper with ChangeNotifier {
       if (maps.length > 0) {
         result = true;
       }
-    } catch (e) {
-      print(e);
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
     }
     return result;
   }
@@ -314,8 +315,8 @@ class DBHelper with ChangeNotifier {
           );
         }
       }
-    } catch (e) {
-      print(e);
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
     }
     return surveys;
   }
@@ -628,10 +629,9 @@ class DBHelper with ChangeNotifier {
       if (!check) {
         result = await dbClient.rawInsert(sqlquery, params);
       }
-    } catch (e) {
+    } catch (error, stackTrace) {
       setState(AppState.Idle);
-      notifyListeners();
-      print(e);
+      Catcher.reportCheckedError(error, stackTrace);
     }
     setState(AppState.Idle);
     notifyListeners();
@@ -646,8 +646,8 @@ class DBHelper with ChangeNotifier {
           'SELECT unit_number FROM propertysurvey WHERE unit_number=?',
           [unitno]);
       result = (maps?.isEmpty ?? true) ? false : true;
-    } catch (e) {
-      print(e);
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
     }
     return result;
   }
@@ -661,8 +661,8 @@ class DBHelper with ChangeNotifier {
       List<dynamic> params = [localkey];
       List<Map> maps = await dbClient.rawQuery(sqlquery, params);
       result = (maps?.isEmpty ?? true) ? false : true;
-    } catch (e) {
-      print(e);
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
     }
     return result;
   }
@@ -991,8 +991,8 @@ class DBHelper with ChangeNotifier {
         localkey
       ];
       result = await dbClient.rawUpdate(sqlquery, params);
-    } catch (e) {
-      print(e);
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
     }
     return result;
   }
@@ -1025,10 +1025,9 @@ class DBHelper with ChangeNotifier {
       List<Map> it = await dbClient.rawQuery(sqlquery, params);
       _propertysurveys =
           it.map((f) => LocalPropertySurvey.frommapobject(f)).toList();
-    } catch (e) {
+    } catch (error, stackTrace) {
       setState(AppState.Idle);
-      notifyListeners();
-      print(e);
+      Catcher.reportCheckedError(error, stackTrace);
     }
     setState(AppState.Idle);
     notifyListeners();
@@ -1048,10 +1047,9 @@ class DBHelper with ChangeNotifier {
       List<Map> it = await dbClient.rawQuery(sqlquery, params);
       _singlepropertysurveys =
           it.map((f) => LocalPropertySurvey.frommapobject(f)).first;
-    } catch (e) {
+    } catch (error, stackTrace) {
       setState(AppState.Idle);
-      notifyListeners();
-      print(e);
+      Catcher.reportCheckedError(error, stackTrace);
     }
     setState(AppState.Idle);
     notifyListeners();
@@ -1066,10 +1064,9 @@ class DBHelper with ChangeNotifier {
       var dbClient = await db;
       result = await dbClient.delete('propertysurvey',
           where: 'local_property_key=?', whereArgs: [localkey]);
-    } catch (e) {
+    } catch (error, stackTrace) {
       setState(AppState.Idle);
-      notifyListeners();
-      print(e);
+      Catcher.reportCheckedError(error, stackTrace);
     }
     setState(AppState.Idle);
     notifyListeners();
@@ -1087,8 +1084,8 @@ class DBHelper with ChangeNotifier {
       ''';
       List<dynamic> params = [taskid];
       result = await dbClient.rawUpdate(query, params);
-    } catch (e) {
-      print(e);
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
     }
     return result;
   }
@@ -1101,8 +1098,8 @@ class DBHelper with ChangeNotifier {
           '''select COUNT(id) as P FROM propertysurvey WHERE taskid=?''',
           [taskid]);
       result = assignedcount >= maps[0]['P'] ? false : true;
-    } catch (e) {
-      print(e);
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
     }
     return result;
   }
@@ -1116,8 +1113,8 @@ class DBHelper with ChangeNotifier {
       String sqlquery = 'UPDATE applanguage SET language=?,languageval=?';
       List<dynamic> params = [lang, langvalue];
       result = await dbClient.rawUpdate(sqlquery, params);
-    } catch (e) {
-      print(e);
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
     }
     setState(AppState.Idle);
     notifyListeners();
@@ -1134,8 +1131,8 @@ class DBHelper with ChangeNotifier {
       if (it.length > 0) {
         _currentLanguageIndex = it[0]['languageval'];
       }
-    } catch (e) {
-      print(e);
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
     }
     setState(AppState.Idle);
     notifyListeners();

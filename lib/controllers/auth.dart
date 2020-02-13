@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:catcher/catcher_plugin.dart';
 
 import '../models/user.dart';
 import '../configs/configuration.dart';
@@ -47,15 +48,16 @@ class AuthModel with ChangeNotifier {
           }
         }
       }
-    } catch (e) {
-      print(e);
+    } catch (error, stackTrace) {
       result = "Invalid username or password.";
       setState(AppState.Idle);
+      Catcher.reportCheckedError(error, stackTrace);
     }
     setState(AppState.Idle);
     notifyListeners();
     return result;
   }
+
   //if jwt token expired it generate new token
   Future<void> generateRefreshToken() async {
     setState(AppState.Busy);
@@ -73,9 +75,9 @@ class AuthModel with ChangeNotifier {
       } else {
         _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);
       }
-    } catch (e) {
+    } catch (error, stackTrace) {
       setState(AppState.Idle);
-      print(e);
+      Catcher.reportCheckedError(error, stackTrace);
     }
     setState(AppState.Idle);
   }

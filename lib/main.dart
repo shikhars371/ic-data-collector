@@ -21,9 +21,25 @@ import './utils/route_paths.dart' as routes;
 import './utils/db_helper.dart';
 
 Future<Null> main() async {
-
+  CatcherOptions debugOptions = CatcherOptions(DialogReportMode(), [
+    ToastHandler(
+        gravity: ToastHandlerGravity.bottom,
+        length: ToastHandlerLength.long,
+        backgroundColor: Colors.black),
+    ConsoleHandler(),
+    EmailAutoHandler("smtp.gmail.com", 587, "sparcappbugreporter@gmail.com",
+        "ocreporter", "sparc_123", ["saswat.srout@sparcindia.com"])
+  ]);
+  CatcherOptions releaseOptions = CatcherOptions(DialogReportMode(), [
+    EmailAutoHandler("smtp.gmail.com", 587, "sparcappbugreporter@gmail.com",
+        "ocreporter", "sparc_123", ["saswat.srout@sparcindia.com"]),
+  ]);
+  Catcher(LocalisedApp(),
+      debugConfig: debugOptions,
+      releaseConfig: releaseOptions,
+      navigatorKey: Catcher.navigatorKey);
   setupLocator();
-  runApp(LocalisedApp());
+  //runApp(LocalisedApp());
 }
 
 class LocalisedApp extends StatefulWidget {
