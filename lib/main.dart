@@ -7,6 +7,7 @@ import 'package:kapp/localization/app_translations.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
+import 'package:catcher/catcher_plugin.dart';
 
 import './controllers/auth.dart';
 import './controllers/task.dart';
@@ -20,12 +21,7 @@ import './utils/route_paths.dart' as routes;
 import './utils/db_helper.dart';
 
 Future<Null> main() async {
-  FlutterError.onError = (FlutterErrorDetails details) {
-    FlutterError.dumpErrorToConsole(details);
-    if (kReleaseMode) {
-      exit(1);
-    }
-  };
+
   setupLocator();
   runApp(LocalisedApp());
 }
