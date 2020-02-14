@@ -21,25 +21,37 @@ import './utils/route_paths.dart' as routes;
 import './utils/db_helper.dart';
 
 Future<Null> main() async {
-  CatcherOptions debugOptions = CatcherOptions(DialogReportMode(), [
-    ToastHandler(
-        gravity: ToastHandlerGravity.bottom,
-        length: ToastHandlerLength.long,
-        backgroundColor: Colors.black),
+  CatcherOptions debugOptions = CatcherOptions(SilentReportMode(), [
     ConsoleHandler(),
-    EmailAutoHandler("smtp.gmail.com", 587, "sparcappbugreporter@gmail.com",
-        "ocreporter", "sparc_123", ["saswat.srout@sparcindia.com"])
   ]);
-  CatcherOptions releaseOptions = CatcherOptions(DialogReportMode(), [
-    EmailAutoHandler("smtp.gmail.com", 587, "sparcappbugreporter@gmail.com",
-        "ocreporter", "sparc_123", ["saswat.srout@sparcindia.com"]),
+  CatcherOptions releaseOptions = CatcherOptions(SilentReportMode(), [
+    SlackHandler(
+        "https://hooks.slack.com/services/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",
+        "mobileapperror",
+        username: "Oc Data Collector App Error",
+        iconEmoji: ":thinking_face:",
+        enableDeviceParameters: true,
+        enableApplicationParameters: true,
+        enableCustomParameters: true,
+        enableStackTrace: true,
+        printLogs: true),
+    // EmailAutoHandler("smtp.gmail.com", 587, "sparcappbugreporter@gmail.com",
+    //     "ocreporter", "sparc_123", ["saswat.srout@sparcindia.com"]),
   ]);
-  Catcher(LocalisedApp(),
-      debugConfig: debugOptions,
-      releaseConfig: releaseOptions,
-      navigatorKey: Catcher.navigatorKey);
+  Catcher(
+    LocalisedApp(),
+    debugConfig: debugOptions,
+    releaseConfig: releaseOptions,
+  );
   setupLocator();
-  //runApp(LocalisedApp());
+  FlutterError.onError = (FlutterErrorDetails flutterErrorDetails) async {
+    if (!kReleaseMode) {
+      FlutterError.dumpErrorToConsole(flutterErrorDetails);
+    }
+    if (kReleaseMode) exit(1);
+    Catcher.reportCheckedError(
+        flutterErrorDetails.context, flutterErrorDetails.stack);
+  };
 }
 
 class LocalisedApp extends StatefulWidget {

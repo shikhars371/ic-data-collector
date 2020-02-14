@@ -25,6 +25,7 @@ class _LoginPageState extends State<LoginPage> {
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
   }
+
   @override
   void initState() {
     _email = FocusNode();
@@ -185,34 +186,37 @@ class _LoginPageState extends State<LoginPage> {
                                       return;
                                     },
                                     child: Padding(
-                                      padding: const EdgeInsets.all(10),
-                                      child: Container(
-                                        height: 30,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                  blurRadius: 5.0,
-                                                  color: Colors.black)
-                                            ],
-                                            color: Colors.blue),
-                                        margin: EdgeInsets.only(
-                                          left: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
-                                              5,
-                                          right: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
-                                              5,
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            setapptext(key: 'key_login'),
-                                            style: TextStyle(
-                                                fontSize: 20,
-                                                color: Colors.white),
+                                      padding: EdgeInsets.only(top: 20,bottom:15),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10),
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                    blurRadius: 5.0,
+                                                    color: Colors.black)
+                                              ],
+                                              color: Colors.blue),
+                                          margin: EdgeInsets.only(
+                                            left: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            right: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              setapptext(key: 'key_login'),
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  color: Colors.white),
+                                            ),
                                           ),
                                         ),
                                       ),

@@ -1,3 +1,4 @@
+import 'package:catcher/core/catcher.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -31,12 +32,6 @@ class _GuidePageState extends State<GuidePage> {
         ),
       ),
       drawer: AppDrawer(),
-      body: Container(
-          child: FlatButton(
-              onPressed: () {
-                throw "Test exception";
-              },
-              child: Text("Error"))),
     );
   }
 }
