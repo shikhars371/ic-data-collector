@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:kapp/localization/app_translations.dart';
+import 'package:kapp/utils/language_service.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
@@ -48,9 +49,9 @@ Future<Null> main() async {
     if (!kReleaseMode) {
       FlutterError.dumpErrorToConsole(flutterErrorDetails);
     }
-    if (kReleaseMode) exit(1);
     Catcher.reportCheckedError(
         flutterErrorDetails.context, flutterErrorDetails.stack);
+    if (kReleaseMode) exit(1);
   };
 }
 
@@ -183,6 +184,7 @@ class _MyHomePageState extends State<MyHomePage> {
           getLocaleCode(id: data.currentLanguageIndex),
         ),
       );
+      locator<LanguageService>().currentlanguage=data.currentLanguageIndex;
       return Container(
         decoration: BoxDecoration(
           image: DecorationImage(

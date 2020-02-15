@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../utils/locator.dart';
+import '../utils/language_service.dart';
+
 class Dpvalue {
   String name;
   String value;
@@ -73,22 +76,41 @@ Widget formcardtextfield(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Row(
+              mainAxisAlignment: locator<LanguageService>().currentlanguage == 0
+                  ? MainAxisAlignment.start
+                  : MainAxisAlignment.end,
               children: <Widget>[
-                completedcheckbox(isCompleted: radiovalue),
-                Flexible(
-                  child: Text(
-                    headerlablekey,
-                    overflow: TextOverflow.visible,
-                    softWrap: true,
-                    maxLines: 2,
-                    style: TextStyle(),
+                if (locator<LanguageService>().currentlanguage == 0) ...{
+                  completedcheckbox(isCompleted: radiovalue),
+                  Flexible(
+                    child: Text(
+                      headerlablekey,
+                      overflow: TextOverflow.visible,
+                      softWrap: true,
+                      maxLines: 2,
+                      style: TextStyle(),
+                    ),
                   ),
-                ),
+                } else ...{
+                  Flexible(
+                    child: Text(
+                      headerlablekey,
+                      overflow: TextOverflow.visible,
+                      softWrap: true,
+                      maxLines: 2,
+                      style: TextStyle(),
+                    ),
+                  ),
+                  completedcheckbox(isCompleted: radiovalue),
+                }
               ],
             ),
             Padding(
               padding: const EdgeInsets.only(left: 8, right: 8, bottom: 10),
               child: TextFormField(
+                textDirection: locator<LanguageService>().currentlanguage == 0
+                    ? TextDirection.ltr
+                    : TextDirection.rtl,
                 enabled: enable,
                 keyboardType: keyboardtype,
                 initialValue: initvalue?.isEmpty ?? true ? "" : initvalue,
@@ -139,15 +161,29 @@ Widget formCardDropdown(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Row(
+              mainAxisAlignment: locator<LanguageService>().currentlanguage == 0
+                  ? MainAxisAlignment.start
+                  : MainAxisAlignment.end,
               children: <Widget>[
-                completedcheckbox(isCompleted: iscompleted),
-                Flexible(
-                  child: Text(
-                    headerlablekey,
-                    style: TextStyle(),
-                    overflow: TextOverflow.ellipsis,
+                if (locator<LanguageService>().currentlanguage == 0) ...[
+                  completedcheckbox(isCompleted: iscompleted),
+                  Flexible(
+                    child: Text(
+                      headerlablekey,
+                      style: TextStyle(),
+                      //overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                ),
+                ] else ...[
+                  Flexible(
+                    child: Text(
+                      headerlablekey,
+                      style: TextStyle(),
+                      //overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  completedcheckbox(isCompleted: iscompleted),
+                ]
               ],
             ),
             Padding(
@@ -158,7 +194,9 @@ Widget formCardDropdown(
                   items: dropdownitems.map((Dpvalue data) {
                     return DropdownMenuItem<String>(
                       value: data.value,
-                      child: Text(data.name),
+                      child: Text(
+                        data.name,
+                      ),
                     );
                   }).toList(),
                   validator: validate,

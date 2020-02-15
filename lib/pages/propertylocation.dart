@@ -183,6 +183,84 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
     );
   }
 
+  String getProvincename(String id) {
+    var result = "";
+    switch (id) {
+      case "01-01":
+        result = setapptext(key: 'key_kabul');
+        break;
+      case "06-01":
+        result = setapptext(key: 'key_nangarhar');
+        break;
+      case "33-01":
+        result = setapptext(key: 'key_Kandahar');
+        break;
+      case "10-01":
+        result = setapptext(key: 'key_Bamyan');
+        break;
+      case "22-01":
+        result = setapptext(key: 'key_Daikundi');
+        break;
+      case "17-01":
+        result = setapptext(key: 'key_Kundoz');
+        break;
+      case "18-01":
+        result = setapptext(key: 'key_Balkh');
+        break;
+      case "30-01":
+        result = setapptext(key: 'key_Herat');
+        break;
+      case "03-01":
+        result = setapptext(key: 'key_Parwan');
+        break;
+      case "04-01":
+        result = setapptext(key: 'key_Farah');
+        break;
+      default:
+        result = id;
+    }
+    return result;
+  }
+
+  String getCity(String id) {
+    var result = "";
+    switch (id) {
+      case "1":
+        result = setapptext(key: 'key_kabul');
+        break;
+      case "2":
+        result = setapptext(key: 'key_Jalalabad');
+        break;
+      case "3":
+        result = setapptext(key: 'key_Kandahar');
+        break;
+      case "4":
+        result = setapptext(key: 'key_Bamyan');
+        break;
+      case "5":
+        result = setapptext(key: 'key_Nili');
+        break;
+      case "6":
+        result = setapptext(key: 'key_Kundoz');
+        break;
+      case "7":
+        result = setapptext(key: 'key_Sharif');
+        break;
+      case "8":
+        result = setapptext(key: 'key_Herat');
+        break;
+      case "9":
+        result = setapptext(key: 'key_Charikar');
+        break;
+      case "10":
+        result = setapptext(key: 'key_Farah');
+        break;
+      default:
+        result = id;
+    }
+    return result;
+  }
+
   @override
   void initState() {
     localdata = new LocalPropertySurvey();
@@ -227,128 +305,165 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                           Expanded(
                             child: ListView(
                               children: <Widget>[
-                                formCardDropdown(
-                                    iscompleted:
-                                        ((localdata.province?.isEmpty ??
-                                                    true) ||
-                                                (localdata.province == "0"))
-                                            ? false
-                                            : true,
-                                    headerlablekey:
-                                        setapptext(key: 'key_select_province'),
-                                    dropdownitems: [
-                                      Dpvalue(
-                                          name: setapptext(
-                                              key: 'key_none_selected'),
-                                          value: "0"),
-                                      Dpvalue(
-                                          name: setapptext(key: 'key_kabul'),
-                                          value: "01-01"),
-                                      Dpvalue(
-                                          name:
-                                              setapptext(key: 'key_nangarhar'),
-                                          value: "06-01"),
-                                      Dpvalue(
-                                          name: setapptext(key: 'key_Kandahar'),
-                                          value: "33-01"),
-                                      Dpvalue(
-                                          name: setapptext(key: 'key_Bamyan'),
-                                          value: "10-01"),
-                                      Dpvalue(
-                                          name: setapptext(key: 'key_Daikundi'),
-                                          value: "22-01"),
-                                      Dpvalue(
-                                          name: setapptext(key: 'key_Kundoz'),
-                                          value: "17-01"),
-                                      Dpvalue(
-                                          name: setapptext(key: 'key_Balkh'),
-                                          value: "18-01"),
-                                      Dpvalue(
-                                          name: setapptext(key: 'key_Herat'),
-                                          value: "30-01"),
-                                      Dpvalue(
-                                          name: setapptext(key: 'key_Parwan'),
-                                          value: "03-01"),
-                                      Dpvalue(
-                                          name: setapptext(key: 'key_Farah'),
-                                          value: "04-01")
-                                    ],
-                                    onChanged: (value) {
-                                      localdata.province = value;
-                                      setState(() {});
-                                    },
-                                    onSaved: (value) {
-                                      localdata.province = value;
-                                    },
-                                    value: localdata.province?.isEmpty ?? true
-                                        ? "0"
-                                        : localdata.province,
-                                    validate: (value) {
-                                      if ((value.isEmpty) || value == "0") {
-                                        return setapptext(key: 'key_required');
-                                      }
-                                    }),
-                                formCardDropdown(
-                                    iscompleted:
-                                        ((localdata.city?.isEmpty ?? true) ||
-                                                (localdata.city == "0"))
-                                            ? false
-                                            : true,
-                                    headerlablekey:
-                                        setapptext(key: 'key_select_city'),
-                                    dropdownitems: [
-                                      Dpvalue(
-                                          name: setapptext(
-                                              key: 'key_none_selected'),
-                                          value: "0"),
-                                      Dpvalue(
-                                          name: setapptext(key: 'key_kabul'),
-                                          value: "1"),
-                                      Dpvalue(
-                                          name:
-                                              setapptext(key: 'key_Jalalabad'),
-                                          value: "2"),
-                                      Dpvalue(
-                                          name: setapptext(key: 'key_Kandahar'),
-                                          value: "3"),
-                                      Dpvalue(
-                                          name: setapptext(key: 'key_Bamyan'),
-                                          value: "4"),
-                                      Dpvalue(
-                                          name: setapptext(key: 'key_Nili'),
-                                          value: "5"),
-                                      Dpvalue(
-                                          name: setapptext(key: 'key_Kundoz'),
-                                          value: "6"),
-                                      Dpvalue(
-                                          name: setapptext(key: 'key_Sharif'),
-                                          value: "7"),
-                                      Dpvalue(
-                                          name: setapptext(key: 'key_Herat'),
-                                          value: "8"),
-                                      Dpvalue(
-                                          name: setapptext(key: 'key_Charikar'),
-                                          value: "9"),
-                                      Dpvalue(
-                                          name: setapptext(key: 'key_Farah'),
-                                          value: "10")
-                                    ],
-                                    onChanged: (value) {
-                                      localdata.city = value;
+                                formcardtextfield(
+                                  enable: false,
+                                  initvalue: localdata.province?.isEmpty ?? true
+                                      ? ""
+                                      : getProvincename(localdata.province),
+                                  headerlablekey:
+                                      setapptext(key: 'key_select_province'),
+                                  radiovalue:
+                                      localdata.province?.isEmpty ?? true
+                                          ? false
+                                          : true,
+                                  // onSaved: (value) {
+                                  //   localdata.province = value.trim();
+                                  // },
+                                  // onChanged: (value) {
+                                  //   localdata.province = value.trim();
+                                  //   setState(() {});
+                                  // }
+                                ),
+                                formcardtextfield(
+                                  enable: false,
+                                  initvalue: localdata.city?.isEmpty ?? true
+                                      ? ""
+                                      : getCity(localdata.city),
+                                  headerlablekey:
+                                      setapptext(key: 'key_select_city'),
+                                  radiovalue: localdata.city?.isEmpty ?? true
+                                      ? false
+                                      : true,
+                                  // onSaved: (value) {
+                                  //   localdata.province = value.trim();
+                                  // },
+                                  // onChanged: (value) {
+                                  //   localdata.province = value.trim();
+                                  //   setState(() {});
+                                  // }
+                                ),
+                                // formCardDropdown(
+                                //     iscompleted:
+                                //         ((localdata.province?.isEmpty ??
+                                //                     true) ||
+                                //                 (localdata.province == "0"))
+                                //             ? false
+                                //             : true,
+                                //     headerlablekey:
+                                //         setapptext(key: 'key_select_province'),
+                                //     dropdownitems: [
+                                //       Dpvalue(
+                                //           name: setapptext(
+                                //               key: 'key_none_selected'),
+                                //           value: "0"),
+                                //       Dpvalue(
+                                //           name: setapptext(key: 'key_kabul'),
+                                //           value: "01-01"),
+                                //       Dpvalue(
+                                //           name:
+                                //               setapptext(key: 'key_nangarhar'),
+                                //           value: "06-01"),
+                                //       Dpvalue(
+                                //           name: setapptext(key: 'key_Kandahar'),
+                                //           value: "33-01"),
+                                //       Dpvalue(
+                                //           name: setapptext(key: 'key_Bamyan'),
+                                //           value: "10-01"),
+                                //       Dpvalue(
+                                //           name: setapptext(key: 'key_Daikundi'),
+                                //           value: "22-01"),
+                                //       Dpvalue(
+                                //           name: setapptext(key: 'key_Kundoz'),
+                                //           value: "17-01"),
+                                //       Dpvalue(
+                                //           name: setapptext(key: 'key_Balkh'),
+                                //           value: "18-01"),
+                                //       Dpvalue(
+                                //           name: setapptext(key: 'key_Herat'),
+                                //           value: "30-01"),
+                                //       Dpvalue(
+                                //           name: setapptext(key: 'key_Parwan'),
+                                //           value: "03-01"),
+                                //       Dpvalue(
+                                //           name: setapptext(key: 'key_Farah'),
+                                //           value: "04-01")
+                                //     ],
+                                //     onChanged: (value) {
+                                //       localdata.province = value;
+                                //       setState(() {});
+                                //     },
+                                //     onSaved: (value) {
+                                //       localdata.province = value;
+                                //     },
+                                //     value: localdata.province?.isEmpty ?? true
+                                //         ? "0"
+                                //         : localdata.province,
+                                //     validate: (value) {
+                                //       if ((value.isEmpty) || value == "0") {
+                                //         return setapptext(key: 'key_required');
+                                //       }
+                                //     }),
+                                // formCardDropdown(
+                                //     iscompleted:
+                                //         ((localdata.city?.isEmpty ?? true) ||
+                                //                 (localdata.city == "0"))
+                                //             ? false
+                                //             : true,
+                                //     headerlablekey:
+                                //         setapptext(key: 'key_select_city'),
+                                //     dropdownitems: [
+                                //       Dpvalue(
+                                //           name: setapptext(
+                                //               key: 'key_none_selected'),
+                                //           value: "0"),
+                                //       Dpvalue(
+                                //           name: setapptext(key: 'key_kabul'),
+                                //           value: "1"),
+                                //       Dpvalue(
+                                //           name:
+                                //               setapptext(key: 'key_Jalalabad'),
+                                //           value: "2"),
+                                //       Dpvalue(
+                                //           name: setapptext(key: 'key_Kandahar'),
+                                //           value: "3"),
+                                //       Dpvalue(
+                                //           name: setapptext(key: 'key_Bamyan'),
+                                //           value: "4"),
+                                //       Dpvalue(
+                                //           name: setapptext(key: 'key_Nili'),
+                                //           value: "5"),
+                                //       Dpvalue(
+                                //           name: setapptext(key: 'key_Kundoz'),
+                                //           value: "6"),
+                                //       Dpvalue(
+                                //           name: setapptext(key: 'key_Sharif'),
+                                //           value: "7"),
+                                //       Dpvalue(
+                                //           name: setapptext(key: 'key_Herat'),
+                                //           value: "8"),
+                                //       Dpvalue(
+                                //           name: setapptext(key: 'key_Charikar'),
+                                //           value: "9"),
+                                //       Dpvalue(
+                                //           name: setapptext(key: 'key_Farah'),
+                                //           value: "10")
+                                //     ],
+                                //     onChanged: (value) {
+                                //       localdata.city = value;
 
-                                      setState(() {});
-                                    },
-                                    onSaved: (value) {
-                                      localdata.city = value;
-                                    },
-                                    value: localdata.city?.isEmpty ?? true
-                                        ? "0"
-                                        : localdata.city,
-                                    validate: (value) {
-                                      if ((value.isEmpty) || value == "0") {
-                                        return setapptext(key: 'key_required');
-                                      }
-                                    }),
+                                //       setState(() {});
+                                //     },
+                                //     onSaved: (value) {
+                                //       localdata.city = value;
+                                //     },
+                                //     value: localdata.city?.isEmpty ?? true
+                                //         ? "0"
+                                //         : localdata.city,
+                                //     validate: (value) {
+                                //       if ((value.isEmpty) || value == "0") {
+                                //         return setapptext(key: 'key_required');
+                                //       }
+                                //     }),
                                 formcardtextfield(
                                     enable: false,
                                     keyboardtype: TextInputType.number,
@@ -639,6 +754,10 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     },
                                     onChanged: (value) {
                                       localdata.land_area = value.trim();
+                                      _land_area.unfocus();
+                                      _historic_site_area.unfocus();
+                                      _street_name.unfocus();
+                                      _unit_in_parcel.unfocus();
                                       setState(() {});
                                     }),
                                 formCardDropdown(

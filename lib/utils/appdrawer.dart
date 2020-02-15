@@ -80,6 +80,10 @@ class _AppDrawerState extends State<AppDrawer> {
   }
 
   logout() async {
+    ///TODO check data sync or not
+    ///if data synced then clear the local data if not ask
+    ///user to sync the data then logout
+    ///if then also user wish to delete the data then allow
     pref.clear();
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(

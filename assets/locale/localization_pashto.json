@@ -287,5 +287,12 @@
     "key_sync_progress": "ps-Sync Progressing",
     "key_sync_completed": "ps-Sync Completed",
     "key_sync_failed": "ps-Sync Failed",
-    "key_Drafted": "ps-Drafted"
+    "key_Drafted": "ps-Drafted",
+    "key_validate_user_data": "ps-Validating User Data",
+    "key_uservalidate_msg": "ps-Task is changed.Please Contact your admin. Press ok to delete the task or cancel to ignore.",
+    "key_something_wrong": "ps-Something Went wrong.Please try Again",
+    "key_status": "ps-Status",
+    "key_continue": "ps-Continue",
+    "key_gozar": "ps-Gozar",
+    "key_Disorganized": "ps-Disorganized"
 }

@@ -76,7 +76,10 @@ class _SurveyPageState extends State<SurveyPage> {
                             ? SizedBox()
                             : IconButton(
                                 iconSize: 25,
-                                icon: Icon(Icons.edit,color: Colors.blue,),
+                                icon: Icon(
+                                  Icons.edit,
+                                  color: Colors.blue,
+                                ),
                                 onPressed: () {
                                   Navigator.push(
                                     context,
@@ -94,7 +97,10 @@ class _SurveyPageState extends State<SurveyPage> {
                               ),
                         IconButton(
                           iconSize: 25,
-                          icon: Icon(Icons.delete,color: Colors.redAccent,),
+                          icon: Icon(
+                            Icons.delete,
+                            color: Colors.redAccent,
+                          ),
                           onPressed: () {
                             showDialog(
                                 context: context,
@@ -142,7 +148,10 @@ class _SurveyPageState extends State<SurveyPage> {
                             ? SizedBox()
                             : IconButton(
                                 iconSize: 25,
-                                icon: Icon(Icons.file_upload,color: Colors.green,),
+                                icon: Icon(
+                                  Icons.file_upload,
+                                  color: Colors.green,
+                                ),
                                 onPressed: () async {
                                   if (surveydata.isdrafted == 1) {
                                     //completed
@@ -778,6 +787,7 @@ class _UploadDataState extends State<UploadData> {
                                   connectivityResult ==
                                       ConnectivityResult.wifi) {
                                 setState(() {
+                                  selectenable = false;
                                   msgvalue =
                                       setapptext(key: 'key_validate_user_data');
                                 });

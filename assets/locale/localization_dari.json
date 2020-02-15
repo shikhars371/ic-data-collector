@@ -287,5 +287,12 @@
     "key_sync_progress": "da-Sync Progressing",
     "key_sync_completed": "da-Sync Completed",
     "key_sync_failed": "da-Sync Failed",
-    "key_Drafted": "da-Drafted"
+    "key_Drafted": "da-Drafted",
+    "key_validate_user_data": "da-Validating User Data",
+    "key_uservalidate_msg": "da-Task is changed.Please Contact your admin. Press ok to delete the task or cancel to ignore.",
+    "key_something_wrong": "da-Something Went wrong.Please try Again",
+    "key_status": "da-Status",
+    "key_continue": "da-Continue",
+    "key_gozar": "da-Gozar",
+    "key_Disorganized": "da-Disorganized"
 }
