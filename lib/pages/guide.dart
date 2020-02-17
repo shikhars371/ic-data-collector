@@ -1,6 +1,4 @@
-import 'package:catcher/core/catcher.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../utils/navigation_service.dart';
@@ -8,8 +6,7 @@ import '../utils/route_paths.dart' as routes;
 import '../utils/locator.dart';
 import '../localization/app_translations.dart';
 import '../utils/appdrawer.dart';
-import '../controllers/auth.dart';
-import '../controllers/appsync.dart';
+
 
 class GuidePage extends StatefulWidget {
   @override
