@@ -36,8 +36,6 @@ Future<Null> main() async {
         enableCustomParameters: true,
         enableStackTrace: true,
         printLogs: true),
-    // EmailAutoHandler("smtp.gmail.com", 587, "sparcappbugreporter@gmail.com",
-    //     "ocreporter", "sparc_123", ["saswat.srout@sparcindia.com"]),
   ]);
   Catcher(
     LocalisedApp(),
@@ -79,6 +77,23 @@ class LocalisedAppState extends State<LocalisedApp> {
     super.dispose();
   }
 
+  void sendCatchererror(FlutterErrorDetails error) {
+    Catcher.reportCheckedError(error.exception, error.stack);
+  }
+
+  Widget buildError(BuildContext context, FlutterErrorDetails error) {
+    sendCatchererror(error);
+    return Scaffold(
+        body: Center(
+      child: RaisedButton(
+        child: Text("Something goes wrong,Please close the app & Restart"),
+        onPressed: () {
+          exit(1);
+        },
+      ),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -104,6 +119,12 @@ class LocalisedAppState extends State<LocalisedApp> {
           secondaryHeaderColor: Colors.black,
         ),
         home: MyHomePage(),
+        builder: (BuildContext context, Widget widget) {
+          ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
+            return buildError(context, errorDetails);
+          };
+          return widget;
+        },
         navigatorKey: locator<NavigationService>().navigatorKey,
         onGenerateRoute: router.generateRoute,
         localizationsDelegates: [

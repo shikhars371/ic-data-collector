@@ -12,7 +12,6 @@ import './auth.dart';
 import '../models/localpropertydata.dart';
 import '../configs/configuration.dart';
 import '../utils/db_helper.dart';
-import '../utils/reporterror.dart';
 
 typedef void OnUploadProgressCallback(int sentBytes, int totalBytes);
 
@@ -422,10 +421,7 @@ class AppSync with ChangeNotifier {
         });
       }
     } catch (error, stackTrace) {
-      ReportError _reporterror = new ReportError();
-      _reporterror.systemError = error;
-      _reporterror.customError = "Controller:-AppSync , method-:syncData ";
-      Catcher.reportCheckedError(_reporterror, stackTrace);
+      Catcher.reportCheckedError(error, stackTrace);
     }
     return result;
   }
@@ -524,10 +520,8 @@ class AppSync with ChangeNotifier {
         avaiblefiles.add(propertydata.home_photo);
       }
     } catch (error, stackTrace) {
-      ReportError _reporterror = new ReportError();
-      _reporterror.systemError = error;
-      _reporterror.customError = "Controller:-AppSync , method-:dataFileList ";
-      Catcher.reportCheckedError(_reporterror, stackTrace);
+
+      Catcher.reportCheckedError(error, stackTrace);
     }
     return avaiblefiles;
   }
@@ -582,10 +576,7 @@ class AppSync with ChangeNotifier {
         await updateUploadstatus(propertydata: propertydata);
       }
     } catch (error, stackTrace) {
-      ReportError _reporterror = new ReportError();
-      _reporterror.systemError = error;
-      _reporterror.customError = "Controller:-AppSync , method-:fileUpload ";
-      Catcher.reportCheckedError(_reporterror, stackTrace);
+      Catcher.reportCheckedError(error, stackTrace);
     }
     return result;
   }
@@ -617,11 +608,7 @@ class AppSync with ChangeNotifier {
         }
       }
     } catch (error, stackTrace) {
-      ReportError _reporterror = new ReportError();
-      _reporterror.systemError = error;
-      _reporterror.customError =
-          "Controller:-AppSync , method-:validateUserData ";
-      Catcher.reportCheckedError(_reporterror, stackTrace);
+      Catcher.reportCheckedError(error, stackTrace);
     }
     setState(AppState.Idle);
     return result;
@@ -723,11 +710,7 @@ class AppSync with ChangeNotifier {
       await DBHelper()
           .updatePropertySurvey(datatodb, datatodb.local_property_key);
     } catch (error, stackTrace) {
-      ReportError _reporterror = new ReportError();
-      _reporterror.systemError = error;
-      _reporterror.customError =
-          "Controller:-AppSync , method-:updateUploadstatus ";
-      Catcher.reportCheckedError(_reporterror, stackTrace);
+      Catcher.reportCheckedError(error, stackTrace);
     }
   }
 }
