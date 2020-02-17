@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grouped_buttons/grouped_buttons.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:kapp/controllers/auth.dart';
 import 'package:kapp/utils/db_helper.dart';
 import 'package:provider/provider.dart';
@@ -56,6 +56,13 @@ class _LanguagePageState extends State<LanguagePage> {
 
   final NavigationService _navigationService = locator<NavigationService>();
   String currentlanguage = "";
+  void chnageLanguage({String value, int index}) async {
+    var result = await DBHelper().changeLanguage(lang: value, langvalue: index);
+    if (result != 0) {
+      _navigationService.navigateRepalceTo(routeName: routes.Homepage);
+    }
+  }
+
   @override
   void initState() {
     Future.delayed(Duration.zero).then((_) {
@@ -66,15 +73,17 @@ class _LanguagePageState extends State<LanguagePage> {
 
   @override
   Widget build(BuildContext context) {
+    var screenheight = MediaQuery.of(context).size.height;
+    var screenwidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: Text(
-          setapptext(key: 'key_language'),
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-      ),
-      drawer: AppDrawer(),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.blue,
+      //   title: Text(
+      //     setapptext(key: 'key_language'),
+      //     style: TextStyle(fontWeight: FontWeight.bold),
+      //   ),
+      // ),
+      // drawer: AppDrawer(),
       body: SingleChildScrollView(
         child: Container(
           child: Consumer<DBHelper>(
@@ -83,17 +92,90 @@ class _LanguagePageState extends State<LanguagePage> {
                   ? Center(
                       child: CircularProgressIndicator(),
                     )
-                  : RadioButtonGroup(
-                      labels: ['English', 'پښتو', 'درى'],
-                      picked: getLanguage(id: data.currentLanguageIndex),
-                      onChange: (value, index) async {
-                        await DBHelper()
-                            .changeLanguage(lang: value, langvalue: index);
-                        Provider.of<DBHelper>(context).getLanguage();
-                        setState(() {});
-                        _navigationService.navigateRepalceTo(
-                            routeName: routes.Homepage);
-                      },
+                  : Container(
+                      height: screenheight,
+                      width: screenwidth,
+                      decoration: BoxDecoration(color: Colors.blue),
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            GestureDetector(
+                              onTap: () async {
+                                chnageLanguage(value: 'English', index: 0);
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 20, horizontal: 20),
+                                child: Container(
+                                  height: 40,
+                                  width: screenwidth / 1.5,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(30),
+                                      color: Colors.white),
+                                  child: Center(
+                                    child: Text(
+                                      "English",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () async {
+                                chnageLanguage(value: 'درى', index: 1);
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 20, horizontal: 20),
+                                child: Container(
+                                  height: 40,
+                                  width: screenwidth / 1.5,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(30),
+                                      color: Colors.white),
+                                  child: Center(
+                                    child: Text(
+                                      "درى",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () async {
+                                chnageLanguage(value: 'پښتو', index: 2);
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 20, horizontal: 20),
+                                child: Container(
+                                  height: 40,
+                                  width: screenwidth / 1.5,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(30),
+                                      color: Colors.white),
+                                  child: Center(
+                                    child: Text(
+                                      "پښتو",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     );
             },
           ),

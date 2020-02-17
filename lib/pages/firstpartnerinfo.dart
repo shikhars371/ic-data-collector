@@ -60,8 +60,10 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
           return;
         } else {
           _formkey.currentState.save();
-          await DBHelper()
-              .updatePropertySurvey(localdata, localdata.local_property_key);
+          if (localdata.isdrafted != 2) {
+            await DBHelper()
+                .updatePropertySurvey(localdata, localdata.local_property_key);
+          }
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -210,11 +212,11 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                           ? ""
                                           : localdata.first_partner_name,
                                   validator: (value) {
-                                   
                                     if (value.trim().isEmpty) {
                                       return setapptext(
                                           key: 'key_field_not_blank');
-                                    } else if (!RegExp(r'^[a-zA-Z_ ]*$').hasMatch(value)) {
+                                    } else if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                        .hasMatch(value)) {
                                       return setapptext(
                                           key: 'key_text_format_error');
                                     }
@@ -247,7 +249,8 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                       ? ""
                                       : localdata.first_partner_surname,
                                   validator: (value) {
-                                    if (!RegExp(r'^[a-zA-Z_ ]*$').hasMatch(value)) {
+                                    if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                        .hasMatch(value)) {
                                       return setapptext(
                                           key: 'key_text_format_error');
                                     }
@@ -281,7 +284,8 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                           ? ""
                                           : localdata.first_partner_boy,
                                   validator: (value) {
-                                    if (!RegExp(r'^[a-zA-Z_ ]*$').hasMatch(value)) {
+                                    if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                        .hasMatch(value)) {
                                       return setapptext(
                                           key: 'key_text_format_error');
                                     }
@@ -311,7 +315,8 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                       ? ""
                                       : localdata.first_partner__father,
                                   validator: (value) {
-                                    if (!RegExp(r'^[a-zA-Z_ ]*$').hasMatch(value)) {
+                                    if (!RegExp(r'^[a-zA-Z_ ]*$')
+                                        .hasMatch(value)) {
                                       return setapptext(
                                           key: 'key_text_format_error');
                                     }
@@ -395,11 +400,11 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                     setState(() {});
                                   },
                                   validator: (value) {
-                                    if (!(value?.isEmpty ?? true)){
-                                    if (value.length != 10) {
-                                      return setapptext(
-                                          key: 'key_mobile_field');
-                                    }
+                                    if (!(value?.isEmpty ?? true)) {
+                                      if (value.length != 10) {
+                                        return setapptext(
+                                            key: 'key_mobile_field');
+                                      }
                                     }
                                   }),
                               formcardtextfield(
@@ -421,14 +426,15 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                       ? ""
                                       : localdata.first_partner_name_email,
                                   validator: (value) {
-                                    if (!(value?.isEmpty ?? true)){
-                                    Pattern pattern =
-                                        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                                    RegExp regex = new RegExp(pattern);
-                                    if (!regex.hasMatch(value))
-                                      return setapptext(key: 'key_email_field');
-                                    else
-                                      return null;
+                                    if (!(value?.isEmpty ?? true)) {
+                                      Pattern pattern =
+                                          r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                                      RegExp regex = new RegExp(pattern);
+                                      if (!regex.hasMatch(value))
+                                        return setapptext(
+                                            key: 'key_email_field');
+                                      else
+                                        return null;
                                     }
                                   },
                                   onSaved: (value) {

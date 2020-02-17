@@ -59,8 +59,10 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
           _formkey.currentState.save();
           //in edit mode
           if (localdata.editmode == 1) {
-            await DBHelper()
-                .updatePropertySurvey(localdata, localdata.local_property_key);
+            if (localdata.isdrafted != 2) {
+              await DBHelper().updatePropertySurvey(
+                  localdata, localdata.local_property_key);
+            }
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
@@ -280,561 +282,550 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blue,
-          title: Text(
-            setapptext(key: 'key_property_survey'),
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        title: Text(
+          setapptext(key: 'key_property_survey'),
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        body: Consumer<DBHelper>(
-          builder: (context, dbdata, child) {
-            return dbdata.state == AppState.Busy
-                ? Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : SafeArea(
-                    child: Form(
-                      key: _formkey,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          //header
-                          formheader(headerlablekey: 'key_property_location'),
-                          //body
-                          Expanded(
-                            child: ListView(
-                              children: <Widget>[
-                                formcardtextfield(
+      ),
+      body: Consumer<DBHelper>(
+        builder: (context, dbdata, child) {
+          return dbdata.state == AppState.Busy
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : SafeArea(
+                  child: Form(
+                    key: _formkey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        //header
+                        formheader(headerlablekey: 'key_property_location'),
+                        //body
+                        Expanded(
+                          child: ListView(
+                            children: <Widget>[
+                              formcardtextfield(
+                                enable: false,
+                                initvalue: localdata.province?.isEmpty ?? true
+                                    ? ""
+                                    : getProvincename(localdata.province),
+                                headerlablekey:
+                                    setapptext(key: 'key_select_province'),
+                                radiovalue: localdata.province?.isEmpty ?? true
+                                    ? false
+                                    : true,
+                                // onSaved: (value) {
+                                //   localdata.province = value.trim();
+                                // },
+                                // onChanged: (value) {
+                                //   localdata.province = value.trim();
+                                //   setState(() {});
+                                // }
+                              ),
+                              formcardtextfield(
+                                enable: false,
+                                initvalue: localdata.city?.isEmpty ?? true
+                                    ? ""
+                                    : getCity(localdata.city),
+                                headerlablekey:
+                                    setapptext(key: 'key_select_city'),
+                                radiovalue: localdata.city?.isEmpty ?? true
+                                    ? false
+                                    : true,
+                                // onSaved: (value) {
+                                //   localdata.province = value.trim();
+                                // },
+                                // onChanged: (value) {
+                                //   localdata.province = value.trim();
+                                //   setState(() {});
+                                // }
+                              ),
+                              // formCardDropdown(
+                              //     iscompleted:
+                              //         ((localdata.province?.isEmpty ??
+                              //                     true) ||
+                              //                 (localdata.province == "0"))
+                              //             ? false
+                              //             : true,
+                              //     headerlablekey:
+                              //         setapptext(key: 'key_select_province'),
+                              //     dropdownitems: [
+                              //       Dpvalue(
+                              //           name: setapptext(
+                              //               key: 'key_none_selected'),
+                              //           value: "0"),
+                              //       Dpvalue(
+                              //           name: setapptext(key: 'key_kabul'),
+                              //           value: "01-01"),
+                              //       Dpvalue(
+                              //           name:
+                              //               setapptext(key: 'key_nangarhar'),
+                              //           value: "06-01"),
+                              //       Dpvalue(
+                              //           name: setapptext(key: 'key_Kandahar'),
+                              //           value: "33-01"),
+                              //       Dpvalue(
+                              //           name: setapptext(key: 'key_Bamyan'),
+                              //           value: "10-01"),
+                              //       Dpvalue(
+                              //           name: setapptext(key: 'key_Daikundi'),
+                              //           value: "22-01"),
+                              //       Dpvalue(
+                              //           name: setapptext(key: 'key_Kundoz'),
+                              //           value: "17-01"),
+                              //       Dpvalue(
+                              //           name: setapptext(key: 'key_Balkh'),
+                              //           value: "18-01"),
+                              //       Dpvalue(
+                              //           name: setapptext(key: 'key_Herat'),
+                              //           value: "30-01"),
+                              //       Dpvalue(
+                              //           name: setapptext(key: 'key_Parwan'),
+                              //           value: "03-01"),
+                              //       Dpvalue(
+                              //           name: setapptext(key: 'key_Farah'),
+                              //           value: "04-01")
+                              //     ],
+                              //     onChanged: (value) {
+                              //       localdata.province = value;
+                              //       setState(() {});
+                              //     },
+                              //     onSaved: (value) {
+                              //       localdata.province = value;
+                              //     },
+                              //     value: localdata.province?.isEmpty ?? true
+                              //         ? "0"
+                              //         : localdata.province,
+                              //     validate: (value) {
+                              //       if ((value.isEmpty) || value == "0") {
+                              //         return setapptext(key: 'key_required');
+                              //       }
+                              //     }),
+                              // formCardDropdown(
+                              //     iscompleted:
+                              //         ((localdata.city?.isEmpty ?? true) ||
+                              //                 (localdata.city == "0"))
+                              //             ? false
+                              //             : true,
+                              //     headerlablekey:
+                              //         setapptext(key: 'key_select_city'),
+                              //     dropdownitems: [
+                              //       Dpvalue(
+                              //           name: setapptext(
+                              //               key: 'key_none_selected'),
+                              //           value: "0"),
+                              //       Dpvalue(
+                              //           name: setapptext(key: 'key_kabul'),
+                              //           value: "1"),
+                              //       Dpvalue(
+                              //           name:
+                              //               setapptext(key: 'key_Jalalabad'),
+                              //           value: "2"),
+                              //       Dpvalue(
+                              //           name: setapptext(key: 'key_Kandahar'),
+                              //           value: "3"),
+                              //       Dpvalue(
+                              //           name: setapptext(key: 'key_Bamyan'),
+                              //           value: "4"),
+                              //       Dpvalue(
+                              //           name: setapptext(key: 'key_Nili'),
+                              //           value: "5"),
+                              //       Dpvalue(
+                              //           name: setapptext(key: 'key_Kundoz'),
+                              //           value: "6"),
+                              //       Dpvalue(
+                              //           name: setapptext(key: 'key_Sharif'),
+                              //           value: "7"),
+                              //       Dpvalue(
+                              //           name: setapptext(key: 'key_Herat'),
+                              //           value: "8"),
+                              //       Dpvalue(
+                              //           name: setapptext(key: 'key_Charikar'),
+                              //           value: "9"),
+                              //       Dpvalue(
+                              //           name: setapptext(key: 'key_Farah'),
+                              //           value: "10")
+                              //     ],
+                              //     onChanged: (value) {
+                              //       localdata.city = value;
+
+                              //       setState(() {});
+                              //     },
+                              //     onSaved: (value) {
+                              //       localdata.city = value;
+                              //     },
+                              //     value: localdata.city?.isEmpty ?? true
+                              //         ? "0"
+                              //         : localdata.city,
+                              //     validate: (value) {
+                              //       if ((value.isEmpty) || value == "0") {
+                              //         return setapptext(key: 'key_required');
+                              //       }
+                              //     }),
+                              formcardtextfield(
                                   enable: false,
-                                  initvalue: localdata.province?.isEmpty ?? true
-                                      ? ""
-                                      : getProvincename(localdata.province),
-                                  headerlablekey:
-                                      setapptext(key: 'key_select_province'),
-                                  radiovalue:
-                                      localdata.province?.isEmpty ?? true
-                                          ? false
-                                          : true,
-                                  // onSaved: (value) {
-                                  //   localdata.province = value.trim();
-                                  // },
-                                  // onChanged: (value) {
-                                  //   localdata.province = value.trim();
-                                  //   setState(() {});
-                                  // }
-                                ),
-                                formcardtextfield(
-                                  enable: false,
-                                  initvalue: localdata.city?.isEmpty ?? true
-                                      ? ""
-                                      : getCity(localdata.city),
-                                  headerlablekey:
-                                      setapptext(key: 'key_select_city'),
-                                  radiovalue: localdata.city?.isEmpty ?? true
+                                  keyboardtype: TextInputType.number,
+                                  headerlablekey: setapptext(key: 'key_area'),
+                                  radiovalue: localdata.area?.isEmpty ?? true
                                       ? false
                                       : true,
-                                  // onSaved: (value) {
-                                  //   localdata.province = value.trim();
-                                  // },
-                                  // onChanged: (value) {
-                                  //   localdata.province = value.trim();
-                                  //   setState(() {});
-                                  // }
-                                ),
-                                // formCardDropdown(
-                                //     iscompleted:
-                                //         ((localdata.province?.isEmpty ??
-                                //                     true) ||
-                                //                 (localdata.province == "0"))
-                                //             ? false
-                                //             : true,
-                                //     headerlablekey:
-                                //         setapptext(key: 'key_select_province'),
-                                //     dropdownitems: [
-                                //       Dpvalue(
-                                //           name: setapptext(
-                                //               key: 'key_none_selected'),
-                                //           value: "0"),
-                                //       Dpvalue(
-                                //           name: setapptext(key: 'key_kabul'),
-                                //           value: "01-01"),
-                                //       Dpvalue(
-                                //           name:
-                                //               setapptext(key: 'key_nangarhar'),
-                                //           value: "06-01"),
-                                //       Dpvalue(
-                                //           name: setapptext(key: 'key_Kandahar'),
-                                //           value: "33-01"),
-                                //       Dpvalue(
-                                //           name: setapptext(key: 'key_Bamyan'),
-                                //           value: "10-01"),
-                                //       Dpvalue(
-                                //           name: setapptext(key: 'key_Daikundi'),
-                                //           value: "22-01"),
-                                //       Dpvalue(
-                                //           name: setapptext(key: 'key_Kundoz'),
-                                //           value: "17-01"),
-                                //       Dpvalue(
-                                //           name: setapptext(key: 'key_Balkh'),
-                                //           value: "18-01"),
-                                //       Dpvalue(
-                                //           name: setapptext(key: 'key_Herat'),
-                                //           value: "30-01"),
-                                //       Dpvalue(
-                                //           name: setapptext(key: 'key_Parwan'),
-                                //           value: "03-01"),
-                                //       Dpvalue(
-                                //           name: setapptext(key: 'key_Farah'),
-                                //           value: "04-01")
-                                //     ],
-                                //     onChanged: (value) {
-                                //       localdata.province = value;
-                                //       setState(() {});
-                                //     },
-                                //     onSaved: (value) {
-                                //       localdata.province = value;
-                                //     },
-                                //     value: localdata.province?.isEmpty ?? true
-                                //         ? "0"
-                                //         : localdata.province,
-                                //     validate: (value) {
-                                //       if ((value.isEmpty) || value == "0") {
-                                //         return setapptext(key: 'key_required');
-                                //       }
-                                //     }),
-                                // formCardDropdown(
-                                //     iscompleted:
-                                //         ((localdata.city?.isEmpty ?? true) ||
-                                //                 (localdata.city == "0"))
-                                //             ? false
-                                //             : true,
-                                //     headerlablekey:
-                                //         setapptext(key: 'key_select_city'),
-                                //     dropdownitems: [
-                                //       Dpvalue(
-                                //           name: setapptext(
-                                //               key: 'key_none_selected'),
-                                //           value: "0"),
-                                //       Dpvalue(
-                                //           name: setapptext(key: 'key_kabul'),
-                                //           value: "1"),
-                                //       Dpvalue(
-                                //           name:
-                                //               setapptext(key: 'key_Jalalabad'),
-                                //           value: "2"),
-                                //       Dpvalue(
-                                //           name: setapptext(key: 'key_Kandahar'),
-                                //           value: "3"),
-                                //       Dpvalue(
-                                //           name: setapptext(key: 'key_Bamyan'),
-                                //           value: "4"),
-                                //       Dpvalue(
-                                //           name: setapptext(key: 'key_Nili'),
-                                //           value: "5"),
-                                //       Dpvalue(
-                                //           name: setapptext(key: 'key_Kundoz'),
-                                //           value: "6"),
-                                //       Dpvalue(
-                                //           name: setapptext(key: 'key_Sharif'),
-                                //           value: "7"),
-                                //       Dpvalue(
-                                //           name: setapptext(key: 'key_Herat'),
-                                //           value: "8"),
-                                //       Dpvalue(
-                                //           name: setapptext(key: 'key_Charikar'),
-                                //           value: "9"),
-                                //       Dpvalue(
-                                //           name: setapptext(key: 'key_Farah'),
-                                //           value: "10")
-                                //     ],
-                                //     onChanged: (value) {
-                                //       localdata.city = value;
-
-                                //       setState(() {});
-                                //     },
-                                //     onSaved: (value) {
-                                //       localdata.city = value;
-                                //     },
-                                //     value: localdata.city?.isEmpty ?? true
-                                //         ? "0"
-                                //         : localdata.city,
-                                //     validate: (value) {
-                                //       if ((value.isEmpty) || value == "0") {
-                                //         return setapptext(key: 'key_required');
-                                //       }
-                                //     }),
-                                formcardtextfield(
-                                    enable: false,
-                                    keyboardtype: TextInputType.number,
-                                    headerlablekey: setapptext(key: 'key_area'),
-                                    radiovalue: localdata.area?.isEmpty ?? true
-                                        ? false
-                                        : true,
-                                    hinttextkey:
-                                        setapptext(key: 'Key_number_value'),
-                                    fieldfocus: _area,
-                                    textInputAction: TextInputAction.next,
-                                    onFieldSubmitted: (_) {
-                                      _area.unfocus();
-                                      FocusScope.of(context)
-                                          .requestFocus(_pass);
-                                    },
-                                    initvalue: localdata.area?.isEmpty ?? true
-                                        ? ""
-                                        : localdata.area,
-                                    validator: (value) {
-                                      if (value.trim().isEmpty) {
-                                        return setapptext(
-                                            key: 'key_field_not_blank');
-                                      } else if (value.length != 2) {
-                                        return setapptext(key: 'key_two_digit');
-                                      }
-                                    },
-                                    onSaved: (value) {
-                                      localdata.area = value.trim();
-                                    },
-                                    onChanged: (value) {
-                                      localdata.area = value.trim();
-                                      setState(() {});
-                                    }),
-                                formcardtextfield(
-                                    enable: false,
-                                    keyboardtype: TextInputType.number,
-                                    initvalue: localdata.pass?.isEmpty ?? true
-                                        ? ""
-                                        : localdata.pass,
-                                    headerlablekey: setapptext(key: 'key_pass'),
-                                    hinttextkey:
-                                        setapptext(key: 'Key_number_value'),
-                                    fieldfocus: _pass,
-                                    textInputAction: TextInputAction.next,
-                                    onFieldSubmitted: (_) {
-                                      _pass.unfocus();
-                                      FocusScope.of(context)
-                                          .requestFocus(_block);
-                                    },
-                                    radiovalue: localdata.pass?.isEmpty ?? true
-                                        ? false
-                                        : true,
-                                    validator: (value) {
-                                      if (value.trim().isEmpty) {
-                                        return setapptext(
-                                            key: 'key_field_not_blank');
-                                      } else if (value.length != 2) {
-                                        return setapptext(key: 'key_two_digit');
-                                      }
-                                    },
-                                    onSaved: (value) {
-                                      localdata.pass = value.trim();
-                                    },
-                                    onChanged: (value) {
-                                      localdata.pass = value.trim();
-                                      setState(() {});
-                                    }),
-                                formcardtextfield(
-                                    enable: false,
-                                    keyboardtype: TextInputType.number,
-                                    initvalue: localdata.block?.isEmpty ?? true
-                                        ? ""
-                                        : localdata.block,
-                                    headerlablekey:
-                                        setapptext(key: 'key_block'),
-                                    radiovalue: localdata.block?.isEmpty ?? true
-                                        ? false
-                                        : true,
-                                    hinttextkey:
-                                        setapptext(key: 'Key_number_value'),
-                                    fieldfocus: _block,
-                                    textInputAction: TextInputAction.next,
-                                    onFieldSubmitted: (_) {
-                                      _block.unfocus();
-                                      FocusScope.of(context)
-                                          .requestFocus(_part_number);
-                                    },
-                                    validator: (value) {
-                                      if (value.trim().isEmpty) {
-                                        return setapptext(
-                                            key: 'key_field_not_blank');
-                                      } else if (value.length != 3) {
-                                        return setapptext(
-                                            key: 'key_three_digit');
-                                      }
-                                    },
-                                    onSaved: (value) {
-                                      localdata.block = value.trim();
-                                    },
-                                    onChanged: (value) {
-                                      localdata.block = value.trim();
-                                      setState(() {});
-                                    }),
-                                formcardtextfield(
-                                    keyboardtype: TextInputType.number,
-                                    initvalue:
-                                        localdata.part_number?.isEmpty ?? true
-                                            ? ""
-                                            : localdata.part_number,
-                                    headerlablekey:
-                                        setapptext(key: 'key_part_number'),
-                                    fieldfocus: _part_number,
-                                    textInputAction: TextInputAction.next,
-                                    onFieldSubmitted: (_) {
-                                      _part_number.unfocus();
-                                      FocusScope.of(context)
-                                          .requestFocus(_unit_number);
-                                    },
-                                    radiovalue:
-                                        localdata.part_number?.isEmpty ?? true
-                                            ? false
-                                            : true,
-                                    hinttextkey:
-                                        setapptext(key: 'Key_number_value'),
-                                    validator: (value) {
-                                      if (value.trim().isEmpty) {
-                                        return setapptext(
-                                            key: 'key_field_not_blank');
-                                      } else if (value.length != 3) {
-                                        return setapptext(
-                                            key: 'key_three_digit');
-                                      }
-                                    },
-                                    onSaved: (value) {
-                                      localdata.part_number = value.trim();
-                                    },
-                                    onChanged: (value) {
-                                      localdata.part_number = value.trim();
-                                      setState(() {});
-                                    }),
-                                formcardtextfield(
-                                    keyboardtype: TextInputType.number,
-                                    initvalue:
-                                        localdata.unit_number?.isEmpty ?? true
-                                            ? ""
-                                            : localdata.unit_number,
-                                    headerlablekey:
-                                        setapptext(key: 'key_unit_number'),
-                                    fieldfocus: _unit_number,
-                                    textInputAction: TextInputAction.next,
-                                    onFieldSubmitted: (_) {
-                                      _unit_number.unfocus();
-                                      FocusScope.of(context)
-                                          .requestFocus(_unit_in_parcel);
-                                    },
-                                    radiovalue:
-                                        localdata.unit_number?.isEmpty ?? true
-                                            ? false
-                                            : true,
-                                    hinttextkey:
-                                        setapptext(key: 'Key_number_value'),
-                                    validator: (value) {
-                                      if (value.trim().isEmpty) {
-                                        return setapptext(
-                                            key: 'key_field_not_blank');
-                                      } else if (value.length != 3) {
-                                        return setapptext(
-                                            key: 'key_three_digit');
-                                      }
-                                    },
-                                    onSaved: (value) {
-                                      localdata.unit_number = value.trim();
-                                    },
-                                    onChanged: (value) {
-                                      localdata.unit_number = value.trim();
-                                      setState(() {});
-                                    }),
-                                formcardtextfield(
-                                    initvalue:
-                                        localdata.unit_in_parcel?.isEmpty ??
-                                                true
-                                            ? ""
-                                            : localdata.unit_in_parcel,
-                                    keyboardtype: TextInputType.number,
-                                    headerlablekey:
-                                        setapptext(key: 'key_number_of_unit'),
-                                    fieldfocus: _unit_in_parcel,
-                                    textInputAction: TextInputAction.next,
-                                    onFieldSubmitted: (_) {
-                                      _unit_in_parcel.unfocus();
-                                      FocusScope.of(context)
-                                          .requestFocus(_street_name);
-                                    },
-                                    radiovalue:
-                                        localdata.unit_in_parcel?.isEmpty ??
-                                                true
-                                            ? false
-                                            : true,
-                                    hinttextkey:
-                                        setapptext(key: 'Key_number_value'),
-                                    onSaved: (value) {
-                                      localdata.unit_in_parcel = value.trim();
-                                    },
-                                    onChanged: (value) {
-                                      localdata.unit_in_parcel = value.trim();
-                                      setState(() {});
-                                    }),
-                                formcardtextfield(
-                                    initvalue:
-                                        localdata.street_name?.isEmpty ?? true
-                                            ? ""
-                                            : localdata.street_name,
-                                    headerlablekey:
-                                        setapptext(key: 'key_state_name'),
-                                    fieldfocus: _street_name,
-                                    textInputAction: TextInputAction.next,
-                                    onFieldSubmitted: (_) {
-                                      _street_name.unfocus();
-                                      FocusScope.of(context)
-                                          .requestFocus(_historic_site_area);
-                                    },
-                                    radiovalue:
-                                        localdata.street_name?.isEmpty ?? true
-                                            ? false
-                                            : true,
-                                    hinttextkey: setapptext(
-                                        key: 'key_enter_1st_surveyor'),
-                                    onSaved: (value) {
-                                      localdata.street_name = value.trim();
-                                    },
-                                    onChanged: (value) {
-                                      localdata.street_name = value.trim();
-                                      setState(() {});
-                                    }),
-                                formcardtextfield(
-                                    initvalue:
-                                        localdata.historic_site_area?.isEmpty ??
-                                                true
-                                            ? ""
-                                            : localdata.historic_site_area,
-                                    headerlablekey:
-                                        setapptext(key: 'key_historycal_site'),
-                                    fieldfocus: _historic_site_area,
-                                    textInputAction: TextInputAction.next,
-                                    onFieldSubmitted: (_) {
-                                      _historic_site_area.unfocus();
-                                      FocusScope.of(context)
-                                          .requestFocus(_land_area);
-                                    },
-                                    radiovalue:
-                                        localdata.historic_site_area?.isEmpty ??
-                                                true
-                                            ? false
-                                            : true,
-                                    hinttextkey: setapptext(
-                                        key: 'key_enter_1st_surveyor'),
-                                    onSaved: (value) {
-                                      localdata.historic_site_area =
-                                          value.trim();
-                                    },
-                                    onChanged: (value) {
-                                      localdata.historic_site_area =
-                                          value.trim();
-                                      setState(() {});
-                                    }),
-                                formcardtextfield(
-                                    initvalue:
-                                        localdata.land_area?.isEmpty ?? true
-                                            ? ""
-                                            : localdata.land_area,
-                                    keyboardtype: TextInputType.number,
-                                    headerlablekey:
-                                        setapptext(key: 'key_land_area'),
-                                    fieldfocus: _land_area,
-                                    textInputAction: TextInputAction.done,
-                                    onFieldSubmitted: (_) {
-                                      _land_area.unfocus();
-                                    },
-                                    radiovalue:
-                                        localdata.land_area?.isEmpty ?? true
-                                            ? false
-                                            : true,
-                                    hinttextkey:
-                                        setapptext(key: 'Key_number_value'),
-                                    onSaved: (value) {
-                                      localdata.land_area = value.trim();
-                                    },
-                                    onChanged: (value) {
-                                      localdata.land_area = value.trim();
-                                      _land_area.unfocus();
-                                      _historic_site_area.unfocus();
-                                      _street_name.unfocus();
-                                      _unit_in_parcel.unfocus();
-                                      setState(() {});
-                                    }),
-                                formCardDropdown(
-                                    value:
-                                        localdata.property_type?.isEmpty ?? true
-                                            ? "0"
-                                            : localdata.property_type,
-                                    iscompleted: ((localdata
-                                                    .property_type?.isEmpty ??
-                                                true) ||
-                                            (localdata.property_type == "0"))
-                                        ? false
-                                        : true,
-                                    headerlablekey:
-                                        setapptext(key: 'key_type_ownership'),
-                                    dropdownitems: [
-                                      Dpvalue(
-                                          name: setapptext(
-                                              key: 'key_none_selected'),
-                                          value: "0"),
-                                      Dpvalue(
-                                          name: setapptext(key: 'key_solo'),
-                                          value: "1"),
-                                      Dpvalue(
-                                          name:
-                                              setapptext(key: 'key_collective'),
-                                          value: "2"),
-                                    ],
-                                    onSaved: (String value) {
-                                      localdata.property_type = value;
-                                    },
-                                    onChanged: (value) {
-                                      localdata.property_type = value;
-                                      _land_area.unfocus();
-                                      setState(() {});
-                                    },
-                                    validate: (value) {
-                                      if ((value.isEmpty) || value == "0") {
-                                        return setapptext(key: 'key_required');
-                                      }
-                                    }),
-                                SizedBox(
-                                  height: 50,
-                                )
-                              ],
-                            ),
+                                  hinttextkey:
+                                      setapptext(key: 'Key_number_value'),
+                                  fieldfocus: _area,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _area.unfocus();
+                                    FocusScope.of(context).requestFocus(_pass);
+                                  },
+                                  initvalue: localdata.area?.isEmpty ?? true
+                                      ? ""
+                                      : localdata.area,
+                                  validator: (value) {
+                                    if (value.trim().isEmpty) {
+                                      return setapptext(
+                                          key: 'key_field_not_blank');
+                                    } else if (value.length != 2) {
+                                      return setapptext(key: 'key_two_digit');
+                                    }
+                                  },
+                                  onSaved: (value) {
+                                    localdata.area = value.trim();
+                                  },
+                                  onChanged: (value) {
+                                    localdata.area = value.trim();
+                                    setState(() {});
+                                  }),
+                              formcardtextfield(
+                                  enable: false,
+                                  keyboardtype: TextInputType.number,
+                                  initvalue: localdata.pass?.isEmpty ?? true
+                                      ? ""
+                                      : localdata.pass,
+                                  headerlablekey: setapptext(key: 'key_pass'),
+                                  hinttextkey:
+                                      setapptext(key: 'Key_number_value'),
+                                  fieldfocus: _pass,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _pass.unfocus();
+                                    FocusScope.of(context).requestFocus(_block);
+                                  },
+                                  radiovalue: localdata.pass?.isEmpty ?? true
+                                      ? false
+                                      : true,
+                                  validator: (value) {
+                                    if (value.trim().isEmpty) {
+                                      return setapptext(
+                                          key: 'key_field_not_blank');
+                                    } else if (value.length != 2) {
+                                      return setapptext(key: 'key_two_digit');
+                                    }
+                                  },
+                                  onSaved: (value) {
+                                    localdata.pass = value.trim();
+                                  },
+                                  onChanged: (value) {
+                                    localdata.pass = value.trim();
+                                    setState(() {});
+                                  }),
+                              formcardtextfield(
+                                  enable: false,
+                                  keyboardtype: TextInputType.number,
+                                  initvalue: localdata.block?.isEmpty ?? true
+                                      ? ""
+                                      : localdata.block,
+                                  headerlablekey: setapptext(key: 'key_block'),
+                                  radiovalue: localdata.block?.isEmpty ?? true
+                                      ? false
+                                      : true,
+                                  hinttextkey:
+                                      setapptext(key: 'Key_number_value'),
+                                  fieldfocus: _block,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _block.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_part_number);
+                                  },
+                                  validator: (value) {
+                                    if (value.trim().isEmpty) {
+                                      return setapptext(
+                                          key: 'key_field_not_blank');
+                                    } else if (value.length != 3) {
+                                      return setapptext(key: 'key_three_digit');
+                                    }
+                                  },
+                                  onSaved: (value) {
+                                    localdata.block = value.trim();
+                                  },
+                                  onChanged: (value) {
+                                    localdata.block = value.trim();
+                                    setState(() {});
+                                  }),
+                              formcardtextfield(
+                                  keyboardtype: TextInputType.number,
+                                  initvalue:
+                                      localdata.part_number?.isEmpty ?? true
+                                          ? ""
+                                          : localdata.part_number,
+                                  headerlablekey:
+                                      setapptext(key: 'key_part_number'),
+                                  fieldfocus: _part_number,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _part_number.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_unit_number);
+                                  },
+                                  radiovalue:
+                                      localdata.part_number?.isEmpty ?? true
+                                          ? false
+                                          : true,
+                                  hinttextkey:
+                                      setapptext(key: 'Key_number_value'),
+                                  validator: (value) {
+                                    if (value.trim().isEmpty) {
+                                      return setapptext(
+                                          key: 'key_field_not_blank');
+                                    } else if (value.length != 3) {
+                                      return setapptext(key: 'key_three_digit');
+                                    }
+                                  },
+                                  onSaved: (value) {
+                                    localdata.part_number = value.trim();
+                                  },
+                                  onChanged: (value) {
+                                    localdata.part_number = value.trim();
+                                    setState(() {});
+                                  }),
+                              formcardtextfield(
+                                  keyboardtype: TextInputType.number,
+                                  initvalue:
+                                      localdata.unit_number?.isEmpty ?? true
+                                          ? ""
+                                          : localdata.unit_number,
+                                  headerlablekey:
+                                      setapptext(key: 'key_unit_number'),
+                                  fieldfocus: _unit_number,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _unit_number.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_unit_in_parcel);
+                                  },
+                                  radiovalue:
+                                      localdata.unit_number?.isEmpty ?? true
+                                          ? false
+                                          : true,
+                                  hinttextkey:
+                                      setapptext(key: 'Key_number_value'),
+                                  validator: (value) {
+                                    if (value.trim().isEmpty) {
+                                      return setapptext(
+                                          key: 'key_field_not_blank');
+                                    } else if (value.length != 3) {
+                                      return setapptext(key: 'key_three_digit');
+                                    }
+                                  },
+                                  onSaved: (value) {
+                                    localdata.unit_number = value.trim();
+                                  },
+                                  onChanged: (value) {
+                                    localdata.unit_number = value.trim();
+                                    setState(() {});
+                                  }),
+                              formcardtextfield(
+                                  initvalue:
+                                      localdata.unit_in_parcel?.isEmpty ?? true
+                                          ? ""
+                                          : localdata.unit_in_parcel,
+                                  keyboardtype: TextInputType.number,
+                                  headerlablekey:
+                                      setapptext(key: 'key_number_of_unit'),
+                                  fieldfocus: _unit_in_parcel,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _unit_in_parcel.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_street_name);
+                                  },
+                                  radiovalue:
+                                      localdata.unit_in_parcel?.isEmpty ?? true
+                                          ? false
+                                          : true,
+                                  hinttextkey:
+                                      setapptext(key: 'Key_number_value'),
+                                  onSaved: (value) {
+                                    localdata.unit_in_parcel = value.trim();
+                                  },
+                                  onChanged: (value) {
+                                    localdata.unit_in_parcel = value.trim();
+                                    setState(() {});
+                                  }),
+                              formcardtextfield(
+                                  initvalue:
+                                      localdata.street_name?.isEmpty ?? true
+                                          ? ""
+                                          : localdata.street_name,
+                                  headerlablekey:
+                                      setapptext(key: 'key_state_name'),
+                                  fieldfocus: _street_name,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _street_name.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_historic_site_area);
+                                  },
+                                  radiovalue:
+                                      localdata.street_name?.isEmpty ?? true
+                                          ? false
+                                          : true,
+                                  hinttextkey:
+                                      setapptext(key: 'key_enter_1st_surveyor'),
+                                  onSaved: (value) {
+                                    localdata.street_name = value.trim();
+                                  },
+                                  onChanged: (value) {
+                                    localdata.street_name = value.trim();
+                                    setState(() {});
+                                  }),
+                              formcardtextfield(
+                                  initvalue:
+                                      localdata.historic_site_area?.isEmpty ??
+                                              true
+                                          ? ""
+                                          : localdata.historic_site_area,
+                                  headerlablekey:
+                                      setapptext(key: 'key_historycal_site'),
+                                  fieldfocus: _historic_site_area,
+                                  textInputAction: TextInputAction.next,
+                                  onFieldSubmitted: (_) {
+                                    _historic_site_area.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_land_area);
+                                  },
+                                  radiovalue:
+                                      localdata.historic_site_area?.isEmpty ??
+                                              true
+                                          ? false
+                                          : true,
+                                  hinttextkey:
+                                      setapptext(key: 'key_enter_1st_surveyor'),
+                                  onSaved: (value) {
+                                    localdata.historic_site_area = value.trim();
+                                  },
+                                  onChanged: (value) {
+                                    localdata.historic_site_area = value.trim();
+                                    setState(() {});
+                                  }),
+                              formcardtextfield(
+                                  initvalue:
+                                      localdata.land_area?.isEmpty ?? true
+                                          ? ""
+                                          : localdata.land_area,
+                                  keyboardtype: TextInputType.number,
+                                  headerlablekey:
+                                      setapptext(key: 'key_land_area'),
+                                  fieldfocus: _land_area,
+                                  textInputAction: TextInputAction.done,
+                                  onFieldSubmitted: (_) {
+                                    _land_area.unfocus();
+                                  },
+                                  radiovalue:
+                                      localdata.land_area?.isEmpty ?? true
+                                          ? false
+                                          : true,
+                                  hinttextkey:
+                                      setapptext(key: 'Key_number_value'),
+                                  onSaved: (value) {
+                                    localdata.land_area = value.trim();
+                                  },
+                                  onChanged: (value) {
+                                    localdata.land_area = value.trim();
+                                    _land_area.unfocus();
+                                    _historic_site_area.unfocus();
+                                    _street_name.unfocus();
+                                    _unit_in_parcel.unfocus();
+                                    setState(() {});
+                                  }),
+                              formCardDropdown(
+                                  value:
+                                      localdata.property_type?.isEmpty ?? true
+                                          ? "0"
+                                          : localdata.property_type,
+                                  iscompleted:
+                                      ((localdata.property_type?.isEmpty ??
+                                                  true) ||
+                                              (localdata.property_type == "0"))
+                                          ? false
+                                          : true,
+                                  headerlablekey:
+                                      setapptext(key: 'key_type_ownership'),
+                                  dropdownitems: [
+                                    Dpvalue(
+                                        name: setapptext(
+                                            key: 'key_none_selected'),
+                                        value: "0"),
+                                    Dpvalue(
+                                        name: setapptext(key: 'key_solo'),
+                                        value: "1"),
+                                    Dpvalue(
+                                        name: setapptext(key: 'key_collective'),
+                                        value: "2"),
+                                  ],
+                                  onSaved: (String value) {
+                                    localdata.property_type = value;
+                                  },
+                                  onChanged: (value) {
+                                    localdata.property_type = value;
+                                    _land_area.unfocus();
+                                    setState(() {});
+                                  },
+                                  validate: (value) {
+                                    if ((value.isEmpty) || value == "0") {
+                                      return setapptext(key: 'key_required');
+                                    }
+                                  }),
+                              SizedBox(
+                                height: 50,
+                              )
+                            ],
                           ),
-                          //footer
-                          Container(
-                            child: Column(
-                              children: <Widget>[
-                                Divider(
-                                  color: Colors.blueAccent,
-                                ),
-                                Container(
-                                  color: Colors.blue,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 10, bottom: 10),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        backbutton(),
-                                        nextbutton()
-                                      ],
-                                    ),
+                        ),
+                        //footer
+                        Container(
+                          child: Column(
+                            children: <Widget>[
+                              Divider(
+                                color: Colors.blueAccent,
+                              ),
+                              Container(
+                                color: Colors.blue,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 10, bottom: 10),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      backbutton(),
+                                      nextbutton()
+                                    ],
                                   ),
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
                     ),
-                  );
-          },
-        ));
+                  ),
+                );
+        },
+      ),
+    );
   }
 }

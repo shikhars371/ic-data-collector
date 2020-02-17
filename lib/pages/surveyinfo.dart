@@ -285,8 +285,12 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                                     Text(setapptext(
                                                         key: 'key_province')),
                                                     Text(
-                                                      getProvincename(
-                                                          localdata.province),
+                                                      getProvincename(localdata
+                                                                  .province
+                                                                  ?.isEmpty ??
+                                                              true
+                                                          ? ""
+                                                          : localdata.province),
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold),
@@ -303,7 +307,11 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                                     Text(setapptext(
                                                         key: 'key_city')),
                                                     Text(
-                                                      getCity(localdata.city),
+                                                      getCity(localdata.city
+                                                                  ?.isEmpty ??
+                                                              true
+                                                          ? ""
+                                                          : localdata.city),
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold),
@@ -319,7 +327,11 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                                     Text(setapptext(
                                                         key: 'key_only_block')),
                                                     Text(
-                                                      localdata.block,
+                                                      localdata.block
+                                                                  ?.isEmpty ??
+                                                              true
+                                                          ? ""
+                                                          : localdata.block,
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold),
@@ -345,8 +357,12 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                                     Text(setapptext(
                                                         key: 'key_part')),
                                                     Text(
-                                                      getProvincename(
-                                                          localdata.province),
+                                                      localdata.part_number
+                                                                  ?.isEmpty ??
+                                                              true
+                                                          ? ""
+                                                          : localdata
+                                                              .part_number,
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold),
@@ -363,7 +379,12 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                                     Text(setapptext(
                                                         key: 'key_unit_no')),
                                                     Text(
-                                                      localdata.unit_number,
+                                                      localdata.unit_number
+                                                                  ?.isEmpty ??
+                                                              true
+                                                          ? ""
+                                                          : localdata
+                                                              .unit_number,
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold),

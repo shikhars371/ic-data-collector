@@ -51,8 +51,10 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
           return;
         } else {
           _formkey.currentState.save();
-          await DBHelper()
-              .updatePropertySurvey(localdata, localdata.local_property_key);
+          if (localdata.isdrafted != 2) {
+            await DBHelper()
+                .updatePropertySurvey(localdata, localdata.local_property_key);
+          }
           if ((localdata.current_use_of_property == "2") ||
               (localdata.current_use_of_property == "3")) {
             Navigator.pushReplacement(

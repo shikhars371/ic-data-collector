@@ -91,8 +91,10 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
           return;
         } else {
           _formkey.currentState.save();
-          await DBHelper()
-              .updatePropertySurvey(localdata, localdata.local_property_key);
+          if (localdata.isdrafted != 2) {
+            await DBHelper()
+                .updatePropertySurvey(localdata, localdata.local_property_key);
+          }
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -286,7 +288,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.second_partner_surname,
-                                      validator: (value) {
+                                  validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
                                           .hasMatch(value)) {
@@ -323,7 +325,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.second_partner_boy,
-                                          validator: (value) {
+                                  validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
                                           .hasMatch(value)) {
@@ -356,7 +358,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.second_partner_father,
-                                      validator: (value) {
+                                  validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
                                           .hasMatch(value)) {
@@ -987,7 +989,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? false
                                           : true,
-                                          validator: (value) {
+                                  validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
                                           .hasMatch(value)) {
@@ -1023,7 +1025,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? false
                                       : true,
-                                      validator: (value) {
+                                  validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
                                           .hasMatch(value)) {
@@ -1032,7 +1034,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       }
                                     }
                                   },
-
                                   onSaved: (value) {
                                     localdata.third_partner_surname = value;
                                   },
@@ -1059,7 +1060,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? false
                                           : true,
-                                          validator: (value) {
+                                  validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
                                           .hasMatch(value)) {
@@ -1068,7 +1069,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       }
                                     }
                                   },
-
                                   onSaved: (value) {
                                     localdata.third_partner_boy = value;
                                   },
@@ -1093,7 +1093,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? false
                                           : true,
-                                          validator: (value) {
+                                  validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
                                           .hasMatch(value)) {
@@ -1102,7 +1102,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       }
                                     }
                                   },
-
                                   onSaved: (value) {
                                     localdata.third_partner_father = value;
                                   },
@@ -1717,7 +1716,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? false
                                           : true,
-                                          validator: (value) {
+                                  validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
                                           .hasMatch(value)) {
@@ -1753,7 +1752,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? false
                                       : true,
-                                      validator: (value) {
+                                  validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
                                           .hasMatch(value)) {
@@ -1762,7 +1761,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       }
                                     }
                                   },
-
                                   onSaved: (value) {
                                     localdata.fourth_partner_surname = value;
                                   },
@@ -1789,7 +1787,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? false
                                           : true,
-                                          validator: (value) {
+                                  validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
                                           .hasMatch(value)) {
@@ -1798,7 +1796,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       }
                                     }
                                   },
-
                                   onSaved: (value) {
                                     localdata.fourth_partner_boy = value;
                                   },
@@ -1823,7 +1820,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? false
                                       : true,
-                                      validator: (value) {
+                                  validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
                                           .hasMatch(value)) {
@@ -1832,7 +1829,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       }
                                     }
                                   },
-
                                   onSaved: (value) {
                                     localdata.fourth_partner_father = value;
                                   },
@@ -2449,7 +2445,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? false
                                           : true,
-                                          validator: (value) {
+                                  validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
                                           .hasMatch(value)) {
@@ -2485,7 +2481,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? false
                                       : true,
-                                      validator: (value) {
+                                  validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
                                           .hasMatch(value)) {
@@ -2494,7 +2490,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       }
                                     }
                                   },
-
                                   onSaved: (value) {
                                     localdata.fifth_partner_surname = value;
                                   },
@@ -2521,7 +2516,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? false
                                           : true,
-                                          validator: (value) {
+                                  validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
                                           .hasMatch(value)) {
@@ -2530,7 +2525,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       }
                                     }
                                   },
-
                                   onSaved: (value) {
                                     localdata.fifth_partner_boy = value;
                                   },
@@ -2555,7 +2549,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? false
                                           : true,
-                                          validator: (value) {
+                                  validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
                                           .hasMatch(value)) {
@@ -2564,7 +2558,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       }
                                     }
                                   },
-
                                   onSaved: (value) {
                                     localdata.fifth_partner_father = value;
                                   },

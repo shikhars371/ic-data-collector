@@ -50,8 +50,10 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
           return;
         } else {
           _formkey.currentState.save();
-          await DBHelper()
-              .updatePropertySurvey(localdata, localdata.local_property_key);
+          if (localdata.isdrafted != 2) {
+            await DBHelper()
+                .updatePropertySurvey(localdata, localdata.local_property_key);
+          }
           if (localdata.property_have_document == "1") {
             Navigator.pushReplacement(
               context,
@@ -244,7 +246,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                   ],
                                   onSaved: (String value) {
                                     localdata.property_have_document = value;
-                                    print(value);
+                                    
                                   },
                                   onChanged: (value) {
                                     localdata.property_have_document = value;
@@ -460,9 +462,11 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                             true
                                         ? "0"
                                         : localdata.redeemable_property,
-                                    iscompleted: ((localdata
-                                                .redeemable_property?.isEmpty ??
-                                            true)||(localdata.redeemable_property=="0"))
+                                    iscompleted: ((localdata.redeemable_property
+                                                    ?.isEmpty ??
+                                                true) ||
+                                            (localdata.redeemable_property ==
+                                                "0"))
                                         ? false
                                         : true,
                                     headerlablekey: setapptext(
@@ -504,9 +508,11 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                         ? "0"
                                         : localdata.proprietary_properties,
                                     iscompleted: ((localdata
-                                                .proprietary_properties
-                                                ?.isEmpty ??
-                                            true)||(localdata.proprietary_properties=="0"))
+                                                    .proprietary_properties
+                                                    ?.isEmpty ??
+                                                true) ||
+                                            (localdata.proprietary_properties ==
+                                                "0"))
                                         ? false
                                         : true,
                                     headerlablekey: setapptext(

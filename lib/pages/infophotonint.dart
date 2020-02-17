@@ -24,9 +24,9 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
   FocusNode _info_photo_hint_sukuk_number;
-FocusNode _info_photo_hint_cover_note;
-FocusNode _info_photo_hint_note_page;
-FocusNode _info_photo_hint_reg_no;
+  FocusNode _info_photo_hint_cover_note;
+  FocusNode _info_photo_hint_note_page;
+  FocusNode _info_photo_hint_reg_no;
 
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
@@ -56,8 +56,10 @@ FocusNode _info_photo_hint_reg_no;
           return;
         } else {
           _formkey.currentState.save();
-          await DBHelper()
-              .updatePropertySurvey(localdata, localdata.local_property_key);
+          if (localdata.isdrafted != 2) {
+            await DBHelper()
+                .updatePropertySurvey(localdata, localdata.local_property_key);
+          }
           if (localdata.property_type == "1") {
             Navigator.pushReplacement(
               context,
@@ -125,10 +127,9 @@ FocusNode _info_photo_hint_reg_no;
     localdata = widget.localdata;
     super.initState();
     _info_photo_hint_sukuk_number = new FocusNode();
-_info_photo_hint_cover_note = new FocusNode();
-_info_photo_hint_note_page = new FocusNode();
-_info_photo_hint_reg_no = new FocusNode();
-
+    _info_photo_hint_cover_note = new FocusNode();
+    _info_photo_hint_note_page = new FocusNode();
+    _info_photo_hint_reg_no = new FocusNode();
   }
 
   @override
@@ -160,15 +161,15 @@ _info_photo_hint_reg_no = new FocusNode();
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
-                                  headerlablekey: setapptext(key: 'key_machine_gun'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_machine_gun'),
                                   fieldfocus: _info_photo_hint_sukuk_number,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
                                     _info_photo_hint_sukuk_number.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_info_photo_hint_cover_note);
+                                    FocusScope.of(context).requestFocus(
+                                        _info_photo_hint_cover_note);
                                   },
-
                                   radiovalue: localdata
                                               .info_photo_hint_sukuk_number
                                               ?.isEmpty ??
@@ -191,15 +192,15 @@ _info_photo_hint_reg_no = new FocusNode();
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  headerlablekey:setapptext(key:  'key_cover_note'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_cover_note'),
                                   fieldfocus: _info_photo_hint_cover_note,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
                                     _info_photo_hint_cover_note.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_info_photo_hint_note_page);
+                                    FocusScope.of(context).requestFocus(
+                                        _info_photo_hint_note_page);
                                   },
-
                                   radiovalue: localdata
                                               .info_photo_hint_cover_note
                                               ?.isEmpty ??
@@ -222,7 +223,8 @@ _info_photo_hint_reg_no = new FocusNode();
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  headerlablekey: setapptext(key: 'key_notification_page'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_notification_page'),
                                   fieldfocus: _info_photo_hint_note_page,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -230,7 +232,6 @@ _info_photo_hint_reg_no = new FocusNode();
                                     FocusScope.of(context)
                                         .requestFocus(_info_photo_hint_reg_no);
                                   },
-
                                   radiovalue: localdata
                                               .info_photo_hint_note_page
                                               ?.isEmpty ??
@@ -256,7 +257,8 @@ _info_photo_hint_reg_no = new FocusNode();
                                   fieldfocus: _info_photo_hint_reg_no,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
-                                    _info_photo_hint_reg_no.unfocus(); },
+                                    _info_photo_hint_reg_no.unfocus();
+                                  },
                                   radiovalue: localdata.info_photo_hint_reg_no
                                               ?.isEmpty ??
                                           true
@@ -324,8 +326,9 @@ _info_photo_hint_reg_no = new FocusNode();
                                             child: Column(
                                               children: <Widget>[
                                                 RaisedButton(
-                                                  child: Text(
-                                                      setapptext(key: 'key_capture_image')),
+                                                  child: Text(setapptext(
+                                                      key:
+                                                          'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .info_photo_hint_photo_note1 =
@@ -352,7 +355,8 @@ _info_photo_hint_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text(setapptext(key: 'key_no_image')),
+                                                    child: Text(setapptext(
+                                                        key: 'key_no_image')),
                                                   )
                                                 : File(localdata
                                                             .info_photo_hint_photo_note1)
@@ -421,8 +425,9 @@ _info_photo_hint_reg_no = new FocusNode();
                                             child: Column(
                                               children: <Widget>[
                                                 RaisedButton(
-                                                  child: Text(
-                                                      setapptext(key: 'key_capture_image')),
+                                                  child: Text(setapptext(
+                                                      key:
+                                                          'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .info_photo_hint_photo_tips1 =
@@ -449,9 +454,10 @@ _info_photo_hint_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text(setapptext(key: 'key_no_image')),
+                                                    child: Text(setapptext(
+                                                        key: 'key_no_image')),
                                                   )
-                                               : File(localdata
+                                                : File(localdata
                                                             .info_photo_hint_photo_tips1)
                                                         .existsSync()
                                                     ? Image.file(
@@ -518,8 +524,9 @@ _info_photo_hint_reg_no = new FocusNode();
                                             child: Column(
                                               children: <Widget>[
                                                 RaisedButton(
-                                                  child: Text(
-                                                      setapptext(key: 'key_capture_image')),
+                                                  child: Text(setapptext(
+                                                      key:
+                                                          'key_capture_image')),
                                                   onPressed: () async {
                                                     localdata
                                                             .info_photo_hint_photo_tips2 =
@@ -546,9 +553,10 @@ _info_photo_hint_reg_no = new FocusNode();
                                                         ?.isEmpty ??
                                                     true
                                                 ? Center(
-                                                    child: Text(setapptext(key: 'key_no_image')),
+                                                    child: Text(setapptext(
+                                                        key: 'key_no_image')),
                                                   )
-                                                 : File(localdata
+                                                : File(localdata
                                                             .info_photo_hint_photo_tips2)
                                                         .existsSync()
                                                     ? Image.file(
@@ -583,8 +591,8 @@ _info_photo_hint_reg_no = new FocusNode();
                               Container(
                                 color: Colors.blue,
                                 child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 10, bottom: 10),
+                                  padding: const EdgeInsets.only(
+                                      top: 10, bottom: 10),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,

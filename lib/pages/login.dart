@@ -184,7 +184,7 @@ class _LoginPageState extends State<LoginPage> {
                                             _navigationService
                                                 .navigateRepalceTo(
                                                     routeName:
-                                                        routes.TaskRoute);
+                                                        routes.LanguageRoute);
                                           } else {
                                             showDialogSingleButton(
                                                 context: context,

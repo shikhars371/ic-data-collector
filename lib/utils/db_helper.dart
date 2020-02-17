@@ -8,6 +8,7 @@ import 'package:catcher/catcher_plugin.dart';
 import '../models/surveyAssignment.dart';
 import '../controllers/auth.dart';
 import '../models/localpropertydata.dart';
+import './reporterror.dart';
 
 class DBHelper with ChangeNotifier {
   AppState _state = AppState.Idle;
@@ -54,7 +55,11 @@ class DBHelper with ChangeNotifier {
           issynced INTEGER DEFAULT 0,iscompleted INTEGER DEFAULT 0,isstatrted INTEGER DEFAULT 0
         )
         ''').catchError((onError) {
-      print(onError);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = onError;
+      _reporterror.customError =
+          "controller-: DBHelper, method-:_onCreate surveylist";
+      Catcher.reportCheckedError(_reporterror, "stackTrace");
     });
     await db.execute('''
       CREATE TABLE IF NOT EXISTS propertysurvey(
@@ -159,19 +164,31 @@ class DBHelper with ChangeNotifier {
         surveyenddate TEXT
       )
     ''').catchError((onError) {
-      print(onError);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = onError;
+      _reporterror.customError =
+          "controller-: DBHelper, method-:_onCreate propertysurvey";
+      Catcher.reportCheckedError(_reporterror, "stackTrace");
     });
     await db.execute('''
       CREATE TABLE IF NOT EXISTS applanguage(
         language TEXT,languageval INTEGER
       )
     ''').catchError((onError) {
-      print(onError);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = onError;
+      _reporterror.customError =
+          "controller-: DBHelper, method-:_onCreate applanguage";
+      Catcher.reportCheckedError(_reporterror, "stackTrace");
     });
     await db.execute('''
       INSERT INTO applanguage(language,languageval)VALUES('English',0)
     ''').catchError((onError) {
-      print(onError);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = onError;
+      _reporterror.customError =
+          "controller-: DBHelper, method-:_onCreate insert applanguage";
+      Catcher.reportCheckedError(_reporterror, "stackTrace");
     });
   }
 
@@ -212,7 +229,10 @@ class DBHelper with ChangeNotifier {
         }
       }
     } catch (error, stackTrace) {
-      Catcher.reportCheckedError(error, stackTrace);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = error;
+      _reporterror.customError = "controller-: DBHelper, method-:addSurveyList";
+      Catcher.reportCheckedError(_reporterror, stackTrace);
     }
     return result;
   }
@@ -247,7 +267,11 @@ class DBHelper with ChangeNotifier {
         }
       }
     } catch (error, stackTrace) {
-      Catcher.reportCheckedError(error, stackTrace);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = error;
+      _reporterror.customError =
+          "controller-: DBHelper, method-: updateSurveyList";
+      Catcher.reportCheckedError(_reporterror, stackTrace);
     }
     return result;
   }
@@ -263,7 +287,11 @@ class DBHelper with ChangeNotifier {
             await dbClient.delete('surveylist', where: 'id=?', whereArgs: [id]);
       }
     } catch (error, stackTrace) {
-      Catcher.reportCheckedError(error, stackTrace);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = error;
+      _reporterror.customError =
+          "controller-: DBHelper, method-: deleteSurveyList";
+      Catcher.reportCheckedError(_reporterror, stackTrace);
     }
     return result;
   }
@@ -278,7 +306,10 @@ class DBHelper with ChangeNotifier {
         result = true;
       }
     } catch (error, stackTrace) {
-      Catcher.reportCheckedError(error, stackTrace);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = error;
+      _reporterror.customError = "controller-: DBHelper, method-: isExist";
+      Catcher.reportCheckedError(_reporterror, stackTrace);
     }
     return result;
   }
@@ -316,7 +347,10 @@ class DBHelper with ChangeNotifier {
         }
       }
     } catch (error, stackTrace) {
-      Catcher.reportCheckedError(error, stackTrace);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = error;
+      _reporterror.customError = "controller-: DBHelper, method-: getSurveys";
+      Catcher.reportCheckedError(_reporterror, stackTrace);
     }
     return surveys;
   }
@@ -631,7 +665,11 @@ class DBHelper with ChangeNotifier {
       }
     } catch (error, stackTrace) {
       setState(AppState.Idle);
-      Catcher.reportCheckedError(error, stackTrace);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = error;
+      _reporterror.customError =
+          "controller-: DBHelper, method-: addPropertySurvey";
+      Catcher.reportCheckedError(_reporterror, stackTrace);
     }
     setState(AppState.Idle);
     notifyListeners();
@@ -647,7 +685,11 @@ class DBHelper with ChangeNotifier {
           [unitno]);
       result = (maps?.isEmpty ?? true) ? false : true;
     } catch (error, stackTrace) {
-      Catcher.reportCheckedError(error, stackTrace);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = error;
+      _reporterror.customError =
+          "controller-: DBHelper, method-: ifexistUnitNo";
+      Catcher.reportCheckedError(_reporterror, stackTrace);
     }
     return result;
   }
@@ -662,7 +704,11 @@ class DBHelper with ChangeNotifier {
       List<Map> maps = await dbClient.rawQuery(sqlquery, params);
       result = (maps?.isEmpty ?? true) ? false : true;
     } catch (error, stackTrace) {
-      Catcher.reportCheckedError(error, stackTrace);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = error;
+      _reporterror.customError =
+          "controller-: DBHelper, method-: ifpropertyexist";
+      Catcher.reportCheckedError(_reporterror, stackTrace);
     }
     return result;
   }
@@ -992,7 +1038,11 @@ class DBHelper with ChangeNotifier {
       ];
       result = await dbClient.rawUpdate(sqlquery, params);
     } catch (error, stackTrace) {
-      Catcher.reportCheckedError(error, stackTrace);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = error;
+      _reporterror.customError =
+          "controller-: DBHelper, method-: updatePropertySurvey";
+      Catcher.reportCheckedError(_reporterror, stackTrace);
     }
     return result;
   }
@@ -1027,7 +1077,11 @@ class DBHelper with ChangeNotifier {
           it.map((f) => LocalPropertySurvey.frommapobject(f)).toList();
     } catch (error, stackTrace) {
       setState(AppState.Idle);
-      Catcher.reportCheckedError(error, stackTrace);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = error;
+      _reporterror.customError =
+          "controller-: DBHelper, method-: getpropertysurveys";
+      Catcher.reportCheckedError(_reporterror, stackTrace);
     }
     setState(AppState.Idle);
     notifyListeners();
@@ -1049,7 +1103,11 @@ class DBHelper with ChangeNotifier {
           it.map((f) => LocalPropertySurvey.frommapobject(f)).first;
     } catch (error, stackTrace) {
       setState(AppState.Idle);
-      Catcher.reportCheckedError(error, stackTrace);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = error;
+      _reporterror.customError =
+          "controller-: DBHelper, method-: getSingleProperty";
+      Catcher.reportCheckedError(_reporterror, stackTrace);
     }
     setState(AppState.Idle);
     notifyListeners();
@@ -1066,7 +1124,11 @@ class DBHelper with ChangeNotifier {
           where: 'local_property_key=?', whereArgs: [localkey]);
     } catch (error, stackTrace) {
       setState(AppState.Idle);
-      Catcher.reportCheckedError(error, stackTrace);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = error;
+      _reporterror.customError =
+          "controller-: DBHelper, method-: deletePropertySurvey";
+      Catcher.reportCheckedError(_reporterror, stackTrace);
     }
     setState(AppState.Idle);
     notifyListeners();
@@ -1085,7 +1147,11 @@ class DBHelper with ChangeNotifier {
       List<dynamic> params = [taskid];
       result = await dbClient.rawUpdate(query, params);
     } catch (error, stackTrace) {
-      Catcher.reportCheckedError(error, stackTrace);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = error;
+      _reporterror.customError =
+          "controller-: DBHelper, method-: updateTaskStatus";
+      Catcher.reportCheckedError(_reporterror, stackTrace);
     }
     return result;
   }
@@ -1099,7 +1165,11 @@ class DBHelper with ChangeNotifier {
           [taskid]);
       result = assignedcount >= maps[0]['P'] ? false : true;
     } catch (error, stackTrace) {
-      Catcher.reportCheckedError(error, stackTrace);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = error;
+      _reporterror.customError =
+          "controller-: DBHelper, method-: currentsurveycount";
+      Catcher.reportCheckedError(_reporterror, stackTrace);
     }
     return result;
   }
@@ -1114,7 +1184,11 @@ class DBHelper with ChangeNotifier {
       List<dynamic> params = [lang, langvalue];
       result = await dbClient.rawUpdate(sqlquery, params);
     } catch (error, stackTrace) {
-      Catcher.reportCheckedError(error, stackTrace);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = error;
+      _reporterror.customError =
+          "controller-: DBHelper, method-: changeLanguage";
+      Catcher.reportCheckedError(_reporterror, stackTrace);
     }
     setState(AppState.Idle);
     notifyListeners();
@@ -1132,7 +1206,10 @@ class DBHelper with ChangeNotifier {
         _currentLanguageIndex = it[0]['languageval'];
       }
     } catch (error, stackTrace) {
-      Catcher.reportCheckedError(error, stackTrace);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = error;
+      _reporterror.customError = "controller-: DBHelper, method-: getLanguage";
+      Catcher.reportCheckedError(_reporterror, stackTrace);
     }
     setState(AppState.Idle);
     notifyListeners();

@@ -1,7 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
@@ -67,8 +65,10 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
               });
             } else {
               _formkey.currentState.save();
-              await DBHelper().updatePropertySurvey(
-                  localdata, localdata.local_property_key);
+              if (localdata.isdrafted != 2) {
+                await DBHelper().updatePropertySurvey(
+                    localdata, localdata.local_property_key);
+              }
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
@@ -310,7 +310,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                     Text(localdata.issued_on
                                                                 ?.isEmpty ??
                                                             true
-                                                        ? setapptext(key:'kwy_notset')
+                                                        ? setapptext(
+                                                            key: 'kwy_notset')
                                                         : localdata.issued_on),
                                                     IconButton(
                                                         icon: Icon(

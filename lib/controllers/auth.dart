@@ -9,6 +9,7 @@ import '../configs/configuration.dart';
 import '../utils/navigation_service.dart';
 import '../utils/route_paths.dart' as routes;
 import '../utils/locator.dart';
+import '../utils/reporterror.dart';
 
 enum AppState { Idle, Busy }
 
@@ -51,7 +52,10 @@ class AuthModel with ChangeNotifier {
     } catch (error, stackTrace) {
       result = "Invalid username or password.";
       setState(AppState.Idle);
-      Catcher.reportCheckedError(error, stackTrace);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = error;
+      _reporterror.customError = "Controller:-Auth , method-:login ";
+      Catcher.reportCheckedError(_reporterror, stackTrace);
     }
     setState(AppState.Idle);
     notifyListeners();
@@ -77,7 +81,10 @@ class AuthModel with ChangeNotifier {
       }
     } catch (error, stackTrace) {
       setState(AppState.Idle);
-      Catcher.reportCheckedError(error, stackTrace);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = error;
+      _reporterror.customError = "Controller:-Auth , method-:generateRefreshToken ";
+      Catcher.reportCheckedError(_reporterror, stackTrace);
     }
     setState(AppState.Idle);
   }

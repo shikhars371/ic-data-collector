@@ -54,8 +54,10 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
           return;
         } else {
           _formkey.currentState.save();
-          await DBHelper()
-              .updatePropertySurvey(localdata, localdata.local_property_key);
+          if (localdata.isdrafted != 2) {
+            await DBHelper()
+                .updatePropertySurvey(localdata, localdata.local_property_key);
+          }
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -180,11 +182,11 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  initvalue: localdata
-                                              .lightning_meter_no?.isEmpty ??
-                                          true
-                                      ? ""
-                                      : localdata.lightning_common_name,
+                                  initvalue:
+                                      localdata.lightning_meter_no?.isEmpty ??
+                                              true
+                                          ? ""
+                                          : localdata.lightning_common_name,
                                   headerlablekey:
                                       setapptext(key: 'key_Common_name'),
                                   fieldfocus: _lightning_common_name,

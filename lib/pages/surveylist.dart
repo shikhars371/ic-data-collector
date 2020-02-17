@@ -72,8 +72,24 @@ class _SurveyPageState extends State<SurveyPage> {
                     child: Wrap(
                       direction: Axis.horizontal,
                       children: <Widget>[
+                        ///edit icon
                         surveydata.isdrafted == 2
-                            ? SizedBox()
+                            ? IconButton(
+                                icon: Icon(Icons.remove_red_eye),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          SurveyInfoPage(
+                                        surveyAssignment:
+                                            widget.surveyassignment,
+                                        localsurveykey:
+                                            surveydata.local_property_key,
+                                      ),
+                                    ),
+                                  );
+                                })
                             : IconButton(
                                 iconSize: 25,
                                 icon: Icon(
@@ -95,55 +111,63 @@ class _SurveyPageState extends State<SurveyPage> {
                                   );
                                 },
                               ),
-                        IconButton(
-                          iconSize: 25,
-                          icon: Icon(
-                            Icons.delete,
-                            color: Colors.redAccent,
-                          ),
-                          onPressed: () {
-                            showDialog(
-                                context: context,
-                                barrierDismissible: false,
-                                builder: (context) {
-                                  return CupertinoAlertDialog(
-                                    title: Text(
-                                        setapptext(key: 'key_want_to_delete')),
-                                    actions: <Widget>[
-                                      FlatButton(
-                                        onPressed: () async {
-                                          DBHelper()
-                                              .deletePropertySurvey(
-                                                  localkey: surveydata
-                                                      .local_property_key)
-                                              .then((_) {
-                                            Navigator.pop(context);
-                                            Provider.of<DBHelper>(context)
-                                                .getpropertysurveys(
-                                                    taskid: widget
-                                                        .surveyassignment.id);
-                                            setState(() {});
-                                          });
-                                        },
-                                        child: Text(
-                                          setapptext(key: 'key_delete'),
-                                          style: TextStyle(color: Colors.red),
-                                        ),
-                                      ),
-                                      FlatButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text(
-                                          setapptext(key: 'key_cancel'),
-                                          style: TextStyle(color: Colors.black),
-                                        ),
-                                      )
-                                    ],
-                                  );
-                                });
-                          },
-                        ),
+
+                        ///delete icon
+                        surveydata.isdrafted == 2
+                            ? SizedBox()
+                            : IconButton(
+                                iconSize: 25,
+                                icon: Icon(
+                                  Icons.delete,
+                                  color: Colors.redAccent,
+                                ),
+                                onPressed: () {
+                                  showDialog(
+                                      context: context,
+                                      barrierDismissible: false,
+                                      builder: (context) {
+                                        return CupertinoAlertDialog(
+                                          title: Text(setapptext(
+                                              key: 'key_want_to_delete')),
+                                          actions: <Widget>[
+                                            FlatButton(
+                                              onPressed: () async {
+                                                DBHelper()
+                                                    .deletePropertySurvey(
+                                                        localkey: surveydata
+                                                            .local_property_key)
+                                                    .then((_) {
+                                                  Navigator.pop(context);
+                                                  Provider.of<DBHelper>(context)
+                                                      .getpropertysurveys(
+                                                          taskid: widget
+                                                              .surveyassignment
+                                                              .id);
+                                                  setState(() {});
+                                                });
+                                              },
+                                              child: Text(
+                                                setapptext(key: 'key_delete'),
+                                                style: TextStyle(
+                                                    color: Colors.red),
+                                              ),
+                                            ),
+                                            FlatButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text(
+                                                setapptext(key: 'key_cancel'),
+                                                style: TextStyle(
+                                                    color: Colors.black),
+                                              ),
+                                            )
+                                          ],
+                                        );
+                                      });
+                                },
+                              ),
+                        //upload icon
                         surveydata.isdrafted == 2
                             ? SizedBox()
                             : IconButton(
@@ -807,6 +831,9 @@ class _UploadDataState extends State<UploadData> {
                                           setapptext(key: 'key_sync_completed');
                                       selectenable = false;
                                     });
+                                    Future.delayed(Duration(seconds: 1), () {
+                                      Navigator.of(context).pop(false);
+                                    });
                                   } else {
                                     setState(() {
                                       msgvalue =
@@ -936,13 +963,14 @@ class _UploadDataState extends State<UploadData> {
                       width: 10,
                     ),
                     RaisedButton(
-                        onPressed: () {
-                          setState(() {});
-                          Navigator.of(context).pop(false);
-                        },
-                        child: Text(
-                          setapptext(key: "key_Cancel"),
-                        ))
+                      onPressed: () {
+                        setState(() {});
+                        Navigator.of(context).pop(false);
+                      },
+                      child: Text(
+                        setapptext(key: "key_Cancel"),
+                      ),
+                    )
                   ],
                 ),
               ),

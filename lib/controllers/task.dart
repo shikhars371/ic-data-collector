@@ -9,6 +9,7 @@ import 'package:catcher/catcher_plugin.dart';
 import '../models/surveyAssignment.dart';
 import '../configs/configuration.dart';
 import '../utils/db_helper.dart';
+import '../utils/reporterror.dart';
 
 enum AppState { Idle, Busy }
 
@@ -57,7 +58,11 @@ class TaskModel with ChangeNotifier {
       _surveyAssignments = await DBHelper().getSurveys();
     } catch (error, stackTrace) {
       setState(AppState.Idle);
-      Catcher.reportCheckedError(error, stackTrace);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = error;
+      _reporterror.customError =
+          "Controller:-TaskModel , method-:getAssignments ";
+      Catcher.reportCheckedError(_reporterror, stackTrace);
     }
     setState(AppState.Idle);
     return _surveyAssignments;
@@ -81,7 +86,10 @@ class TaskModel with ChangeNotifier {
         });
       }
     } catch (error, stackTrace) {
-      Catcher.reportCheckedError(error, stackTrace);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = error;
+      _reporterror.customError = "Controller:-TaskModel , method-:getUserName ";
+      Catcher.reportCheckedError(_reporterror, stackTrace);
     }
     return result;
   }
@@ -99,7 +107,10 @@ class TaskModel with ChangeNotifier {
         }
       }
     } catch (error, stackTrace) {
-      Catcher.reportCheckedError(error, stackTrace);
+      ReportError _reporterror = new ReportError();
+      _reporterror.systemError = error;
+      _reporterror.customError = "Controller:-TaskModel , method-:addNames ";
+      Catcher.reportCheckedError(_reporterror, stackTrace);
     }
     return modifiedassignment;
   }

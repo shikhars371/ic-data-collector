@@ -66,8 +66,10 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
           return;
         } else {
           _formkey.currentState.save();
-          await DBHelper()
-              .updatePropertySurvey(localdata, localdata.local_property_key);
+          if (localdata.isdrafted != 2) {
+            await DBHelper()
+                .updatePropertySurvey(localdata, localdata.local_property_key);
+          }
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(

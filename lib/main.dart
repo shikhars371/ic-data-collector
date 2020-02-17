@@ -184,7 +184,7 @@ class _MyHomePageState extends State<MyHomePage> {
           getLocaleCode(id: data.currentLanguageIndex),
         ),
       );
-      locator<LanguageService>().currentlanguage=data.currentLanguageIndex;
+      locator<LanguageService>().currentlanguage = data.currentLanguageIndex;
       return Container(
         decoration: BoxDecoration(
           image: DecorationImage(

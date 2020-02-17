@@ -47,30 +47,6 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
     );
   }
 
-  Widget nextbutton() {
-    return GestureDetector(
-      onTap: () async {
-        if (!(_formkey.currentState.validate())) {
-          return;
-        } else {
-          _formkey.currentState.save();
-          // Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context)=>),);
-        }
-      },
-      child: Container(
-        child: Row(
-          children: <Widget>[
-            Text(
-              setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Icon(Icons.arrow_forward_ios),
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget backbutton() {
     return GestureDetector(
       onTap: () {
@@ -335,52 +311,61 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                     localdata.area_unit_business_units = value;
                                     setState(() {});
                                   }),
-                              GestureDetector(
-                                onTap: () async {
-                                  _formkey.currentState.save();
-                                  localdata.other_key = "1";
-                                  localdata.isdrafted = 1;
-                                  localdata.surveyenddate =
-                                      DateTime.now().toString();
-                                  updatePhotoStatus();
-                                  await DBHelper().updatePropertySurvey(
-                                      localdata, localdata.local_property_key);
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          TaskPage(),
-                                    ),
-                                  );
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Container(
-                                    height: 30,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        boxShadow: [
-                                          BoxShadow(
-                                              blurRadius: 5.0,
-                                              color: Colors.black)
-                                        ],
-                                        color: Colors.blue),
-                                    margin: EdgeInsets.only(
-                                      left:
-                                          MediaQuery.of(context).size.width / 5,
-                                      right:
-                                          MediaQuery.of(context).size.width / 5,
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        setapptext(key: 'key_submit'),
-                                        style: TextStyle(
-                                            fontSize: 20, color: Colors.white),
+                              localdata.isdrafted == 2
+                                  ? SizedBox()
+                                  : GestureDetector(
+                                      onTap: () async {
+                                        _formkey.currentState.save();
+                                        localdata.other_key = "1";
+                                        localdata.isdrafted = 1;
+                                        localdata.surveyenddate =
+                                            DateTime.now().toString();
+                                        updatePhotoStatus();
+                                        await DBHelper().updatePropertySurvey(
+                                            localdata,
+                                            localdata.local_property_key);
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                TaskPage(),
+                                          ),
+                                        );
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10),
+                                        child: Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                    blurRadius: 5.0,
+                                                    color: Colors.black)
+                                              ],
+                                              color: Colors.blue),
+                                          margin: EdgeInsets.only(
+                                            left: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                            right: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                5,
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              setapptext(key: 'key_submit'),
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  color: Colors.white),
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ),
-                              ),
                               SizedBox(
                                 height: 50,
                               )
