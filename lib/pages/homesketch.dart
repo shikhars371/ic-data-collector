@@ -321,9 +321,13 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                         localdata.surveyenddate =
                                             DateTime.now().toString();
                                         updatePhotoStatus();
-                                        await DBHelper().updatePropertySurvey(
-                                            localdata,
-                                            localdata.local_property_key);
+                                        await DBHelper()
+                                            .updatePropertySurvey(localdata,
+                                                localdata.local_property_key)
+                                            .then((_) {
+                                          DBHelper().updateTaskCompleteStatus(
+                                              taskid: localdata.taskid);
+                                        });
                                         Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(

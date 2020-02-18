@@ -157,7 +157,7 @@ class _AppDrawerState extends State<AppDrawer> {
                       child: Text(
                         setapptext(key: 'key_Last_Sync_Date') +
                             "-:" +
-                            DateFormat("dd-MM-yyy hh:mm").format(
+                            DateFormat("dd-MMM-yyy hh:mm").format(
                               DateTime.tryParse(lastsynceddate),
                             ),
                       ),

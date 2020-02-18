@@ -1125,6 +1125,54 @@ class DBHelper with ChangeNotifier {
     return result;
   }
 
+  Future<int> updateTaskCompleteStatus({String taskid}) async {
+    int result = 0;
+    setState(AppState.Busy);
+    try {
+      var dbClient = await db;
+      List<Map> propertymaps = await dbClient.rawQuery(
+          'select COUNT(id) as p from propertysurvey where taskid=$taskid');
+      List<Map> taskmap = await dbClient
+          .rawQuery('select propertytosurvey from surveylist where id=$taskid');
+      if (!(propertymaps?.isEmpty ?? true)) {
+        int propertycount = int.tryParse(propertymaps[0]['p'].toString());
+        int taskcount = int.tryParse(taskmap[0]['propertytosurvey'].toString());
+        if (propertycount == taskcount) {
+          result = await dbClient.update('surveylist', {"iscompleted": "1"},
+              where: 'id=?', whereArgs: [taskid]);
+        }
+      }
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
+    }
+    setState(AppState.Idle);
+    return result;
+  }
+
+  Future<int> updateTaskSyncStatus({String taskid}) async {
+    int result = 0;
+    setState(AppState.Busy);
+    try {
+      var dbClient = await db;
+      List<Map> propertymaps = await dbClient.rawQuery(
+          'select COUNT(id) as p from propertysurvey where taskid=$taskid and isdrafted=2');
+      List<Map> taskmap = await dbClient
+          .rawQuery('select propertytosurvey from surveylist where id=$taskid');
+      if (!(propertymaps?.isEmpty ?? true)) {
+        int propertycount = int.tryParse(propertymaps[0]['p'].toString());
+        int taskcount = int.tryParse(taskmap[0]['propertytosurvey'].toString());
+        if (propertycount == taskcount) {
+          result = await dbClient.update('surveylist', {"issynced": 1},
+              where: 'id=?', whereArgs: [taskid]);
+        }
+      }
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
+    }
+    setState(AppState.Idle);
+    return result;
+  }
+
   Future<int> getLanguage() async {
     setState(AppState.Busy);
     notifyListeners();

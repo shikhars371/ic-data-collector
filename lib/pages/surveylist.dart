@@ -830,6 +830,8 @@ class _UploadDataState extends State<UploadData> {
                                   if (result) {
                                     sp.setString(
                                         "lastsync", DateTime.now().toString());
+                                    await DBHelper().updateTaskSyncStatus(
+                                        taskid: widget.propertydata.taskid);
                                     setState(() {
                                       msgvalue =
                                           setapptext(key: 'key_sync_completed');
