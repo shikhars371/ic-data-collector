@@ -294,5 +294,6 @@
     "key_status": "da-Status",
     "key_continue": "da-Continue",
     "key_gozar": "da-Gozar",
-    "key_Disorganized": "da-Disorganized"
+    "key_Disorganized": "da-Disorganized",
+    "key_Last_Sync_Date": "da-Last Sync Date"
 }

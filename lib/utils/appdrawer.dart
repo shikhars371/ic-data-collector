@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:intl/intl.dart';
 
 import '../pages/login.dart';
 import '../utils/navigation_service.dart';
@@ -26,6 +27,7 @@ class _AppDrawerState extends State<AppDrawer> {
   SharedPreferences pref;
   String _user;
   String _email;
+  String lastsynceddate;
 
   final drawerItems = [
     DrawerItem("key_tasks", Icons.assignment), //page index = 0
@@ -38,8 +40,14 @@ class _AppDrawerState extends State<AppDrawer> {
     setpageindex(widget.pageindex);
     Future.delayed(Duration.zero).then((_) {
       getUserInfo();
+      getLastsyncdata();
     });
     super.initState();
+  }
+
+  getLastsyncdata() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    lastsynceddate = sp.getString("lastsync");
   }
 
   String setapptext({String key}) {
@@ -110,32 +118,51 @@ class _AppDrawerState extends State<AppDrawer> {
     return Container(
       child: Drawer(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            UserAccountsDrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              currentAccountPicture: new CircleAvatar(
-                radius: 50.0,
-                child: new Image.network(
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTnx9gugwptmYiJSoH38ftixCTsOiX86pseDJUG8nTONwADCQUS',
+            Wrap(
+              children: <Widget>[
+                UserAccountsDrawerHeader(
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                  ),
+                  currentAccountPicture: new CircleAvatar(
+                    radius: 50.0,
+                    child: new Image.network(
+                      'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTnx9gugwptmYiJSoH38ftixCTsOiX86pseDJUG8nTONwADCQUS',
+                    ),
+                  ),
+                  accountEmail: Text(_user?.isEmpty ?? true ? "" : _user),
+                  accountName: Text(_email?.isEmpty ?? true ? "" : _email),
+                  otherAccountsPictures: <Widget>[
+                    IconButton(
+                      onPressed: () {
+                        logout();
+                      },
+                      icon: Icon(Icons.power_settings_new, color: Colors.white),
+                      tooltip: "Logout",
+                    )
+                  ],
                 ),
-              ),
-              accountEmail: Text(_user?.isEmpty ?? true ? "" : _user),
-              accountName: Text(_email?.isEmpty ?? true ? "" : _email),
-              otherAccountsPictures: <Widget>[
-                IconButton(
-                  onPressed: () {
-                    logout();
-                  },
-                  icon: Icon(Icons.power_settings_new, color: Colors.white),
-                  tooltip: "Logout",
-                )
+                Column(
+                  children: drawerOptions,
+                ),
               ],
             ),
-            Column(
-              children: drawerOptions,
-            ),
+            lastsynceddate?.isEmpty ?? true
+                ? SizedBox()
+                : Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: Container(
+                      child: Text(
+                        setapptext(key: 'key_Last_Sync_Date') +
+                            "-:" +
+                            DateFormat("dd-MM-yyy hh:mm").format(
+                              DateTime.tryParse(lastsynceddate),
+                            ),
+                      ),
+                    ),
+                  )
           ],
         ),
       ),

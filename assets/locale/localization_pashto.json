@@ -294,5 +294,6 @@
     "key_status": "ps-Status",
     "key_continue": "ps-Continue",
     "key_gozar": "ps-Gozar",
-    "key_Disorganized": "ps-Disorganized"
+    "key_Disorganized": "ps-Disorganized",
+    "key_Last_Sync_Date": "ps-Last Sync Date"
 }

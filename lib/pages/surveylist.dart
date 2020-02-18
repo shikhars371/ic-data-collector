@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
@@ -804,6 +805,7 @@ class _UploadDataState extends State<UploadData> {
                     RaisedButton(
                       onPressed: selectenable
                           ? () async {
+                              var sp = await SharedPreferences.getInstance();
                               var connectivityResult =
                                   await (Connectivity().checkConnectivity());
                               if (connectivityResult ==
@@ -826,6 +828,8 @@ class _UploadDataState extends State<UploadData> {
                                       propertydata: widget.propertydata,
                                       uploadpreogress: _setUploadProgress);
                                   if (result) {
+                                    sp.setString(
+                                        "lastsync", DateTime.now().toString());
                                     setState(() {
                                       msgvalue =
                                           setapptext(key: 'key_sync_completed');
