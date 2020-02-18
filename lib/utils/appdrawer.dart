@@ -7,6 +7,7 @@ import '../utils/navigation_service.dart';
 import '../utils/route_paths.dart' as routes;
 import '../utils/locator.dart';
 import '../localization/app_translations.dart';
+import './db_helper.dart';
 
 class DrawerItem {
   String title;
@@ -88,16 +89,67 @@ class _AppDrawerState extends State<AppDrawer> {
   }
 
   logout() async {
-    ///TODO check data sync or not
-    ///if data synced then clear the local data if not ask
-    ///user to sync the data then logout
-    ///if then also user wish to delete the data then allow
-    pref.clear();
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) => LoginPage(),
-      ),
-    );
+    var result = await DBHelper().isAllDataSynced();
+    if (result) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          // return object of type Dialog
+          return AlertDialog(
+            title: new Text(
+              setapptext(key: 'key_warning'),
+            ),
+            content: new Text(
+              setapptext(key: 'key_logout_dlt_msg'),
+            ),
+            actions: <Widget>[
+              // usually buttons at the bottom of the dialog
+              new FlatButton(
+                child: new Text(
+                  setapptext(key: 'key_ok'),
+                  style: TextStyle(color: Colors.red),
+                ),
+                onPressed: () async {
+                  await DBHelper().clearLocalStorage();
+                  pref.clear();
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => LoginPage(),
+                    ),
+                  );
+                },
+              ),
+              new FlatButton(
+                child: new Text(setapptext(key: 'key_cancel')),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          // return object of type Dialog
+          return AlertDialog(
+            title: new Text(setapptext(key: 'key_warning')),
+            content: new Text(setapptext(key: 'key_logout_msg')),
+            actions: <Widget>[
+              // usually buttons at the bottom of the dialog
+              new FlatButton(
+                child: new Text(setapptext(key: 'key_ok')),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   @override

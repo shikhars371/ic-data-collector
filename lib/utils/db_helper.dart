@@ -1191,6 +1191,43 @@ class DBHelper with ChangeNotifier {
     return _currentLanguageIndex;
   }
 
+  Future<void> clearLocalStorage() async {
+    try {
+      var dbClient = await db;
+      await dbClient.delete('surveylist');
+      await dbClient.delete('propertysurvey');
+      await dbClient.delete('applanguage');
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
+    }
+  }
+
+  Future<bool> isAllDataSynced() async {
+    setState(AppState.Busy);
+    var result = false;
+    try {
+      int count = 0;
+      var dbClient = await db;
+      List<Map> maps =
+          await dbClient.rawQuery('select isdrafted from propertysurvey');
+      if (!(maps?.isEmpty ?? true)) {
+        int itemcount = maps.length;
+        for (var item in maps) {
+          if (int.tryParse(item['isdrafted'].toString()) == 2) {
+            count++;
+          } else {
+            break;
+          }
+        }
+        result = count == itemcount ? true : false;
+      }
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
+    }
+    setState(AppState.Idle);
+    return result;
+  }
+
   Future close() async {
     var dbClient = await db;
     dbClient.close();

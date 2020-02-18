@@ -295,5 +295,7 @@
     "key_continue": "da-Continue",
     "key_gozar": "da-Gozar",
     "key_Disorganized": "da-Disorganized",
-    "key_Last_Sync_Date": "da-Last Sync Date"
+    "key_Last_Sync_Date": "da-Last Sync Date",
+    "key_logout_msg": "da-You Can't logout from the app without sync the survey data",
+    "key_logout_dlt_msg":"da-By clicking data all the data will be deleted.To process press ok or cancel to exit"
 }

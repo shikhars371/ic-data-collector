@@ -295,5 +295,7 @@
     "key_continue": "ps-Continue",
     "key_gozar": "ps-Gozar",
     "key_Disorganized": "ps-Disorganized",
-    "key_Last_Sync_Date": "ps-Last Sync Date"
+    "key_Last_Sync_Date": "ps-Last Sync Date",
+    "key_logout_msg": "ps-You Can't logout from the app without sync the survey data",
+    "key_logout_dlt_msg":"ps-By clicking data all the data will be deleted.To process press ok or cancel to exit"
 }
