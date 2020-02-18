@@ -64,21 +64,22 @@ class AuthModel with ChangeNotifier {
     setState(AppState.Busy);
     try {
       var preferences = await SharedPreferences.getInstance();
-      var responce =
-          await http.post(Configuration.apiurl + "authentication", body: {
-        "strategy": "local",
-        "email": preferences.getString('email'),
-        "password": preferences.getString('userpass')
-      });
-      if (responce.statusCode == 201) {
-        preferences.setString(
-            "accesstoken", json.decode(responce.body)['accessToken']);
-      } else {
+      var email = preferences.getString('email');
+      var password = preferences.getString('userpass');
+      if ((email?.isEmpty ?? true) || (password?.isEmpty ?? true)) {
         _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);
+      } else {
+        var responce = await http.post(Configuration.apiurl + "authentication",
+            body: {"strategy": "local", "email": email, "password": password});
+        if (responce.statusCode == 201) {
+          preferences.setString(
+              "accesstoken", json.decode(responce.body)['accessToken']);
+        } else {
+          _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);
+        }
       }
     } catch (error, stackTrace) {
       setState(AppState.Idle);
-
       Catcher.reportCheckedError(error, stackTrace);
     }
     setState(AppState.Idle);
@@ -96,4 +97,5 @@ void saveCurrentLogin({Map responseJson, String password}) async {
   preferences.setString("email", responseJson['user']['email']);
   preferences.setString("activeStatus", responseJson['user']['active_status']);
   preferences.setString("userpass", password.trim());
+  preferences.setString("profilepic", responseJson['user']['profile_image']);
 }

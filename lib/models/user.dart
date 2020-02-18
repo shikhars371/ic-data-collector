@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class User {
   String id;
   String firstName;
@@ -23,6 +25,7 @@ class User {
   String createdBy;
   String updatedBy;
   String ip;
+  String profilepic;
 
   User(
       {this.id,
@@ -48,7 +51,8 @@ class User {
       this.gozarId,
       this.createdBy,
       this.updatedBy,
-      this.ip});
+      this.ip,
+      this.profilepic});
 
   User.fromJson(Map<String, dynamic> json)
       : id = json['_id'],
@@ -74,7 +78,8 @@ class User {
         mobileAccess = json['mobile_access'],
         createdBy = json['created_by'],
         updatedBy = json['upated_by'],
-        ip = json['ip'];
+        ip = json['ip'],
+        profilepic = json['profile_image'];
 
   Map<String, dynamic> toJson() => {
         '_id': id,
@@ -100,6 +105,7 @@ class User {
         'gozar_id': gozarId,
         'craeted_by': createdBy,
         'updated_by': updatedBy,
-        'ip': ip
+        'ip': ip,
+        'profile_image': profilepic
       };
 }

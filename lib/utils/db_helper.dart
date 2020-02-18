@@ -1207,11 +1207,12 @@ class DBHelper with ChangeNotifier {
     var result = false;
     try {
       int count = 0;
+      int itemcount=0;
       var dbClient = await db;
       List<Map> maps =
           await dbClient.rawQuery('select isdrafted from propertysurvey');
       if (!(maps?.isEmpty ?? true)) {
-        int itemcount = maps.length;
+        itemcount = maps.length;
         for (var item in maps) {
           if (int.tryParse(item['isdrafted'].toString()) == 2) {
             count++;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import '../pages/login.dart';
 import '../utils/navigation_service.dart';
@@ -29,6 +30,7 @@ class _AppDrawerState extends State<AppDrawer> {
   String _user;
   String _email;
   String lastsynceddate;
+  String _profilepic;
 
   final drawerItems = [
     DrawerItem("key_tasks", Icons.assignment), //page index = 0
@@ -41,14 +43,8 @@ class _AppDrawerState extends State<AppDrawer> {
     setpageindex(widget.pageindex);
     Future.delayed(Duration.zero).then((_) {
       getUserInfo();
-      getLastsyncdata();
     });
     super.initState();
-  }
-
-  getLastsyncdata() async {
-    SharedPreferences sp = await SharedPreferences.getInstance();
-    lastsynceddate = sp.getString("lastsync");
   }
 
   String setapptext({String key}) {
@@ -66,6 +62,8 @@ class _AppDrawerState extends State<AppDrawer> {
     setState(() {
       _user = pref.getString("firstname");
       _email = pref.getString("email");
+      _profilepic = pref.getString("profilepic");
+      lastsynceddate = pref.getString("lastsync");
     });
   }
 
@@ -90,7 +88,7 @@ class _AppDrawerState extends State<AppDrawer> {
 
   logout() async {
     var result = await DBHelper().isAllDataSynced();
-    if (result) {
+    if (!(result)) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -104,22 +102,25 @@ class _AppDrawerState extends State<AppDrawer> {
             ),
             actions: <Widget>[
               // usually buttons at the bottom of the dialog
-              new FlatButton(
+              FlatButton(
                 child: new Text(
                   setapptext(key: 'key_ok'),
                   style: TextStyle(color: Colors.red),
                 ),
                 onPressed: () async {
-                  await DBHelper().clearLocalStorage();
-                  pref.clear();
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => LoginPage(),
-                    ),
-                  );
+                  await DBHelper().clearLocalStorage().then((onValue) {
+                    pref.clear();
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => LoginPage(),
+                      ),
+                    );
+                  }).catchError((onError) {
+                    print("appdrawer" + onError);
+                  });
                 },
               ),
-              new FlatButton(
+              FlatButton(
                 child: new Text(setapptext(key: 'key_cancel')),
                 onPressed: () {
                   Navigator.of(context).pop();
@@ -180,8 +181,12 @@ class _AppDrawerState extends State<AppDrawer> {
                   ),
                   currentAccountPicture: new CircleAvatar(
                     radius: 50.0,
-                    child: new Image.network(
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTnx9gugwptmYiJSoH38ftixCTsOiX86pseDJUG8nTONwADCQUS',
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTnx9gugwptmYiJSoH38ftixCTsOiX86pseDJUG8nTONwADCQUS',
+                      placeholder: (context, url) =>
+                          CircularProgressIndicator(),
+                      errorWidget: (context, url, error) => Icon(Icons.person),
                     ),
                   ),
                   accountEmail: Text(_user?.isEmpty ?? true ? "" : _user),
