@@ -79,9 +79,9 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios),
+            Icon(Icons.arrow_forward_ios,color: Colors.white),
           ],
         ),
       ),
@@ -138,10 +138,10 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios),
+            Icon(Icons.arrow_back_ios,color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             )
           ],
         ),
@@ -204,8 +204,8 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                   radiovalue:
                                       localdata.first_partner_name?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   initvalue:
                                       localdata.first_partner_name?.isEmpty ??
                                               true
@@ -241,8 +241,8 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                   radiovalue: localdata
                                               .first_partner_surname?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   initvalue: localdata
                                               .first_partner_surname?.isEmpty ??
                                           true
@@ -276,8 +276,8 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                   radiovalue:
                                       localdata.first_partner_boy?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   initvalue:
                                       localdata.first_partner_boy?.isEmpty ??
                                               true
@@ -307,8 +307,8 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                   radiovalue: localdata
                                               .first_partner__father?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   initvalue: localdata
                                               .first_partner__father?.isEmpty ??
                                           true
@@ -343,8 +343,8 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                           (localdata
                                                   .first_partner_name_gender ==
                                               "0"))
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   headerlablekey: setapptext(key: 'key_gender'),
                                   dropdownitems: [
                                     Dpvalue(
@@ -383,8 +383,8 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                   radiovalue: localdata.first_partner_name_phone
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   initvalue: localdata.first_partner_name_phone
                                               ?.isEmpty ??
                                           true
@@ -418,8 +418,8 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                   radiovalue: localdata.first_partner_name_email
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   initvalue: localdata.first_partner_name_email
                                               ?.isEmpty ??
                                           true
@@ -474,8 +474,8 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                                             .first_partner_name_property_owner
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(
@@ -554,8 +554,8 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                               .first_partner_name_mere_individuals
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   initvalue: localdata
                                               .first_partner_name_mere_individuals
                                               ?.isEmpty ??

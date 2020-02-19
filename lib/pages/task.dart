@@ -19,9 +19,6 @@ class _TaskPageState extends State<TaskPage> {
   final NavigationService _navigationService = locator<NavigationService>();
   @override
   void initState() {
-    Future.delayed(Duration.zero).then((_) {
-      Provider.of<TaskModel>(context).getAssignments();
-    });
     super.initState();
   }
 

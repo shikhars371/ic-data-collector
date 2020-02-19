@@ -1194,9 +1194,13 @@ class DBHelper with ChangeNotifier {
   Future<void> clearLocalStorage() async {
     try {
       var dbClient = await db;
-      await dbClient.delete('surveylist');
-      await dbClient.delete('propertysurvey');
-      await dbClient.delete('applanguage');
+      var lang = await dbClient.delete('applanguage');
+      if (lang != 0) {
+        var surveylist = await dbClient.delete('surveylist');
+        if (surveylist != 0) {
+          var propsurvey = await dbClient.delete('propertysurvey');
+        }
+      }
     } catch (error, stackTrace) {
       Catcher.reportCheckedError(error, stackTrace);
     }
@@ -1207,7 +1211,7 @@ class DBHelper with ChangeNotifier {
     var result = false;
     try {
       int count = 0;
-      int itemcount=0;
+      int itemcount = 0;
       var dbClient = await db;
       List<Map> maps =
           await dbClient.rawQuery('select isdrafted from propertysurvey');

@@ -107,9 +107,10 @@ class _FourLimitPageState extends State<FourLimitPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios),
+            Icon(Icons.arrow_forward_ios, color: Colors.white),
           ],
         ),
       ),
@@ -142,10 +143,11 @@ class _FourLimitPageState extends State<FourLimitPage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios),
+            Icon(Icons.arrow_back_ios, color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             )
           ],
         ),
@@ -210,8 +212,8 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                   radiovalue:
                                       localdata.boundaryinfonote?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.boundaryinfonote = value.trim();
                                   },
@@ -236,8 +238,8 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                   radiovalue:
                                       localdata.fore_limits_east?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
                                       return setapptext(
@@ -268,8 +270,8 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                   radiovalue:
                                       localdata.fore_limits_west?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
                                       return setapptext(
@@ -300,8 +302,8 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                   radiovalue:
                                       localdata.fore_limits_south?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
                                       return setapptext(
@@ -330,8 +332,8 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                   radiovalue:
                                       localdata.fore_limits_north?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
                                       return setapptext(

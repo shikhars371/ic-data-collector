@@ -86,9 +86,9 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios),
+            Icon(Icons.arrow_forward_ios,color: Colors.white),
           ],
         ),
       ),
@@ -110,10 +110,10 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios),
+            Icon(Icons.arrow_back_ios,color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             )
           ],
         ),
@@ -174,8 +174,8 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                               .info_photo_hint_sukuk_number
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   initvalue: localdata
                                               .info_photo_hint_sukuk_number
                                               ?.isEmpty ??
@@ -205,8 +205,8 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                               .info_photo_hint_cover_note
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   initvalue: localdata
                                               .info_photo_hint_cover_note
                                               ?.isEmpty ??
@@ -236,8 +236,8 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                               .info_photo_hint_note_page
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   initvalue: localdata.info_photo_hint_note_page
                                               ?.isEmpty ??
                                           true
@@ -262,8 +262,8 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                   radiovalue: localdata.info_photo_hint_reg_no
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   initvalue: localdata.info_photo_hint_reg_no
                                               ?.isEmpty ??
                                           true
@@ -306,8 +306,8 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                                             .info_photo_hint_photo_note1
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(
@@ -405,8 +405,8 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                                             .info_photo_hint_photo_tips1
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(
@@ -504,8 +504,8 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                                             .info_photo_hint_photo_tips2
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(

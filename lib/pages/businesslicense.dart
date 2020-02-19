@@ -73,9 +73,9 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios),
+            Icon(Icons.arrow_forward_ios,color: Colors.white),
           ],
         ),
       ),
@@ -108,10 +108,10 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios),
+            Icon(Icons.arrow_back_ios,color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             )
           ],
         ),
@@ -171,8 +171,8 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
                                   radiovalue: localdata.number_of_business_unit
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   initvalue: localdata.number_of_business_unit
                                               ?.isEmpty ??
                                           true
@@ -204,8 +204,8 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
                                               .business_unit_have_no_license
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   initvalue: localdata
                                               .business_unit_have_no_license
                                               ?.isEmpty ??
@@ -234,8 +234,8 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
                                   radiovalue: localdata.business_license_another
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   initvalue: localdata.business_license_another
                                               ?.isEmpty ??
                                           true

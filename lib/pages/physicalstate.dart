@@ -63,9 +63,9 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios),
+            Icon(Icons.arrow_forward_ios,color: Colors.white),
           ],
         ),
       ),
@@ -87,10 +87,10 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios),
+            Icon(Icons.arrow_back_ios,color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             )
           ],
         ),
@@ -144,8 +144,8 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                               true) ||
                                           (localdata.status_of_area_plan ==
                                               "0"))
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   headerlablekey:
                                       setapptext(key: 'key_specify_the'),
                                   dropdownitems: [
@@ -184,8 +184,8 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                               true) ||
                                           (localdata.status_of_area_official ==
                                               "0"))
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   headerlablekey:
                                       setapptext(key: 'key_Property_Rights'),
                                   dropdownitems: [
@@ -224,8 +224,8 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                               true) ||
                                           (localdata.status_of_area_regular ==
                                               "0"))
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   headerlablekey:
                                       setapptext(key: 'key_Property_Type'),
                                   dropdownitems: [
@@ -262,8 +262,8 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                       ((localdata.slope_of_area?.isEmpty ??
                                                   true) ||
                                               (localdata.slope_of_area == "0"))
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   headerlablekey:
                                       setapptext(key: 'key_specify_slope'),
                                   dropdownitems: [

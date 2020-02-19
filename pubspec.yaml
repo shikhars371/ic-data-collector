@@ -54,6 +54,7 @@ flutter:
    - assets/locale/localization_pashto.json
    - assets/locale/localization_en.json
    - assets/locale/localization_dari.json
+   - assets/images/addtask.png
 
   # example:arvo
   fonts:

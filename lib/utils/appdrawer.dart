@@ -110,11 +110,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 onPressed: () async {
                   await DBHelper().clearLocalStorage().then((onValue) {
                     pref.clear();
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (context) => LoginPage(),
-                      ),
-                    );
+                    _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);
                   }).catchError((onError) {
                     print("appdrawer" + onError);
                   });
@@ -196,7 +192,7 @@ class _AppDrawerState extends State<AppDrawer> {
                       onPressed: () {
                         logout();
                       },
-                      icon: Icon(Icons.power_settings_new, color: Colors.white),
+                      icon: Icon(Icons.exit_to_app, color: Colors.white),
                       tooltip: "Logout",
                     )
                   ],

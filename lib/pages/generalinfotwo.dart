@@ -65,9 +65,9 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios),
+            Icon(Icons.arrow_forward_ios,color: Colors.white),
           ],
         ),
       ),
@@ -89,10 +89,10 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios),
+            Icon(Icons.arrow_back_ios,color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             )
           ],
         ),
@@ -155,8 +155,8 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
                                   radiovalue: localdata.issue_regarding_property
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.issue_regarding_property =
                                         value.trim();
@@ -182,8 +182,8 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
                                   radiovalue: localdata.municipality_ref_number
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.municipality_ref_number =
                                         value.trim();
@@ -198,8 +198,8 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
                                                   .natural_threaten?.isEmpty ??
                                               true) ||
                                           (localdata.natural_threaten == "0"))
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   value: localdata.natural_threaten?.isEmpty ??
                                           true
                                       ? "0"

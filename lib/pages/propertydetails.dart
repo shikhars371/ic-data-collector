@@ -92,9 +92,9 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios),
+            Icon(Icons.arrow_forward_ios,color: Colors.white),
           ],
         ),
       ),
@@ -116,10 +116,10 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios),
+            Icon(Icons.arrow_back_ios,color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             )
           ],
         ),
@@ -173,8 +173,8 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                               true) ||
                                           (localdata.location_of_land_area ==
                                               "0"))
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   headerlablekey:
                                       setapptext(key: 'key_location_land'),
                                   dropdownitems: [
@@ -228,8 +228,8 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                               true) ||
                                           (localdata.property_have_document ==
                                               "0"))
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   headerlablekey: setapptext(
                                       key: 'key_does_properties_document'),
                                   dropdownitems: [
@@ -246,7 +246,6 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                   ],
                                   onSaved: (String value) {
                                     localdata.property_have_document = value;
-                                    
                                   },
                                   onChanged: (value) {
                                     localdata.property_have_document = value;
@@ -269,8 +268,8 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                               true) ||
                                           (localdata.current_use_of_property ==
                                               "0"))
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   headerlablekey: setapptext(
                                       key: 'key_current_use_property_type'),
                                   dropdownitems: [
@@ -347,8 +346,8 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                                 true) ||
                                             (localdata.redeemable_property ==
                                                 "0"))
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     headerlablekey: setapptext(
                                         key: 'key_Type_of_redeemable_property'),
                                     dropdownitems: [
@@ -399,8 +398,8 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                                 true) ||
                                             (localdata.proprietary_properties ==
                                                 "0"))
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     headerlablekey: setapptext(
                                         key: 'key_Proprietary_Properties'),
                                     dropdownitems: [
@@ -467,8 +466,8 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                                 true) ||
                                             (localdata.redeemable_property ==
                                                 "0"))
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     headerlablekey: setapptext(
                                         key: 'key_Type_of_redeemable_property'),
                                     dropdownitems: [
@@ -513,8 +512,8 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                                 true) ||
                                             (localdata.proprietary_properties ==
                                                 "0"))
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     headerlablekey: setapptext(
                                         key: 'key_Proprietary_Properties'),
                                     dropdownitems: [
@@ -579,8 +578,8 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                                     .govt_property?.isEmpty ??
                                                 true) ||
                                             (localdata.govt_property == "0"))
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     headerlablekey:
                                         setapptext(key: 'key_govt_proprty'),
                                     dropdownitems: [
@@ -665,8 +664,8 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                                 true) ||
                                             (localdata.specified_current_use ==
                                                 "0"))
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     headerlablekey: setapptext(
                                         key: 'key_type_of_currentuse'),
                                     dropdownitems: [
@@ -743,8 +742,8 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                                 .unspecified_current_use_type
                                                 ?.isEmpty ??
                                             true
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
                                         return setapptext(

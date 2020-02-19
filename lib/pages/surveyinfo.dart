@@ -93,9 +93,9 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios),
+            Icon(Icons.arrow_forward_ios,color: Colors.white),
           ],
         ),
       ),
@@ -408,8 +408,8 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                   radiovalue:
                                       localdata.first_surveyor_name?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   hinttextkey:
                                       setapptext(key: 'key_enter_1st_surveyor'),
                                   fieldfocus: _firstsurveyor,
@@ -450,8 +450,8 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                   radiovalue:
                                       localdata.senond_surveyor_name?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   hinttextkey:
                                       setapptext(key: 'key_enter_1st_surveyor'),
                                   fieldfocus: _secondsurveyor,
@@ -492,8 +492,8 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                   radiovalue: localdata.technical_support_name
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   hinttextkey:
                                       setapptext(key: 'key_enter_1st_surveyor'),
                                   fieldfocus: _technicalsupport,

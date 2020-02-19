@@ -98,9 +98,9 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios),
+            Icon(Icons.arrow_forward_ios,color: Colors.white),
           ],
         ),
       ),
@@ -122,10 +122,10 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios),
+            Icon(Icons.arrow_back_ios,color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             )
           ],
         ),
@@ -184,8 +184,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                       ((localdata.document_type?.isEmpty ??
                                                   true) ||
                                               (localdata.document_type == "0"))
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   headerlablekey:
                                       setapptext(key: 'key_doc_type'),
                                   dropdownitems: [
@@ -262,8 +262,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                               .issued_on
                                                               ?.isEmpty ??
                                                           true
-                                                      ? false
-                                                      : true),
+                                                      ? CheckColor.Black
+                                                      : CheckColor.Green),
                                               Flexible(
                                                 child: Text(
                                                   setapptext(
@@ -398,8 +398,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                     radiovalue:
                                         localdata.place_of_issue?.isEmpty ??
                                                 true
-                                            ? false
-                                            : true,
+                                            ? CheckColor.Black
+                                            : CheckColor.Green,
                                     onSaved: (value) {
                                       localdata.place_of_issue = value;
                                     },
@@ -425,8 +425,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                     radiovalue:
                                         localdata.property_number?.isEmpty ??
                                                 true
-                                            ? false
-                                            : true,
+                                            ? CheckColor.Black
+                                            : CheckColor.Green,
                                     onSaved: (value) {
                                       localdata.property_number = value;
                                     },
@@ -452,8 +452,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                     radiovalue:
                                         localdata.document_cover?.isEmpty ??
                                                 true
-                                            ? false
-                                            : true,
+                                            ? CheckColor.Black
+                                            : CheckColor.Green,
                                     onSaved: (value) {
                                       localdata.document_cover = value;
                                     },
@@ -477,8 +477,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                     },
                                     radiovalue:
                                         localdata.document_page?.isEmpty ?? true
-                                            ? false
-                                            : true,
+                                            ? CheckColor.Black
+                                            : CheckColor.Green,
                                     onSaved: (value) {
                                       localdata.document_page = value;
                                     },
@@ -505,8 +505,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                     radiovalue:
                                         localdata.doc_reg_number?.isEmpty ??
                                                 true
-                                            ? false
-                                            : true,
+                                            ? CheckColor.Black
+                                            : CheckColor.Green,
                                     onSaved: (value) {
                                       localdata.doc_reg_number = value;
                                     },
@@ -530,8 +530,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                     radiovalue:
                                         localdata.land_area_qawwala?.isEmpty ??
                                                 true
-                                            ? false
-                                            : true,
+                                            ? CheckColor.Black
+                                            : CheckColor.Green,
                                     onSaved: (value) {
                                       localdata.land_area_qawwala = value;
                                     },
@@ -567,8 +567,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                               .property_doc_photo_1
                                                               ?.isEmpty ??
                                                           true
-                                                      ? false
-                                                      : true),
+                                                      ? CheckColor.Black
+                                                      : CheckColor.Green),
                                               Flexible(
                                                 child: Text(
                                                   setapptext(
@@ -661,8 +661,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                               .property_doc_photo_2
                                                               ?.isEmpty ??
                                                           true
-                                                      ? false
-                                                      : true),
+                                                      ? CheckColor.Black
+                                                      : CheckColor.Green),
                                               Flexible(
                                                 child: Text(
                                                   setapptext(
@@ -751,8 +751,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                               .property_doc_photo_3
                                                               ?.isEmpty ??
                                                           true
-                                                      ? false
-                                                      : true),
+                                                      ? CheckColor.Black
+                                                      : CheckColor.Green),
                                               Flexible(
                                                 child: Text(
                                                   setapptext(
@@ -841,8 +841,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                               .property_doc_photo_4
                                                               ?.isEmpty ??
                                                           true
-                                                      ? false
-                                                      : true),
+                                                      ? CheckColor.Black
+                                                      : CheckColor.Green),
                                               Flexible(
                                                 child: Text(
                                                   setapptext(
@@ -938,8 +938,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                               .odinary_doc_photo1
                                                               ?.isEmpty ??
                                                           true
-                                                      ? false
-                                                      : true),
+                                                      ? CheckColor.Black
+                                                      : CheckColor.Green),
                                               Flexible(
                                                 child: Text(
                                                   setapptext(
@@ -1029,8 +1029,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                               .odinary_doc_photo6
                                                               ?.isEmpty ??
                                                           true
-                                                      ? false
-                                                      : true),
+                                                      ? CheckColor.Black
+                                                      : CheckColor.Green),
                                               Flexible(
                                                 child: Text(
                                                   setapptext(

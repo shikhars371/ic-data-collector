@@ -63,9 +63,9 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios),
+            Icon(Icons.arrow_forward_ios,color: Colors.white),
           ],
         ),
       ),
@@ -87,10 +87,10 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios),
+            Icon(Icons.arrow_back_ios,color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             )
           ],
         ),
@@ -153,8 +153,8 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
                                           (localdata
                                                   .property_dispte_subject_to ==
                                               "0"))
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   headerlablekey:
                                       setapptext(key: 'key_property_disputes'),
                                   value: localdata.property_dispte_subject_to
@@ -181,8 +181,8 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
                                                   ?.isEmpty ??
                                               true) ||
                                           (localdata.real_person_status == "0"))
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   headerlablekey:
                                       setapptext(key: 'key_real_person'),
                                   dropdownitems: [
@@ -222,8 +222,8 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
                                                   ?.isEmpty ??
                                               true) ||
                                           (localdata.cityzenship_notice == "0"))
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   headerlablekey:
                                       setapptext(key: 'key_is_citizenship'),
                                   dropdownitems: [
@@ -269,8 +269,8 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
                               Container(
                                 color: Colors.blue,
                                 child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 10, bottom: 10),
+                                  padding: const EdgeInsets.only(
+                                      top: 10, bottom: 10),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,

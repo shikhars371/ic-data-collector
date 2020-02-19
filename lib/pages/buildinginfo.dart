@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:kapp/pages/fourlimit.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../models/localpropertydata.dart';
@@ -85,9 +83,9 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios),
+            Icon(Icons.arrow_forward_ios,color: Colors.white),
           ],
         ),
       ),
@@ -120,10 +118,10 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios),
+            Icon(Icons.arrow_back_ios,color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             )
           ],
         ),
@@ -190,8 +188,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                                   .fst_have_building?.isEmpty ??
                                               true) ||
                                           (localdata.fst_have_building == "0"))
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   headerlablekey: setapptext(
                                       key: 'key_does_property_building'),
                                   dropdownitems: [
@@ -272,8 +270,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                                     ?.isEmpty ??
                                                 true) ||
                                             (localdata.fst_building_use == "0"))
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     headerlablekey:
                                         setapptext(key: 'key_building_use'),
                                     dropdownitems: [
@@ -323,8 +321,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                                 true) ||
                                             (localdata.fst_building_category ==
                                                 "0"))
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     headerlablekey: setapptext(
                                         key: 'key_building_category'),
                                     dropdownitems: [
@@ -390,8 +388,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     radiovalue: localdata
                                                 .fst_specifyif_other?.isEmpty ??
                                             true
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     onSaved: (value) {
                                       localdata.fst_specifyif_other =
                                           value.trim();
@@ -421,8 +419,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     radiovalue:
                                         localdata.fst_no_of_floors?.isEmpty ??
                                                 true
-                                            ? false
-                                            : true,
+                                            ? CheckColor.Black
+                                            : CheckColor.Green,
                                     onSaved: (value) {
                                       localdata.fst_no_of_floors = value.trim();
                                     },
@@ -454,8 +452,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     radiovalue:
                                         localdata.fst_cubie_meter?.isEmpty ??
                                                 true
-                                            ? false
-                                            : true,
+                                            ? CheckColor.Black
+                                            : CheckColor.Green,
                                     onSaved: (value) {
                                       localdata.fst_cubie_meter = value.trim();
                                     },
@@ -480,8 +478,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                                 true) ||
                                             (localdata.snd_have_building ==
                                                 "0"))
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     headerlablekey:
                                         setapptext(key: 'key_add_building'),
                                     dropdownitems: [
@@ -556,8 +554,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                                     ?.isEmpty ??
                                                 true) ||
                                             (localdata.snd_building_use == "0"))
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     headerlablekey:
                                         setapptext(key: 'key_building_use'),
                                     dropdownitems: [
@@ -607,8 +605,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                                 true) ||
                                             (localdata.snd_building_category ==
                                                 "0"))
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     headerlablekey: setapptext(
                                         key: 'key_building_category'),
                                     dropdownitems: [
@@ -674,8 +672,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     radiovalue: localdata
                                                 .snd_specifyif_other?.isEmpty ??
                                             true
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     onSaved: (value) {
                                       localdata.snd_specifyif_other =
                                           value.trim();
@@ -704,8 +702,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     radiovalue:
                                         localdata.snd_no_of_floors?.isEmpty ??
                                                 true
-                                            ? false
-                                            : true,
+                                            ? CheckColor.Black
+                                            : CheckColor.Green,
                                     onSaved: (value) {
                                       localdata.snd_no_of_floors = value.trim();
                                     },
@@ -736,8 +734,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     radiovalue:
                                         localdata.snd_cubie_meter?.isEmpty ??
                                                 true
-                                            ? false
-                                            : true,
+                                            ? CheckColor.Black
+                                            : CheckColor.Green,
                                     onSaved: (value) {
                                       localdata.snd_cubie_meter = value.trim();
                                     },
@@ -762,8 +760,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                                 true) ||
                                             (localdata.trd_have_building ==
                                                 "0"))
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     headerlablekey:
                                         setapptext(key: 'key_add_building'),
                                     dropdownitems: [
@@ -832,8 +830,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                                     ?.isEmpty ??
                                                 true) ||
                                             (localdata.trd_building_use == "0"))
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     headerlablekey:
                                         setapptext(key: 'key_building_use'),
                                     dropdownitems: [
@@ -883,8 +881,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                                 true) ||
                                             (localdata.trd_building_category ==
                                                 "0"))
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     headerlablekey: setapptext(
                                         key: 'key_building_category'),
                                     dropdownitems: [
@@ -950,8 +948,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     radiovalue: localdata
                                                 .trd_specifyif_other?.isEmpty ??
                                             true
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     onSaved: (value) {
                                       localdata.trd_specifyif_other =
                                           value.trim();
@@ -981,8 +979,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     radiovalue:
                                         localdata.trd_no_of_floors?.isEmpty ??
                                                 true
-                                            ? false
-                                            : true,
+                                            ? CheckColor.Black
+                                            : CheckColor.Green,
                                     onSaved: (value) {
                                       localdata.trd_no_of_floors = value.trim();
                                     },
@@ -1014,8 +1012,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     radiovalue:
                                         localdata.trd_cubie_meter?.isEmpty ??
                                                 true
-                                            ? false
-                                            : true,
+                                            ? CheckColor.Black
+                                            : CheckColor.Green,
                                     onSaved: (value) {
                                       localdata.trd_cubie_meter = value.trim();
                                     },
@@ -1040,8 +1038,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                                 true) ||
                                             (localdata.forth_have_building ==
                                                 "0"))
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     headerlablekey:
                                         setapptext(key: 'key_add_building'),
                                     dropdownitems: [
@@ -1106,8 +1104,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                                 true) ||
                                             (localdata.forth_building_use ==
                                                 "0"))
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     headerlablekey:
                                         setapptext(key: 'key_building_use'),
                                     dropdownitems: [
@@ -1158,8 +1156,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                             (localdata
                                                     .forth_building_category ==
                                                 "0"))
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     headerlablekey: setapptext(
                                         key: 'key_building_category'),
                                     dropdownitems: [
@@ -1225,8 +1223,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     radiovalue: localdata.forth_specifyif_other
                                                 ?.isEmpty ??
                                             true
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     onSaved: (value) {
                                       localdata.forth_specifyif_other =
                                           value.trim();
@@ -1262,8 +1260,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     radiovalue:
                                         localdata.forth_no_of_floors?.isEmpty ??
                                                 true
-                                            ? false
-                                            : true,
+                                            ? CheckColor.Black
+                                            : CheckColor.Green,
                                     onSaved: (value) {
                                       localdata.forth_no_of_floors =
                                           value.trim();
@@ -1297,8 +1295,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     radiovalue:
                                         localdata.forth_cubie_meter?.isEmpty ??
                                                 true
-                                            ? false
-                                            : true,
+                                            ? CheckColor.Black
+                                            : CheckColor.Green,
                                     onSaved: (value) {
                                       localdata.forth_cubie_meter =
                                           value.trim();
@@ -1325,8 +1323,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                                 true) ||
                                             (localdata.fth_have_building ==
                                                 "0"))
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     headerlablekey:
                                         setapptext(key: 'key_add_building'),
                                     dropdownitems: [
@@ -1383,8 +1381,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                                     ?.isEmpty ??
                                                 true) ||
                                             (localdata.fth_building_use == "0"))
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     headerlablekey:
                                         setapptext(key: 'key_building_use'),
                                     dropdownitems: [
@@ -1434,8 +1432,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                                 true) ||
                                             (localdata.fth_building_category ==
                                                 "0"))
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     headerlablekey: setapptext(
                                         key: 'key_building_category'),
                                     dropdownitems: [
@@ -1501,8 +1499,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     radiovalue: localdata
                                                 .fth_specifyif_other?.isEmpty ??
                                             true
-                                        ? false
-                                        : true,
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
                                     onSaved: (value) {
                                       localdata.fth_specifyif_other =
                                           value.trim();
@@ -1537,8 +1535,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     radiovalue:
                                         localdata.fth_no_of_floors?.isEmpty ??
                                                 true
-                                            ? false
-                                            : true,
+                                            ? CheckColor.Black
+                                            : CheckColor.Green,
                                     onSaved: (value) {
                                       localdata.fth_no_of_floors = value.trim();
                                     },
@@ -1570,8 +1568,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     radiovalue:
                                         localdata.fth_cubie_meter?.isEmpty ??
                                                 true
-                                            ? false
-                                            : true,
+                                            ? CheckColor.Black
+                                            : CheckColor.Green,
                                     onSaved: (value) {
                                       localdata.fth_cubie_meter = value.trim();
                                     },

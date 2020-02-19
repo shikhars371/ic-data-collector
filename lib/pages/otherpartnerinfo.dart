@@ -110,9 +110,9 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios),
+            Icon(Icons.arrow_forward_ios,color: Colors.white),
           ],
         ),
       ),
@@ -134,10 +134,10 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios),
+            Icon(Icons.arrow_back_ios,color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             )
           ],
         ),
@@ -243,8 +243,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue:
                                       localdata.second_partner_name?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   initvalue:
                                       localdata.second_partner_name?.isEmpty ??
                                               true
@@ -281,8 +281,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue: localdata.second_partner_surname
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   initvalue: localdata.second_partner_surname
                                               ?.isEmpty ??
                                           true
@@ -318,8 +318,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue:
                                       localdata.second_partner_boy?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   initvalue:
                                       localdata.second_partner_boy?.isEmpty ??
                                               true
@@ -351,8 +351,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue: localdata
                                               .second_partner_father?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   initvalue: localdata
                                               .second_partner_father?.isEmpty ??
                                           true
@@ -385,8 +385,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   iscompleted: localdata
                                               .second_partner_gender?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   headerlablekey: setapptext(key: 'key_gender'),
                                   dropdownitems: [
                                     Dpvalue(
@@ -420,8 +420,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue:
                                       localdata.second_partner_phone?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   initvalue:
                                       localdata.second_partner_phone?.isEmpty ??
                                               true
@@ -455,8 +455,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue:
                                       localdata.second_partner_email?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   initvalue:
                                       localdata.second_partner_email?.isEmpty ??
                                               true
@@ -511,8 +511,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                             .second_partner_image
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(
@@ -595,8 +595,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               .second_partner_machinegun_no
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.second_partner_machinegun_no =
                                         value;
@@ -625,8 +625,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               .second_partner_cover_note
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.second_partner_cover_note = value;
                                   },
@@ -652,8 +652,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue: localdata.second_partner_note_page
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.second_partner_note_page = value;
                                   },
@@ -676,8 +676,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue: localdata
                                               .second_partner_reg_no?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.second_partner_reg_no = value;
                                   },
@@ -713,8 +713,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                             .second_partner_phote_note1
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(
@@ -804,8 +804,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                             .second_partner_photo_tips1
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(
@@ -895,8 +895,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                             .second_partner_photo_tips2
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(
@@ -987,8 +987,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue:
                                       localdata.third_partner_name?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
@@ -1023,8 +1023,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue: localdata
                                               .third_partner_surname?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
@@ -1058,8 +1058,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue:
                                       localdata.third_partner_boy?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
@@ -1091,8 +1091,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue:
                                       localdata.third_partner_father?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
@@ -1118,8 +1118,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   iscompleted:
                                       localdata.third_partner_gender?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   headerlablekey: setapptext(key: 'key_gender'),
                                   dropdownitems: [
                                     Dpvalue(
@@ -1158,8 +1158,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue:
                                       localdata.third_partner_phone?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.third_partner_phone = value;
                                   },
@@ -1191,8 +1191,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue:
                                       localdata.third_partner_email?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.third_partner_email = value;
                                   },
@@ -1240,8 +1240,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                             .third_partner_image
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(
@@ -1323,8 +1323,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               .third_partner_machinegun_no
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.third_partner_machinegun_no =
                                         value;
@@ -1352,8 +1352,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue: localdata.third_partner_cover_note
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.third_partner_cover_note = value;
                                   },
@@ -1379,8 +1379,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue: localdata.third_partner_note_page
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.third_partner_note_page = value;
                                   },
@@ -1403,8 +1403,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue:
                                       localdata.third_partner_reg_no?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.third_partner_reg_no = value;
                                   },
@@ -1440,8 +1440,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                             .third_partner_phote_note1
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(
@@ -1531,8 +1531,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                             .third_partner_photo_tips1
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(
@@ -1622,8 +1622,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                             .third_partner_photo_tips2
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(
@@ -1714,8 +1714,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue:
                                       localdata.fourth_partner_name?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
@@ -1750,8 +1750,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue: localdata.fourth_partner_surname
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
@@ -1785,8 +1785,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue:
                                       localdata.fourth_partner_boy?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
@@ -1818,8 +1818,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue: localdata
                                               .fourth_partner_father?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
@@ -1845,8 +1845,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   iscompleted: localdata
                                               .fourth_partner_gender?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   headerlablekey: setapptext(key: 'key_gender'),
                                   dropdownitems: [
                                     Dpvalue(
@@ -1885,8 +1885,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue:
                                       localdata.fourth_partner_phone?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.fourth_partner_phone = value;
                                   },
@@ -1918,8 +1918,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue:
                                       localdata.fourth_partner_email?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.fourth_partner_email = value;
                                   },
@@ -1967,8 +1967,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                             .fourth_partner_image
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(
@@ -2051,8 +2051,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               .fourth_partner_machinegun_no
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.fourth_partner_machinegun_no =
                                         value;
@@ -2081,8 +2081,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               .fourth_partner_cover_note
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.fourth_partner_cover_note = value;
                                   },
@@ -2108,8 +2108,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue: localdata.fourth_partner_note_page
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.fourth_partner_note_page = value;
                                   },
@@ -2132,8 +2132,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue: localdata
                                               .fourth_partner_reg_no?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.fourth_partner_reg_no = value;
                                   },
@@ -2169,8 +2169,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                             .fourth_partner_phote_note1
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(
@@ -2260,8 +2260,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                             .fourth_partner_photo_tips1
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(
@@ -2351,8 +2351,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                             .fourth_partner_photo_tips2
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(
@@ -2443,8 +2443,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue:
                                       localdata.fifth_partner_name?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
@@ -2479,8 +2479,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue: localdata
                                               .fifth_partner_surname?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
@@ -2514,8 +2514,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue:
                                       localdata.fifth_partner_boy?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
@@ -2547,8 +2547,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue:
                                       localdata.fifth_partner_father?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
@@ -2574,8 +2574,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   iscompleted:
                                       localdata.fifth_partner_gender?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   headerlablekey: setapptext(key: 'key_gender'),
                                   dropdownitems: [
                                     Dpvalue(
@@ -2614,8 +2614,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue:
                                       localdata.fifth_partner_phone?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.fifth_partner_phone = value;
                                   },
@@ -2647,8 +2647,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue:
                                       localdata.fifth_partner_email?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.fifth_partner_email = value;
                                   },
@@ -2696,8 +2696,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                             .fifth_partner_image
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(
@@ -2779,8 +2779,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               .fifth_partner_machinegun_no
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.fifth_partner_machinegun_no =
                                         value;
@@ -2808,8 +2808,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue: localdata.fifth_partner_cover_note
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.fifth_partner_cover_note = value;
                                   },
@@ -2835,8 +2835,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue: localdata.fifth_partner_note_page
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.fifth_partner_note_page = value;
                                   },
@@ -2859,8 +2859,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   radiovalue:
                                       localdata.fifth_partner_reg_no?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.fifth_partner_reg_no = value;
                                   },
@@ -2896,8 +2896,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                             .fifth_partner_phote_note1
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(
@@ -2987,8 +2987,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                             .fifth_partner_photo_tips1
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(
@@ -3078,8 +3078,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                             .fifth_partner_photo_tips2
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(

@@ -150,9 +150,9 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios),
+            Icon(Icons.arrow_forward_ios,color: Colors.white),
           ],
         ),
       ),
@@ -174,10 +174,10 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios),
+            Icon(Icons.arrow_back_ios,color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             )
           ],
         ),
@@ -315,8 +315,8 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                 headerlablekey:
                                     setapptext(key: 'key_select_province'),
                                 radiovalue: localdata.province?.isEmpty ?? true
-                                    ? false
-                                    : true,
+                                    ? CheckColor.Black
+                                    : CheckColor.Green,
                                 // onSaved: (value) {
                                 //   localdata.province = value.trim();
                                 // },
@@ -333,8 +333,8 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                 headerlablekey:
                                     setapptext(key: 'key_select_city'),
                                 radiovalue: localdata.city?.isEmpty ?? true
-                                    ? false
-                                    : true,
+                                    ? CheckColor.Black
+                                    : CheckColor.Green,
                                 // onSaved: (value) {
                                 //   localdata.province = value.trim();
                                 // },
@@ -470,8 +470,8 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                   keyboardtype: TextInputType.number,
                                   headerlablekey: setapptext(key: 'key_area'),
                                   radiovalue: localdata.area?.isEmpty ?? true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   hinttextkey:
                                       setapptext(key: 'Key_number_value'),
                                   fieldfocus: _area,
@@ -514,8 +514,8 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     FocusScope.of(context).requestFocus(_block);
                                   },
                                   radiovalue: localdata.pass?.isEmpty ?? true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
                                       return setapptext(
@@ -539,8 +539,8 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                       : localdata.block,
                                   headerlablekey: setapptext(key: 'key_block'),
                                   radiovalue: localdata.block?.isEmpty ?? true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   hinttextkey:
                                       setapptext(key: 'Key_number_value'),
                                   fieldfocus: _block,
@@ -582,8 +582,8 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                   },
                                   radiovalue:
                                       localdata.part_number?.isEmpty ?? true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   hinttextkey:
                                       setapptext(key: 'Key_number_value'),
                                   validator: (value) {
@@ -618,8 +618,8 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                   },
                                   radiovalue:
                                       localdata.unit_number?.isEmpty ?? true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   hinttextkey:
                                       setapptext(key: 'Key_number_value'),
                                   validator: (value) {
@@ -654,8 +654,8 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                   },
                                   radiovalue:
                                       localdata.unit_in_parcel?.isEmpty ?? true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   hinttextkey:
                                       setapptext(key: 'Key_number_value'),
                                   onSaved: (value) {
@@ -681,8 +681,8 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                   },
                                   radiovalue:
                                       localdata.street_name?.isEmpty ?? true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   hinttextkey:
                                       setapptext(key: 'key_enter_1st_surveyor'),
                                   onSaved: (value) {
@@ -710,8 +710,8 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                   radiovalue:
                                       localdata.historic_site_area?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   hinttextkey:
                                       setapptext(key: 'key_enter_1st_surveyor'),
                                   onSaved: (value) {
@@ -736,8 +736,8 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                   },
                                   radiovalue:
                                       localdata.land_area?.isEmpty ?? true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   hinttextkey:
                                       setapptext(key: 'Key_number_value'),
                                   onSaved: (value) {
@@ -760,8 +760,8 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                       ((localdata.property_type?.isEmpty ??
                                                   true) ||
                                               (localdata.property_type == "0"))
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   headerlablekey:
                                       setapptext(key: 'key_type_ownership'),
                                   dropdownitems: [

@@ -82,9 +82,10 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios),
+            Icon(Icons.arrow_forward_ios, color: Colors.white),
           ],
         ),
       ),
@@ -106,10 +107,11 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios),
+            Icon(Icons.arrow_back_ios, color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             )
           ],
         ),
@@ -163,8 +165,8 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
                                               true) ||
                                           (localdata.use_in_property_doc ==
                                               "0"))
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   headerlablekey:
                                       setapptext(key: 'key_Type_of_use'),
                                   dropdownitems: [
@@ -213,8 +215,8 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
                                     radiovalue:
                                         localdata.type_of_use_other?.isEmpty ??
                                                 true
-                                            ? false
-                                            : true,
+                                            ? CheckColor.Black
+                                            : CheckColor.Green,
                                     initvalue:
                                         localdata.type_of_use_other?.isEmpty ??
                                                 true

@@ -343,6 +343,45 @@ class _SurveyPageState extends State<SurveyPage> {
     return result;
   }
 
+  void floatingactionbuttonpresed() async {
+    var result = await DBHelper().currentsurveycount(
+        assignedcount: widget.surveyassignment.property_to_survey,
+        taskid: widget.surveyassignment.id);
+    if (result) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text(
+                setapptext(key: 'key_warning'),
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
+              ),
+              content: Text(setapptext(key: 'key_survey_excid')),
+              actions: <Widget>[
+                FlatButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    setapptext(key: 'key_ok'),
+                  ),
+                ),
+              ],
+            );
+          });
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) => SurveyInfoPage(
+            surveyAssignment: widget.surveyassignment,
+          ),
+        ),
+      );
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -402,48 +441,14 @@ class _SurveyPageState extends State<SurveyPage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Icons.assignment,
-          size: 30,
+        backgroundColor: Colors.transparent,
+        child: Container(
+          child: Image(
+            image: AssetImage("assets/images/addtask.png"),
+          ),
         ),
-        onPressed: () async {
-          var result = await DBHelper().currentsurveycount(
-              assignedcount: widget.surveyassignment.property_to_survey,
-              taskid: widget.surveyassignment.id);
-          if (result) {
-            showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: Text(
-                      setapptext(key: 'key_warning'),
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.red),
-                    ),
-                    content: Text(setapptext(key: 'key_survey_excid')),
-                    actions: <Widget>[
-                      FlatButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text(
-                          setapptext(key: 'key_ok'),
-                        ),
-                      ),
-                    ],
-                  );
-                });
-          } else {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => SurveyInfoPage(
-                  surveyAssignment: widget.surveyassignment,
-                ),
-              ),
-            );
-          }
-        },
+        tooltip: 'Add New Survey',
+        onPressed: floatingactionbuttonpresed,
       ),
     );
   }

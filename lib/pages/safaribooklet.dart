@@ -75,9 +75,9 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios),
+            Icon(Icons.arrow_forward_ios,color: Colors.white),
           ],
         ),
       ),
@@ -99,10 +99,10 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios),
+            Icon(Icons.arrow_back_ios,color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             )
           ],
         ),
@@ -169,8 +169,8 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                               .safari_booklet_common_name
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   hinttextkey:
                                       setapptext(key: 'key_enter_1st_surveyor'),
                                   validator: (value) {
@@ -210,8 +210,8 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                               .safari_booklet_father_name
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   hinttextkey:
                                       setapptext(key: 'key_enter_1st_surveyor'),
                                   validator: (value) {
@@ -252,8 +252,8 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                               .safari_booklet_machinegun_no
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   hinttextkey:
                                       setapptext(key: 'key_enter_1st_surveyor'),
                                   // validator: (value) {
@@ -299,8 +299,8 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                                             .safari_booklet_issue_date
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(
@@ -421,8 +421,8 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                                             .safari_booklet_picture
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(

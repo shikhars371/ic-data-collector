@@ -62,10 +62,10 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios),
+            Icon(Icons.arrow_back_ios,color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             )
           ],
         ),
@@ -223,8 +223,8 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                   radiovalue: localdata.area_unit_release_area
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.area_unit_release_area = value;
                                   },
@@ -250,8 +250,8 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                   radiovalue: localdata.area_unit_business_area
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.area_unit_business_area = value;
                                   },
@@ -277,8 +277,8 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                   radiovalue: localdata.area_unit_total_no_unit
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.area_unit_total_no_unit = value;
                                   },
@@ -302,8 +302,8 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                   radiovalue: localdata.area_unit_business_units
                                               ?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   onSaved: (value) {
                                     localdata.area_unit_business_units = value;
                                   },

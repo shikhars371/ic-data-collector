@@ -5,6 +5,8 @@ import 'package:path_provider/path_provider.dart';
 import '../utils/locator.dart';
 import '../utils/language_service.dart';
 
+enum CheckColor { Black, Green, Red }
+
 class Dpvalue {
   String name;
   String value;
@@ -20,7 +22,7 @@ Future<String> appimagepicker() async {
   return localfile.path;
 }
 
-Widget completedcheckbox({bool isCompleted}) {
+Widget completedcheckbox({CheckColor isCompleted}) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Container(
@@ -29,14 +31,13 @@ Widget completedcheckbox({bool isCompleted}) {
       decoration: BoxDecoration(
         //color: Colors.white,
         shape: BoxShape.rectangle,
-        border: Border.all(
-            color: isCompleted ? Colors.lightGreen : Colors.black, width: 1),
+        border: Border.all(color: getCheckColor(isCompleted), width: 1),
       ),
       child: Padding(
         padding: const EdgeInsets.all(2),
         child: Container(
           decoration: BoxDecoration(
-            color: isCompleted ? Colors.lightGreen : Colors.black,
+            color: getCheckColor(isCompleted),
           ),
         ),
       ),
@@ -44,11 +45,32 @@ Widget completedcheckbox({bool isCompleted}) {
   );
 }
 
+Color getCheckColor(CheckColor cc) {
+  Color choosenColor = Colors.black;
+  try {
+    switch (cc) {
+      case CheckColor.Black:
+        choosenColor = Colors.black;
+        break;
+      case CheckColor.Green:
+        choosenColor = Colors.lightGreen;
+        break;
+      case CheckColor.Red:
+        choosenColor = Colors.red;
+        break;
+      default:
+    }
+  } catch (e) {
+    print(e);
+  }
+  return choosenColor;
+}
+
 Widget formcardtextfield(
     {TextInputType keyboardtype,
     String initvalue,
     String headerlablekey,
-    bool radiovalue,
+    CheckColor radiovalue,
     String hinttextkey,
     Function(String) onSaved,
     Function(String) validator,
@@ -135,7 +157,7 @@ Widget formcardtextfield(
 }
 
 Widget formCardDropdown(
-    {bool iscompleted,
+    {CheckColor iscompleted,
     String headerlablekey,
     List<Dpvalue> dropdownitems,
     Function(String) onSaved,

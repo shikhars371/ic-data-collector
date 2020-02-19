@@ -71,9 +71,9 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios),
+            Icon(Icons.arrow_forward_ios,color: Colors.white),
           ],
         ),
       ),
@@ -106,10 +106,10 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios),
+            Icon(Icons.arrow_back_ios,color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             )
           ],
         ),
@@ -179,8 +179,8 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                                 isCompleted: localdata.home_map
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(key: 'key_home_map'),
@@ -274,8 +274,8 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                                             .home_photo
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(
@@ -356,8 +356,8 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                               true) ||
                                           (localdata.reg_property_fertilizer ==
                                               "0"))
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   dropdownitems: [
                                     Dpvalue(
                                         name: setapptext(

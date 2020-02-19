@@ -73,9 +73,9 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios),
+            Icon(Icons.arrow_forward_ios,color: Colors.white),
           ],
         ),
       ),
@@ -97,10 +97,10 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios),
+            Icon(Icons.arrow_back_ios,color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             )
           ],
         ),
@@ -164,8 +164,8 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                   radiovalue:
                                       localdata.lightning_meter_no?.isEmpty ??
                                               true
-                                          ? false
-                                          : true,
+                                          ? CheckColor.Black
+                                          : CheckColor.Green,
                                   hinttextkey:
                                       setapptext(key: 'key_enter_1st_surveyor'),
                                   // validator: (value) {
@@ -199,8 +199,8 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                   radiovalue: localdata
                                               .lightning_common_name?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   hinttextkey:
                                       setapptext(key: 'key_enter_1st_surveyor'),
                                   validator: (value) {
@@ -236,8 +236,8 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                   radiovalue: localdata
                                               .lightning_father_name?.isEmpty ??
                                           true
-                                      ? false
-                                      : true,
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   hinttextkey:
                                       setapptext(key: 'key_enter_1st_surveyor'),
                                   validator: (value) {
@@ -286,8 +286,8 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                                             .lightning_picture_bell_power
                                                             ?.isEmpty ??
                                                         true
-                                                    ? false
-                                                    : true),
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
                                             Flexible(
                                               child: Text(
                                                 setapptext(
