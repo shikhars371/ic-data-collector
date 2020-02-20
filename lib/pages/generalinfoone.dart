@@ -19,6 +19,10 @@ class GeneralInfoOnePage extends StatefulWidget {
 class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
+  //for validation
+  CheckColor propdispute = CheckColor.Black;
+  CheckColor realpersonstatus = CheckColor.Black;
+  CheckColor citygenshipnotice = CheckColor.Black;
 
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
@@ -63,9 +67,10 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios,color: Colors.white),
+            Icon(Icons.arrow_forward_ios, color: Colors.white),
           ],
         ),
       ),
@@ -87,10 +92,11 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios,color: Colors.white),
+            Icon(Icons.arrow_back_ios, color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             )
           ],
         ),
@@ -146,15 +152,7 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
                                         name: setapptext(key: 'key_no'),
                                         value: "2")
                                   ],
-                                  iscompleted: ((localdata
-                                                  .property_dispte_subject_to
-                                                  ?.isEmpty ??
-                                              true) ||
-                                          (localdata
-                                                  .property_dispte_subject_to ==
-                                              "0"))
-                                      ? CheckColor.Black
-                                      : CheckColor.Green,
+                                  iscompleted: propdispute,
                                   headerlablekey:
                                       setapptext(key: 'key_property_disputes'),
                                   value: localdata.property_dispte_subject_to
@@ -169,20 +167,30 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
                                   onChanged: (value) {
                                     localdata.property_dispte_subject_to =
                                         value;
-                                    setState(() {});
+
+                                    setState(() {
+                                      propdispute = ((localdata
+                                                      .property_dispte_subject_to
+                                                      ?.isEmpty ??
+                                                  true) ||
+                                              (localdata
+                                                      .property_dispte_subject_to ==
+                                                  "0"))
+                                          ? CheckColor.Black
+                                          : CheckColor.Green;
+                                      _formkey.currentState.validate();
+                                    });
                                   },
                                   validate: (value) {
                                     if ((value.isEmpty) || value == "0") {
+                                      setState(() {
+                                        propdispute = CheckColor.Red;
+                                      });
                                       return setapptext(key: 'key_required');
                                     }
                                   }),
                               formCardDropdown(
-                                  iscompleted: ((localdata.real_person_status
-                                                  ?.isEmpty ??
-                                              true) ||
-                                          (localdata.real_person_status == "0"))
-                                      ? CheckColor.Black
-                                      : CheckColor.Green,
+                                  iscompleted: realpersonstatus,
                                   headerlablekey:
                                       setapptext(key: 'key_real_person'),
                                   dropdownitems: [
@@ -210,20 +218,28 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
                                           : localdata.real_person_status,
                                   onChanged: (value) {
                                     localdata.real_person_status = value;
-                                    setState(() {});
+                                    setState(() {
+                                      realpersonstatus = ((localdata
+                                                      .real_person_status
+                                                      ?.isEmpty ??
+                                                  true) ||
+                                              (localdata.real_person_status ==
+                                                  "0"))
+                                          ? CheckColor.Black
+                                          : CheckColor.Green;
+                                      _formkey.currentState.validate();
+                                    });
                                   },
                                   validate: (value) {
                                     if ((value.isEmpty) || value == "0") {
+                                      setState(() {
+                                        realpersonstatus = CheckColor.Red;
+                                      });
                                       return setapptext(key: 'key_required');
                                     }
                                   }),
                               formCardDropdown(
-                                  iscompleted: ((localdata.cityzenship_notice
-                                                  ?.isEmpty ??
-                                              true) ||
-                                          (localdata.cityzenship_notice == "0"))
-                                      ? CheckColor.Black
-                                      : CheckColor.Green,
+                                  iscompleted: citygenshipnotice,
                                   headerlablekey:
                                       setapptext(key: 'key_is_citizenship'),
                                   dropdownitems: [
@@ -248,10 +264,24 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
                                           : localdata.cityzenship_notice,
                                   onChanged: (value) {
                                     localdata.cityzenship_notice = value;
-                                    setState(() {});
+
+                                    setState(() {
+                                      citygenshipnotice = ((localdata
+                                                      .cityzenship_notice
+                                                      ?.isEmpty ??
+                                                  true) ||
+                                              (localdata.cityzenship_notice ==
+                                                  "0"))
+                                          ? CheckColor.Black
+                                          : CheckColor.Green;
+                                      _formkey.currentState.validate();
+                                    });
                                   },
                                   validate: (value) {
                                     if ((value.isEmpty) || value == "0") {
+                                      setState(() {
+                                        citygenshipnotice = CheckColor.Red;
+                                      });
                                       return setapptext(key: 'key_required');
                                     }
                                   }),
