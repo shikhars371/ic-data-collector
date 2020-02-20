@@ -35,8 +35,8 @@ class _AppDrawerState extends State<AppDrawer> {
   final drawerItems = [
     DrawerItem("key_tasks", Icons.assignment), //page index = 0
     DrawerItem("key_language", Icons.language), //page index = 1
-    DrawerItem("key_guide", Icons.book), //page index = 2
-    DrawerItem("key_help", Icons.help), //page index = 2
+    // DrawerItem("key_guide", Icons.book), //page index = 2
+    // DrawerItem("key_help", Icons.help), //page index = 2
   ];
   @override
   void initState() {
