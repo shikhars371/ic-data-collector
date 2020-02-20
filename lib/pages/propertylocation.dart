@@ -150,9 +150,10 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios,color: Colors.white),
+            Icon(Icons.arrow_forward_ios, color: Colors.white),
           ],
         ),
       ),
@@ -174,10 +175,11 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios,color: Colors.white),
+            Icon(Icons.arrow_back_ios, color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             )
           ],
         ),
@@ -742,13 +744,14 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                       setapptext(key: 'Key_number_value'),
                                   onSaved: (value) {
                                     localdata.land_area = value.trim();
-                                  },
-                                  onChanged: (value) {
-                                    localdata.land_area = value.trim();
                                     _land_area.unfocus();
                                     _historic_site_area.unfocus();
                                     _street_name.unfocus();
                                     _unit_in_parcel.unfocus();
+                                    setState(() {});
+                                  },
+                                  onChanged: (value) {
+                                    localdata.land_area = value.trim();
                                     setState(() {});
                                   }),
                               formCardDropdown(

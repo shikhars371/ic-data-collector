@@ -62,10 +62,11 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios,color: Colors.white),
+            Icon(Icons.arrow_back_ios, color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             )
           ],
         ),
@@ -206,6 +207,7 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
+                                  keyboardtype: TextInputType.number,
                                   initvalue: localdata.area_unit_release_area
                                               ?.isEmpty ??
                                           true
@@ -233,6 +235,7 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  keyboardtype: TextInputType.number,
                                   initvalue: localdata.area_unit_business_area
                                               ?.isEmpty ??
                                           true
@@ -260,6 +263,7 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  keyboardtype: TextInputType.number,
                                   initvalue: localdata.area_unit_total_no_unit
                                               ?.isEmpty ??
                                           true
@@ -287,6 +291,7 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  keyboardtype: TextInputType.number,
                                   initvalue: localdata.area_unit_business_units
                                               ?.isEmpty ??
                                           true

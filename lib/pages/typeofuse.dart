@@ -198,7 +198,7 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
                                             setapptext(key: 'key_public_land'),
                                         value: "7"),
                                     Dpvalue(
-                                        name: setapptext(key: 'key_Another'),
+                                        name: setapptext(key: 'key_other1'),
                                         value: "8"),
                                   ],
                                   onSaved: (value) {

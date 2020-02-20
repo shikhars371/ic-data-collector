@@ -439,7 +439,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                           name: setapptext(key: 'key_Bathroom'),
                                           value: "8"),
                                       Dpvalue(
-                                          name: setapptext(key: 'key_Another'),
+                                          name: setapptext(key: 'key_other1'),
                                           value: "9"),
                                     ],
                                     onSaved: (String value) {
@@ -553,7 +553,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                           name: setapptext(key: 'key_Bathroom'),
                                           value: "8"),
                                       Dpvalue(
-                                          name: setapptext(key: 'key_Another'),
+                                          name: setapptext(key: 'key_other1'),
                                           value: "9"),
                                     ],
                                     onSaved: (String value) {
@@ -636,7 +636,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                               setapptext(key: 'key_Pilgrimage'),
                                           value: "13"),
                                       Dpvalue(
-                                          name: setapptext(key: 'key_Another'),
+                                          name: setapptext(key: 'key_other1'),
                                           value: "14"),
                                     ],
                                     onSaved: (String value) {

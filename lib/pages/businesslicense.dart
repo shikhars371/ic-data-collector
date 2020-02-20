@@ -178,8 +178,8 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
                                           true
                                       ? ""
                                       : localdata.number_of_business_unit,
-                                  hinttextkey:
-                                      setapptext(key: 'key_enter_1st_surveyor'),
+                                  // hinttextkey:
+                                  //     setapptext(key: 'key_enter_1st_surveyor'),
                                   onSaved: (value) {
                                     localdata.number_of_business_unit =
                                         value.trim();
@@ -212,8 +212,8 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
                                           true
                                       ? ""
                                       : localdata.business_unit_have_no_license,
-                                  hinttextkey:
-                                      setapptext(key: 'key_enter_1st_surveyor'),
+                                  // hinttextkey:
+                                  //     setapptext(key: 'key_enter_1st_surveyor'),
                                   onSaved: (value) {
                                     localdata.business_unit_have_no_license =
                                         value.trim();
@@ -225,7 +225,7 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
                                   }),
                               formcardtextfield(
                                   headerlablekey:
-                                      setapptext(key: 'key_Another'),
+                                      setapptext(key: 'key_other1'),
                                   fieldfocus: _business_license_another,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
@@ -241,8 +241,8 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
                                           true
                                       ? ""
                                       : localdata.business_license_another,
-                                  hinttextkey:
-                                      setapptext(key: 'key_enter_1st_surveyor'),
+                                  // hinttextkey:
+                                  //     setapptext(key: 'key_enter_1st_surveyor'),
                                   onSaved: (value) {
                                     localdata.business_license_another =
                                         value.trim();

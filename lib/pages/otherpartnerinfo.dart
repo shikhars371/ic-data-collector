@@ -516,7 +516,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                             Flexible(
                                               child: Text(
                                                 setapptext(
-                                                    key: 'key_photo_owner'),
+                                                    key: 'key_second_partner_photo'),
                                                 style: TextStyle(),
                                               ),
                                             ),
@@ -1245,7 +1245,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                             Flexible(
                                               child: Text(
                                                 setapptext(
-                                                    key: 'key_photo_owner'),
+                                                    key: 'key_third_partner_photo'),
                                                 style: TextStyle(),
                                               ),
                                             ),
@@ -1972,7 +1972,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                             Flexible(
                                               child: Text(
                                                 setapptext(
-                                                    key: 'key_photo_owner'),
+                                                    key: 'key_fourth_partner_photo'),
                                                 style: TextStyle(),
                                               ),
                                             ),
@@ -2701,7 +2701,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                             Flexible(
                                               child: Text(
                                                 setapptext(
-                                                    key: 'key_photo_owner'),
+                                                    key: 'key_fifth_partner_photo'),
                                                 style: TextStyle(),
                                               ),
                                             ),

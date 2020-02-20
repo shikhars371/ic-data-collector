@@ -263,7 +263,7 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
                                     ? CheckColor.Black
                                     : CheckColor.Green,
                                 headerlablekey:
-                                    setapptext(key: 'key_master_no_longer'),
+                                    setapptext(key: 'key_Occupier_Other'),
                                 dropdownitems: [
                                   Dpvalue(
                                       name:
@@ -294,15 +294,15 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
                                         : localdata
                                             .property_user_type_of_misconduct,
                                     headerlablekey: setapptext(
-                                        key: 'key_specify_misconduct'),
+                                        key: 'key_tre'),
                                     radiovalue: localdata
                                                 .property_user_type_of_misconduct
                                                 ?.isEmpty ??
                                             true
                                         ? CheckColor.Black
                                         : CheckColor.Green,
-                                    hinttextkey: setapptext(
-                                        key: 'key_enter_1st_surveyor'),
+                                    // hinttextkey: setapptext(
+                                    //     key: 'key_enter_1st_surveyor'),
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
                                         return setapptext(

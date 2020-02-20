@@ -166,8 +166,8 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                               true
                                           ? CheckColor.Black
                                           : CheckColor.Green,
-                                  hinttextkey:
-                                      setapptext(key: 'key_enter_1st_surveyor'),
+                                  // hinttextkey:
+                                  //     setapptext(key: 'key_enter_1st_surveyor'),
                                   // validator: (value) {
                                   //   if (value.trim().isEmpty) {
                                   //     return setapptext(
@@ -201,8 +201,8 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                           true
                                       ? CheckColor.Black
                                       : CheckColor.Green,
-                                  hinttextkey:
-                                      setapptext(key: 'key_enter_1st_surveyor'),
+                                  // hinttextkey:
+                                  //     setapptext(key: 'key_enter_1st_surveyor'),
                                   validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')
@@ -227,7 +227,7 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                           true
                                       ? ""
                                       : localdata.lightning_father_name,
-                                  headerlablekey: setapptext(key: 'key_birth'),
+                                  headerlablekey: setapptext(key: 'key_subscriber_father'),
                                   fieldfocus: _lightning_father_name,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
@@ -238,8 +238,8 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                           true
                                       ? CheckColor.Black
                                       : CheckColor.Green,
-                                  hinttextkey:
-                                      setapptext(key: 'key_enter_1st_surveyor'),
+                                  // hinttextkey:
+                                  //     setapptext(key: 'key_enter_1st_surveyor'),
                                   validator: (value) {
                                     if (!(value?.isEmpty ?? true)) {
                                       if (!RegExp(r'^[a-zA-Z_ ]*$')

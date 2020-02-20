@@ -36,6 +36,12 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
   FocusNode _fth_no_of_floors;
   FocusNode _fth_cubie_meter;
 
+  ///for validation
+  ///
+  CheckColor fsthavingbuilding = CheckColor.Black;
+
+  ///
+
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
   }
@@ -83,9 +89,10 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios,color: Colors.white),
+            Icon(Icons.arrow_forward_ios, color: Colors.white),
           ],
         ),
       ),
@@ -118,10 +125,11 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios,color: Colors.white),
+            Icon(Icons.arrow_back_ios, color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             )
           ],
         ),
@@ -184,12 +192,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                           true
                                       ? "0"
                                       : localdata.fst_have_building,
-                                  iscompleted: ((localdata
-                                                  .fst_have_building?.isEmpty ??
-                                              true) ||
-                                          (localdata.fst_have_building == "0"))
-                                      ? CheckColor.Black
-                                      : CheckColor.Green,
+                                  iscompleted: fsthavingbuilding,
                                   headerlablekey: setapptext(
                                       key: 'key_does_property_building'),
                                   dropdownitems: [
@@ -243,6 +246,12 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       localdata.fth_specifyif_other = null;
                                       localdata.fth_no_of_floors = null;
                                       localdata.fth_cubie_meter = null;
+                                      fsthavingbuilding=((localdata
+                                                  .fst_have_building?.isEmpty ??
+                                              true) ||
+                                          (localdata.fst_have_building == "0"))
+                                      ? CheckColor.Black
+                                      : CheckColor.Green;
                                     });
                                   },
                                   validate: (value) {
@@ -349,7 +358,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                           name: setapptext(key: 'key_metal'),
                                           value: "5"),
                                       Dpvalue(
-                                          name: setapptext(key: 'key_Another'),
+                                          name: setapptext(key: 'key_other1'),
                                           value: "6"),
                                     ],
                                     onChanged: (value) {
@@ -633,7 +642,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                           name: setapptext(key: 'key_metal'),
                                           value: "5"),
                                       Dpvalue(
-                                          name: setapptext(key: 'key_Another'),
+                                          name: setapptext(key: 'key_other1'),
                                           value: "6"),
                                     ],
                                     onChanged: (value) {
@@ -909,7 +918,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                           name: setapptext(key: 'key_metal'),
                                           value: "5"),
                                       Dpvalue(
-                                          name: setapptext(key: 'key_Another'),
+                                          name: setapptext(key: 'key_other1'),
                                           value: "6"),
                                     ],
                                     onChanged: (value) {
@@ -1184,7 +1193,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                           name: setapptext(key: 'key_metal'),
                                           value: "5"),
                                       Dpvalue(
-                                          name: setapptext(key: 'key_Another'),
+                                          name: setapptext(key: 'key_other1'),
                                           value: "6"),
                                     ],
                                     onChanged: (value) {
