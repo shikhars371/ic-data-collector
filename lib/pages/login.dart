@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                                 decoration: InputDecoration(
                                   prefixIcon: Icon(Icons.person_pin),
                                   labelText: AppTranslations.of(context)
-                                      .text("key_email"),
+                                      .text("key_only_email"),
                                 ),
                                 textInputAction: TextInputAction.next,
                                 focusNode: _email,

@@ -494,10 +494,316 @@ class SurveySearch extends SearchDelegate<String> {
       return AppTranslations.of(context).text(key);
     }
 
+    String getStatus(int status) {
+      var result = "";
+      switch (status) {
+        case 0: //Drafted
+          result = setapptext(key: 'key_Drafted');
+          break;
+        case 1: //Completed
+          result = setapptext(key: 'key_completed');
+          break;
+        case 2: //Synced
+          result = setapptext(key: 'key_synced');
+          break;
+        default:
+          result = "";
+      }
+      return result;
+    }
+
+    Color getStatusColor(int status) {
+      Color result = Colors.transparent;
+      switch (status) {
+        case 0: //Drafted
+          result = Color.fromRGBO(189, 148, 36, 1);
+          break;
+        case 1: //Completed
+          result = Colors.lightGreen;
+          break;
+        case 2: //Synced
+          result = Colors.lightBlue;
+          break;
+      }
+      return result;
+    }
+
+    String getProvincename(String id) {
+      var result = "";
+      switch (id) {
+        case "01-01":
+          result = setapptext(key: 'key_kabul');
+          break;
+        case "06-01":
+          result = setapptext(key: 'key_nangarhar');
+          break;
+        case "33-01":
+          result = setapptext(key: 'key_Kandahar');
+          break;
+        case "10-01":
+          result = setapptext(key: 'key_Bamyan');
+          break;
+        case "22-01":
+          result = setapptext(key: 'key_Daikundi');
+          break;
+        case "17-01":
+          result = setapptext(key: 'key_Kundoz');
+          break;
+        case "18-01":
+          result = setapptext(key: 'key_Balkh');
+          break;
+        case "30-01":
+          result = setapptext(key: 'key_Herat');
+          break;
+        case "03-01":
+          result = setapptext(key: 'key_Parwan');
+          break;
+        case "04-01":
+          result = setapptext(key: 'key_Farah');
+          break;
+        default:
+          result = id;
+      }
+      return result;
+    }
+
+    String getCity(String id) {
+      var result = "";
+      switch (id) {
+        case "1":
+          result = setapptext(key: 'key_kabul');
+          break;
+        case "2":
+          result = setapptext(key: 'key_Jalalabad');
+          break;
+        case "3":
+          result = setapptext(key: 'key_Kandahar');
+          break;
+        case "4":
+          result = setapptext(key: 'key_Bamyan');
+          break;
+        case "5":
+          result = setapptext(key: 'key_Nili');
+          break;
+        case "6":
+          result = setapptext(key: 'key_Kundoz');
+          break;
+        case "7":
+          result = setapptext(key: 'key_Sharif');
+          break;
+        case "8":
+          result = setapptext(key: 'key_Herat');
+          break;
+        case "9":
+          result = setapptext(key: 'key_Charikar');
+          break;
+        case "10":
+          result = setapptext(key: 'key_Farah');
+          break;
+        default:
+          result = id;
+      }
+      return result;
+    }
+
+    Widget listcard({LocalPropertySurvey surveydata}) {
+      return Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+        ),
+        padding: EdgeInsets.all(5.0),
+        child: Card(
+          elevation: 4.0,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(left: 5),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(getProvincename(surveydata.province) +
+                      "-" +
+                      getCity(surveydata.city) +
+                      "-" +
+                      surveydata.block +
+                      "-" +
+                      surveydata.part_number +
+                      "-" +
+                      surveydata.unit_number),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 5.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        getStatus(surveydata.isdrafted),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: getStatusColor(surveydata.isdrafted),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Wrap(
+                        direction: Axis.horizontal,
+                        children: <Widget>[
+                          ///edit icon
+                          surveydata.isdrafted == 2
+                              ? IconButton(
+                                  icon: Icon(Icons.remove_red_eye),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            SurveyInfoPage(
+                                          surveyAssignment: surveyassignment,
+                                          localsurveykey:
+                                              surveydata.local_property_key,
+                                        ),
+                                      ),
+                                    );
+                                  })
+                              : IconButton(
+                                  iconSize: 25,
+                                  icon: Icon(
+                                    Icons.edit,
+                                    color: Colors.blue,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            SurveyInfoPage(
+                                          surveyAssignment: surveyassignment,
+                                          localsurveykey:
+                                              surveydata.local_property_key,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+
+                          ///delete icon
+                          surveydata.isdrafted == 2
+                              ? SizedBox()
+                              : IconButton(
+                                  iconSize: 25,
+                                  icon: Icon(
+                                    Icons.delete,
+                                    color: Colors.redAccent,
+                                  ),
+                                  onPressed: () {
+                                    showDialog(
+                                        context: context,
+                                        barrierDismissible: false,
+                                        builder: (context) {
+                                          return CupertinoAlertDialog(
+                                            title: Text(setapptext(
+                                                key: 'key_want_to_delete')),
+                                            actions: <Widget>[
+                                              FlatButton(
+                                                onPressed: () async {
+                                                  DBHelper()
+                                                      .deletePropertySurvey(
+                                                          localkey: surveydata
+                                                              .local_property_key)
+                                                      .then((_) {
+                                                    Navigator.pop(context);
+                                                  });
+                                                },
+                                                child: Text(
+                                                  setapptext(key: 'key_delete'),
+                                                  style: TextStyle(
+                                                      color: Colors.red),
+                                                ),
+                                              ),
+                                              FlatButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text(
+                                                  setapptext(key: 'key_cancel'),
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                ),
+                                              )
+                                            ],
+                                          );
+                                        });
+                                  },
+                                ),
+                          //upload icon
+                          surveydata.isdrafted == 2
+                              ? SizedBox()
+                              : IconButton(
+                                  iconSize: 25,
+                                  icon: Icon(
+                                    Icons.file_upload,
+                                    color: Colors.green,
+                                  ),
+                                  onPressed: () async {
+                                    if (surveydata.isdrafted == 1) {
+                                      //completed
+                                      var result = await showDialog<bool>(
+                                          context: context,
+                                          barrierDismissible: false,
+                                          builder: (BuildContext context) {
+                                            return UploadData(
+                                                propertydata: surveydata);
+                                          });
+                                      if (!(result)) {}
+                                    } else if (surveydata.isdrafted == 0) {
+                                      //if drafted
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: Text(
+                                                setapptext(key: 'key_warning'),
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.red),
+                                              ),
+                                              content: Text(setapptext(
+                                                  key: 'key_comp_sync')),
+                                              actions: <Widget>[
+                                                FlatButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Text(
+                                                    setapptext(key: 'key_ok'),
+                                                  ),
+                                                ),
+                                              ],
+                                            );
+                                          });
+                                    }
+                                  },
+                                ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
     return Container(
       child: query.trim().length > 1
           ? FutureBuilder(
-              future: DBHelper().getpropertysurveys(
+              future: DBHelper().getpropertysearch(
                   taskid: surveyassignment.id, searchtext: query),
               builder: (context, snapshot) {
                 List<LocalPropertySurvey> ls = snapshot.data;
@@ -507,220 +813,221 @@ class SurveySearch extends SearchDelegate<String> {
                     itemCount: ls.length,
                     itemBuilder: (context, index) {
                       return Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                        ),
-                        padding: EdgeInsets.all(5.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            Container(
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: Column(
-                                  children: <Widget>[
-                                    Align(
-                                      alignment: Alignment.topLeft,
-                                      child: RichText(
-                                        text: TextSpan(
-                                          text:
-                                              setapptext(key: 'key_province') +
-                                                  ":-",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black),
-                                          children: <TextSpan>[
-                                            TextSpan(
-                                              text: ls[index].province,
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight:
-                                                      FontWeight.normal),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: Alignment.topLeft,
-                                      child: RichText(
-                                        text: TextSpan(
-                                          text: setapptext(key: 'key_city') +
-                                              ":-",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black),
-                                          children: <TextSpan>[
-                                            TextSpan(
-                                              text: ls[index].city,
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight:
-                                                      FontWeight.normal),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: Alignment.topLeft,
-                                      child: RichText(
-                                        text: TextSpan(
-                                          text: setapptext(
-                                                  key: 'key_only_block') +
-                                              ":-",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black),
-                                          children: <TextSpan>[
-                                            TextSpan(
-                                              text: ls[index].block,
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight:
-                                                      FontWeight.normal),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: Alignment.topLeft,
-                                      child: RichText(
-                                        text: TextSpan(
-                                          text: setapptext(key: 'key_part') +
-                                              ":-",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black),
-                                          children: <TextSpan>[
-                                            TextSpan(
-                                              text: ls[index].part_number,
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight:
-                                                      FontWeight.normal),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: Alignment.topLeft,
-                                      child: RichText(
-                                        text: TextSpan(
-                                          text: setapptext(key: 'key_unit_no') +
-                                              ":-",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black),
-                                          children: <TextSpan>[
-                                            TextSpan(
-                                              text: ls[index].unit_number,
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight:
-                                                      FontWeight.normal),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Container(
-                              child: Align(
-                                alignment: Alignment.topRight,
-                                child: Wrap(
-                                  direction: Axis.horizontal,
-                                  children: <Widget>[
-                                    IconButton(
-                                      iconSize: 25,
-                                      icon: Icon(Icons.edit),
-                                      onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                SurveyInfoPage(
-                                              surveyAssignment:
-                                                  surveyassignment,
-                                              localsurveykey:
-                                                  ls[index].local_property_key,
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                    IconButton(
-                                      iconSize: 25,
-                                      icon: Icon(Icons.delete),
-                                      onPressed: () {
-                                        showDialog(
-                                            context: context,
-                                            barrierDismissible: false,
-                                            builder: (context) {
-                                              return CupertinoAlertDialog(
-                                                title: Text(setapptext(
-                                                    key: 'key_want_to_delete')),
-                                                actions: <Widget>[
-                                                  FlatButton(
-                                                    onPressed: () async {
-                                                      DBHelper()
-                                                          .deletePropertySurvey(
-                                                              localkey: ls[
-                                                                      index]
-                                                                  .local_property_key)
-                                                          .then((_) {
-                                                        Navigator.pop(context);
-                                                        Provider.of<DBHelper>(
-                                                                context)
-                                                            .getpropertysurveys(
-                                                                taskid: ls[
-                                                                        index]
-                                                                    .taskid);
-                                                      });
-                                                    },
-                                                    child: Text(
-                                                      setapptext(
-                                                          key: 'key_delete'),
-                                                      style: TextStyle(
-                                                          color: Colors.red),
-                                                    ),
-                                                  ),
-                                                  FlatButton(
-                                                    onPressed: () {
-                                                      Navigator.pop(context);
-                                                    },
-                                                    child: Text(
-                                                      setapptext(
-                                                          key: 'key_cancel'),
-                                                      style: TextStyle(
-                                                          color: Colors.black),
-                                                    ),
-                                                  )
-                                                ],
-                                              );
-                                            });
-                                      },
-                                    ),
-                                    IconButton(
-                                      iconSize: 25,
-                                      icon: Icon(Icons.sync),
-                                      onPressed: () {},
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Divider(
-                              color: Colors.black,
-                            )
-                          ],
-                        ),
-                      );
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                          ),
+                          padding: EdgeInsets.all(5.0),
+                          child: listcard(surveydata: ls[index])
+                          //  Column(
+                          //   mainAxisSize: MainAxisSize.min,
+                          //   children: <Widget>[
+                          //     Container(
+                          //       child: Align(
+                          //         alignment: Alignment.topLeft,
+                          //         child: Column(
+                          //           children: <Widget>[
+                          //             Align(
+                          //               alignment: Alignment.topLeft,
+                          //               child: RichText(
+                          //                 text: TextSpan(
+                          //                   text:
+                          //                       setapptext(key: 'key_province') +
+                          //                           ":-",
+                          //                   style: TextStyle(
+                          //                       fontWeight: FontWeight.bold,
+                          //                       color: Colors.black),
+                          //                   children: <TextSpan>[
+                          //                     TextSpan(
+                          //                       text: ls[index].province,
+                          //                       style: TextStyle(
+                          //                           color: Colors.black,
+                          //                           fontWeight:
+                          //                               FontWeight.normal),
+                          //                     )
+                          //                   ],
+                          //                 ),
+                          //               ),
+                          //             ),
+                          //             Align(
+                          //               alignment: Alignment.topLeft,
+                          //               child: RichText(
+                          //                 text: TextSpan(
+                          //                   text: setapptext(key: 'key_city') +
+                          //                       ":-",
+                          //                   style: TextStyle(
+                          //                       fontWeight: FontWeight.bold,
+                          //                       color: Colors.black),
+                          //                   children: <TextSpan>[
+                          //                     TextSpan(
+                          //                       text: ls[index].city,
+                          //                       style: TextStyle(
+                          //                           color: Colors.black,
+                          //                           fontWeight:
+                          //                               FontWeight.normal),
+                          //                     )
+                          //                   ],
+                          //                 ),
+                          //               ),
+                          //             ),
+                          //             Align(
+                          //               alignment: Alignment.topLeft,
+                          //               child: RichText(
+                          //                 text: TextSpan(
+                          //                   text: setapptext(
+                          //                           key: 'key_only_block') +
+                          //                       ":-",
+                          //                   style: TextStyle(
+                          //                       fontWeight: FontWeight.bold,
+                          //                       color: Colors.black),
+                          //                   children: <TextSpan>[
+                          //                     TextSpan(
+                          //                       text: ls[index].block,
+                          //                       style: TextStyle(
+                          //                           color: Colors.black,
+                          //                           fontWeight:
+                          //                               FontWeight.normal),
+                          //                     )
+                          //                   ],
+                          //                 ),
+                          //               ),
+                          //             ),
+                          //             Align(
+                          //               alignment: Alignment.topLeft,
+                          //               child: RichText(
+                          //                 text: TextSpan(
+                          //                   text: setapptext(key: 'key_part') +
+                          //                       ":-",
+                          //                   style: TextStyle(
+                          //                       fontWeight: FontWeight.bold,
+                          //                       color: Colors.black),
+                          //                   children: <TextSpan>[
+                          //                     TextSpan(
+                          //                       text: ls[index].part_number,
+                          //                       style: TextStyle(
+                          //                           color: Colors.black,
+                          //                           fontWeight:
+                          //                               FontWeight.normal),
+                          //                     )
+                          //                   ],
+                          //                 ),
+                          //               ),
+                          //             ),
+                          //             Align(
+                          //               alignment: Alignment.topLeft,
+                          //               child: RichText(
+                          //                 text: TextSpan(
+                          //                   text: setapptext(key: 'key_unit_no') +
+                          //                       ":-",
+                          //                   style: TextStyle(
+                          //                       fontWeight: FontWeight.bold,
+                          //                       color: Colors.black),
+                          //                   children: <TextSpan>[
+                          //                     TextSpan(
+                          //                       text: ls[index].unit_number,
+                          //                       style: TextStyle(
+                          //                           color: Colors.black,
+                          //                           fontWeight:
+                          //                               FontWeight.normal),
+                          //                     )
+                          //                   ],
+                          //                 ),
+                          //               ),
+                          //             ),
+                          //           ],
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     Container(
+                          //       child: Align(
+                          //         alignment: Alignment.topRight,
+                          //         child: Wrap(
+                          //           direction: Axis.horizontal,
+                          //           children: <Widget>[
+                          //             IconButton(
+                          //               iconSize: 25,
+                          //               icon: Icon(Icons.edit),
+                          //               onPressed: () {
+                          //                 Navigator.push(
+                          //                   context,
+                          //                   MaterialPageRoute(
+                          //                     builder: (BuildContext context) =>
+                          //                         SurveyInfoPage(
+                          //                       surveyAssignment:
+                          //                           surveyassignment,
+                          //                       localsurveykey:
+                          //                           ls[index].local_property_key,
+                          //                     ),
+                          //                   ),
+                          //                 );
+                          //               },
+                          //             ),
+                          //             IconButton(
+                          //               iconSize: 25,
+                          //               icon: Icon(Icons.delete),
+                          //               onPressed: () {
+                          //                 showDialog(
+                          //                     context: context,
+                          //                     barrierDismissible: false,
+                          //                     builder: (context) {
+                          //                       return CupertinoAlertDialog(
+                          //                         title: Text(setapptext(
+                          //                             key: 'key_want_to_delete')),
+                          //                         actions: <Widget>[
+                          //                           FlatButton(
+                          //                             onPressed: () async {
+                          //                               DBHelper()
+                          //                                   .deletePropertySurvey(
+                          //                                       localkey: ls[
+                          //                                               index]
+                          //                                           .local_property_key)
+                          //                                   .then((_) {
+                          //                                 Navigator.pop(context);
+                          //                                 Provider.of<DBHelper>(
+                          //                                         context)
+                          //                                     .getpropertysurveys(
+                          //                                         taskid: ls[
+                          //                                                 index]
+                          //                                             .taskid);
+                          //                               });
+                          //                             },
+                          //                             child: Text(
+                          //                               setapptext(
+                          //                                   key: 'key_delete'),
+                          //                               style: TextStyle(
+                          //                                   color: Colors.red),
+                          //                             ),
+                          //                           ),
+                          //                           FlatButton(
+                          //                             onPressed: () {
+                          //                               Navigator.pop(context);
+                          //                             },
+                          //                             child: Text(
+                          //                               setapptext(
+                          //                                   key: 'key_cancel'),
+                          //                               style: TextStyle(
+                          //                                   color: Colors.black),
+                          //                             ),
+                          //                           )
+                          //                         ],
+                          //                       );
+                          //                     });
+                          //               },
+                          //             ),
+                          //             IconButton(
+                          //               iconSize: 25,
+                          //               icon: Icon(Icons.sync),
+                          //               onPressed: () {},
+                          //             ),
+                          //           ],
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     Divider(
+                          //       color: Colors.black,
+                          //     )
+                          //   ],
+                          // ),
+                          );
                     },
                   );
                 } else {

@@ -999,7 +999,7 @@ class DBHelper with ChangeNotifier {
   }
 
   Future<List<LocalPropertySurvey>> getpropertysurveys(
-      {String taskid, String localkey, String searchtext}) async {
+      {String taskid, String localkey}) async {
     setState(AppState.Busy);
     notifyListeners();
     try {
@@ -1016,11 +1016,6 @@ class DBHelper with ChangeNotifier {
         SELECT * FROM propertysurvey WHERE taskid=? AND local_property_key=?
       ''';
         params = [taskid, localkey];
-      } else if (!(searchtext?.isEmpty ?? true)) {
-        sqlquery = '''
-          SELECT * FROM propertysurvey WHERE taskid=? AND part_number LIKE ?  
-        ''';
-        params = [taskid, searchtext];
       }
 
       List<Map> it = await dbClient.rawQuery(sqlquery, params);
@@ -1029,6 +1024,27 @@ class DBHelper with ChangeNotifier {
     } catch (error, stackTrace) {
       setState(AppState.Idle);
 
+      Catcher.reportCheckedError(error, stackTrace);
+    }
+    setState(AppState.Idle);
+    notifyListeners();
+    return _propertysurveys;
+  }
+
+  Future<List<LocalPropertySurvey>> getpropertysearch(
+      {String taskid, String searchtext}) async {
+    setState(AppState.Busy);
+    notifyListeners();
+    try {
+      var dbClient = await db;
+      var sqlquery =
+          "SELECT * FROM propertysurvey WHERE taskid=? AND (part_number LIKE ? OR unit_number LIKE ?)";
+      List<dynamic> params = [taskid, searchtext+'%',searchtext+'%'];
+      List<Map> it = await dbClient.rawQuery(sqlquery, params);
+      _propertysurveys =
+          it.map((f) => LocalPropertySurvey.frommapobject(f)).toList();
+    } catch (error, stackTrace) {
+      setState(AppState.Idle);
       Catcher.reportCheckedError(error, stackTrace);
     }
     setState(AppState.Idle);

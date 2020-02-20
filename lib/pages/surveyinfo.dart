@@ -93,9 +93,10 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios,color: Colors.white),
+            Icon(Icons.arrow_forward_ios, color: Colors.white),
           ],
         ),
       ),
@@ -230,6 +231,10 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
 
   @override
   void didChangeDependencies() {
+    if (!(widget.localsurveykey?.isEmpty ?? true)) {
+      localdata = Provider.of<DBHelper>(context).singlepropertysurveys;
+      localdata.editmode = 1;
+    }
     super.didChangeDependencies();
   }
 

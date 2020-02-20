@@ -297,5 +297,17 @@
     "key_Disorganized": "da-Disorganized",
     "key_Last_Sync_Date": "da-Last Sync Date",
     "key_logout_msg": "da-You Can't logout from the app without sync the survey data",
-    "key_logout_dlt_msg":"da-By clicking data all the data will be deleted.To process press ok or cancel to exit"
+    "key_logout_dlt_msg":"da-By clicking data all the data will be deleted.To process press ok or cancel to exit",
+    "key_other1": "Other",
+    "key_second_partner_photo": "Second Partner's National ID Information",
+    "key_third_partner_photo": "Third Partner's National ID Information",
+    "key_fourth_partner_photo": "Forth Partner's National ID Information",
+    "key_fifth_partner_photo": "Fifth Partner's National ID Information",
+    "key_subscriber_father": "Subscriber's Father Name:",
+    "key_Occupier_Other": "Occupier, Other",
+    "key_tre": "Please specify the other",
+    "key_Mirbacha_Kot": "Mirbacha Kot",
+    "key_Spinboldak": "Spinboldak",
+    "key_Engile": "Engile",
+    "key_only_email": "Email"
 }
