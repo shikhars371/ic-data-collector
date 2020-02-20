@@ -342,38 +342,38 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                   ),
                                 ),
                               ),
-                              formCardDropdown(
-                                  value: localdata.reg_property_fertilizer
-                                              ?.isEmpty ??
-                                          true
-                                      ? "0"
-                                      : localdata.reg_property_fertilizer,
-                                  headerlablekey: setapptext(
-                                      key: 'key_registered_property'),
-                                  iscompleted: ((localdata
-                                                  .reg_property_fertilizer
-                                                  ?.isEmpty ??
-                                              true) ||
-                                          (localdata.reg_property_fertilizer ==
-                                              "0"))
-                                      ? CheckColor.Black
-                                      : CheckColor.Green,
-                                  dropdownitems: [
-                                    Dpvalue(
-                                        name: setapptext(
-                                            key: 'key_none_selected'),
-                                        value: "0"),
-                                    Dpvalue(
-                                        name: setapptext(key: 'key_'),
-                                        value: "code_num"),
-                                  ],
-                                  onSaved: (value) {
-                                    localdata.reg_property_fertilizer = value;
-                                  },
-                                  onChanged: (value) {
-                                    localdata.reg_property_fertilizer = value;
-                                    setState(() {});
-                                  }),
+                              // formCardDropdown(
+                              //     value: localdata.reg_property_fertilizer
+                              //                 ?.isEmpty ??
+                              //             true
+                              //         ? "0"
+                              //         : localdata.reg_property_fertilizer,
+                              //     headerlablekey: setapptext(
+                              //         key: 'key_registered_property'),
+                              //     iscompleted: ((localdata
+                              //                     .reg_property_fertilizer
+                              //                     ?.isEmpty ??
+                              //                 true) ||
+                              //             (localdata.reg_property_fertilizer ==
+                              //                 "0"))
+                              //         ? CheckColor.Black
+                              //         : CheckColor.Green,
+                              //     dropdownitems: [
+                              //       Dpvalue(
+                              //           name: setapptext(
+                              //               key: 'key_none_selected'),
+                              //           value: "0"),
+                              //       Dpvalue(
+                              //           name: setapptext(key: 'key_'),
+                              //           value: "code_num"),
+                              //     ],
+                              //     onSaved: (value) {
+                              //       localdata.reg_property_fertilizer = value;
+                              //     },
+                              //     onChanged: (value) {
+                              //       localdata.reg_property_fertilizer = value;
+                              //       setState(() {});
+                              //     }),
                               SizedBox(
                                 height: 50,
                               )
