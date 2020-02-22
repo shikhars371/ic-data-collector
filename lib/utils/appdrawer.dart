@@ -3,12 +3,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-import '../pages/login.dart';
 import '../utils/navigation_service.dart';
 import '../utils/route_paths.dart' as routes;
 import '../utils/locator.dart';
 import '../localization/app_translations.dart';
 import './db_helper.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DrawerItem {
   String title;
@@ -110,7 +110,8 @@ class _AppDrawerState extends State<AppDrawer> {
                 onPressed: () async {
                   await DBHelper().clearLocalStorage().then((onValue) {
                     pref.clear();
-                    _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);
+                    _navigationService.navigateRepalceTo(
+                        routeName: routes.LoginRoute);
                   }).catchError((onError) {
                     print("appdrawer" + onError);
                   });
@@ -189,12 +190,10 @@ class _AppDrawerState extends State<AppDrawer> {
                   accountName: Text(_email?.isEmpty ?? true ? "" : _email),
                   otherAccountsPictures: <Widget>[
                     IconButton(
-                      onPressed: () {
-                        logout();
-                      },
-                      icon: Icon(Icons.exit_to_app, color: Colors.white),
-                      tooltip: "Logout",
-                    )
+                        icon: Icon(FontAwesomeIcons.signOutAlt,color: Colors.white,),
+                        onPressed: () {
+                          logout();
+                        }),
                   ],
                 ),
                 Column(

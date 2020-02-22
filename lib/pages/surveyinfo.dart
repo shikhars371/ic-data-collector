@@ -243,6 +243,9 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
     if (!(widget.localsurveykey?.isEmpty ?? true)) {
       localdata = Provider.of<DBHelper>(context).singlepropertysurveys;
       localdata.editmode = 1;
+      localdata.first_surveyor_name = widget.surveyAssignment.surveyoronename;
+      localdata.senond_surveyor_name = widget.surveyAssignment.surveyortwoname;
+      localdata.technical_support_name = widget.surveyAssignment.teamleadname;
     }
     return Scaffold(
       appBar: AppBar(
