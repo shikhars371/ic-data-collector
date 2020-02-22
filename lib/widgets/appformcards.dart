@@ -210,21 +210,32 @@ Widget formCardDropdown(
             ),
             Padding(
               padding: const EdgeInsets.only(left: 8, right: 8, bottom: 10),
-              child: Container(
-                padding: EdgeInsets.only(left: 10, right: 10),
-                child: DropdownButtonFormField<String>(
-                  items: dropdownitems.map((Dpvalue data) {
-                    return DropdownMenuItem<String>(
-                      value: data.value,
-                      child: Text(
-                        data.name,
-                      ),
-                    );
-                  }).toList(),
-                  validator: validate,
-                  onChanged: onChanged,
-                  onSaved: onSaved,
-                  value: value,
+              child: Directionality(
+                textDirection: locator<LanguageService>().currentlanguage == 0
+                    ? TextDirection.ltr
+                    : TextDirection.rtl,
+                child: Container(
+                  padding: EdgeInsets.only(left: 10, right: 10),
+                  child: DropdownButtonFormField<String>(
+                    items: dropdownitems.map((Dpvalue data) {
+                      return DropdownMenuItem<String>(
+                        value: data.value,
+                        child: Container(
+                          alignment:
+                              locator<LanguageService>().currentlanguage == 0
+                                  ? Alignment.centerLeft
+                                  : Alignment.centerRight,
+                          child: Text(
+                            data.name,
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                    validator: validate,
+                    onChanged: onChanged,
+                    onSaved: onSaved,
+                    value: value,
+                  ),
                 ),
               ),
             ),
