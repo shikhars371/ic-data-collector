@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kapp/pages/fourlimit.dart';
 import 'package:kapp/pages/infophotonint.dart';
@@ -110,9 +111,10 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios,color: Colors.white),
+            Icon(Icons.arrow_forward_ios, color: Colors.white),
           ],
         ),
       ),
@@ -134,10 +136,11 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios,color: Colors.white),
+            Icon(Icons.arrow_back_ios, color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             )
           ],
         ),
@@ -408,6 +411,9 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  inputFormatters: [
+                                    WhitelistingTextInputFormatter.digitsOnly
+                                  ],
                                   keyboardtype: TextInputType.number,
                                   headerlablekey: setapptext(key: 'key_phone'),
                                   fieldfocus: _second_partner_phone,
@@ -516,7 +522,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                             Flexible(
                                               child: Text(
                                                 setapptext(
-                                                    key: 'key_second_partner_photo'),
+                                                    key:
+                                                        'key_second_partner_photo'),
                                                 style: TextStyle(),
                                               ),
                                             ),
@@ -1141,6 +1148,9 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  inputFormatters: [
+                                    WhitelistingTextInputFormatter.digitsOnly
+                                  ],
                                   initvalue:
                                       localdata.third_partner_phone?.isEmpty ??
                                               true
@@ -1245,7 +1255,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                             Flexible(
                                               child: Text(
                                                 setapptext(
-                                                    key: 'key_third_partner_photo'),
+                                                    key:
+                                                        'key_third_partner_photo'),
                                                 style: TextStyle(),
                                               ),
                                             ),
@@ -1868,6 +1879,9 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  inputFormatters: [
+                                    WhitelistingTextInputFormatter.digitsOnly
+                                  ],
                                   initvalue:
                                       localdata.fourth_partner_phone?.isEmpty ??
                                               true
@@ -1972,7 +1986,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                             Flexible(
                                               child: Text(
                                                 setapptext(
-                                                    key: 'key_fourth_partner_photo'),
+                                                    key:
+                                                        'key_fourth_partner_photo'),
                                                 style: TextStyle(),
                                               ),
                                             ),
@@ -2597,6 +2612,9 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  inputFormatters: [
+                                    WhitelistingTextInputFormatter.digitsOnly
+                                  ],
                                   initvalue:
                                       localdata.fifth_partner_phone?.isEmpty ??
                                               true
@@ -2701,7 +2719,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                             Flexible(
                                               child: Text(
                                                 setapptext(
-                                                    key: 'key_fifth_partner_photo'),
+                                                    key:
+                                                        'key_fifth_partner_photo'),
                                                 style: TextStyle(),
                                               ),
                                             ),

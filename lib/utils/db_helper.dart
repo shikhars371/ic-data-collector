@@ -4,6 +4,7 @@ import 'dart:io' as io;
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:catcher/catcher_plugin.dart';
+import 'package:intl/intl.dart';
 
 import '../models/surveyAssignment.dart';
 import '../controllers/auth.dart';
@@ -1252,16 +1253,14 @@ class DBHelper with ChangeNotifier {
   Future<bool> isSyncedTwoDatsBefore() async {
     bool result = false;
     try {
-      String today = DateTime(
-              DateTime.now().year, DateTime.now().month, DateTime.now().day)
-          .toString();
-      String twodayBefore = DateTime(
-              DateTime.now().year, DateTime.now().month, DateTime.now().day - 2)
-          .toString();
+      String today = DateFormat("yyyy-MM-dd ").format(DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day));
+      String twodayBefore = DateFormat("yyyy-MM-dd ").format(DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day - 2));
       var dbClient = await db;
       List<Map> maps = await dbClient.rawQuery('''select * from propertysurvey
              where isdrafted=1 and
-             (BETWEEN $today and $twodayBefore)''');
+             (local_created_on BETWEEN $today and $twodayBefore)''');
       result = (maps?.isEmpty ?? true) ? false : true;
     } catch (error, stackTrace) {
       Catcher.reportCheckedError(error, stackTrace);

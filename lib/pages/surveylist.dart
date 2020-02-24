@@ -175,7 +175,9 @@ class _SurveyPageState extends State<SurveyPage> {
                                 iconSize: 25,
                                 icon: Icon(
                                   Icons.file_upload,
-                                  color: Colors.green,
+                                  color: surveydata.isdrafted == 0
+                                      ? Colors.grey
+                                      : Colors.green,
                                 ),
                                 onPressed: () async {
                                   if (surveydata.isdrafted == 1) {
@@ -310,7 +312,7 @@ class _SurveyPageState extends State<SurveyPage> {
   }
 
   String getStatus(int status) {
-    var result = "";
+    var result = setapptext(key: 'key_Drafted');
     switch (status) {
       case 0: //Drafted
         result = setapptext(key: 'key_Drafted');
@@ -328,7 +330,7 @@ class _SurveyPageState extends State<SurveyPage> {
   }
 
   Color getStatusColor(int status) {
-    Color result = Colors.transparent;
+    Color result = Color.fromRGBO(189, 148, 36, 1);
     switch (status) {
       case 0: //Drafted
         result = Color.fromRGBO(189, 148, 36, 1);

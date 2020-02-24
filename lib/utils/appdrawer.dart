@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:package_info/package_info.dart';
 
 import '../utils/navigation_service.dart';
 import '../utils/route_paths.dart' as routes;
@@ -31,6 +32,7 @@ class _AppDrawerState extends State<AppDrawer> {
   String _email;
   String lastsynceddate;
   String _profilepic;
+  String appVersion = "";
 
   final drawerItems = [
     DrawerItem("key_tasks", Icons.assignment), //page index = 0
@@ -43,8 +45,14 @@ class _AppDrawerState extends State<AppDrawer> {
     setpageindex(widget.pageindex);
     Future.delayed(Duration.zero).then((_) {
       getUserInfo();
+      getAppData();
     });
     super.initState();
+  }
+
+  void getAppData() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    appVersion = packageInfo.version;
   }
 
   String setapptext({String key}) {
@@ -190,7 +198,10 @@ class _AppDrawerState extends State<AppDrawer> {
                   accountName: Text(_email?.isEmpty ?? true ? "" : _email),
                   otherAccountsPictures: <Widget>[
                     IconButton(
-                        icon: Icon(FontAwesomeIcons.signOutAlt,color: Colors.white,),
+                        icon: Icon(
+                          FontAwesomeIcons.signOutAlt,
+                          color: Colors.white,
+                        ),
                         onPressed: () {
                           logout();
                         }),
@@ -201,20 +212,27 @@ class _AppDrawerState extends State<AppDrawer> {
                 ),
               ],
             ),
-            lastsynceddate?.isEmpty ?? true
-                ? SizedBox()
-                : Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: Container(
-                      child: Text(
-                        setapptext(key: 'key_Last_Sync_Date') +
-                            "-:" +
-                            DateFormat("dd-MMM-yyy hh:mm").format(
-                              DateTime.tryParse(lastsynceddate),
-                            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Column(children: <Widget>[
+                lastsynceddate?.isEmpty ?? true
+                    ? SizedBox()
+                    : Container(
+                        child: Text(
+                          setapptext(key: 'key_Last_Sync_Date') +
+                              "-:" +
+                              DateFormat("dd-MMM-yyy hh:mm").format(
+                                DateTime.tryParse(lastsynceddate),
+                              ),
+                        ),
                       ),
-                    ),
-                  )
+                Container(
+                    child: Text(
+                  appVersion,
+                  style: TextStyle(color: Colors.grey),
+                ))
+              ]),
+            )
           ],
         ),
       ),

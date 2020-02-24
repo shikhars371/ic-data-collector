@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../models/localpropertydata.dart';
@@ -130,6 +131,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                       );
                     });
               } else {
+                localdata.isdrafted = 0;
                 localdata.editmode = 1;
                 await DBHelper().updateTaskStatus(taskid: localdata.taskid);
                 Navigator.pushReplacement(
@@ -568,6 +570,9 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  inputFormatters: [
+                                    WhitelistingTextInputFormatter.digitsOnly
+                                  ],
                                   keyboardtype: TextInputType.number,
                                   initvalue:
                                       localdata.part_number?.isEmpty ?? true
@@ -604,6 +609,9 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  inputFormatters: [
+                                    WhitelistingTextInputFormatter.digitsOnly
+                                  ],
                                   keyboardtype: TextInputType.number,
                                   initvalue:
                                       localdata.unit_number?.isEmpty ?? true
@@ -640,6 +648,9 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  inputFormatters: [
+                                    WhitelistingTextInputFormatter.digitsOnly
+                                  ],
                                   initvalue:
                                       localdata.unit_in_parcel?.isEmpty ?? true
                                           ? ""

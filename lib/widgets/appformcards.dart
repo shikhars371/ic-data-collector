@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -79,7 +80,9 @@ Widget formcardtextfield(
     TextInputAction textInputAction,
     void Function(String) onFieldSubmitted,
     Widget suffix,
-    bool enable}) {
+    bool enable,
+    List<TextInputFormatter> inputFormatters
+    }) {
   return Container(
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(10),
@@ -98,33 +101,22 @@ Widget formcardtextfield(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Row(
-              mainAxisAlignment: locator<LanguageService>().currentlanguage == 0
-                  ? MainAxisAlignment.start
-                  : MainAxisAlignment.end,
+              textDirection: locator<LanguageService>().currentlanguage == 0
+                  ? TextDirection.ltr
+                  : TextDirection.rtl,
               children: <Widget>[
-                if (locator<LanguageService>().currentlanguage == 0) ...{
-                  completedcheckbox(isCompleted: radiovalue),
-                  Flexible(
-                    child: Text(
-                      headerlablekey,
-                      overflow: TextOverflow.visible,
-                      softWrap: true,
-                      maxLines: 2,
-                      style: TextStyle(),
-                    ),
+                completedcheckbox(isCompleted: radiovalue),
+                Flexible(
+                  child: Text(
+                    headerlablekey,
+                    overflow: TextOverflow.visible,
+                    style: TextStyle(),
+                    textDirection:
+                        locator<LanguageService>().currentlanguage == 0
+                            ? TextDirection.ltr
+                            : TextDirection.rtl,
                   ),
-                } else ...{
-                  Flexible(
-                    child: Text(
-                      headerlablekey,
-                      overflow: TextOverflow.visible,
-                      softWrap: true,
-                      maxLines: 2,
-                      style: TextStyle(),
-                    ),
-                  ),
-                  completedcheckbox(isCompleted: radiovalue),
-                }
+                )
               ],
             ),
             Padding(
@@ -147,6 +139,7 @@ Widget formcardtextfield(
                 focusNode: fieldfocus,
                 textInputAction: textInputAction,
                 onFieldSubmitted: onFieldSubmitted,
+                inputFormatters: inputFormatters, ///WhitelistingTextInputFormatter.digitsOnly
               ),
             )
           ],
@@ -183,29 +176,21 @@ Widget formCardDropdown(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Row(
-              mainAxisAlignment: locator<LanguageService>().currentlanguage == 0
-                  ? MainAxisAlignment.start
-                  : MainAxisAlignment.end,
+              textDirection: locator<LanguageService>().currentlanguage == 0
+                  ? TextDirection.ltr
+                  : TextDirection.rtl,
               children: <Widget>[
-                if (locator<LanguageService>().currentlanguage == 0) ...[
-                  completedcheckbox(isCompleted: iscompleted),
-                  Flexible(
-                    child: Text(
-                      headerlablekey,
-                      style: TextStyle(),
-                      //overflow: TextOverflow.ellipsis,
-                    ),
+                completedcheckbox(isCompleted: iscompleted),
+                Flexible(
+                  child: Text(
+                    headerlablekey,
+                    style: TextStyle(),
+                    textDirection:
+                        locator<LanguageService>().currentlanguage == 0
+                            ? TextDirection.ltr
+                            : TextDirection.rtl,
                   ),
-                ] else ...[
-                  Flexible(
-                    child: Text(
-                      headerlablekey,
-                      style: TextStyle(),
-                      //overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  completedcheckbox(isCompleted: iscompleted),
-                ]
+                ),
               ],
             ),
             Padding(
