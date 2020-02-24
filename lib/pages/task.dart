@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import 'package:connectivity/connectivity.dart';
+import 'package:kapp/utils/db_helper.dart';
 
 import '../localization/app_translations.dart';
 import '../utils/appdrawer.dart';
@@ -9,6 +10,7 @@ import '../utils/navigation_service.dart';
 import '../utils/route_paths.dart' as routes;
 import '../utils/locator.dart';
 import '../models/surveyAssignment.dart';
+import '../utils/showappdialog.dart';
 
 class TaskPage extends StatefulWidget {
   @override
@@ -17,8 +19,27 @@ class TaskPage extends StatefulWidget {
 
 class _TaskPageState extends State<TaskPage> {
   final NavigationService _navigationService = locator<NavigationService>();
+  void checkNotificationReport() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      var result = await DBHelper().isSyncedTwoDatsBefore();
+      if (result) {
+        showDialogSingleButton(
+          context: context,
+          title: setapptext(key: 'key_warning'),
+          buttonLabel: setapptext(key: 'key_ok'),
+          message: setapptext(key: 'key_notify_no_sync')
+        );
+      }
+    }
+  }
+
   @override
   void initState() {
+    Future.delayed(Duration.zero).then((_) {
+      checkNotificationReport();
+    });
     super.initState();
   }
 

@@ -7,7 +7,6 @@ import '../utils/locator.dart';
 import '../localization/app_translations.dart';
 import '../utils/appdrawer.dart';
 
-
 class GuidePage extends StatefulWidget {
   @override
   _GuidePageState createState() => _GuidePageState();
@@ -29,6 +28,11 @@ class _GuidePageState extends State<GuidePage> {
         ),
       ),
       drawer: AppDrawer(),
+      body: Container(
+        child: Column(
+          children: <Widget>[],
+        ),
+      ),
     );
   }
 }

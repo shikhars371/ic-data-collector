@@ -1039,7 +1039,7 @@ class DBHelper with ChangeNotifier {
       var dbClient = await db;
       var sqlquery =
           "SELECT * FROM propertysurvey WHERE taskid=? AND (part_number LIKE ? OR unit_number LIKE ?)";
-      List<dynamic> params = [taskid, searchtext+'%',searchtext+'%'];
+      List<dynamic> params = [taskid, searchtext + '%', searchtext + '%'];
       List<Map> it = await dbClient.rawQuery(sqlquery, params);
       _propertysurveys =
           it.map((f) => LocalPropertySurvey.frommapobject(f)).toList();
@@ -1246,6 +1246,26 @@ class DBHelper with ChangeNotifier {
       Catcher.reportCheckedError(error, stackTrace);
     }
     setState(AppState.Idle);
+    return result;
+  }
+
+  Future<bool> isSyncedTwoDatsBefore() async {
+    bool result = false;
+    try {
+      String today = DateTime(
+              DateTime.now().year, DateTime.now().month, DateTime.now().day)
+          .toString();
+      String twodayBefore = DateTime(
+              DateTime.now().year, DateTime.now().month, DateTime.now().day - 2)
+          .toString();
+      var dbClient = await db;
+      List<Map> maps = await dbClient.rawQuery('''select * from propertysurvey
+             where isdrafted=1 and
+             (BETWEEN $today and $twodayBefore)''');
+      result = (maps?.isEmpty ?? true) ? false : true;
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
+    }
     return result;
   }
 
