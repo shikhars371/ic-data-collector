@@ -136,6 +136,8 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
                           child: ListView(
                             children: <Widget>[
                               formCardDropdown(
+                                enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                   dropdownitems: [
                                     Dpvalue(
                                         name: setapptext(
@@ -168,7 +170,7 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
                                     localdata.property_dispte_subject_to =
                                         value;
                                   },
-                                  onChanged: (value) {
+                                  onChanged:(value) {
                                     localdata.property_dispte_subject_to =
                                         value;
 
@@ -180,6 +182,8 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
                                     }
                                   }),
                               formCardDropdown(
+                                enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                   iscompleted: ((localdata.real_person_status
                                                   ?.isEmpty ??
                                               true) ||
@@ -211,7 +215,7 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
                                               true
                                           ? "0"
                                           : localdata.real_person_status,
-                                  onChanged: (value) {
+                                  onChanged:(value) {
                                     localdata.real_person_status = value;
                                     setState(() {});
                                   },
@@ -221,6 +225,8 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
                                     }
                                   }),
                               formCardDropdown(
+                                enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                   iscompleted: ((localdata.cityzenship_notice
                                                   ?.isEmpty ??
                                               true) ||
@@ -249,7 +255,7 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
                                               true
                                           ? "0"
                                           : localdata.cityzenship_notice,
-                                  onChanged: (value) {
+                                  onChanged:(value) {
                                     localdata.cityzenship_notice = value;
                                     setState(() {});
                                   },

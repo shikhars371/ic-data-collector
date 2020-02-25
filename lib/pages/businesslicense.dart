@@ -73,9 +73,10 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios,color: Colors.white),
+            Icon(Icons.arrow_forward_ios, color: Colors.white),
           ],
         ),
       ),
@@ -108,10 +109,11 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios,color: Colors.white),
+            Icon(Icons.arrow_back_ios, color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             )
           ],
         ),
@@ -158,6 +160,8 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   keyboardtype: TextInputType.number,
                                   headerlablekey:
                                       setapptext(key: 'key_how_many_business'),
@@ -190,6 +194,8 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   keyboardtype: TextInputType.number,
                                   headerlablekey: setapptext(
                                       key: 'key_howmany_business_license'),
@@ -224,8 +230,9 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  headerlablekey:
-                                      setapptext(key: 'key_other1'),
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
+                                  headerlablekey: setapptext(key: 'key_other1'),
                                   fieldfocus: _business_license_another,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {

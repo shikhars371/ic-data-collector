@@ -150,6 +150,9 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
+                                enable: localdata.isdrafted == 2
+                                      ? false
+                                      :true,
                                   initvalue: localdata
                                               .safari_booklet_common_name
                                               ?.isEmpty ??
@@ -192,6 +195,9 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                enable: localdata.isdrafted == 2
+                                      ? false
+                                      :true,
                                   initvalue: localdata
                                               .safari_booklet_father_name
                                               ?.isEmpty ??
@@ -233,6 +239,9 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                enable: localdata.isdrafted == 2
+                                      ? false
+                                      :true,
                                   initvalue: localdata
                                               .safari_booklet_machinegun_no
                                               ?.isEmpty ??
@@ -317,7 +326,9 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                           padding: const EdgeInsets.only(
                                               left: 8, right: 8, top: 8),
                                           child: GestureDetector(
-                                            onTap: () {
+                                            onTap:localdata.isdrafted == 2
+                                      ? null
+                                      : () {
                                               DatePicker.showDatePicker(context,
                                                   onChanged: (date) {
                                                 localdata
@@ -447,7 +458,9 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                                         key:
                                                             'key_capture_image'),
                                                   ),
-                                                  onPressed: () async {
+                                                  onPressed:localdata.isdrafted == 2
+                                      ? null
+                                      : () async {
                                                     try {
                                                       localdata
                                                               .safari_booklet_picture =

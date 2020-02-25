@@ -188,6 +188,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                           child: ListView(
                             children: <Widget>[
                               formCardDropdown(
+                                  enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                   value: localdata.fst_have_building?.isEmpty ??
                                           true
                                       ? "0"
@@ -246,12 +248,14 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       localdata.fth_specifyif_other = null;
                                       localdata.fth_no_of_floors = null;
                                       localdata.fth_cubie_meter = null;
-                                      fsthavingbuilding=((localdata
-                                                  .fst_have_building?.isEmpty ??
-                                              true) ||
-                                          (localdata.fst_have_building == "0"))
-                                      ? CheckColor.Black
-                                      : CheckColor.Green;
+                                      fsthavingbuilding = ((localdata
+                                                      .fst_have_building
+                                                      ?.isEmpty ??
+                                                  true) ||
+                                              (localdata.fst_have_building ==
+                                                  "0"))
+                                          ? CheckColor.Black
+                                          : CheckColor.Green;
                                     });
                                   },
                                   validate: (value) {
@@ -275,6 +279,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   ),
                                 ),
                                 formCardDropdown(
+                                    enable:
+                                        localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata.fst_building_use
                                                     ?.isEmpty ??
                                                 true) ||
@@ -324,6 +330,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formCardDropdown(
+                                    enable:
+                                        localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata
                                                     .fst_building_category
                                                     ?.isEmpty ??
@@ -379,6 +387,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formcardtextfield(
+                                    enable:
+                                        localdata.isdrafted == 2 ? false : true,
                                     initvalue: localdata
                                                 .fst_specifyif_other?.isEmpty ??
                                             true
@@ -409,6 +419,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                    enable:
+                                        localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.fst_no_of_floors?.isEmpty ??
@@ -444,6 +456,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                    enable:
+                                        localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.fst_cubie_meter?.isEmpty ??
@@ -477,6 +491,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formCardDropdown(
+                                    enable:
+                                        localdata.isdrafted == 2 ? true : false,
                                     value:
                                         localdata.snd_have_building?.isEmpty ??
                                                 true
@@ -559,6 +575,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   ),
                                 ),
                                 formCardDropdown(
+                                    enable:
+                                        localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata.snd_building_use
                                                     ?.isEmpty ??
                                                 true) ||
@@ -608,6 +626,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formCardDropdown(
+                                    enable:
+                                        localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata
                                                     .snd_building_category
                                                     ?.isEmpty ??
@@ -663,6 +683,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formcardtextfield(
+                                    enable:
+                                        localdata.isdrafted == 2 ? false : true,
                                     initvalue: localdata
                                                 .snd_specifyif_other?.isEmpty ??
                                             true
@@ -693,6 +715,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                    enable:
+                                        localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.snd_no_of_floors?.isEmpty ??
@@ -727,6 +751,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                    enable:
+                                        localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.snd_cubie_meter?.isEmpty ??
@@ -759,6 +785,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formCardDropdown(
+                                    enable:
+                                        localdata.isdrafted == 2 ? true : false,
                                     value:
                                         localdata.trd_have_building?.isEmpty ??
                                                 true
@@ -835,6 +863,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   ),
                                 ),
                                 formCardDropdown(
+                                    enable:
+                                        localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata.trd_building_use
                                                     ?.isEmpty ??
                                                 true) ||
@@ -884,6 +914,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formCardDropdown(
+                                  enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata
                                                     .trd_building_category
                                                     ?.isEmpty ??
@@ -922,9 +954,10 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                           value: "6"),
                                     ],
                                     onChanged: (value) {
-                                      localdata.trd_building_category = value;
-                                      setState(() {});
-                                    },
+                                            localdata.trd_building_category =
+                                                value;
+                                            setState(() {});
+                                          },
                                     onSaved: (value) {
                                       localdata.trd_building_category = value;
                                     },
@@ -939,6 +972,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formcardtextfield(
+                                    enable:
+                                        localdata.isdrafted == 2 ? false : true,
                                     initvalue: localdata
                                                 .trd_specifyif_other?.isEmpty ??
                                             true
@@ -969,6 +1004,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                    enable:
+                                        localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.trd_no_of_floors?.isEmpty ??
@@ -1004,6 +1041,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                    enable:
+                                        localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.trd_cubie_meter?.isEmpty ??
@@ -1037,6 +1076,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formCardDropdown(
+                                  enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                     value: localdata
                                                 .forth_have_building?.isEmpty ??
                                             true
@@ -1067,22 +1108,31 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       localdata.forth_have_building = value;
                                     },
                                     onChanged: (value) {
-                                      localdata.forth_have_building = value;
-                                      setState(() {
-                                        localdata.forth_building_use = null;
-                                        localdata.forth_building_category =
-                                            null;
-                                        localdata.forth_specifyif_other = null;
-                                        localdata.forth_no_of_floors = null;
-                                        localdata.forth_cubie_meter = null;
-                                        localdata.fth_have_building = null;
-                                        localdata.fth_building_use = null;
-                                        localdata.fth_building_category = null;
-                                        localdata.fth_specifyif_other = null;
-                                        localdata.fth_no_of_floors = null;
-                                        localdata.fth_cubie_meter = null;
-                                      });
-                                    },
+                                            localdata.forth_have_building =
+                                                value;
+                                            setState(() {
+                                              localdata.forth_building_use =
+                                                  null;
+                                              localdata
+                                                      .forth_building_category =
+                                                  null;
+                                              localdata.forth_specifyif_other =
+                                                  null;
+                                              localdata.forth_no_of_floors =
+                                                  null;
+                                              localdata.forth_cubie_meter =
+                                                  null;
+                                              localdata.fth_have_building =
+                                                  null;
+                                              localdata.fth_building_use = null;
+                                              localdata.fth_building_category =
+                                                  null;
+                                              localdata.fth_specifyif_other =
+                                                  null;
+                                              localdata.fth_no_of_floors = null;
+                                              localdata.fth_cubie_meter = null;
+                                            });
+                                          },
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
                                         return setapptext(key: 'key_required');
@@ -1108,6 +1158,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   ),
                                 ),
                                 formCardDropdown(
+                                  enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata.forth_building_use
                                                     ?.isEmpty ??
                                                 true) ||
@@ -1141,9 +1193,10 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                           value: "5"),
                                     ],
                                     onChanged: (value) {
-                                      localdata.forth_building_use = value;
-                                      setState(() {});
-                                    },
+                                            localdata.forth_building_use =
+                                                value;
+                                            setState(() {});
+                                          },
                                     onSaved: (value) {
                                       localdata.forth_building_use = value;
                                     },
@@ -1158,6 +1211,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formCardDropdown(
+                                  enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata
                                                     .forth_building_category
                                                     ?.isEmpty ??
@@ -1197,9 +1252,10 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                           value: "6"),
                                     ],
                                     onChanged: (value) {
-                                      localdata.forth_building_category = value;
-                                      setState(() {});
-                                    },
+                                            localdata.forth_building_category =
+                                                value;
+                                            setState(() {});
+                                          },
                                     onSaved: (value) {
                                       localdata.forth_building_category = value;
                                     },
@@ -1214,6 +1270,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formcardtextfield(
+                                    enable:
+                                        localdata.isdrafted == 2 ? false : true,
                                     initvalue: localdata.forth_specifyif_other
                                                 ?.isEmpty ??
                                             true
@@ -1250,6 +1308,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                    enable:
+                                        localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.forth_no_of_floors?.isEmpty ??
@@ -1287,6 +1347,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                    enable:
+                                        localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.forth_cubie_meter?.isEmpty ??
@@ -1322,6 +1384,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formCardDropdown(
+                                  enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                     value:
                                         localdata.fth_have_building?.isEmpty ??
                                                 true
@@ -1352,15 +1416,17 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       localdata.fth_have_building = value;
                                     },
                                     onChanged: (value) {
-                                      localdata.fth_have_building = value;
-                                      setState(() {
-                                        localdata.fth_building_use = null;
-                                        localdata.fth_building_category = null;
-                                        localdata.fth_specifyif_other = null;
-                                        localdata.fth_no_of_floors = null;
-                                        localdata.fth_cubie_meter = null;
-                                      });
-                                    },
+                                            localdata.fth_have_building = value;
+                                            setState(() {
+                                              localdata.fth_building_use = null;
+                                              localdata.fth_building_category =
+                                                  null;
+                                              localdata.fth_specifyif_other =
+                                                  null;
+                                              localdata.fth_no_of_floors = null;
+                                              localdata.fth_cubie_meter = null;
+                                            });
+                                          },
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
                                         return setapptext(key: 'key_required');
@@ -1386,6 +1452,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   ),
                                 ),
                                 formCardDropdown(
+                                  enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata.fth_building_use
                                                     ?.isEmpty ??
                                                 true) ||
@@ -1417,10 +1485,10 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                           name: setapptext(key: 'key_general'),
                                           value: "5"),
                                     ],
-                                    onChanged: (value) {
-                                      localdata.fth_building_use = value;
-                                      setState(() {});
-                                    },
+                                    onChanged:  (value) {
+                                            localdata.fth_building_use = value;
+                                            setState(() {});
+                                          },
                                     onSaved: (value) {
                                       localdata.fth_building_use = value;
                                     },
@@ -1435,6 +1503,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formCardDropdown(
+                                  enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata
                                                     .fth_building_category
                                                     ?.isEmpty ??
@@ -1472,10 +1542,11 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                           name: setapptext(key: 'key_Another'),
                                           value: "6"),
                                     ],
-                                    onChanged: (value) {
-                                      localdata.fth_building_category = value;
-                                      setState(() {});
-                                    },
+                                    onChanged:  (value) {
+                                            localdata.fth_building_category =
+                                                value;
+                                            setState(() {});
+                                          },
                                     onSaved: (value) {
                                       localdata.fth_building_category = value;
                                     },
@@ -1490,6 +1561,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formcardtextfield(
+                                    enable:
+                                        localdata.isdrafted == 2 ? false : true,
                                     initvalue: localdata
                                                 .fth_specifyif_other?.isEmpty ??
                                             true
@@ -1526,6 +1599,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                    enable:
+                                        localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.fth_no_of_floors?.isEmpty ??
@@ -1560,6 +1635,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                    enable:
+                                        localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
                                     initvalue:
                                         localdata.fth_cubie_meter?.isEmpty ??

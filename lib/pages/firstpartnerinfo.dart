@@ -80,9 +80,10 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios,color: Colors.white),
+            Icon(Icons.arrow_forward_ios, color: Colors.white),
           ],
         ),
       ),
@@ -139,10 +140,11 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios,color: Colors.white),
+            Icon(Icons.arrow_back_ios, color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             )
           ],
         ),
@@ -192,6 +194,8 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   headerlablekey: setapptext(key: 'key_name'),
                                   fieldfocus:
                                       _first_partner_name_property_owner,
@@ -230,6 +234,8 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   headerlablekey:
                                       setapptext(key: 'key_surname'),
                                   fieldfocus: _first_partner_surname,
@@ -266,6 +272,8 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   headerlablekey: setapptext(key: 'key_wold'),
                                   fieldfocus: _first_partner_boy,
                                   textInputAction: TextInputAction.next,
@@ -299,6 +307,8 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   headerlablekey: setapptext(key: 'key_birth'),
                                   fieldfocus: _first_partner__father,
                                   textInputAction: TextInputAction.done,
@@ -332,6 +342,8 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                     setState(() {});
                                   }),
                               formCardDropdown(
+                                enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                   value: localdata.first_partner_name_gender
                                               ?.isEmpty ??
                                           true
@@ -363,16 +375,21 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                     localdata.first_partner_name_gender = value;
                                   },
                                   onChanged: (value) {
-                                    localdata.first_partner_name_gender = value;
-                                    setState(() {});
-                                  },
+                                          localdata.first_partner_name_gender =
+                                              value;
+                                          setState(() {});
+                                        },
                                   validate: (value) {
                                     if ((value.isEmpty) || value == "0") {
                                       return setapptext(key: 'key_required');
                                     }
                                   }),
                               formcardtextfield(
-                                inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
+                                  inputFormatters: [
+                                    WhitelistingTextInputFormatter.digitsOnly
+                                  ],
                                   keyboardtype: TextInputType.number,
                                   headerlablekey: setapptext(key: 'key_phone'),
                                   fieldfocus: _first_partner_name_phone,
@@ -410,6 +427,8 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                     }
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   keyboardtype: TextInputType.emailAddress,
                                   headerlablekey: setapptext(key: 'key_email'),
                                   fieldfocus: _first_partner_name_email,
@@ -499,12 +518,15 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed: () async {
-                                                    localdata
-                                                            .first_partner_name_property_owner =
-                                                        await appimagepicker();
-                                                    setState(() {});
-                                                  },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .first_partner_name_property_owner =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
                                                 )
                                               ],
                                             ),
@@ -550,6 +572,8 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                 ),
                               ),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   headerlablekey:
                                       setapptext(key: 'key_enter_any_mere'),
                                   radiovalue: localdata

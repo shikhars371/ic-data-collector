@@ -207,6 +207,8 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   keyboardtype: TextInputType.number,
                                   initvalue: localdata.area_unit_release_area
                                               ?.isEmpty ??
@@ -235,6 +237,8 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   keyboardtype: TextInputType.number,
                                   initvalue: localdata.area_unit_business_area
                                               ?.isEmpty ??
@@ -263,6 +267,8 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   keyboardtype: TextInputType.number,
                                   initvalue: localdata.area_unit_total_no_unit
                                               ?.isEmpty ??
@@ -291,6 +297,8 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   keyboardtype: TextInputType.number,
                                   initvalue: localdata.area_unit_business_units
                                               ?.isEmpty ??

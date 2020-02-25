@@ -163,6 +163,8 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                           child: ListView(
                             children: <Widget>[
                               formCardDropdown(
+                                enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                   value: localdata
                                               .location_of_land_area?.isEmpty ??
                                           true
@@ -217,6 +219,8 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                     }
                                   }),
                               formCardDropdown(
+                                enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                   value: localdata.property_have_document
                                               ?.isEmpty ??
                                           true
@@ -247,7 +251,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                   onSaved: (String value) {
                                     localdata.property_have_document = value;
                                   },
-                                  onChanged: (value) {
+                                  onChanged:(value) {
                                     localdata.property_have_document = value;
                                     setState(() {});
                                   },
@@ -257,6 +261,8 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                     }
                                   }),
                               formCardDropdown(
+                                enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                   value: localdata.current_use_of_property
                                               ?.isEmpty ??
                                           true
@@ -336,6 +342,8 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                               ///start
                               if (localdata.current_use_of_property == '1') ...[
                                 formCardDropdown(
+                                  enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                     value: localdata
                                                 .redeemable_property?.isEmpty ??
                                             true
@@ -376,7 +384,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                     onSaved: (String value) {
                                       localdata.redeemable_property = value;
                                     },
-                                    onChanged: (value) {
+                                    onChanged:(value) {
                                       localdata.redeemable_property = value;
                                       setState(() {});
                                     }),
@@ -387,6 +395,8 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                               ///start
                               if (localdata.current_use_of_property == "2") ...[
                                 formCardDropdown(
+                                  enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                     value: localdata.proprietary_properties
                                                 ?.isEmpty ??
                                             true
@@ -456,6 +466,8 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                               ///start
                               if (localdata.current_use_of_property == "3") ...[
                                 formCardDropdown(
+                                  enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                     value: localdata
                                                 .redeemable_property?.isEmpty ??
                                             true
@@ -496,11 +508,13 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                     onSaved: (String value) {
                                       localdata.redeemable_property = value;
                                     },
-                                    onChanged: (value) {
+                                    onChanged:(value) {
                                       localdata.redeemable_property = value;
                                       setState(() {});
                                     }),
                                 formCardDropdown(
+                                  enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                     value: localdata.proprietary_properties
                                                 ?.isEmpty ??
                                             true
@@ -559,7 +573,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                     onSaved: (String value) {
                                       localdata.proprietary_properties = value;
                                     },
-                                    onChanged: (value) {
+                                    onChanged:(value) {
                                       localdata.proprietary_properties = value;
                                       setState(() {});
                                     }),
@@ -570,6 +584,8 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                               ///start
                               if (localdata.current_use_of_property == "5") ...[
                                 formCardDropdown(
+                                  enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                     value:
                                         localdata.govt_property?.isEmpty ?? true
                                             ? "0"
@@ -642,7 +658,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                     onSaved: (String value) {
                                       localdata.govt_property = value;
                                     },
-                                    onChanged: (value) {
+                                    onChanged:(value) {
                                       localdata.govt_property = value;
                                       setState(() {});
                                     }),
@@ -653,6 +669,8 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                               ///start
                               if (localdata.current_use_of_property == "8") ...[
                                 formCardDropdown(
+                                  enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                     value: localdata.specified_current_use
                                                 ?.isEmpty ??
                                             true
@@ -718,7 +736,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                     onSaved: (String value) {
                                       localdata.specified_current_use = value;
                                     },
-                                    onChanged: (value) {
+                                    onChanged:(value) {
                                       localdata.specified_current_use = value;
                                       setState(() {});
                                     }),
@@ -729,6 +747,9 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                               ///start
                               if (localdata.current_use_of_property == "9") ...[
                                 formcardtextfield(
+                                  enable: localdata.isdrafted == 2
+                                      ? false
+                                      :true,
                                     initvalue: localdata
                                                 .unspecified_current_use_type
                                                 ?.isEmpty ??

@@ -98,9 +98,10 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios,color: Colors.white),
+            Icon(Icons.arrow_forward_ios, color: Colors.white),
           ],
         ),
       ),
@@ -122,10 +123,11 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios,color: Colors.white),
+            Icon(Icons.arrow_back_ios, color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             )
           ],
         ),
@@ -176,6 +178,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                           child: ListView(
                             children: <Widget>[
                               formCardDropdown(
+                                enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                   value:
                                       localdata.document_type?.isEmpty ?? true
                                           ? "0"
@@ -208,23 +212,23 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                     localdata.document_type = value;
                                   },
                                   onChanged: (value) {
-                                    localdata.document_type = value;
-                                    localdata.issued_on = null;
-                                    localdata.place_of_issue = null;
-                                    localdata.property_number = null;
-                                    localdata.document_cover = null;
-                                    localdata.document_page = null;
-                                    localdata.doc_reg_number = null;
-                                    localdata.land_area_qawwala = null;
-                                    localdata.property_doc_photo_1 = null;
-                                    localdata.property_doc_photo_2 = null;
-                                    localdata.property_doc_photo_3 = null;
-                                    localdata.property_doc_photo_4 = null;
-                                    localdata.odinary_doc_photo1 = null;
-                                    localdata.odinary_doc_photo6 = null;
+                                          localdata.document_type = value;
+                                          localdata.issued_on = null;
+                                          localdata.place_of_issue = null;
+                                          localdata.property_number = null;
+                                          localdata.document_cover = null;
+                                          localdata.document_page = null;
+                                          localdata.doc_reg_number = null;
+                                          localdata.land_area_qawwala = null;
+                                          localdata.property_doc_photo_1 = null;
+                                          localdata.property_doc_photo_2 = null;
+                                          localdata.property_doc_photo_3 = null;
+                                          localdata.property_doc_photo_4 = null;
+                                          localdata.odinary_doc_photo1 = null;
+                                          localdata.odinary_doc_photo6 = null;
 
-                                    setState(() {});
-                                  },
+                                          setState(() {});
+                                        },
                                   validate: (value) {
                                     if ((value.isEmpty) || value == "0") {
                                       return setapptext(key: 'key_required');
@@ -281,26 +285,31 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                             padding: const EdgeInsets.only(
                                                 left: 8, right: 8, top: 8),
                                             child: GestureDetector(
-                                              onTap: () {
-                                                DatePicker.showDatePicker(
-                                                    context, onChanged: (date) {
-                                                  localdata.issued_on =
-                                                      DateFormat('yyyy/MM/dd')
-                                                          .format(date)
-                                                          .toString();
-                                                  setState(() {
-                                                    enable = false;
-                                                  });
-                                                }, onConfirm: (date) {
-                                                  localdata.issued_on =
-                                                      DateFormat('yyyy/MM/dd')
-                                                          .format(date)
-                                                          .toString();
-                                                  setState(() {
-                                                    enable = false;
-                                                  });
-                                                });
-                                              },
+                                              onTap: localdata.isdrafted == 2
+                                                  ? null
+                                                  : () {
+                                                      DatePicker.showDatePicker(
+                                                          context,
+                                                          onChanged: (date) {
+                                                        localdata.issued_on =
+                                                            DateFormat(
+                                                                    'yyyy/MM/dd')
+                                                                .format(date)
+                                                                .toString();
+                                                        setState(() {
+                                                          enable = false;
+                                                        });
+                                                      }, onConfirm: (date) {
+                                                        localdata.issued_on =
+                                                            DateFormat(
+                                                                    'yyyy/MM/dd')
+                                                                .format(date)
+                                                                .toString();
+                                                        setState(() {
+                                                          enable = false;
+                                                        });
+                                                      });
+                                                    },
                                               child: AbsorbPointer(
                                                 child: Row(
                                                   mainAxisAlignment:
@@ -381,6 +390,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                   ),
                                 ),
                                 formcardtextfield(
+                                    enable:
+                                        localdata.isdrafted == 2 ? false : true,
                                     initvalue:
                                         localdata.place_of_issue?.isEmpty ??
                                                 true
@@ -408,6 +419,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                    enable:
+                                        localdata.isdrafted == 2 ? false : true,
                                     initvalue:
                                         localdata.property_number?.isEmpty ??
                                                 true
@@ -435,6 +448,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                    enable:
+                                        localdata.isdrafted == 2 ? false : true,
                                     initvalue:
                                         localdata.document_cover?.isEmpty ??
                                                 true
@@ -462,6 +477,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                    enable:
+                                        localdata.isdrafted == 2 ? false : true,
                                     initvalue:
                                         localdata.document_page?.isEmpty ?? true
                                             ? ""
@@ -487,6 +504,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                    enable:
+                                        localdata.isdrafted == 2 ? false : true,
                                     initvalue:
                                         localdata.doc_reg_number?.isEmpty ??
                                                 true
@@ -515,6 +534,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                    enable:
+                                        localdata.isdrafted == 2 ? false : true,
                                     initvalue:
                                         localdata.land_area_qawwala?.isEmpty ??
                                                 true
@@ -593,12 +614,15 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                           key:
                                                               'key_capture_image'),
                                                     ),
-                                                    onPressed: () async {
-                                                      localdata
-                                                              .property_doc_photo_1 =
-                                                          await appimagepicker();
-                                                      setState(() {});
-                                                    },
+                                                    onPressed:
+                                                        localdata.isdrafted == 2
+                                                            ? null
+                                                            : () async {
+                                                                localdata
+                                                                        .property_doc_photo_1 =
+                                                                    await appimagepicker();
+                                                                setState(() {});
+                                                              },
                                                   )
                                                 ],
                                               ),
@@ -685,12 +709,15 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                     child: Text(setapptext(
                                                         key:
                                                             'key_capture_image')),
-                                                    onPressed: () async {
-                                                      localdata
-                                                              .property_doc_photo_2 =
-                                                          await appimagepicker();
-                                                      setState(() {});
-                                                    },
+                                                    onPressed:
+                                                        localdata.isdrafted == 2
+                                                            ? null
+                                                            : () async {
+                                                                localdata
+                                                                        .property_doc_photo_2 =
+                                                                    await appimagepicker();
+                                                                setState(() {});
+                                                              },
                                                   )
                                                 ],
                                               ),
@@ -775,12 +802,15 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                     child: Text(setapptext(
                                                         key:
                                                             'key_capture_image')),
-                                                    onPressed: () async {
-                                                      localdata
-                                                              .property_doc_photo_3 =
-                                                          await appimagepicker();
-                                                      setState(() {});
-                                                    },
+                                                    onPressed:
+                                                        localdata.isdrafted == 2
+                                                            ? null
+                                                            : () async {
+                                                                localdata
+                                                                        .property_doc_photo_3 =
+                                                                    await appimagepicker();
+                                                                setState(() {});
+                                                              },
                                                   )
                                                 ],
                                               ),
@@ -865,12 +895,15 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                     child: Text(setapptext(
                                                         key:
                                                             'key_capture_image')),
-                                                    onPressed: () async {
-                                                      localdata
-                                                              .property_doc_photo_4 =
-                                                          await appimagepicker();
-                                                      setState(() {});
-                                                    },
+                                                    onPressed:
+                                                        localdata.isdrafted == 2
+                                                            ? null
+                                                            : () async {
+                                                                localdata
+                                                                        .property_doc_photo_4 =
+                                                                    await appimagepicker();
+                                                                setState(() {});
+                                                              },
                                                   )
                                                 ],
                                               ),
@@ -961,7 +994,9 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                     child: Text(setapptext(
                                                         key:
                                                             'key_capture_image')),
-                                                    onPressed: () async {
+                                                    onPressed:localdata.isdrafted == 2
+                                      ? null
+                                      : () async {
                                                       localdata
                                                               .odinary_doc_photo1 =
                                                           await appimagepicker();
@@ -1052,7 +1087,9 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                     child: Text(setapptext(
                                                         key:
                                                             'key_capture_image')),
-                                                    onPressed: () async {
+                                                    onPressed:localdata.isdrafted == 2
+                                      ? null
+                                      : () async {
                                                       localdata
                                                               .odinary_doc_photo6 =
                                                           await appimagepicker();

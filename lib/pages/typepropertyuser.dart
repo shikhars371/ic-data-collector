@@ -142,6 +142,7 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
                           child: ListView(
                             children: <Widget>[
                               formCardDropdown(
+                                enable: localdata.isdrafted == 2 ? true : false,
                                 value: localdata.property_user_owner?.isEmpty ??
                                         true
                                     ? "0"
@@ -175,6 +176,7 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
                                 },
                               ),
                               formCardDropdown(
+                                enable: localdata.isdrafted == 2 ? true : false,
                                 value: localdata.property_user_master_rent
                                             ?.isEmpty ??
                                         true
@@ -211,6 +213,7 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
                                 },
                               ),
                               formCardDropdown(
+                                enable: localdata.isdrafted == 2 ? true : false,
                                 value: localdata.property_user_recipient_group
                                             ?.isEmpty ??
                                         true
@@ -250,6 +253,7 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
                                 },
                               ),
                               formCardDropdown(
+                                enable: localdata.isdrafted == 2 ? true : false,
                                 value: localdata
                                             .property_user_no_longer?.isEmpty ??
                                         true
@@ -286,6 +290,8 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
                               ),
                               if (localdata.property_user_no_longer == "1") ...[
                                 formcardtextfield(
+                                    enable:
+                                        localdata.isdrafted == 2 ? false : true,
                                     initvalue: localdata
                                                 .property_user_type_of_misconduct
                                                 ?.isEmpty ??
@@ -293,8 +299,7 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
                                         ? ""
                                         : localdata
                                             .property_user_type_of_misconduct,
-                                    headerlablekey: setapptext(
-                                        key: 'key_tre'),
+                                    headerlablekey: setapptext(key: 'key_tre'),
                                     radiovalue: localdata
                                                 .property_user_type_of_misconduct
                                                 ?.isEmpty ??

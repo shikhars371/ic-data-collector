@@ -71,9 +71,10 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios,color: Colors.white),
+            Icon(Icons.arrow_forward_ios, color: Colors.white),
           ],
         ),
       ),
@@ -106,10 +107,11 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios,color: Colors.white),
+            Icon(Icons.arrow_back_ios, color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             )
           ],
         ),
@@ -201,11 +203,15 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed: () async {
-                                                    localdata.home_map =
-                                                        await appimagepicker();
-                                                    setState(() {});
-                                                  },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .home_map =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
                                                 )
                                               ],
                                             ),
@@ -297,7 +303,9 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed: () async {
+                                                  onPressed:localdata.isdrafted == 2
+                                      ? null
+                                      : () async {
                                                     localdata.home_photo =
                                                         await appimagepicker();
                                                     setState(() {});

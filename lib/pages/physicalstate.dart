@@ -134,6 +134,8 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                           child: ListView(
                             children: <Widget>[
                               formCardDropdown(
+                                enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                   value:
                                       localdata.status_of_area_plan?.isEmpty ??
                                               true
@@ -163,7 +165,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                   onSaved: (String value) {
                                     localdata.status_of_area_plan = value;
                                   },
-                                  onChanged: (value) {
+                                  onChanged:(value) {
                                     localdata.status_of_area_plan = value;
                                     setState(() {});
                                   },
@@ -173,6 +175,8 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                     }
                                   }),
                               formCardDropdown(
+                                enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                   value: localdata.status_of_area_official
                                               ?.isEmpty ??
                                           true
@@ -203,7 +207,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                   onSaved: (String value) {
                                     localdata.status_of_area_official = value;
                                   },
-                                  onChanged: (value) {
+                                  onChanged:(value) {
                                     localdata.status_of_area_official = value;
                                     setState(() {});
                                   },
@@ -213,6 +217,8 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                     }
                                   }),
                               formCardDropdown(
+                                enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                   value: localdata.status_of_area_regular
                                               ?.isEmpty ??
                                           true
@@ -244,7 +250,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                   onSaved: (String value) {
                                     localdata.status_of_area_regular = value;
                                   },
-                                  onChanged: (value) {
+                                  onChanged:(value) {
                                     localdata.status_of_area_regular = value;
                                     setState(() {});
                                   },
@@ -254,6 +260,8 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                     }
                                   }),
                               formCardDropdown(
+                                enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                   value:
                                       localdata.slope_of_area?.isEmpty ?? true
                                           ? "0"
@@ -285,7 +293,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                   onSaved: (String value) {
                                     localdata.slope_of_area = value;
                                   },
-                                  onChanged: (value) {
+                                  onChanged:(value) {
                                     localdata.slope_of_area = value;
                                     setState(() {});
                                   },

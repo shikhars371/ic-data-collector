@@ -65,9 +65,10 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios,color: Colors.white),
+            Icon(Icons.arrow_forward_ios, color: Colors.white),
           ],
         ),
       ),
@@ -89,10 +90,11 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios,color: Colors.white),
+            Icon(Icons.arrow_back_ios, color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             )
           ],
         ),
@@ -138,6 +140,8 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata.issue_regarding_property
                                               ?.isEmpty ??
                                           true
@@ -167,6 +171,8 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata.municipality_ref_number
                                               ?.isEmpty ??
                                           true
@@ -194,6 +200,8 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
                                     setState(() {});
                                   }),
                               formCardDropdown(
+                                enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                   iscompleted: ((localdata
                                                   .natural_threaten?.isEmpty ??
                                               true) ||
@@ -222,11 +230,12 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
                                     localdata.natural_threaten = value.trim();
                                   },
                                   onChanged: (value) {
-                                    localdata.natural_threaten = value.trim();
-                                    _municipality_ref_number.unfocus();
-                                    _issue_regarding_property.unfocus();
-                                    setState(() {});
-                                  }),
+                                          localdata.natural_threaten =
+                                              value.trim();
+                                          _municipality_ref_number.unfocus();
+                                          _issue_regarding_property.unfocus();
+                                          setState(() {});
+                                        }),
                             ],
                           ),
                         ),

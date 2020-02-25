@@ -235,6 +235,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                 ),
                               ),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   headerlablekey: setapptext(key: 'key_name'),
                                   fieldfocus: _second_partner_name,
                                   textInputAction: TextInputAction.next,
@@ -272,6 +274,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   headerlablekey:
                                       setapptext(key: 'key_surname'),
                                   fieldfocus: _second_partner_surname,
@@ -310,6 +314,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   headerlablekey: setapptext(key: 'key_wold'),
                                   fieldfocus: _second_partner_boy,
                                   textInputAction: TextInputAction.next,
@@ -345,6 +351,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   headerlablekey: setapptext(key: 'key_birth'),
                                   fieldfocus: _second_partner_father,
                                   textInputAction: TextInputAction.done,
@@ -380,6 +388,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formCardDropdown(
+                                  enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                   value: localdata
                                               .second_partner_gender?.isEmpty ??
                                           true
@@ -411,6 +421,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   inputFormatters: [
                                     WhitelistingTextInputFormatter.digitsOnly
                                   ],
@@ -451,6 +463,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     }
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   headerlablekey: setapptext(key: 'key_email'),
                                   fieldfocus: _second_partner_email,
                                   textInputAction: TextInputAction.done,
@@ -541,12 +555,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed: () async {
-                                                    localdata
-                                                            .second_partner_image =
-                                                        await appimagepicker();
-                                                    setState(() {});
-                                                  },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .second_partner_image =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
                                                 )
                                               ],
                                             ),
@@ -583,6 +600,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               ),
 
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
                                               .second_partner_machinegun_no
                                               ?.isEmpty ??
@@ -614,6 +633,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata.second_partner_cover_note
                                               ?.isEmpty ??
                                           true
@@ -642,6 +663,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata.second_partner_note_page
                                               ?.isEmpty ??
                                           true
@@ -669,6 +692,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
                                               .second_partner_reg_no?.isEmpty ??
                                           true
@@ -743,12 +768,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed: () async {
-                                                    localdata
-                                                            .second_partner_phote_note1 =
-                                                        await appimagepicker();
-                                                    setState(() {});
-                                                  },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .second_partner_phote_note1 =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
                                                 )
                                               ],
                                             ),
@@ -834,12 +862,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed: () async {
-                                                    localdata
-                                                            .second_partner_photo_tips1 =
-                                                        await appimagepicker();
-                                                    setState(() {});
-                                                  },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .second_partner_photo_tips1 =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
                                                 )
                                               ],
                                             ),
@@ -925,12 +956,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed: () async {
-                                                    localdata
-                                                            .second_partner_photo_tips2 =
-                                                        await appimagepicker();
-                                                    setState(() {});
-                                                  },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .second_partner_photo_tips2 =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
                                                 )
                                               ],
                                             ),
@@ -978,6 +1012,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                 ),
                               ),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue:
                                       localdata.third_partner_name?.isEmpty ??
                                               true
@@ -1013,6 +1049,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
                                               .third_partner_surname?.isEmpty ??
                                           true
@@ -1049,6 +1087,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue:
                                       localdata.third_partner_boy?.isEmpty ??
                                               true
@@ -1084,6 +1124,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue:
                                       localdata.third_partner_father?.isEmpty ??
                                               true
@@ -1117,6 +1159,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formCardDropdown(
+                                  enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                   value:
                                       localdata.third_partner_gender?.isEmpty ??
                                               true
@@ -1148,6 +1192,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   inputFormatters: [
                                     WhitelistingTextInputFormatter.digitsOnly
                                   ],
@@ -1186,6 +1232,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     }
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue:
                                       localdata.third_partner_email?.isEmpty ??
                                               true
@@ -1274,12 +1322,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed: () async {
-                                                    localdata
-                                                            .third_partner_image =
-                                                        await appimagepicker();
-                                                    setState(() {});
-                                                  },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .third_partner_image =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
                                                 )
                                               ],
                                             ),
@@ -1315,6 +1366,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               ),
 
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
                                               .third_partner_machinegun_no
                                               ?.isEmpty ??
@@ -1346,6 +1399,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata.third_partner_cover_note
                                               ?.isEmpty ??
                                           true
@@ -1373,6 +1428,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata.third_partner_note_page
                                               ?.isEmpty ??
                                           true
@@ -1400,6 +1457,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue:
                                       localdata.third_partner_reg_no?.isEmpty ??
                                               true
@@ -1474,12 +1533,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed: () async {
-                                                    localdata
-                                                            .third_partner_phote_note1 =
-                                                        await appimagepicker();
-                                                    setState(() {});
-                                                  },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .third_partner_phote_note1 =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
                                                 )
                                               ],
                                             ),
@@ -1565,12 +1627,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed: () async {
-                                                    localdata
-                                                            .third_partner_photo_tips1 =
-                                                        await appimagepicker();
-                                                    setState(() {});
-                                                  },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .third_partner_photo_tips1 =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
                                                 )
                                               ],
                                             ),
@@ -1656,12 +1721,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed: () async {
-                                                    localdata
-                                                            .third_partner_photo_tips2 =
-                                                        await appimagepicker();
-                                                    setState(() {});
-                                                  },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .third_partner_photo_tips2 =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
                                                 )
                                               ],
                                             ),
@@ -1709,6 +1777,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                 ),
                               ),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue:
                                       localdata.fourth_partner_name?.isEmpty ??
                                               true
@@ -1744,6 +1814,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata.fourth_partner_surname
                                               ?.isEmpty ??
                                           true
@@ -1780,6 +1852,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue:
                                       localdata.fourth_partner_boy?.isEmpty ??
                                               true
@@ -1815,6 +1889,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
                                               .fourth_partner_father?.isEmpty ??
                                           true
@@ -1848,6 +1924,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formCardDropdown(
+                                enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                   value: localdata
                                               .fourth_partner_gender?.isEmpty ??
                                           true
@@ -1875,10 +1953,13 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     localdata.fourth_partner_gender = value;
                                   },
                                   onChanged: (value) {
-                                    localdata.fourth_partner_gender = value;
-                                    setState(() {});
-                                  }),
+                                          localdata.fourth_partner_gender =
+                                              value;
+                                          setState(() {});
+                                        }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   inputFormatters: [
                                     WhitelistingTextInputFormatter.digitsOnly
                                   ],
@@ -1917,6 +1998,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     }
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue:
                                       localdata.fourth_partner_email?.isEmpty ??
                                               true
@@ -2005,12 +2088,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed: () async {
-                                                    localdata
-                                                            .fourth_partner_image =
-                                                        await appimagepicker();
-                                                    setState(() {});
-                                                  },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .fourth_partner_image =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
                                                 )
                                               ],
                                             ),
@@ -2047,6 +2133,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               ),
 
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
                                               .fourth_partner_machinegun_no
                                               ?.isEmpty ??
@@ -2078,6 +2166,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata.fourth_partner_cover_note
                                               ?.isEmpty ??
                                           true
@@ -2106,6 +2196,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata.fourth_partner_note_page
                                               ?.isEmpty ??
                                           true
@@ -2133,6 +2225,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
                                               .fourth_partner_reg_no?.isEmpty ??
                                           true
@@ -2207,12 +2301,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed: () async {
-                                                    localdata
-                                                            .fourth_partner_phote_note1 =
-                                                        await appimagepicker();
-                                                    setState(() {});
-                                                  },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .fourth_partner_phote_note1 =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
                                                 )
                                               ],
                                             ),
@@ -2298,12 +2395,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed: () async {
-                                                    localdata
-                                                            .fourth_partner_photo_tips1 =
-                                                        await appimagepicker();
-                                                    setState(() {});
-                                                  },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .fourth_partner_photo_tips1 =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
                                                 )
                                               ],
                                             ),
@@ -2389,12 +2489,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed: () async {
-                                                    localdata
-                                                            .fourth_partner_photo_tips2 =
-                                                        await appimagepicker();
-                                                    setState(() {});
-                                                  },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .fourth_partner_photo_tips2 =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
                                                 )
                                               ],
                                             ),
@@ -2442,6 +2545,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                 ),
                               ),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue:
                                       localdata.fifth_partner_name?.isEmpty ??
                                               true
@@ -2477,6 +2582,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
                                               .fifth_partner_surname?.isEmpty ??
                                           true
@@ -2513,6 +2620,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue:
                                       localdata.fifth_partner_boy?.isEmpty ??
                                               true
@@ -2548,6 +2657,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue:
                                       localdata.fifth_partner_father?.isEmpty ??
                                               true
@@ -2581,6 +2692,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formCardDropdown(
+                                enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                   value:
                                       localdata.fifth_partner_gender?.isEmpty ??
                                               true
@@ -2608,10 +2721,13 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     localdata.fifth_partner_gender = value;
                                   },
                                   onChanged: (value) {
-                                    localdata.fifth_partner_gender = value;
-                                    setState(() {});
-                                  }),
+                                          localdata.fifth_partner_gender =
+                                              value;
+                                          setState(() {});
+                                        }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   inputFormatters: [
                                     WhitelistingTextInputFormatter.digitsOnly
                                   ],
@@ -2650,6 +2766,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     }
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue:
                                       localdata.fifth_partner_email?.isEmpty ??
                                               true
@@ -2738,12 +2856,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed: () async {
-                                                    localdata
-                                                            .fifth_partner_image =
-                                                        await appimagepicker();
-                                                    setState(() {});
-                                                  },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .fifth_partner_image =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
                                                 )
                                               ],
                                             ),
@@ -2779,6 +2900,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               ),
 
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
                                               .fifth_partner_machinegun_no
                                               ?.isEmpty ??
@@ -2810,6 +2933,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata.fifth_partner_cover_note
                                               ?.isEmpty ??
                                           true
@@ -2837,6 +2962,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata.fifth_partner_note_page
                                               ?.isEmpty ??
                                           true
@@ -2864,6 +2991,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue:
                                       localdata.fifth_partner_reg_no?.isEmpty ??
                                               true
@@ -2938,12 +3067,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed: () async {
-                                                    localdata
-                                                            .fifth_partner_phote_note1 =
-                                                        await appimagepicker();
-                                                    setState(() {});
-                                                  },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .fifth_partner_phote_note1 =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
                                                 )
                                               ],
                                             ),
@@ -3029,12 +3161,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed: () async {
-                                                    localdata
-                                                            .fifth_partner_photo_tips1 =
-                                                        await appimagepicker();
-                                                    setState(() {});
-                                                  },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .fifth_partner_photo_tips1 =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
                                                 )
                                               ],
                                             ),
@@ -3120,12 +3255,15 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed: () async {
-                                                    localdata
-                                                            .fifth_partner_photo_tips2 =
-                                                        await appimagepicker();
-                                                    setState(() {});
-                                                  },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .fifth_partner_photo_tips2 =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
                                                 )
                                               ],
                                             ),

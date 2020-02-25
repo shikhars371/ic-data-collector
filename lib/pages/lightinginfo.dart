@@ -73,9 +73,10 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios,color: Colors.white),
+            Icon(Icons.arrow_forward_ios, color: Colors.white),
           ],
         ),
       ),
@@ -97,10 +98,11 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios,color: Colors.white),
+            Icon(Icons.arrow_back_ios, color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             )
           ],
         ),
@@ -147,6 +149,8 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue:
                                       localdata.lightning_meter_no?.isEmpty ??
                                               true
@@ -182,6 +186,8 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue:
                                       localdata.lightning_meter_no?.isEmpty ??
                                               true
@@ -222,12 +228,15 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
                                               .lightning_father_name?.isEmpty ??
                                           true
                                       ? ""
                                       : localdata.lightning_father_name,
-                                  headerlablekey: setapptext(key: 'key_subscriber_father'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_subscriber_father'),
                                   fieldfocus: _lightning_father_name,
                                   textInputAction: TextInputAction.done,
                                   onFieldSubmitted: (_) {
@@ -310,12 +319,15 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed: () async {
-                                                    localdata
-                                                            .lightning_picture_bell_power =
-                                                        await appimagepicker();
-                                                    setState(() {});
-                                                  },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .lightning_picture_bell_power =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
                                                 )
                                               ],
                                             ),

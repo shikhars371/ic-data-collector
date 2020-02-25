@@ -86,9 +86,10 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios,color: Colors.white),
+            Icon(Icons.arrow_forward_ios, color: Colors.white),
           ],
         ),
       ),
@@ -110,10 +111,11 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios,color: Colors.white),
+            Icon(Icons.arrow_back_ios, color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             )
           ],
         ),
@@ -161,6 +163,8 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   headerlablekey:
                                       setapptext(key: 'key_machine_gun'),
                                   fieldfocus: _info_photo_hint_sukuk_number,
@@ -192,6 +196,8 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   headerlablekey:
                                       setapptext(key: 'key_cover_note'),
                                   fieldfocus: _info_photo_hint_cover_note,
@@ -223,6 +229,8 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   headerlablekey:
                                       setapptext(key: 'key_notification_page'),
                                   fieldfocus: _info_photo_hint_note_page,
@@ -253,6 +261,8 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   headerlablekey: setapptext(key: 'key_reg_no'),
                                   fieldfocus: _info_photo_hint_reg_no,
                                   textInputAction: TextInputAction.done,
@@ -329,12 +339,15 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed: () async {
-                                                    localdata
-                                                            .info_photo_hint_photo_note1 =
-                                                        await appimagepicker();
-                                                    setState(() {});
-                                                  },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .info_photo_hint_photo_note1 =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
                                                 )
                                               ],
                                             ),
@@ -428,12 +441,15 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed: () async {
-                                                    localdata
-                                                            .info_photo_hint_photo_tips1 =
-                                                        await appimagepicker();
-                                                    setState(() {});
-                                                  },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .info_photo_hint_photo_tips1 =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
                                                 )
                                               ],
                                             ),
@@ -527,12 +543,15 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed: () async {
-                                                    localdata
-                                                            .info_photo_hint_photo_tips2 =
-                                                        await appimagepicker();
-                                                    setState(() {});
-                                                  },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .info_photo_hint_photo_tips2 =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
                                                 )
                                               ],
                                             ),

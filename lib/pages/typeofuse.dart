@@ -155,6 +155,8 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
                           child: ListView(
                             children: <Widget>[
                               formCardDropdown(
+                                enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                   value:
                                       localdata.use_in_property_doc?.isEmpty ??
                                               true
@@ -204,7 +206,7 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
                                   onSaved: (value) {
                                     localdata.use_in_property_doc = value;
                                   },
-                                  onChanged: (value) {
+                                  onChanged:(value) {
                                     localdata.use_in_property_doc = value;
                                     setState(() {});
                                   }),
@@ -226,7 +228,9 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
                                       localdata.type_of_use_other =
                                           value.trim();
                                     },
-                                    onChanged: (value) {
+                                    onChanged:localdata.isdrafted == 2
+                                      ? null
+                                      : (value) {
                                       localdata.type_of_use_other =
                                           value.trim();
                                       setState(() {});

@@ -81,8 +81,7 @@ Widget formcardtextfield(
     void Function(String) onFieldSubmitted,
     Widget suffix,
     bool enable,
-    List<TextInputFormatter> inputFormatters
-    }) {
+    List<TextInputFormatter> inputFormatters}) {
   return Container(
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(10),
@@ -139,7 +138,9 @@ Widget formcardtextfield(
                 focusNode: fieldfocus,
                 textInputAction: textInputAction,
                 onFieldSubmitted: onFieldSubmitted,
-                inputFormatters: inputFormatters, ///WhitelistingTextInputFormatter.digitsOnly
+                inputFormatters: inputFormatters,
+
+                ///WhitelistingTextInputFormatter.digitsOnly
               ),
             )
           ],
@@ -157,7 +158,8 @@ Widget formCardDropdown(
     String value,
     Function(String) validate,
     FocusNode fieldfocus,
-    Function(String) onChanged}) {
+    Function(String) onChanged,
+    bool enable = false}) {
   return Container(
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(10),
@@ -176,12 +178,14 @@ Widget formCardDropdown(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Row(
+              mainAxisSize: MainAxisSize.max,
               textDirection: locator<LanguageService>().currentlanguage == 0
                   ? TextDirection.ltr
                   : TextDirection.rtl,
               children: <Widget>[
                 completedcheckbox(isCompleted: iscompleted),
                 Flexible(
+                  fit: FlexFit.tight,
                   child: Text(
                     headerlablekey,
                     style: TextStyle(),
@@ -201,25 +205,28 @@ Widget formCardDropdown(
                     : TextDirection.rtl,
                 child: Container(
                   padding: EdgeInsets.only(left: 10, right: 10),
-                  child: DropdownButtonFormField<String>(
-                    items: dropdownitems.map((Dpvalue data) {
-                      return DropdownMenuItem<String>(
-                        value: data.value,
-                        child: Container(
-                          alignment:
-                              locator<LanguageService>().currentlanguage == 0
-                                  ? Alignment.centerLeft
-                                  : Alignment.centerRight,
-                          child: Text(
-                            data.name,
+                  child: AbsorbPointer(
+                    absorbing: enable,
+                    child: DropdownButtonFormField<String>(
+                      items: dropdownitems.map((Dpvalue data) {
+                        return DropdownMenuItem<String>(
+                          value: data.value,
+                          child: Container(
+                            alignment:
+                                locator<LanguageService>().currentlanguage == 0
+                                    ? Alignment.centerLeft
+                                    : Alignment.centerRight,
+                            child: Text(
+                              data.name,
+                            ),
                           ),
-                        ),
-                      );
-                    }).toList(),
-                    validator: validate,
-                    onChanged: onChanged,
-                    onSaved: onSaved,
-                    value: value,
+                        );
+                      }).toList(),
+                      validator: validate,
+                      onChanged: onChanged,
+                      onSaved: onSaved,
+                      value: value,
+                    ),
                   ),
                 ),
               ),

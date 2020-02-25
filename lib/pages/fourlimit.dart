@@ -196,6 +196,9 @@ class _FourLimitPageState extends State<FourLimitPage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
+                                enable: localdata.isdrafted == 2
+                                      ? false
+                                      :true,
                                   initvalue:
                                       localdata.boundaryinfonote?.isEmpty ??
                                               true
@@ -222,6 +225,9 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                enable: localdata.isdrafted == 2
+                                      ? false
+                                      :true,
                                   initvalue:
                                       localdata.fore_limits_east?.isEmpty ??
                                               true
@@ -254,6 +260,9 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                enable: localdata.isdrafted == 2
+                                      ? false
+                                      :true,
                                   initvalue:
                                       localdata.fore_limits_west?.isEmpty ??
                                               true
@@ -286,6 +295,9 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                enable: localdata.isdrafted == 2
+                                      ? false
+                                      :true,
                                   initvalue:
                                       localdata.fore_limits_south?.isEmpty ??
                                               true
@@ -318,6 +330,9 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                enable: localdata.isdrafted == 2
+                                      ? false
+                                      :true,
                                   initvalue:
                                       localdata.fore_limits_north?.isEmpty ??
                                               true

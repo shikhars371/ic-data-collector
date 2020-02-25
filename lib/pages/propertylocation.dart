@@ -570,6 +570,9 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                enable: localdata.isdrafted == 2
+                                      ? false
+                                      :true,
                                   inputFormatters: [
                                     WhitelistingTextInputFormatter.digitsOnly
                                   ],
@@ -609,6 +612,9 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                enable: localdata.isdrafted == 2
+                                      ? false
+                                      :true,
                                   inputFormatters: [
                                     WhitelistingTextInputFormatter.digitsOnly
                                   ],
@@ -648,6 +654,9 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                enable: localdata.isdrafted == 2
+                                      ? false
+                                      :true,
                                   inputFormatters: [
                                     WhitelistingTextInputFormatter.digitsOnly
                                   ],
@@ -679,6 +688,9 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                enable: localdata.isdrafted == 2
+                                      ? false
+                                      :true,
                                   initvalue:
                                       localdata.street_name?.isEmpty ?? true
                                           ? ""
@@ -706,6 +718,9 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                enable: localdata.isdrafted == 2
+                                      ? false
+                                      :true,
                                   initvalue:
                                       localdata.historic_site_area?.isEmpty ??
                                               true
@@ -735,6 +750,9 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                enable: localdata.isdrafted == 2
+                                      ? false
+                                      :true,
                                   initvalue:
                                       localdata.land_area?.isEmpty ?? true
                                           ? ""
@@ -766,6 +784,8 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formCardDropdown(
+                                enable:
+                                      localdata.isdrafted == 2 ? true : false,
                                   value:
                                       localdata.property_type?.isEmpty ?? true
                                           ? "0"
@@ -793,7 +813,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                   onSaved: (String value) {
                                     localdata.property_type = value;
                                   },
-                                  onChanged: (value) {
+                                  onChanged:(value) {
                                     localdata.property_type = value;
                                     _land_area.unfocus();
                                     setState(() {});
