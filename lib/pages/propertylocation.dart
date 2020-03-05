@@ -642,8 +642,8 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     if (value.trim().isEmpty) {
                                       return setapptext(
                                           key: 'key_field_not_blank');
-                                    } else if (value.length != 3) {
-                                      return setapptext(key: 'key_three_digit');
+                                    } else if (value.length != 4) {
+                                      return setapptext(key: 'key_limit_four');
                                     }
                                   },
                                   onSaved: (value) {

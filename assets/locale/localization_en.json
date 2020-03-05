@@ -238,7 +238,7 @@
     "key_Nili": "Nili",
     "key_Sharif": "Mazar-E-Sharif",
     "key_Charikar": "Charikar",
-    "key_": "ABC",
+    "key_": "Code",
     "key_add_building": "Add new Building",
     "key_required": "Required",
     "key_two_digit": "Value should be of 2 digit.",
@@ -310,5 +310,6 @@
     "key_Spinboldak": "Spinboldak",
     "key_Engile": "Engile",
     "key_only_email": "Email",
-    "key_notify_no_sync": "Please check you have some Pending survey to sync from last two days."
+    "key_notify_no_sync": "Please check you have some Pending survey to sync from last two days.",
+    "key_limit_four":"Value should be of 4 digit"
 }

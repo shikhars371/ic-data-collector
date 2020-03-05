@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:kapp/utils/db_helper.dart';
+import 'package:kapp/utils/language_service.dart';
 
 import '../localization/app_translations.dart';
 import '../utils/appdrawer.dart';
@@ -26,11 +27,10 @@ class _TaskPageState extends State<TaskPage> {
       var result = await DBHelper().isSyncedTwoDatsBefore();
       if (result) {
         showDialogSingleButton(
-          context: context,
-          title: setapptext(key: 'key_warning'),
-          buttonLabel: setapptext(key: 'key_ok'),
-          message: setapptext(key: 'key_notify_no_sync')
-        );
+            context: context,
+            title: setapptext(key: 'key_warning'),
+            buttonLabel: setapptext(key: 'key_ok'),
+            message: setapptext(key: 'key_notify_no_sync'));
       }
     }
   }
