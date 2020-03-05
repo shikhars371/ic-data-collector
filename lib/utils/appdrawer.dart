@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kapp/pages/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -94,7 +95,7 @@ class _AppDrawerState extends State<AppDrawer> {
     }
   }
 
-  logout() async {
+  void logout() async {
     var result = await DBHelper().isAllDataSynced();
     if (!(result)) {
       showDialog(
@@ -115,14 +116,15 @@ class _AppDrawerState extends State<AppDrawer> {
                   setapptext(key: 'key_ok'),
                   style: TextStyle(color: Colors.red),
                 ),
-                onPressed: () async {
-                  await DBHelper().clearLocalStorage().then((onValue) {
-                    pref.clear();
-                    _navigationService.navigateRepalceTo(
-                        routeName: routes.LoginRoute);
-                  }).catchError((onError) {
-                    print("appdrawer" + onError);
-                  });
+                onPressed: () {
+                  DBHelper().clearLocalStorage();
+                  pref.clear();
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => LoginPage()));
+                  _navigationService.navigateRepalceTo(
+                      routeName: routes.LoginRoute);
                 },
               ),
               FlatButton(

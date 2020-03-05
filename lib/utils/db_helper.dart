@@ -38,7 +38,7 @@ class DBHelper with ChangeNotifier {
 
   initDatabase() async {
     io.Directory documentDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentDirectory.path, 'kettle.db');
+    String path = join(documentDirectory.path, 'sparcoccollector.db');
     var db = await openDatabase(path, version: 1, onCreate: _onCreate);
     return db;
   }
@@ -1208,7 +1208,7 @@ class DBHelper with ChangeNotifier {
     return _currentLanguageIndex;
   }
 
-  Future<void> clearLocalStorage() async {
+  void clearLocalStorage() async {
     try {
       var dbClient = await db;
       var lang = await dbClient.delete('applanguage');

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:kapp/controllers/auth.dart';
 import 'package:kapp/utils/db_helper.dart';
 import 'package:provider/provider.dart';
 
 import '../localization/app_translations.dart';
-import '../utils/appdrawer.dart';
 import '../utils/navigation_service.dart';
 import '../utils/route_paths.dart' as routes;
 import '../utils/locator.dart';
@@ -61,6 +59,7 @@ class _LanguagePageState extends State<LanguagePage> {
     if (result != 0) {
       _navigationService.navigateRepalceTo(routeName: routes.Homepage);
     }
+    _navigationService.navigateRepalceTo(routeName: routes.Homepage);
   }
 
   @override

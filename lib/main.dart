@@ -109,7 +109,7 @@ class LocalisedAppState extends State<LocalisedApp> {
         ),
         ChangeNotifierProvider(
           create: (_) => AppSync(),
-        )
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

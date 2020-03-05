@@ -49,9 +49,12 @@ class TaskModel with ChangeNotifier {
                 .addSurveyList(surveyAssignments: _surveyAssignments);
           }
         } else if (responce.statusCode == 401) {
-          AuthModel().generateRefreshToken().then((_) {
-            getAssignments();
-          });
+          var email = preferences.getString('email');
+          if (!(email?.isEmpty ?? true)) {
+            AuthModel().generateRefreshToken().then((_) {
+              getAssignments();
+            });
+          }
         }
       }
       _surveyAssignments = await DBHelper().getSurveys();

@@ -51,7 +51,6 @@ class AuthModel with ChangeNotifier {
     } catch (error, stackTrace) {
       result = "Invalid username or password.";
       setState(AppState.Idle);
-
       Catcher.reportCheckedError(error, stackTrace);
     }
     setState(AppState.Idle);
