@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
+import '../utils/backgroundfetch.dart';
 import '../models/localpropertydata.dart';
 import './surveyinfo.dart';
 import '../models/surveyAssignment.dart';
@@ -1146,6 +1147,7 @@ class _UploadDataState extends State<UploadData> {
                                         "lastsync", DateTime.now().toString());
                                     await DBHelper().updateTaskSyncStatus(
                                         taskid: widget.propertydata.taskid);
+                                    await BackGroundSync().startSync();
                                     setState(() {
                                       msgvalue =
                                           setapptext(key: 'key_sync_completed');

@@ -604,6 +604,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                       return setapptext(key: 'key_three_digit');
                                     }
                                   },
+                                  maxLength: 3,
                                   onSaved: (value) {
                                     localdata.part_number = value.trim();
                                   },
@@ -646,6 +647,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                       return setapptext(key: 'key_limit_four');
                                     }
                                   },
+                                  maxLength: 4,
                                   onSaved: (value) {
                                     localdata.unit_number = value.trim();
                                   },

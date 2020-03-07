@@ -10,6 +10,7 @@ import '../models/surveyAssignment.dart';
 import '../controllers/auth.dart';
 import '../models/localpropertydata.dart';
 
+
 class DBHelper with ChangeNotifier {
   AppState _state = AppState.Idle;
   AppState get state => _state;
@@ -1223,6 +1224,7 @@ class DBHelper with ChangeNotifier {
     }
   }
 
+  //return "True" if all data synced else return "false"
   Future<bool> isAllDataSynced() async {
     setState(AppState.Busy);
     var result = false;
@@ -1241,12 +1243,30 @@ class DBHelper with ChangeNotifier {
             break;
           }
         }
-        result = count == itemcount ? true : false;
+        result = (count == itemcount) ? true : false;
       }
     } catch (error, stackTrace) {
       Catcher.reportCheckedError(error, stackTrace);
     }
     setState(AppState.Idle);
+    return result;
+  }
+
+  //return all property survey data which completed but not synced to server
+  Future<List<LocalPropertySurvey>> getAllUnsycedData() async {
+    List<LocalPropertySurvey> result = [];
+    try {
+      var dbClient = await db;
+      String sqlquery = '''
+        SELECT * FROM propertysurvey where isdrafted=1 LIMIT 1
+      ''';
+      List<Map> it = await dbClient.rawQuery(sqlquery);
+      if (it.isNotEmpty) {
+        result = it.map((f) => LocalPropertySurvey.frommapobject(f)).toList();
+      }
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
+    }
     return result;
   }
 

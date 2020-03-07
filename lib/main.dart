@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
 import 'package:catcher/catcher_plugin.dart';
+import 'package:background_fetch/background_fetch.dart';
 
 import './controllers/auth.dart';
 import './controllers/task.dart';
@@ -20,6 +21,7 @@ import './utils/navigation_service.dart';
 import './utils/router.dart' as router;
 import './utils/route_paths.dart' as routes;
 import './utils/db_helper.dart';
+import './utils/backgroundfetch.dart';
 
 Future<Null> main() async {
   CatcherOptions debugOptions = CatcherOptions(SilentReportMode(), [
@@ -43,6 +45,7 @@ Future<Null> main() async {
     releaseConfig: releaseOptions,
   );
   setupLocator();
+  BackgroundFetch.registerHeadlessTask(BackGroundSync().onBackGroundfetch);
   FlutterError.onError = (FlutterErrorDetails flutterErrorDetails) async {
     if (!kReleaseMode) {
       FlutterError.dumpErrorToConsole(flutterErrorDetails);
@@ -67,6 +70,7 @@ class LocalisedAppState extends State<LocalisedApp> {
   void initState() {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     super.initState();
+    BackGroundSync().initPlatformState();
     _newLocaleDelegate = AppTranslationsDelegate(newLocale: null);
     application.onLocaleChanged = onLocaleChange;
   }

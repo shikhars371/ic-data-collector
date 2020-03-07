@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:package_info/package_info.dart';
+import 'package:background_fetch/background_fetch.dart';
 
 import '../utils/navigation_service.dart';
 import '../utils/route_paths.dart' as routes;
@@ -119,6 +120,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 onPressed: () {
                   DBHelper().clearLocalStorage();
                   pref.clear();
+                  BackgroundFetch.stop();
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(

@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:catcher/catcher_plugin.dart';
+import 'package:background_fetch/background_fetch.dart';
 
 import '../models/user.dart';
 import '../configs/configuration.dart';
@@ -43,6 +45,13 @@ class AuthModel with ChangeNotifier {
                 responseJson: json.decode(responce.body),
                 password: user.password);
             result = "ok";
+            if (Platform.isAndroid) {
+              BackgroundFetch.start().then((onValue) {
+                print(onValue);
+              }).catchError((onError) {
+                print(onError);
+              });
+            }
           } else {
             result = "Sorry, You are not a surveyor";
           }

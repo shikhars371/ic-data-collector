@@ -33,6 +33,7 @@ dependencies:
   cached_network_image: ^2.0.0
   font_awesome_flutter: ^8.7.0
   package_info: ^0.4.0+14
+  background_fetch: ^0.5.4
 
 dev_dependencies:
   flutter_test:

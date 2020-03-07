@@ -81,6 +81,7 @@ Widget formcardtextfield(
     void Function(String) onFieldSubmitted,
     Widget suffix,
     bool enable,
+    int maxLength,
     List<TextInputFormatter> inputFormatters}) {
   return Container(
     decoration: BoxDecoration(
@@ -139,7 +140,7 @@ Widget formcardtextfield(
                 textInputAction: textInputAction,
                 onFieldSubmitted: onFieldSubmitted,
                 inputFormatters: inputFormatters,
-
+                maxLength: maxLength,
                 ///WhitelistingTextInputFormatter.digitsOnly
               ),
             )

@@ -1,4 +1,6 @@
 PODS:
+  - background_fetch (0.5.4):
+    - Flutter
   - catcher (0.0.1):
     - Flutter
   - connectivity (0.0.1):
@@ -34,6 +36,7 @@ PODS:
     - FMDB (~> 2.7.2)
 
 DEPENDENCIES:
+  - background_fetch (from `.symlinks/plugins/background_fetch/ios`)
   - catcher (from `.symlinks/plugins/catcher/ios`)
   - connectivity (from `.symlinks/plugins/connectivity/ios`)
   - device_info (from `.symlinks/plugins/device_info/ios`)
@@ -55,6 +58,8 @@ SPEC REPOS:
     - Reachability
 
 EXTERNAL SOURCES:
+  background_fetch:
+    :path: ".symlinks/plugins/background_fetch/ios"
   catcher:
     :path: ".symlinks/plugins/catcher/ios"
   connectivity:
@@ -85,6 +90,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/sqflite/ios"
 
 SPEC CHECKSUMS:
+  background_fetch: c0d7c541f8495527ed7f167eb9ee2eeab0790703
   catcher: e5585ed31458c849f4fd9c3719b2fcb0188b8918
   connectivity: 6e94255659cc86dcbef1d452ad3e0491bb1b3e75
   device_info: cbf09d2ec12aa7110e0b09fabe54b5bd6c8efe74
