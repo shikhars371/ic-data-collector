@@ -569,28 +569,31 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                             ),
                                           ),
                                         ),
-                                        Center(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: localdata
-                                                        .second_partner_image
-                                                        ?.isEmpty ??
-                                                    true
-                                                ? Center(
-                                                    child: Text(setapptext(
-                                                        key: 'key_no_image')),
-                                                  )
-                                                : Image.file(
-                                                    File(localdata
-                                                        .second_partner_image),
-                                                  ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata
+                                                          .second_partner_image
+                                                          ?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
+                                                    )
+                                                  : Image.file(
+                                                      File(localdata
+                                                          .second_partner_image),
+                                                    ),
+                                            ),
                                           ),
                                         )
                                       ],
@@ -782,28 +785,31 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                             ),
                                           ),
                                         ),
-                                        Center(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: localdata
-                                                        .second_partner_phote_note1
-                                                        ?.isEmpty ??
-                                                    true
-                                                ? Center(
-                                                    child: Text(setapptext(
-                                                        key: 'key_no_image')),
-                                                  )
-                                                : Image.file(
-                                                    File(localdata
-                                                        .second_partner_phote_note1),
-                                                  ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata
+                                                          .second_partner_phote_note1
+                                                          ?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
+                                                    )
+                                                  : Image.file(
+                                                      File(localdata
+                                                          .second_partner_phote_note1),
+                                                    ),
+                                            ),
                                           ),
                                         )
                                       ],
@@ -876,28 +882,31 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                             ),
                                           ),
                                         ),
-                                        Center(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: localdata
-                                                        .second_partner_photo_tips1
-                                                        ?.isEmpty ??
-                                                    true
-                                                ? Center(
-                                                    child: Text(setapptext(
-                                                        key: 'key_no_image')),
-                                                  )
-                                                : Image.file(
-                                                    File(localdata
-                                                        .second_partner_photo_tips1),
-                                                  ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata
+                                                          .second_partner_photo_tips1
+                                                          ?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
+                                                    )
+                                                  : Image.file(
+                                                      File(localdata
+                                                          .second_partner_photo_tips1),
+                                                    ),
+                                            ),
                                           ),
                                         )
                                       ],
@@ -970,28 +979,31 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                             ),
                                           ),
                                         ),
-                                        Center(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: localdata
-                                                        .second_partner_photo_tips2
-                                                        ?.isEmpty ??
-                                                    true
-                                                ? Center(
-                                                    child: Text(setapptext(
-                                                        key: 'key_no_image')),
-                                                  )
-                                                : Image.file(
-                                                    File(localdata
-                                                        .second_partner_photo_tips2),
-                                                  ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata
+                                                          .second_partner_photo_tips2
+                                                          ?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
+                                                    )
+                                                  : Image.file(
+                                                      File(localdata
+                                                          .second_partner_photo_tips2),
+                                                    ),
+                                            ),
                                           ),
                                         )
                                       ],
@@ -1336,27 +1348,30 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                             ),
                                           ),
                                         ),
-                                        Center(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: localdata.third_partner_image
-                                                        ?.isEmpty ??
-                                                    true
-                                                ? Center(
-                                                    child: Text(setapptext(
-                                                        key: 'key_no_image')),
-                                                  )
-                                                : Image.file(
-                                                    File(localdata
-                                                        .third_partner_image),
-                                                  ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata.third_partner_image
+                                                          ?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
+                                                    )
+                                                  : Image.file(
+                                                      File(localdata
+                                                          .third_partner_image),
+                                                    ),
+                                            ),
                                           ),
                                         )
                                       ],
@@ -1547,28 +1562,31 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                             ),
                                           ),
                                         ),
-                                        Center(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: localdata
-                                                        .third_partner_phote_note1
-                                                        ?.isEmpty ??
-                                                    true
-                                                ? Center(
-                                                    child: Text(setapptext(
-                                                        key: 'key_no_image')),
-                                                  )
-                                                : Image.file(
-                                                    File(localdata
-                                                        .third_partner_phote_note1),
-                                                  ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata
+                                                          .third_partner_phote_note1
+                                                          ?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
+                                                    )
+                                                  : Image.file(
+                                                      File(localdata
+                                                          .third_partner_phote_note1),
+                                                    ),
+                                            ),
                                           ),
                                         )
                                       ],
@@ -1641,28 +1659,31 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                             ),
                                           ),
                                         ),
-                                        Center(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: localdata
-                                                        .third_partner_photo_tips1
-                                                        ?.isEmpty ??
-                                                    true
-                                                ? Center(
-                                                    child: Text(setapptext(
-                                                        key: 'key_no_image')),
-                                                  )
-                                                : Image.file(
-                                                    File(localdata
-                                                        .third_partner_photo_tips1),
-                                                  ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata
+                                                          .third_partner_photo_tips1
+                                                          ?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
+                                                    )
+                                                  : Image.file(
+                                                      File(localdata
+                                                          .third_partner_photo_tips1),
+                                                    ),
+                                            ),
                                           ),
                                         )
                                       ],
@@ -1735,28 +1756,31 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                             ),
                                           ),
                                         ),
-                                        Center(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: localdata
-                                                        .third_partner_photo_tips2
-                                                        ?.isEmpty ??
-                                                    true
-                                                ? Center(
-                                                    child: Text(setapptext(
-                                                        key: 'key_no_image')),
-                                                  )
-                                                : Image.file(
-                                                    File(localdata
-                                                        .third_partner_photo_tips2),
-                                                  ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata
+                                                          .third_partner_photo_tips2
+                                                          ?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
+                                                    )
+                                                  : Image.file(
+                                                      File(localdata
+                                                          .third_partner_photo_tips2),
+                                                    ),
+                                            ),
                                           ),
                                         )
                                       ],
@@ -2102,28 +2126,31 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                             ),
                                           ),
                                         ),
-                                        Center(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: localdata
-                                                        .fourth_partner_image
-                                                        ?.isEmpty ??
-                                                    true
-                                                ? Center(
-                                                    child: Text(setapptext(
-                                                        key: 'key_no_image')),
-                                                  )
-                                                : Image.file(
-                                                    File(localdata
-                                                        .fourth_partner_image),
-                                                  ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata
+                                                          .fourth_partner_image
+                                                          ?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
+                                                    )
+                                                  : Image.file(
+                                                      File(localdata
+                                                          .fourth_partner_image),
+                                                    ),
+                                            ),
                                           ),
                                         )
                                       ],
@@ -2315,28 +2342,31 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                             ),
                                           ),
                                         ),
-                                        Center(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: localdata
-                                                        .fourth_partner_phote_note1
-                                                        ?.isEmpty ??
-                                                    true
-                                                ? Center(
-                                                    child: Text(setapptext(
-                                                        key: 'key_no_image')),
-                                                  )
-                                                : Image.file(
-                                                    File(localdata
-                                                        .fourth_partner_phote_note1),
-                                                  ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata
+                                                          .fourth_partner_phote_note1
+                                                          ?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
+                                                    )
+                                                  : Image.file(
+                                                      File(localdata
+                                                          .fourth_partner_phote_note1),
+                                                    ),
+                                            ),
                                           ),
                                         )
                                       ],
@@ -2409,28 +2439,31 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                             ),
                                           ),
                                         ),
-                                        Center(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: localdata
-                                                        .fourth_partner_photo_tips1
-                                                        ?.isEmpty ??
-                                                    true
-                                                ? Center(
-                                                    child: Text(setapptext(
-                                                        key: 'key_no_image')),
-                                                  )
-                                                : Image.file(
-                                                    File(localdata
-                                                        .fourth_partner_photo_tips1),
-                                                  ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata
+                                                          .fourth_partner_photo_tips1
+                                                          ?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
+                                                    )
+                                                  : Image.file(
+                                                      File(localdata
+                                                          .fourth_partner_photo_tips1),
+                                                    ),
+                                            ),
                                           ),
                                         )
                                       ],
@@ -2503,28 +2536,31 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                             ),
                                           ),
                                         ),
-                                        Center(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: localdata
-                                                        .fourth_partner_photo_tips2
-                                                        ?.isEmpty ??
-                                                    true
-                                                ? Center(
-                                                    child: Text(setapptext(
-                                                        key: 'key_no_image')),
-                                                  )
-                                                : Image.file(
-                                                    File(localdata
-                                                        .fourth_partner_photo_tips2),
-                                                  ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata
+                                                          .fourth_partner_photo_tips2
+                                                          ?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
+                                                    )
+                                                  : Image.file(
+                                                      File(localdata
+                                                          .fourth_partner_photo_tips2),
+                                                    ),
+                                            ),
                                           ),
                                         )
                                       ],
@@ -2870,27 +2906,30 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                             ),
                                           ),
                                         ),
-                                        Center(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: localdata.fifth_partner_image
-                                                        ?.isEmpty ??
-                                                    true
-                                                ? Center(
-                                                    child: Text(setapptext(
-                                                        key: 'key_no_image')),
-                                                  )
-                                                : Image.file(
-                                                    File(localdata
-                                                        .fifth_partner_image),
-                                                  ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata.fifth_partner_image
+                                                          ?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
+                                                    )
+                                                  : Image.file(
+                                                      File(localdata
+                                                          .fifth_partner_image),
+                                                    ),
+                                            ),
                                           ),
                                         )
                                       ],
@@ -3081,28 +3120,31 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                             ),
                                           ),
                                         ),
-                                        Center(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: localdata
-                                                        .fifth_partner_phote_note1
-                                                        ?.isEmpty ??
-                                                    true
-                                                ? Center(
-                                                    child: Text(setapptext(
-                                                        key: 'key_no_image')),
-                                                  )
-                                                : Image.file(
-                                                    File(localdata
-                                                        .fifth_partner_phote_note1),
-                                                  ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata
+                                                          .fifth_partner_phote_note1
+                                                          ?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
+                                                    )
+                                                  : Image.file(
+                                                      File(localdata
+                                                          .fifth_partner_phote_note1),
+                                                    ),
+                                            ),
                                           ),
                                         )
                                       ],
@@ -3175,28 +3217,31 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                             ),
                                           ),
                                         ),
-                                        Center(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: localdata
-                                                        .fifth_partner_photo_tips1
-                                                        ?.isEmpty ??
-                                                    true
-                                                ? Center(
-                                                    child: Text(setapptext(
-                                                        key: 'key_no_image')),
-                                                  )
-                                                : Image.file(
-                                                    File(localdata
-                                                        .fifth_partner_photo_tips1),
-                                                  ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata
+                                                          .fifth_partner_photo_tips1
+                                                          ?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
+                                                    )
+                                                  : Image.file(
+                                                      File(localdata
+                                                          .fifth_partner_photo_tips1),
+                                                    ),
+                                            ),
                                           ),
                                         )
                                       ],
@@ -3269,28 +3314,31 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                             ),
                                           ),
                                         ),
-                                        Center(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: localdata
-                                                        .fifth_partner_photo_tips2
-                                                        ?.isEmpty ??
-                                                    true
-                                                ? Center(
-                                                    child: Text(setapptext(
-                                                        key: 'key_no_image')),
-                                                  )
-                                                : Image.file(
-                                                    File(localdata
-                                                        .fifth_partner_photo_tips2),
-                                                  ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata
+                                                          .fifth_partner_photo_tips2
+                                                          ?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
+                                                    )
+                                                  : Image.file(
+                                                      File(localdata
+                                                          .fifth_partner_photo_tips2),
+                                                    ),
+                                            ),
                                           ),
                                         )
                                       ],

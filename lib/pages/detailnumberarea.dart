@@ -217,34 +217,37 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                             ),
                                           ),
                                         ),
-                                        Center(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: localdata
-                                                        .home_map?.isEmpty ??
-                                                    true
-                                                ? Center(
-                                                    child: Text(setapptext(
-                                                        key: 'key_no_image')),
-                                                  )
-                                                : File(localdata.home_map)
-                                                        .existsSync()
-                                                    ? Image.file(
-                                                        File(
-                                                            localdata.home_map),
-                                                      )
-                                                    : Center(
-                                                        child: Text(setapptext(
-                                                            key:
-                                                                'key_no_image')),
-                                                      ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata
+                                                          .home_map?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
+                                                    )
+                                                  : File(localdata.home_map)
+                                                          .existsSync()
+                                                      ? Image.file(
+                                                          File(
+                                                              localdata.home_map),
+                                                        )
+                                                      : Center(
+                                                          child: Text(setapptext(
+                                                              key:
+                                                                  'key_no_image')),
+                                                        ),
+                                            ),
                                           ),
                                         )
                                       ],
@@ -315,34 +318,37 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                             ),
                                           ),
                                         ),
-                                        Center(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: localdata
-                                                        .home_photo?.isEmpty ??
-                                                    true
-                                                ? Center(
-                                                    child: Text(setapptext(
-                                                        key: 'key_no_image')),
-                                                  )
-                                                : File(localdata.home_photo)
-                                                        .existsSync()
-                                                    ? Image.file(
-                                                        File(localdata
-                                                            .home_photo),
-                                                      )
-                                                    : Center(
-                                                        child: Text(setapptext(
-                                                            key:
-                                                                'key_no_image')),
-                                                      ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata
+                                                          .home_photo?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
+                                                    )
+                                                  : File(localdata.home_photo)
+                                                          .existsSync()
+                                                      ? Image.file(
+                                                          File(localdata
+                                                              .home_photo),
+                                                        )
+                                                      : Center(
+                                                          child: Text(setapptext(
+                                                              key:
+                                                                  'key_no_image')),
+                                                        ),
+                                            ),
                                           ),
                                         )
                                       ],

@@ -475,40 +475,43 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                             ),
                                           ),
                                         ),
-                                        Center(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: localdata
-                                                        .safari_booklet_picture
-                                                        ?.isEmpty ??
-                                                    true
-                                                ? Center(
-                                                    child: Text(
-                                                      setapptext(
-                                                          key: 'key_no_image'),
-                                                    ),
-                                                  )
-                                                : (File(localdata
-                                                            .safari_booklet_picture)
-                                                        .existsSync())
-                                                    ? Image.file(
-                                                        File(localdata
-                                                            .safari_booklet_picture),
-                                                      )
-                                                    : Center(
-                                                        child: Text(
-                                                          setapptext(
-                                                              key:
-                                                                  'key_no_image'),
-                                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata
+                                                          .safari_booklet_picture
+                                                          ?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(
+                                                        setapptext(
+                                                            key: 'key_no_image'),
                                                       ),
+                                                    )
+                                                  : (File(localdata
+                                                              .safari_booklet_picture)
+                                                          .existsSync())
+                                                      ? Image.file(
+                                                          File(localdata
+                                                              .safari_booklet_picture),
+                                                        )
+                                                      : Center(
+                                                          child: Text(
+                                                            setapptext(
+                                                                key:
+                                                                    'key_no_image'),
+                                                          ),
+                                                        ),
+                                            ),
                                           ),
                                         )
                                       ],

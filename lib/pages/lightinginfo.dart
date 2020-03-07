@@ -333,36 +333,39 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                             ),
                                           ),
                                         ),
-                                        Center(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: localdata
-                                                        .lightning_picture_bell_power
-                                                        ?.isEmpty ??
-                                                    true
-                                                ? Center(
-                                                    child: Text(setapptext(
-                                                        key: 'key_no_image')),
-                                                  )
-                                                : File(localdata
-                                                            .lightning_picture_bell_power)
-                                                        .existsSync()
-                                                    ? Image.file(
-                                                        File(localdata
-                                                            .lightning_picture_bell_power),
-                                                      )
-                                                    : Center(
-                                                        child: Text(setapptext(
-                                                            key:
-                                                                'key_no_image')),
-                                                      ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata
+                                                          .lightning_picture_bell_power
+                                                          ?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
+                                                    )
+                                                  : File(localdata
+                                                              .lightning_picture_bell_power)
+                                                          .existsSync()
+                                                      ? Image.file(
+                                                          File(localdata
+                                                              .lightning_picture_bell_power),
+                                                        )
+                                                      : Center(
+                                                          child: Text(setapptext(
+                                                              key:
+                                                                  'key_no_image')),
+                                                        ),
+                                            ),
                                           ),
                                         )
                                       ],

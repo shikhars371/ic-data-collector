@@ -532,38 +532,41 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                             ),
                                           ),
                                         ),
-                                        Center(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: localdata
-                                                        .first_partner_name_property_owner
-                                                        ?.isEmpty ??
-                                                    true
-                                                ? Center(
-                                                    child: Text(
-                                                      setapptext(
-                                                          key: 'key_no_image'),
-                                                    ),
-                                                  )
-                                                : File(localdata
-                                                            .first_partner_name_property_owner)
-                                                        .existsSync()
-                                                    ? Image.file(File(localdata
-                                                        .first_partner_name_property_owner))
-                                                    : Center(
-                                                        child: Text(
-                                                          setapptext(
-                                                              key:
-                                                                  'key_no_image'),
-                                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata
+                                                          .first_partner_name_property_owner
+                                                          ?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(
+                                                        setapptext(
+                                                            key: 'key_no_image'),
                                                       ),
+                                                    )
+                                                  : File(localdata
+                                                              .first_partner_name_property_owner)
+                                                          .existsSync()
+                                                      ? Image.file(File(localdata
+                                                          .first_partner_name_property_owner))
+                                                      : Center(
+                                                          child: Text(
+                                                            setapptext(
+                                                                key:
+                                                                    'key_no_image'),
+                                                          ),
+                                                        ),
+                                            ),
                                           ),
                                         )
                                       ],

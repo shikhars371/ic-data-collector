@@ -628,28 +628,31 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                               ),
                                             ),
                                           ),
-                                          Center(
-                                            child: Container(
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height /
-                                                  4,
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width /
-                                                  2,
-                                              child: localdata
-                                                          .property_doc_photo_1
-                                                          ?.isEmpty ??
-                                                      true
-                                                  ? Center(
-                                                      child: Text(setapptext(
-                                                          key: 'key_no_image')),
-                                                    )
-                                                  : Image.file(
-                                                      File(localdata
-                                                          .property_doc_photo_1),
-                                                    ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(bottom: 8),
+                                            child: Center(
+                                              child: Container(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    4,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    2,
+                                                child: localdata
+                                                            .property_doc_photo_1
+                                                            ?.isEmpty ??
+                                                        true
+                                                    ? Center(
+                                                        child: Text(setapptext(
+                                                            key: 'key_no_image')),
+                                                      )
+                                                    : Image.file(
+                                                        File(localdata
+                                                            .property_doc_photo_1),
+                                                      ),
+                                              ),
                                             ),
                                           )
                                         ],
@@ -723,26 +726,29 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                               ),
                                             ),
                                           ),
-                                          Center(
-                                            child: Container(
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height /
-                                                  4,
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width /
-                                                  2,
-                                              child: localdata
-                                                          .property_doc_photo_2
-                                                          ?.isEmpty ??
-                                                      true
-                                                  ? Center(
-                                                      child: Text(setapptext(
-                                                          key: 'key_no_image')),
-                                                    )
-                                                  : Image.file(File(localdata
-                                                      .property_doc_photo_2)),
+                                          Padding(
+                                            padding: const EdgeInsets.only(bottom: 8),
+                                            child: Center(
+                                              child: Container(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    4,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    2,
+                                                child: localdata
+                                                            .property_doc_photo_2
+                                                            ?.isEmpty ??
+                                                        true
+                                                    ? Center(
+                                                        child: Text(setapptext(
+                                                            key: 'key_no_image')),
+                                                      )
+                                                    : Image.file(File(localdata
+                                                        .property_doc_photo_2)),
+                                              ),
                                             ),
                                           )
                                         ],
@@ -816,26 +822,29 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                               ),
                                             ),
                                           ),
-                                          Center(
-                                            child: Container(
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height /
-                                                  4,
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width /
-                                                  2,
-                                              child: localdata
-                                                          .property_doc_photo_3
-                                                          ?.isEmpty ??
-                                                      true
-                                                  ? Center(
-                                                      child: Text(setapptext(
-                                                          key: 'key_no_image')),
-                                                    )
-                                                  : Image.file(File(localdata
-                                                      .property_doc_photo_3)),
+                                          Padding(
+                                            padding: const EdgeInsets.only(bottom: 8),
+                                            child: Center(
+                                              child: Container(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    4,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    2,
+                                                child: localdata
+                                                            .property_doc_photo_3
+                                                            ?.isEmpty ??
+                                                        true
+                                                    ? Center(
+                                                        child: Text(setapptext(
+                                                            key: 'key_no_image')),
+                                                      )
+                                                    : Image.file(File(localdata
+                                                        .property_doc_photo_3)),
+                                              ),
                                             ),
                                           )
                                         ],
@@ -909,26 +918,29 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                               ),
                                             ),
                                           ),
-                                          Center(
-                                            child: Container(
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height /
-                                                  4,
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width /
-                                                  2,
-                                              child: localdata
-                                                          .property_doc_photo_4
-                                                          ?.isEmpty ??
-                                                      true
-                                                  ? Center(
-                                                      child: Text(setapptext(
-                                                          key: 'key_no_image')),
-                                                    )
-                                                  : Image.file(File(localdata
-                                                      .property_doc_photo_4)),
+                                          Padding(
+                                            padding: const EdgeInsets.only(bottom: 8),
+                                            child: Center(
+                                              child: Container(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    4,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    2,
+                                                child: localdata
+                                                            .property_doc_photo_4
+                                                            ?.isEmpty ??
+                                                        true
+                                                    ? Center(
+                                                        child: Text(setapptext(
+                                                            key: 'key_no_image')),
+                                                      )
+                                                    : Image.file(File(localdata
+                                                        .property_doc_photo_4)),
+                                              ),
                                             ),
                                           )
                                         ],
@@ -1007,28 +1019,31 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                               ),
                                             ),
                                           ),
-                                          Center(
-                                            child: Container(
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height /
-                                                  4,
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width /
-                                                  2,
-                                              child: localdata
-                                                          .odinary_doc_photo1
-                                                          ?.isEmpty ??
-                                                      true
-                                                  ? Center(
-                                                      child: Text(setapptext(
-                                                          key: 'key_no_image')),
-                                                    )
-                                                  : Image.file(
-                                                      File(localdata
-                                                          .odinary_doc_photo1),
-                                                    ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(bottom:8),
+                                            child: Center(
+                                              child: Container(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    4,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    2,
+                                                child: localdata
+                                                            .odinary_doc_photo1
+                                                            ?.isEmpty ??
+                                                        true
+                                                    ? Center(
+                                                        child: Text(setapptext(
+                                                            key: 'key_no_image')),
+                                                      )
+                                                    : Image.file(
+                                                        File(localdata
+                                                            .odinary_doc_photo1),
+                                                      ),
+                                              ),
                                             ),
                                           )
                                         ],
@@ -1100,28 +1115,31 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                               ),
                                             ),
                                           ),
-                                          Center(
-                                            child: Container(
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height /
-                                                  4,
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width /
-                                                  2,
-                                              child: localdata
-                                                          .odinary_doc_photo6
-                                                          ?.isEmpty ??
-                                                      true
-                                                  ? Center(
-                                                      child: Text(setapptext(
-                                                          key: 'key_no_image')),
-                                                    )
-                                                  : Image.file(
-                                                      File(localdata
-                                                          .odinary_doc_photo6),
-                                                    ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(bottom:8),
+                                            child: Center(
+                                              child: Container(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    4,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    2,
+                                                child: localdata
+                                                            .odinary_doc_photo6
+                                                            ?.isEmpty ??
+                                                        true
+                                                    ? Center(
+                                                        child: Text(setapptext(
+                                                            key: 'key_no_image')),
+                                                      )
+                                                    : Image.file(
+                                                        File(localdata
+                                                            .odinary_doc_photo6),
+                                                      ),
+                                              ),
                                             ),
                                           )
                                         ],

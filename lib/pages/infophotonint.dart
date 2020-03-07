@@ -353,36 +353,39 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                             ),
                                           ),
                                         ),
-                                        Center(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: localdata
-                                                        .info_photo_hint_photo_note1
-                                                        ?.isEmpty ??
-                                                    true
-                                                ? Center(
-                                                    child: Text(setapptext(
-                                                        key: 'key_no_image')),
-                                                  )
-                                                : File(localdata
-                                                            .info_photo_hint_photo_note1)
-                                                        .existsSync()
-                                                    ? Image.file(
-                                                        File(localdata
-                                                            .info_photo_hint_photo_note1),
-                                                      )
-                                                    : Center(
-                                                        child: Text(setapptext(
-                                                            key:
-                                                                'key_no_image')),
-                                                      ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata
+                                                          .info_photo_hint_photo_note1
+                                                          ?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
+                                                    )
+                                                  : File(localdata
+                                                              .info_photo_hint_photo_note1)
+                                                          .existsSync()
+                                                      ? Image.file(
+                                                          File(localdata
+                                                              .info_photo_hint_photo_note1),
+                                                        )
+                                                      : Center(
+                                                          child: Text(setapptext(
+                                                              key:
+                                                                  'key_no_image')),
+                                                        ),
+                                            ),
                                           ),
                                         )
                                       ],
@@ -455,36 +458,39 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                             ),
                                           ),
                                         ),
-                                        Center(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: localdata
-                                                        .info_photo_hint_photo_tips1
-                                                        ?.isEmpty ??
-                                                    true
-                                                ? Center(
-                                                    child: Text(setapptext(
-                                                        key: 'key_no_image')),
-                                                  )
-                                                : File(localdata
-                                                            .info_photo_hint_photo_tips1)
-                                                        .existsSync()
-                                                    ? Image.file(
-                                                        File(localdata
-                                                            .info_photo_hint_photo_tips1),
-                                                      )
-                                                    : Center(
-                                                        child: Text(setapptext(
-                                                            key:
-                                                                'key_no_image')),
-                                                      ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata
+                                                          .info_photo_hint_photo_tips1
+                                                          ?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
+                                                    )
+                                                  : File(localdata
+                                                              .info_photo_hint_photo_tips1)
+                                                          .existsSync()
+                                                      ? Image.file(
+                                                          File(localdata
+                                                              .info_photo_hint_photo_tips1),
+                                                        )
+                                                      : Center(
+                                                          child: Text(setapptext(
+                                                              key:
+                                                                  'key_no_image')),
+                                                        ),
+                                            ),
                                           ),
                                         )
                                       ],
@@ -557,36 +563,39 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                             ),
                                           ),
                                         ),
-                                        Center(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2,
-                                            child: localdata
-                                                        .info_photo_hint_photo_tips2
-                                                        ?.isEmpty ??
-                                                    true
-                                                ? Center(
-                                                    child: Text(setapptext(
-                                                        key: 'key_no_image')),
-                                                  )
-                                                : File(localdata
-                                                            .info_photo_hint_photo_tips2)
-                                                        .existsSync()
-                                                    ? Image.file(
-                                                        File(localdata
-                                                            .info_photo_hint_photo_tips2),
-                                                      )
-                                                    : Center(
-                                                        child: Text(setapptext(
-                                                            key:
-                                                                'key_no_image')),
-                                                      ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata
+                                                          .info_photo_hint_photo_tips2
+                                                          ?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
+                                                    )
+                                                  : File(localdata
+                                                              .info_photo_hint_photo_tips2)
+                                                          .existsSync()
+                                                      ? Image.file(
+                                                          File(localdata
+                                                              .info_photo_hint_photo_tips2),
+                                                        )
+                                                      : Center(
+                                                          child: Text(setapptext(
+                                                              key:
+                                                                  'key_no_image')),
+                                                        ),
+                                            ),
                                           ),
                                         )
                                       ],
