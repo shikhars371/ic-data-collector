@@ -195,9 +195,11 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     Future.delayed(Duration.zero).then((_) {
       Provider.of<DBHelper>(context).getLanguage();
+      BackGroundSync().startSync();
     });
     DBHelper().initDatabase();
     loadData();
+
     super.initState();
   }
 
