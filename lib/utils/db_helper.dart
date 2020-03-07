@@ -10,7 +10,6 @@ import '../models/surveyAssignment.dart';
 import '../controllers/auth.dart';
 import '../models/localpropertydata.dart';
 
-
 class DBHelper with ChangeNotifier {
   AppState _state = AppState.Idle;
   AppState get state => _state;
