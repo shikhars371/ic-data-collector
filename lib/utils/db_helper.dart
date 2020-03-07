@@ -1149,9 +1149,9 @@ class DBHelper with ChangeNotifier {
     try {
       var dbClient = await db;
       List<Map> propertymaps = await dbClient.rawQuery(
-          'select COUNT(id) as p from propertysurvey where taskid=$taskid');
+          'select COUNT(id) as p from propertysurvey where taskid=?',[taskid]);
       List<Map> taskmap = await dbClient
-          .rawQuery('select propertytosurvey from surveylist where id=$taskid');
+          .rawQuery('select propertytosurvey from surveylist where id=?',[taskid]);
       if (!(propertymaps?.isEmpty ?? true)) {
         int propertycount = int.tryParse(propertymaps[0]['p'].toString());
         int taskcount = int.tryParse(taskmap[0]['propertytosurvey'].toString());
@@ -1173,9 +1173,9 @@ class DBHelper with ChangeNotifier {
     try {
       var dbClient = await db;
       List<Map> propertymaps = await dbClient.rawQuery(
-          'select COUNT(id) as p from propertysurvey where taskid=$taskid and isdrafted=2');
+          'select COUNT(id) as p from propertysurvey where taskid=? and isdrafted=2',[taskid]);
       List<Map> taskmap = await dbClient
-          .rawQuery('select propertytosurvey from surveylist where id=$taskid');
+          .rawQuery('select propertytosurvey from surveylist where id=?',[taskid]);
       if (!(propertymaps?.isEmpty ?? true)) {
         int propertycount = int.tryParse(propertymaps[0]['p'].toString());
         int taskcount = int.tryParse(taskmap[0]['propertytosurvey'].toString());
