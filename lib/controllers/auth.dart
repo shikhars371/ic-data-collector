@@ -51,6 +51,12 @@ class AuthModel with ChangeNotifier {
               }).catchError((onError) {
                 print(onError);
               });
+            } else if (Platform.isIOS) {
+              BackgroundFetch.start().then((onValue) {
+                print(onValue);
+              }).catchError((onError) {
+                print(onError);
+              });
             }
           } else {
             result = "Sorry, You are not a surveyor";
