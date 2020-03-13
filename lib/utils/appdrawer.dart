@@ -98,7 +98,7 @@ class _AppDrawerState extends State<AppDrawer> {
 
   void logout() async {
     var result = await DBHelper().isAllDataSynced();
-    if (!(result)) {
+    if (result) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
