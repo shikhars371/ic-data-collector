@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:page_transition/page_transition.dart';
 
 import '../localization/app_translations.dart';
 import '../models/localpropertydata.dart';
@@ -80,11 +81,11 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
           }
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => GeneralInfoOnePage(
-                localdata: localdata,
-              ),
-            ),
+            PageTransition(
+                child: GeneralInfoOnePage(
+                  localdata: localdata,
+                ),
+                type: PageTransitionType.rightToLeft),
           );
         }
       },

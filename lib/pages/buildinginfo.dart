@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kapp/pages/fourlimit.dart';
 import 'package:provider/provider.dart';
+import 'package:page_transition/page_transition.dart';
 
 import '../models/localpropertydata.dart';
 import '../controllers/auth.dart';
@@ -76,11 +77,11 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
           }
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => DetailsNumberAreaPage(
-                localdata: localdata,
-              ),
-            ),
+            PageTransition(
+                child: DetailsNumberAreaPage(
+                  localdata: localdata,
+                ),
+                type: PageTransitionType.rightToLeft),
           );
         }
       },
@@ -105,21 +106,20 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
         if (localdata.current_use_of_property == "6") {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => FourLimitPage(
-                localdata: localdata,
-              ),
-            ),
+            PageTransition(
+                child: FourLimitPage(
+                  localdata: localdata,
+                ),
+                type: PageTransitionType.leftToRight),
           );
         } else {
           Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => TypePropertyUserPage(
-                localdata: localdata,
-              ),
-            ),
-          );
+              context,
+              PageTransition(
+                  child: TypePropertyUserPage(
+                    localdata: localdata,
+                  ),
+                  type: PageTransitionType.leftToRight));
         }
       },
       child: Container(
@@ -914,8 +914,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formCardDropdown(
-                                  enable:
-                                      localdata.isdrafted == 2 ? true : false,
+                                    enable:
+                                        localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata
                                                     .trd_building_category
                                                     ?.isEmpty ??
@@ -954,10 +954,9 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                           value: "6"),
                                     ],
                                     onChanged: (value) {
-                                            localdata.trd_building_category =
-                                                value;
-                                            setState(() {});
-                                          },
+                                      localdata.trd_building_category = value;
+                                      setState(() {});
+                                    },
                                     onSaved: (value) {
                                       localdata.trd_building_category = value;
                                     },
@@ -1076,8 +1075,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formCardDropdown(
-                                  enable:
-                                      localdata.isdrafted == 2 ? true : false,
+                                    enable:
+                                        localdata.isdrafted == 2 ? true : false,
                                     value: localdata
                                                 .forth_have_building?.isEmpty ??
                                             true
@@ -1108,31 +1107,22 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       localdata.forth_have_building = value;
                                     },
                                     onChanged: (value) {
-                                            localdata.forth_have_building =
-                                                value;
-                                            setState(() {
-                                              localdata.forth_building_use =
-                                                  null;
-                                              localdata
-                                                      .forth_building_category =
-                                                  null;
-                                              localdata.forth_specifyif_other =
-                                                  null;
-                                              localdata.forth_no_of_floors =
-                                                  null;
-                                              localdata.forth_cubie_meter =
-                                                  null;
-                                              localdata.fth_have_building =
-                                                  null;
-                                              localdata.fth_building_use = null;
-                                              localdata.fth_building_category =
-                                                  null;
-                                              localdata.fth_specifyif_other =
-                                                  null;
-                                              localdata.fth_no_of_floors = null;
-                                              localdata.fth_cubie_meter = null;
-                                            });
-                                          },
+                                      localdata.forth_have_building = value;
+                                      setState(() {
+                                        localdata.forth_building_use = null;
+                                        localdata.forth_building_category =
+                                            null;
+                                        localdata.forth_specifyif_other = null;
+                                        localdata.forth_no_of_floors = null;
+                                        localdata.forth_cubie_meter = null;
+                                        localdata.fth_have_building = null;
+                                        localdata.fth_building_use = null;
+                                        localdata.fth_building_category = null;
+                                        localdata.fth_specifyif_other = null;
+                                        localdata.fth_no_of_floors = null;
+                                        localdata.fth_cubie_meter = null;
+                                      });
+                                    },
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
                                         return setapptext(key: 'key_required');
@@ -1158,8 +1148,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   ),
                                 ),
                                 formCardDropdown(
-                                  enable:
-                                      localdata.isdrafted == 2 ? true : false,
+                                    enable:
+                                        localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata.forth_building_use
                                                     ?.isEmpty ??
                                                 true) ||
@@ -1193,10 +1183,9 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                           value: "5"),
                                     ],
                                     onChanged: (value) {
-                                            localdata.forth_building_use =
-                                                value;
-                                            setState(() {});
-                                          },
+                                      localdata.forth_building_use = value;
+                                      setState(() {});
+                                    },
                                     onSaved: (value) {
                                       localdata.forth_building_use = value;
                                     },
@@ -1211,8 +1200,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formCardDropdown(
-                                  enable:
-                                      localdata.isdrafted == 2 ? true : false,
+                                    enable:
+                                        localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata
                                                     .forth_building_category
                                                     ?.isEmpty ??
@@ -1252,10 +1241,9 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                           value: "6"),
                                     ],
                                     onChanged: (value) {
-                                            localdata.forth_building_category =
-                                                value;
-                                            setState(() {});
-                                          },
+                                      localdata.forth_building_category = value;
+                                      setState(() {});
+                                    },
                                     onSaved: (value) {
                                       localdata.forth_building_category = value;
                                     },
@@ -1384,8 +1372,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formCardDropdown(
-                                  enable:
-                                      localdata.isdrafted == 2 ? true : false,
+                                    enable:
+                                        localdata.isdrafted == 2 ? true : false,
                                     value:
                                         localdata.fth_have_building?.isEmpty ??
                                                 true
@@ -1416,17 +1404,15 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       localdata.fth_have_building = value;
                                     },
                                     onChanged: (value) {
-                                            localdata.fth_have_building = value;
-                                            setState(() {
-                                              localdata.fth_building_use = null;
-                                              localdata.fth_building_category =
-                                                  null;
-                                              localdata.fth_specifyif_other =
-                                                  null;
-                                              localdata.fth_no_of_floors = null;
-                                              localdata.fth_cubie_meter = null;
-                                            });
-                                          },
+                                      localdata.fth_have_building = value;
+                                      setState(() {
+                                        localdata.fth_building_use = null;
+                                        localdata.fth_building_category = null;
+                                        localdata.fth_specifyif_other = null;
+                                        localdata.fth_no_of_floors = null;
+                                        localdata.fth_cubie_meter = null;
+                                      });
+                                    },
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
                                         return setapptext(key: 'key_required');
@@ -1452,8 +1438,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   ),
                                 ),
                                 formCardDropdown(
-                                  enable:
-                                      localdata.isdrafted == 2 ? true : false,
+                                    enable:
+                                        localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata.fth_building_use
                                                     ?.isEmpty ??
                                                 true) ||
@@ -1485,10 +1471,10 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                           name: setapptext(key: 'key_general'),
                                           value: "5"),
                                     ],
-                                    onChanged:  (value) {
-                                            localdata.fth_building_use = value;
-                                            setState(() {});
-                                          },
+                                    onChanged: (value) {
+                                      localdata.fth_building_use = value;
+                                      setState(() {});
+                                    },
                                     onSaved: (value) {
                                       localdata.fth_building_use = value;
                                     },
@@ -1503,8 +1489,8 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formCardDropdown(
-                                  enable:
-                                      localdata.isdrafted == 2 ? true : false,
+                                    enable:
+                                        localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata
                                                     .fth_building_category
                                                     ?.isEmpty ??
@@ -1542,11 +1528,10 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                           name: setapptext(key: 'key_Another'),
                                           value: "6"),
                                     ],
-                                    onChanged:  (value) {
-                                            localdata.fth_building_category =
-                                                value;
-                                            setState(() {});
-                                          },
+                                    onChanged: (value) {
+                                      localdata.fth_building_category = value;
+                                      setState(() {});
+                                    },
                                     onSaved: (value) {
                                       localdata.fth_building_category = value;
                                     },

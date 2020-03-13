@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '../models/localpropertydata.dart';
@@ -49,13 +50,12 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
         } else {
           _formkey.currentState.save();
           Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => PropertyLocationPage(
-                localdata: localdata,
-              ),
-            ),
-          );
+              context,
+              PageTransition(
+                  child: PropertyLocationPage(
+                    localdata: localdata,
+                  ),
+                  type: PageTransitionType.rightToLeft));
         }
       },
       child: Container(
@@ -63,9 +63,10 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios,color: Colors.white),
+            Icon(Icons.arrow_forward_ios, color: Colors.white),
           ],
         ),
       ),
@@ -76,21 +77,21 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
     return GestureDetector(
       onTap: () {
         Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (BuildContext context) => GeneralInfotwoPage(
-              localdata: localdata,
-            ),
-          ),
-        );
+            context,
+            PageTransition(
+                child: GeneralInfotwoPage(
+                  localdata: localdata,
+                ),
+                type: PageTransitionType.leftToRight));
       },
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios,color: Colors.white),
+            Icon(Icons.arrow_back_ios, color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             )
           ],
         ),
@@ -134,7 +135,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                           child: ListView(
                             children: <Widget>[
                               formCardDropdown(
-                                enable:
+                                  enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value:
                                       localdata.status_of_area_plan?.isEmpty ??
@@ -165,7 +166,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                   onSaved: (String value) {
                                     localdata.status_of_area_plan = value;
                                   },
-                                  onChanged:(value) {
+                                  onChanged: (value) {
                                     localdata.status_of_area_plan = value;
                                     setState(() {});
                                   },
@@ -175,7 +176,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                     }
                                   }),
                               formCardDropdown(
-                                enable:
+                                  enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value: localdata.status_of_area_official
                                               ?.isEmpty ??
@@ -207,7 +208,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                   onSaved: (String value) {
                                     localdata.status_of_area_official = value;
                                   },
-                                  onChanged:(value) {
+                                  onChanged: (value) {
                                     localdata.status_of_area_official = value;
                                     setState(() {});
                                   },
@@ -217,7 +218,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                     }
                                   }),
                               formCardDropdown(
-                                enable:
+                                  enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value: localdata.status_of_area_regular
                                               ?.isEmpty ??
@@ -250,7 +251,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                   onSaved: (String value) {
                                     localdata.status_of_area_regular = value;
                                   },
-                                  onChanged:(value) {
+                                  onChanged: (value) {
                                     localdata.status_of_area_regular = value;
                                     setState(() {});
                                   },
@@ -260,7 +261,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                     }
                                   }),
                               formCardDropdown(
-                                enable:
+                                  enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value:
                                       localdata.slope_of_area?.isEmpty ?? true
@@ -293,7 +294,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                   onSaved: (String value) {
                                     localdata.slope_of_area = value;
                                   },
-                                  onChanged:(value) {
+                                  onChanged: (value) {
                                     localdata.slope_of_area = value;
                                     setState(() {});
                                   },
@@ -318,8 +319,8 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                               Container(
                                 color: Colors.blue,
                                 child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 10, bottom: 10),
+                                  padding: const EdgeInsets.only(
+                                      top: 10, bottom: 10),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,

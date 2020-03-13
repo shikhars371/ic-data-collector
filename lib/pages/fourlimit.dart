@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:kapp/pages/detailnumberarea.dart';
-import 'package:kapp/pages/infophotonint.dart';
-import 'package:kapp/pages/otherpartnerinfo.dart';
-import 'package:kapp/pages/typeofuse.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '../models/localpropertydata.dart';
@@ -14,6 +9,9 @@ import '../utils/db_helper.dart';
 import '../widgets/appformcards.dart';
 import './lightinginfo.dart';
 import './buildinginfo.dart';
+import '../pages/detailnumberarea.dart';
+import '../pages/infophotonint.dart';
+import '../pages/otherpartnerinfo.dart';
 
 class FourLimitPage extends StatefulWidget {
   FourLimitPage({this.localdata});
@@ -65,40 +63,36 @@ class _FourLimitPageState extends State<FourLimitPage> {
           }
           if (localdata.current_use_of_property == "6") {
             Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => BuildingInfoPage(
-                  localdata: localdata,
-                ),
-              ),
-            );
+                context,
+                PageTransition(
+                    child: BuildingInfoPage(
+                      localdata: localdata,
+                    ),
+                    type: PageTransitionType.rightToLeft));
           } else if (localdata.current_use_of_property == "7") {
             Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => DetailsNumberAreaPage(
-                  localdata: localdata,
-                ),
-              ),
-            );
+                context,
+                PageTransition(
+                    child: DetailsNumberAreaPage(
+                      localdata: localdata,
+                    ),
+                    type: PageTransitionType.rightToLeft));
           } else if (localdata.current_use_of_property == "10") {
             Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => DetailsNumberAreaPage(
-                  localdata: localdata,
-                ),
-              ),
-            );
+                context,
+                PageTransition(
+                    child: DetailsNumberAreaPage(
+                      localdata: localdata,
+                    ),
+                    type: PageTransitionType.rightToLeft));
           } else {
             Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => LightingInfoPage(
-                  localdata: localdata,
-                ),
-              ),
-            );
+                context,
+                PageTransition(
+                    child: LightingInfoPage(
+                      localdata: localdata,
+                    ),
+                    type: PageTransitionType.rightToLeft));
           }
         }
       },
@@ -122,22 +116,20 @@ class _FourLimitPageState extends State<FourLimitPage> {
       onTap: () {
         if (localdata.property_type == "1") {
           Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => InfoPhotoHintPage(
-                localdata: localdata,
-              ),
-            ),
-          );
+              context,
+              PageTransition(
+                  child: InfoPhotoHintPage(
+                    localdata: localdata,
+                  ),
+                  type: PageTransitionType.leftToRight));
         } else {
           Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => OtherPartnerInfoPage(
-                localdata: localdata,
-              ),
-            ),
-          );
+              context,
+              PageTransition(
+                  child: OtherPartnerInfoPage(
+                    localdata: localdata,
+                  ),
+                  type: PageTransitionType.leftToRight));
         }
       },
       child: Container(
@@ -196,9 +188,8 @@ class _FourLimitPageState extends State<FourLimitPage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
-                                enable: localdata.isdrafted == 2
-                                      ? false
-                                      :true,
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue:
                                       localdata.boundaryinfonote?.isEmpty ??
                                               true
@@ -225,9 +216,8 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                enable: localdata.isdrafted == 2
-                                      ? false
-                                      :true,
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue:
                                       localdata.fore_limits_east?.isEmpty ??
                                               true
@@ -260,9 +250,8 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                enable: localdata.isdrafted == 2
-                                      ? false
-                                      :true,
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue:
                                       localdata.fore_limits_west?.isEmpty ??
                                               true
@@ -295,9 +284,8 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                enable: localdata.isdrafted == 2
-                                      ? false
-                                      :true,
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue:
                                       localdata.fore_limits_south?.isEmpty ??
                                               true
@@ -330,9 +318,8 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                enable: localdata.isdrafted == 2
-                                      ? false
-                                      :true,
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue:
                                       localdata.fore_limits_north?.isEmpty ??
                                               true

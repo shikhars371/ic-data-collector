@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kapp/pages/safaribooklet.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -55,13 +56,12 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
                 .updatePropertySurvey(localdata, localdata.local_property_key);
           }
           Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => BuildingInfoPage(
-                localdata: localdata,
-              ),
-            ),
-          );
+              context,
+              PageTransition(
+                  child: BuildingInfoPage(
+                    localdata: localdata,
+                  ),
+                  type: PageTransitionType.rightToLeft));
         }
       },
       child: Container(
@@ -83,13 +83,12 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
     return GestureDetector(
       onTap: () {
         Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (BuildContext context) => SafariBookletPage(
-              localdata: localdata,
-            ),
-          ),
-        );
+            context,
+            PageTransition(
+                child: SafariBookletPage(
+                  localdata: localdata,
+                ),
+                type: PageTransitionType.leftToRight));
       },
       child: Container(
         child: Row(

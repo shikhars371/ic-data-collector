@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -51,13 +52,12 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
     return GestureDetector(
       onTap: () {
         Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (BuildContext context) => DetailsNumberAreaPage(
-              localdata: localdata,
-            ),
-          ),
-        );
+            context,
+            PageTransition(
+                child: DetailsNumberAreaPage(
+                  localdata: localdata,
+                ),
+                type: PageTransitionType.leftToRight));
       },
       child: Container(
         child: Row(

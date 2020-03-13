@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:kapp/pages/firstpartnerinfo.dart';
 import 'package:kapp/pages/fourlimit.dart';
 import 'package:kapp/pages/otherpartnerinfo.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -62,22 +63,20 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
           }
           if (localdata.property_type == "1") {
             Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => FourLimitPage(
-                  localdata: localdata,
-                ),
-              ),
-            );
+                context,
+                PageTransition(
+                    child: FourLimitPage(
+                      localdata: localdata,
+                    ),
+                    type: PageTransitionType.rightToLeft));
           } else {
             Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => OtherPartnerInfoPage(
-                  localdata: localdata,
-                ),
-              ),
-            );
+                context,
+                PageTransition(
+                    child: OtherPartnerInfoPage(
+                      localdata: localdata,
+                    ),
+                    type: PageTransitionType.rightToLeft));
           }
         }
       },
@@ -100,13 +99,12 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
     return GestureDetector(
       onTap: () {
         Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (BuildContext context) => FirstPartnerPage(
-              localdata: localdata,
-            ),
-          ),
-        );
+            context,
+            PageTransition(
+                child: FirstPartnerPage(
+                  localdata: localdata,
+                ),
+                type: PageTransitionType.leftToRight));
       },
       child: Container(
         child: Row(
@@ -354,7 +352,8 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 8),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
                                           child: Center(
                                             child: Container(
                                               height: MediaQuery.of(context)
@@ -459,7 +458,8 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 8),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
                                           child: Center(
                                             child: Container(
                                               height: MediaQuery.of(context)
@@ -564,7 +564,8 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 8),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
                                           child: Center(
                                             child: Container(
                                               height: MediaQuery.of(context)

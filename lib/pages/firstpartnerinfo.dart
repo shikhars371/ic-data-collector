@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:validators/validators.dart';
@@ -66,13 +67,12 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                 .updatePropertySurvey(localdata, localdata.local_property_key);
           }
           Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => InfoPhotoHintPage(
-                localdata: localdata,
-              ),
-            ),
-          );
+              context,
+              PageTransition(
+                  child: InfoPhotoHintPage(
+                    localdata: localdata,
+                  ),
+                  type: PageTransitionType.rightToLeft));
         }
       },
       child: Container(
@@ -97,43 +97,39 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
           if ((localdata.current_use_of_property == "2") ||
               (localdata.current_use_of_property == "3")) {
             Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => BusinessLicensePage(
-                  localdata: localdata,
-                ),
-              ),
-            );
+                context,
+                PageTransition(
+                    child: BusinessLicensePage(
+                      localdata: localdata,
+                    ),
+                    type: PageTransitionType.leftToRight));
           } else {
             Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => TypeOfUsePage(
-                  localdata: localdata,
-                ),
-              ),
-            );
+                context,
+                PageTransition(
+                    child: TypeOfUsePage(
+                      localdata: localdata,
+                    ),
+                    type: PageTransitionType.leftToRight));
           }
         } else {
           if ((localdata.current_use_of_property == "2") ||
               (localdata.current_use_of_property == "3")) {
             Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => BusinessLicensePage(
-                  localdata: localdata,
-                ),
-              ),
-            );
+                context,
+                PageTransition(
+                    child: BusinessLicensePage(
+                      localdata: localdata,
+                    ),
+                    type: PageTransitionType.leftToRight));
           } else {
             Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => PropertyDetailsPage(
-                  localdata: localdata,
-                ),
-              ),
-            );
+                context,
+                PageTransition(
+                    child: PropertyDetailsPage(
+                      localdata: localdata,
+                    ),
+                    type: PageTransitionType.leftToRight));
           }
         }
       },
@@ -342,7 +338,7 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                     setState(() {});
                                   }),
                               formCardDropdown(
-                                enable:
+                                  enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value: localdata.first_partner_name_gender
                                               ?.isEmpty ??
@@ -375,10 +371,9 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                     localdata.first_partner_name_gender = value;
                                   },
                                   onChanged: (value) {
-                                          localdata.first_partner_name_gender =
-                                              value;
-                                          setState(() {});
-                                        },
+                                    localdata.first_partner_name_gender = value;
+                                    setState(() {});
+                                  },
                                   validate: (value) {
                                     if ((value.isEmpty) || value == "0") {
                                       return setapptext(key: 'key_required');
@@ -533,7 +528,8 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 8),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
                                           child: Center(
                                             child: Container(
                                               height: MediaQuery.of(context)
@@ -551,7 +547,8 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                                   ? Center(
                                                       child: Text(
                                                         setapptext(
-                                                            key: 'key_no_image'),
+                                                            key:
+                                                                'key_no_image'),
                                                       ),
                                                     )
                                                   : File(localdata

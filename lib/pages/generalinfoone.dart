@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '../models/localpropertydata.dart';
@@ -49,13 +50,12 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
         } else {
           _formkey.currentState.save();
           Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => GeneralInfotwoPage(
-                localdata: localdata,
-              ),
-            ),
-          );
+              context,
+              PageTransition(
+                  child: GeneralInfotwoPage(
+                    localdata: localdata,
+                  ),
+                  type: PageTransitionType.rightToLeft));
         }
       },
       child: Container(
@@ -77,13 +77,12 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
     return GestureDetector(
       onTap: () {
         Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (BuildContext context) => SurveyInfoPage(
-              localdata: localdata,
-            ),
-          ),
-        );
+            context,
+            PageTransition(
+                child: SurveyInfoPage(
+                  localdata: localdata,
+                ),
+                type: PageTransitionType.leftToRight));
       },
       child: Container(
         child: Row(
@@ -136,7 +135,7 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
                           child: ListView(
                             children: <Widget>[
                               formCardDropdown(
-                                enable:
+                                  enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   dropdownitems: [
                                     Dpvalue(
@@ -170,7 +169,7 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
                                     localdata.property_dispte_subject_to =
                                         value;
                                   },
-                                  onChanged:(value) {
+                                  onChanged: (value) {
                                     localdata.property_dispte_subject_to =
                                         value;
 
@@ -182,7 +181,7 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
                                     }
                                   }),
                               formCardDropdown(
-                                enable:
+                                  enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   iscompleted: ((localdata.real_person_status
                                                   ?.isEmpty ??
@@ -215,7 +214,7 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
                                               true
                                           ? "0"
                                           : localdata.real_person_status,
-                                  onChanged:(value) {
+                                  onChanged: (value) {
                                     localdata.real_person_status = value;
                                     setState(() {});
                                   },
@@ -225,7 +224,7 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
                                     }
                                   }),
                               formCardDropdown(
-                                enable:
+                                  enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   iscompleted: ((localdata.cityzenship_notice
                                                   ?.isEmpty ??
@@ -255,7 +254,7 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
                                               true
                                           ? "0"
                                           : localdata.cityzenship_notice,
-                                  onChanged:(value) {
+                                  onChanged: (value) {
                                     localdata.cityzenship_notice = value;
                                     setState(() {});
                                   },

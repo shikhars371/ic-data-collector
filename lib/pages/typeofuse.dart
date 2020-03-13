@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -58,22 +59,20 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
           if ((localdata.current_use_of_property == "2") ||
               (localdata.current_use_of_property == "3")) {
             Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => BusinessLicensePage(
-                  localdata: localdata,
-                ),
-              ),
-            );
+                context,
+                PageTransition(
+                    child: BusinessLicensePage(
+                      localdata: localdata,
+                    ),
+                    type: PageTransitionType.rightToLeft));
           } else {
             Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => FirstPartnerPage(
-                  localdata: localdata,
-                ),
-              ),
-            );
+                context,
+                PageTransition(
+                    child: FirstPartnerPage(
+                      localdata: localdata,
+                    ),
+                    type: PageTransitionType.rightToLeft));
           }
         }
       },
@@ -96,13 +95,12 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
     return GestureDetector(
       onTap: () {
         Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (BuildContext context) => DocVerificationPage(
-              localdata: localdata,
-            ),
-          ),
-        );
+            context,
+            PageTransition(
+                child: DocVerificationPage(
+                  localdata: localdata,
+                ),
+                type: PageTransitionType.leftToRight));
       },
       child: Container(
         child: Row(
@@ -155,7 +153,7 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
                           child: ListView(
                             children: <Widget>[
                               formCardDropdown(
-                                enable:
+                                  enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value:
                                       localdata.use_in_property_doc?.isEmpty ??
@@ -206,7 +204,7 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
                                   onSaved: (value) {
                                     localdata.use_in_property_doc = value;
                                   },
-                                  onChanged:(value) {
+                                  onChanged: (value) {
                                     localdata.use_in_property_doc = value;
                                     setState(() {});
                                   }),
@@ -228,13 +226,13 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
                                       localdata.type_of_use_other =
                                           value.trim();
                                     },
-                                    onChanged:localdata.isdrafted == 2
-                                      ? null
-                                      : (value) {
-                                      localdata.type_of_use_other =
-                                          value.trim();
-                                      setState(() {});
-                                    }),
+                                    onChanged: localdata.isdrafted == 2
+                                        ? null
+                                        : (value) {
+                                            localdata.type_of_use_other =
+                                                value.trim();
+                                            setState(() {});
+                                          }),
                               ]
                             ],
                           ),

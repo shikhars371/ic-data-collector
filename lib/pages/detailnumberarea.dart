@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kapp/pages/buildinginfo.dart';
 import 'package:kapp/pages/fourlimit.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -57,13 +58,12 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                 .updatePropertySurvey(localdata, localdata.local_property_key);
           }
           Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => HomeSketchPage(
-                localdata: localdata,
-              ),
-            ),
-          );
+              context,
+              PageTransition(
+                  child: HomeSketchPage(
+                    localdata: localdata,
+                  ),
+                  type: PageTransitionType.rightToLeft));
         }
       },
       child: Container(
@@ -87,20 +87,20 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
         if (localdata.current_use_of_property == "10") {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => FourLimitPage(
-                localdata: localdata,
-              ),
-            ),
+            PageTransition(
+                child: FourLimitPage(
+                  localdata: localdata,
+                ),
+                type: PageTransitionType.leftToRight),
           );
         } else {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => BuildingInfoPage(
-                localdata: localdata,
-              ),
-            ),
+            PageTransition(
+                child: BuildingInfoPage(
+                  localdata: localdata,
+                ),
+                type: PageTransitionType.leftToRight),
           );
         }
       },
@@ -218,7 +218,8 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 8),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
                                           child: Center(
                                             child: Container(
                                               height: MediaQuery.of(context)
@@ -239,8 +240,8 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                                   : File(localdata.home_map)
                                                           .existsSync()
                                                       ? Image.file(
-                                                          File(
-                                                              localdata.home_map),
+                                                          File(localdata
+                                                              .home_map),
                                                         )
                                                       : Center(
                                                           child: Text(setapptext(
@@ -306,20 +307,23 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed:localdata.isdrafted == 2
-                                      ? null
-                                      : () async {
-                                                    localdata.home_photo =
-                                                        await appimagepicker();
-                                                    setState(() {});
-                                                  },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .home_photo =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
                                                 )
                                               ],
                                             ),
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 8),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
                                           child: Center(
                                             child: Container(
                                               height: MediaQuery.of(context)
@@ -330,8 +334,8 @@ class _DetailsNumberAreaPageState extends State<DetailsNumberAreaPage> {
                                                       .size
                                                       .width /
                                                   2,
-                                              child: localdata
-                                                          .home_photo?.isEmpty ??
+                                              child: localdata.home_photo
+                                                          ?.isEmpty ??
                                                       true
                                                   ? Center(
                                                       child: Text(setapptext(

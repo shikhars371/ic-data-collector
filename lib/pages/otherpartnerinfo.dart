@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kapp/pages/fourlimit.dart';
 import 'package:kapp/pages/infophotonint.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -97,13 +98,12 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                 .updatePropertySurvey(localdata, localdata.local_property_key);
           }
           Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => FourLimitPage(
-                localdata: localdata,
-              ),
-            ),
-          );
+              context,
+              PageTransition(
+                  child: FourLimitPage(
+                    localdata: localdata,
+                  ),
+                  type: PageTransitionType.rightToLeft));
         }
       },
       child: Container(
@@ -125,13 +125,12 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
     return GestureDetector(
       onTap: () {
         Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (BuildContext context) => InfoPhotoHintPage(
-              localdata: localdata,
-            ),
-          ),
-        );
+            context,
+            PageTransition(
+                child: InfoPhotoHintPage(
+                  localdata: localdata,
+                ),
+                type: PageTransitionType.leftToRight));
       },
       child: Container(
         child: Row(
@@ -570,7 +569,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 8),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
                                           child: Center(
                                             child: Container(
                                               height: MediaQuery.of(context)
@@ -786,7 +786,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 8),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
                                           child: Center(
                                             child: Container(
                                               height: MediaQuery.of(context)
@@ -883,7 +884,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 8),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
                                           child: Center(
                                             child: Container(
                                               height: MediaQuery.of(context)
@@ -980,7 +982,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 8),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
                                           child: Center(
                                             child: Container(
                                               height: MediaQuery.of(context)
@@ -1349,7 +1352,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 8),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
                                           child: Center(
                                             child: Container(
                                               height: MediaQuery.of(context)
@@ -1360,7 +1364,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                       .size
                                                       .width /
                                                   2,
-                                              child: localdata.third_partner_image
+                                              child: localdata
+                                                          .third_partner_image
                                                           ?.isEmpty ??
                                                       true
                                                   ? Center(
@@ -1563,7 +1568,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 8),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
                                           child: Center(
                                             child: Container(
                                               height: MediaQuery.of(context)
@@ -1660,7 +1666,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 8),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
                                           child: Center(
                                             child: Container(
                                               height: MediaQuery.of(context)
@@ -1757,7 +1764,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 8),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
                                           child: Center(
                                             child: Container(
                                               height: MediaQuery.of(context)
@@ -1948,7 +1956,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formCardDropdown(
-                                enable:
+                                  enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value: localdata
                                               .fourth_partner_gender?.isEmpty ??
@@ -1977,10 +1985,9 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     localdata.fourth_partner_gender = value;
                                   },
                                   onChanged: (value) {
-                                          localdata.fourth_partner_gender =
-                                              value;
-                                          setState(() {});
-                                        }),
+                                    localdata.fourth_partner_gender = value;
+                                    setState(() {});
+                                  }),
                               formcardtextfield(
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
@@ -2127,7 +2134,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 8),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
                                           child: Center(
                                             child: Container(
                                               height: MediaQuery.of(context)
@@ -2343,7 +2351,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 8),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
                                           child: Center(
                                             child: Container(
                                               height: MediaQuery.of(context)
@@ -2440,7 +2449,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 8),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
                                           child: Center(
                                             child: Container(
                                               height: MediaQuery.of(context)
@@ -2537,7 +2547,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 8),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
                                           child: Center(
                                             child: Container(
                                               height: MediaQuery.of(context)
@@ -2728,7 +2739,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formCardDropdown(
-                                enable:
+                                  enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value:
                                       localdata.fifth_partner_gender?.isEmpty ??
@@ -2757,10 +2768,9 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     localdata.fifth_partner_gender = value;
                                   },
                                   onChanged: (value) {
-                                          localdata.fifth_partner_gender =
-                                              value;
-                                          setState(() {});
-                                        }),
+                                    localdata.fifth_partner_gender = value;
+                                    setState(() {});
+                                  }),
                               formcardtextfield(
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
@@ -2907,7 +2917,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 8),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
                                           child: Center(
                                             child: Container(
                                               height: MediaQuery.of(context)
@@ -2918,7 +2929,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                       .size
                                                       .width /
                                                   2,
-                                              child: localdata.fifth_partner_image
+                                              child: localdata
+                                                          .fifth_partner_image
                                                           ?.isEmpty ??
                                                       true
                                                   ? Center(
@@ -3121,7 +3133,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 8),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
                                           child: Center(
                                             child: Container(
                                               height: MediaQuery.of(context)
@@ -3218,7 +3231,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 8),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
                                           child: Center(
                                             child: Container(
                                               height: MediaQuery.of(context)
@@ -3315,7 +3329,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 8),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
                                           child: Center(
                                             child: Container(
                                               height: MediaQuery.of(context)

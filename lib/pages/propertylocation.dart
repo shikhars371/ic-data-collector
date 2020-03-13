@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '../models/localpropertydata.dart';
@@ -65,13 +66,12 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                   localdata, localdata.local_property_key);
             }
             Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => PropertyDetailsPage(
-                  localdata: localdata,
-                ),
-              ),
-            );
+                context,
+                PageTransition(
+                    child: PropertyDetailsPage(
+                      localdata: localdata,
+                    ),
+                    type: PageTransitionType.rightToLeft));
           } else {
             localdata.local_property_key = localdata.province +
                 localdata.city +
@@ -135,13 +135,12 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                 localdata.editmode = 1;
                 await DBHelper().updateTaskStatus(taskid: localdata.taskid);
                 Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => PropertyDetailsPage(
-                      localdata: localdata,
-                    ),
-                  ),
-                );
+                    context,
+                    PageTransition(
+                        child: PropertyDetailsPage(
+                          localdata: localdata,
+                        ),
+                        type: PageTransitionType.rightToLeft));
               }
             }
           }
@@ -166,13 +165,12 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
     return GestureDetector(
       onTap: () {
         Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (BuildContext context) => PhysicalStatePropertyPage(
-              localdata: localdata,
-            ),
-          ),
-        );
+            context,
+            PageTransition(
+                child: PhysicalStatePropertyPage(
+                  localdata: localdata,
+                ),
+                type: PageTransitionType.leftToRight));
       },
       child: Container(
         child: Row(
@@ -570,9 +568,8 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                enable: localdata.isdrafted == 2
-                                      ? false
-                                      :true,
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   inputFormatters: [
                                     WhitelistingTextInputFormatter.digitsOnly
                                   ],
@@ -613,9 +610,8 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                enable: localdata.isdrafted == 2
-                                      ? false
-                                      :true,
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   inputFormatters: [
                                     WhitelistingTextInputFormatter.digitsOnly
                                   ],
@@ -656,9 +652,8 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                enable: localdata.isdrafted == 2
-                                      ? false
-                                      :true,
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   inputFormatters: [
                                     WhitelistingTextInputFormatter.digitsOnly
                                   ],
@@ -690,9 +685,8 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                enable: localdata.isdrafted == 2
-                                      ? false
-                                      :true,
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue:
                                       localdata.street_name?.isEmpty ?? true
                                           ? ""
@@ -720,9 +714,8 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                enable: localdata.isdrafted == 2
-                                      ? false
-                                      :true,
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue:
                                       localdata.historic_site_area?.isEmpty ??
                                               true
@@ -752,9 +745,8 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                enable: localdata.isdrafted == 2
-                                      ? false
-                                      :true,
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue:
                                       localdata.land_area?.isEmpty ?? true
                                           ? ""
@@ -786,7 +778,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formCardDropdown(
-                                enable:
+                                  enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value:
                                       localdata.property_type?.isEmpty ?? true
@@ -815,7 +807,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                   onSaved: (String value) {
                                     localdata.property_type = value;
                                   },
-                                  onChanged:(value) {
+                                  onChanged: (value) {
                                     localdata.property_type = value;
                                     _land_area.unfocus();
                                     setState(() {});

@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
@@ -70,26 +71,24 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                     localdata, localdata.local_property_key);
               }
               Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) => TypeOfUsePage(
-                    localdata: localdata,
-                  ),
-                ),
-              );
+                  context,
+                  PageTransition(
+                      child: TypeOfUsePage(
+                        localdata: localdata,
+                      ),
+                      type: PageTransitionType.rightToLeft));
             }
           } else {
             _formkey.currentState.save();
             await DBHelper()
                 .updatePropertySurvey(localdata, localdata.local_property_key);
             Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => TypeOfUsePage(
-                  localdata: localdata,
-                ),
-              ),
-            );
+                context,
+                PageTransition(
+                    child: TypeOfUsePage(
+                      localdata: localdata,
+                    ),
+                    type: PageTransitionType.rightToLeft));
           }
         }
       },
@@ -112,13 +111,12 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
     return GestureDetector(
       onTap: () {
         Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (BuildContext context) => PropertyDetailsPage(
-              localdata: localdata,
-            ),
-          ),
-        );
+            context,
+            PageTransition(
+                child: PropertyDetailsPage(
+                  localdata: localdata,
+                ),
+                type: PageTransitionType.leftToRight));
       },
       child: Container(
         child: Row(
@@ -178,7 +176,7 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                           child: ListView(
                             children: <Widget>[
                               formCardDropdown(
-                                enable:
+                                  enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value:
                                       localdata.document_type?.isEmpty ?? true
@@ -212,23 +210,23 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                     localdata.document_type = value;
                                   },
                                   onChanged: (value) {
-                                          localdata.document_type = value;
-                                          localdata.issued_on = null;
-                                          localdata.place_of_issue = null;
-                                          localdata.property_number = null;
-                                          localdata.document_cover = null;
-                                          localdata.document_page = null;
-                                          localdata.doc_reg_number = null;
-                                          localdata.land_area_qawwala = null;
-                                          localdata.property_doc_photo_1 = null;
-                                          localdata.property_doc_photo_2 = null;
-                                          localdata.property_doc_photo_3 = null;
-                                          localdata.property_doc_photo_4 = null;
-                                          localdata.odinary_doc_photo1 = null;
-                                          localdata.odinary_doc_photo6 = null;
+                                    localdata.document_type = value;
+                                    localdata.issued_on = null;
+                                    localdata.place_of_issue = null;
+                                    localdata.property_number = null;
+                                    localdata.document_cover = null;
+                                    localdata.document_page = null;
+                                    localdata.doc_reg_number = null;
+                                    localdata.land_area_qawwala = null;
+                                    localdata.property_doc_photo_1 = null;
+                                    localdata.property_doc_photo_2 = null;
+                                    localdata.property_doc_photo_3 = null;
+                                    localdata.property_doc_photo_4 = null;
+                                    localdata.odinary_doc_photo1 = null;
+                                    localdata.odinary_doc_photo6 = null;
 
-                                          setState(() {});
-                                        },
+                                    setState(() {});
+                                  },
                                   validate: (value) {
                                     if ((value.isEmpty) || value == "0") {
                                       return setapptext(key: 'key_required');
@@ -629,7 +627,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                             ),
                                           ),
                                           Padding(
-                                            padding: const EdgeInsets.only(bottom: 8),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 8),
                                             child: Center(
                                               child: Container(
                                                 height: MediaQuery.of(context)
@@ -646,7 +645,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                         true
                                                     ? Center(
                                                         child: Text(setapptext(
-                                                            key: 'key_no_image')),
+                                                            key:
+                                                                'key_no_image')),
                                                       )
                                                     : Image.file(
                                                         File(localdata
@@ -727,7 +727,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                             ),
                                           ),
                                           Padding(
-                                            padding: const EdgeInsets.only(bottom: 8),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 8),
                                             child: Center(
                                               child: Container(
                                                 height: MediaQuery.of(context)
@@ -744,7 +745,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                         true
                                                     ? Center(
                                                         child: Text(setapptext(
-                                                            key: 'key_no_image')),
+                                                            key:
+                                                                'key_no_image')),
                                                       )
                                                     : Image.file(File(localdata
                                                         .property_doc_photo_2)),
@@ -823,7 +825,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                             ),
                                           ),
                                           Padding(
-                                            padding: const EdgeInsets.only(bottom: 8),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 8),
                                             child: Center(
                                               child: Container(
                                                 height: MediaQuery.of(context)
@@ -840,7 +843,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                         true
                                                     ? Center(
                                                         child: Text(setapptext(
-                                                            key: 'key_no_image')),
+                                                            key:
+                                                                'key_no_image')),
                                                       )
                                                     : Image.file(File(localdata
                                                         .property_doc_photo_3)),
@@ -919,7 +923,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                             ),
                                           ),
                                           Padding(
-                                            padding: const EdgeInsets.only(bottom: 8),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 8),
                                             child: Center(
                                               child: Container(
                                                 height: MediaQuery.of(context)
@@ -936,7 +941,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                         true
                                                     ? Center(
                                                         child: Text(setapptext(
-                                                            key: 'key_no_image')),
+                                                            key:
+                                                                'key_no_image')),
                                                       )
                                                     : Image.file(File(localdata
                                                         .property_doc_photo_4)),
@@ -1006,21 +1012,23 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                     child: Text(setapptext(
                                                         key:
                                                             'key_capture_image')),
-                                                    onPressed:localdata.isdrafted == 2
-                                      ? null
-                                      : () async {
-                                                      localdata
-                                                              .odinary_doc_photo1 =
-                                                          await appimagepicker();
-                                                      setState(() {});
-                                                    },
+                                                    onPressed:
+                                                        localdata.isdrafted == 2
+                                                            ? null
+                                                            : () async {
+                                                                localdata
+                                                                        .odinary_doc_photo1 =
+                                                                    await appimagepicker();
+                                                                setState(() {});
+                                                              },
                                                   )
                                                 ],
                                               ),
                                             ),
                                           ),
                                           Padding(
-                                            padding: const EdgeInsets.only(bottom:8),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 8),
                                             child: Center(
                                               child: Container(
                                                 height: MediaQuery.of(context)
@@ -1037,7 +1045,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                         true
                                                     ? Center(
                                                         child: Text(setapptext(
-                                                            key: 'key_no_image')),
+                                                            key:
+                                                                'key_no_image')),
                                                       )
                                                     : Image.file(
                                                         File(localdata
@@ -1102,21 +1111,23 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                     child: Text(setapptext(
                                                         key:
                                                             'key_capture_image')),
-                                                    onPressed:localdata.isdrafted == 2
-                                      ? null
-                                      : () async {
-                                                      localdata
-                                                              .odinary_doc_photo6 =
-                                                          await appimagepicker();
-                                                      setState(() {});
-                                                    },
+                                                    onPressed:
+                                                        localdata.isdrafted == 2
+                                                            ? null
+                                                            : () async {
+                                                                localdata
+                                                                        .odinary_doc_photo6 =
+                                                                    await appimagepicker();
+                                                                setState(() {});
+                                                              },
                                                   )
                                                 ],
                                               ),
                                             ),
                                           ),
                                           Padding(
-                                            padding: const EdgeInsets.only(bottom:8),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 8),
                                             child: Center(
                                               child: Container(
                                                 height: MediaQuery.of(context)
@@ -1133,7 +1144,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                         true
                                                     ? Center(
                                                         child: Text(setapptext(
-                                                            key: 'key_no_image')),
+                                                            key:
+                                                                'key_no_image')),
                                                       )
                                                     : Image.file(
                                                         File(localdata

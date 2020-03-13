@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '../models/localpropertydata.dart';
@@ -51,13 +52,12 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
         } else {
           _formkey.currentState.save();
           Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => PhysicalStatePropertyPage(
-                localdata: localdata,
-              ),
-            ),
-          );
+              context,
+              PageTransition(
+                  child: PhysicalStatePropertyPage(
+                    localdata: localdata,
+                  ),
+                  type: PageTransitionType.rightToLeft));
         }
       },
       child: Container(
@@ -79,13 +79,12 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
     return GestureDetector(
       onTap: () {
         Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (BuildContext context) => GeneralInfoOnePage(
-              localdata: localdata,
-            ),
-          ),
-        );
+            context,
+            PageTransition(
+                child: GeneralInfoOnePage(
+                  localdata: localdata,
+                ),
+                type: PageTransitionType.leftToRight));
       },
       child: Container(
         child: Row(
@@ -200,7 +199,7 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
                                     setState(() {});
                                   }),
                               formCardDropdown(
-                                enable:
+                                  enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   iscompleted: ((localdata
                                                   .natural_threaten?.isEmpty ??
@@ -230,12 +229,11 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
                                     localdata.natural_threaten = value.trim();
                                   },
                                   onChanged: (value) {
-                                          localdata.natural_threaten =
-                                              value.trim();
-                                          _municipality_ref_number.unfocus();
-                                          _issue_regarding_property.unfocus();
-                                          setState(() {});
-                                        }),
+                                    localdata.natural_threaten = value.trim();
+                                    _municipality_ref_number.unfocus();
+                                    _issue_regarding_property.unfocus();
+                                    setState(() {});
+                                  }),
                             ],
                           ),
                         ),

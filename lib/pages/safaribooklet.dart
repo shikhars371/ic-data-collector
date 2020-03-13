@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kapp/pages/lightinginfo.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -61,13 +62,12 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                 .updatePropertySurvey(localdata, localdata.local_property_key);
           }
           Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => TypePropertyUserPage(
-                localdata: localdata,
-              ),
-            ),
-          );
+              context,
+              PageTransition(
+                  child: TypePropertyUserPage(
+                    localdata: localdata,
+                  ),
+                  type: PageTransitionType.rightToLeft));
         }
       },
       child: Container(
@@ -75,9 +75,10 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
           children: <Widget>[
             Text(
               setapptext(key: 'key_next'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             ),
-            Icon(Icons.arrow_forward_ios,color: Colors.white),
+            Icon(Icons.arrow_forward_ios, color: Colors.white),
           ],
         ),
       ),
@@ -88,21 +89,21 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
     return GestureDetector(
       onTap: () {
         Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (BuildContext context) => LightingInfoPage(
-              localdata: localdata,
-            ),
-          ),
-        );
+            context,
+            PageTransition(
+                child: LightingInfoPage(
+                  localdata: localdata,
+                ),
+                type: PageTransitionType.leftToRight));
       },
       child: Container(
         child: Row(
           children: <Widget>[
-            Icon(Icons.arrow_back_ios,color: Colors.white),
+            Icon(Icons.arrow_back_ios, color: Colors.white),
             Text(
               setapptext(key: 'key_back'),
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             )
           ],
         ),
@@ -150,9 +151,8 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
-                                enable: localdata.isdrafted == 2
-                                      ? false
-                                      :true,
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
                                               .safari_booklet_common_name
                                               ?.isEmpty ??
@@ -195,16 +195,16 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                enable: localdata.isdrafted == 2
-                                      ? false
-                                      :true,
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
                                               .safari_booklet_father_name
                                               ?.isEmpty ??
                                           true
                                       ? ""
                                       : localdata.safari_booklet_father_name,
-                                  headerlablekey: setapptext(key: 'key_subscriber_father'),
+                                  headerlablekey:
+                                      setapptext(key: 'key_subscriber_father'),
                                   fieldfocus: _safari_booklet_father_name,
                                   textInputAction: TextInputAction.next,
                                   onFieldSubmitted: (_) {
@@ -239,9 +239,8 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                enable: localdata.isdrafted == 2
-                                      ? false
-                                      :true,
+                                  enable:
+                                      localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
                                               .safari_booklet_machinegun_no
                                               ?.isEmpty ??
@@ -326,26 +325,29 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                           padding: const EdgeInsets.only(
                                               left: 8, right: 8, top: 8),
                                           child: GestureDetector(
-                                            onTap:localdata.isdrafted == 2
-                                      ? null
-                                      : () {
-                                              DatePicker.showDatePicker(context,
-                                                  onChanged: (date) {
-                                                localdata
-                                                        .safari_booklet_issue_date =
-                                                    DateFormat('yyyy/MM/dd')
-                                                        .format(date)
-                                                        .toString();
-                                                setState(() {});
-                                              }, onConfirm: (date) {
-                                                localdata
-                                                        .safari_booklet_issue_date =
-                                                    DateFormat('yyyy/MM/dd')
-                                                        .format(date)
-                                                        .toString();
-                                                setState(() {});
-                                              });
-                                            },
+                                            onTap: localdata.isdrafted == 2
+                                                ? null
+                                                : () {
+                                                    DatePicker.showDatePicker(
+                                                        context,
+                                                        onChanged: (date) {
+                                                      localdata
+                                                              .safari_booklet_issue_date =
+                                                          DateFormat(
+                                                                  'yyyy/MM/dd')
+                                                              .format(date)
+                                                              .toString();
+                                                      setState(() {});
+                                                    }, onConfirm: (date) {
+                                                      localdata
+                                                              .safari_booklet_issue_date =
+                                                          DateFormat(
+                                                                  'yyyy/MM/dd')
+                                                              .format(date)
+                                                              .toString();
+                                                      setState(() {});
+                                                    });
+                                                  },
                                             child: AbsorbPointer(
                                               child: Row(
                                                   mainAxisAlignment:
@@ -458,25 +460,27 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                                         key:
                                                             'key_capture_image'),
                                                   ),
-                                                  onPressed:localdata.isdrafted == 2
-                                      ? null
-                                      : () async {
-                                                    try {
-                                                      localdata
-                                                              .safari_booklet_picture =
-                                                          await appimagepicker();
-                                                      setState(() {});
-                                                    } catch (e) {
-                                                      print(e);
-                                                    }
-                                                  },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              try {
+                                                                localdata
+                                                                        .safari_booklet_picture =
+                                                                    await appimagepicker();
+                                                                setState(() {});
+                                                              } catch (e) {
+                                                                print(e);
+                                                              }
+                                                            },
                                                 )
                                               ],
                                             ),
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 8),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
                                           child: Center(
                                             child: Container(
                                               height: MediaQuery.of(context)
@@ -494,7 +498,8 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                                   ? Center(
                                                       child: Text(
                                                         setapptext(
-                                                            key: 'key_no_image'),
+                                                            key:
+                                                                'key_no_image'),
                                                       ),
                                                     )
                                                   : (File(localdata

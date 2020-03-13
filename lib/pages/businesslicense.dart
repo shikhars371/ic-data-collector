@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -59,13 +60,12 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
                 .updatePropertySurvey(localdata, localdata.local_property_key);
           }
           Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => FirstPartnerPage(
-                localdata: localdata,
-              ),
-            ),
-          );
+              context,
+              PageTransition(
+                  child: FirstPartnerPage(
+                    localdata: localdata,
+                  ),
+                  type: PageTransitionType.rightToLeft));
         }
       },
       child: Container(
@@ -88,22 +88,20 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
       onTap: () {
         if (localdata.property_have_document == "1") {
           Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => TypeOfUsePage(
-                localdata: localdata,
-              ),
-            ),
-          );
+              context,
+              PageTransition(
+                  child: TypeOfUsePage(
+                    localdata: localdata,
+                  ),
+                  type: PageTransitionType.leftToRight));
         } else {
           Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => PropertyDetailsPage(
-                localdata: localdata,
-              ),
-            ),
-          );
+              context,
+              PageTransition(
+                  child: PropertyDetailsPage(
+                    localdata: localdata,
+                  ),
+                  type: PageTransitionType.leftToRight));
         }
       },
       child: Container(
