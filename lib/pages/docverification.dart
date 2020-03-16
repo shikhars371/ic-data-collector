@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -388,6 +389,12 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                   ),
                                 ),
                                 formcardtextfield(
+                                    maxLength: 120,
+                                    inputFormatters: [
+                                      LengthLimitingTextInputFormatter(120),
+                                      WhitelistingTextInputFormatter(
+                                          RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue:
@@ -417,6 +424,12 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                    maxLength: 120,
+                                    inputFormatters: [
+                                      LengthLimitingTextInputFormatter(120),
+                                      WhitelistingTextInputFormatter(
+                                          RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue:
@@ -446,6 +459,12 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                    maxLength: 120,
+                                    inputFormatters: [
+                                      LengthLimitingTextInputFormatter(120),
+                                      WhitelistingTextInputFormatter(
+                                          RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue:
@@ -475,6 +494,12 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                    maxLength: 120,
+                                    inputFormatters: [
+                                      LengthLimitingTextInputFormatter(120),
+                                      WhitelistingTextInputFormatter(
+                                          RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue:
@@ -502,6 +527,12 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                    maxLength: 120,
+                                    inputFormatters: [
+                                      LengthLimitingTextInputFormatter(120),
+                                      WhitelistingTextInputFormatter(
+                                          RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue:
@@ -532,6 +563,12 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                    maxLength: 120,
+                                    inputFormatters: [
+                                      LengthLimitingTextInputFormatter(120),
+                                      WhitelistingTextInputFormatter(
+                                          RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue:

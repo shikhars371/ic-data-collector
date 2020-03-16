@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kapp/pages/firstpartnerinfo.dart';
 import 'package:kapp/pages/fourlimit.dart';
@@ -161,6 +162,12 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
+                                  maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey:
@@ -194,6 +201,12 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey:
@@ -227,6 +240,12 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey:
@@ -259,6 +278,12 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey: setapptext(key: 'key_reg_no'),

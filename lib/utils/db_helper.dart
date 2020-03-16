@@ -268,15 +268,17 @@ class DBHelper with ChangeNotifier {
     }
     return result;
   }
-
+  //return true if any value exist
   Future<bool> isExist({String id}) async {
     bool result = false;
     try {
       var dbClient = await db;
       List<Map> maps =
           await dbClient.rawQuery("SELECT id FROM surveylist WHERE id=?", [id]);
-      if (maps.length > 0) {
-        result = true;
+      if (!(maps?.isEmpty ?? true)) {
+        if (maps.length > 0) {
+          result = true;
+        }
       }
     } catch (error, stackTrace) {
       Catcher.reportCheckedError(error, stackTrace);
@@ -1116,7 +1118,7 @@ class DBHelper with ChangeNotifier {
     try {
       var dbClient = await db;
       List<Map> maps = await dbClient.rawQuery(
-          '''select COUNT(id) as P FROM propertysurvey WHERE taskid=?''',
+          '''select COUNT(id) as P FROM propertysurvey WHERE taskid=''',
           [taskid]);
       result = assignedcount >= maps[0]['P'] ? false : true;
     } catch (error, stackTrace) {
@@ -1148,9 +1150,9 @@ class DBHelper with ChangeNotifier {
     try {
       var dbClient = await db;
       List<Map> propertymaps = await dbClient.rawQuery(
-          'select COUNT(id) as p from propertysurvey where taskid=?',[taskid]);
-      List<Map> taskmap = await dbClient
-          .rawQuery('select propertytosurvey from surveylist where id=?',[taskid]);
+          'select COUNT(id) as p from propertysurvey where taskid=?', [taskid]);
+      List<Map> taskmap = await dbClient.rawQuery(
+          'select propertytosurvey from surveylist where id=?', [taskid]);
       if (!(propertymaps?.isEmpty ?? true)) {
         int propertycount = int.tryParse(propertymaps[0]['p'].toString());
         int taskcount = int.tryParse(taskmap[0]['propertytosurvey'].toString());
@@ -1172,9 +1174,10 @@ class DBHelper with ChangeNotifier {
     try {
       var dbClient = await db;
       List<Map> propertymaps = await dbClient.rawQuery(
-          'select COUNT(id) as p from propertysurvey where taskid=? and isdrafted=2',[taskid]);
-      List<Map> taskmap = await dbClient
-          .rawQuery('select propertytosurvey from surveylist where id=?',[taskid]);
+          'select COUNT(id) as p from propertysurvey where taskid=? and isdrafted=2',
+          [taskid]);
+      List<Map> taskmap = await dbClient.rawQuery(
+          'select propertytosurvey from surveylist where id=?', [taskid]);
       if (!(propertymaps?.isEmpty ?? true)) {
         int propertycount = int.tryParse(propertymaps[0]['p'].toString());
         int taskcount = int.tryParse(taskmap[0]['propertytosurvey'].toString());
@@ -1286,7 +1289,9 @@ class DBHelper with ChangeNotifier {
     }
     return result;
   }
+  Future<List<SurveyAssignment>> addCompleteSUrvey({List<SurveyAssignment> surveyAssignments}) async{
 
+  }
   Future close() async {
     var dbClient = await db;
     dbClient.close();

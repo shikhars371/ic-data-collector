@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:kapp/pages/fourlimit.dart';
 import 'package:provider/provider.dart';
 import 'package:page_transition/page_transition.dart';
@@ -387,6 +388,12 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formcardtextfield(
+                                  maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue: localdata
@@ -419,6 +426,12 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                  maxLength: 3,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(3),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -456,6 +469,12 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                  maxLength: 6,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(6),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -683,6 +702,12 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formcardtextfield(
+                                  maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue: localdata
@@ -715,6 +740,12 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                  maxLength: 3,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(3),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -751,6 +782,12 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                  maxLength: 6,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(6),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -971,6 +1008,12 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formcardtextfield(
+                                  maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue: localdata
@@ -1003,6 +1046,12 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                  maxLength: 3,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(3),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -1040,6 +1089,12 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                  maxLength: 6,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(6),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -1258,6 +1313,12 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formcardtextfield(
+                                  maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue: localdata.forth_specifyif_other
@@ -1296,6 +1357,12 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                  maxLength: 3,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(3),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -1335,6 +1402,12 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                  maxLength: 6,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(6),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -1546,6 +1619,12 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formcardtextfield(
+                                  maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue: localdata
@@ -1584,6 +1663,12 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                  maxLength: 3,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(3),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -1620,6 +1705,12 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
+                                  maxLength: 6,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(6),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,

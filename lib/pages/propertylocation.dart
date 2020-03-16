@@ -655,8 +655,10 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   inputFormatters: [
+                                    LengthLimitingTextInputFormatter(3),
                                     WhitelistingTextInputFormatter.digitsOnly
                                   ],
+                                  maxLength: 3,
                                   initvalue:
                                       localdata.unit_in_parcel?.isEmpty ?? true
                                           ? ""
@@ -685,6 +687,12 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -714,6 +722,12 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -745,6 +759,12 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  maxLength: 6,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(6),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[0-9.]*$'))
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:

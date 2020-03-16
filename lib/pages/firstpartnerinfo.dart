@@ -190,6 +190,12 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
+                                  maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey: setapptext(key: 'key_name'),
@@ -230,6 +236,12 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey:
@@ -268,6 +280,12 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey: setapptext(key: 'key_wold'),
@@ -303,6 +321,12 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey: setapptext(key: 'key_birth'),
@@ -380,6 +404,7 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                     }
                                   }),
                               formcardtextfield(
+                                  maxLength: 10,
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   inputFormatters: [
@@ -422,6 +447,12 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                     }
                                   }),
                               formcardtextfield(
+                                  maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   keyboardtype: TextInputType.emailAddress,
@@ -572,6 +603,12 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                 ),
                               ),
                               formcardtextfield(
+                                maxLength: 256,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(256),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey:

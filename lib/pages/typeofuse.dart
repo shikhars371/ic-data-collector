@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:path_provider/path_provider.dart';
@@ -210,6 +211,12 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
                                   }),
                               if (localdata.use_in_property_doc == "8") ...[
                                 formcardtextfield(
+                                  maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                     headerlablekey:
                                         setapptext(key: 'key_Another'),
                                     radiovalue:

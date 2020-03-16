@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
@@ -188,6 +189,12 @@ class _FourLimitPageState extends State<FourLimitPage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
+                                  maxLength: 256,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(256),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -216,6 +223,12 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -250,6 +263,12 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -284,6 +303,12 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -318,6 +343,12 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:

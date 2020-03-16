@@ -60,7 +60,6 @@ class TaskModel with ChangeNotifier {
       _surveyAssignments = await DBHelper().getSurveys();
     } catch (error, stackTrace) {
       setState(AppState.Idle);
-
       Catcher.reportCheckedError(error, stackTrace);
     }
     setState(AppState.Idle);

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:flutter/services.dart';
 import 'package:kapp/pages/safaribooklet.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../models/localpropertydata.dart';
@@ -289,6 +288,12 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
                               ),
                               if (localdata.property_user_no_longer == "1") ...[
                                 formcardtextfield(
+                                  maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue: localdata

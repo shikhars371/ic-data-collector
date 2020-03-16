@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kapp/pages/lightinginfo.dart';
 import 'package:page_transition/page_transition.dart';
@@ -151,6 +152,12 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
+                                maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
@@ -195,6 +202,12 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
@@ -239,6 +252,12 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata

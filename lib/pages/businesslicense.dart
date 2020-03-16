@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../models/localpropertydata.dart';
@@ -158,6 +157,12 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
+                                  maxLength: 6,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(6),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   keyboardtype: TextInputType.number,
@@ -192,6 +197,12 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  maxLength: 6,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(6),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   keyboardtype: TextInputType.number,
@@ -228,6 +239,12 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  maxLength: 120,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(120),
+                                    WhitelistingTextInputFormatter(
+                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey: setapptext(key: 'key_other1'),

@@ -84,7 +84,9 @@ class _TaskPageState extends State<TaskPage> {
       String nahia,
       String gozar,
       String area,
-      String assigndate}) {
+      String assigndate,
+      String totalTask,
+      String completedTask}) {
     return Card(
       elevation: 3.0,
       child: Container(
@@ -129,6 +131,10 @@ class _TaskPageState extends State<TaskPage> {
                       status,
                       style: TextStyle(
                           color: statuscolor, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      "$completedTask/$totalTask",
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     )
                   ],
                 ),
@@ -196,33 +202,33 @@ class _TaskPageState extends State<TaskPage> {
                     itemCount: data?.isEmpty ?? true ? 0 : data.length,
                     itemBuilder: (context, index) {
                       return listcard(
-                        id: data[index] == null
-                            ? new SurveyAssignment()
-                            : data[index],
-                        provinance: data[index].province?.isEmpty ?? true
-                            ? ""
-                            : data[index].province,
-                        nahia: data[index].nahia?.isEmpty ?? true
-                            ? ""
-                            : data[index].nahia,
-                        gozar: data[index].gozar?.isEmpty ?? true
-                            ? ""
-                            : data[index].gozar,
-                        area: data[index].property_to_survey == null
-                            ? 0
-                            : data[index].property_to_survey.toString(),
-                        assigndate: data[index].startDate?.isEmpty ?? true
-                            ? ""
-                            : data[index].startDate,
-                        status: workstatus(
-                            completestatus: data[index].iscompleted,
-                            startedstatus: data[index].isstatrted,
-                            syncstatus: data[index].issynced),
-                        statuscolor: workstatuscolor(
-                            completestatus: data[index].iscompleted,
-                            startedstatus: data[index].isstatrted,
-                            syncstatus: data[index].issynced),
-                      );
+                          id: data[index] == null
+                              ? new SurveyAssignment()
+                              : data[index],
+                          provinance: data[index].province?.isEmpty ?? true
+                              ? ""
+                              : data[index].province,
+                          nahia: data[index].nahia?.isEmpty ?? true
+                              ? ""
+                              : data[index].nahia,
+                          gozar: data[index].gozar?.isEmpty ?? true
+                              ? ""
+                              : data[index].gozar,
+                          area: data[index].property_to_survey == null
+                              ? 0
+                              : data[index].property_to_survey.toString(),
+                          assigndate: data[index].startDate?.isEmpty ?? true
+                              ? ""
+                              : data[index].startDate,
+                          status: workstatus(
+                              completestatus: data[index].iscompleted,
+                              startedstatus: data[index].isstatrted,
+                              syncstatus: data[index].issynced),
+                          statuscolor: workstatuscolor(
+                              completestatus: data[index].iscompleted,
+                              startedstatus: data[index].isstatrted,
+                              syncstatus: data[index].issynced),
+                          totalTask: data[index].property_to_survey.toString());
                     },
                   ),
                 )

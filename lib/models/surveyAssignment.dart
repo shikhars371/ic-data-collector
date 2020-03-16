@@ -20,6 +20,7 @@ class SurveyAssignment {
   int iscompleted;
   int isstatrted;
   String updatedate;
+  int noOfCompletedTask;
 
   SurveyAssignment(
       {this.id,
@@ -42,7 +43,8 @@ class SurveyAssignment {
       this.iscompleted,
       this.isstatrted,
       this.issynced,
-      this.updatedate});
+      this.updatedate,
+      this.noOfCompletedTask});
 
   SurveyAssignment.fromJson(Map<String, dynamic> json)
       : id = json['_id'],
