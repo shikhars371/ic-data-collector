@@ -268,6 +268,7 @@ class DBHelper with ChangeNotifier {
     }
     return result;
   }
+
   //return true if any value exist
   Future<bool> isExist({String id}) async {
     bool result = false;
@@ -1289,9 +1290,22 @@ class DBHelper with ChangeNotifier {
     }
     return result;
   }
-  Future<List<SurveyAssignment>> addCompleteSUrvey({List<SurveyAssignment> surveyAssignments}) async{
 
+  Future<List<SurveyAssignment>> addCompleteSUrvey(
+      {List<SurveyAssignment> surveyAssignments}) async {
+    List<SurveyAssignment> addedsurvey = new List<SurveyAssignment>();
+    try {
+      var dbClient = await db;
+      String sqlquery = '''
+        SELECT * FROM propertysurvey where isdrafted=1 LIMIT 1
+      ''';
+      List<Map> it = await dbClient.rawQuery(sqlquery);
+    } catch (e) {
+      print(e);
+    }
+    return addedsurvey;
   }
+
   Future close() async {
     var dbClient = await db;
     dbClient.close();

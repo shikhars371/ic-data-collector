@@ -190,13 +190,14 @@ class _AppDrawerState extends State<AppDrawer> {
                   ),
                   currentAccountPicture: new CircleAvatar(
                     radius: 50.0,
-                    child: CachedNetworkImage(
-                      imageUrl:
-                          'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTnx9gugwptmYiJSoH38ftixCTsOiX86pseDJUG8nTONwADCQUS',
-                      placeholder: (context, url) =>
-                          CircularProgressIndicator(),
-                      errorWidget: (context, url, error) => Icon(Icons.person),
-                    ),
+                    child: Icon(Icons.assignment,size: 50,)
+                    //  CachedNetworkImage(
+                    //   imageUrl:
+                    //       'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTnx9gugwptmYiJSoH38ftixCTsOiX86pseDJUG8nTONwADCQUS',
+                    //   placeholder: (context, url) =>
+                    //       CircularProgressIndicator(),
+                    //   errorWidget: (context, url, error) => Icon(Icons.person),
+                    // ),
                   ),
                   accountEmail: Text(_user?.isEmpty ?? true ? "" : _user),
                   accountName: Text(_email?.isEmpty ?? true ? "" : _email),
