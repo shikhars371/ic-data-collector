@@ -189,6 +189,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                           child: ListView(
                             children: <Widget>[
                               formCardDropdown(
+                                  fieldrequired: true,
                                   enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value: localdata.fst_have_building?.isEmpty ??
@@ -280,7 +281,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   ),
                                 ),
                                 formCardDropdown(
-                                  fieldrequired: true,
+                                    fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata.fst_building_use
@@ -332,7 +333,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formCardDropdown(
-                                  fieldrequired: true,
+                                    fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata
@@ -511,7 +512,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formCardDropdown(
-                                  fieldrequired: true,
+                                    fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     value:
@@ -823,7 +824,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formCardDropdown(
-                                  fieldrequired: true,
+                                    fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     value:
@@ -1131,7 +1132,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formCardDropdown(
-                                  fieldrequired: true,
+                                    fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     value: localdata
@@ -1447,7 +1448,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formCardDropdown(
-                                  fieldrequired: true,
+                                    fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     value:
