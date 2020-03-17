@@ -163,6 +163,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                           child: ListView(
                             children: <Widget>[
                               formCardDropdown(
+                                fieldrequired: true,
                                   enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value: localdata
@@ -219,6 +220,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                     }
                                   }),
                               formCardDropdown(
+                                fieldrequired: true,
                                   enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value: localdata.property_have_document
@@ -261,6 +263,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                     }
                                   }),
                               formCardDropdown(
+                                fieldrequired: true,
                                   enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value: localdata.current_use_of_property
@@ -749,7 +752,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                 formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
+                                    
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -770,6 +773,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                             true
                                         ? CheckColor.Black
                                         : CheckColor.Green,
+                                         fieldrequired: true,
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
                                         return setapptext(

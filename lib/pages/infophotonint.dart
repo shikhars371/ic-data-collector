@@ -164,7 +164,7 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
+                                    
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -203,7 +203,7 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
+                                    
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -242,7 +242,7 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
+                                   
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -280,7 +280,7 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
+                                   
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],

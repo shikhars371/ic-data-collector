@@ -157,9 +157,9 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
-                                  maxLength: 6,
+                                  maxLength: 9,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(6),
+                                   
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -199,7 +199,7 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
                               formcardtextfield(
                                   maxLength: 6,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(6),
+                                    
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -241,7 +241,7 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
+                                    
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],

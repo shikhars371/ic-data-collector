@@ -149,13 +149,13 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
                                       : localdata.issue_regarding_property,
                                   headerlablekey:
                                       setapptext(key: 'key_property_issues'),
-                                  fieldfocus: _issue_regarding_property,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _issue_regarding_property.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_municipality_ref_number);
-                                  },
+                                  // fieldfocus: _issue_regarding_property,
+                                  // textInputAction: TextInputAction.next,
+                                  // onFieldSubmitted: (_) {
+                                  //   _issue_regarding_property.unfocus();
+                                  //   FocusScope.of(context)
+                                  //       .requestFocus(_municipality_ref_number);
+                                  // },
                                   radiovalue: localdata.issue_regarding_property
                                               ?.isEmpty ??
                                           true
@@ -172,14 +172,14 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
                                   },
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
+                                    
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ]),
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
+                                   
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -192,11 +192,11 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
                                       : localdata.municipality_ref_number,
                                   headerlablekey: setapptext(
                                       key: 'key_municipal_regulation'),
-                                  fieldfocus: _municipality_ref_number,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) {
-                                    _municipality_ref_number.unfocus();
-                                  },
+                                  // fieldfocus: _municipality_ref_number,
+                                  // textInputAction: TextInputAction.done,
+                                  // onFieldSubmitted: (_) {
+                                  //   _municipality_ref_number.unfocus();
+                                  // },
                                   radiovalue: localdata.municipality_ref_number
                                               ?.isEmpty ??
                                           true
@@ -243,8 +243,6 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
                                   },
                                   onChanged: (value) {
                                     localdata.natural_threaten = value.trim();
-                                    _municipality_ref_number.unfocus();
-                                    _issue_regarding_property.unfocus();
                                     setState(() {});
                                   }),
                             ],

@@ -213,7 +213,7 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
                                 formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
+                                    
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],

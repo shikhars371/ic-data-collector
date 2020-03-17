@@ -412,6 +412,7 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                   : SizedBox(),
                               formcardtextfield(
                                   enable: false,
+                                  fieldrequired: true,
                                   headerlablekey:
                                       setapptext(key: 'key_first_surveyor'),
                                   radiovalue:
@@ -454,6 +455,7 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                   }),
                               formcardtextfield(
                                   enable: false,
+                                  fieldrequired: true,
                                   headerlablekey:
                                       setapptext(key: 'key_second_surveyor'),
                                   radiovalue:
@@ -496,6 +498,7 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                   }),
                               formcardtextfield(
                                   enable: false,
+                                  fieldrequired: true,
                                   headerlablekey: setapptext(
                                       key: 'key_name_technical_support'),
                                   radiovalue: localdata.technical_support_name

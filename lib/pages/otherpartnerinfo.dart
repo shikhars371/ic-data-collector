@@ -1,11 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:kapp/pages/fourlimit.dart';
-import 'package:kapp/pages/infophotonint.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../models/localpropertydata.dart';
@@ -13,6 +9,9 @@ import '../controllers/auth.dart';
 import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
 import '../widgets/appformcards.dart';
+import './firstpartnerinfo.dart';
+import './fourlimit.dart';
+import './infophotonint.dart';
 
 class OtherPartnerInfoPage extends StatefulWidget {
   OtherPartnerInfoPage({this.localdata});
@@ -124,13 +123,23 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
   Widget backbutton() {
     return GestureDetector(
       onTap: () {
-        Navigator.pushReplacement(
+        if (localdata.cityzenship_notice == "2") {
+          Navigator.pushReplacement(
             context,
             PageTransition(
-                child: InfoPhotoHintPage(
+                child: FirstPartnerPage(
                   localdata: localdata,
                 ),
                 type: PageTransitionType.leftToRight));
+        } else {
+          Navigator.pushReplacement(
+              context,
+              PageTransition(
+                  child: InfoPhotoHintPage(
+                    localdata: localdata,
+                  ),
+                  type: PageTransitionType.leftToRight));
+        }
       },
       child: Container(
         child: Row(
@@ -236,7 +245,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -281,7 +289,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -327,7 +334,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -370,7 +376,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -418,9 +423,10 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? "0"
                                       : localdata.second_partner_gender,
-                                  iscompleted: localdata
+                                  iscompleted: ((localdata
                                               .second_partner_gender?.isEmpty ??
-                                          true
+                                          true)||localdata
+                                              .second_partner_gender=="0")
                                       ? CheckColor.Black
                                       : CheckColor.Green,
                                   headerlablekey: setapptext(key: 'key_gender'),
@@ -489,7 +495,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -636,7 +641,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -675,7 +679,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -711,7 +714,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -746,7 +748,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -1084,7 +1085,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -1127,7 +1127,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -1171,7 +1170,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -1214,7 +1212,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -1329,7 +1326,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -1474,7 +1470,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -1513,7 +1508,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -1546,9 +1540,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                maxLength: 120,
+                                  maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -1581,9 +1574,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                maxLength: 120,
+                                  maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -1919,9 +1911,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                 ),
                               ),
                               formcardtextfield(
-                                maxLength: 120,
+                                  maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -1962,9 +1953,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                maxLength: 120,
+                                  maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -2006,9 +1996,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                maxLength: 120,
+                                  maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -2049,9 +2038,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                maxLength: 120,
+                                  maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -2123,7 +2111,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                maxLength: 10,
+                                  maxLength: 10,
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   inputFormatters: [
@@ -2164,9 +2152,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     }
                                   }),
                               formcardtextfield(
-                                maxLength: 120,
+                                  maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -2309,9 +2296,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               ),
 
                               formcardtextfield(
-                                maxLength: 120,
+                                  maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -2348,9 +2334,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                maxLength: 120,
+                                  maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -2384,9 +2369,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                maxLength: 120,
+                                  maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -2419,9 +2403,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                maxLength: 120,
+                                  maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -2757,9 +2740,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                 ),
                               ),
                               formcardtextfield(
-                                maxLength: 120,
+                                  maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -2800,9 +2782,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                maxLength: 120,
+                                  maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -2844,9 +2825,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                maxLength: 120,
+                                  maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -2887,9 +2867,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                maxLength: 120,
+                                  maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -2961,7 +2940,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                maxLength: 10,
+                                  maxLength: 10,
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   inputFormatters: [
@@ -3002,9 +2981,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     }
                                   }),
                               formcardtextfield(
-                                maxLength: 120,
+                                  maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -3147,9 +3125,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               ),
 
                               formcardtextfield(
-                                maxLength: 120,
+                                  maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -3186,9 +3163,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                maxLength: 120,
+                                  maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -3221,9 +3197,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                maxLength: 120,
+                                  maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -3256,9 +3231,8 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                maxLength: 120,
+                                  maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],

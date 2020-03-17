@@ -288,12 +288,11 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
                               ),
                               if (localdata.property_user_no_longer == "1") ...[
                                 formcardtextfield(
-                                  maxLength: 120,
-                                  inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
-                                  ],
+                                    maxLength: 120,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue: localdata
@@ -312,6 +311,7 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
                                         : CheckColor.Green,
                                     // hinttextkey: setapptext(
                                     //     key: 'key_enter_1st_surveyor'),
+                                     fieldrequired: true,
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
                                         return setapptext(

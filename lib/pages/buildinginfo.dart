@@ -280,6 +280,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   ),
                                 ),
                                 formCardDropdown(
+                                  fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata.fst_building_use
@@ -331,6 +332,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formCardDropdown(
+                                  fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata
@@ -388,12 +390,11 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formcardtextfield(
-                                  maxLength: 120,
-                                  inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
-                                  ],
+                                    maxLength: 120,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue: localdata
@@ -426,12 +427,11 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
-                                  maxLength: 3,
-                                  inputFormatters: [
-                                    LengthLimitingTextInputFormatter(3),
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
-                                  ],
+                                    maxLength: 3,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -458,6 +458,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     onSaved: (value) {
                                       localdata.fst_no_of_floors = value.trim();
                                     },
+                                    fieldrequired: true,
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
                                         return setapptext(
@@ -469,12 +470,11 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
-                                  maxLength: 6,
-                                  inputFormatters: [
-                                    LengthLimitingTextInputFormatter(6),
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
-                                  ],
+                                    maxLength: 6,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -499,6 +499,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     onSaved: (value) {
                                       localdata.fst_cubie_meter = value.trim();
                                     },
+                                    fieldrequired: true,
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
                                         return setapptext(
@@ -510,6 +511,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formCardDropdown(
+                                  fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     value:
@@ -702,12 +704,11 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formcardtextfield(
-                                  maxLength: 120,
-                                  inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
-                                  ],
+                                    maxLength: 120,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue: localdata
@@ -740,12 +741,11 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
-                                  maxLength: 3,
-                                  inputFormatters: [
-                                    LengthLimitingTextInputFormatter(3),
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
-                                  ],
+                                    maxLength: 3,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -771,6 +771,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     onSaved: (value) {
                                       localdata.snd_no_of_floors = value.trim();
                                     },
+                                    fieldrequired: true,
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
                                         return setapptext(
@@ -782,12 +783,11 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
-                                  maxLength: 6,
-                                  inputFormatters: [
-                                    LengthLimitingTextInputFormatter(6),
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
-                                  ],
+                                    maxLength: 6,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -811,6 +811,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     onSaved: (value) {
                                       localdata.snd_cubie_meter = value.trim();
                                     },
+                                    fieldrequired: true,
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
                                         return setapptext(
@@ -822,6 +823,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formCardDropdown(
+                                  fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     value:
@@ -1008,12 +1010,11 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formcardtextfield(
-                                  maxLength: 120,
-                                  inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
-                                  ],
+                                    maxLength: 120,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue: localdata
@@ -1046,12 +1047,11 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
-                                  maxLength: 3,
-                                  inputFormatters: [
-                                    LengthLimitingTextInputFormatter(3),
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
-                                  ],
+                                    maxLength: 3,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -1078,6 +1078,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     onSaved: (value) {
                                       localdata.trd_no_of_floors = value.trim();
                                     },
+                                    fieldrequired: true,
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
                                         return setapptext(
@@ -1089,12 +1090,11 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
-                                  maxLength: 6,
-                                  inputFormatters: [
-                                    LengthLimitingTextInputFormatter(6),
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
-                                  ],
+                                    maxLength: 6,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -1119,6 +1119,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     onSaved: (value) {
                                       localdata.trd_cubie_meter = value.trim();
                                     },
+                                    fieldrequired: true,
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
                                         return setapptext(
@@ -1130,6 +1131,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formCardDropdown(
+                                  fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     value: localdata
@@ -1313,12 +1315,11 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formcardtextfield(
-                                  maxLength: 120,
-                                  inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
-                                  ],
+                                    maxLength: 120,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue: localdata.forth_specifyif_other
@@ -1345,6 +1346,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       localdata.forth_specifyif_other =
                                           value.trim();
                                     },
+                                    fieldrequired: true,
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
                                         return setapptext(
@@ -1357,12 +1359,11 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
-                                  maxLength: 3,
-                                  inputFormatters: [
-                                    LengthLimitingTextInputFormatter(3),
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
-                                  ],
+                                    maxLength: 3,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -1390,6 +1391,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       localdata.forth_no_of_floors =
                                           value.trim();
                                     },
+                                    fieldrequired: true,
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
                                         return setapptext(
@@ -1402,12 +1404,11 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
-                                  maxLength: 6,
-                                  inputFormatters: [
-                                    LengthLimitingTextInputFormatter(6),
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
-                                  ],
+                                    maxLength: 6,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -1433,6 +1434,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       localdata.forth_cubie_meter =
                                           value.trim();
                                     },
+                                    fieldrequired: true,
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
                                         return setapptext(
@@ -1445,6 +1447,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formCardDropdown(
+                                  fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     value:
@@ -1619,12 +1622,11 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formcardtextfield(
-                                  maxLength: 120,
-                                  inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
-                                  ],
+                                    maxLength: 120,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue: localdata
@@ -1651,6 +1653,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       localdata.fth_specifyif_other =
                                           value.trim();
                                     },
+                                    fieldrequired: true,
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
                                         return setapptext(
@@ -1663,12 +1666,11 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
-                                  maxLength: 3,
-                                  inputFormatters: [
-                                    LengthLimitingTextInputFormatter(3),
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
-                                  ],
+                                    maxLength: 3,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -1694,6 +1696,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     onSaved: (value) {
                                       localdata.fth_no_of_floors = value.trim();
                                     },
+                                    fieldrequired: true,
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
                                         return setapptext(
@@ -1705,12 +1708,11 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       setState(() {});
                                     }),
                                 formcardtextfield(
-                                  maxLength: 6,
-                                  inputFormatters: [
-                                    LengthLimitingTextInputFormatter(6),
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
-                                  ],
+                                    maxLength: 6,
+                                    inputFormatters: [
+                                      WhitelistingTextInputFormatter(
+                                          RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -1735,6 +1737,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     onSaved: (value) {
                                       localdata.fth_cubie_meter = value.trim();
                                     },
+                                    fieldrequired: true,
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
                                         return setapptext(

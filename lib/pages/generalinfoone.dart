@@ -175,6 +175,7 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
 
                                     setState(() {});
                                   },
+                                  fieldrequired: true,
                                   validate: (value) {
                                     if ((value.isEmpty) || value == "0") {
                                       return setapptext(key: 'key_required');
@@ -218,6 +219,7 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
                                     localdata.real_person_status = value;
                                     setState(() {});
                                   },
+                                  fieldrequired: true,
                                   validate: (value) {
                                     if ((value.isEmpty) || value == "0") {
                                       return setapptext(key: 'key_required');
@@ -258,6 +260,7 @@ class _GeneralInfoOnePageState extends State<GeneralInfoOnePage> {
                                     localdata.cityzenship_notice = value;
                                     setState(() {});
                                   },
+                                  fieldrequired: true,
                                   validate: (value) {
                                     if ((value.isEmpty) || value == "0") {
                                       return setapptext(key: 'key_required');

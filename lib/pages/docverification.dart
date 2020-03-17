@@ -177,6 +177,7 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                           child: ListView(
                             children: <Widget>[
                               formCardDropdown(
+                                  fieldrequired: true,
                                   enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value:
@@ -267,6 +268,12 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                           true
                                                       ? CheckColor.Black
                                                       : CheckColor.Green),
+                                              Text(
+                                                '*',
+                                                style: TextStyle(
+                                                    color: Colors.red,
+                                                    fontSize: 18),
+                                              ),
                                               Flexible(
                                                 child: Text(
                                                   setapptext(
@@ -391,7 +398,6 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                 formcardtextfield(
                                     maxLength: 120,
                                     inputFormatters: [
-                                      LengthLimitingTextInputFormatter(120),
                                       WhitelistingTextInputFormatter(
                                           RegExp(r'^[a-zA-Z0-9. ]*$'))
                                     ],
@@ -426,7 +432,6 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                 formcardtextfield(
                                     maxLength: 120,
                                     inputFormatters: [
-                                      LengthLimitingTextInputFormatter(120),
                                       WhitelistingTextInputFormatter(
                                           RegExp(r'^[a-zA-Z0-9. ]*$'))
                                     ],
@@ -461,7 +466,6 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                 formcardtextfield(
                                     maxLength: 120,
                                     inputFormatters: [
-                                      LengthLimitingTextInputFormatter(120),
                                       WhitelistingTextInputFormatter(
                                           RegExp(r'^[a-zA-Z0-9. ]*$'))
                                     ],
@@ -496,7 +500,6 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                 formcardtextfield(
                                     maxLength: 120,
                                     inputFormatters: [
-                                      LengthLimitingTextInputFormatter(120),
                                       WhitelistingTextInputFormatter(
                                           RegExp(r'^[a-zA-Z0-9. ]*$'))
                                     ],
@@ -529,7 +532,6 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                 formcardtextfield(
                                     maxLength: 120,
                                     inputFormatters: [
-                                      LengthLimitingTextInputFormatter(120),
                                       WhitelistingTextInputFormatter(
                                           RegExp(r'^[a-zA-Z0-9. ]*$'))
                                     ],
@@ -565,7 +567,6 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                 formcardtextfield(
                                     maxLength: 120,
                                     inputFormatters: [
-                                      LengthLimitingTextInputFormatter(120),
                                       WhitelistingTextInputFormatter(
                                           RegExp(r'^[a-zA-Z0-9. ]*$'))
                                     ],

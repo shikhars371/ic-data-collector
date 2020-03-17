@@ -57,7 +57,9 @@ class TaskModel with ChangeNotifier {
           }
         }
       }
-      _surveyAssignments = await DBHelper().getSurveys();
+      var tempsurvey = await DBHelper().getSurveys();
+      _surveyAssignments =
+          await DBHelper().addCompleteSUrvey(surveyAssignments: tempsurvey);
     } catch (error, stackTrace) {
       setState(AppState.Idle);
       Catcher.reportCheckedError(error, stackTrace);

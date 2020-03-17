@@ -228,7 +228,10 @@ class _TaskPageState extends State<TaskPage> {
                               completestatus: data[index].iscompleted,
                               startedstatus: data[index].isstatrted,
                               syncstatus: data[index].issynced),
-                          totalTask: data[index].property_to_survey.toString());
+                          totalTask: data[index].property_to_survey.toString(),
+                          completedTask: data[index].noOfCompletedTask == null
+                              ? 0
+                              : data[index].noOfCompletedTask.toString());
                     },
                   ),
                 )

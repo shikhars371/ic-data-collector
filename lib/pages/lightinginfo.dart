@@ -151,7 +151,7 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                               formcardtextfield(
                                 maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
+                                    
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -194,7 +194,7 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                               formcardtextfield(
                                 maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
+                                   
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -242,7 +242,7 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                               formcardtextfield(
                                 maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
+                                    
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],

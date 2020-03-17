@@ -82,7 +82,8 @@ Widget formcardtextfield(
     Widget suffix,
     bool enable,
     int maxLength,
-    List<TextInputFormatter> inputFormatters}) {
+    List<TextInputFormatter> inputFormatters,
+    bool fieldrequired = false}) {
   return Container(
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(10),
@@ -106,6 +107,12 @@ Widget formcardtextfield(
                   : TextDirection.rtl,
               children: <Widget>[
                 completedcheckbox(isCompleted: radiovalue),
+                fieldrequired
+                    ? Text(
+                        '*',
+                        style: TextStyle(color: Colors.red, fontSize: 18),
+                      )
+                    : SizedBox(),
                 Flexible(
                   child: Text(
                     headerlablekey,
@@ -161,6 +168,7 @@ Widget formCardDropdown(
     Function(String) validate,
     FocusNode fieldfocus,
     Function(String) onChanged,
+    bool fieldrequired = false,
     bool enable = false}) {
   return Container(
     decoration: BoxDecoration(
@@ -186,6 +194,12 @@ Widget formCardDropdown(
                   : TextDirection.rtl,
               children: <Widget>[
                 completedcheckbox(isCompleted: iscompleted),
+                fieldrequired
+                    ? Text(
+                        '*',
+                        style: TextStyle(color: Colors.red, fontSize: 18),
+                      )
+                    : SizedBox(),
                 Flexible(
                   fit: FlexFit.tight,
                   child: Text(

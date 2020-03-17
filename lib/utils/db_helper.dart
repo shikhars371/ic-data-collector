@@ -1012,12 +1012,12 @@ class DBHelper with ChangeNotifier {
       List<dynamic> params = [];
       if (localkey?.isEmpty ?? true) {
         sqlquery = '''
-        SELECT * FROM propertysurvey WHERE taskid=?
+        SELECT * FROM propertysurvey WHERE taskid=? ORDER BY isdrafted ASC
       ''';
         params = [taskid];
       } else if (!(localkey?.isEmpty ?? true)) {
         sqlquery = '''
-        SELECT * FROM propertysurvey WHERE taskid=? AND local_property_key=?
+        SELECT * FROM propertysurvey WHERE taskid=? AND local_property_key=? ORDER BY isdrafted ASC
       ''';
         params = [taskid, localkey];
       }
@@ -1296,10 +1296,15 @@ class DBHelper with ChangeNotifier {
     List<SurveyAssignment> addedsurvey = new List<SurveyAssignment>();
     try {
       var dbClient = await db;
-      String sqlquery = '''
-        SELECT * FROM propertysurvey where isdrafted=1 LIMIT 1
-      ''';
-      List<Map> it = await dbClient.rawQuery(sqlquery);
+      if (!(surveyAssignments?.isEmpty ?? true)) {
+        for (var item in surveyAssignments) {
+          List<Map> it = await dbClient.rawQuery(
+              'select count(id) as p from propertysurvey where taskid=?',
+              [item.id]);
+          item.noOfCompletedTask = int.tryParse(it[0]['p'].toString());
+          addedsurvey.add(item);
+        }
+      }
     } catch (e) {
       print(e);
     }

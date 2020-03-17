@@ -1,11 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:validators/validators.dart';
 
 import '../models/localpropertydata.dart';
 import '../controllers/auth.dart';
@@ -16,6 +13,7 @@ import './infophotonint.dart';
 import './businesslicense.dart';
 import './typeofuse.dart';
 import './propertydetails.dart';
+import './otherpartnerinfo.dart';
 
 class FirstPartnerPage extends StatefulWidget {
   FirstPartnerPage({this.localdata});
@@ -66,13 +64,23 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
             await DBHelper()
                 .updatePropertySurvey(localdata, localdata.local_property_key);
           }
-          Navigator.pushReplacement(
-              context,
-              PageTransition(
-                  child: InfoPhotoHintPage(
-                    localdata: localdata,
-                  ),
-                  type: PageTransitionType.rightToLeft));
+          if (localdata.cityzenship_notice == "2") {
+            Navigator.pushReplacement(
+                context,
+                PageTransition(
+                    child: OtherPartnerInfoPage(
+                      localdata: localdata,
+                    ),
+                    type: PageTransitionType.rightToLeft));
+          } else {
+            Navigator.pushReplacement(
+                context,
+                PageTransition(
+                    child: InfoPhotoHintPage(
+                      localdata: localdata,
+                    ),
+                    type: PageTransitionType.rightToLeft));
+          }
         }
       },
       child: Container(
@@ -192,7 +200,6 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -218,6 +225,7 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                               true
                                           ? ""
                                           : localdata.first_partner_name,
+                                  fieldrequired: true,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
                                       return setapptext(
@@ -238,7 +246,6 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -282,7 +289,6 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -323,7 +329,6 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -362,6 +367,7 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                     setState(() {});
                                   }),
                               formCardDropdown(
+                                fieldrequired: true,
                                   enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value: localdata.first_partner_name_gender
@@ -449,7 +455,6 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -603,9 +608,8 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                 ),
                               ),
                               formcardtextfield(
-                                maxLength: 256,
+                                  maxLength: 256,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(256),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],

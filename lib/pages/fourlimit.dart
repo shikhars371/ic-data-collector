@@ -191,7 +191,6 @@ class _FourLimitPageState extends State<FourLimitPage> {
                               formcardtextfield(
                                   maxLength: 256,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(256),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -225,7 +224,6 @@ class _FourLimitPageState extends State<FourLimitPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -249,6 +247,7 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                               true
                                           ? CheckColor.Black
                                           : CheckColor.Green,
+                                  fieldrequired: true,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
                                       return setapptext(
@@ -265,7 +264,6 @@ class _FourLimitPageState extends State<FourLimitPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -289,6 +287,7 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                               true
                                           ? CheckColor.Black
                                           : CheckColor.Green,
+                                  fieldrequired: true,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
                                       return setapptext(
@@ -305,7 +304,6 @@ class _FourLimitPageState extends State<FourLimitPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -329,6 +327,7 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                               true
                                           ? CheckColor.Black
                                           : CheckColor.Green,
+                                  fieldrequired: true,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
                                       return setapptext(
@@ -345,7 +344,6 @@ class _FourLimitPageState extends State<FourLimitPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -367,6 +365,7 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                               true
                                           ? CheckColor.Black
                                           : CheckColor.Green,
+                                  fieldrequired: true,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
                                       return setapptext(

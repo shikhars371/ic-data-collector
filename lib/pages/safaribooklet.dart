@@ -154,7 +154,7 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                               formcardtextfield(
                                 maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
+                                   
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -204,7 +204,7 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                               formcardtextfield(
                                 maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
+                                 
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -254,7 +254,7 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                               formcardtextfield(
                                 maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
+                                  
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],

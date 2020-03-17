@@ -135,6 +135,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                           child: ListView(
                             children: <Widget>[
                               formCardDropdown(
+                                fieldrequired: true,
                                   enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value:
@@ -176,6 +177,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                     }
                                   }),
                               formCardDropdown(
+                                fieldrequired: true,
                                   enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value: localdata.status_of_area_official
@@ -218,6 +220,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                     }
                                   }),
                               formCardDropdown(
+                                fieldrequired: true,
                                   enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value: localdata.status_of_area_regular
@@ -261,6 +264,7 @@ class _PhysicalStatePropertyState extends State<PhysicalStatePropertyPage> {
                                     }
                                   }),
                               formCardDropdown(
+                                fieldrequired: true,
                                   enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value:

@@ -310,6 +310,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
+                                fieldrequired: true,
                                 enable: false,
                                 initvalue: localdata.province?.isEmpty ?? true
                                     ? ""
@@ -328,6 +329,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                 // }
                               ),
                               formcardtextfield(
+                                fieldrequired: true,
                                 enable: false,
                                 initvalue: localdata.city?.isEmpty ?? true
                                     ? ""
@@ -485,6 +487,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                   initvalue: localdata.area?.isEmpty ?? true
                                       ? ""
                                       : localdata.area,
+                                  fieldrequired: true,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
                                       return setapptext(
@@ -518,6 +521,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                   radiovalue: localdata.pass?.isEmpty ?? true
                                       ? CheckColor.Black
                                       : CheckColor.Green,
+                                  fieldrequired: true,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
                                       return setapptext(
@@ -552,6 +556,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     FocusScope.of(context)
                                         .requestFocus(_part_number);
                                   },
+                                  fieldrequired: true,
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
                                       return setapptext(
@@ -591,6 +596,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                       localdata.part_number?.isEmpty ?? true
                                           ? CheckColor.Black
                                           : CheckColor.Green,
+                                  fieldrequired: true,
                                   hinttextkey:
                                       setapptext(key: 'Key_number_value'),
                                   validator: (value) {
@@ -633,6 +639,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                       localdata.unit_number?.isEmpty ?? true
                                           ? CheckColor.Black
                                           : CheckColor.Green,
+                                  fieldrequired: true,
                                   hinttextkey:
                                       setapptext(key: 'Key_number_value'),
                                   validator: (value) {
@@ -652,10 +659,10 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
+                                  fieldrequired: true,
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(3),
                                     WhitelistingTextInputFormatter.digitsOnly
                                   ],
                                   maxLength: 3,
@@ -689,7 +696,6 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -724,7 +730,6 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(120),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[a-zA-Z0-9. ]*$'))
                                   ],
@@ -759,9 +764,8 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  maxLength: 6,
+                                  maxLength: 9,
                                   inputFormatters: [
-                                    LengthLimitingTextInputFormatter(6),
                                     WhitelistingTextInputFormatter(
                                         RegExp(r'^[0-9.]*$'))
                                   ],
@@ -798,6 +802,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formCardDropdown(
+                                fieldrequired: true,
                                   enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value:
