@@ -200,8 +200,7 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    
                                   ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
@@ -246,8 +245,7 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    
                                   ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
@@ -289,8 +287,7 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    
                                   ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
@@ -329,8 +326,7 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    
                                   ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
@@ -606,8 +602,7 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                               formcardtextfield(
                                   maxLength: 256,
                                   inputFormatters: [
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    
                                   ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,

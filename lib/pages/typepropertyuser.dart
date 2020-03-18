@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:kapp/pages/safaribooklet.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -290,8 +289,7 @@ class _TypePropertyUserPageState extends State<TypePropertyUserPage> {
                                 formcardtextfield(
                                     maxLength: 120,
                                     inputFormatters: [
-                                      WhitelistingTextInputFormatter(
-                                          RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                      
                                     ],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,

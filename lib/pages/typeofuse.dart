@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../models/localpropertydata.dart';
@@ -214,8 +211,7 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
                                   maxLength: 120,
                                   inputFormatters: [
                                     
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    
                                   ],
                                     headerlablekey:
                                         setapptext(key: 'key_Another'),

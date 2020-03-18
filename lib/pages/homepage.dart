@@ -17,6 +17,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    var screenHeight = MediaQuery.of(context).size.height;
+    var screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       drawer: AppDrawer(),
       appBar: AppBar(
@@ -40,8 +42,12 @@ class _HomePageState extends State<HomePage> {
                   image: AssetImage("assets/images/add.png"),
                 ),
               ),
-              child: Center(),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Text("data"),
+              ),
             ),
+            //rework
             Container(
               height: 100,
               width: 100,

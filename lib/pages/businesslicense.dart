@@ -160,8 +160,7 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
                                   maxLength: 9,
                                   inputFormatters: [
                                    
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    
                                   ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
@@ -200,8 +199,7 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
                                   maxLength: 9,
                                   inputFormatters: [
                                     
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    
                                   ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
@@ -242,8 +240,7 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
                                   maxLength: 120,
                                   inputFormatters: [
                                     
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    
                                   ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,

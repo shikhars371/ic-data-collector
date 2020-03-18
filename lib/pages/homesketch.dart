@@ -208,8 +208,7 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                               formcardtextfield(
                                   maxLength: 9,
                                   inputFormatters: [
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    
                                   ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
@@ -243,8 +242,7 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                               formcardtextfield(
                                   maxLength: 9,
                                   inputFormatters: [
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    
                                   ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
@@ -278,8 +276,7 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                               formcardtextfield(
                                   maxLength: 9,
                                   inputFormatters: [
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    
                                   ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
@@ -313,8 +310,7 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                               formcardtextfield(
                                   maxLength: 9,
                                   inputFormatters: [
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    
                                   ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,

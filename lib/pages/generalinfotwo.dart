@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
@@ -21,8 +20,6 @@ class GeneralInfotwoPage extends StatefulWidget {
 class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
-  FocusNode _issue_regarding_property;
-  FocusNode _municipality_ref_number;
 
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
@@ -107,8 +104,6 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
     localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
     super.initState();
-    _issue_regarding_property = new FocusNode();
-    _municipality_ref_number = new FocusNode();
   }
 
   @override
@@ -173,15 +168,13 @@ class _GeneralInfotwoPageState extends State<GeneralInfotwoPage> {
                                   maxLength: 120,
                                   inputFormatters: [
                                     
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    
                                   ]),
                               formcardtextfield(
                                   maxLength: 120,
                                   inputFormatters: [
                                    
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    
                                   ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,

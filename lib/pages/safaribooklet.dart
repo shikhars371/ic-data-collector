@@ -1,10 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:kapp/pages/lightinginfo.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
@@ -155,8 +153,7 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                 maxLength: 120,
                                   inputFormatters: [
                                    
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    
                                   ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
@@ -205,8 +202,7 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                 maxLength: 120,
                                   inputFormatters: [
                                  
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    
                                   ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
@@ -255,8 +251,7 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                 maxLength: 120,
                                   inputFormatters: [
                                   
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
+                                    
                                   ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
