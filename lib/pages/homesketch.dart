@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kapp/pages/fourlimit.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
@@ -8,7 +9,6 @@ import '../controllers/auth.dart';
 import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
 import '../widgets/appformcards.dart';
-import './detailnumberarea.dart';
 import './task.dart';
 
 class HomeSketchPage extends StatefulWidget {
@@ -53,7 +53,7 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
         Navigator.pushReplacement(
             context,
             PageTransition(
-                child: DetailsNumberAreaPage(
+                child: FourLimitPage(
                   localdata: localdata,
                 ),
                 type: PageTransitionType.leftToRight));

@@ -196,7 +196,7 @@
     "key_tasks": "دندی",
     "key_guide": "لارښود",
     "key_help": "مرسته",
-    "Key_number_value": "مهرباني وکړئ یو ارزښت دننه کړی*",
+    "Key_number_value": "مهرباني وکړئ یو ارزښت دننه کړی",
     "key_Characteristics_of_earth": "د څمکی شریکانو مشخصات که چیری د ځمکی قواله کی برخه ولری",
     "key_date_format": "yyyy/mm/dd",
     "key_province": "ولایت او ښار غوره کړی.",
@@ -204,7 +204,7 @@
     "key_only_block": "بلاک: (دری رقمی عدد)",
     "key_part": "پارسل نمبر: (دری رقمی عدد)",
     "key_unit_no": "واحد نمبر: (ځلور رقمی عدد)",
-    "key_type_of_use": "اوسنی د ګټی اخیستنی ډول وټاکی.*",
+    "key_type_of_use": "اوسنی د ګټی اخیستنی ډول وټاکی.",
     "key_business_licence": "تجارتی جواز",
     "key_first_partner": "حقیقی شخص شهرت /حکمی / لومړی شریک:",
     "key_lightning": "بریښنا بل",
@@ -305,5 +305,6 @@
     "key_Engile": "انجیل",
     "key_only_email": "Email",
     "key_notify_no_sync": "Please check you have some Pending survey to sync from last two days.",
-    "key_limit_four": "*Value should be of 4 digit"
+    "key_limit_four": "*Value should be of 4 digit",
+    "key_home":"HomePage"
 }

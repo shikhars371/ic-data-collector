@@ -367,7 +367,7 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                     setState(() {});
                                   }),
                               formCardDropdown(
-                                fieldrequired: true,
+                                  fieldrequired: true,
                                   enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value: localdata.first_partner_name_gender
@@ -454,10 +454,6 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
-                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   keyboardtype: TextInputType.emailAddress,

@@ -125,12 +125,12 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
       onTap: () {
         if (localdata.cityzenship_notice == "2") {
           Navigator.pushReplacement(
-            context,
-            PageTransition(
-                child: FirstPartnerPage(
-                  localdata: localdata,
-                ),
-                type: PageTransitionType.leftToRight));
+              context,
+              PageTransition(
+                  child: FirstPartnerPage(
+                    localdata: localdata,
+                  ),
+                  type: PageTransitionType.leftToRight));
         } else {
           Navigator.pushReplacement(
               context,
@@ -423,10 +423,11 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? "0"
                                       : localdata.second_partner_gender,
-                                  iscompleted: ((localdata
-                                              .second_partner_gender?.isEmpty ??
-                                          true)||localdata
-                                              .second_partner_gender=="0")
+                                  iscompleted: ((localdata.second_partner_gender
+                                                  ?.isEmpty ??
+                                              true) ||
+                                          localdata.second_partner_gender ==
+                                              "0")
                                       ? CheckColor.Black
                                       : CheckColor.Green,
                                   headerlablekey: setapptext(key: 'key_gender'),
@@ -494,10 +495,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
-                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey: setapptext(key: 'key_email'),
@@ -2153,10 +2150,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
-                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -2982,10 +2975,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    WhitelistingTextInputFormatter(
-                                        RegExp(r'^[a-zA-Z0-9. ]*$'))
-                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:

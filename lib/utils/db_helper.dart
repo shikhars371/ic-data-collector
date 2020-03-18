@@ -1119,7 +1119,7 @@ class DBHelper with ChangeNotifier {
     try {
       var dbClient = await db;
       List<Map> maps = await dbClient.rawQuery(
-          '''select COUNT(id) as P FROM propertysurvey WHERE taskid=''',
+          '''select COUNT(id) as P FROM propertysurvey WHERE taskid=?''',
           [taskid]);
       result = assignedcount >= maps[0]['P'] ? false : true;
     } catch (error, stackTrace) {

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:kapp/utils/db_helper.dart';
-import 'package:kapp/utils/language_service.dart';
 
 import '../localization/app_translations.dart';
 import '../utils/appdrawer.dart';

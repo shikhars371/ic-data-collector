@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kapp/pages/fourlimit.dart';
+import 'package:kapp/pages/homesketch.dart';
 import 'package:provider/provider.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -9,7 +10,6 @@ import '../controllers/auth.dart';
 import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
 import '../widgets/appformcards.dart';
-import './detailnumberarea.dart';
 import './typepropertyuser.dart';
 
 class BuildingInfoPage extends StatefulWidget {
@@ -22,21 +22,6 @@ class BuildingInfoPage extends StatefulWidget {
 class _BuildingInfoPageState extends State<BuildingInfoPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
-  FocusNode _fst_specifyif_other;
-  FocusNode _fst_no_of_floors;
-  FocusNode _fst_cubie_meter;
-  FocusNode _snd_specifyif_other;
-  FocusNode _snd_no_of_floors;
-  FocusNode _snd_cubie_meter;
-  FocusNode _trd_specifyif_other;
-  FocusNode _trd_no_of_floors;
-  FocusNode _trd_cubie_meter;
-  FocusNode _forth_specifyif_other;
-  FocusNode _forth_no_of_floors;
-  FocusNode _forth_cubie_meter;
-  FocusNode _fth_specifyif_other;
-  FocusNode _fth_no_of_floors;
-  FocusNode _fth_cubie_meter;
 
   ///for validation
   ///
@@ -79,7 +64,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
           Navigator.pushReplacement(
             context,
             PageTransition(
-                child: DetailsNumberAreaPage(
+                child: HomeSketchPage(
                   localdata: localdata,
                 ),
                 type: PageTransitionType.rightToLeft),
@@ -143,21 +128,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
     localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
     super.initState();
-    _fst_specifyif_other = new FocusNode();
-    _fst_no_of_floors = new FocusNode();
-    _fst_cubie_meter = new FocusNode();
-    _snd_specifyif_other = new FocusNode();
-    _snd_no_of_floors = new FocusNode();
-    _snd_cubie_meter = new FocusNode();
-    _trd_specifyif_other = new FocusNode();
-    _trd_no_of_floors = new FocusNode();
-    _trd_cubie_meter = new FocusNode();
-    _forth_specifyif_other = new FocusNode();
-    _forth_no_of_floors = new FocusNode();
-    _forth_cubie_meter = new FocusNode();
-    _fth_specifyif_other = new FocusNode();
-    _fth_no_of_floors = new FocusNode();
-    _fth_cubie_meter = new FocusNode();
   }
 
   @override
@@ -405,13 +375,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                         : localdata.fst_specifyif_other,
                                     headerlablekey:
                                         setapptext(key: 'key_choose_another'),
-                                    fieldfocus: _fst_specifyif_other,
-                                    textInputAction: TextInputAction.next,
-                                    onFieldSubmitted: (_) {
-                                      _fst_specifyif_other.unfocus();
-                                      FocusScope.of(context)
-                                          .requestFocus(_fst_no_of_floors);
-                                    },
                                     hinttextkey: '',
                                     radiovalue: localdata
                                                 .fst_specifyif_other?.isEmpty ??
@@ -443,13 +406,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                             : localdata.fst_no_of_floors,
                                     headerlablekey:
                                         setapptext(key: 'key_Number_of_floors'),
-                                    fieldfocus: _fst_no_of_floors,
-                                    textInputAction: TextInputAction.next,
-                                    onFieldSubmitted: (_) {
-                                      _fst_no_of_floors.unfocus();
-                                      FocusScope.of(context)
-                                          .requestFocus(_fst_cubie_meter);
-                                    },
                                     hinttextkey: '',
                                     radiovalue:
                                         localdata.fst_no_of_floors?.isEmpty ??
@@ -486,11 +442,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                             : localdata.fst_cubie_meter,
                                     headerlablekey:
                                         setapptext(key: 'key_Unit_Size'),
-                                    fieldfocus: _fst_cubie_meter,
-                                    textInputAction: TextInputAction.done,
-                                    onFieldSubmitted: (_) {
-                                      _fst_cubie_meter.unfocus();
-                                    },
                                     hinttextkey: '',
                                     radiovalue:
                                         localdata.fst_cubie_meter?.isEmpty ??
@@ -719,13 +670,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                         : localdata.snd_specifyif_other,
                                     headerlablekey:
                                         setapptext(key: 'key_choose_another'),
-                                    fieldfocus: _snd_specifyif_other,
-                                    textInputAction: TextInputAction.next,
-                                    onFieldSubmitted: (_) {
-                                      _snd_specifyif_other.unfocus();
-                                      FocusScope.of(context)
-                                          .requestFocus(_snd_no_of_floors);
-                                    },
                                     hinttextkey: '',
                                     radiovalue: localdata
                                                 .snd_specifyif_other?.isEmpty ??
@@ -757,13 +701,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                             : localdata.snd_no_of_floors,
                                     headerlablekey:
                                         setapptext(key: 'key_Number_of_floors'),
-                                    fieldfocus: _snd_no_of_floors,
-                                    textInputAction: TextInputAction.next,
-                                    onFieldSubmitted: (_) {
-                                      _snd_no_of_floors.unfocus();
-                                      FocusScope.of(context)
-                                          .requestFocus(_snd_cubie_meter);
-                                    },
                                     radiovalue:
                                         localdata.snd_no_of_floors?.isEmpty ??
                                                 true
@@ -799,11 +736,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                             : localdata.snd_cubie_meter,
                                     headerlablekey:
                                         setapptext(key: 'key_Unit_Size'),
-                                    fieldfocus: _snd_cubie_meter,
-                                    textInputAction: TextInputAction.done,
-                                    onFieldSubmitted: (_) {
-                                      _snd_cubie_meter.unfocus();
-                                    },
                                     radiovalue:
                                         localdata.snd_cubie_meter?.isEmpty ??
                                                 true
@@ -1025,13 +957,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                         : localdata.trd_specifyif_other,
                                     headerlablekey:
                                         setapptext(key: 'key_choose_another'),
-                                    fieldfocus: _trd_specifyif_other,
-                                    textInputAction: TextInputAction.next,
-                                    onFieldSubmitted: (_) {
-                                      _trd_specifyif_other.unfocus();
-                                      FocusScope.of(context)
-                                          .requestFocus(_trd_no_of_floors);
-                                    },
                                     hinttextkey: '',
                                     radiovalue: localdata
                                                 .trd_specifyif_other?.isEmpty ??
@@ -1063,13 +988,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                             : localdata.trd_no_of_floors,
                                     headerlablekey:
                                         setapptext(key: 'key_Number_of_floors'),
-                                    fieldfocus: _trd_no_of_floors,
-                                    textInputAction: TextInputAction.next,
-                                    onFieldSubmitted: (_) {
-                                      _trd_no_of_floors.unfocus();
-                                      FocusScope.of(context)
-                                          .requestFocus(_trd_cubie_meter);
-                                    },
                                     hinttextkey: '',
                                     radiovalue:
                                         localdata.trd_no_of_floors?.isEmpty ??
@@ -1106,11 +1024,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                             : localdata.trd_cubie_meter,
                                     headerlablekey:
                                         setapptext(key: 'key_Unit_Size'),
-                                    fieldfocus: _trd_cubie_meter,
-                                    textInputAction: TextInputAction.done,
-                                    onFieldSubmitted: (_) {
-                                      _trd_cubie_meter.unfocus();
-                                    },
                                     hinttextkey: '',
                                     radiovalue:
                                         localdata.trd_cubie_meter?.isEmpty ??
@@ -1330,13 +1243,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                         : localdata.forth_specifyif_other,
                                     headerlablekey:
                                         setapptext(key: 'key_choose_another'),
-                                    fieldfocus: _forth_specifyif_other,
-                                    textInputAction: TextInputAction.next,
-                                    onFieldSubmitted: (_) {
-                                      _forth_specifyif_other.unfocus();
-                                      FocusScope.of(context)
-                                          .requestFocus(_forth_no_of_floors);
-                                    },
                                     hinttextkey: '',
                                     radiovalue: localdata.forth_specifyif_other
                                                 ?.isEmpty ??
@@ -1375,13 +1281,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                             : localdata.forth_no_of_floors,
                                     headerlablekey:
                                         setapptext(key: 'key_Number_of_floors'),
-                                    fieldfocus: _forth_no_of_floors,
-                                    textInputAction: TextInputAction.next,
-                                    onFieldSubmitted: (_) {
-                                      _forth_no_of_floors.unfocus();
-                                      FocusScope.of(context)
-                                          .requestFocus(_forth_cubie_meter);
-                                    },
                                     hinttextkey: '',
                                     radiovalue:
                                         localdata.forth_no_of_floors?.isEmpty ??
@@ -1420,11 +1319,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                             : localdata.forth_cubie_meter,
                                     headerlablekey:
                                         setapptext(key: 'key_Unit_Size'),
-                                    fieldfocus: _forth_cubie_meter,
-                                    textInputAction: TextInputAction.done,
-                                    onFieldSubmitted: (_) {
-                                      _forth_cubie_meter.unfocus();
-                                    },
                                     hinttextkey: '',
                                     radiovalue:
                                         localdata.forth_cubie_meter?.isEmpty ??
@@ -1637,13 +1531,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                         : localdata.fth_specifyif_other,
                                     headerlablekey:
                                         setapptext(key: 'key_choose_another'),
-                                    fieldfocus: _fth_specifyif_other,
-                                    textInputAction: TextInputAction.next,
-                                    onFieldSubmitted: (_) {
-                                      _fth_specifyif_other.unfocus();
-                                      FocusScope.of(context)
-                                          .requestFocus(_fth_no_of_floors);
-                                    },
                                     hinttextkey: '',
                                     radiovalue: localdata
                                                 .fth_specifyif_other?.isEmpty ??
@@ -1682,13 +1569,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                             : localdata.fth_no_of_floors,
                                     headerlablekey:
                                         setapptext(key: 'key_Number_of_floors'),
-                                    fieldfocus: _fth_no_of_floors,
-                                    textInputAction: TextInputAction.next,
-                                    onFieldSubmitted: (_) {
-                                      _fth_no_of_floors.unfocus();
-                                      FocusScope.of(context)
-                                          .requestFocus(_fth_cubie_meter);
-                                    },
                                     radiovalue:
                                         localdata.fth_no_of_floors?.isEmpty ??
                                                 true
@@ -1724,11 +1604,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                             : localdata.fth_cubie_meter,
                                     headerlablekey:
                                         setapptext(key: 'key_Unit_Size'),
-                                    fieldfocus: _fth_cubie_meter,
-                                    textInputAction: TextInputAction.done,
-                                    onFieldSubmitted: (_) {
-                                      _fth_cubie_meter.unfocus();
-                                    },
                                     hinttextkey: '',
                                     radiovalue:
                                         localdata.fth_cubie_meter?.isEmpty ??

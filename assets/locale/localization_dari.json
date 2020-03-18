@@ -196,7 +196,7 @@
     "key_tasks": "وظایف",
     "key_guide": "هدایت",
     "key_help": "راهنمایی",
-    "Key_number_value": "لطفا مقدار را وارد نمایید.*",
+    "Key_number_value": "لطفا مقدار را وارد نمایید.",
     "key_Characteristics_of_earth": "مشخصات شرکای زمین در صورت اشتراکی بودن قباله زمین",
     "key_date_format": "yyyy/mm/dd",
     "key_province": "ولایت و شهر را انتخاب نمایید.",
@@ -204,7 +204,7 @@
     "key_only_block": "بلاک: (عدد سه رقمی)",
     "key_part": "شماره پارسل:",
     "key_unit_no": "شماره واحد: (عدد چهار رقمی)",
-    "key_type_of_use": "نوعیت استفاده فعلی را انتخاب نمایید.*",
+    "key_type_of_use": "نوعیت استفاده فعلی را انتخاب نمایید.",
     "key_business_licence": "جواز تجارتی",
     "key_first_partner": "شهرت شخصی حقیقی / حکمی / شریک اول:",
     "key_lightning": "بل برق",
@@ -305,5 +305,6 @@
     "key_Engile": "انجیل",
     "key_only_email": "ایمیل",
     "key_notify_no_sync": "Please check you have some Pending survey to sync from last two days.",
-    "key_limit_four": "*Value should be of 4 digit"
+    "key_limit_four": "*Value should be of 4 digit",
+    "key_home":"HomePage"
 }

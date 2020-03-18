@@ -9,13 +9,17 @@ import '../pages/guide.dart';
 import '../pages/help.dart';
 import '../pages/surveyinfo.dart';
 import '../main.dart';
+import '../pages/homepage.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case routers.LoginRoute:
       return MaterialPageRoute(builder: (context) => LoginPage());
     case routers.SurveyRoute:
-      return MaterialPageRoute(builder: (context) => SurveyPage(surveyassignment: settings.arguments,));
+      return MaterialPageRoute(
+          builder: (context) => SurveyPage(
+                surveyassignment: settings.arguments,
+              ));
     case routers.TaskRoute:
       return MaterialPageRoute(builder: (context) => TaskPage());
     case routers.LanguageRoute:
@@ -25,9 +29,17 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case routers.HelpRoute:
       return MaterialPageRoute(builder: (context) => HelpPage());
     case routers.SurveyInfo:
-      return MaterialPageRoute(builder: (context) => SurveyInfoPage(localdata: settings.arguments,));
+      return MaterialPageRoute(
+        builder: (context) => SurveyInfoPage(
+          localdata: settings.arguments,
+        ),
+      );
     case routers.Homepage:
       return MaterialPageRoute(builder: (context) => MyHomePage());
+    case routers.Homepage:
+      return MaterialPageRoute(builder: (context) => MyHomePage());
+    case routers.DashboardRoute:
+      return MaterialPageRoute(builder: (context) => HomePage());
     default:
       return MaterialPageRoute(
         builder: (context) => Scaffold(

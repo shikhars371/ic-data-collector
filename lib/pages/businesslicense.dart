@@ -197,7 +197,7 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  maxLength: 6,
+                                  maxLength: 9,
                                   inputFormatters: [
                                     
                                     WhitelistingTextInputFormatter(

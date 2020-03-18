@@ -58,6 +58,8 @@ flutter:
    - assets/locale/localization_en.json
    - assets/locale/localization_dari.json
    - assets/images/addtask.png
+   - assets/images/add.png
+   - assets/images/reworkSurvey.png
 
   # example:arvo
   fonts:

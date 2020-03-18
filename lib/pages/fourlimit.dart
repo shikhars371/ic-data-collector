@@ -1,5 +1,7 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kapp/pages/homesketch.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +12,6 @@ import '../utils/db_helper.dart';
 import '../widgets/appformcards.dart';
 import './lightinginfo.dart';
 import './buildinginfo.dart';
-import '../pages/detailnumberarea.dart';
 import '../pages/infophotonint.dart';
 import '../pages/otherpartnerinfo.dart';
 
@@ -74,7 +75,7 @@ class _FourLimitPageState extends State<FourLimitPage> {
             Navigator.pushReplacement(
                 context,
                 PageTransition(
-                    child: DetailsNumberAreaPage(
+                    child: HomeSketchPage(
                       localdata: localdata,
                     ),
                     type: PageTransitionType.rightToLeft));
@@ -82,7 +83,7 @@ class _FourLimitPageState extends State<FourLimitPage> {
             Navigator.pushReplacement(
                 context,
                 PageTransition(
-                    child: DetailsNumberAreaPage(
+                    child: HomeSketchPage(
                       localdata: localdata,
                     ),
                     type: PageTransitionType.rightToLeft));
@@ -379,6 +380,212 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                     localdata.fore_limits_north = value.trim();
                                     setState(() {});
                                   }),
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                padding: EdgeInsets.all(10),
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color:
+                                              Color.fromRGBO(176, 174, 171, 1),
+                                          width: 1),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Row(
+                                          children: <Widget>[
+                                            completedcheckbox(
+                                                isCompleted: localdata.home_map
+                                                            ?.isEmpty ??
+                                                        true
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
+                                            Flexible(
+                                              child: Text(
+                                                setapptext(key: 'key_home_map'),
+                                                style: TextStyle(),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8, right: 8, bottom: 10),
+                                          child: Container(
+                                            padding: EdgeInsets.only(
+                                                left: 10, right: 10, top: 10),
+                                            child: Column(
+                                              children: <Widget>[
+                                                RaisedButton(
+                                                  child: Text(setapptext(
+                                                      key:
+                                                          'key_capture_image')),
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .home_map =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata
+                                                          .home_map?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
+                                                    )
+                                                  : File(localdata.home_map)
+                                                          .existsSync()
+                                                      ? Image.file(
+                                                          File(localdata
+                                                              .home_map),
+                                                        )
+                                                      : Center(
+                                                          child: Text(setapptext(
+                                                              key:
+                                                                  'key_no_image')),
+                                                        ),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                padding: EdgeInsets.all(10),
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color:
+                                              Color.fromRGBO(176, 174, 171, 1),
+                                          width: 1),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Row(
+                                          children: <Widget>[
+                                            completedcheckbox(
+                                                isCompleted: localdata
+                                                            .home_photo
+                                                            ?.isEmpty ??
+                                                        true
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
+                                            Flexible(
+                                              child: Text(
+                                                setapptext(
+                                                    key: 'key_home_photo'),
+                                                style: TextStyle(),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8, right: 8, bottom: 10),
+                                          child: Container(
+                                            padding: EdgeInsets.only(
+                                                left: 10, right: 10, top: 10),
+                                            child: Column(
+                                              children: <Widget>[
+                                                RaisedButton(
+                                                  child: Text(setapptext(
+                                                      key:
+                                                          'key_capture_image')),
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              localdata
+                                                                      .home_photo =
+                                                                  await appimagepicker();
+                                                              setState(() {});
+                                                            },
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(bottom: 8),
+                                          child: Center(
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  4,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: localdata.home_photo
+                                                          ?.isEmpty ??
+                                                      true
+                                                  ? Center(
+                                                      child: Text(setapptext(
+                                                          key: 'key_no_image')),
+                                                    )
+                                                  : File(localdata.home_photo)
+                                                          .existsSync()
+                                                      ? Image.file(
+                                                          File(localdata
+                                                              .home_photo),
+                                                        )
+                                                      : Center(
+                                                          child: Text(setapptext(
+                                                              key:
+                                                                  'key_no_image')),
+                                                        ),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
                               SizedBox(
                                 height: 50,
                               )

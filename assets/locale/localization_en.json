@@ -149,7 +149,7 @@
     "key_Half_cream_and_half_baked": "Brick masonry",
     "key_Cream": "Mud Wall",
     "key_metal": "Metal/Wood",
-    "key_Another": "*Please enter the current usage of property:",
+    "key_Another": "Please enter the current usage of property:",
     "key_choose_another": "If \"Other\" is selected, please specify it:",
     "key_Number_of_floors": "Number of Floor/Story:",
     "key_Unit_Size": "Volume in Cubic Meter:",
@@ -196,7 +196,7 @@
     "key_tasks": "Tasks",
     "key_guide": "Guide",
     "key_help": "Help",
-    "Key_number_value": "*Please enter a value.",
+    "Key_number_value": "Please enter a value.",
     "key_Characteristics_of_earth": "Other Partner's Info (in case of collective ownership)",
     "key_date_format": "yyyy/mm/dd",
     "key_province": "Province",
@@ -204,7 +204,7 @@
     "key_only_block": "Block",
     "key_part": "Part",
     "key_unit_no": "Unit No",
-    "key_type_of_use": "*Please choose current usage of property:",
+    "key_type_of_use": "Please choose current usage of property:",
     "key_business_licence": "Business License",
     "key_first_partner": "Attributes of Natural/Legal Person or First Partner",
     "key_lightning": "Electricity Bill Information",
@@ -305,5 +305,6 @@
     "key_Engile": "Engile",
     "key_only_email": "Email",
     "key_notify_no_sync": "Please check you have some Pending survey to sync from last two days.",
-    "key_limit_four": "*Value should be of 4 digit"
+    "key_limit_four": "*Value should be of 4 digit",
+    "key_home":"HomePage"
 }
