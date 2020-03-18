@@ -21,10 +21,6 @@ class HomeSketchPage extends StatefulWidget {
 class _HomeSketchPageState extends State<HomeSketchPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
-  FocusNode _area_unit_release_area;
-  FocusNode _area_unit_business_area;
-  FocusNode _area_unit_total_no_unit;
-  FocusNode _area_unit_business_units;
 
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
@@ -171,10 +167,6 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
     localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
     super.initState();
-    _area_unit_release_area = new FocusNode();
-    _area_unit_business_area = new FocusNode();
-    _area_unit_total_no_unit = new FocusNode();
-    _area_unit_business_units = new FocusNode();
   }
 
   @override
@@ -207,9 +199,7 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                             children: <Widget>[
                               formcardtextfield(
                                   maxLength: 9,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   keyboardtype: TextInputType.number,
@@ -220,13 +210,6 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                       : localdata.area_unit_release_area,
                                   headerlablekey:
                                       setapptext(key: 'key_release_area'),
-                                  fieldfocus: _area_unit_release_area,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _area_unit_release_area.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_area_unit_business_area);
-                                  },
                                   radiovalue: localdata.area_unit_release_area
                                               ?.isEmpty ??
                                           true
@@ -241,9 +224,7 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 9,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   keyboardtype: TextInputType.number,
@@ -254,13 +235,6 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                       : localdata.area_unit_business_area,
                                   headerlablekey:
                                       setapptext(key: 'key_business_area'),
-                                  fieldfocus: _area_unit_business_area,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _area_unit_business_area.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_area_unit_total_no_unit);
-                                  },
                                   radiovalue: localdata.area_unit_business_area
                                               ?.isEmpty ??
                                           true
@@ -275,9 +249,7 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 9,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   keyboardtype: TextInputType.number,
@@ -288,13 +260,6 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                       : localdata.area_unit_total_no_unit,
                                   headerlablekey: setapptext(
                                       key: 'key_total_release_units'),
-                                  fieldfocus: _area_unit_total_no_unit,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _area_unit_total_no_unit.unfocus();
-                                    FocusScope.of(context).requestFocus(
-                                        _area_unit_business_units);
-                                  },
                                   radiovalue: localdata.area_unit_total_no_unit
                                               ?.isEmpty ??
                                           true
@@ -309,9 +274,7 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 9,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   keyboardtype: TextInputType.number,
@@ -322,11 +285,6 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                       : localdata.area_unit_business_units,
                                   headerlablekey: setapptext(
                                       key: 'key_total_business_unit'),
-                                  fieldfocus: _area_unit_business_units,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) {
-                                    _area_unit_business_units.unfocus();
-                                  },
                                   radiovalue: localdata.area_unit_business_units
                                               ?.isEmpty ??
                                           true

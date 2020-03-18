@@ -25,12 +25,6 @@ class FirstPartnerPage extends StatefulWidget {
 class _FirstPartnerPageState extends State<FirstPartnerPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
-  FocusNode _first_partner_name_property_owner;
-  FocusNode _first_partner_surname;
-  FocusNode _first_partner_boy;
-  FocusNode _first_partner__father;
-  FocusNode _first_partner_name_phone;
-  FocusNode _first_partner_name_email;
 
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
@@ -161,12 +155,6 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
     localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
     super.initState();
-    _first_partner_name_property_owner = new FocusNode();
-    _first_partner_surname = new FocusNode();
-    _first_partner_boy = new FocusNode();
-    _first_partner__father = new FocusNode();
-    _first_partner_name_phone = new FocusNode();
-    _first_partner_name_email = new FocusNode();
   }
 
   @override
@@ -199,21 +187,10 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                             children: <Widget>[
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey: setapptext(key: 'key_name'),
-                                  fieldfocus:
-                                      _first_partner_name_property_owner,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _first_partner_name_property_owner
-                                        .unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_first_partner_surname);
-                                  },
                                   radiovalue:
                                       localdata.first_partner_name?.isEmpty ??
                                               true
@@ -229,10 +206,6 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                     if (value.trim().isEmpty) {
                                       return setapptext(
                                           key: 'key_field_not_blank');
-                                    } else if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                        .hasMatch(value)) {
-                                      return setapptext(
-                                          key: 'key_text_format_error');
                                     }
                                   },
                                   onSaved: (value) {
@@ -244,20 +217,11 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey:
                                       setapptext(key: 'key_surname'),
-                                  fieldfocus: _first_partner_surname,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _first_partner_surname.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_first_partner_boy);
-                                  },
                                   radiovalue: localdata
                                               .first_partner_surname?.isEmpty ??
                                           true
@@ -268,13 +232,7 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                           true
                                       ? ""
                                       : localdata.first_partner_surname,
-                                  validator: (value) {
-                                    if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                        .hasMatch(value)) {
-                                      return setapptext(
-                                          key: 'key_text_format_error');
-                                    }
-                                  },
+                                  validator: (value) {},
                                   onSaved: (value) {
                                     localdata.first_partner_surname =
                                         value.trim();
@@ -286,19 +244,10 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey: setapptext(key: 'key_wold'),
-                                  fieldfocus: _first_partner_boy,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _first_partner_boy.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_first_partner__father);
-                                  },
                                   radiovalue:
                                       localdata.first_partner_boy?.isEmpty ??
                                               true
@@ -309,13 +258,7 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                               true
                                           ? ""
                                           : localdata.first_partner_boy,
-                                  validator: (value) {
-                                    if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                        .hasMatch(value)) {
-                                      return setapptext(
-                                          key: 'key_text_format_error');
-                                    }
-                                  },
+                                  validator: (value) {},
                                   onSaved: (value) {
                                     localdata.first_partner_boy = value.trim();
                                   },
@@ -325,17 +268,10 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey: setapptext(key: 'key_birth'),
-                                  fieldfocus: _first_partner__father,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) {
-                                    _first_partner__father.unfocus();
-                                  },
                                   radiovalue: localdata
                                               .first_partner__father?.isEmpty ??
                                           true
@@ -346,13 +282,7 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                           true
                                       ? ""
                                       : localdata.first_partner__father,
-                                  validator: (value) {
-                                    if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                        .hasMatch(value)) {
-                                      return setapptext(
-                                          key: 'key_text_format_error');
-                                    }
-                                  },
+                                  validator: (value) {},
                                   onSaved: (value) {
                                     localdata.first_partner__father =
                                         value.trim();
@@ -414,13 +344,6 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                   ],
                                   keyboardtype: TextInputType.number,
                                   headerlablekey: setapptext(key: 'key_phone'),
-                                  fieldfocus: _first_partner_name_phone,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _first_partner_name_phone.unfocus();
-                                    FocusScope.of(context).requestFocus(
-                                        _first_partner_name_email);
-                                  },
                                   radiovalue: localdata.first_partner_name_phone
                                               ?.isEmpty ??
                                           true
@@ -454,11 +377,6 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                       localdata.isdrafted == 2 ? false : true,
                                   keyboardtype: TextInputType.emailAddress,
                                   headerlablekey: setapptext(key: 'key_email'),
-                                  fieldfocus: _first_partner_name_email,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) {
-                                    _first_partner_name_email.unfocus();
-                                  },
                                   radiovalue: localdata.first_partner_name_email
                                               ?.isEmpty ??
                                           true
@@ -601,9 +519,7 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                               ),
                               formcardtextfield(
                                   maxLength: 256,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey:

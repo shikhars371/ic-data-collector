@@ -438,10 +438,6 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                     if (value.trim().isEmpty) {
                                       return setapptext(
                                           key: 'key_field_not_blank');
-                                    } else if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                        .hasMatch(value)) {
-                                      return setapptext(
-                                          key: 'key_text_format_error');
                                     }
                                   },
                                   onSaved: (value) {
@@ -481,10 +477,6 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                     if (value.trim().isEmpty) {
                                       return setapptext(
                                           key: 'key_field_not_blank');
-                                    } else if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                        .hasMatch(value)) {
-                                      return setapptext(
-                                          key: 'key_text_format_error');
                                     }
                                   },
                                   onSaved: (value) {
@@ -518,13 +510,7 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                           true
                                       ? ""
                                       : localdata.technical_support_name,
-                                  validator: (value) {
-                                    if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                        .hasMatch(value)) {
-                                      return setapptext(
-                                          key: 'key_text_format_error');
-                                    }
-                                  },
+                                  validator: (value) {},
                                   onSaved: (value) {
                                     localdata.technical_support_name =
                                         value.trim();

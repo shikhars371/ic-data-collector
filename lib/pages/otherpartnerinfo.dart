@@ -23,46 +23,6 @@ class OtherPartnerInfoPage extends StatefulWidget {
 class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
-  FocusNode _second_partner_name;
-  FocusNode _second_partner_surname;
-  FocusNode _second_partner_boy;
-  FocusNode _second_partner_father;
-  FocusNode _second_partner_phone;
-  FocusNode _second_partner_email;
-  FocusNode _second_partner_machinegun_no;
-  FocusNode _second_partner_cover_note;
-  FocusNode _second_partner_note_page;
-  FocusNode _second_partner_reg_no;
-  FocusNode _third_partner_name;
-  FocusNode _third_partner_surname;
-  FocusNode _third_partner_boy;
-  FocusNode _third_partner_father;
-  FocusNode _third_partner_phone;
-  FocusNode _third_partner_email;
-  FocusNode _third_partner_machinegun_no;
-  FocusNode _third_partner_cover_note;
-  FocusNode _third_partner_note_page;
-  FocusNode _third_partner_reg_no;
-  FocusNode _fourth_partner_name;
-  FocusNode _fourth_partner_surname;
-  FocusNode _fourth_partner_boy;
-  FocusNode _fourth_partner_father;
-  FocusNode _fourth_partner_phone;
-  FocusNode _fourth_partner_email;
-  FocusNode _fourth_partner_machinegun_no;
-  FocusNode _fourth_partner_cover_note;
-  FocusNode _fourth_partner_note_page;
-  FocusNode _fourth_partner_reg_no;
-  FocusNode _fifth_partner_name;
-  FocusNode _fifth_partner_surname;
-  FocusNode _fifth_partner_boy;
-  FocusNode _fifth_partner_father;
-  FocusNode _fifth_partner_phone;
-  FocusNode _fifth_partner_email;
-  FocusNode _fifth_partner_machinegun_no;
-  FocusNode _fifth_partner_cover_note;
-  FocusNode _fifth_partner_note_page;
-  FocusNode _fifth_partner_reg_no;
 
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
@@ -161,46 +121,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
     localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
     super.initState();
-    _second_partner_name = new FocusNode();
-    _second_partner_surname = new FocusNode();
-    _second_partner_boy = new FocusNode();
-    _second_partner_father = new FocusNode();
-    _second_partner_phone = new FocusNode();
-    _second_partner_email = new FocusNode();
-    _second_partner_machinegun_no = new FocusNode();
-    _second_partner_cover_note = new FocusNode();
-    _second_partner_note_page = new FocusNode();
-    _second_partner_reg_no = new FocusNode();
-    _third_partner_name = new FocusNode();
-    _third_partner_surname = new FocusNode();
-    _third_partner_boy = new FocusNode();
-    _third_partner_father = new FocusNode();
-    _third_partner_phone = new FocusNode();
-    _third_partner_email = new FocusNode();
-    _third_partner_machinegun_no = new FocusNode();
-    _third_partner_cover_note = new FocusNode();
-    _third_partner_note_page = new FocusNode();
-    _third_partner_reg_no = new FocusNode();
-    _fourth_partner_name = new FocusNode();
-    _fourth_partner_surname = new FocusNode();
-    _fourth_partner_boy = new FocusNode();
-    _fourth_partner_father = new FocusNode();
-    _fourth_partner_phone = new FocusNode();
-    _fourth_partner_email = new FocusNode();
-    _fourth_partner_machinegun_no = new FocusNode();
-    _fourth_partner_cover_note = new FocusNode();
-    _fourth_partner_note_page = new FocusNode();
-    _fourth_partner_reg_no = new FocusNode();
-    _fifth_partner_name = new FocusNode();
-    _fifth_partner_surname = new FocusNode();
-    _fifth_partner_boy = new FocusNode();
-    _fifth_partner_father = new FocusNode();
-    _fifth_partner_phone = new FocusNode();
-    _fifth_partner_email = new FocusNode();
-    _fifth_partner_machinegun_no = new FocusNode();
-    _fifth_partner_cover_note = new FocusNode();
-    _fifth_partner_note_page = new FocusNode();
-    _fifth_partner_reg_no = new FocusNode();
   }
 
   @override
@@ -244,19 +164,10 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               ),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey: setapptext(key: 'key_name'),
-                                  fieldfocus: _second_partner_name,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _second_partner_name.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_second_partner_surname);
-                                  },
                                   radiovalue:
                                       localdata.second_partner_name?.isEmpty ??
                                               true
@@ -267,15 +178,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.second_partner_name,
-                                  validator: (value) {
-                                    if (!(value?.isEmpty ?? true)) {
-                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                          .hasMatch(value)) {
-                                        return setapptext(
-                                            key: 'key_text_format_error');
-                                      }
-                                    }
-                                  },
+                                  validator: (value) {},
                                   onSaved: (value) {
                                     localdata.second_partner_name =
                                         value.trim();
@@ -287,20 +190,11 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey:
                                       setapptext(key: 'key_surname'),
-                                  fieldfocus: _second_partner_surname,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _second_partner_surname.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_second_partner_boy);
-                                  },
                                   radiovalue: localdata.second_partner_surname
                                               ?.isEmpty ??
                                           true
@@ -311,15 +205,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.second_partner_surname,
-                                  validator: (value) {
-                                    if (!(value?.isEmpty ?? true)) {
-                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                          .hasMatch(value)) {
-                                        return setapptext(
-                                            key: 'key_text_format_error');
-                                      }
-                                    }
-                                  },
+                                  validator: (value) {},
                                   onSaved: (value) {
                                     localdata.second_partner_surname =
                                         value.trim();
@@ -331,19 +217,10 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey: setapptext(key: 'key_wold'),
-                                  fieldfocus: _second_partner_boy,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _second_partner_boy.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_second_partner_father);
-                                  },
                                   radiovalue:
                                       localdata.second_partner_boy?.isEmpty ??
                                               true
@@ -354,15 +231,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                               true
                                           ? ""
                                           : localdata.second_partner_boy,
-                                  validator: (value) {
-                                    if (!(value?.isEmpty ?? true)) {
-                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                          .hasMatch(value)) {
-                                        return setapptext(
-                                            key: 'key_text_format_error');
-                                      }
-                                    }
-                                  },
+                                  validator: (value) {},
                                   onSaved: (value) {
                                     localdata.second_partner_boy = value.trim();
                                   },
@@ -372,17 +241,10 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey: setapptext(key: 'key_birth'),
-                                  fieldfocus: _second_partner_father,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) {
-                                    _second_partner_father.unfocus();
-                                  },
                                   radiovalue: localdata
                                               .second_partner_father?.isEmpty ??
                                           true
@@ -393,15 +255,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           true
                                       ? ""
                                       : localdata.second_partner_father,
-                                  validator: (value) {
-                                    if (!(value?.isEmpty ?? true)) {
-                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                          .hasMatch(value)) {
-                                        return setapptext(
-                                            key: 'key_text_format_error');
-                                      }
-                                    }
-                                  },
+                                  validator: (value) {},
                                   onSaved: (value) {
                                     localdata.second_partner_father =
                                         value.trim();
@@ -455,13 +309,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   ],
                                   keyboardtype: TextInputType.number,
                                   headerlablekey: setapptext(key: 'key_phone'),
-                                  fieldfocus: _second_partner_phone,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _second_partner_phone.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_second_partner_email);
-                                  },
                                   radiovalue:
                                       localdata.second_partner_phone?.isEmpty ??
                                               true
@@ -494,11 +341,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey: setapptext(key: 'key_email'),
-                                  fieldfocus: _second_partner_email,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) {
-                                    _second_partner_email.unfocus();
-                                  },
                                   keyboardtype: TextInputType.emailAddress,
                                   radiovalue:
                                       localdata.second_partner_email?.isEmpty ??
@@ -633,9 +475,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
 
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
@@ -646,13 +486,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       : localdata.second_partner_machinegun_no,
                                   headerlablekey:
                                       setapptext(key: 'key_machine_gun'),
-                                  fieldfocus: _second_partner_machinegun_no,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _second_partner_machinegun_no.unfocus();
-                                    FocusScope.of(context).requestFocus(
-                                        _second_partner_cover_note);
-                                  },
                                   radiovalue: localdata
                                               .second_partner_machinegun_no
                                               ?.isEmpty ??
@@ -670,9 +503,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata.second_partner_cover_note
@@ -682,13 +513,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       : localdata.second_partner_cover_note,
                                   headerlablekey:
                                       setapptext(key: 'key_cover_letter'),
-                                  fieldfocus: _second_partner_cover_note,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _second_partner_cover_note.unfocus();
-                                    FocusScope.of(context).requestFocus(
-                                        _second_partner_note_page);
-                                  },
                                   radiovalue: localdata
                                               .second_partner_cover_note
                                               ?.isEmpty ??
@@ -704,9 +528,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata.second_partner_note_page
@@ -716,13 +538,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       : localdata.second_partner_note_page,
                                   headerlablekey:
                                       setapptext(key: 'key_notification_page'),
-                                  fieldfocus: _second_partner_note_page,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _second_partner_note_page.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_second_partner_reg_no);
-                                  },
                                   radiovalue: localdata.second_partner_note_page
                                               ?.isEmpty ??
                                           true
@@ -737,9 +552,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
@@ -748,11 +561,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       ? ""
                                       : localdata.second_partner_reg_no,
                                   headerlablekey: setapptext(key: 'key_reg_no'),
-                                  fieldfocus: _second_partner_reg_no,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) {
-                                    _second_partner_reg_no.unfocus();
-                                  },
                                   radiovalue: localdata
                                               .second_partner_reg_no?.isEmpty ??
                                           true
@@ -1073,9 +881,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               ),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -1084,27 +890,12 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ? ""
                                           : localdata.third_partner_name,
                                   headerlablekey: setapptext(key: 'key_name'),
-                                  fieldfocus: _third_partner_name,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _third_partner_name.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_third_partner_surname);
-                                  },
                                   radiovalue:
                                       localdata.third_partner_name?.isEmpty ??
                                               true
                                           ? CheckColor.Black
                                           : CheckColor.Green,
-                                  validator: (value) {
-                                    if (!(value?.isEmpty ?? true)) {
-                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                          .hasMatch(value)) {
-                                        return setapptext(
-                                            key: 'key_text_format_error');
-                                      }
-                                    }
-                                  },
+                                  validator: (value) {},
                                   onSaved: (value) {
                                     localdata.third_partner_name = value;
                                   },
@@ -1114,9 +905,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
@@ -1126,27 +915,12 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       : localdata.third_partner_surname,
                                   headerlablekey:
                                       setapptext(key: 'key_surname'),
-                                  fieldfocus: _third_partner_surname,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _third_partner_surname.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_third_partner_boy);
-                                  },
                                   radiovalue: localdata
                                               .third_partner_surname?.isEmpty ??
                                           true
                                       ? CheckColor.Black
                                       : CheckColor.Green,
-                                  validator: (value) {
-                                    if (!(value?.isEmpty ?? true)) {
-                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                          .hasMatch(value)) {
-                                        return setapptext(
-                                            key: 'key_text_format_error');
-                                      }
-                                    }
-                                  },
+                                  validator: (value) {},
                                   onSaved: (value) {
                                     localdata.third_partner_surname = value;
                                   },
@@ -1156,9 +930,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -1167,27 +939,12 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ? ""
                                           : localdata.third_partner_boy,
                                   headerlablekey: setapptext(key: 'key_wold'),
-                                  fieldfocus: _third_partner_boy,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _third_partner_boy.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_third_partner_father);
-                                  },
                                   radiovalue:
                                       localdata.third_partner_boy?.isEmpty ??
                                               true
                                           ? CheckColor.Black
                                           : CheckColor.Green,
-                                  validator: (value) {
-                                    if (!(value?.isEmpty ?? true)) {
-                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                          .hasMatch(value)) {
-                                        return setapptext(
-                                            key: 'key_text_format_error');
-                                      }
-                                    }
-                                  },
+                                  validator: (value) {},
                                   onSaved: (value) {
                                     localdata.third_partner_boy = value;
                                   },
@@ -1197,9 +954,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -1208,25 +963,12 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ? ""
                                           : localdata.third_partner_father,
                                   headerlablekey: setapptext(key: 'key_birth'),
-                                  fieldfocus: _third_partner_father,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) {
-                                    _third_partner_father.unfocus();
-                                  },
                                   radiovalue:
                                       localdata.third_partner_father?.isEmpty ??
                                               true
                                           ? CheckColor.Black
                                           : CheckColor.Green,
-                                  validator: (value) {
-                                    if (!(value?.isEmpty ?? true)) {
-                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                          .hasMatch(value)) {
-                                        return setapptext(
-                                            key: 'key_text_format_error');
-                                      }
-                                    }
-                                  },
+                                  validator: (value) {},
                                   onSaved: (value) {
                                     localdata.third_partner_father = value;
                                   },
@@ -1280,13 +1022,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ? ""
                                           : localdata.third_partner_phone,
                                   headerlablekey: setapptext(key: 'key_phone'),
-                                  fieldfocus: _third_partner_phone,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _third_partner_phone.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_third_partner_email);
-                                  },
                                   keyboardtype: TextInputType.number,
                                   radiovalue:
                                       localdata.third_partner_phone?.isEmpty ??
@@ -1310,9 +1045,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -1321,11 +1054,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ? ""
                                           : localdata.third_partner_email,
                                   headerlablekey: setapptext(key: 'key_email'),
-                                  fieldfocus: _third_partner_email,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) {
-                                    _third_partner_email.unfocus();
-                                  },
                                   keyboardtype: TextInputType.emailAddress,
                                   radiovalue:
                                       localdata.third_partner_email?.isEmpty ??
@@ -1453,9 +1181,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
 
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
@@ -1466,13 +1192,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       : localdata.third_partner_machinegun_no,
                                   headerlablekey:
                                       setapptext(key: 'key_machine_gun'),
-                                  fieldfocus: _third_partner_machinegun_no,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _third_partner_machinegun_no.unfocus();
-                                    FocusScope.of(context).requestFocus(
-                                        _third_partner_cover_note);
-                                  },
                                   radiovalue: localdata
                                               .third_partner_machinegun_no
                                               ?.isEmpty ??
@@ -1490,9 +1209,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata.third_partner_cover_note
@@ -1502,13 +1219,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       : localdata.third_partner_cover_note,
                                   headerlablekey:
                                       setapptext(key: 'key_cover_letter'),
-                                  fieldfocus: _third_partner_cover_note,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _third_partner_cover_note.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_third_partner_note_page);
-                                  },
                                   radiovalue: localdata.third_partner_cover_note
                                               ?.isEmpty ??
                                           true
@@ -1523,9 +1233,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata.third_partner_note_page
@@ -1535,13 +1243,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       : localdata.third_partner_note_page,
                                   headerlablekey:
                                       setapptext(key: 'key_notification_page'),
-                                  fieldfocus: _third_partner_note_page,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _third_partner_note_page.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_third_partner_reg_no);
-                                  },
                                   radiovalue: localdata.third_partner_note_page
                                               ?.isEmpty ??
                                           true
@@ -1556,9 +1257,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -1567,11 +1266,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ? ""
                                           : localdata.third_partner_reg_no,
                                   headerlablekey: setapptext(key: 'key_reg_no'),
-                                  fieldfocus: _third_partner_reg_no,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) {
-                                    _third_partner_reg_no.unfocus();
-                                  },
                                   radiovalue:
                                       localdata.third_partner_reg_no?.isEmpty ??
                                               true
@@ -1892,9 +1586,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               ),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -1903,27 +1595,12 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ? ""
                                           : localdata.fourth_partner_name,
                                   headerlablekey: setapptext(key: 'key_name'),
-                                  fieldfocus: _fourth_partner_name,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _fourth_partner_name.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_fourth_partner_surname);
-                                  },
                                   radiovalue:
                                       localdata.fourth_partner_name?.isEmpty ??
                                               true
                                           ? CheckColor.Black
                                           : CheckColor.Green,
-                                  validator: (value) {
-                                    if (!(value?.isEmpty ?? true)) {
-                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                          .hasMatch(value)) {
-                                        return setapptext(
-                                            key: 'key_text_format_error');
-                                      }
-                                    }
-                                  },
+                                  validator: (value) {},
                                   onSaved: (value) {
                                     localdata.fourth_partner_name = value;
                                   },
@@ -1933,9 +1610,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata.fourth_partner_surname
@@ -1945,27 +1620,12 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       : localdata.fourth_partner_surname,
                                   headerlablekey:
                                       setapptext(key: 'key_surname'),
-                                  fieldfocus: _fourth_partner_surname,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _fourth_partner_surname.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_fourth_partner_boy);
-                                  },
                                   radiovalue: localdata.fourth_partner_surname
                                               ?.isEmpty ??
                                           true
                                       ? CheckColor.Black
                                       : CheckColor.Green,
-                                  validator: (value) {
-                                    if (!(value?.isEmpty ?? true)) {
-                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                          .hasMatch(value)) {
-                                        return setapptext(
-                                            key: 'key_text_format_error');
-                                      }
-                                    }
-                                  },
+                                  validator: (value) {},
                                   onSaved: (value) {
                                     localdata.fourth_partner_surname = value;
                                   },
@@ -1975,9 +1635,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -1986,27 +1644,12 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ? ""
                                           : localdata.fourth_partner_boy,
                                   headerlablekey: setapptext(key: 'key_wold'),
-                                  fieldfocus: _fourth_partner_boy,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _fourth_partner_boy.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_fourth_partner_father);
-                                  },
                                   radiovalue:
                                       localdata.fourth_partner_boy?.isEmpty ??
                                               true
                                           ? CheckColor.Black
                                           : CheckColor.Green,
-                                  validator: (value) {
-                                    if (!(value?.isEmpty ?? true)) {
-                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                          .hasMatch(value)) {
-                                        return setapptext(
-                                            key: 'key_text_format_error');
-                                      }
-                                    }
-                                  },
+                                  validator: (value) {},
                                   onSaved: (value) {
                                     localdata.fourth_partner_boy = value;
                                   },
@@ -2016,9 +1659,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
@@ -2027,25 +1668,12 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       ? ""
                                       : localdata.fourth_partner_father,
                                   headerlablekey: setapptext(key: 'key_birth'),
-                                  fieldfocus: _fourth_partner_father,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) {
-                                    _fourth_partner_father.unfocus();
-                                  },
                                   radiovalue: localdata
                                               .fourth_partner_father?.isEmpty ??
                                           true
                                       ? CheckColor.Black
                                       : CheckColor.Green,
-                                  validator: (value) {
-                                    if (!(value?.isEmpty ?? true)) {
-                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                          .hasMatch(value)) {
-                                        return setapptext(
-                                            key: 'key_text_format_error');
-                                      }
-                                    }
-                                  },
+                                  validator: (value) {},
                                   onSaved: (value) {
                                     localdata.fourth_partner_father = value;
                                   },
@@ -2099,13 +1727,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ? ""
                                           : localdata.fourth_partner_phone,
                                   headerlablekey: setapptext(key: 'key_phone'),
-                                  fieldfocus: _fourth_partner_phone,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _fourth_partner_phone.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_fourth_partner_email);
-                                  },
                                   keyboardtype: TextInputType.number,
                                   radiovalue:
                                       localdata.fourth_partner_phone?.isEmpty ??
@@ -2137,11 +1758,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ? ""
                                           : localdata.fourth_partner_email,
                                   headerlablekey: setapptext(key: 'key_email'),
-                                  fieldfocus: _fourth_partner_email,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) {
-                                    _fourth_partner_email.unfocus();
-                                  },
                                   keyboardtype: TextInputType.emailAddress,
                                   radiovalue:
                                       localdata.fourth_partner_email?.isEmpty ??
@@ -2269,9 +1885,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
 
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
@@ -2282,13 +1896,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       : localdata.fourth_partner_machinegun_no,
                                   headerlablekey:
                                       setapptext(key: 'key_machine_gun'),
-                                  fieldfocus: _fourth_partner_machinegun_no,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _fourth_partner_machinegun_no.unfocus();
-                                    FocusScope.of(context).requestFocus(
-                                        _fourth_partner_cover_note);
-                                  },
                                   radiovalue: localdata
                                               .fourth_partner_machinegun_no
                                               ?.isEmpty ??
@@ -2306,9 +1913,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata.fourth_partner_cover_note
@@ -2318,13 +1923,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       : localdata.fourth_partner_cover_note,
                                   headerlablekey:
                                       setapptext(key: 'key_cover_letter'),
-                                  fieldfocus: _fourth_partner_cover_note,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _fourth_partner_cover_note.unfocus();
-                                    FocusScope.of(context).requestFocus(
-                                        _fourth_partner_note_page);
-                                  },
                                   radiovalue: localdata
                                               .fourth_partner_cover_note
                                               ?.isEmpty ??
@@ -2340,9 +1938,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata.fourth_partner_note_page
@@ -2352,13 +1948,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       : localdata.fourth_partner_note_page,
                                   headerlablekey:
                                       setapptext(key: 'key_notification_page'),
-                                  fieldfocus: _fourth_partner_note_page,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _fourth_partner_note_page.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_fourth_partner_reg_no);
-                                  },
                                   radiovalue: localdata.fourth_partner_note_page
                                               ?.isEmpty ??
                                           true
@@ -2373,9 +1962,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
@@ -2384,11 +1971,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       ? ""
                                       : localdata.fourth_partner_reg_no,
                                   headerlablekey: setapptext(key: 'key_reg_no'),
-                                  fieldfocus: _fourth_partner_reg_no,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) {
-                                    _fourth_partner_reg_no.unfocus();
-                                  },
                                   radiovalue: localdata
                                               .fourth_partner_reg_no?.isEmpty ??
                                           true
@@ -2709,9 +2291,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                               ),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -2720,27 +2300,12 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ? ""
                                           : localdata.fifth_partner_name,
                                   headerlablekey: setapptext(key: 'key_name'),
-                                  fieldfocus: _fifth_partner_name,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _fifth_partner_name.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_fifth_partner_surname);
-                                  },
                                   radiovalue:
                                       localdata.fifth_partner_name?.isEmpty ??
                                               true
                                           ? CheckColor.Black
                                           : CheckColor.Green,
-                                  validator: (value) {
-                                    if (!(value?.isEmpty ?? true)) {
-                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                          .hasMatch(value)) {
-                                        return setapptext(
-                                            key: 'key_text_format_error');
-                                      }
-                                    }
-                                  },
+                                  validator: (value) {},
                                   onSaved: (value) {
                                     localdata.fifth_partner_name = value;
                                   },
@@ -2750,9 +2315,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
@@ -2762,27 +2325,12 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       : localdata.fifth_partner_surname,
                                   headerlablekey:
                                       setapptext(key: 'key_surname'),
-                                  fieldfocus: _fifth_partner_surname,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _fifth_partner_surname.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_fifth_partner_boy);
-                                  },
                                   radiovalue: localdata
                                               .fifth_partner_surname?.isEmpty ??
                                           true
                                       ? CheckColor.Black
                                       : CheckColor.Green,
-                                  validator: (value) {
-                                    if (!(value?.isEmpty ?? true)) {
-                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                          .hasMatch(value)) {
-                                        return setapptext(
-                                            key: 'key_text_format_error');
-                                      }
-                                    }
-                                  },
+                                  validator: (value) {},
                                   onSaved: (value) {
                                     localdata.fifth_partner_surname = value;
                                   },
@@ -2792,9 +2340,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -2803,27 +2349,12 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ? ""
                                           : localdata.fifth_partner_boy,
                                   headerlablekey: setapptext(key: 'key_wold'),
-                                  fieldfocus: _fifth_partner_boy,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _fifth_partner_boy.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_fifth_partner_father);
-                                  },
                                   radiovalue:
                                       localdata.fifth_partner_boy?.isEmpty ??
                                               true
                                           ? CheckColor.Black
                                           : CheckColor.Green,
-                                  validator: (value) {
-                                    if (!(value?.isEmpty ?? true)) {
-                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                          .hasMatch(value)) {
-                                        return setapptext(
-                                            key: 'key_text_format_error');
-                                      }
-                                    }
-                                  },
+                                  validator: (value) {},
                                   onSaved: (value) {
                                     localdata.fifth_partner_boy = value;
                                   },
@@ -2833,9 +2364,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -2844,25 +2373,12 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ? ""
                                           : localdata.fifth_partner_father,
                                   headerlablekey: setapptext(key: 'key_birth'),
-                                  fieldfocus: _fifth_partner_father,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) {
-                                    _fifth_partner_father.unfocus();
-                                  },
                                   radiovalue:
                                       localdata.fifth_partner_father?.isEmpty ??
                                               true
                                           ? CheckColor.Black
                                           : CheckColor.Green,
-                                  validator: (value) {
-                                    if (!(value?.isEmpty ?? true)) {
-                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                          .hasMatch(value)) {
-                                        return setapptext(
-                                            key: 'key_text_format_error');
-                                      }
-                                    }
-                                  },
+                                  validator: (value) {},
                                   onSaved: (value) {
                                     localdata.fifth_partner_father = value;
                                   },
@@ -2916,13 +2432,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ? ""
                                           : localdata.fifth_partner_phone,
                                   headerlablekey: setapptext(key: 'key_phone'),
-                                  fieldfocus: _fifth_partner_phone,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _fifth_partner_phone.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_fifth_partner_email);
-                                  },
                                   keyboardtype: TextInputType.number,
                                   radiovalue:
                                       localdata.fifth_partner_phone?.isEmpty ??
@@ -2954,11 +2463,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ? ""
                                           : localdata.fifth_partner_email,
                                   headerlablekey: setapptext(key: 'key_email'),
-                                  fieldfocus: _fifth_partner_email,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) {
-                                    _fifth_partner_email.unfocus();
-                                  },
                                   keyboardtype: TextInputType.emailAddress,
                                   radiovalue:
                                       localdata.fifth_partner_email?.isEmpty ??
@@ -3086,9 +2590,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
 
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
@@ -3099,13 +2601,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       : localdata.fifth_partner_machinegun_no,
                                   headerlablekey:
                                       setapptext(key: 'key_machine_gun'),
-                                  fieldfocus: _fifth_partner_machinegun_no,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _fifth_partner_machinegun_no.unfocus();
-                                    FocusScope.of(context).requestFocus(
-                                        _fifth_partner_cover_note);
-                                  },
                                   radiovalue: localdata
                                               .fifth_partner_machinegun_no
                                               ?.isEmpty ??
@@ -3123,9 +2618,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata.fifth_partner_cover_note
@@ -3135,13 +2628,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       : localdata.fifth_partner_cover_note,
                                   headerlablekey:
                                       setapptext(key: 'key_cover_letter'),
-                                  fieldfocus: _fifth_partner_cover_note,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _fifth_partner_cover_note.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_fifth_partner_note_page);
-                                  },
                                   radiovalue: localdata.fifth_partner_cover_note
                                               ?.isEmpty ??
                                           true
@@ -3156,9 +2642,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata.fifth_partner_note_page
@@ -3168,13 +2652,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                       : localdata.fifth_partner_note_page,
                                   headerlablekey:
                                       setapptext(key: 'key_notification_page'),
-                                  fieldfocus: _fifth_partner_note_page,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _fifth_partner_note_page.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_fifth_partner_reg_no);
-                                  },
                                   radiovalue: localdata.fifth_partner_note_page
                                               ?.isEmpty ??
                                           true
@@ -3189,9 +2666,7 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -3200,11 +2675,6 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                           ? ""
                                           : localdata.fifth_partner_reg_no,
                                   headerlablekey: setapptext(key: 'key_reg_no'),
-                                  fieldfocus: _fifth_partner_reg_no,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) {
-                                    _fifth_partner_reg_no.unfocus();
-                                  },
                                   radiovalue:
                                       localdata.fifth_partner_reg_no?.isEmpty ??
                                               true

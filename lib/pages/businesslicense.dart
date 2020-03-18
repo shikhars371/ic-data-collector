@@ -22,9 +22,6 @@ class BusinessLicensePage extends StatefulWidget {
 class _BusinessLicensePageState extends State<BusinessLicensePage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
-  FocusNode _number_of_business_unit;
-  FocusNode _business_unit_have_no_license;
-  FocusNode _business_license_another;
 
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
@@ -123,9 +120,6 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
     localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
     super.initState();
-    _number_of_business_unit = new FocusNode();
-    _business_unit_have_no_license = new FocusNode();
-    _business_license_another = new FocusNode();
   }
 
   @override
@@ -158,22 +152,12 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
                             children: <Widget>[
                               formcardtextfield(
                                   maxLength: 9,
-                                  inputFormatters: [
-                                   
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   keyboardtype: TextInputType.number,
                                   headerlablekey:
                                       setapptext(key: 'key_how_many_business'),
-                                  fieldfocus: _number_of_business_unit,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _number_of_business_unit.unfocus();
-                                    FocusScope.of(context).requestFocus(
-                                        _business_unit_have_no_license);
-                                  },
                                   radiovalue: localdata.number_of_business_unit
                                               ?.isEmpty ??
                                           true
@@ -197,22 +181,12 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 9,
-                                  inputFormatters: [
-                                    
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   keyboardtype: TextInputType.number,
                                   headerlablekey: setapptext(
                                       key: 'key_howmany_business_license'),
-                                  fieldfocus: _business_unit_have_no_license,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _business_unit_have_no_license.unfocus();
-                                    FocusScope.of(context).requestFocus(
-                                        _business_license_another);
-                                  },
                                   radiovalue: localdata
                                               .business_unit_have_no_license
                                               ?.isEmpty ??
@@ -238,18 +212,10 @@ class _BusinessLicensePageState extends State<BusinessLicensePage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey: setapptext(key: 'key_other1'),
-                                  fieldfocus: _business_license_another,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) {
-                                    _business_license_another.unfocus();
-                                  },
                                   radiovalue: localdata.business_license_another
                                               ?.isEmpty ??
                                           true

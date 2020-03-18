@@ -25,11 +25,6 @@ class FourLimitPage extends StatefulWidget {
 class _FourLimitPageState extends State<FourLimitPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
-  FocusNode _fore_limits_east;
-  FocusNode _fore_limits_west;
-  FocusNode _fore_limits_south;
-  FocusNode _fore_limits_north;
-  FocusNode _boundaryinfonote;
 
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
@@ -154,11 +149,6 @@ class _FourLimitPageState extends State<FourLimitPage> {
     localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
     super.initState();
-    _fore_limits_east = new FocusNode();
-    _fore_limits_west = new FocusNode();
-    _fore_limits_south = new FocusNode();
-    _fore_limits_north = new FocusNode();
-    _boundaryinfonote = new FocusNode();
   }
 
   @override
@@ -191,9 +181,7 @@ class _FourLimitPageState extends State<FourLimitPage> {
                             children: <Widget>[
                               formcardtextfield(
                                   maxLength: 256,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -203,12 +191,6 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                           : localdata.boundaryinfonote,
                                   headerlablekey:
                                       setapptext(key: 'key_property_note'),
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _boundaryinfonote.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_fore_limits_east);
-                                  },
                                   radiovalue:
                                       localdata.boundaryinfonote?.isEmpty ??
                                               true
@@ -223,9 +205,7 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -234,13 +214,6 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                           ? ""
                                           : localdata.fore_limits_east,
                                   headerlablekey: setapptext(key: 'key_east'),
-                                  fieldfocus: _fore_limits_east,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _fore_limits_east.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_fore_limits_west);
-                                  },
                                   radiovalue:
                                       localdata.fore_limits_east?.isEmpty ??
                                               true
@@ -262,9 +235,7 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -273,13 +244,6 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                           ? ""
                                           : localdata.fore_limits_west,
                                   headerlablekey: setapptext(key: 'key_west'),
-                                  fieldfocus: _fore_limits_west,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _fore_limits_west.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_fore_limits_south);
-                                  },
                                   radiovalue:
                                       localdata.fore_limits_west?.isEmpty ??
                                               true
@@ -301,9 +265,7 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -312,13 +274,6 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                           ? ""
                                           : localdata.fore_limits_south,
                                   headerlablekey: setapptext(key: 'key_south'),
-                                  fieldfocus: _fore_limits_south,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _fore_limits_south.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_fore_limits_north);
-                                  },
                                   radiovalue:
                                       localdata.fore_limits_south?.isEmpty ??
                                               true
@@ -340,9 +295,7 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -351,11 +304,6 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                           ? ""
                                           : localdata.fore_limits_north,
                                   headerlablekey: setapptext(key: 'key_north'),
-                                  fieldfocus: _fore_limits_north,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) {
-                                    _fore_limits_north.unfocus();
-                                  },
                                   radiovalue:
                                       localdata.fore_limits_north?.isEmpty ??
                                               true

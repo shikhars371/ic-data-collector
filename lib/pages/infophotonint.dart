@@ -1,12 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:kapp/pages/firstpartnerinfo.dart';
 import 'package:kapp/pages/fourlimit.dart';
 import 'package:kapp/pages/otherpartnerinfo.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../models/localpropertydata.dart';
@@ -25,10 +23,6 @@ class InfoPhotoHintPage extends StatefulWidget {
 class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
-  FocusNode _info_photo_hint_sukuk_number;
-  FocusNode _info_photo_hint_cover_note;
-  FocusNode _info_photo_hint_note_page;
-  FocusNode _info_photo_hint_reg_no;
 
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
@@ -127,10 +121,6 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
     localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
     super.initState();
-    _info_photo_hint_sukuk_number = new FocusNode();
-    _info_photo_hint_cover_note = new FocusNode();
-    _info_photo_hint_note_page = new FocusNode();
-    _info_photo_hint_reg_no = new FocusNode();
   }
 
   @override
@@ -163,21 +153,11 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                             children: <Widget>[
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey:
                                       setapptext(key: 'key_machine_gun'),
-                                  fieldfocus: _info_photo_hint_sukuk_number,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _info_photo_hint_sukuk_number.unfocus();
-                                    FocusScope.of(context).requestFocus(
-                                        _info_photo_hint_cover_note);
-                                  },
                                   radiovalue: localdata
                                               .info_photo_hint_sukuk_number
                                               ?.isEmpty ??
@@ -201,21 +181,11 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey:
                                       setapptext(key: 'key_cover_note'),
-                                  fieldfocus: _info_photo_hint_cover_note,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _info_photo_hint_cover_note.unfocus();
-                                    FocusScope.of(context).requestFocus(
-                                        _info_photo_hint_note_page);
-                                  },
                                   radiovalue: localdata
                                               .info_photo_hint_cover_note
                                               ?.isEmpty ??
@@ -239,21 +209,11 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                   
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey:
                                       setapptext(key: 'key_notification_page'),
-                                  fieldfocus: _info_photo_hint_note_page,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _info_photo_hint_note_page.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_info_photo_hint_reg_no);
-                                  },
                                   radiovalue: localdata
                                               .info_photo_hint_note_page
                                               ?.isEmpty ??
@@ -276,18 +236,10 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                   }),
                               formcardtextfield(
                                   maxLength: 120,
-                                  inputFormatters: [
-                                   
-                                    
-                                  ],
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   headerlablekey: setapptext(key: 'key_reg_no'),
-                                  fieldfocus: _info_photo_hint_reg_no,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) {
-                                    _info_photo_hint_reg_no.unfocus();
-                                  },
                                   radiovalue: localdata.info_photo_hint_reg_no
                                               ?.isEmpty ??
                                           true

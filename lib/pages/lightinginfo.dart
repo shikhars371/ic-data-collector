@@ -1,10 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:kapp/pages/fourlimit.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../models/localpropertydata.dart';
@@ -24,9 +21,6 @@ class LightingInfoPage extends StatefulWidget {
 class _LightingInfoPageState extends State<LightingInfoPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
-  FocusNode _lightning_meter_no;
-  FocusNode _lightning_common_name;
-  FocusNode _lightning_father_name;
 
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
@@ -115,9 +109,6 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
     localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
     super.initState();
-    _lightning_meter_no = new FocusNode();
-    _lightning_common_name = new FocusNode();
-    _lightning_father_name = new FocusNode();
   }
 
   @override
@@ -149,11 +140,8 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
-                                maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                    
-                                  ],
+                                  maxLength: 120,
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -163,13 +151,6 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                           : localdata.lightning_meter_no,
                                   headerlablekey:
                                       setapptext(key: 'key_meter_number'),
-                                  fieldfocus: _lightning_meter_no,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _lightning_meter_no.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_lightning_common_name);
-                                  },
                                   radiovalue:
                                       localdata.lightning_meter_no?.isEmpty ??
                                               true
@@ -191,11 +172,8 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                maxLength: 120,
-                                  inputFormatters: [
-                                   
-                                    
-                                  ],
+                                  maxLength: 120,
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
@@ -205,13 +183,6 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                           : localdata.lightning_common_name,
                                   headerlablekey:
                                       setapptext(key: 'key_Common_name'),
-                                  fieldfocus: _lightning_common_name,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _lightning_common_name.unfocus();
-                                    FocusScope.of(context)
-                                        .requestFocus(_lightning_father_name);
-                                  },
                                   radiovalue: localdata
                                               .lightning_common_name?.isEmpty ??
                                           true
@@ -219,15 +190,7 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                       : CheckColor.Green,
                                   // hinttextkey:
                                   //     setapptext(key: 'key_enter_1st_surveyor'),
-                                  validator: (value) {
-                                    if (!(value?.isEmpty ?? true)) {
-                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                          .hasMatch(value)) {
-                                        return setapptext(
-                                            key: 'key_text_format_error');
-                                      }
-                                    }
-                                  },
+                                  validator: (value) {},
                                   onSaved: (value) {
                                     localdata.lightning_common_name =
                                         value.trim();
@@ -238,11 +201,8 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                    
-                                  ],
+                                  maxLength: 120,
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
@@ -252,11 +212,6 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                       : localdata.lightning_father_name,
                                   headerlablekey:
                                       setapptext(key: 'key_subscriber_father'),
-                                  fieldfocus: _lightning_father_name,
-                                  textInputAction: TextInputAction.done,
-                                  onFieldSubmitted: (_) {
-                                    _lightning_father_name.unfocus();
-                                  },
                                   radiovalue: localdata
                                               .lightning_father_name?.isEmpty ??
                                           true
@@ -264,15 +219,7 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                       : CheckColor.Green,
                                   // hinttextkey:
                                   //     setapptext(key: 'key_enter_1st_surveyor'),
-                                  validator: (value) {
-                                    if (!(value?.isEmpty ?? true)) {
-                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                          .hasMatch(value)) {
-                                        return setapptext(
-                                            key: 'key_text_format_error');
-                                      }
-                                    }
-                                  },
+                                  validator: (value) {},
                                   onSaved: (value) {
                                     localdata.lightning_father_name =
                                         value.trim();

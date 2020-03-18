@@ -24,10 +24,7 @@ class SafariBookletPage extends StatefulWidget {
 class _SafariBookletPageState extends State<SafariBookletPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
-  FocusNode _safari_booklet_common_name;
-  FocusNode _safari_booklet_father_name;
-  FocusNode _safari_booklet_machinegun_no;
-  FocusNode _safari_booklet_issue_date;
+
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
   }
@@ -115,10 +112,6 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
     localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
     super.initState();
-    _safari_booklet_common_name = new FocusNode();
-    _safari_booklet_father_name = new FocusNode();
-    _safari_booklet_machinegun_no = new FocusNode();
-    _safari_booklet_issue_date = new FocusNode();
   }
 
   @override
@@ -150,11 +143,8 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                           child: ListView(
                             children: <Widget>[
                               formcardtextfield(
-                                maxLength: 120,
-                                  inputFormatters: [
-                                   
-                                    
-                                  ],
+                                  maxLength: 120,
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
@@ -165,13 +155,6 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                       : localdata.safari_booklet_common_name,
                                   headerlablekey:
                                       setapptext(key: 'key_Common_name'),
-                                  fieldfocus: _safari_booklet_common_name,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _safari_booklet_common_name.unfocus();
-                                    FocusScope.of(context).requestFocus(
-                                        _safari_booklet_father_name);
-                                  },
                                   radiovalue: localdata
                                               .safari_booklet_common_name
                                               ?.isEmpty ??
@@ -180,15 +163,7 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                       : CheckColor.Green,
                                   // hinttextkey:
                                   //     setapptext(key: 'key_enter_1st_surveyor'),
-                                  validator: (value) {
-                                    if (value.isNotEmpty) {
-                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                          .hasMatch(value)) {
-                                        return setapptext(
-                                            key: 'key_text_format_error');
-                                      }
-                                    }
-                                  },
+                                  validator: (value) {},
                                   onSaved: (value) {
                                     localdata.safari_booklet_common_name =
                                         value.trim();
@@ -199,11 +174,8 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                maxLength: 120,
-                                  inputFormatters: [
-                                 
-                                    
-                                  ],
+                                  maxLength: 120,
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
@@ -214,13 +186,6 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                       : localdata.safari_booklet_father_name,
                                   headerlablekey:
                                       setapptext(key: 'key_subscriber_father'),
-                                  fieldfocus: _safari_booklet_father_name,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _safari_booklet_father_name.unfocus();
-                                    FocusScope.of(context).requestFocus(
-                                        _safari_booklet_machinegun_no);
-                                  },
                                   radiovalue: localdata
                                               .safari_booklet_father_name
                                               ?.isEmpty ??
@@ -229,15 +194,7 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                       : CheckColor.Green,
                                   // hinttextkey:
                                   //     setapptext(key: 'key_enter_1st_surveyor'),
-                                  validator: (value) {
-                                    if (value.isNotEmpty) {
-                                      if (!RegExp(r'^[a-zA-Z_ ]*$')
-                                          .hasMatch(value)) {
-                                        return setapptext(
-                                            key: 'key_text_format_error');
-                                      }
-                                    }
-                                  },
+                                  validator: (value) {},
                                   onSaved: (value) {
                                     localdata.safari_booklet_father_name =
                                         value.trim();
@@ -248,11 +205,8 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                maxLength: 120,
-                                  inputFormatters: [
-                                  
-                                    
-                                  ],
+                                  maxLength: 120,
+                                  inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue: localdata
@@ -263,13 +217,6 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                       : localdata.safari_booklet_machinegun_no,
                                   headerlablekey: setapptext(
                                       key: 'key_Safari_Machine_Gun_Number'),
-                                  fieldfocus: _safari_booklet_machinegun_no,
-                                  textInputAction: TextInputAction.next,
-                                  onFieldSubmitted: (_) {
-                                    _safari_booklet_machinegun_no.unfocus();
-                                    FocusScope.of(context).requestFocus(
-                                        _safari_booklet_issue_date);
-                                  },
                                   radiovalue: localdata
                                               .safari_booklet_machinegun_no
                                               ?.isEmpty ??

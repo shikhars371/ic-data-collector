@@ -24,13 +24,6 @@ class DocVerificationPage extends StatefulWidget {
 class _DocVerificationPageState extends State<DocVerificationPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
-  FocusNode _issued_on;
-  FocusNode _place_of_issue;
-  FocusNode _property_number;
-  FocusNode _document_cover;
-  FocusNode _document_page;
-  FocusNode _doc_reg_number;
-  FocusNode _land_area_qawwala;
   bool enable = false;
 
   String setapptext({String key}) {
@@ -139,13 +132,6 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
     localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
     super.initState();
-    _issued_on = new FocusNode();
-    _place_of_issue = new FocusNode();
-    _property_number = new FocusNode();
-    _document_cover = new FocusNode();
-    _document_page = new FocusNode();
-    _doc_reg_number = new FocusNode();
-    _land_area_qawwala = new FocusNode();
   }
 
   @override
@@ -397,9 +383,7 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                 ),
                                 formcardtextfield(
                                     maxLength: 120,
-                                    inputFormatters: [
-                                      
-                                    ],
+                                    inputFormatters: [],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue:
@@ -409,13 +393,6 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                             : localdata.place_of_issue,
                                     headerlablekey:
                                         setapptext(key: 'key_Place_of_Issue'),
-                                    fieldfocus: _place_of_issue,
-                                    textInputAction: TextInputAction.next,
-                                    onFieldSubmitted: (_) {
-                                      _place_of_issue.unfocus();
-                                      FocusScope.of(context)
-                                          .requestFocus(_property_number);
-                                    },
                                     radiovalue:
                                         localdata.place_of_issue?.isEmpty ??
                                                 true
@@ -430,9 +407,7 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                     }),
                                 formcardtextfield(
                                     maxLength: 120,
-                                    inputFormatters: [
-                                      
-                                    ],
+                                    inputFormatters: [],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue:
@@ -442,13 +417,6 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                             : localdata.property_number,
                                     headerlablekey:
                                         setapptext(key: 'key_Property_Number'),
-                                    fieldfocus: _property_number,
-                                    textInputAction: TextInputAction.next,
-                                    onFieldSubmitted: (_) {
-                                      _property_number.unfocus();
-                                      FocusScope.of(context)
-                                          .requestFocus(_document_cover);
-                                    },
                                     radiovalue:
                                         localdata.property_number?.isEmpty ??
                                                 true
@@ -463,9 +431,7 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                     }),
                                 formcardtextfield(
                                     maxLength: 120,
-                                    inputFormatters: [
-                                      
-                                    ],
+                                    inputFormatters: [],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue:
@@ -475,13 +441,6 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                             : localdata.document_cover,
                                     headerlablekey:
                                         setapptext(key: 'key_Document_Cover'),
-                                    fieldfocus: _document_cover,
-                                    textInputAction: TextInputAction.next,
-                                    onFieldSubmitted: (_) {
-                                      _document_cover.unfocus();
-                                      FocusScope.of(context)
-                                          .requestFocus(_document_page);
-                                    },
                                     radiovalue:
                                         localdata.document_cover?.isEmpty ??
                                                 true
@@ -496,9 +455,7 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                     }),
                                 formcardtextfield(
                                     maxLength: 120,
-                                    inputFormatters: [
-                                      
-                                    ],
+                                    inputFormatters: [],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue:
@@ -507,13 +464,6 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                             : localdata.document_page,
                                     headerlablekey:
                                         setapptext(key: 'key_Document_Page'),
-                                    fieldfocus: _document_page,
-                                    textInputAction: TextInputAction.next,
-                                    onFieldSubmitted: (_) {
-                                      _document_page.unfocus();
-                                      FocusScope.of(context)
-                                          .requestFocus(_doc_reg_number);
-                                    },
                                     radiovalue:
                                         localdata.document_page?.isEmpty ?? true
                                             ? CheckColor.Black
@@ -527,9 +477,7 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                     }),
                                 formcardtextfield(
                                     maxLength: 120,
-                                    inputFormatters: [
-                                      
-                                    ],
+                                    inputFormatters: [],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue:
@@ -540,13 +488,6 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                     headerlablekey: setapptext(
                                         key:
                                             'key_Document_Registration_Number'),
-                                    fieldfocus: _doc_reg_number,
-                                    textInputAction: TextInputAction.next,
-                                    onFieldSubmitted: (_) {
-                                      _doc_reg_number.unfocus();
-                                      FocusScope.of(context)
-                                          .requestFocus(_land_area_qawwala);
-                                    },
                                     radiovalue:
                                         localdata.doc_reg_number?.isEmpty ??
                                                 true
@@ -561,9 +502,7 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                     }),
                                 formcardtextfield(
                                     maxLength: 120,
-                                    inputFormatters: [
-                                      
-                                    ],
+                                    inputFormatters: [],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue:
@@ -573,11 +512,6 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                             : localdata.land_area_qawwala,
                                     headerlablekey: setapptext(
                                         key: 'key_Land_area_in_Qawwala'),
-                                    fieldfocus: _land_area_qawwala,
-                                    textInputAction: TextInputAction.done,
-                                    onFieldSubmitted: (_) {
-                                      _land_area_qawwala.unfocus();
-                                    },
                                     radiovalue:
                                         localdata.land_area_qawwala?.isEmpty ??
                                                 true
