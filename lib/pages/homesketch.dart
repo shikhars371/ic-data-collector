@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:kapp/pages/fourlimit.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
@@ -10,6 +9,8 @@ import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
 import '../widgets/appformcards.dart';
 import './task.dart';
+import './buildinginfo.dart';
+import './fourlimit.dart';
 
 class HomeSketchPage extends StatefulWidget {
   HomeSketchPage({this.localdata});
@@ -46,13 +47,24 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
   Widget backbutton() {
     return GestureDetector(
       onTap: () {
-        Navigator.pushReplacement(
-            context,
-            PageTransition(
-                child: FourLimitPage(
-                  localdata: localdata,
-                ),
-                type: PageTransitionType.leftToRight));
+        if ((localdata.current_use_of_property == "7") ||
+            (localdata.current_use_of_property == "10")) {
+          Navigator.pushReplacement(
+              context,
+              PageTransition(
+                  child: FourLimitPage(
+                    localdata: localdata,
+                  ),
+                  type: PageTransitionType.leftToRight));
+        } else {
+          Navigator.pushReplacement(
+              context,
+              PageTransition(
+                  child: BuildingInfoPage(
+                    localdata: localdata,
+                  ),
+                  type: PageTransitionType.leftToRight));
+        }
       },
       child: Container(
         child: Row(

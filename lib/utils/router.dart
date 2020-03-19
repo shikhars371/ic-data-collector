@@ -10,6 +10,8 @@ import '../pages/help.dart';
 import '../pages/surveyinfo.dart';
 import '../main.dart';
 import '../pages/homepage.dart';
+import '../pages/reworktask.dart';
+import '../pages/reworklist.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -40,6 +42,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => MyHomePage());
     case routers.DashboardRoute:
       return MaterialPageRoute(builder: (context) => HomePage());
+    case routers.ReworkTask:
+      return MaterialPageRoute(builder: (context) => ReworkTaskPage());
+    case routers.ReworkList:
+      return MaterialPageRoute(builder: (context) => RewokListPage());
     default:
       return MaterialPageRoute(
         builder: (context) => Scaffold(

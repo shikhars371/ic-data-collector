@@ -42,7 +42,7 @@
     "key_unit_number": "Unit No (4 Digits):",
     "key_number_of_unit": "Please enter the number of units per parcel:",
     "key_state_name": "Street/Road name:",
-    "key_historycal_site": "Location's occupation age:",
+    "key_historycal_site": "Please Enter the age:",
     "key_land_area": "Parcel/Unit area (in sqm):",
     "key_type_ownership": "Ownership Type:",
     "key_solo": "Private",
@@ -306,5 +306,7 @@
     "key_only_email": "Email",
     "key_notify_no_sync": "Please check you have some Pending survey to sync from last two days.",
     "key_limit_four": "*Value should be of 4 digit",
-    "key_home":"HomePage"
+    "key_home": "HomePage",
+    "key_newsurvey": "New Survey",
+    "key_rework": "Rework"
 }

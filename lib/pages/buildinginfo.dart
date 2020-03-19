@@ -166,7 +166,12 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                           true
                                       ? "0"
                                       : localdata.fst_have_building,
-                                  iscompleted: fsthavingbuilding,
+                                  iscompleted: ((localdata
+                                                  .fst_have_building?.isEmpty ??
+                                              true) ||
+                                          (localdata.fst_have_building == "0"))
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
                                   headerlablekey: setapptext(
                                       key: 'key_does_property_building'),
                                   dropdownitems: [
@@ -362,9 +367,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     }),
                                 formcardtextfield(
                                     maxLength: 120,
-                                    inputFormatters: [
-                                      
-                                    ],
+                                    inputFormatters: [],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue: localdata
@@ -391,9 +394,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     }),
                                 formcardtextfield(
                                     maxLength: 3,
-                                    inputFormatters: [
-                                      
-                                    ],
+                                    inputFormatters: [],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -426,9 +427,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     }),
                                 formcardtextfield(
                                     maxLength: 6,
-                                    inputFormatters: [
-                                      
-                                    ],
+                                    inputFormatters: [],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -654,9 +653,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     }),
                                 formcardtextfield(
                                     maxLength: 120,
-                                    inputFormatters: [
-                                      
-                                    ],
+                                    inputFormatters: [],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue: localdata
@@ -683,9 +680,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     }),
                                 formcardtextfield(
                                     maxLength: 3,
-                                    inputFormatters: [
-                                      
-                                    ],
+                                    inputFormatters: [],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -717,9 +712,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     }),
                                 formcardtextfield(
                                     maxLength: 6,
-                                    inputFormatters: [
-                                      
-                                    ],
+                                    inputFormatters: [],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -938,9 +931,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     }),
                                 formcardtextfield(
                                     maxLength: 120,
-                                    inputFormatters: [
-                                      
-                                    ],
+                                    inputFormatters: [],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue: localdata
@@ -967,9 +958,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     }),
                                 formcardtextfield(
                                     maxLength: 3,
-                                    inputFormatters: [
-                                      
-                                    ],
+                                    inputFormatters: [],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -1002,9 +991,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     }),
                                 formcardtextfield(
                                     maxLength: 6,
-                                    inputFormatters: [
-                                      
-                                    ],
+                                    inputFormatters: [],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -1221,9 +1208,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     }),
                                 formcardtextfield(
                                     maxLength: 120,
-                                    inputFormatters: [
-                                      
-                                    ],
+                                    inputFormatters: [],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue: localdata.forth_specifyif_other
@@ -1257,9 +1242,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     }),
                                 formcardtextfield(
                                     maxLength: 3,
-                                    inputFormatters: [
-                                      
-                                    ],
+                                    inputFormatters: [],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -1294,9 +1277,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     }),
                                 formcardtextfield(
                                     maxLength: 6,
-                                    inputFormatters: [
-                                      
-                                    ],
+                                    inputFormatters: [],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -1506,9 +1487,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     }),
                                 formcardtextfield(
                                     maxLength: 120,
-                                    inputFormatters: [
-                                      
-                                    ],
+                                    inputFormatters: [],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue: localdata
@@ -1542,9 +1521,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     }),
                                 formcardtextfield(
                                     maxLength: 3,
-                                    inputFormatters: [
-                                      
-                                    ],
+                                    inputFormatters: [],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,
@@ -1576,9 +1553,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     }),
                                 formcardtextfield(
                                     maxLength: 6,
-                                    inputFormatters: [
-                                      
-                                    ],
+                                    inputFormatters: [],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     keyboardtype: TextInputType.number,

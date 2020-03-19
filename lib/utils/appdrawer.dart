@@ -37,10 +37,10 @@ class _AppDrawerState extends State<AppDrawer> {
   String appVersion = "";
 
   final drawerItems = [
-    DrawerItem("key_tasks", Icons.assignment), //page index = 0
-    DrawerItem("key_language", Icons.language), //page index = 1
-    // DrawerItem("key_guide", Icons.book), //page index = 2
-    // DrawerItem("key_help", Icons.help), //page index = 2
+    // DrawerItem("key_home", Icons.home), //page index = 0
+    DrawerItem("key_tasks", Icons.assignment), //page index = 1
+    // DrawerItem("key_rework", Icons.restore_page), //page index = 2
+    DrawerItem("key_language", Icons.language), //page index = 3
   ];
   @override
   void initState() {
@@ -86,13 +86,13 @@ class _AppDrawerState extends State<AppDrawer> {
 
   _pageNavigator(int page) {
     if (page == 0) {
-      _navigationService.navigateRepalceTo(routeName: routes.TaskRoute);
+      _navigationService.navigateRepalceTo(routeName: routes.DashboardRoute);
     } else if (page == 1) {
-      _navigationService.navigateRepalceTo(routeName: routes.LanguageRoute);
+      _navigationService.navigateRepalceTo(routeName: routes.TaskRoute);
     } else if (page == 2) {
-      _navigationService.navigateRepalceTo(routeName: routes.GuideRoute);
+      _navigationService.navigateRepalceTo(routeName: routes.ReworkTask);
     } else if (page == 3) {
-      _navigationService.navigateRepalceTo(routeName: routes.HelpRoute);
+      _navigationService.navigateRepalceTo(routeName: routes.LanguageRoute);
     }
   }
 
@@ -189,16 +189,19 @@ class _AppDrawerState extends State<AppDrawer> {
                     color: Colors.blue,
                   ),
                   currentAccountPicture: new CircleAvatar(
-                    radius: 50.0,
-                    child: Icon(Icons.assignment,size: 50,)
-                    //  CachedNetworkImage(
-                    //   imageUrl:
-                    //       'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTnx9gugwptmYiJSoH38ftixCTsOiX86pseDJUG8nTONwADCQUS',
-                    //   placeholder: (context, url) =>
-                    //       CircularProgressIndicator(),
-                    //   errorWidget: (context, url, error) => Icon(Icons.person),
-                    // ),
-                  ),
+                      radius: 50.0,
+                      child: Icon(
+                        Icons.assignment,
+                        size: 50,
+                      )
+                      //  CachedNetworkImage(
+                      //   imageUrl:
+                      //       'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTnx9gugwptmYiJSoH38ftixCTsOiX86pseDJUG8nTONwADCQUS',
+                      //   placeholder: (context, url) =>
+                      //       CircularProgressIndicator(),
+                      //   errorWidget: (context, url, error) => Icon(Icons.person),
+                      // ),
+                      ),
                   accountEmail: Text(_user?.isEmpty ?? true ? "" : _user),
                   accountName: Text(_email?.isEmpty ?? true ? "" : _email),
                   otherAccountsPictures: <Widget>[

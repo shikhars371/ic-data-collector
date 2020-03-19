@@ -306,5 +306,7 @@
     "key_only_email": "Email",
     "key_notify_no_sync": "Please check you have some Pending survey to sync from last two days.",
     "key_limit_four": "*Value should be of 4 digit",
-    "key_home":"HomePage"
+    "key_home":"HomePage",
+    "key_newsurvey": "New Survey",
+    "key_rework": "Rework"
 }

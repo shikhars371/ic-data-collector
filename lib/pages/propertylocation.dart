@@ -608,7 +608,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  fieldrequired: true,
+                                  keyboardtype: TextInputType.number,
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   inputFormatters: [
@@ -619,7 +619,6 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                       localdata.unit_in_parcel?.isEmpty ?? true
                                           ? ""
                                           : localdata.unit_in_parcel,
-                                  keyboardtype: TextInputType.number,
                                   headerlablekey:
                                       setapptext(key: 'key_number_of_unit'),
                                   radiovalue:
@@ -660,7 +659,8 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     setState(() {});
                                   }),
                               formcardtextfield(
-                                  maxLength: 120,
+                                  keyboardtype: TextInputType.number,
+                                  maxLength: 4,
                                   inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
@@ -676,8 +676,6 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                               true
                                           ? CheckColor.Black
                                           : CheckColor.Green,
-                                  hinttextkey:
-                                      setapptext(key: 'key_enter_1st_surveyor'),
                                   onSaved: (value) {
                                     localdata.historic_site_area = value.trim();
                                   },

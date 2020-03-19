@@ -1246,8 +1246,8 @@ class DBHelper with ChangeNotifier {
             break;
           }
         }
-        result = (count == itemcount) ? true : false;
       }
+      result = (count == itemcount) ? true : false;
     } catch (error, stackTrace) {
       Catcher.reportCheckedError(error, stackTrace);
     }

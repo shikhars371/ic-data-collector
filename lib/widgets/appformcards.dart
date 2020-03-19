@@ -129,6 +129,7 @@ Widget formcardtextfield(
             Padding(
               padding: const EdgeInsets.only(left: 8, right: 8, bottom: 10),
               child: TextFormField(
+                autofocus: false,
                 textDirection: locator<LanguageService>().currentlanguage == 0
                     ? TextDirection.ltr
                     : TextDirection.rtl,
