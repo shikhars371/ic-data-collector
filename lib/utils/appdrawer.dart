@@ -37,9 +37,9 @@ class _AppDrawerState extends State<AppDrawer> {
   String appVersion = "";
 
   final drawerItems = [
-    // DrawerItem("key_home", Icons.home), //page index = 0
+    DrawerItem("key_home", Icons.home), //page index = 0
     DrawerItem("key_tasks", Icons.assignment), //page index = 1
-    // DrawerItem("key_rework", Icons.restore_page), //page index = 2
+    DrawerItem("key_rework", Icons.restore_page), //page index = 2
     DrawerItem("key_language", Icons.language), //page index = 3
   ];
   @override
