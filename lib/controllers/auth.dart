@@ -11,8 +11,8 @@ import '../configs/configuration.dart';
 import '../utils/navigation_service.dart';
 import '../utils/route_paths.dart' as routes;
 import '../utils/locator.dart';
+import '../utils/appstate.dart';
 
-enum AppState { Idle, Busy }
 
 class AuthModel with ChangeNotifier {
   final NavigationService _navigationService = locator<NavigationService>();

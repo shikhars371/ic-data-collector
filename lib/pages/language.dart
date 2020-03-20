@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kapp/controllers/auth.dart';
 import 'package:kapp/utils/db_helper.dart';
 import 'package:provider/provider.dart';
 
@@ -7,6 +6,7 @@ import '../localization/app_translations.dart';
 import '../utils/navigation_service.dart';
 import '../utils/route_paths.dart' as routes;
 import '../utils/locator.dart';
+import '../utils/appstate.dart';
 
 class LanguagePage extends StatefulWidget {
   @override

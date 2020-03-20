@@ -1,18 +1,17 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
 
 import '../models/localpropertydata.dart';
-import '../controllers/auth.dart';
 import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
 import '../widgets/appformcards.dart';
 import './typeofuse.dart';
 import './propertydetails.dart';
+import '../utils/appstate.dart';
 
 class DocVerificationPage extends StatefulWidget {
   DocVerificationPage({this.localdata});

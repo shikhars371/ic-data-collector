@@ -11,6 +11,7 @@ import '../widgets/appformcards.dart';
 import './firstpartnerinfo.dart';
 import './typeofuse.dart';
 import './propertydetails.dart';
+import '../utils/appstate.dart';
 
 class BusinessLicensePage extends StatefulWidget {
   BusinessLicensePage({this.localdata});

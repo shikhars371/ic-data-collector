@@ -27,6 +27,7 @@ class TaskModel with ChangeNotifier {
     var connectivityResult = await (Connectivity().checkConnectivity());
     SharedPreferences preferences = await SharedPreferences.getInstance();
     try {
+      _surveyAssignments = [];
       setState(AppState.Busy);
       if (connectivityResult == ConnectivityResult.mobile ||
           connectivityResult == ConnectivityResult.wifi) {

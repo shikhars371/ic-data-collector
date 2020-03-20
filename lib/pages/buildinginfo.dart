@@ -11,6 +11,7 @@ import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
 import '../widgets/appformcards.dart';
 import './typepropertyuser.dart';
+import '../utils/appstate.dart';
 
 class BuildingInfoPage extends StatefulWidget {
   BuildingInfoPage({this.localdata});

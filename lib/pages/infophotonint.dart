@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:kapp/pages/firstpartnerinfo.dart';
 import 'package:kapp/pages/fourlimit.dart';
 import 'package:kapp/pages/otherpartnerinfo.dart';
@@ -8,7 +7,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '../models/localpropertydata.dart';
-import '../controllers/auth.dart';
+import '../utils/appstate.dart';
 import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
 import '../widgets/appformcards.dart';

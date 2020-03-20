@@ -5,7 +5,7 @@ import 'package:page_transition/page_transition.dart';
 import '../localization/app_translations.dart';
 import '../models/localpropertydata.dart';
 import '../utils/db_helper.dart';
-import '../controllers/auth.dart';
+import '../utils/appstate.dart';
 import './generalinfoone.dart';
 import '../widgets/appformcards.dart';
 import '../models/surveyAssignment.dart';

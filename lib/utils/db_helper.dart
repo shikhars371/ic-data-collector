@@ -7,8 +7,10 @@ import 'package:catcher/catcher_plugin.dart';
 import 'package:intl/intl.dart';
 
 import '../models/surveyAssignment.dart';
-import '../controllers/auth.dart';
+import '../models/reworkassignment.dart';
 import '../models/localpropertydata.dart';
+import '../controllers/reworktask.dart';
+import '../utils/appstate.dart';
 
 class DBHelper with ChangeNotifier {
   AppState _state = AppState.Idle;
@@ -39,11 +41,23 @@ class DBHelper with ChangeNotifier {
   initDatabase() async {
     io.Directory documentDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentDirectory.path, 'sparcoccollector.db');
-    var db = await openDatabase(path, version: 1, onCreate: _onCreate);
+    var db = await openDatabase(path, version: 2, onCreate: _onCreate);
     return db;
   }
 
   _onCreate(Database db, int version) async {
+    await db.execute('''
+        CREATE TABLE IF NOT EXISTS reworklist (
+          sid TEXT PRIMARY KEY UNIQUE,propertyid TEXT,upin TEXT,surveylead TEXT,
+          surveyleadname TEXT,surveyorone TEXT,surveyortwo TEXT,
+          surveyoronename TEXT,surveyortwoname TEXT,
+          province TEXT,municipality TEXT, nahia TEXT,gozar TEXT,
+          block TEXT,unit TEXT,parcelno TEXT,remarks TEXT,reworktype TEXT,status TEXT,surveystatus TEXT,
+          isdeleted INTEGER DEFAULT 0,appstatus INTEGER DEFAULT 0
+        )
+        ''').catchError((onError) {
+      Catcher.reportCheckedError(onError, "stackTrace");
+    });
     await db.execute('''
         CREATE TABLE IF NOT EXISTS surveylist (
           id TEXT PRIMARY KEY UNIQUE,teamlead TEXT,
@@ -333,57 +347,21 @@ class DBHelper with ChangeNotifier {
       var dbClient = await db;
       String sqlquery = '''
         INSERT INTO propertysurvey(taskid,
-        local_property_key,
-        other_key,
-        surveyoroneid,
-        surveyortwoid,
-        surveyleadid,
-        first_surveyor_name,
-        senond_surveyor_name,
-        technical_support_name,
-        property_dispte_subject_to,
-        real_person_status,
-        cityzenship_notice,
-        issue_regarding_property,
-        municipality_ref_number,
-        natural_threaten,
-        status_of_area_plan,
-        status_of_area_official,
-        status_of_area_regular,
-        slope_of_area,
-        province,
-        city,
-        area,
-        pass,
-        block,
-        part_number,
-        unit_number,
-        unit_in_parcel,
-        street_name,
-        historic_site_area,
-        land_area,
-        property_type,
-        location_of_land_area,
-        property_have_document,
-        document_type,
-        issued_on,
-        place_of_issue,
-        property_number,
-        document_cover,
-        document_page,
-        doc_reg_number,
-        land_area_qawwala,
-        property_doc_photo_1,
-        property_doc_photo_2,
-        property_doc_photo_3,
-        property_doc_photo_4,
-        odinary_doc_photo1,
-        odinary_doc_photo6,
-        use_in_property_doc,
-        current_use_of_property,
-        type_of_use_other,
-        redeemable_property,proprietary_properties,
-        govt_property,specified_current_use,unspecified_current_use_type,
+        local_property_key,other_key,surveyoroneid,surveyortwoid,
+        surveyleadid,first_surveyor_name,senond_surveyor_name,
+        technical_support_name,property_dispte_subject_to,
+        real_person_status,cityzenship_notice,issue_regarding_property,
+        municipality_ref_number,natural_threaten,status_of_area_plan,
+        status_of_area_official,status_of_area_regular,slope_of_area,
+        province,city,area,pass,block,part_number,unit_number,
+        unit_in_parcel,street_name,historic_site_area,land_area,
+        property_type,location_of_land_area,property_have_document,
+        document_type,issued_on,place_of_issue,property_number,
+        document_cover,document_page,doc_reg_number,land_area_qawwala,
+        property_doc_photo_1,property_doc_photo_2,property_doc_photo_3,
+        property_doc_photo_4,odinary_doc_photo1,odinary_doc_photo6,
+        use_in_property_doc,current_use_of_property,type_of_use_other,
+        redeemable_property,proprietary_properties,govt_property,specified_current_use,unspecified_current_use_type,
         number_of_business_unit,business_unit_have_no_license,business_license_another,
         first_partner_name,first_partner_surname,first_partner_boy,
         first_partner__father,first_partner_name_gender,
@@ -1305,10 +1283,142 @@ class DBHelper with ChangeNotifier {
           addedsurvey.add(item);
         }
       }
-    } catch (e) {
-      print(e);
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
     }
     return addedsurvey;
+  }
+
+  Future<int> addReworkSurvey(
+      {List<ReworkAssignment> reworkassignments}) async {
+    setState(AppState.Busy);
+    int result = 0;
+    try {
+      var dbClient = await db;
+      if (!(reworkassignments?.isEmpty ?? true)) {
+        for (var item in reworkassignments) {
+          bool isexist = await isReworkExist(id: item.sid);
+          if (isexist) {
+            //if data exist check data modified or not
+            //TODO
+          } else {
+            //insert data into local reworklist table
+            String sqlquery = '''
+          INSERT INTO reworklist(
+          sid,propertyid,upin,surveylead,surveyleadname,surveyorone,
+          surveyortwo,surveyoronename,surveyortwoname,province,
+          municipality,nahia,gozar,block,unit,parcelno,remarks,
+          reworktype,status,surveystatus)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+          ''';
+            List<dynamic> params = [
+              item.sid,
+              item.propertyid,
+              item.upin,
+              item.surveylead,
+              item.surveyleadname,
+              item.surveyor1,
+              item.surveyor2,
+              item.surveyoronename,
+              item.surveyortwoname,
+              item.province,
+              item.municipality,
+              item.nahia,
+              item.gozar,
+              item.block,
+              item.unit,
+              item.parcelno,
+              item.remarks,
+              item.reworktype,
+              item.status,
+              item.surveystatus
+            ];
+            result = await dbClient.rawInsert(sqlquery, params);
+            //insert data into local property survey table
+            var ispropertyexist = await ifpropertyexist(
+              localkey: (item.province +
+                  item.municipality +
+                  item.nahia +
+                  item.gozar +
+                  item.block +
+                  item.parcelno +
+                  item.unit),
+            );
+            if (!ispropertyexist) {
+              ReworkTask().downLoadPropertyData(propertyid: item.propertyid);
+            }
+          }
+        }
+      }
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
+    }
+    setState(AppState.Idle);
+    return result;
+  }
+
+  Future<List<ReworkAssignment>> getReworkSurvey([String sid]) async {
+    setState(AppState.Busy);
+    List<ReworkAssignment> _reworks = new List<ReworkAssignment>();
+    try {
+      var dbClient = await db;
+      String sqlquery;
+      List<dynamic> parms = [];
+      if (sid?.isEmpty ?? true) {
+        sqlquery = 'select * from reworklist';
+      } else {
+        sqlquery = 'select * from reworklist where sid = ?';
+        parms = [sid];
+      }
+      List<Map> maps = await dbClient.rawQuery(sqlquery, parms);
+      if (!(maps?.isEmpty ?? true)) {
+        for (var item in maps) {
+          _reworks.add(
+            ReworkAssignment(
+                sid: item['sid'],
+                propertyid: item['propertyid'],
+                upin: item['upin'],
+                surveylead: item['surveylead'],
+                surveyleadname: item['surveyleadname'],
+                surveyor1: item['surveyorone'],
+                surveyor2: item['surveyortwo'],
+                surveyoronename: item['surveyoronename'],
+                surveyortwoname: item['surveyortwoname'],
+                province: item['province'],
+                municipality: item['municipality'],
+                nahia: item['nahia'],
+                gozar: item['gozar'],
+                block: item['block'],
+                unit: item['unit'],
+                parcelno: item['parcelno'],
+                remarks: item['remarks'],
+                reworktype: item['reworktype'],
+                status: item['status'],
+                surveystatus: item['surveystatus'],
+                appstatus: item['isdeleted']),
+          );
+        }
+      }
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
+    }
+    setState(AppState.Idle);
+    return _reworks;
+  }
+
+  //return true if that task already exist in local database
+  Future<bool> isReworkExist({String id}) async {
+    setState(AppState.Busy);
+    bool result = false;
+    try {
+      var dbClient = await db;
+      List<Map> maps = await dbClient
+          .rawQuery('select sid from reworklist where sid = ?', [id]);
+      result = (maps?.isEmpty ?? true) ? false : true;
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
+    }
+    setState(AppState.Idle);
+    return result;
   }
 
   Future close() async {

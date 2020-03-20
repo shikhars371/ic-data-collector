@@ -11,14 +11,16 @@ class ReworkAssignment {
   String gozar;
   String block;
   String unit;
+  String parcelno;
   String remarks;
   String reworktype;
   String status;
   String surveystatus;
-  String prevsurveyor1;
-  String prevsurveyor2;
-  String createdAt;
-  String updatedAt;
+  String appstatus;
+  String surveyleadname;
+  String surveyoronename;
+  String surveyortwoname;
+  String updatedate;
 
   ReworkAssignment(
       {this.sid,
@@ -32,15 +34,17 @@ class ReworkAssignment {
       this.nahia,
       this.gozar,
       this.block,
+      this.parcelno,
       this.unit,
       this.remarks,
       this.reworktype,
       this.status,
       this.surveystatus,
-      this.prevsurveyor1,
-      this.prevsurveyor2,
-      this.createdAt,
-      this.updatedAt});
+      this.appstatus,
+      this.surveyleadname,
+      this.surveyoronename,
+      this.surveyortwoname,
+      this.updatedate});
 
   ReworkAssignment.fromJson(Map<String, dynamic> json) {
     sid = json['_id'];
@@ -53,16 +57,14 @@ class ReworkAssignment {
     municipality = json['municipality'];
     nahia = json['nahia'];
     gozar = json['gozar'];
+    parcelno = json['parcel_no'];
     block = json['block'];
     unit = json['unit'];
     remarks = json['remarks'];
     reworktype = json['rework_type'];
     status = json['status'];
     surveystatus = json['surveystatus'];
-    prevsurveyor1 = json['prev_surveyor1'];
-    prevsurveyor2 = json['prev_surveyor2'];
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
+    updatedate = json['updatedAt'];
   }
 
   Map<String, dynamic> toJson() {
@@ -78,15 +80,13 @@ class ReworkAssignment {
     data['nahia'] = this.nahia;
     data['gozar'] = this.gozar;
     data['block'] = this.block;
+    data['parcel_no'] = this.parcelno;
     data['unit'] = this.unit;
     data['remarks'] = this.remarks;
     data['rework_type'] = this.reworktype;
     data['status'] = this.status;
     data['surveystatus'] = this.surveystatus;
-    data['prev_surveyor1'] = this.prevsurveyor1;
-    data['prev_surveyor2'] = this.prevsurveyor2;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
+    data['updatedAt'] = this.updatedate;
     return data;
   }
 }

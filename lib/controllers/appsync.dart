@@ -12,6 +12,7 @@ import './auth.dart';
 import '../models/localpropertydata.dart';
 import '../configs/configuration.dart';
 import '../utils/db_helper.dart';
+import '../utils/appstate.dart';
 
 typedef void OnUploadProgressCallback(int sentBytes, int totalBytes);
 
