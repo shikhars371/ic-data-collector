@@ -46,7 +46,9 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
   Widget nextbutton() {
     return GestureDetector(
       onTap: () async {
-        if (!(_formkey.currentState.validate())) {
+        if (!(_formkey.currentState.validate()) ||
+            (localdata.property_type?.isEmpty ?? true) ||
+            (localdata.property_type == "0")) {
           return;
         } else {
           _formkey.currentState.save();
@@ -661,7 +663,9 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                               formcardtextfield(
                                   keyboardtype: TextInputType.number,
                                   maxLength: 4,
-                                  inputFormatters: [],
+                                  inputFormatters: [
+                                    WhitelistingTextInputFormatter.digitsOnly
+                                  ],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:

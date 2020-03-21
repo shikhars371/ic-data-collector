@@ -189,7 +189,7 @@ class LocalPropertySurvey {
   String fifth_partner_photo_tips2;
   int formval;
   int editmode;
-  int isdrafted;/// 0 -:draft, 1-: saved , 2 -: synced
+  int isdrafted;/// 0 -:draft, 1-: saved , 2 -: synced,3-: assigned for rework
   String boundaryinfonote;
   int isreldocphoto1;
   int isreldocphoto2;

@@ -57,9 +57,9 @@ class _LanguagePageState extends State<LanguagePage> {
   void chnageLanguage({String value, int index}) async {
     var result = await DBHelper().changeLanguage(lang: value, langvalue: index);
     if (result != 0) {
-      _navigationService.navigateRepalceTo(routeName: routes.Homepage);
+      _navigationService.navigateRepalceTo(routeName: routes.DashboardRoute);
     }
-    _navigationService.navigateRepalceTo(routeName: routes.Homepage);
+    _navigationService.navigateRepalceTo(routeName: routes.DashboardRoute);
   }
 
   @override
@@ -75,14 +75,6 @@ class _LanguagePageState extends State<LanguagePage> {
     var screenheight = MediaQuery.of(context).size.height;
     var screenwidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.blue,
-      //   title: Text(
-      //     setapptext(key: 'key_language'),
-      //     style: TextStyle(fontWeight: FontWeight.bold),
-      //   ),
-      // ),
-      // drawer: AppDrawer(),
       body: SingleChildScrollView(
         child: Container(
           child: Consumer<DBHelper>(

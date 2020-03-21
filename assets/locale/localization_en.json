@@ -42,7 +42,7 @@
     "key_unit_number": "Unit No (4 Digits):",
     "key_number_of_unit": "Please enter the number of units per parcel:",
     "key_state_name": "Street/Road name:",
-    "key_historycal_site": "Please Enter the age:",
+    "key_historycal_site": "Locations Occupation Age:",
     "key_land_area": "Parcel/Unit area (in sqm):",
     "key_type_ownership": "Ownership Type:",
     "key_solo": "Private",

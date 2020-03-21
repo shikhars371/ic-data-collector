@@ -180,12 +180,11 @@ class DBHelper with ChangeNotifier {
       CREATE TABLE IF NOT EXISTS applanguage(
         language TEXT,languageval INTEGER
       )
-    ''').catchError((onError) {
-      Catcher.reportCheckedError(onError, "stackTrace");
-    });
-    await db.execute('''
+    ''').then((_) {
+      db.execute('''
       INSERT INTO applanguage(language,languageval)VALUES('English',0)
-    ''').catchError((onError) {
+    ''');
+    }).catchError((onError) {
       Catcher.reportCheckedError(onError, "stackTrace");
     });
   }

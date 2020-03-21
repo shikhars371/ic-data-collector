@@ -4,7 +4,6 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '../models/localpropertydata.dart';
-import '../controllers/auth.dart';
 import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
 import '../widgets/appformcards.dart';
