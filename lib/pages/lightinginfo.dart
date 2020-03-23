@@ -177,7 +177,7 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
                                   initvalue:
-                                      localdata.lightning_meter_no?.isEmpty ??
+                                      localdata.lightning_common_name?.isEmpty ??
                                               true
                                           ? ""
                                           : localdata.lightning_common_name,

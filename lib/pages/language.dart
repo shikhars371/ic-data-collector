@@ -57,9 +57,9 @@ class _LanguagePageState extends State<LanguagePage> {
   void chnageLanguage({String value, int index}) async {
     var result = await DBHelper().changeLanguage(lang: value, langvalue: index);
     if (result != 0) {
-      _navigationService.navigateRepalceTo(routeName: routes.DashboardRoute);
+      _navigationService.navigateRepalceTo(routeName: routes.Homepage);
     }
-    _navigationService.navigateRepalceTo(routeName: routes.DashboardRoute);
+    _navigationService.navigateRepalceTo(routeName: routes.Homepage);
   }
 
   @override

@@ -278,7 +278,7 @@ class AppSync with ChangeNotifier {
             },
             "electricity_bill_info": {
               "meter_no": propertydata.lightning_meter_no,
-              "customer_name": propertydata.lightning_meter_no,
+              "customer_name": propertydata.lightning_common_name,
               "cuntomer_father_name": propertydata.lightning_father_name,
               "ebill_img":
                   propertydata.lightning_picture_bell_power?.isEmpty ?? true

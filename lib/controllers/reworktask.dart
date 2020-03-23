@@ -235,133 +235,259 @@ class ReworkTask with ChangeNotifier {
         responseJson['owner_or_first_partner_info']['photo_person'];
     _localproperty.first_partner_name_mere_individuals =
         responseJson['owner_or_first_partner_info']['note_person'];
-    _localproperty.info_photo_hint_sukuk_number = responseJson[''];
-    _localproperty.info_photo_hint_cover_note = responseJson[''];
-    _localproperty.info_photo_hint_note_page = responseJson[''];
-    _localproperty.info_photo_hint_reg_no = responseJson[''];
-    _localproperty.info_photo_hint_photo_note1 = responseJson[''];
-    _localproperty.info_photo_hint_photo_tips1 = responseJson[''];
-    _localproperty.info_photo_hint_photo_tips2 = responseJson[''];
-    _localproperty.fore_limits_east = responseJson[''];
-    _localproperty.fore_limits_west = responseJson[''];
-    _localproperty.fore_limits_south = responseJson[''];
-    _localproperty.fore_limits_north = responseJson[''];
-    _localproperty.lightning_meter_no = responseJson[''];
-    _localproperty.lightning_common_name = responseJson[''];
-    _localproperty.lightning_father_name = responseJson[''];
-    _localproperty.lightning_picture_bell_power = responseJson[''];
-    _localproperty.safari_booklet_common_name = responseJson[''];
-    _localproperty.safari_booklet_father_name = responseJson[''];
-    _localproperty.safari_booklet_machinegun_no = responseJson[''];
-    _localproperty.safari_booklet_issue_date = responseJson[''];
-    _localproperty.safari_booklet_picture = responseJson[''];
-    _localproperty.property_user_owner = responseJson[''];
-    _localproperty.property_user_master_rent = responseJson[''];
-    _localproperty.property_user_recipient_group = responseJson[''];
-    _localproperty.property_user_no_longer = responseJson[''];
-    _localproperty.property_user_type_of_misconduct = responseJson[''];
-    _localproperty.fst_have_building = responseJson[''];
-    _localproperty.fst_building_use = responseJson[''];
-    _localproperty.fst_building_category = responseJson[''];
-    _localproperty.fst_specifyif_other = responseJson[''];
-    _localproperty.fst_no_of_floors = responseJson[''];
-    _localproperty.fst_cubie_meter = responseJson[''];
-    _localproperty.snd_have_building = responseJson[''];
-    _localproperty.snd_building_use = responseJson[''];
-    _localproperty.snd_building_category = responseJson[''];
-    _localproperty.snd_specifyif_other = responseJson[''];
-    _localproperty.snd_no_of_floors = responseJson[''];
-    _localproperty.snd_cubie_meter = responseJson[''];
-    _localproperty.trd_have_building = responseJson[''];
-    _localproperty.trd_building_use = responseJson[''];
-    _localproperty.trd_building_category = responseJson[''];
-    _localproperty.trd_specifyif_other = responseJson[''];
-    _localproperty.trd_no_of_floors = responseJson[''];
-    _localproperty.trd_cubie_meter = responseJson[''];
-    _localproperty.forth_have_building = responseJson[''];
-    _localproperty.forth_building_use = responseJson[''];
-    _localproperty.forth_building_category = responseJson[''];
-    _localproperty.forth_specifyif_other = responseJson[''];
-    _localproperty.forth_no_of_floors = responseJson[''];
-    _localproperty.forth_cubie_meter = responseJson[''];
-    _localproperty.fth_have_building = responseJson[''];
-    _localproperty.fth_building_use = responseJson[''];
-    _localproperty.fth_building_category = responseJson[''];
-    _localproperty.fth_specifyif_other = responseJson[''];
-    _localproperty.fth_no_of_floors = responseJson[''];
-    _localproperty.fth_cubie_meter = responseJson[''];
-    _localproperty.home_map = responseJson[''];
-    _localproperty.home_photo = responseJson[''];
-    _localproperty.reg_property_fertilizer = responseJson[''];
-    _localproperty.area_unit_release_area = responseJson[''];
-    _localproperty.area_unit_business_area = responseJson[''];
-    _localproperty.area_unit_total_no_unit = responseJson[''];
-    _localproperty.area_unit_business_units = responseJson[''];
-    _localproperty.second_partner_name = responseJson[''];
-    _localproperty.second_partner_surname = responseJson[''];
-    _localproperty.second_partner_boy = responseJson[''];
-    _localproperty.second_partner_father = responseJson[''];
-    _localproperty.second_partner_gender = responseJson[''];
-    _localproperty.second_partner_phone = responseJson[''];
-    _localproperty.second_partner_email = responseJson[''];
-    _localproperty.second_partner_image = responseJson[''];
-    _localproperty.second_partner_machinegun_no = responseJson[''];
-    _localproperty.second_partner_cover_note = responseJson[''];
-    _localproperty.second_partner_note_page = responseJson[''];
-    _localproperty.second_partner_reg_no = responseJson[''];
-    _localproperty.second_partner_phote_note1 = responseJson[''];
-    _localproperty.second_partner_photo_tips1 = responseJson[''];
-    _localproperty.second_partner_photo_tips2 = responseJson[''];
-    _localproperty.third_partner_name = responseJson[''];
-    _localproperty.third_partner_surname = responseJson[''];
-    _localproperty.third_partner_boy = responseJson[''];
-    _localproperty.third_partner_father = responseJson[''];
-    _localproperty.third_partner_gender = responseJson[''];
-    _localproperty.third_partner_phone = responseJson[''];
-    _localproperty.third_partner_email = responseJson[''];
-    _localproperty.third_partner_image = responseJson[''];
-    _localproperty.third_partner_machinegun_no = responseJson[''];
-    _localproperty.third_partner_cover_note = responseJson[''];
-    _localproperty.third_partner_note_page = responseJson[''];
-    _localproperty.third_partner_reg_no = responseJson[''];
-    _localproperty.third_partner_phote_note1 = responseJson[''];
-    _localproperty.third_partner_photo_tips1 = responseJson[''];
-    _localproperty.third_partner_photo_tips2 = responseJson[''];
-    _localproperty.fourth_partner_name = responseJson[''];
-    _localproperty.fourth_partner_surname = responseJson[''];
-    _localproperty.fourth_partner_boy = responseJson[''];
-    _localproperty.fourth_partner_father = responseJson[''];
-    _localproperty.fourth_partner_gender = responseJson[''];
-    _localproperty.fourth_partner_phone = responseJson[''];
-    _localproperty.fourth_partner_email = responseJson[''];
-    _localproperty.fourth_partner_image = responseJson[''];
-    _localproperty.fourth_partner_machinegun_no = responseJson[''];
-    _localproperty.fourth_partner_cover_note = responseJson[''];
-    _localproperty.fourth_partner_note_page = responseJson[''];
-    _localproperty.fourth_partner_reg_no = responseJson[''];
-    _localproperty.fourth_partner_phote_note1 = responseJson[''];
-    _localproperty.fourth_partner_photo_tips1 = responseJson[''];
-    _localproperty.fourth_partner_photo_tips2 = responseJson[''];
-    _localproperty.fifth_partner_name = responseJson[''];
-    _localproperty.fifth_partner_surname = responseJson[''];
-    _localproperty.fifth_partner_boy = responseJson[''];
-    _localproperty.fifth_partner_father = responseJson[''];
-    _localproperty.fifth_partner_gender = responseJson[''];
-    _localproperty.fifth_partner_phone = responseJson[''];
-    _localproperty.fifth_partner_email = responseJson[''];
-    _localproperty.fifth_partner_image = responseJson[''];
-    _localproperty.fifth_partner_machinegun_no = responseJson[''];
-    _localproperty.fifth_partner_cover_note = responseJson[''];
-    _localproperty.fifth_partner_note_page = responseJson[''];
-    _localproperty.fifth_partner_reg_no = responseJson[''];
-    _localproperty.fifth_partner_phote_note1 = responseJson[''];
-    _localproperty.fifth_partner_photo_tips1 = responseJson[''];
-    _localproperty.fifth_partner_photo_tips2 = responseJson[''];
-    _localproperty.formval = responseJson[''];
-    _localproperty.editmode = responseJson[''];
-    _localproperty.isdrafted = responseJson[''];
-    _localproperty.boundaryinfonote = responseJson[''];
-    _localproperty.surveyenddate = responseJson[''];
+    _localproperty.info_photo_hint_sukuk_number =
+        responseJson['tazkira_information']['tazkira_serial_no'];
+    _localproperty.info_photo_hint_cover_note =
+        responseJson['tazkira_information']['tazkira_volume_no'];
+    _localproperty.info_photo_hint_note_page =
+        responseJson['tazkira_information']['tazkira_page_no'];
+    _localproperty.info_photo_hint_reg_no =
+        responseJson['tazkira_information']['tazkira_reg_no'];
+    _localproperty.info_photo_hint_photo_note1 =
+        responseJson['tazkira_information']['tazkira_image_1'];
+    _localproperty.info_photo_hint_photo_tips1 =
+        responseJson['tazkira_information']['tazkira_image_2'];
+    _localproperty.info_photo_hint_photo_tips2 =
+        responseJson['tazkira_information']['tazkira_image_3'];
+    _localproperty.fore_limits_east =
+        responseJson['property_boundaries_info']['East'];
+    _localproperty.fore_limits_west =
+        responseJson['property_boundaries_info']['West'];
+    _localproperty.fore_limits_south =
+        responseJson['property_boundaries_info']['South'];
+    _localproperty.fore_limits_north =
+        responseJson['property_boundaries_info']['North'];
+    _localproperty.lightning_meter_no =
+        responseJson['electricity_bill_info']['meter_no'];
+    _localproperty.lightning_common_name =
+        responseJson['electricity_bill_info']['customer_name'];
+    _localproperty.lightning_father_name =
+        responseJson['electricity_bill_info']['cuntomer_father_name'];
+    _localproperty.lightning_picture_bell_power =
+        responseJson['electricity_bill_info']['ebill_img'];
+    _localproperty.safari_booklet_common_name =
+        responseJson['sanitation_booklet_info']['cust_name'];
+    _localproperty.safari_booklet_father_name =
+        responseJson['sanitation_booklet_info']['cust_father_name'];
+    _localproperty.safari_booklet_machinegun_no =
+        responseJson['sanitation_booklet_info']['sanitation_booklet_serial_no'];
+    _localproperty.safari_booklet_issue_date =
+        responseJson['sanitation_booklet_info']['issue_date'];
+    _localproperty.safari_booklet_picture =
+        responseJson['sanitation_booklet_info']['sanitation_booklet_img'];
+    _localproperty.property_user_owner =
+        responseJson['property_user_info']['owner_occupier'];
+    _localproperty.property_user_master_rent =
+        responseJson['property_user_info']['rental_occupier'];
+    _localproperty.property_user_recipient_group =
+        responseJson['property_user_info']['mortagage_occupier'];
+    _localproperty.property_user_no_longer =
+        responseJson['property_user_info']['other_occupier'];
+    _localproperty.property_user_type_of_misconduct =
+        responseJson['other_occupier_type'];
+    _localproperty.fst_have_building = responseJson['building_structure_info']
+        ['building_structure_1']['building_structure_1_presence'];
+    _localproperty.fst_building_use = responseJson['building_structure_info']
+        ['building_structure_1']['building_1_usage_type'];
+    _localproperty.fst_building_category =
+        responseJson['building_structure_info']['building_structure_1']
+            ['building_1_category'];
+    _localproperty.fst_specifyif_other = responseJson['building_structure_info']
+        ['building_structure_1']['building_1_cat_other'];
+    _localproperty.fst_no_of_floors = responseJson['building_structure_info']
+        ['building_structure_1']['building_1_floor_count'];
+    _localproperty.fst_cubie_meter = responseJson['building_structure_info']
+        ['building_structure_1']['building_1_volume'];
+    _localproperty.snd_have_building = responseJson['building_structure_info']
+        ['building_structure_2']['building_structure_2_presence'];
+    _localproperty.snd_building_use = responseJson['building_structure_info']
+        ['building_structure_2']['building_2_usage_type'];
+    _localproperty.snd_building_category =
+        responseJson['building_structure_info']['building_structure_2']
+            ['building_2_category'];
+    _localproperty.snd_specifyif_other = responseJson['building_structure_info']
+        ['building_structure_2']['building_2_cat_other'];
+    _localproperty.snd_no_of_floors = responseJson['building_structure_info']
+        ['building_structure_2']['building_2_floor_count'];
+    _localproperty.snd_cubie_meter = responseJson['building_structure_info']
+        ['building_structure_2']['building_2_volume'];
+    _localproperty.trd_have_building = responseJson['building_structure_info']
+        ['building_structure_3']['building_structure_3_presence'];
+    _localproperty.trd_building_use = responseJson['building_structure_info']
+        ['building_structure_3']['building_3_usage_type'];
+    _localproperty.trd_building_category =
+        responseJson['building_structure_info']['building_structure_3']
+            ['building_3_category'];
+    _localproperty.trd_specifyif_other = responseJson['building_structure_info']
+        ['building_structure_3']['building_3_cat_other'];
+    _localproperty.trd_no_of_floors = responseJson['building_structure_info']
+        ['building_structure_3']['building_3_floor_count'];
+    _localproperty.trd_cubie_meter = responseJson['building_structure_info']
+        ['building_structure_3']['building_3_volume'];
+    _localproperty.forth_have_building = responseJson['building_structure_info']
+        ['building_structure_4']['building_structure_4_presence'];
+    _localproperty.forth_building_use = responseJson['building_structure_info']
+        ['building_structure_4']['building_4_usage_type'];
+    _localproperty.forth_building_category =
+        responseJson['building_structure_info']['building_structure_4']
+            ['building_4_category'];
+    _localproperty.forth_specifyif_other =
+        responseJson['building_structure_info']['building_structure_4']
+            ['building_4_cat_other'];
+    _localproperty.forth_no_of_floors = responseJson['building_structure_info']
+        ['building_structure_4']['building_4_floor_count'];
+    _localproperty.forth_cubie_meter = responseJson['building_structure_info']
+        ['building_structure_4']['building_4_volume'];
+    _localproperty.fth_have_building = responseJson['building_structure_info']
+        ['building_structure_5']['building_structure_5_presence'];
+    _localproperty.fth_building_use = responseJson['building_structure_info']
+        ['building_structure_5']['building_5_usage_type'];
+    _localproperty.fth_building_category =
+        responseJson['building_structure_info']['building_structure_5']
+            ['building_5_category'];
+    _localproperty.fth_specifyif_other = responseJson['building_structure_info']
+        ['building_structure_5']['building_5_cat_other'];
+    _localproperty.fth_no_of_floors = responseJson['building_structure_info']
+        ['building_structure_5']['building_5_floor_count'];
+    _localproperty.fth_cubie_meter = responseJson['building_structure_info']
+        ['building_structure_5']['building_5_volume'];
+    _localproperty.home_map = responseJson['Sketch'];
+    _localproperty.home_photo = responseJson['HouseImage'];
+    _localproperty.reg_property_fertilizer = responseJson['code'];
+    _localproperty.area_unit_release_area =
+        responseJson['Units_Info']['Residential_Area'];
+    _localproperty.area_unit_business_area =
+        responseJson['Units_Info']['Commercial_Area'];
+    _localproperty.area_unit_total_no_unit =
+        responseJson['Units_Info']['Total_Residential_Units'];
+    _localproperty.area_unit_business_units =
+        responseJson['Units_Info']['Total_Commercial_Units'];
+    _localproperty.second_partner_name =
+        responseJson['property_partners_information']['p2_name'];
+    _localproperty.second_partner_surname =
+        responseJson['property_partners_information']['p2_surname'];
+    _localproperty.second_partner_boy =
+        responseJson['property_partners_information']['p2_father_name'];
+    _localproperty.second_partner_father =
+        responseJson['property_partners_information']['p2_grand_father_name'];
+    _localproperty.second_partner_gender =
+        responseJson['property_partners_information']['p2_gender'];
+    _localproperty.second_partner_phone =
+        responseJson['property_partners_information']['p2_phone_no'];
+    _localproperty.second_partner_email =
+        responseJson['property_partners_information']['p2_email'];
+    _localproperty.second_partner_image =
+        responseJson['property_partners_information']['p2_photo'];
+    _localproperty.second_partner_machinegun_no =
+        responseJson['property_partners_information']['p2_tazkira_serial_no'];
+    _localproperty.second_partner_cover_note =
+        responseJson['property_partners_information']['p2_tazkira_volume_no'];
+    _localproperty.second_partner_note_page =
+        responseJson['property_partners_information']['p2_tazkira_page_no'];
+    _localproperty.second_partner_reg_no =
+        responseJson['property_partners_information']['p2_tazkira_reg_no'];
+    _localproperty.second_partner_phote_note1 =
+        responseJson['property_partners_information']['p2_tazkira_image_1'];
+    _localproperty.second_partner_photo_tips1 =
+        responseJson['property_partners_information']['p2_tazkira_image_2'];
+    _localproperty.second_partner_photo_tips2 =
+        responseJson['property_partners_information']['p2_tazkira_image_3'];
+    _localproperty.third_partner_name =
+        responseJson['property_partners_information'][''];
+    _localproperty.third_partner_surname =
+        responseJson['property_partners_information'][''];
+    _localproperty.third_partner_boy =
+        responseJson['property_partners_information'][''];
+    _localproperty.third_partner_father =
+        responseJson['property_partners_information'][''];
+    _localproperty.third_partner_gender =
+        responseJson['property_partners_information'][''];
+    _localproperty.third_partner_phone =
+        responseJson['property_partners_information'][''];
+    _localproperty.third_partner_email =
+        responseJson['property_partners_information'][''];
+    _localproperty.third_partner_image =
+        responseJson['property_partners_information'][''];
+    _localproperty.third_partner_machinegun_no =
+        responseJson['property_partners_information'][''];
+    _localproperty.third_partner_cover_note =
+        responseJson['property_partners_information'][''];
+    _localproperty.third_partner_note_page =
+        responseJson['property_partners_information'][''];
+    _localproperty.third_partner_reg_no =
+        responseJson['property_partners_information'][''];
+    _localproperty.third_partner_phote_note1 =
+        responseJson['property_partners_information'][''];
+    _localproperty.third_partner_photo_tips1 =
+        responseJson['property_partners_information'][''];
+    _localproperty.third_partner_photo_tips2 =
+        responseJson['property_partners_information'][''];
+    _localproperty.fourth_partner_name =
+        responseJson['property_partners_information'][''];
+    _localproperty.fourth_partner_surname =
+        responseJson['property_partners_information'][''];
+    _localproperty.fourth_partner_boy =
+        responseJson['property_partners_information'][''];
+    _localproperty.fourth_partner_father =
+        responseJson['property_partners_information'][''];
+    _localproperty.fourth_partner_gender =
+        responseJson['property_partners_information'][''];
+    _localproperty.fourth_partner_phone =
+        responseJson['property_partners_information'][''];
+    _localproperty.fourth_partner_email =
+        responseJson['property_partners_information'][''];
+    _localproperty.fourth_partner_image =
+        responseJson['property_partners_information'][''];
+    _localproperty.fourth_partner_machinegun_no =
+        responseJson['property_partners_information'][''];
+    _localproperty.fourth_partner_cover_note =
+        responseJson['property_partners_information'][''];
+    _localproperty.fourth_partner_note_page =
+        responseJson['property_partners_information'][''];
+    _localproperty.fourth_partner_reg_no =
+        responseJson['property_partners_information'][''];
+    _localproperty.fourth_partner_phote_note1 =
+        responseJson['property_partners_information'][''];
+    _localproperty.fourth_partner_photo_tips1 =
+        responseJson['property_partners_information'][''];
+    _localproperty.fourth_partner_photo_tips2 =
+        responseJson['property_partners_information'][''];
+    _localproperty.fifth_partner_name =
+        responseJson['property_partners_information'][''];
+    _localproperty.fifth_partner_surname =
+        responseJson['property_partners_information'][''];
+    _localproperty.fifth_partner_boy =
+        responseJson['property_partners_information'][''];
+    _localproperty.fifth_partner_father =
+        responseJson['property_partners_information'][''];
+    _localproperty.fifth_partner_gender =
+        responseJson['property_partners_information'][''];
+    _localproperty.fifth_partner_phone =
+        responseJson['property_partners_information'][''];
+    _localproperty.fifth_partner_email =
+        responseJson['property_partners_information'][''];
+    _localproperty.fifth_partner_image =
+        responseJson['property_partners_information'][''];
+    _localproperty.fifth_partner_machinegun_no =
+        responseJson['property_partners_information'][''];
+    _localproperty.fifth_partner_cover_note =
+        responseJson['property_partners_information'][''];
+    _localproperty.fifth_partner_note_page =
+        responseJson['property_partners_information'][''];
+    _localproperty.fifth_partner_reg_no =
+        responseJson['property_partners_information'][''];
+    _localproperty.fifth_partner_phote_note1 =
+        responseJson['property_partners_information'][''];
+    _localproperty.fifth_partner_photo_tips1 =
+        responseJson['property_partners_information'][''];
+    _localproperty.fifth_partner_photo_tips2 =
+        responseJson['property_partners_information'][''];
+    _localproperty.formval = responseJson[''][''];
+    _localproperty.editmode = responseJson[''][''];
+    _localproperty.isdrafted = responseJson[''][''];
+    _localproperty.boundaryinfonote =
+        responseJson['property_boundaries_info']['boundary_note'];
+    _localproperty.surveyenddate = responseJson[''][''];
     _localproperty.surveyoroneid = responseJson[''];
     _localproperty.surveyortwoid = responseJson[''];
     _localproperty.surveyleadid = responseJson[''];

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kapp/pages/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart' as intl;
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:package_info/package_info.dart';
 import 'package:background_fetch/background_fetch.dart';
@@ -11,7 +12,7 @@ import '../utils/route_paths.dart' as routes;
 import '../utils/locator.dart';
 import '../localization/app_translations.dart';
 import './db_helper.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import './language_service.dart';
 
 class DrawerItem {
   String title;
@@ -37,9 +38,9 @@ class _AppDrawerState extends State<AppDrawer> {
   String appVersion = "";
 
   final drawerItems = [
-    DrawerItem("key_home", Icons.home), //page index = 0
+    //DrawerItem("key_home", Icons.home), //page index = 0
     DrawerItem("key_tasks", Icons.assignment), //page index = 1
-    DrawerItem("key_rework", Icons.restore_page), //page index = 2
+    //DrawerItem("key_rework", Icons.restore_page), //page index = 2
     DrawerItem("key_language", Icons.language), //page index = 3
   ];
   @override
@@ -86,9 +87,9 @@ class _AppDrawerState extends State<AppDrawer> {
 
   _pageNavigator(int page) {
     if (page == 0) {
-      _navigationService.navigateRepalceTo(routeName: routes.DashboardRoute);
-    } else if (page == 1) {
       _navigationService.navigateRepalceTo(routeName: routes.TaskRoute);
+    } else if (page == 1) {
+      _navigationService.navigateRepalceTo(routeName: routes.LanguageRoute);
     } else if (page == 2) {
       _navigationService.navigateRepalceTo(routeName: routes.ReworkTask);
     } else if (page == 3) {
@@ -229,9 +230,13 @@ class _AppDrawerState extends State<AppDrawer> {
                         child: Text(
                           setapptext(key: 'key_Last_Sync_Date') +
                               "-:" +
-                              DateFormat("dd-MMM-yyy hh:mm").format(
+                              intl.DateFormat("dd-MMM-yyy hh:mm").format(
                                 DateTime.tryParse(lastsynceddate),
                               ),
+                              textDirection:
+                              (locator<LanguageService>().currentlanguage == 0)
+                                  ? TextDirection.ltr
+                                  : TextDirection.rtl,
                         ),
                       ),
                 Container(
