@@ -40,7 +40,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => MyHomePage());
     case routers.DashboardRoute:
       return MaterialPageRoute(builder: (context) => HomePage());
-    case routers.ReworkTask:
+    case routers.ReworkTaskPage:
       return MaterialPageRoute(builder: (context) => ReworkTaskPage());
     case routers.ReworkList:
       return MaterialPageRoute(builder: (context) => RewokListPage());

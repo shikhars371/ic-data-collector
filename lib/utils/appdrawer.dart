@@ -38,9 +38,9 @@ class _AppDrawerState extends State<AppDrawer> {
   String appVersion = "";
 
   final drawerItems = [
-    //DrawerItem("key_home", Icons.home), //page index = 0
+    DrawerItem("key_home", Icons.home), //page index = 0
     DrawerItem("key_tasks", Icons.assignment), //page index = 1
-    //DrawerItem("key_rework", Icons.restore_page), //page index = 2
+    DrawerItem("key_rework", Icons.restore_page), //page index = 2
     DrawerItem("key_language", Icons.language), //page index = 3
   ];
   @override
@@ -87,11 +87,11 @@ class _AppDrawerState extends State<AppDrawer> {
 
   _pageNavigator(int page) {
     if (page == 0) {
-      _navigationService.navigateRepalceTo(routeName: routes.TaskRoute);
+      _navigationService.navigateRepalceTo(routeName: routes.DashboardRoute);
     } else if (page == 1) {
-      _navigationService.navigateRepalceTo(routeName: routes.LanguageRoute);
+      _navigationService.navigateRepalceTo(routeName: routes.TaskRoute);
     } else if (page == 2) {
-      _navigationService.navigateRepalceTo(routeName: routes.ReworkTask);
+      _navigationService.navigateRepalceTo(routeName: routes.ReworkTaskPage);
     } else if (page == 3) {
       _navigationService.navigateRepalceTo(routeName: routes.LanguageRoute);
     }

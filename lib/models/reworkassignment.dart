@@ -16,10 +16,11 @@ class ReworkAssignment {
   String reworktype;
   String status;
   String surveystatus;
-  String appstatus;
+  int appstatus;//0-not started,1-progress,2-completed,3-synced
   String surveyleadname;
   String surveyoronename;
   String surveyortwoname;
+  String createdate;
   String updatedate;
 
   ReworkAssignment(
@@ -44,6 +45,7 @@ class ReworkAssignment {
       this.surveyleadname,
       this.surveyoronename,
       this.surveyortwoname,
+      this.createdate,
       this.updatedate});
 
   ReworkAssignment.fromJson(Map<String, dynamic> json) {
@@ -64,6 +66,7 @@ class ReworkAssignment {
     reworktype = json['rework_type'];
     status = json['status'];
     surveystatus = json['surveystatus'];
+    createdate=json['createdAt'];
     updatedate = json['updatedAt'];
   }
 
@@ -86,6 +89,7 @@ class ReworkAssignment {
     data['rework_type'] = this.reworktype;
     data['status'] = this.status;
     data['surveystatus'] = this.surveystatus;
+    data['createdAt']= this.createdate;
     data['updatedAt'] = this.updatedate;
     return data;
   }

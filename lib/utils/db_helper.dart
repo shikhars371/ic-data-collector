@@ -53,7 +53,7 @@ class DBHelper with ChangeNotifier {
           surveyoronename TEXT,surveyortwoname TEXT,
           province TEXT,municipality TEXT, nahia TEXT,gozar TEXT,
           block TEXT,unit TEXT,parcelno TEXT,remarks TEXT,reworktype TEXT,status TEXT,surveystatus TEXT,
-          isdeleted INTEGER DEFAULT 0,appstatus INTEGER DEFAULT 0
+          isdeleted INTEGER DEFAULT 0,appstatus INTEGER DEFAULT 0,createdate TEXT
         )
         ''').catchError((onError) {
       Catcher.reportCheckedError(onError, "stackTrace");
@@ -1299,7 +1299,7 @@ class DBHelper with ChangeNotifier {
           bool isexist = await isReworkExist(id: item.sid);
           if (isexist) {
             //if data exist check data modified or not
-            //TODO
+
           } else {
             //insert data into local reworklist table
             String sqlquery = '''
@@ -1307,7 +1307,7 @@ class DBHelper with ChangeNotifier {
           sid,propertyid,upin,surveylead,surveyleadname,surveyorone,
           surveyortwo,surveyoronename,surveyortwoname,province,
           municipality,nahia,gozar,block,unit,parcelno,remarks,
-          reworktype,status,surveystatus)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+          reworktype,status,surveystatus,createdate)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
           ''';
             List<dynamic> params = [
               item.sid,
@@ -1329,7 +1329,8 @@ class DBHelper with ChangeNotifier {
               item.remarks,
               item.reworktype,
               item.status,
-              item.surveystatus
+              item.surveystatus,
+              item.createdate
             ];
             result = await dbClient.rawInsert(sqlquery, params);
             //insert data into local property survey table
@@ -1343,7 +1344,20 @@ class DBHelper with ChangeNotifier {
                   item.unit),
             );
             if (!ispropertyexist) {
-              ReworkTask().downLoadPropertyData(propertyid: item.propertyid);
+              ReworkTask().downLoadPropertyData(
+                  propertyid: item.propertyid, taskid: item.sid);
+            } else {
+              await dbClient.rawQuery(
+                  'UPDATE propertysurvey set isdrafted=0 where local_property_key = ?',
+                  [
+                    item.province +
+                        item.municipality +
+                        item.nahia +
+                        item.gozar +
+                        item.block +
+                        item.parcelno +
+                        item.unit
+                  ]);
             }
           }
         }
@@ -1393,7 +1407,8 @@ class DBHelper with ChangeNotifier {
                 reworktype: item['reworktype'],
                 status: item['status'],
                 surveystatus: item['surveystatus'],
-                appstatus: item['isdeleted']),
+                appstatus: item['isdeleted'],
+                createdate: item['createdate']),
           );
         }
       }

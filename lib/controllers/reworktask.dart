@@ -1,6 +1,9 @@
 import 'dart:convert';
+import 'dart:io' as io;
+import 'package:path/path.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:catcher/catcher_plugin.dart';
@@ -12,6 +15,7 @@ import '../models/reworkassignment.dart';
 import '../utils/appstate.dart';
 import './auth.dart';
 import '../models/localpropertydata.dart';
+import './task.dart';
 
 class ReworkTask with ChangeNotifier {
   AppState _state = AppState.Idle;
@@ -56,6 +60,8 @@ class ReworkTask with ChangeNotifier {
         }
         //reworkAssignments have data
         if (!(_reworkAssignments?.isEmpty ?? true)) {
+          _reworkAssignments =
+              await addNames(assignmentlist: _reworkAssignments);
           //insert data to local database
           await DBHelper()
               .addReworkSurvey(reworkassignments: _reworkAssignments);
@@ -70,7 +76,28 @@ class ReworkTask with ChangeNotifier {
     return _reworkAssignments;
   }
 
-  Future<bool> downLoadPropertyData({String propertyid}) async {
+  Future<List<ReworkAssignment>> addNames(
+      {List<ReworkAssignment> assignmentlist}) async {
+    List<ReworkAssignment> modifiedassignment = [];
+    try {
+      if (assignmentlist.isNotEmpty) {
+        for (ReworkAssignment item in assignmentlist) {
+          item.surveyleadname =
+              await TaskModel().getUserName(userid: item.surveylead);
+          item.surveyoronename =
+              await TaskModel().getUserName(userid: item.surveyor1);
+          item.surveyortwoname =
+              await TaskModel().getUserName(userid: item.surveyor2);
+          modifiedassignment.add(item);
+        }
+      }
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
+    }
+    return modifiedassignment;
+  }
+
+  Future<bool> downLoadPropertyData({String propertyid, String taskid}) async {
     bool result = false;
     setState(AppState.Busy);
     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -83,13 +110,19 @@ class ReworkTask with ChangeNotifier {
               "Authorization": preferences.getString("accesstoken")
             });
         if (responce.statusCode == 200) {
-          LocalPropertySurvey property =
-              jsonToProperty(responseJson: json.decode(responce.body));
+          LocalPropertySurvey property = await jsonToProperty(
+              responseJson: json.decode(responce.body), taskid: taskid);
           var isinsertedintodb = await DBHelper().addPropertySurvey(property);
           if (isinsertedintodb != 0) {
             var isupdatedintodb = await DBHelper()
                 .updatePropertySurvey(property, property.local_property_key);
-            if (isupdatedintodb != 0) {}
+            if (isupdatedintodb != 0) {
+              //download image to appfolder which is not in phone
+              var isfilesdownloaded = await fileChecker(property: property);
+              if (isfilesdownloaded) {
+                result = true;
+              }
+            }
           }
         }
       }
@@ -101,11 +134,333 @@ class ReworkTask with ChangeNotifier {
     return result;
   }
 
-  Future<bool> downloadFile() async {
+  Future<bool> fileChecker({LocalPropertySurvey property}) async {
     bool result = false;
     try {
-      var dio = Dio();
-      //var responce = await dio.download(urlPath, savePath);
+      if (property.isreldocphoto1 == 1) {
+        var isexist =
+            await isFileExist(filename: property.property_doc_photo_1);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.property_doc_photo_1));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.isreldocphoto2 == 1) {
+        var isexist =
+            await isFileExist(filename: property.property_doc_photo_2);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.property_doc_photo_2));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.isreldocphoto3 == 1) {
+        var isexist =
+            await isFileExist(filename: property.property_doc_photo_3);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.property_doc_photo_3));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.isreldocphoto4 == 1) {
+        var isexist =
+            await isFileExist(filename: property.property_doc_photo_4);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.property_doc_photo_4));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.isoddocphoto1 == 1) {
+        var isexist = await isFileExist(filename: property.odinary_doc_photo1);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.odinary_doc_photo1));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.isoddocphoto6 == 1) {
+        var isexist = await isFileExist(filename: property.odinary_doc_photo6);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.odinary_doc_photo6));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.isfirstpartner_photo == 1) {
+        var isexist = await isFileExist(
+            filename: property.first_partner_name_property_owner);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.first_partner_name_property_owner));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.isinfophotonote1 == 1) {
+        var isexist =
+            await isFileExist(filename: property.info_photo_hint_photo_note1);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.info_photo_hint_photo_note1));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.isinfophototips1 == 1) {
+        var isexist =
+            await isFileExist(filename: property.info_photo_hint_photo_tips1);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.info_photo_hint_photo_tips1));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.isinfophototips2 == 1) {
+        var isexist =
+            await isFileExist(filename: property.info_photo_hint_photo_tips2);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.info_photo_hint_photo_tips2));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.issecond_partner_photo == 1) {
+        var isexist =
+            await isFileExist(filename: property.second_partner_image);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.second_partner_image));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.issecond_partner_photo_note1 == 1) {
+        var isexist =
+            await isFileExist(filename: property.second_partner_phote_note1);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.second_partner_phote_note1));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.issecond_partner_photo_tips1 == 1) {
+        var isexist =
+            await isFileExist(filename: property.second_partner_photo_tips1);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.second_partner_photo_tips1));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.issecond_partner_photo_tips2 == 1) {
+        var isexist =
+            await isFileExist(filename: property.second_partner_photo_tips2);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.second_partner_photo_tips2));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.isthird_partner_photo == 1) {
+        var isexist = await isFileExist(filename: property.third_partner_image);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.third_partner_image));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.isthird_partner_photo_note1 == 1) {
+        var isexist =
+            await isFileExist(filename: property.third_partner_phote_note1);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.third_partner_phote_note1));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.isthird_partner_photo_tips1 == 1) {
+        var isexist =
+            await isFileExist(filename: property.third_partner_photo_tips1);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.third_partner_photo_tips1));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.isthird_partner_photo_tips2 == 1) {
+        var isexist =
+            await isFileExist(filename: property.third_partner_photo_tips2);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.third_partner_photo_tips2));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.isfourth_partner_photo == 1) {
+        var isexist =
+            await isFileExist(filename: property.fourth_partner_image);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.fourth_partner_image));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.isfourth_partner_photo_note1 == 1) {
+        var isexist =
+            await isFileExist(filename: property.fourth_partner_phote_note1);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.fourth_partner_phote_note1));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.isfourth_partner_photo_tips1 == 1) {
+        var isexist =
+            await isFileExist(filename: property.fourth_partner_photo_tips1);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.fourth_partner_photo_tips1));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.isfourth_partner_photo_tips2 == 1) {
+        var isexist =
+            await isFileExist(filename: property.fourth_partner_photo_tips2);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.fourth_partner_photo_tips2));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.isfifth_partner_photo == 1) {
+        var isexist = await isFileExist(filename: property.fifth_partner_image);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.fifth_partner_image));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.isfifth_partner_photo_note1 == 1) {
+        var isexist =
+            await isFileExist(filename: property.fifth_partner_phote_note1);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.fifth_partner_phote_note1));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.isfifth_partner_photo_tips1 == 1) {
+        var isexist =
+            await isFileExist(filename: property.fifth_partner_photo_tips1);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.fifth_partner_photo_tips1));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.isfifth_partner_photo_tips2 == 1) {
+        var isexist =
+            await isFileExist(filename: property.fifth_partner_photo_tips2);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.fifth_partner_photo_tips2));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.ismeter_pic_bill_power == 1) {
+        var isexist =
+            await isFileExist(filename: property.lightning_picture_bell_power);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.lightning_picture_bell_power));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.issafari_booklet_pic == 1) {
+        var isexist =
+            await isFileExist(filename: property.safari_booklet_picture);
+        if (!isexist) {
+          var isdownload = await downloadFile(
+              filename: basename(property.safari_booklet_picture));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.ishome_sketch_map == 1) {
+        var isexist = await isFileExist(filename: property.home_map);
+        if (!isexist) {
+          var isdownload =
+              await downloadFile(filename: basename(property.home_map));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
+      if (property.ishome_photo == 1) {
+        var isexist = await isFileExist(filename: property.home_photo);
+        if (!isexist) {
+          var isdownload =
+              await downloadFile(filename: basename(property.home_photo));
+          if (isdownload) {
+            result = true;
+          }
+        }
+      }
     } catch (error, stackTrace) {
       setState(AppState.Idle);
       Catcher.reportCheckedError(error, stackTrace);
@@ -113,13 +468,48 @@ class ReworkTask with ChangeNotifier {
     return result;
   }
 
-  LocalPropertySurvey jsonToProperty({Map responseJson}) {
+  Future<bool> isFileExist({String filename}) async {
+    bool result = false;
+    try {
+      result = io.File(filename).existsSync();
+    } catch (error, stackTrace) {
+      setState(AppState.Idle);
+      Catcher.reportCheckedError(error, stackTrace);
+    }
+    return result;
+  }
+
+  Future<bool> downloadFile({String filename}) async {
+    bool result = false;
+    try {
+      var apppath = await getApplicationDocumentsDirectory();
+      var dio = Dio();
+      var responce = await dio.download(
+          "https://surveyeddata.s3.eu-west-2.amazonaws.com/" +
+              basename(filename),
+          apppath.path);
+      result = responce.statusCode == 200 ? true : false;
+    } catch (error, stackTrace) {
+      setState(AppState.Idle);
+      Catcher.reportCheckedError(error, stackTrace);
+    }
+    return result;
+  }
+
+  Future<LocalPropertySurvey> jsonToProperty(
+      {Map responseJson, String taskid}) async {
     LocalPropertySurvey _localproperty = new LocalPropertySurvey();
-    _localproperty.id = responseJson[''];
-    _localproperty.taskid = responseJson[''];
-    _localproperty.local_created_on = responseJson[''];
-    _localproperty.local_property_key = responseJson[''];
-    _localproperty.other_key = responseJson[''];
+    var apppath = await getApplicationDocumentsDirectory();
+    _localproperty.taskid = taskid;
+    _localproperty.local_created_on = DateTime.now().toString();
+    _localproperty.local_property_key =
+        responseJson['property_physical_location']['province_id'] +
+            responseJson['property_physical_location']['municipality_id'] +
+            responseJson['property_physical_location']['nahia_id'] +
+            responseJson['property_physical_location']['guzar_id'] +
+            responseJson['property_physical_location']['block_id'] +
+            responseJson['property_physical_location']['parcel_no'] +
+            responseJson['property_physical_location']['unit_no'];
     _localproperty.first_surveyor_name =
         responseJson['surveyors_info']['surveyor_1'];
     _localproperty.senond_surveyor_name =
@@ -188,17 +578,59 @@ class ReworkTask with ChangeNotifier {
     _localproperty.land_area_qawwala =
         responseJson['govermental_doc_specification']['doc_property_area'];
     _localproperty.property_doc_photo_1 =
-        responseJson['govermental_doc_specification']['doc_img_1'];
+        responseJson['govermental_doc_specification']['doc_img_1']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['govermental_doc_specification']['doc_img_1'];
     _localproperty.property_doc_photo_2 =
-        responseJson['govermental_doc_specification']['doc_img_2'];
+        responseJson['govermental_doc_specification']['doc_img_2']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['govermental_doc_specification']['doc_img_2'];
     _localproperty.property_doc_photo_3 =
-        responseJson['govermental_doc_specification']['doc_img_3'];
+        responseJson['govermental_doc_specification']['doc_img_3']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['govermental_doc_specification']['doc_img_3'];
     _localproperty.property_doc_photo_4 =
-        responseJson['govermental_doc_specification']['doc_img_4'];
-    _localproperty.odinary_doc_photo1 =
-        responseJson['local_doc_specification']['local_doc_img_1'];
-    _localproperty.odinary_doc_photo6 =
-        responseJson['local_doc_specification']['local_doc_img_2'];
+        responseJson['govermental_doc_specification']['doc_img_4']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['govermental_doc_specification']['doc_img_4'];
+    _localproperty.odinary_doc_photo1 = responseJson['local_doc_specification']
+                    ['local_doc_img_1']
+                .toString()
+                ?.isEmpty ??
+            true
+        ? ''
+        : apppath.path +
+            '/' +
+            responseJson['local_doc_specification']['local_doc_img_1'];
+    _localproperty.odinary_doc_photo6 = responseJson['local_doc_specification']
+                    ['local_doc_img_2']
+                .toString()
+                ?.isEmpty ??
+            true
+        ? ''
+        : apppath.path +
+            '/' +
+            responseJson['local_doc_specification']['local_doc_img_2'];
     _localproperty.use_in_property_doc =
         responseJson['property_given_usage_type'];
     _localproperty.current_use_of_property =
@@ -232,7 +664,14 @@ class ReworkTask with ChangeNotifier {
     _localproperty.first_partner_name_email =
         responseJson['owner_or_first_partner_info']['emal'];
     _localproperty.first_partner_name_property_owner =
-        responseJson['owner_or_first_partner_info']['photo_person'];
+        responseJson['owner_or_first_partner_info']['photo_person']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['owner_or_first_partner_info']['photo_person'];
     _localproperty.first_partner_name_mere_individuals =
         responseJson['owner_or_first_partner_info']['note_person'];
     _localproperty.info_photo_hint_sukuk_number =
@@ -244,11 +683,32 @@ class ReworkTask with ChangeNotifier {
     _localproperty.info_photo_hint_reg_no =
         responseJson['tazkira_information']['tazkira_reg_no'];
     _localproperty.info_photo_hint_photo_note1 =
-        responseJson['tazkira_information']['tazkira_image_1'];
+        responseJson['tazkira_information']['tazkira_image_1']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['tazkira_information']['tazkira_image_1'];
     _localproperty.info_photo_hint_photo_tips1 =
-        responseJson['tazkira_information']['tazkira_image_2'];
+        responseJson['tazkira_information']['tazkira_image_2']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['tazkira_information']['tazkira_image_2'];
     _localproperty.info_photo_hint_photo_tips2 =
-        responseJson['tazkira_information']['tazkira_image_3'];
+        responseJson['tazkira_information']['tazkira_image_3']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['tazkira_information']['tazkira_image_3'];
     _localproperty.fore_limits_east =
         responseJson['property_boundaries_info']['East'];
     _localproperty.fore_limits_west =
@@ -264,7 +724,14 @@ class ReworkTask with ChangeNotifier {
     _localproperty.lightning_father_name =
         responseJson['electricity_bill_info']['cuntomer_father_name'];
     _localproperty.lightning_picture_bell_power =
-        responseJson['electricity_bill_info']['ebill_img'];
+        responseJson['electricity_bill_info']['ebill_img']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['electricity_bill_info']['ebill_img'];
     _localproperty.safari_booklet_common_name =
         responseJson['sanitation_booklet_info']['cust_name'];
     _localproperty.safari_booklet_father_name =
@@ -274,7 +741,15 @@ class ReworkTask with ChangeNotifier {
     _localproperty.safari_booklet_issue_date =
         responseJson['sanitation_booklet_info']['issue_date'];
     _localproperty.safari_booklet_picture =
-        responseJson['sanitation_booklet_info']['sanitation_booklet_img'];
+        responseJson['sanitation_booklet_info']['sanitation_booklet_img']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['sanitation_booklet_info']
+                    ['sanitation_booklet_img'];
     _localproperty.property_user_owner =
         responseJson['property_user_info']['owner_occupier'];
     _localproperty.property_user_master_rent =
@@ -351,8 +826,13 @@ class ReworkTask with ChangeNotifier {
         ['building_structure_5']['building_5_floor_count'];
     _localproperty.fth_cubie_meter = responseJson['building_structure_info']
         ['building_structure_5']['building_5_volume'];
-    _localproperty.home_map = responseJson['Sketch'];
-    _localproperty.home_photo = responseJson['HouseImage'];
+    _localproperty.home_map = responseJson['Sketch'].toString()?.isEmpty ?? true
+        ? ''
+        : apppath.path + '/' + responseJson['Sketch'];
+    _localproperty.home_photo =
+        responseJson['HouseImage'].toString()?.isEmpty ?? true
+            ? ''
+            : apppath.path + '/' + responseJson['HouseImage'];
     _localproperty.reg_property_fertilizer = responseJson['code'];
     _localproperty.area_unit_release_area =
         responseJson['Units_Info']['Residential_Area'];
@@ -377,7 +857,14 @@ class ReworkTask with ChangeNotifier {
     _localproperty.second_partner_email =
         responseJson['property_partners_information']['p2_email'];
     _localproperty.second_partner_image =
-        responseJson['property_partners_information']['p2_photo'];
+        responseJson['property_partners_information']['p2_photo']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['property_partners_information']['p2_photo'];
     _localproperty.second_partner_machinegun_no =
         responseJson['property_partners_information']['p2_tazkira_serial_no'];
     _localproperty.second_partner_cover_note =
@@ -387,140 +874,288 @@ class ReworkTask with ChangeNotifier {
     _localproperty.second_partner_reg_no =
         responseJson['property_partners_information']['p2_tazkira_reg_no'];
     _localproperty.second_partner_phote_note1 =
-        responseJson['property_partners_information']['p2_tazkira_image_1'];
+        responseJson['property_partners_information']['p2_tazkira_image_1']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['property_partners_information']
+                    ['p2_tazkira_image_1'];
     _localproperty.second_partner_photo_tips1 =
-        responseJson['property_partners_information']['p2_tazkira_image_2'];
+        responseJson['property_partners_information']['p2_tazkira_image_2']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['property_partners_information']
+                    ['p2_tazkira_image_2'];
     _localproperty.second_partner_photo_tips2 =
-        responseJson['property_partners_information']['p2_tazkira_image_3'];
+        responseJson['property_partners_information']['p2_tazkira_image_3']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['property_partners_information']
+                    ['p2_tazkira_image_3'];
     _localproperty.third_partner_name =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p3_name'];
     _localproperty.third_partner_surname =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p3_surname'];
     _localproperty.third_partner_boy =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p3_father_name'];
     _localproperty.third_partner_father =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p3_grand_father_name'];
     _localproperty.third_partner_gender =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p3_gender'];
     _localproperty.third_partner_phone =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p3_phone_no'];
     _localproperty.third_partner_email =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p3_email'];
     _localproperty.third_partner_image =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p3_photo']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['property_partners_information']['p3_photo'];
     _localproperty.third_partner_machinegun_no =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p3_tazkira_serial_no'];
     _localproperty.third_partner_cover_note =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p3_tazkira_volume_no'];
     _localproperty.third_partner_note_page =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p3_tazkira_page_no'];
     _localproperty.third_partner_reg_no =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p3_tazkira_reg_no'];
     _localproperty.third_partner_phote_note1 =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p3_tazkira_image_1']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['property_partners_information']
+                    ['p3_tazkira_image_1'];
     _localproperty.third_partner_photo_tips1 =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p3_tazkira_image_2']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['property_partners_information']
+                    ['p3_tazkira_image_2'];
     _localproperty.third_partner_photo_tips2 =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p3_tazkira_image_3']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['property_partners_information']
+                    ['p3_tazkira_image_3'];
     _localproperty.fourth_partner_name =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p4_name'];
     _localproperty.fourth_partner_surname =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p4_surname'];
     _localproperty.fourth_partner_boy =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p4_father_name'];
     _localproperty.fourth_partner_father =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p4_grand_father_name'];
     _localproperty.fourth_partner_gender =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p4_gender'];
     _localproperty.fourth_partner_phone =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p4_phone_no'];
     _localproperty.fourth_partner_email =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p4_email'];
     _localproperty.fourth_partner_image =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p4_photo']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['property_partners_information']['p4_photo'];
     _localproperty.fourth_partner_machinegun_no =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p4_tazkira_serial_no'];
     _localproperty.fourth_partner_cover_note =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p4_tazkira_volume_no'];
     _localproperty.fourth_partner_note_page =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p4_tazkira_page_no'];
     _localproperty.fourth_partner_reg_no =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p4_tazkira_reg_no'];
     _localproperty.fourth_partner_phote_note1 =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p4_tazkira_image_1']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['property_partners_information']
+                    ['p4_tazkira_image_1'];
     _localproperty.fourth_partner_photo_tips1 =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p4_tazkira_image_2']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['property_partners_information']
+                    ['p4_tazkira_image_2'];
     _localproperty.fourth_partner_photo_tips2 =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p4_tazkira_image_3']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['property_partners_information']
+                    ['p4_tazkira_image_3'];
     _localproperty.fifth_partner_name =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p5_name'];
     _localproperty.fifth_partner_surname =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p5_surname'];
     _localproperty.fifth_partner_boy =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p5_father_name'];
     _localproperty.fifth_partner_father =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p5_grand_father_name'];
     _localproperty.fifth_partner_gender =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p5_gender'];
     _localproperty.fifth_partner_phone =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p5_phone_no'];
     _localproperty.fifth_partner_email =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p5_email'];
     _localproperty.fifth_partner_image =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p5_photo']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['property_partners_information']['p5_photo'];
     _localproperty.fifth_partner_machinegun_no =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p5_tazkira_serial_no'];
     _localproperty.fifth_partner_cover_note =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p5_tazkira_volume_no'];
     _localproperty.fifth_partner_note_page =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p5_tazkira_page_no'];
     _localproperty.fifth_partner_reg_no =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p5_tazkira_reg_no'];
     _localproperty.fifth_partner_phote_note1 =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p5_tazkira_image_1']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['property_partners_information']
+                    ['p5_tazkira_image_1'];
     _localproperty.fifth_partner_photo_tips1 =
-        responseJson['property_partners_information'][''];
+        responseJson['property_partners_information']['p5_tazkira_image_2']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['property_partners_information']
+                    ['p5_tazkira_image_2'];
     _localproperty.fifth_partner_photo_tips2 =
-        responseJson['property_partners_information'][''];
-    _localproperty.formval = responseJson[''][''];
-    _localproperty.editmode = responseJson[''][''];
-    _localproperty.isdrafted = responseJson[''][''];
+        responseJson['property_partners_information']['p5_tazkira_image_3']
+                    .toString()
+                    ?.isEmpty ??
+                true
+            ? ''
+            : apppath.path +
+                '/' +
+                responseJson['property_partners_information']
+                    ['p5_tazkira_image_3'];
+    _localproperty.editmode = 1;
+    _localproperty.isdrafted = 0;
     _localproperty.boundaryinfonote =
         responseJson['property_boundaries_info']['boundary_note'];
-    _localproperty.surveyenddate = responseJson[''][''];
-    _localproperty.surveyoroneid = responseJson[''];
-    _localproperty.surveyortwoid = responseJson[''];
-    _localproperty.surveyleadid = responseJson[''];
-    _localproperty.isreldocphoto1 = responseJson[''];
-    _localproperty.isreldocphoto2 = responseJson[''];
-    _localproperty.isreldocphoto3 = responseJson[''];
-    _localproperty.isreldocphoto4 = responseJson[''];
-    _localproperty.isoddocphoto1 = responseJson[''];
-    _localproperty.isoddocphoto6 = responseJson[''];
-    _localproperty.isfirstpartner_photo = responseJson[''];
-    _localproperty.isinfophotonote1 = responseJson[''];
-    _localproperty.isinfophototips1 = responseJson[''];
-    _localproperty.isinfophototips2 = responseJson[''];
-    _localproperty.issecond_partner_photo = responseJson[''];
-    _localproperty.issecond_partner_photo_note1 = responseJson[''];
-    _localproperty.issecond_partner_photo_tips1 = responseJson[''];
-    _localproperty.issecond_partner_photo_tips2 = responseJson[''];
-    _localproperty.isthird_partner_photo = responseJson[''];
-    _localproperty.isthird_partner_photo_note1 = responseJson[''];
-    _localproperty.isthird_partner_photo_tips1 = responseJson[''];
-    _localproperty.isthird_partner_photo_tips2 = responseJson[''];
-    _localproperty.isfourth_partner_photo = responseJson[''];
-    _localproperty.isfourth_partner_photo_note1 = responseJson[''];
-    _localproperty.isfourth_partner_photo_tips1 = responseJson[''];
-    _localproperty.isfourth_partner_photo_tips2 = responseJson[''];
-    _localproperty.isfifth_partner_photo = responseJson[''];
-    _localproperty.isfifth_partner_photo_note1 = responseJson[''];
-    _localproperty.isfifth_partner_photo_tips1 = responseJson[''];
-    _localproperty.isfifth_partner_photo_tips2 = responseJson[''];
-    _localproperty.ismeter_pic_bill_power = responseJson[''];
-    _localproperty.issafari_booklet_pic = responseJson[''];
-    _localproperty.ishome_sketch_map = responseJson[''];
-    _localproperty.ishome_photo = responseJson[''];
+    _localproperty.surveyenddate = responseJson['end'];
+    _localproperty.surveyoroneid = responseJson['surveyor1_id'];
+    _localproperty.surveyortwoid = responseJson['surveyor2_id'];
+    _localproperty.surveyleadid = responseJson['supporting_surveyor_id'];
+    _localproperty.isreldocphoto1 =
+        _localproperty.property_doc_photo_1?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.isreldocphoto2 =
+        _localproperty.property_doc_photo_2?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.isreldocphoto3 =
+        _localproperty.property_doc_photo_3?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.isreldocphoto4 =
+        _localproperty.property_doc_photo_4?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.isoddocphoto1 =
+        _localproperty.odinary_doc_photo1?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.isoddocphoto6 =
+        _localproperty.odinary_doc_photo6?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.isfirstpartner_photo =
+        _localproperty.first_partner_name_property_owner?.isNotEmpty ?? true
+            ? 0
+            : 1;
+    _localproperty.isinfophotonote1 =
+        _localproperty.info_photo_hint_photo_note1?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.isinfophototips1 =
+        _localproperty.info_photo_hint_photo_tips1?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.isinfophototips2 =
+        _localproperty.info_photo_hint_photo_tips2?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.issecond_partner_photo =
+        _localproperty.second_partner_image?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.issecond_partner_photo_note1 =
+        _localproperty.second_partner_phote_note1?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.issecond_partner_photo_tips1 =
+        _localproperty.second_partner_photo_tips1?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.issecond_partner_photo_tips2 =
+        _localproperty.second_partner_photo_tips2?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.isthird_partner_photo =
+        _localproperty.third_partner_image?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.isthird_partner_photo_note1 =
+        _localproperty.third_partner_phote_note1?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.isthird_partner_photo_tips1 =
+        _localproperty.third_partner_photo_tips1?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.isthird_partner_photo_tips2 =
+        _localproperty.third_partner_photo_tips2?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.isfourth_partner_photo =
+        _localproperty.fourth_partner_image?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.isfourth_partner_photo_note1 =
+        _localproperty.fourth_partner_phote_note1?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.isfourth_partner_photo_tips1 =
+        _localproperty.fourth_partner_photo_tips1?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.isfourth_partner_photo_tips2 =
+        _localproperty.fourth_partner_photo_tips2?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.isfifth_partner_photo =
+        _localproperty.fifth_partner_image?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.isfifth_partner_photo_note1 =
+        _localproperty.fifth_partner_phote_note1?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.isfifth_partner_photo_tips1 =
+        _localproperty.fifth_partner_photo_tips1?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.isfifth_partner_photo_tips2 =
+        _localproperty.fifth_partner_photo_tips2?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.ismeter_pic_bill_power =
+        _localproperty.lightning_picture_bell_power?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.issafari_booklet_pic =
+        _localproperty.safari_booklet_picture?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.ishome_sketch_map =
+        _localproperty.home_map?.isNotEmpty ?? true ? 0 : 1;
+    _localproperty.ishome_photo =
+        _localproperty.home_photo?.isNotEmpty ?? true ? 0 : 1;
     return _localproperty;
   }
 }

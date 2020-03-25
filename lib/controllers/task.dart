@@ -9,8 +9,7 @@ import 'package:catcher/catcher_plugin.dart';
 import '../models/surveyAssignment.dart';
 import '../configs/configuration.dart';
 import '../utils/db_helper.dart';
-
-enum AppState { Idle, Busy }
+import '../utils/appstate.dart';
 
 class TaskModel with ChangeNotifier {
   AppState _state = AppState.Idle;

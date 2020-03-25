@@ -185,7 +185,7 @@ class _MyHomePageState extends State<MyHomePage> {
     sharedPreferences = await SharedPreferences.getInstance();
     var access = sharedPreferences.getString("accesstoken");
     if (access != null && access != "") {
-      _navigationService.navigateRepalceTo(routeName: routes.TaskRoute);
+      _navigationService.navigateRepalceTo(routeName: routes.DashboardRoute);
     } else {
       _navigationService.navigateRepalceTo(routeName: routes.LoginRoute);
     }

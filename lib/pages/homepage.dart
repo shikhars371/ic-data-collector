@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
               GestureDetector(
                 onTap: () {
                   _navigationService.navigateRepalceTo(
-                      routeName: routes.ReworkTask);
+                      routeName: routes.ReworkTaskPage);
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10, right: 20),
