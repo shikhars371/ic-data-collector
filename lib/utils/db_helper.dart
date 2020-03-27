@@ -40,12 +40,23 @@ class DBHelper with ChangeNotifier {
 
   initDatabase() async {
     io.Directory documentDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentDirectory.path, 'sparcoccollector.db');
-    var db = await openDatabase(path, version: 2, onCreate: _onCreate);
+    String path = join(documentDirectory.path, 'occollector.db');
+    var db = await openDatabase(path, version: 3, onCreate: _onCreate);
     return db;
   }
 
   _onCreate(Database db, int version) async {
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS applanguage(
+        language TEXT,languageval INTEGER
+      )
+    ''').then((_) {
+      db.execute('''
+      INSERT INTO applanguage(language,languageval)VALUES('English',0)
+    ''');
+    }).catchError((onError) {
+      Catcher.reportCheckedError(onError, "stackTrace");
+    });
     await db.execute('''
         CREATE TABLE IF NOT EXISTS reworklist (
           sid TEXT PRIMARY KEY UNIQUE,propertyid TEXT,upin TEXT,surveylead TEXT,
@@ -174,17 +185,6 @@ class DBHelper with ChangeNotifier {
         surveyenddate TEXT
       )
     ''').catchError((onError) {
-      Catcher.reportCheckedError(onError, "stackTrace");
-    });
-    await db.execute('''
-      CREATE TABLE IF NOT EXISTS applanguage(
-        language TEXT,languageval INTEGER
-      )
-    ''').then((_) {
-      db.execute('''
-      INSERT INTO applanguage(language,languageval)VALUES('English',0)
-    ''');
-    }).catchError((onError) {
       Catcher.reportCheckedError(onError, "stackTrace");
     });
   }
@@ -1189,17 +1189,16 @@ class DBHelper with ChangeNotifier {
     return _currentLanguageIndex;
   }
 
+  //return true iff all local data cleared
   void clearLocalStorage() async {
     try {
       var dbClient = await db;
-      var lang = await dbClient.delete('applanguage');
-      if (lang != 0) {
-        var surveylist = await dbClient.delete('surveylist');
-        if (surveylist != 0) {
-          var propsurvey = await dbClient.delete('propertysurvey');
-        }
-      }
+      await dbClient.delete('applanguage');
+      await dbClient.delete('surveylist');
+      await dbClient.delete('propertysurvey');
+      await dbClient.delete('reworklist');
     } catch (error, stackTrace) {
+      setState(AppState.Idle);
       Catcher.reportCheckedError(error, stackTrace);
     }
   }

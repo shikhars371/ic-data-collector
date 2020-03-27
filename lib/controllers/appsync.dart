@@ -25,11 +25,13 @@ class AppSync with ChangeNotifier {
   }
 
   Future<bool> syncData({LocalPropertySurvey propertydata}) async {
+    setState(AppState.Busy);
     bool result = false;
     SharedPreferences preferences = await SharedPreferences.getInstance();
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     String deviceuniqueid = "";
     try {
+      Response responce;
       if (Platform.isAndroid) {
         AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
         deviceuniqueid = androidInfo.androidId;
@@ -406,24 +408,65 @@ class AppSync with ChangeNotifier {
             "supporting_surveyor_id": propertydata.surveyleadid,
             "authority": "Survey Lead"
           };
-      var responce = await http.post(
-          Configuration.apiurl + "propertyinformation",
-          body: json.encode(inputdata()),
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": preferences.getString("accesstoken")
-          });
-      if (responce.statusCode == 201) {
+      var ifdataexist = await isPropertyExistInDataBase(
+          propertyid: propertydata.province +
+              "-" +
+              propertydata.area +
+              "-" +
+              propertydata.pass +
+              "-" +
+              propertydata.block +
+              "-" +
+              propertydata.part_number);
+      //if data exist then patch otherwise insert
+      if (ifdataexist) {
+        var propertyid = await getPropertyId(
+            propertyid: propertydata.province +
+                "-" +
+                propertydata.area +
+                "-" +
+                propertydata.pass +
+                "-" +
+                propertydata.block +
+                "-" +
+                propertydata.part_number);
+        responce = (await http.patch(
+            Configuration.apiurl + "propertyinformation/$propertyid",
+            body: json.encode(inputdata()),
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": preferences.getString("accesstoken")
+            })) as Response;
+      } else {
+        responce = (await http.post(
+            Configuration.apiurl + "propertyinformation",
+            body: json.encode(inputdata()),
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": preferences.getString("accesstoken")
+            })) as Response;
+      }
+      if (responce.statusCode == 201 ||
+          responce.statusCode == 200 ||
+          responce.statusCode == 202) {
         //success
         result = true;
+        await http.post(Configuration.apiurl + "propertyinformationlog",
+            body: json.encode(inputdata()),
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": preferences.getString("accesstoken")
+            });
       } else if (responce.statusCode == 401) {
         AuthModel().generateRefreshToken().then((_) {
           syncData(propertydata: propertydata);
         });
       }
     } catch (error, stackTrace) {
+      setState(AppState.Idle);
       Catcher.reportCheckedError(error, stackTrace);
     }
+    setState(AppState.Idle);
     return result;
   }
 
@@ -521,7 +564,6 @@ class AppSync with ChangeNotifier {
         avaiblefiles.add(propertydata.home_photo);
       }
     } catch (error, stackTrace) {
-
       Catcher.reportCheckedError(error, stackTrace);
     }
     return avaiblefiles;
@@ -612,6 +654,63 @@ class AppSync with ChangeNotifier {
       Catcher.reportCheckedError(error, stackTrace);
     }
     setState(AppState.Idle);
+    return result;
+  }
+
+  //return treue if value exist
+  Future<bool> isPropertyExistInDataBase({String propertyid}) async {
+    setState(AppState.Busy);
+    bool result = false;
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    try {
+      if (!(propertyid?.isEmpty ?? true)) {
+        var responce = await http.get(
+            Configuration.apiurl + "propertyinformation?upin=$propertyid",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": preferences.getString("accesstoken")
+            });
+        if (responce.statusCode == 200) {
+          result =
+              int.tryParse(json.decode(responce.body)['total'].toString()) == 0
+                  ? false
+                  : true;
+        } else if (responce.statusCode == 401) {
+          AuthModel().generateRefreshToken().then((_) {
+            isPropertyExistInDataBase(propertyid: propertyid);
+          });
+        }
+      }
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
+    }
+    setState(AppState.Idle);
+    return result;
+  }
+
+  Future<String> getPropertyId({String propertyid}) async {
+    setState(AppState.Busy);
+    String result = "";
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    try {
+      if (!(propertyid?.isEmpty ?? true)) {
+        var responce = await http.get(
+            Configuration.apiurl + "propertyinformation?upin=$propertyid",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": preferences.getString("accesstoken")
+            });
+        if (responce.statusCode == 200) {
+          result = json.decode(responce.body)['data'][0]['_id'].toString();
+        } else if (responce.statusCode == 401) {
+          AuthModel().generateRefreshToken().then((_) {
+            isPropertyExistInDataBase(propertyid: propertyid);
+          });
+        }
+      }
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
+    }
     return result;
   }
 

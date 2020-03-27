@@ -196,44 +196,57 @@ class _TaskPageState extends State<TaskPage> {
             List<SurveyAssignment> data = assignments.data;
             return Column(
               children: <Widget>[
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: data?.isEmpty ?? true ? 0 : data.length,
-                    itemBuilder: (context, index) {
-                      return listcard(
-                          id: data[index] == null
-                              ? new SurveyAssignment()
-                              : data[index],
-                          provinance: data[index].province?.isEmpty ?? true
-                              ? ""
-                              : data[index].province,
-                          nahia: data[index].nahia?.isEmpty ?? true
-                              ? ""
-                              : data[index].nahia,
-                          gozar: data[index].gozar?.isEmpty ?? true
-                              ? ""
-                              : data[index].gozar,
-                          area: data[index].property_to_survey == null
-                              ? 0
-                              : data[index].property_to_survey.toString(),
-                          assigndate: data[index].startDate?.isEmpty ?? true
-                              ? ""
-                              : data[index].startDate,
-                          status: workstatus(
-                              completestatus: data[index].iscompleted,
-                              startedstatus: data[index].isstatrted,
-                              syncstatus: data[index].issynced),
-                          statuscolor: workstatuscolor(
-                              completestatus: data[index].iscompleted,
-                              startedstatus: data[index].isstatrted,
-                              syncstatus: data[index].issynced),
-                          totalTask: data[index].property_to_survey.toString(),
-                          completedTask: data[index].noOfCompletedTask == null
-                              ? 0
-                              : data[index].noOfCompletedTask.toString());
-                    },
-                  ),
-                )
+                data.isEmpty ?? true
+                    ? Expanded(
+                        child: Center(
+                          child: Text(
+                            setapptext(key: 'key_no_survey'),
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      )
+                    : Expanded(
+                        child: ListView.builder(
+                          itemCount: data?.isEmpty ?? true ? 0 : data.length,
+                          itemBuilder: (context, index) {
+                            return listcard(
+                                id: data[index] == null
+                                    ? new SurveyAssignment()
+                                    : data[index],
+                                provinance:
+                                    data[index].province?.isEmpty ?? true
+                                        ? ""
+                                        : data[index].province,
+                                nahia: data[index].nahia?.isEmpty ?? true
+                                    ? ""
+                                    : data[index].nahia,
+                                gozar: data[index].gozar?.isEmpty ?? true
+                                    ? ""
+                                    : data[index].gozar,
+                                area: data[index].property_to_survey == null
+                                    ? 0
+                                    : data[index].property_to_survey.toString(),
+                                assigndate:
+                                    data[index].startDate?.isEmpty ?? true
+                                        ? ""
+                                        : data[index].startDate,
+                                status: workstatus(
+                                    completestatus: data[index].iscompleted,
+                                    startedstatus: data[index].isstatrted,
+                                    syncstatus: data[index].issynced),
+                                statuscolor: workstatuscolor(
+                                    completestatus: data[index].iscompleted,
+                                    startedstatus: data[index].isstatrted,
+                                    syncstatus: data[index].issynced),
+                                totalTask:
+                                    data[index].property_to_survey.toString(),
+                                completedTask: data[index].noOfCompletedTask ==
+                                        null
+                                    ? 0
+                                    : data[index].noOfCompletedTask.toString());
+                          },
+                        ),
+                      )
               ],
             );
           } else {

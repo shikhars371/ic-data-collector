@@ -290,6 +290,7 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                                 : () {
                                                     DatePicker.showDatePicker(
                                                         context,
+                                                        maxTime: DateTime.now(),
                                                         onChanged: (date) {
                                                       localdata
                                                               .safari_booklet_issue_date =
@@ -329,6 +330,9 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                                           DatePicker
                                                               .showDatePicker(
                                                                   context,
+                                                                  maxTime:
+                                                                      DateTime
+                                                                          .now(),
                                                                   onChanged:
                                                                       (date) {
                                                             localdata

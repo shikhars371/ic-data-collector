@@ -308,5 +308,6 @@
     "key_limit_four": "*Value should be of 4 digit",
     "key_home":"HomePage",
     "key_newsurvey": "New Survey",
-    "key_rework": "Rework"
+    "key_rework": "Rework",
+    "key_no_survey": "No Survey Is Available"
 }

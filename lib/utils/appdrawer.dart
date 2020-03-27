@@ -122,10 +122,6 @@ class _AppDrawerState extends State<AppDrawer> {
                   DBHelper().clearLocalStorage();
                   pref.clear();
                   BackgroundFetch.stop();
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => LoginPage()));
                   _navigationService.navigateRepalceTo(
                       routeName: routes.LoginRoute);
                 },
@@ -233,7 +229,7 @@ class _AppDrawerState extends State<AppDrawer> {
                               intl.DateFormat("dd-MMM-yyy hh:mm").format(
                                 DateTime.tryParse(lastsynceddate),
                               ),
-                              textDirection:
+                          textDirection:
                               (locator<LanguageService>().currentlanguage == 0)
                                   ? TextDirection.ltr
                                   : TextDirection.rtl,

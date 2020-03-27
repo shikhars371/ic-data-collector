@@ -124,16 +124,50 @@ class _LoginPageState extends State<LoginPage> {
                                 onFieldSubmitted: (_) async {
                                   if (_formkey.currentState.validate()) {
                                     _formkey.currentState.save();
-                                    var result = await data.login(user: _user);
-                                    if (result == "ok") {
-                                      _navigationService.navigateRepalceTo(
-                                          routeName: routes.TaskRoute);
+                                    var connectivityResult =
+                                        await (Connectivity()
+                                            .checkConnectivity());
+                                    if (connectivityResult ==
+                                            ConnectivityResult.mobile ||
+                                        connectivityResult ==
+                                            ConnectivityResult.wifi) {
+                                      var result =
+                                          await data.login(user: _user);
+                                      if (result == "ok") {
+                                        _navigationService.navigateRepalceTo(
+                                            routeName: routes.LanguageRoute);
+                                      } else {
+                                        showDialogSingleButton(
+                                            context: context,
+                                            message: result,
+                                            title: 'Warning',
+                                            buttonLabel: 'ok');
+                                      }
                                     } else {
-                                      showDialogSingleButton(
+                                      showDialog(
                                           context: context,
-                                          message: result,
-                                          title: 'Warning',
-                                          buttonLabel: 'ok');
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: Text(
+                                                setapptext(key: 'key_warning'),
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.red),
+                                              ),
+                                              content: Text(setapptext(
+                                                  key: 'key_ckeck_internet')),
+                                              actions: <Widget>[
+                                                FlatButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Text(
+                                                    setapptext(key: 'key_ok'),
+                                                  ),
+                                                ),
+                                              ],
+                                            );
+                                          });
                                     }
                                   }
                                   return;

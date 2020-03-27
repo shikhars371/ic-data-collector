@@ -165,32 +165,41 @@ class _ReworkTaskPageState extends State<ReworkTaskPage> {
             List<ReworkAssignment> data = assignments.data;
             return Column(
               children: <Widget>[
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: data?.isEmpty ?? true ? 0 : data.length,
-                    itemBuilder: (context, index) {
-                      return listcard(
-                          id: data[index] == null
-                              ? new ReworkAssignment()
-                              : data[index],
-                          provinance: data[index].province?.isEmpty ?? true
-                              ? ""
-                              : data[index].province,
-                          nahia: data[index].nahia?.isEmpty ?? true
-                              ? ""
-                              : data[index].nahia,
-                          gozar: data[index].gozar?.isEmpty ?? true
-                              ? ""
-                              : data[index].gozar,
-                          assigndate: data[index].createdate?.isEmpty ?? true
-                              ? ""
-                              : data[index].createdate,
-                          status: workstatus(status: data[index].appstatus),
-                          statuscolor:
-                              workstatuscolor(status: data[index].appstatus));
-                    },
-                  ),
-                )
+                data.isEmpty ?? true
+                    ? Expanded(
+                        child: Center(
+                          child: Text(setapptext(key: 'key_no_survey'),style: TextStyle(fontWeight: FontWeight.bold),),
+                        ),
+                      )
+                    : Expanded(
+                        child: ListView.builder(
+                          itemCount: data?.isEmpty ?? true ? 0 : data.length,
+                          itemBuilder: (context, index) {
+                            return listcard(
+                                id: data[index] == null
+                                    ? new ReworkAssignment()
+                                    : data[index],
+                                provinance:
+                                    data[index].province?.isEmpty ?? true
+                                        ? ""
+                                        : data[index].province,
+                                nahia: data[index].nahia?.isEmpty ?? true
+                                    ? ""
+                                    : data[index].nahia,
+                                gozar: data[index].gozar?.isEmpty ?? true
+                                    ? ""
+                                    : data[index].gozar,
+                                assigndate:
+                                    data[index].createdate?.isEmpty ?? true
+                                        ? ""
+                                        : data[index].createdate,
+                                status:
+                                    workstatus(status: data[index].appstatus),
+                                statuscolor: workstatuscolor(
+                                    status: data[index].appstatus));
+                          },
+                        ),
+                      )
               ],
             );
           } else {

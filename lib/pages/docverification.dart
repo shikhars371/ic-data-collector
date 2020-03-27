@@ -281,6 +281,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                   : () {
                                                       DatePicker.showDatePicker(
                                                           context,
+                                                          maxTime:
+                                                              DateTime.now(),
                                                           onChanged: (date) {
                                                         localdata.issued_on =
                                                             DateFormat(
@@ -320,6 +322,9 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                           DatePicker
                                                               .showDatePicker(
                                                                   context,
+                                                                  maxTime:
+                                                                      DateTime
+                                                                          .now(),
                                                                   onChanged:
                                                                       (date) {
                                                             localdata
@@ -364,7 +369,7 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                   child: Padding(
                                                     padding:
                                                         const EdgeInsets.only(
-                                                            left: 10.0),
+                                                            left: 10.0,bottom: 8),
                                                     child: Text(
                                                       setapptext(
                                                           key: "key_required"),

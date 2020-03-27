@@ -38,7 +38,7 @@ class ReworkTask with ChangeNotifier {
           connectivityResult == ConnectivityResult.wifi) {
         var responce = await http.get(
             Configuration.apiurl +
-                'taskreassignment?\$or[0][surveyor1]=${preferences.getString('userid')}&\$or[1][surveyor2]=${preferences.getString('userid')}',
+                'taskreassignment?\$or[0][surveyor1]=${preferences.getString('userid')}&\$or[1][surveyor2]=${preferences.getString('userid')}&surveystatus=open',
             headers: {
               "Content-Type": "application/json",
               "Authorization": preferences.getString("accesstoken")
