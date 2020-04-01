@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kapp/pages/fourlimit.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
@@ -58,22 +59,33 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
             await DBHelper()
                 .updatePropertySurvey(localdata, localdata.local_property_key);
           }
-          if (localdata.cityzenship_notice == "2") {
+          if (localdata.property_type == "2") {
             Navigator.pushReplacement(
-                context,
-                PageTransition(
-                    child: OtherPartnerInfoPage(
-                      localdata: localdata,
-                    ),
-                    type: PageTransitionType.rightToLeft));
+              context,
+              PageTransition(
+                  child: OtherPartnerInfoPage(
+                    localdata: localdata,
+                  ),
+                  type: PageTransitionType.rightToLeft),
+            );
           } else {
-            Navigator.pushReplacement(
-                context,
-                PageTransition(
-                    child: InfoPhotoHintPage(
-                      localdata: localdata,
-                    ),
-                    type: PageTransitionType.rightToLeft));
+            if (localdata.cityzenship_notice == "2") {
+              Navigator.pushReplacement(
+                  context,
+                  PageTransition(
+                      child: FourLimitPage(
+                        localdata: localdata,
+                      ),
+                      type: PageTransitionType.rightToLeft));
+            } else {
+              Navigator.pushReplacement(
+                  context,
+                  PageTransition(
+                      child: InfoPhotoHintPage(
+                        localdata: localdata,
+                      ),
+                      type: PageTransitionType.rightToLeft));
+            }
           }
         }
       },

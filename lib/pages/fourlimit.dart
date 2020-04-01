@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:kapp/pages/homesketch.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';

@@ -11,6 +11,7 @@ import '../widgets/appformcards.dart';
 import './task.dart';
 import './buildinginfo.dart';
 import './fourlimit.dart';
+import '../utils/backgroundfetch.dart';
 
 class HomeSketchPage extends StatefulWidget {
   HomeSketchPage({this.localdata});
@@ -314,7 +315,6 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                   : GestureDetector(
                                       onTap: () async {
                                         _formkey.currentState.save();
-                                        localdata.other_key = "1";
                                         localdata.isdrafted = 1;
                                         localdata.surveyenddate =
                                             DateTime.now().toString();
@@ -326,6 +326,7 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                           DBHelper().updateTaskCompleteStatus(
                                               taskid: localdata.taskid);
                                         });
+                                        await BackGroundSync().startSync();
                                         Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(

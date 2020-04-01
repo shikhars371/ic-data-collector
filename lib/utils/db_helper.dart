@@ -992,11 +992,11 @@ class DBHelper with ChangeNotifier {
         SELECT * FROM propertysurvey WHERE taskid=? ORDER BY isdrafted ASC
       ''';
         params = [taskid];
-      } else if (!(localkey?.isEmpty ?? true)) {
+      } else {
         sqlquery = '''
-        SELECT * FROM propertysurvey WHERE taskid=? AND local_property_key=? ORDER BY isdrafted ASC
+        SELECT * FROM propertysurvey WHERE local_property_key=? ORDER BY isdrafted ASC
       ''';
-        params = [taskid, localkey];
+        params = [localkey];
       }
 
       List<Map> it = await dbClient.rawQuery(sqlquery, params);
@@ -1098,7 +1098,7 @@ class DBHelper with ChangeNotifier {
       List<Map> maps = await dbClient.rawQuery(
           '''select COUNT(id) as P FROM propertysurvey WHERE taskid=?''',
           [taskid]);
-      result = assignedcount >= maps[0]['P'] ? false : true;
+      result = assignedcount > maps[0]['P'] ? false : true;
     } catch (error, stackTrace) {
       Catcher.reportCheckedError(error, stackTrace);
     }
@@ -1432,6 +1432,37 @@ class DBHelper with ChangeNotifier {
     }
     setState(AppState.Idle);
     return result;
+  }
+
+  void reCreateLnagugae({String lang, int langvalue}) async {
+    try {
+      var dbClient = await db;
+      dbClient.execute('''
+      CREATE TABLE IF NOT EXISTS applanguage(language TEXT,languageval INTEGER)
+    ''').then((_) {
+        dbClient.execute(
+            'INSERT INTO applanguage(language,languageval)VALUES(?,?)',
+            [lang, langvalue]);
+      });
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
+    }
+  }
+
+  Future<List<String>> help() async {
+    List<String> fetchdata = [];
+    try {
+      var dbClient = await db;
+
+      List<Map> maps = await dbClient
+          .rawQuery("select local_property_key from propertysurvey");
+      for (var item in maps) {
+        fetchdata.add(item['local_property_key']);
+      }
+    } catch (e) {
+      print(e);
+    }
+    return fetchdata;
   }
 
   Future close() async {

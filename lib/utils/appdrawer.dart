@@ -42,6 +42,7 @@ class _AppDrawerState extends State<AppDrawer> {
     DrawerItem("key_tasks", Icons.assignment), //page index = 1
     DrawerItem("key_rework", Icons.restore_page), //page index = 2
     DrawerItem("key_language", Icons.language), //page index = 3
+    //DrawerItem("key_help", Icons.help)
   ];
   @override
   void initState() {

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kapp/utils/db_helper.dart';
+import 'package:sqflite/sqflite.dart';
 
 import '../utils/navigation_service.dart';
 import '../utils/route_paths.dart' as routes;
@@ -15,6 +17,9 @@ class _HelpPageState extends State<HelpPage> {
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
   }
+
+  List<String> data = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +31,25 @@ class _HelpPageState extends State<HelpPage> {
         ),
       ),
       drawer: AppDrawer(),
+      body: Container(
+          child: Column(
+        children: <Widget>[
+          RaisedButton(
+            onPressed: () async {
+              data = await DBHelper().help();
+              setState(() {});
+            },
+            child: Text("Click"),
+          ),
+          Expanded(
+            child: ListView.builder(
+                itemCount: data.length,
+                itemBuilder: (context, index) {
+                  return Text(data[index]);
+                }),
+          )
+        ],
+      )),
     );
   }
 }

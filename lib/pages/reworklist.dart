@@ -361,6 +361,7 @@ class _RewokListPageState extends State<RewokListPage> {
     surveyAssignment.block = reworkAssignment.block;
     surveyAssignment.startDate = reworkAssignment.createdate;
     surveyAssignment.taskStatus = reworkAssignment.surveystatus;
+    surveyAssignment.reworkstatus = reworkAssignment.status;
   }
 
   @override
@@ -382,7 +383,14 @@ class _RewokListPageState extends State<RewokListPage> {
         ),
       ),
       body: FutureBuilder(
-        future: DBHelper().getpropertysurveys(taskid: surveyAssignment.id),
+        future: DBHelper().getpropertysurveys(
+            localkey: (widget.sid.province +
+                widget.sid.municipality +
+                widget.sid.nahia +
+                widget.sid.gozar +
+                widget.sid.block +
+                widget.sid.parcelno +
+                widget.sid.unit)),
         builder:
             (context, AsyncSnapshot<List<LocalPropertySurvey>> surveydata) {
           if (surveydata.connectionState == ConnectionState.done &&

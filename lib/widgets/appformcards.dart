@@ -114,16 +114,19 @@ Widget formcardtextfield(
                       )
                     : SizedBox(),
                 Flexible(
-                  child: Text(
-                    headerlablekey,
-                    overflow: TextOverflow.visible,
-                    style: TextStyle(),
-                    textDirection:
-                        locator<LanguageService>().currentlanguage == 0
-                            ? TextDirection.ltr
-                            : TextDirection.rtl,
+                  child: Container(
+                    child: Text(
+                      headerlablekey,
+                      overflow: TextOverflow.visible,
+                      softWrap: true,
+                      style: TextStyle(),
+                      textDirection:
+                          locator<LanguageService>().currentlanguage == 0
+                              ? TextDirection.ltr
+                              : TextDirection.rtl,
+                    ),
                   ),
-                )
+                ),
               ],
             ),
             Padding(

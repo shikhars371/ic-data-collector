@@ -78,6 +78,10 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
             localdata.surveyoroneid = widget.surveyAssignment.surveyor1;
             localdata.surveyortwoid = widget.surveyAssignment.surveyor2;
             localdata.surveyleadid = widget.surveyAssignment.teamlead;
+            localdata.other_key =
+                (widget.surveyAssignment.reworkstatus?.isEmpty ?? true)
+                    ? "Survey Completed"
+                    : widget.surveyAssignment.reworkstatus;
           }
           Navigator.pushReplacement(
             context,

@@ -58,6 +58,8 @@ class _LanguagePageState extends State<LanguagePage> {
     var result = await DBHelper().changeLanguage(lang: value, langvalue: index);
     if (result != 0) {
       _navigationService.navigateRepalceTo(routeName: routes.Homepage);
+    } else {
+      DBHelper().reCreateLnagugae(lang: value, langvalue: index);
     }
     _navigationService.navigateRepalceTo(routeName: routes.Homepage);
   }

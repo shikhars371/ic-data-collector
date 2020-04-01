@@ -31,7 +31,7 @@ class AppSync with ChangeNotifier {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     String deviceuniqueid = "";
     try {
-      Response responce;
+      var responce;
       if (Platform.isAndroid) {
         AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
         deviceuniqueid = androidInfo.androidId;
@@ -393,7 +393,7 @@ class AppSync with ChangeNotifier {
             "extra2": "SENT",
             "region": "",
             "key": "",
-            "status": "Survey Completed",
+            "status": propertydata.other_key,
             "upin": propertydata.province +
                 "-" +
                 propertydata.area +
@@ -430,33 +430,43 @@ class AppSync with ChangeNotifier {
                 propertydata.block +
                 "-" +
                 propertydata.part_number);
-        responce = (await http.patch(
+        responce = await http.patch(
             Configuration.apiurl + "propertyinformation/$propertyid",
             body: json.encode(inputdata()),
             headers: {
               "Content-Type": "application/json",
               "Authorization": preferences.getString("accesstoken")
-            })) as Response;
+            });
+        await http.patch(
+            Configuration.apiurl + "taskreassignment/${propertydata.taskid}",
+            body: {
+              "surveystatus": "close"
+            },
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": preferences.getString("accesstoken")
+            });
       } else {
-        responce = (await http.post(
-            Configuration.apiurl + "propertyinformation",
+        responce = await http.post(Configuration.apiurl + "propertyinformation",
             body: json.encode(inputdata()),
             headers: {
               "Content-Type": "application/json",
               "Authorization": preferences.getString("accesstoken")
-            })) as Response;
+            });
       }
       if (responce.statusCode == 201 ||
           responce.statusCode == 200 ||
           responce.statusCode == 202) {
         //success
         result = true;
-        await http.post(Configuration.apiurl + "propertyinformationlog",
+        var res = await http.post(
+            Configuration.apiurl + "propertyinformationlog",
             body: json.encode(inputdata()),
             headers: {
               "Content-Type": "application/json",
               "Authorization": preferences.getString("accesstoken")
             });
+        print(res.statusCode);
       } else if (responce.statusCode == 401) {
         AuthModel().generateRefreshToken().then((_) {
           syncData(propertydata: propertydata);
