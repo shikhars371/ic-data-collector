@@ -106,62 +106,6 @@ class _RewokListPageState extends State<RewokListPage> {
                                   );
                                 },
                               ),
-
-                        ///delete icon
-                        surveydata.isdrafted == 2
-                            ? SizedBox()
-                            : IconButton(
-                                iconSize: 25,
-                                icon: Icon(
-                                  Icons.delete,
-                                  color: Colors.redAccent,
-                                ),
-                                onPressed: () {
-                                  showDialog(
-                                      context: context,
-                                      barrierDismissible: false,
-                                      builder: (context) {
-                                        return CupertinoAlertDialog(
-                                          title: Text(setapptext(
-                                              key: 'key_want_to_delete')),
-                                          actions: <Widget>[
-                                            FlatButton(
-                                              onPressed: () async {
-                                                DBHelper()
-                                                    .deletePropertySurvey(
-                                                        localkey: surveydata
-                                                            .local_property_key)
-                                                    .then((_) {
-                                                  Navigator.pop(context);
-                                                  Provider.of<DBHelper>(context)
-                                                      .getpropertysurveys(
-                                                          taskid:
-                                                              surveyAssignment
-                                                                  .id);
-                                                  setState(() {});
-                                                });
-                                              },
-                                              child: Text(
-                                                setapptext(key: 'key_delete'),
-                                                style: TextStyle(
-                                                    color: Colors.red),
-                                              ),
-                                            ),
-                                            FlatButton(
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              },
-                                              child: Text(
-                                                setapptext(key: 'key_cancel'),
-                                                style: TextStyle(
-                                                    color: Colors.black),
-                                              ),
-                                            )
-                                          ],
-                                        );
-                                      });
-                                },
-                              ),
                         //upload icon
                         surveydata.isdrafted == 2
                             ? SizedBox()

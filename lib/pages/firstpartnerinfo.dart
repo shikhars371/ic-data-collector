@@ -15,6 +15,8 @@ import './businesslicense.dart';
 import './typeofuse.dart';
 import './propertydetails.dart';
 import './otherpartnerinfo.dart';
+import '../utils/language_service.dart';
+import '../utils/locator.dart';
 
 class FirstPartnerPage extends StatefulWidget {
   FirstPartnerPage({this.localdata});
@@ -26,6 +28,8 @@ class FirstPartnerPage extends StatefulWidget {
 class _FirstPartnerPageState extends State<FirstPartnerPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
+  String tempemailholder = "";
+  TextEditingController emailController;
 
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
@@ -163,9 +167,19 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
   }
 
   @override
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
+  }
+
+  @override
   void initState() {
     localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
+    emailController = new TextEditingController(
+        text: localdata.first_partner_name_email?.isEmpty ?? true
+            ? ""
+            : localdata.first_partner_name_email);
     super.initState();
   }
 
@@ -383,43 +397,167 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                       }
                                     }
                                   }),
-                              formcardtextfield(
-                                  maxLength: 120,
-                                  enable:
-                                      localdata.isdrafted == 2 ? false : true,
-                                  keyboardtype: TextInputType.emailAddress,
-                                  headerlablekey: setapptext(key: 'key_email'),
-                                  radiovalue: localdata.first_partner_name_email
-                                              ?.isEmpty ??
-                                          true
-                                      ? CheckColor.Black
-                                      : CheckColor.Green,
-                                  initvalue: localdata.first_partner_name_email
-                                              ?.isEmpty ??
-                                          true
-                                      ? ""
-                                      : localdata.first_partner_name_email,
-                                  validator: (value) {
-                                    if (!(value?.isEmpty ?? true)) {
-                                      Pattern pattern =
-                                          r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                                      RegExp regex = new RegExp(pattern);
-                                      if (!regex.hasMatch(value))
-                                        return setapptext(
-                                            key: 'key_email_field');
-                                      else
-                                        return null;
-                                    }
-                                  },
-                                  onSaved: (value) {
-                                    localdata.first_partner_name_email =
-                                        value.trim();
-                                  },
-                                  onChanged: (value) {
-                                    localdata.first_partner_name_email =
-                                        value.trim();
-                                    setState(() {});
-                                  }),
+                              // formcardtextfield(
+                              //     controller: emailController,
+                              //     maxLength: 120,
+                              //     enable:
+                              //         localdata.isdrafted == 2 ? false : true,
+                              //     keyboardtype: TextInputType.emailAddress,
+                              //     headerlablekey: setapptext(key: 'key_email'),
+                              //     radiovalue: localdata.first_partner_name_email
+                              //                 ?.isEmpty ??
+                              //             true
+                              //         ? CheckColor.Black
+                              //         : CheckColor.Green,
+                              //     // initvalue: localdata.first_partner_name_email
+                              //     //             ?.isEmpty ??
+                              //     //         true
+                              //     //     ? ""
+                              //     //     : localdata.first_partner_name_email,
+                              //     validator: (value) {
+                              //       if (!(value?.isEmpty ?? true)) {
+                              //         Pattern pattern =
+                              //             r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                              //         RegExp regex = new RegExp(pattern);
+                              //         if (!regex.hasMatch(value))
+                              //           return setapptext(
+                              //               key: 'key_email_field');
+                              //         else
+                              //           return null;
+                              //       }
+                              //     },
+                              //     onSaved: (value) {
+                              //       localdata.first_partner_name_email =
+                              //           value.trim();
+                              //     },
+                              //     onChanged: (value) {
+                              //       localdata.first_partner_name_email =
+                              //           value.trim();
+                              //       setState(() {});
+                              //     },
+                              //     onFieldSubmitted: (value) {
+                              //       localdata.first_partner_name_email =
+                              //           value.trim();
+                              //       setState(() {});
+                              //     }),
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                padding: EdgeInsets.all(10),
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color:
+                                              Color.fromRGBO(176, 174, 171, 1),
+                                          width: 1),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Row(
+                                          textDirection:
+                                              locator<LanguageService>()
+                                                          .currentlanguage ==
+                                                      0
+                                                  ? TextDirection.ltr
+                                                  : TextDirection.rtl,
+                                          children: <Widget>[
+                                            completedcheckbox(
+                                                isCompleted: localdata
+                                                            .first_partner_name_email
+                                                            ?.isEmpty ??
+                                                        true
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
+                                            SizedBox(),
+                                            Flexible(
+                                              child: Container(
+                                                child: Text(
+                                                  setapptext(key: 'key_email'),
+                                                  overflow:
+                                                      TextOverflow.visible,
+                                                  softWrap: true,
+                                                  style: TextStyle(),
+                                                  textDirection:
+                                                      locator<LanguageService>()
+                                                                  .currentlanguage ==
+                                                              0
+                                                          ? TextDirection.ltr
+                                                          : TextDirection.rtl,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8, right: 8, bottom: 10),
+                                          child: TextFormField(
+                                            autofocus: false,
+                                            textDirection:
+                                                locator<LanguageService>()
+                                                            .currentlanguage ==
+                                                        0
+                                                    ? TextDirection.ltr
+                                                    : TextDirection.rtl,
+                                            enabled: localdata.isdrafted == 2
+                                                ? false
+                                                : true,
+                                            keyboardType:
+                                                TextInputType.emailAddress,
+
+                                            decoration: InputDecoration(
+                                              errorStyle: TextStyle(
+                                                  color: Colors.redAccent),
+                                            ),
+                                            onSaved: (value) {
+                                              localdata
+                                                      .first_partner_name_email =
+                                                  value.trim();
+                                            },
+                                            validator: (value) {
+                                              if (!(value?.isEmpty ?? true)) {
+                                                Pattern pattern =
+                                                    r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                                                RegExp regex =
+                                                    new RegExp(pattern);
+                                                if (!regex.hasMatch(value))
+                                                  return setapptext(
+                                                      key: 'key_email_field');
+                                                else
+                                                  return null;
+                                              }
+                                            },
+                                            onChanged: (value) {
+                                              localdata
+                                                      .first_partner_name_email =
+                                                  value.trim();
+                                              setState(() {});
+                                            },
+                                            onFieldSubmitted: (value) {
+                                              localdata
+                                                      .first_partner_name_email =
+                                                  value.trim();
+                                              setState(() {});
+                                            },
+                                            maxLength: 120,
+                                            controller: emailController,
+
+                                            ///WhitelistingTextInputFormatter.digitsOnly
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
                               Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
@@ -475,9 +613,19 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                                       localdata.isdrafted == 2
                                                           ? null
                                                           : () async {
+                                                              tempemailholder =
+                                                                  localdata
+                                                                      .first_partner_name_email;
                                                               localdata
                                                                       .first_partner_name_property_owner =
                                                                   await appimagepicker();
+                                                              setState(() {});
+                                                              localdata
+                                                                      .first_partner_name_email =
+                                                                  tempemailholder;
+                                                              emailController
+                                                                      .text =
+                                                                  tempemailholder;
                                                               setState(() {});
                                                             },
                                                 )

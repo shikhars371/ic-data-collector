@@ -147,8 +147,6 @@ Widget formcardtextfield(
                 onSaved: onSaved,
                 validator: validator,
                 onChanged: onChanged,
-                focusNode: fieldfocus,
-                textInputAction: textInputAction,
                 onFieldSubmitted: onFieldSubmitted,
                 inputFormatters: inputFormatters,
                 maxLength: maxLength,

@@ -161,7 +161,7 @@ class _SurveyPageState extends State<SurveyPage> {
                                               child: Text(
                                                 setapptext(key: 'key_cancel'),
                                                 style: TextStyle(
-                                                    color: Colors.black),
+                                                    color: Colors.white),
                                               ),
                                             )
                                           ],

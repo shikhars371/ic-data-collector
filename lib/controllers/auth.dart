@@ -12,6 +12,7 @@ import '../utils/navigation_service.dart';
 import '../utils/route_paths.dart' as routes;
 import '../utils/locator.dart';
 import '../utils/appstate.dart';
+import '../utils/db_helper.dart';
 
 
 class AuthModel with ChangeNotifier {
@@ -45,6 +46,7 @@ class AuthModel with ChangeNotifier {
                 responseJson: json.decode(responce.body),
                 password: user.password);
             result = "ok";
+            DBHelper().clearLocalStorage();
             if (Platform.isAndroid) {
               BackgroundFetch.start().then((onValue) {
                 print(onValue);
