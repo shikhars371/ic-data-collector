@@ -218,7 +218,7 @@
     "key_third_partner_info": "مشخصات شریک سوم",
     "key_fourth_partner_info": "مشخصات شریک چهارم",
     "key_fifth_partner_info": "مشخصات شریک پنجم",
-    "key_none_selected": "None Selected",
+    "key_none_selected": "هیچ کدام انتخاب نشده است",
     "key_kabul": "کابل -> کابل",
     "key_nangarhar": "ننگرهار-> جلال آباد",
     "key_Kandahar": "کندهار -> قندهار",
@@ -306,8 +306,8 @@
     "key_only_email": "ایمیل",
     "key_notify_no_sync": "Please check you have some Pending survey to sync from last two days.",
     "key_limit_four": "*Value should be of 4 digit",
-    "key_home":"HomePage",
-    "key_newsurvey": "New Survey",
-    "key_rework": "Rework",
-    "key_no_survey": "No Survey Is Available"
+    "key_home":"صفحه نخست",
+    "key_newsurvey": "بررسی جدید",
+    "key_rework": "کار",
+    "key_no_survey": "هیچ بررسی دیگری در دسترس نیست"
 }
