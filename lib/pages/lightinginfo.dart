@@ -10,6 +10,8 @@ import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
 import '../widgets/appformcards.dart';
 import './safaribooklet.dart';
+import '../utils/language_service.dart';
+import '../utils/locator.dart';
 
 class LightingInfoPage extends StatefulWidget {
   LightingInfoPage({this.localdata});
@@ -21,6 +23,8 @@ class LightingInfoPage extends StatefulWidget {
 class _LightingInfoPageState extends State<LightingInfoPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
+  TextEditingController _subfather;
+  String tempval = "";
 
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
@@ -108,6 +112,10 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
   void initState() {
     localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
+    _subfather = new TextEditingController(
+        text: localdata.lightning_father_name?.isEmpty ?? true
+            ? ""
+            : localdata.lightning_father_name);
     super.initState();
   }
 
@@ -176,11 +184,11 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                   inputFormatters: [],
                                   enable:
                                       localdata.isdrafted == 2 ? false : true,
-                                  initvalue:
-                                      localdata.lightning_common_name?.isEmpty ??
-                                              true
-                                          ? ""
-                                          : localdata.lightning_common_name,
+                                  initvalue: localdata
+                                              .lightning_common_name?.isEmpty ??
+                                          true
+                                      ? ""
+                                      : localdata.lightning_common_name,
                                   headerlablekey:
                                       setapptext(key: 'key_Common_name'),
                                   radiovalue: localdata
@@ -200,35 +208,129 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                         value.trim();
                                     setState(() {});
                                   }),
-                              formcardtextfield(
-                                  maxLength: 120,
-                                  inputFormatters: [],
-                                  enable:
-                                      localdata.isdrafted == 2 ? false : true,
-                                  initvalue: localdata
-                                              .lightning_father_name?.isEmpty ??
-                                          true
-                                      ? ""
-                                      : localdata.lightning_father_name,
-                                  headerlablekey:
-                                      setapptext(key: 'key_subscriber_father'),
-                                  radiovalue: localdata
-                                              .lightning_father_name?.isEmpty ??
-                                          true
-                                      ? CheckColor.Black
-                                      : CheckColor.Green,
-                                  // hinttextkey:
-                                  //     setapptext(key: 'key_enter_1st_surveyor'),
-                                  validator: (value) {},
-                                  onSaved: (value) {
-                                    localdata.lightning_father_name =
-                                        value.trim();
-                                  },
-                                  onChanged: (value) {
-                                    localdata.lightning_father_name =
-                                        value.trim();
-                                    setState(() {});
-                                  }),
+                              // formcardtextfield(
+                              //     maxLength: 120,
+                              //     inputFormatters: [],
+                              //     enable:
+                              //         localdata.isdrafted == 2 ? false : true,
+                              //     initvalue: localdata
+                              //                 .lightning_father_name?.isEmpty ??
+                              //             true
+                              //         ? ""
+                              //         : localdata.lightning_father_name,
+                              //     headerlablekey:
+                              //         setapptext(key: 'key_subscriber_father'),
+                              //     radiovalue: localdata
+                              //                 .lightning_father_name?.isEmpty ??
+                              //             true
+                              //         ? CheckColor.Black
+                              //         : CheckColor.Green,
+                              //     // hinttextkey:
+                              //     //     setapptext(key: 'key_enter_1st_surveyor'),
+                              //     validator: (value) {},
+                              //     onSaved: (value) {
+                              //       localdata.lightning_father_name =
+                              //           value.trim();
+                              //     },
+                              //     onChanged: (value) {
+                              //       localdata.lightning_father_name =
+                              //           value.trim();
+                              //       setState(() {});
+                              //     }),
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                padding: EdgeInsets.all(10),
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color:
+                                              Color.fromRGBO(176, 174, 171, 1),
+                                          width: 1),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Row(
+                                          textDirection:
+                                              locator<LanguageService>()
+                                                          .currentlanguage ==
+                                                      0
+                                                  ? TextDirection.ltr
+                                                  : TextDirection.rtl,
+                                          children: <Widget>[
+                                            completedcheckbox(
+                                                isCompleted: localdata
+                                                            .lightning_father_name
+                                                            ?.isEmpty ??
+                                                        true
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
+                                            SizedBox(),
+                                            Flexible(
+                                              child: Container(
+                                                child: Text(
+                                                  setapptext(
+                                                      key:
+                                                          'key_subscriber_father'),
+                                                  overflow:
+                                                      TextOverflow.visible,
+                                                  softWrap: true,
+                                                  style: TextStyle(),
+                                                  textDirection:
+                                                      locator<LanguageService>()
+                                                                  .currentlanguage ==
+                                                              0
+                                                          ? TextDirection.ltr
+                                                          : TextDirection.rtl,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8, right: 8, bottom: 10),
+                                          child: TextFormField(
+                                            controller: _subfather,
+                                            autofocus: false,
+                                            textDirection:
+                                                locator<LanguageService>()
+                                                            .currentlanguage ==
+                                                        0
+                                                    ? TextDirection.ltr
+                                                    : TextDirection.rtl,
+                                            enabled: localdata.isdrafted == 2
+                                                ? false
+                                                : true,
+                                            decoration: InputDecoration(
+                                              errorStyle: TextStyle(
+                                                  color: Colors.redAccent),
+                                            ),
+                                            onSaved: (value) {
+                                              localdata.lightning_father_name =
+                                                  value.trim();
+                                            },
+                                            onChanged: (value) {
+                                              localdata.lightning_father_name =
+                                                  value.trim();
+                                              setState(() {});
+                                            },
+                                            maxLength: 120,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
                               Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
@@ -285,9 +387,17 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                                       localdata.isdrafted == 2
                                                           ? null
                                                           : () async {
+                                                              tempval = localdata
+                                                                  .lightning_father_name;
                                                               localdata
                                                                       .lightning_picture_bell_power =
                                                                   await appimagepicker();
+                                                              setState(() {});
+                                                              localdata
+                                                                      .lightning_father_name =
+                                                                  tempval;
+                                                              _subfather.text =
+                                                                  tempval;
                                                               setState(() {});
                                                             },
                                                 )

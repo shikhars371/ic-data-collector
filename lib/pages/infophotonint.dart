@@ -11,6 +11,8 @@ import '../utils/appstate.dart';
 import '../localization/app_translations.dart';
 import '../utils/db_helper.dart';
 import '../widgets/appformcards.dart';
+import '../utils/language_service.dart';
+import '../utils/locator.dart';
 
 class InfoPhotoHintPage extends StatefulWidget {
   InfoPhotoHintPage({this.localdata});
@@ -22,6 +24,8 @@ class InfoPhotoHintPage extends StatefulWidget {
 class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
+  TextEditingController _regno;
+  String tempval = "";
 
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
@@ -119,6 +123,10 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
   void initState() {
     localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
+    _regno = new TextEditingController(
+        text: localdata.info_photo_hint_reg_no?.isEmpty ?? true
+            ? ""
+            : localdata.info_photo_hint_reg_no);
     super.initState();
   }
 
@@ -233,31 +241,127 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                         value.trim();
                                     setState(() {});
                                   }),
-                              formcardtextfield(
-                                  maxLength: 120,
-                                  inputFormatters: [],
-                                  enable:
-                                      localdata.isdrafted == 2 ? false : true,
-                                  headerlablekey: setapptext(key: 'key_reg_no'),
-                                  radiovalue: localdata.info_photo_hint_reg_no
-                                              ?.isEmpty ??
-                                          true
-                                      ? CheckColor.Black
-                                      : CheckColor.Green,
-                                  initvalue: localdata.info_photo_hint_reg_no
-                                              ?.isEmpty ??
-                                          true
-                                      ? ""
-                                      : localdata.info_photo_hint_reg_no,
-                                  onSaved: (value) {
-                                    localdata.info_photo_hint_reg_no =
-                                        value.trim();
-                                  },
-                                  onChanged: (value) {
-                                    localdata.info_photo_hint_reg_no =
-                                        value.trim();
-                                    setState(() {});
-                                  }),
+                              // formcardtextfield(
+                              //     maxLength: 120,
+                              //     inputFormatters: [],
+                              //     enable:
+                              //         localdata.isdrafted == 2 ? false : true,
+                              //     headerlablekey: setapptext(key: 'key_reg_no'),
+                              //     radiovalue: localdata.info_photo_hint_reg_no
+                              //                 ?.isEmpty ??
+                              //             true
+                              //         ? CheckColor.Black
+                              //         : CheckColor.Green,
+                              //     initvalue: localdata.info_photo_hint_reg_no
+                              //                 ?.isEmpty ??
+                              //             true
+                              //         ? ""
+                              //         : localdata.info_photo_hint_reg_no,
+                              //     onSaved: (value) {
+                              //       localdata.info_photo_hint_reg_no =
+                              //           value.trim();
+                              //     },
+                              //     onChanged: (value) {
+                              //       localdata.info_photo_hint_reg_no =
+                              //           value.trim();
+                              //       setState(() {});
+                              //     }),
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                padding: EdgeInsets.all(10),
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color:
+                                              Color.fromRGBO(176, 174, 171, 1),
+                                          width: 1),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Row(
+                                          textDirection:
+                                              locator<LanguageService>()
+                                                          .currentlanguage ==
+                                                      0
+                                                  ? TextDirection.ltr
+                                                  : TextDirection.rtl,
+                                          children: <Widget>[
+                                            completedcheckbox(
+                                                isCompleted: localdata
+                                                            .info_photo_hint_reg_no
+                                                            ?.isEmpty ??
+                                                        true
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
+                                            SizedBox(),
+                                            Flexible(
+                                              child: Container(
+                                                child: Text(
+                                                  setapptext(key: 'key_reg_no'),
+                                                  overflow:
+                                                      TextOverflow.visible,
+                                                  softWrap: true,
+                                                  style: TextStyle(),
+                                                  textDirection:
+                                                      locator<LanguageService>()
+                                                                  .currentlanguage ==
+                                                              0
+                                                          ? TextDirection.ltr
+                                                          : TextDirection.rtl,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8, right: 8, bottom: 10),
+                                          child: TextFormField(
+                                            controller: _regno,
+                                            autofocus: false,
+                                            textDirection:
+                                                locator<LanguageService>()
+                                                            .currentlanguage ==
+                                                        0
+                                                    ? TextDirection.ltr
+                                                    : TextDirection.rtl,
+                                            enabled: localdata.isdrafted == 2
+                                                ? false
+                                                : true,
+                                            decoration: InputDecoration(
+                                              errorStyle: TextStyle(
+                                                  color: Colors.redAccent),
+                                            ),
+                                            onSaved: (value) {
+                                              localdata.info_photo_hint_reg_no =
+                                                  value.trim();
+                                            },
+                                            onChanged: (value) {
+                                              localdata.info_photo_hint_reg_no =
+                                                  value.trim();
+                                              setState(() {});
+                                            },
+                                            onFieldSubmitted: (value) {
+                                              localdata.info_photo_hint_reg_no =
+                                                  value.trim();
+                                            },
+                                            maxLength: 120,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
                               Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
@@ -313,9 +417,17 @@ class _InfoPhotoHintPageState extends State<InfoPhotoHintPage> {
                                                       localdata.isdrafted == 2
                                                           ? null
                                                           : () async {
+                                                              tempval = localdata
+                                                                  .info_photo_hint_reg_no;
                                                               localdata
                                                                       .info_photo_hint_photo_note1 =
                                                                   await appimagepicker();
+                                                              setState(() {});
+                                                              localdata
+                                                                      .info_photo_hint_reg_no =
+                                                                  tempval;
+                                                              _regno.text =
+                                                                  tempval;
                                                               setState(() {});
                                                             },
                                                 )

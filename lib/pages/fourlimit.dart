@@ -13,6 +13,8 @@ import './lightinginfo.dart';
 import './buildinginfo.dart';
 import '../pages/infophotonint.dart';
 import '../pages/otherpartnerinfo.dart';
+import '../utils/language_service.dart';
+import '../utils/locator.dart';
 
 class FourLimitPage extends StatefulWidget {
   FourLimitPage({this.localdata});
@@ -24,6 +26,8 @@ class FourLimitPage extends StatefulWidget {
 class _FourLimitPageState extends State<FourLimitPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
+  TextEditingController _north;
+  String tempval = "";
 
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
@@ -147,6 +151,10 @@ class _FourLimitPageState extends State<FourLimitPage> {
   void initState() {
     localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
+    _north = new TextEditingController(
+        text: localdata.fore_limits_north?.isEmpty ?? true
+            ? ""
+            : localdata.fore_limits_north);
     super.initState();
   }
 
@@ -292,36 +300,139 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                     localdata.fore_limits_south = value.trim();
                                     setState(() {});
                                   }),
-                              formcardtextfield(
-                                  maxLength: 120,
-                                  inputFormatters: [],
-                                  enable:
-                                      localdata.isdrafted == 2 ? false : true,
-                                  initvalue:
-                                      localdata.fore_limits_north?.isEmpty ??
-                                              true
-                                          ? ""
-                                          : localdata.fore_limits_north,
-                                  headerlablekey: setapptext(key: 'key_north'),
-                                  radiovalue:
-                                      localdata.fore_limits_north?.isEmpty ??
-                                              true
-                                          ? CheckColor.Black
-                                          : CheckColor.Green,
-                                  fieldrequired: true,
-                                  validator: (value) {
-                                    if (value.trim().isEmpty) {
-                                      return setapptext(
-                                          key: 'key_field_not_blank');
-                                    }
-                                  },
-                                  onSaved: (value) {
-                                    localdata.fore_limits_north = value.trim();
-                                  },
-                                  onChanged: (value) {
-                                    localdata.fore_limits_north = value.trim();
-                                    setState(() {});
-                                  }),
+                              // formcardtextfield(
+                              //     maxLength: 120,
+                              //     inputFormatters: [],
+                              //     enable:
+                              //         localdata.isdrafted == 2 ? false : true,
+                              //     initvalue:
+                              //         localdata.fore_limits_north?.isEmpty ??
+                              //                 true
+                              //             ? ""
+                              //             : localdata.fore_limits_north,
+                              //     headerlablekey: setapptext(key: 'key_north'),
+                              //     radiovalue:
+                              //         localdata.fore_limits_north?.isEmpty ??
+                              //                 true
+                              //             ? CheckColor.Black
+                              //             : CheckColor.Green,
+                              //     fieldrequired: true,
+                              //     validator: (value) {
+                              //       if (value.trim().isEmpty) {
+                              //         return setapptext(
+                              //             key: 'key_field_not_blank');
+                              //       }
+                              //     },
+                              //     onSaved: (value) {
+                              //       localdata.fore_limits_north = value.trim();
+                              //     },
+                              //     onChanged: (value) {
+                              //       localdata.fore_limits_north = value.trim();
+                              //       setState(() {});
+                              //     }),
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                padding: EdgeInsets.all(10),
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color:
+                                              Color.fromRGBO(176, 174, 171, 1),
+                                          width: 1),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Row(
+                                          textDirection:
+                                              locator<LanguageService>()
+                                                          .currentlanguage ==
+                                                      0
+                                                  ? TextDirection.ltr
+                                                  : TextDirection.rtl,
+                                          children: <Widget>[
+                                            completedcheckbox(
+                                                isCompleted: localdata
+                                                            .fore_limits_north
+                                                            ?.isEmpty ??
+                                                        true
+                                                    ? CheckColor.Black
+                                                    : CheckColor.Green),
+                                            Text(
+                                              '*',
+                                              style: TextStyle(
+                                                  color: Colors.red,
+                                                  fontSize: 18),
+                                            ),
+                                            Flexible(
+                                              child: Container(
+                                                child: Text(
+                                                  setapptext(key: 'key_north'),
+                                                  overflow:
+                                                      TextOverflow.visible,
+                                                  softWrap: true,
+                                                  style: TextStyle(),
+                                                  textDirection:
+                                                      locator<LanguageService>()
+                                                                  .currentlanguage ==
+                                                              0
+                                                          ? TextDirection.ltr
+                                                          : TextDirection.rtl,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8, right: 8, bottom: 10),
+                                          child: TextFormField(
+                                            controller: _north,
+                                            autofocus: false,
+                                            textDirection:
+                                                locator<LanguageService>()
+                                                            .currentlanguage ==
+                                                        0
+                                                    ? TextDirection.ltr
+                                                    : TextDirection.rtl,
+                                            enabled: localdata.isdrafted == 2
+                                                ? false
+                                                : true,
+                                            decoration: InputDecoration(
+                                              errorStyle: TextStyle(
+                                                  color: Colors.redAccent),
+                                            ),
+                                            onSaved: (value) {
+                                              localdata.fore_limits_north =
+                                                  value.trim();
+                                            },
+                                            validator: (value) {
+                                              if (value.trim().isEmpty) {
+                                                return setapptext(
+                                                    key: 'key_field_not_blank');
+                                              }
+                                            },
+                                            onChanged: (value) {
+                                              localdata.fore_limits_north =
+                                                  value.trim();
+                                              setState(() {});
+                                            },
+                                            maxLength: 120,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
                               Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
@@ -371,15 +482,22 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed:
-                                                      localdata.isdrafted == 2
-                                                          ? null
-                                                          : () async {
-                                                              localdata
-                                                                      .home_map =
-                                                                  await appimagepicker();
-                                                              setState(() {});
-                                                            },
+                                                  onPressed: localdata
+                                                              .isdrafted ==
+                                                          2
+                                                      ? null
+                                                      : () async {
+                                                          tempval = localdata
+                                                              .fore_limits_north;
+                                                          localdata.home_map =
+                                                              await appimagepicker();
+                                                          setState(() {});
+                                                          localdata
+                                                                  .fore_limits_north =
+                                                              tempval;
+                                                          _north.text = tempval;
+                                                          setState(() {});
+                                                        },
                                                 )
                                               ],
                                             ),

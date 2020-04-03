@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart' as intl;
 
 import '../models/localpropertydata.dart';
 import '../localization/app_translations.dart';
@@ -12,6 +12,8 @@ import '../widgets/appformcards.dart';
 import './typeofuse.dart';
 import './propertydetails.dart';
 import '../utils/appstate.dart';
+import '../utils/language_service.dart';
+import '../utils/locator.dart';
 
 class DocVerificationPage extends StatefulWidget {
   DocVerificationPage({this.localdata});
@@ -24,6 +26,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
   bool enable = false;
+  TextEditingController _proareaowner;
+  String tempval = "";
 
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
@@ -130,6 +134,10 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
   void initState() {
     localdata = new LocalPropertySurvey();
     localdata = widget.localdata;
+    _proareaowner = new TextEditingController(
+        text: localdata.land_area_qawwala?.isEmpty ?? true
+            ? ""
+            : localdata.land_area_qawwala);
     super.initState();
   }
 
@@ -285,7 +293,7 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                               DateTime.now(),
                                                           onChanged: (date) {
                                                         localdata.issued_on =
-                                                            DateFormat(
+                                                            intl.DateFormat(
                                                                     'yyyy/MM/dd')
                                                                 .format(date)
                                                                 .toString();
@@ -294,7 +302,7 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                         });
                                                       }, onConfirm: (date) {
                                                         localdata.issued_on =
-                                                            DateFormat(
+                                                            intl.DateFormat(
                                                                     'yyyy/MM/dd')
                                                                 .format(date)
                                                                 .toString();
@@ -329,7 +337,7 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                                       (date) {
                                                             localdata
                                                                     .issued_on =
-                                                                DateFormat(
+                                                                intl.DateFormat(
                                                                         'yyyy/MM/dd')
                                                                     .format(
                                                                         date)
@@ -340,7 +348,7 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                           }, onConfirm: (date) {
                                                             localdata
                                                                     .issued_on =
-                                                                DateFormat(
+                                                                intl.DateFormat(
                                                                         'yyyy/MM/dd')
                                                                     .format(
                                                                         date)
@@ -369,7 +377,8 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                   child: Padding(
                                                     padding:
                                                         const EdgeInsets.only(
-                                                            left: 10.0,bottom: 8),
+                                                            left: 10.0,
+                                                            bottom: 8),
                                                     child: Text(
                                                       setapptext(
                                                           key: "key_required"),
@@ -504,30 +513,132 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                       localdata.doc_reg_number = value;
                                       setState(() {});
                                     }),
-                                formcardtextfield(
-                                    maxLength: 120,
-                                    inputFormatters: [],
-                                    enable:
-                                        localdata.isdrafted == 2 ? false : true,
-                                    initvalue:
-                                        localdata.land_area_qawwala?.isEmpty ??
-                                                true
-                                            ? ""
-                                            : localdata.land_area_qawwala,
-                                    headerlablekey: setapptext(
-                                        key: 'key_Land_area_in_Qawwala'),
-                                    radiovalue:
-                                        localdata.land_area_qawwala?.isEmpty ??
-                                                true
-                                            ? CheckColor.Black
-                                            : CheckColor.Green,
-                                    onSaved: (value) {
-                                      localdata.land_area_qawwala = value;
-                                    },
-                                    onChanged: (value) {
-                                      localdata.land_area_qawwala = value;
-                                      setState(() {});
-                                    }),
+                                // formcardtextfield(
+                                //     maxLength: 120,
+                                //     inputFormatters: [],
+                                //     enable:
+                                //         localdata.isdrafted == 2 ? false : true,
+                                //     initvalue:
+                                //         localdata.land_area_qawwala?.isEmpty ??
+                                //                 true
+                                //             ? ""
+                                //             : localdata.land_area_qawwala,
+                                //     headerlablekey: setapptext(
+                                //         key: 'key_Land_area_in_Qawwala'),
+                                //     radiovalue:
+                                //         localdata.land_area_qawwala?.isEmpty ??
+                                //                 true
+                                //             ? CheckColor.Black
+                                //             : CheckColor.Green,
+                                //     onSaved: (value) {
+                                //       localdata.land_area_qawwala = value;
+                                //     },
+                                //     onChanged: (value) {
+                                //       localdata.land_area_qawwala = value;
+                                //       setState(() {});
+                                //     }),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  padding: EdgeInsets.all(10),
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                            color: Color.fromRGBO(
+                                                176, 174, 171, 1),
+                                            width: 1),
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Row(
+                                            textDirection:
+                                                locator<LanguageService>()
+                                                            .currentlanguage ==
+                                                        0
+                                                    ? TextDirection.ltr
+                                                    : TextDirection.rtl,
+                                            children: <Widget>[
+                                              completedcheckbox(
+                                                  isCompleted: localdata
+                                                              .land_area_qawwala
+                                                              ?.isEmpty ??
+                                                          true
+                                                      ? CheckColor.Black
+                                                      : CheckColor.Green),
+                                              SizedBox(),
+                                              Flexible(
+                                                child: Container(
+                                                  child: Text(
+                                                    setapptext(
+                                                        key:
+                                                            'key_Land_area_in_Qawwala'),
+                                                    overflow:
+                                                        TextOverflow.visible,
+                                                    softWrap: true,
+                                                    style: TextStyle(),
+                                                    textDirection:
+                                                        locator<LanguageService>()
+                                                                    .currentlanguage ==
+                                                                0
+                                                            ? TextDirection.ltr
+                                                            : TextDirection.rtl,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 8, right: 8, bottom: 10),
+                                            child: TextFormField(
+                                              autofocus: false,
+                                              textDirection: locator<
+                                                              LanguageService>()
+                                                          .currentlanguage ==
+                                                      0
+                                                  ? TextDirection.ltr
+                                                  : TextDirection.rtl,
+                                              enabled: localdata.isdrafted == 2
+                                                  ? false
+                                                  : true,
+                                              decoration: InputDecoration(
+                                                errorStyle: TextStyle(
+                                                    color: Colors.redAccent),
+                                              ),
+                                              onSaved: (value) {
+                                                localdata.land_area_qawwala =
+                                                    value.trim();
+                                              },
+
+                                              onChanged: (value) {
+                                                localdata.land_area_qawwala =
+                                                    value.trim();
+                                                setState(() {});
+                                              },
+                                              onFieldSubmitted: (value) {
+                                                localdata.land_area_qawwala =
+                                                    value.trim();
+                                                setState(() {});
+                                              },
+                                              maxLength: 120,
+                                              controller: _proareaowner,
+
+                                              ///WhitelistingTextInputFormatter.digitsOnly
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
                                 Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
@@ -586,9 +697,18 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                         localdata.isdrafted == 2
                                                             ? null
                                                             : () async {
+                                                                tempval = localdata
+                                                                    .land_area_qawwala;
                                                                 localdata
                                                                         .property_doc_photo_1 =
                                                                     await appimagepicker();
+                                                                setState(() {});
+                                                                localdata
+                                                                        .land_area_qawwala =
+                                                                    tempval;
+                                                                _proareaowner
+                                                                        .text =
+                                                                    tempval;
                                                                 setState(() {});
                                                               },
                                                   )
