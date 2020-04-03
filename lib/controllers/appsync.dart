@@ -402,7 +402,9 @@ class AppSync with ChangeNotifier {
                 "-" +
                 propertydata.block +
                 "-" +
-                propertydata.part_number,
+                propertydata.part_number +
+                "-" +
+                propertydata.unit_number,
             "surveyor1_id": propertydata.surveyoroneid,
             "surveyor2_id": propertydata.surveyortwoid,
             "supporting_surveyor_id": propertydata.surveyleadid,
