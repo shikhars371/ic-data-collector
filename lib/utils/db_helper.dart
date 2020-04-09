@@ -221,6 +221,10 @@ class DBHelper with ChangeNotifier {
             item.updatedate
           ];
           result = await dbClient.rawInsert(sqlquery, params);
+          //retrive the property data from the server
+          if(result!=0){
+            
+          }
         } else {
           await updateSurveyList(surveyAssignment: item);
         }

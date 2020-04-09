@@ -10,6 +10,7 @@ import '../models/surveyAssignment.dart';
 import '../configs/configuration.dart';
 import '../utils/db_helper.dart';
 import '../utils/appstate.dart';
+import '../models/localpropertydata.dart';
 
 class TaskModel with ChangeNotifier {
   AppState _state = AppState.Idle;
@@ -32,7 +33,7 @@ class TaskModel with ChangeNotifier {
           connectivityResult == ConnectivityResult.wifi) {
         var responce = await http.get(
             Configuration.apiurl +
-                'taskassignment?\$or[0][surveyor_1]=${preferences.getString('userid')}&\$or[1][surveyor_2]=${preferences.getString('userid')}',
+                'taskassignment?\$or[0][surveyor_1]=${preferences.getString('userid')}&\$or[1][surveyor_2]=${preferences.getString('userid')}&task_status[\$ne]=Completed',
             headers: {
               "Content-Type": "application/json",
               "Authorization": preferences.getString("accesstoken")
@@ -43,6 +44,8 @@ class TaskModel with ChangeNotifier {
           if ((i != null) || (i.isNotEmpty)) {
             _surveyAssignments =
                 i.map((model) => SurveyAssignment.fromJson(model)).toList();
+            _surveyAssignments =
+                await finalTaskData(surveyassignments: _surveyAssignments);
             _surveyAssignments =
                 await addNames(assignmentlist: _surveyAssignments);
             await DBHelper()
@@ -66,6 +69,45 @@ class TaskModel with ChangeNotifier {
     }
     setState(AppState.Idle);
     return _surveyAssignments;
+  }
+
+  Future<List<SurveyAssignment>> finalTaskData(
+      {List<SurveyAssignment> surveyassignments}) async {
+    List<SurveyAssignment> propertyinfolist = [];
+    try {
+      if (surveyassignments.isNotEmpty) {
+        for (var item in surveyassignments) {
+          var count = await getPropertySyncedNumber(taskid: item.id);
+          item.property_to_survey = (item.property_to_survey - count);
+          if (item.property_to_survey > 0) {
+            propertyinfolist.add(item);
+          }
+        }
+      }
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
+    }
+    return propertyinfolist;
+  }
+
+  Future<int> getPropertySyncedNumber({String taskid}) async {
+    int count = 0;
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    try {
+      var responce = await http.get(
+          Configuration.apiurl +
+              'propertyinformation?meta._id=$taskid&\$limit=0',
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": preferences.getString("accesstoken")
+          });
+      if (responce.statusCode == 200) {
+        count = json.decode(responce.body)['total'];
+      }
+    } catch (error, stackTrace) {
+      Catcher.reportCheckedError(error, stackTrace);
+    }
+    return count;
   }
 
   Future<String> getUserName({String userid}) async {
