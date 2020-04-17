@@ -432,22 +432,24 @@ class AppSync with ChangeNotifier {
                 propertydata.block +
                 "-" +
                 propertydata.part_number);
-        responce = await http.patch(
-            Configuration.apiurl + "propertyinformation/$propertyid",
-            body: json.encode(inputdata()),
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization": preferences.getString("accesstoken")
-            });
-        await http.patch(
-            Configuration.apiurl + "taskreassignment/${propertydata.taskid}",
-            body: {
-              "surveystatus": "close"
-            },
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization": preferences.getString("accesstoken")
-            });
+        if (!(propertyid?.isEmpty ?? true)) {
+          responce = await http.patch(
+              Configuration.apiurl + "propertyinformation/$propertyid",
+              body: json.encode(inputdata()),
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": preferences.getString("accesstoken")
+              });
+          await http.patch(
+              Configuration.apiurl + "taskreassignment/${propertydata.taskid}",
+              body: {
+                "surveystatus": "close"
+              },
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": preferences.getString("accesstoken")
+              });
+        }
       } else {
         responce = await http.post(Configuration.apiurl + "propertyinformation",
             body: json.encode(inputdata()),
@@ -468,7 +470,6 @@ class AppSync with ChangeNotifier {
               "Content-Type": "application/json",
               "Authorization": preferences.getString("accesstoken")
             });
-        print(res.statusCode);
       } else if (responce.statusCode == 401) {
         AuthModel().generateRefreshToken().then((_) {
           syncData(propertydata: propertydata);

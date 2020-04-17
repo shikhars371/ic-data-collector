@@ -471,7 +471,9 @@ class ReworkTask with ChangeNotifier {
   Future<bool> isFileExist({String filename}) async {
     bool result = false;
     try {
-      result = io.File(filename).existsSync();
+      if (!(filename?.isEmpty ?? true)) {
+        result = io.File(filename).existsSync();
+      }
     } catch (error, stackTrace) {
       setState(AppState.Idle);
       Catcher.reportCheckedError(error, stackTrace);
@@ -482,13 +484,13 @@ class ReworkTask with ChangeNotifier {
   Future<bool> downloadFile({String filename}) async {
     bool result = false;
     try {
-      var apppath = await getApplicationDocumentsDirectory();
-      var dio = Dio();
-      var responce = await dio.download(
-          "https://surveyeddata.s3.eu-west-2.amazonaws.com/" +
-              basename(filename),
-          apppath.path);
-      result = responce.statusCode == 200 ? true : false;
+      if (!(filename?.isEmpty ?? true)) {
+        var apppath = await getApplicationDocumentsDirectory();
+        var dio = Dio();
+        var responce = await dio.download(
+            Configuration.s3file + basename(filename), apppath.path);
+        result = responce.statusCode == 200 ? true : false;
+      }
     } catch (error, stackTrace) {
       setState(AppState.Idle);
       Catcher.reportCheckedError(error, stackTrace);
