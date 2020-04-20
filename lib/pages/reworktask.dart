@@ -70,7 +70,7 @@ class _ReworkTaskPageState extends State<ReworkTaskPage> {
             Align(
               alignment: Alignment.topCenter,
               child: Text(
-                provinance + "-" + nahia + "-" + gozar,
+                id.province + "-" + id.nahia + "-" + id.gozar+"-"+id.block,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),

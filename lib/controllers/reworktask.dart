@@ -485,10 +485,11 @@ class ReworkTask with ChangeNotifier {
     bool result = false;
     try {
       if (!(filename?.isEmpty ?? true)) {
-        var apppath = await getApplicationDocumentsDirectory();
+        var apppath = (await getApplicationDocumentsDirectory()).path;
         var dio = Dio();
         var responce = await dio.download(
-            Configuration.s3file + basename(filename), apppath.path);
+            Configuration.s3file + basename(filename),
+            (apppath + "/" + basename(filename)));
         result = responce.statusCode == 200 ? true : false;
       }
     } catch (error, stackTrace) {

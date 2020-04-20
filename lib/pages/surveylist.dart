@@ -47,6 +47,10 @@ class _SurveyPageState extends State<SurveyPage> {
                     "-" +
                     getCity(surveydata.city) +
                     "-" +
+                    surveydata.area +
+                    "-" +
+                    surveydata.pass +
+                    "-" +
                     surveydata.block +
                     "-" +
                     surveydata.part_number +

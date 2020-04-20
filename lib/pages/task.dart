@@ -79,10 +79,6 @@ class _TaskPageState extends State<TaskPage> {
       {SurveyAssignment id,
       String status,
       Color statuscolor,
-      String provinance,
-      String nahia,
-      String gozar,
-      String area,
       String assigndate,
       String totalTask,
       String completedTask}) {
@@ -99,7 +95,7 @@ class _TaskPageState extends State<TaskPage> {
             Align(
               alignment: Alignment.topCenter,
               child: Text(
-                provinance + "-" + nahia + "-" + gozar + "-" + area,
+                id.province + "-" + id.nahia + "-" + id.gozar + "-" + id.block,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
@@ -213,19 +209,6 @@ class _TaskPageState extends State<TaskPage> {
                                 id: data[index] == null
                                     ? new SurveyAssignment()
                                     : data[index],
-                                provinance:
-                                    data[index].province?.isEmpty ?? true
-                                        ? ""
-                                        : data[index].province,
-                                nahia: data[index].nahia?.isEmpty ?? true
-                                    ? ""
-                                    : data[index].nahia,
-                                gozar: data[index].gozar?.isEmpty ?? true
-                                    ? ""
-                                    : data[index].gozar,
-                                area: data[index].property_to_survey == null
-                                    ? 0
-                                    : data[index].property_to_survey.toString(),
                                 assigndate:
                                     data[index].startDate?.isEmpty ?? true
                                         ? ""

@@ -42,6 +42,10 @@ class _RewokListPageState extends State<RewokListPage> {
                     "-" +
                     getCity(surveydata.city) +
                     "-" +
+                    surveydata.area +
+                    "-" +
+                    surveydata.pass +
+                    "-" +
                     surveydata.block +
                     "-" +
                     surveydata.part_number +
