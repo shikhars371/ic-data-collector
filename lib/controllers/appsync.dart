@@ -599,22 +599,25 @@ class AppSync with ChangeNotifier {
       List<String> data = dataFileList(propertydata: propertydata);
       if (!(data?.isEmpty ?? true)) {
         for (var item in data) {
-          var f = FormData.fromMap({
-            "files":
-                await MultipartFile.fromFile(item, filename: basename(item)),
-          });
-          responce = await dio.post(url, options: options, data: f,
-              onSendProgress: (sent, total) {
-            uploadpreogress(sent, total);
-          });
-          if (!(responce.statusCode == 201)) {
-            break;
-          } else if (responce.statusCode == 401) {
-            //unauthorized
-            AuthModel().generateRefreshToken().then((_) {
-              fileUpload(
-                  propertydata: propertydata, uploadpreogress: uploadpreogress);
+          if (!(item?.isEmpty ?? true)) {
+            var f = FormData.fromMap({
+              "files":
+                  await MultipartFile.fromFile(item, filename: basename(item)),
             });
+            responce = await dio.post(url, options: options, data: f,
+                onSendProgress: (sent, total) {
+              uploadpreogress(sent, total);
+            });
+            if (!(responce.statusCode == 201)) {
+              break;
+            } else if (responce.statusCode == 401) {
+              //unauthorized
+              AuthModel().generateRefreshToken().then((_) {
+                fileUpload(
+                    propertydata: propertydata,
+                    uploadpreogress: uploadpreogress);
+              });
+            }
           }
         }
         if (responce.statusCode == 201) {

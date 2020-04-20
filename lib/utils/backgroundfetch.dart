@@ -34,6 +34,7 @@ class BackGroundSync with ChangeNotifier {
     });
   }
 
+  void _setUploadProgress(int sentBytes, int totalBytes) {}
   // Configure BackgroundFetch.
   Future<void> initPlatformState() async {
     BackgroundFetch.configure(_backgroundFetchConfig, onBackGroundfetch)
@@ -58,13 +59,16 @@ class BackGroundSync with ChangeNotifier {
           var isvalidated =
               await AppSync().validateUserData(taskid: singlelocaldata.taskid);
           if (isvalidated) {
-            bool isuploaded =
-                await AppSync().fileUpload(propertydata: singlelocaldata);
-            if (isuploaded) {
-              await DBHelper()
-                  .updateTaskSyncStatus(taskid: singlelocaldata.taskid);
-            } else {
-              result = "data sync failed";
+            if (singlelocaldata != null) {
+              bool isuploaded = await AppSync().fileUpload(
+                  propertydata: singlelocaldata,
+                  uploadpreogress: _setUploadProgress);
+              if (isuploaded) {
+                await DBHelper()
+                    .updateTaskSyncStatus(taskid: singlelocaldata.taskid);
+              } else {
+                result = "data sync failed";
+              }
             }
           }
         }

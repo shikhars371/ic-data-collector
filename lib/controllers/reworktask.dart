@@ -1097,67 +1097,67 @@ class ReworkTask with ChangeNotifier {
     _localproperty.surveyortwoid = responseJson['surveyor2_id'];
     _localproperty.surveyleadid = responseJson['supporting_surveyor_id'];
     _localproperty.isreldocphoto1 =
-        _localproperty.property_doc_photo_1?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.property_doc_photo_1?.isEmpty ?? true ? 0 : 1;
     _localproperty.isreldocphoto2 =
-        _localproperty.property_doc_photo_2?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.property_doc_photo_2?.isEmpty ?? true ? 0 : 1;
     _localproperty.isreldocphoto3 =
-        _localproperty.property_doc_photo_3?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.property_doc_photo_3?.isEmpty ?? true ? 0 : 1;
     _localproperty.isreldocphoto4 =
-        _localproperty.property_doc_photo_4?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.property_doc_photo_4?.isEmpty ?? true ? 0 : 1;
     _localproperty.isoddocphoto1 =
-        _localproperty.odinary_doc_photo1?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.odinary_doc_photo1?.isEmpty ?? true ? 0 : 1;
     _localproperty.isoddocphoto6 =
-        _localproperty.odinary_doc_photo6?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.odinary_doc_photo6?.isEmpty ?? true ? 0 : 1;
     _localproperty.isfirstpartner_photo =
-        _localproperty.first_partner_name_property_owner?.isNotEmpty ?? true
+        _localproperty.first_partner_name_property_owner?.isEmpty ?? true
             ? 0
             : 1;
     _localproperty.isinfophotonote1 =
-        _localproperty.info_photo_hint_photo_note1?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.info_photo_hint_photo_note1?.isEmpty ?? true ? 0 : 1;
     _localproperty.isinfophototips1 =
-        _localproperty.info_photo_hint_photo_tips1?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.info_photo_hint_photo_tips1?.isEmpty ?? true ? 0 : 1;
     _localproperty.isinfophototips2 =
-        _localproperty.info_photo_hint_photo_tips2?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.info_photo_hint_photo_tips2?.isEmpty ?? true ? 0 : 1;
     _localproperty.issecond_partner_photo =
-        _localproperty.second_partner_image?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.second_partner_image?.isEmpty ?? true ? 0 : 1;
     _localproperty.issecond_partner_photo_note1 =
-        _localproperty.second_partner_phote_note1?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.second_partner_phote_note1?.isEmpty ?? true ? 0 : 1;
     _localproperty.issecond_partner_photo_tips1 =
-        _localproperty.second_partner_photo_tips1?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.second_partner_photo_tips1?.isEmpty ?? true ? 0 : 1;
     _localproperty.issecond_partner_photo_tips2 =
-        _localproperty.second_partner_photo_tips2?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.second_partner_photo_tips2?.isEmpty ?? true ? 0 : 1;
     _localproperty.isthird_partner_photo =
-        _localproperty.third_partner_image?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.third_partner_image?.isEmpty ?? true ? 0 : 1;
     _localproperty.isthird_partner_photo_note1 =
-        _localproperty.third_partner_phote_note1?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.third_partner_phote_note1?.isEmpty ?? true ? 0 : 1;
     _localproperty.isthird_partner_photo_tips1 =
-        _localproperty.third_partner_photo_tips1?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.third_partner_photo_tips1?.isEmpty ?? true ? 0 : 1;
     _localproperty.isthird_partner_photo_tips2 =
-        _localproperty.third_partner_photo_tips2?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.third_partner_photo_tips2?.isEmpty ?? true ? 0 : 1;
     _localproperty.isfourth_partner_photo =
-        _localproperty.fourth_partner_image?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.fourth_partner_image?.isEmpty ?? true ? 0 : 1;
     _localproperty.isfourth_partner_photo_note1 =
-        _localproperty.fourth_partner_phote_note1?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.fourth_partner_phote_note1?.isEmpty ?? true ? 0 : 1;
     _localproperty.isfourth_partner_photo_tips1 =
-        _localproperty.fourth_partner_photo_tips1?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.fourth_partner_photo_tips1?.isEmpty ?? true ? 0 : 1;
     _localproperty.isfourth_partner_photo_tips2 =
-        _localproperty.fourth_partner_photo_tips2?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.fourth_partner_photo_tips2?.isEmpty ?? true ? 0 : 1;
     _localproperty.isfifth_partner_photo =
-        _localproperty.fifth_partner_image?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.fifth_partner_image?.isEmpty ?? true ? 0 : 1;
     _localproperty.isfifth_partner_photo_note1 =
-        _localproperty.fifth_partner_phote_note1?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.fifth_partner_phote_note1?.isEmpty ?? true ? 0 : 1;
     _localproperty.isfifth_partner_photo_tips1 =
-        _localproperty.fifth_partner_photo_tips1?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.fifth_partner_photo_tips1?.isEmpty ?? true ? 0 : 1;
     _localproperty.isfifth_partner_photo_tips2 =
-        _localproperty.fifth_partner_photo_tips2?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.fifth_partner_photo_tips2?.isEmpty ?? true ? 0 : 1;
     _localproperty.ismeter_pic_bill_power =
-        _localproperty.lightning_picture_bell_power?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.lightning_picture_bell_power?.isEmpty ?? true ? 0 : 1;
     _localproperty.issafari_booklet_pic =
-        _localproperty.safari_booklet_picture?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.safari_booklet_picture?.isEmpty ?? true ? 0 : 1;
     _localproperty.ishome_sketch_map =
-        _localproperty.home_map?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.home_map?.isEmpty ?? true ? 0 : 1;
     _localproperty.ishome_photo =
-        _localproperty.home_photo?.isNotEmpty ?? true ? 0 : 1;
+        _localproperty.home_photo?.isEmpty ?? true ? 0 : 1;
     return _localproperty;
   }
 }
