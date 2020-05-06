@@ -222,9 +222,7 @@ class DBHelper with ChangeNotifier {
           ];
           result = await dbClient.rawInsert(sqlquery, params);
           //retrive the property data from the server
-          if(result!=0){
-            
-          }
+          if (result != 0) {}
         } else {
           await updateSurveyList(surveyAssignment: item);
         }

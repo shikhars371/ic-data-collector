@@ -1,9 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:jalali_calendar/jalali_calendar.dart';
+import 'package:persian_date/persian_date.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart' as intl;
+import 'package:image_picker/image_picker.dart';
 
 import '../models/localpropertydata.dart';
 import '../localization/app_translations.dart';
@@ -287,29 +289,44 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                               onTap: localdata.isdrafted == 2
                                                   ? null
                                                   : () {
+                                                      PersianDate now =
+                                                          PersianDate();
                                                       DatePicker.showDatePicker(
-                                                          context,
-                                                          maxTime:
-                                                              DateTime.now(),
-                                                          onChanged: (date) {
-                                                        localdata.issued_on =
-                                                            intl.DateFormat(
-                                                                    'yyyy/MM/dd')
-                                                                .format(date)
-                                                                .toString();
-                                                        setState(() {
-                                                          enable = false;
-                                                        });
-                                                      }, onConfirm: (date) {
-                                                        localdata.issued_on =
-                                                            intl.DateFormat(
-                                                                    'yyyy/MM/dd')
-                                                                .format(date)
-                                                                .toString();
-                                                        setState(() {
-                                                          enable = false;
-                                                        });
-                                                      });
+                                                        context,
+                                                        maxYear: now.year,
+                                                        onChanged:
+                                                            (year, month, day) {
+                                                          localdata.issued_on =
+                                                              intl.DateFormat(
+                                                                      'yyyy/MM/dd')
+                                                                  .format(
+                                                                    DateTime(
+                                                                        year,
+                                                                        month,
+                                                                        day),
+                                                                  )
+                                                                  .toString();
+                                                          setState(() {
+                                                            enable = false;
+                                                          });
+                                                        },
+                                                        onConfirm:
+                                                            (year, month, day) {
+                                                          localdata.issued_on =
+                                                              intl.DateFormat(
+                                                                      'yyyy/MM/dd')
+                                                                  .format(
+                                                                    DateTime(
+                                                                        year,
+                                                                        month,
+                                                                        day),
+                                                                  )
+                                                                  .toString();
+                                                          setState(() {
+                                                            enable = false;
+                                                          });
+                                                        },
+                                                      );
                                                     },
                                               child: AbsorbPointer(
                                                 child: Row(
@@ -326,38 +343,7 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                     IconButton(
                                                         icon: Icon(
                                                             Icons.date_range),
-                                                        onPressed: () {
-                                                          DatePicker
-                                                              .showDatePicker(
-                                                                  context,
-                                                                  maxTime:
-                                                                      DateTime
-                                                                          .now(),
-                                                                  onChanged:
-                                                                      (date) {
-                                                            localdata
-                                                                    .issued_on =
-                                                                intl.DateFormat(
-                                                                        'yyyy/MM/dd')
-                                                                    .format(
-                                                                        date)
-                                                                    .toString();
-                                                            setState(() {
-                                                              enable = false;
-                                                            });
-                                                          }, onConfirm: (date) {
-                                                            localdata
-                                                                    .issued_on =
-                                                                intl.DateFormat(
-                                                                        'yyyy/MM/dd')
-                                                                    .format(
-                                                                        date)
-                                                                    .toString();
-                                                            setState(() {
-                                                              enable = false;
-                                                            });
-                                                          });
-                                                        })
+                                                        onPressed: () {})
                                                   ],
                                                 ),
                                               ),
@@ -699,9 +685,62 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                             : () async {
                                                                 tempval = localdata
                                                                     .land_area_qawwala;
-                                                                localdata
-                                                                        .property_doc_photo_1 =
-                                                                    await appimagepicker();
+
+                                                                showModalBottomSheet(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (context) {
+                                                                      return Container(
+                                                                        child:
+                                                                            Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.min,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.center,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.center,
+                                                                          children: <
+                                                                              Widget>[
+                                                                            Container(
+                                                                              padding: EdgeInsets.all(8),
+                                                                              //decoration: BoxDecoration(color: Colors.blue),
+                                                                              child: Text(
+                                                                                "Pick the image",
+                                                                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                              ),
+                                                                            ),
+                                                                            Divider(),
+                                                                            GestureDetector(
+                                                                              onTap: () async {
+                                                                                localdata.property_doc_photo_1 = await appimagepicker(source: ImageSource.camera);
+                                                                                Navigator.pop(context);
+                                                                                setState(() {});
+                                                                              },
+                                                                              child: Text(
+                                                                                "Use Camera",
+                                                                                style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                              ),
+                                                                            ),
+                                                                            Divider(),
+                                                                            GestureDetector(
+                                                                              onTap: () async {
+                                                                                localdata.property_doc_photo_1 = await appimagepicker(source: ImageSource.gallery);
+                                                                                Navigator.pop(context);
+                                                                                setState(() {});
+                                                                              },
+                                                                              child: Text(
+                                                                                "Use Gallery",
+                                                                                style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                              ),
+                                                                            ),
+                                                                            SizedBox(
+                                                                              height: 20,
+                                                                            )
+                                                                          ],
+                                                                        ),
+                                                                      );
+                                                                    });
                                                                 setState(() {});
                                                                 localdata
                                                                         .land_area_qawwala =
@@ -806,9 +845,61 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                         localdata.isdrafted == 2
                                                             ? null
                                                             : () async {
-                                                                localdata
-                                                                        .property_doc_photo_2 =
-                                                                    await appimagepicker();
+                                                                showModalBottomSheet(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (context) {
+                                                                      return Container(
+                                                                        child:
+                                                                            Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.min,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.center,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.center,
+                                                                          children: <
+                                                                              Widget>[
+                                                                            Container(
+                                                                              padding: EdgeInsets.all(8),
+                                                                              //decoration: BoxDecoration(color: Colors.blue),
+                                                                              child: Text(
+                                                                                "Pick the image",
+                                                                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                              ),
+                                                                            ),
+                                                                            Divider(),
+                                                                            GestureDetector(
+                                                                              onTap: () async {
+                                                                                localdata.property_doc_photo_2 = await appimagepicker(source: ImageSource.camera);
+                                                                                Navigator.pop(context);
+                                                                                setState(() {});
+                                                                              },
+                                                                              child: Text(
+                                                                                "Use Camera",
+                                                                                style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                              ),
+                                                                            ),
+                                                                            Divider(),
+                                                                            GestureDetector(
+                                                                              onTap: () async {
+                                                                                localdata.property_doc_photo_2 = await appimagepicker(source: ImageSource.gallery);
+                                                                                Navigator.pop(context);
+                                                                                setState(() {});
+                                                                              },
+                                                                              child: Text(
+                                                                                "Use Gallery",
+                                                                                style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                              ),
+                                                                            ),
+                                                                            SizedBox(
+                                                                              height: 20,
+                                                                            )
+                                                                          ],
+                                                                        ),
+                                                                      );
+                                                                    });
                                                                 setState(() {});
                                                               },
                                                   )
@@ -904,9 +995,61 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                         localdata.isdrafted == 2
                                                             ? null
                                                             : () async {
-                                                                localdata
-                                                                        .property_doc_photo_3 =
-                                                                    await appimagepicker();
+                                                                showModalBottomSheet(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (context) {
+                                                                      return Container(
+                                                                        child:
+                                                                            Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.min,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.center,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.center,
+                                                                          children: <
+                                                                              Widget>[
+                                                                            Container(
+                                                                              padding: EdgeInsets.all(8),
+                                                                              //decoration: BoxDecoration(color: Colors.blue),
+                                                                              child: Text(
+                                                                                "Pick the image",
+                                                                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                              ),
+                                                                            ),
+                                                                            Divider(),
+                                                                            GestureDetector(
+                                                                              onTap: () async {
+                                                                                localdata.property_doc_photo_3 = await appimagepicker(source: ImageSource.camera);
+                                                                                Navigator.pop(context);
+                                                                                setState(() {});
+                                                                              },
+                                                                              child: Text(
+                                                                                "Use Camera",
+                                                                                style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                              ),
+                                                                            ),
+                                                                            Divider(),
+                                                                            GestureDetector(
+                                                                              onTap: () async {
+                                                                                localdata.property_doc_photo_3 = await appimagepicker(source: ImageSource.gallery);
+                                                                                Navigator.pop(context);
+                                                                                setState(() {});
+                                                                              },
+                                                                              child: Text(
+                                                                                "Use Gallery",
+                                                                                style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                              ),
+                                                                            ),
+                                                                            SizedBox(
+                                                                              height: 20,
+                                                                            )
+                                                                          ],
+                                                                        ),
+                                                                      );
+                                                                    });
                                                                 setState(() {});
                                                               },
                                                   )
@@ -1002,9 +1145,61 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                         localdata.isdrafted == 2
                                                             ? null
                                                             : () async {
-                                                                localdata
-                                                                        .property_doc_photo_4 =
-                                                                    await appimagepicker();
+                                                                showModalBottomSheet(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (context) {
+                                                                      return Container(
+                                                                        child:
+                                                                            Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.min,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.center,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.center,
+                                                                          children: <
+                                                                              Widget>[
+                                                                            Container(
+                                                                              padding: EdgeInsets.all(8),
+                                                                              //decoration: BoxDecoration(color: Colors.blue),
+                                                                              child: Text(
+                                                                                "Pick the image",
+                                                                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                              ),
+                                                                            ),
+                                                                            Divider(),
+                                                                            GestureDetector(
+                                                                              onTap: () async {
+                                                                                localdata.property_doc_photo_4 = await appimagepicker(source: ImageSource.camera);
+                                                                                Navigator.pop(context);
+                                                                                setState(() {});
+                                                                              },
+                                                                              child: Text(
+                                                                                "Use Camera",
+                                                                                style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                              ),
+                                                                            ),
+                                                                            Divider(),
+                                                                            GestureDetector(
+                                                                              onTap: () async {
+                                                                                localdata.property_doc_photo_4 = await appimagepicker(source: ImageSource.gallery);
+                                                                                Navigator.pop(context);
+                                                                                setState(() {});
+                                                                              },
+                                                                              child: Text(
+                                                                                "Use Gallery",
+                                                                                style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                              ),
+                                                                            ),
+                                                                            SizedBox(
+                                                                              height: 20,
+                                                                            )
+                                                                          ],
+                                                                        ),
+                                                                      );
+                                                                    });
                                                                 setState(() {});
                                                               },
                                                   )
@@ -1106,9 +1301,61 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                         localdata.isdrafted == 2
                                                             ? null
                                                             : () async {
-                                                                localdata
-                                                                        .odinary_doc_photo1 =
-                                                                    await appimagepicker();
+                                                                showModalBottomSheet(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (context) {
+                                                                      return Container(
+                                                                        child:
+                                                                            Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.min,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.center,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.center,
+                                                                          children: <
+                                                                              Widget>[
+                                                                            Container(
+                                                                              padding: EdgeInsets.all(8),
+                                                                              //decoration: BoxDecoration(color: Colors.blue),
+                                                                              child: Text(
+                                                                                "Pick the image",
+                                                                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                              ),
+                                                                            ),
+                                                                            Divider(),
+                                                                            GestureDetector(
+                                                                              onTap: () async {
+                                                                                localdata.odinary_doc_photo1 = await appimagepicker(source: ImageSource.camera);
+                                                                                Navigator.pop(context);
+                                                                                setState(() {});
+                                                                              },
+                                                                              child: Text(
+                                                                                "Use Camera",
+                                                                                style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                              ),
+                                                                            ),
+                                                                            Divider(),
+                                                                            GestureDetector(
+                                                                              onTap: () async {
+                                                                                localdata.odinary_doc_photo1 = await appimagepicker(source: ImageSource.gallery);
+                                                                                Navigator.pop(context);
+                                                                                setState(() {});
+                                                                              },
+                                                                              child: Text(
+                                                                                "Use Gallery",
+                                                                                style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                              ),
+                                                                            ),
+                                                                            SizedBox(
+                                                                              height: 20,
+                                                                            )
+                                                                          ],
+                                                                        ),
+                                                                      );
+                                                                    });
                                                                 setState(() {});
                                                               },
                                                   )
@@ -1205,9 +1452,61 @@ class _DocVerificationPageState extends State<DocVerificationPage> {
                                                         localdata.isdrafted == 2
                                                             ? null
                                                             : () async {
-                                                                localdata
-                                                                        .odinary_doc_photo6 =
-                                                                    await appimagepicker();
+                                                                showModalBottomSheet(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (context) {
+                                                                      return Container(
+                                                                        child:
+                                                                            Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.min,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.center,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.center,
+                                                                          children: <
+                                                                              Widget>[
+                                                                            Container(
+                                                                              padding: EdgeInsets.all(8),
+                                                                              //decoration: BoxDecoration(color: Colors.blue),
+                                                                              child: Text(
+                                                                                "Pick the image",
+                                                                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                              ),
+                                                                            ),
+                                                                            Divider(),
+                                                                            GestureDetector(
+                                                                              onTap: () async {
+                                                                                localdata.odinary_doc_photo6 = await appimagepicker(source: ImageSource.camera);
+                                                                                Navigator.pop(context);
+                                                                                setState(() {});
+                                                                              },
+                                                                              child: Text(
+                                                                                "Use Camera",
+                                                                                style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                              ),
+                                                                            ),
+                                                                            Divider(),
+                                                                            GestureDetector(
+                                                                              onTap: () async {
+                                                                                localdata.odinary_doc_photo6 = await appimagepicker(source: ImageSource.gallery);
+                                                                                Navigator.pop(context);
+                                                                                setState(() {});
+                                                                              },
+                                                                              child: Text(
+                                                                                "Use Gallery",
+                                                                                style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                              ),
+                                                                            ),
+                                                                            SizedBox(
+                                                                              height: 20,
+                                                                            )
+                                                                          ],
+                                                                        ),
+                                                                      );
+                                                                    });
                                                                 setState(() {});
                                                               },
                                                   )

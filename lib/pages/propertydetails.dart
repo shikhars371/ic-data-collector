@@ -162,7 +162,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                           child: ListView(
                             children: <Widget>[
                               formCardDropdown(
-                                fieldrequired: true,
+                                  fieldrequired: true,
                                   enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value: localdata
@@ -219,7 +219,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                     }
                                   }),
                               formCardDropdown(
-                                fieldrequired: true,
+                                  fieldrequired: true,
                                   enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value: localdata.property_have_document
@@ -262,7 +262,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                     }
                                   }),
                               formCardDropdown(
-                                fieldrequired: true,
+                                  fieldrequired: true,
                                   enable:
                                       localdata.isdrafted == 2 ? true : false,
                                   value: localdata.current_use_of_property
@@ -389,6 +389,12 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                     onChanged: (value) {
                                       localdata.redeemable_property = value;
                                       setState(() {});
+                                    },
+                                    fieldrequired: true,
+                                    validate: (value) {
+                                      if ((value.isEmpty) || value == "0") {
+                                        return setapptext(key: 'key_required');
+                                      }
                                     }),
                               ],
 
@@ -460,6 +466,12 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                     onChanged: (value) {
                                       localdata.proprietary_properties = value;
                                       setState(() {});
+                                    },
+                                    fieldrequired: true,
+                                    validate: (value) {
+                                      if ((value.isEmpty) || value == "0") {
+                                        return setapptext(key: 'key_required');
+                                      }
                                     }),
                               ],
 
@@ -513,6 +525,12 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                     onChanged: (value) {
                                       localdata.redeemable_property = value;
                                       setState(() {});
+                                    },
+                                    fieldrequired: true,
+                                    validate: (value) {
+                                      if ((value.isEmpty) || value == "0") {
+                                        return setapptext(key: 'key_required');
+                                      }
                                     }),
                                 formCardDropdown(
                                     enable:
@@ -578,6 +596,12 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                     onChanged: (value) {
                                       localdata.proprietary_properties = value;
                                       setState(() {});
+                                    },
+                                    fieldrequired: true,
+                                    validate: (value) {
+                                      if ((value.isEmpty) || value == "0") {
+                                        return setapptext(key: 'key_required');
+                                      }
                                     }),
                               ],
 
@@ -663,6 +687,12 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                     onChanged: (value) {
                                       localdata.govt_property = value;
                                       setState(() {});
+                                    },
+                                    fieldrequired: true,
+                                    validate: (value) {
+                                      if ((value.isEmpty) || value == "0") {
+                                        return setapptext(key: 'key_required');
+                                      }
                                     }),
                               ],
 
@@ -741,6 +771,12 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                     onChanged: (value) {
                                       localdata.specified_current_use = value;
                                       setState(() {});
+                                    },
+                                    fieldrequired: true,
+                                    validate: (value) {
+                                      if ((value.isEmpty) || value == "0") {
+                                        return setapptext(key: 'key_required');
+                                      }
                                     }),
                               ],
 
@@ -749,11 +785,8 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                               ///start
                               if (localdata.current_use_of_property == "9") ...[
                                 formcardtextfield(
-                                  maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                    
-                                  ],
+                                    maxLength: 120,
+                                    inputFormatters: [],
                                     enable:
                                         localdata.isdrafted == 2 ? false : true,
                                     initvalue: localdata
@@ -771,7 +804,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                                             true
                                         ? CheckColor.Black
                                         : CheckColor.Green,
-                                         fieldrequired: true,
+                                    fieldrequired: true,
                                     validator: (value) {
                                       if (value.trim().isEmpty) {
                                         return setapptext(

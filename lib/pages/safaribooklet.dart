@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:kapp/pages/lightinginfo.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:jalali_calendar/jalali_calendar.dart';
+import 'package:persian_date/persian_date.dart';
 import 'package:intl/intl.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../models/localpropertydata.dart';
 import '../utils/appstate.dart';
@@ -288,26 +290,42 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                             onTap: localdata.isdrafted == 2
                                                 ? null
                                                 : () {
+                                                    PersianDate now =
+                                                        PersianDate();
                                                     DatePicker.showDatePicker(
-                                                        context,
-                                                        maxTime: DateTime.now(),
-                                                        onChanged: (date) {
-                                                      localdata
-                                                              .safari_booklet_issue_date =
-                                                          DateFormat(
-                                                                  'yyyy/MM/dd')
-                                                              .format(date)
-                                                              .toString();
-                                                      setState(() {});
-                                                    }, onConfirm: (date) {
-                                                      localdata
-                                                              .safari_booklet_issue_date =
-                                                          DateFormat(
-                                                                  'yyyy/MM/dd')
-                                                              .format(date)
-                                                              .toString();
-                                                      setState(() {});
-                                                    });
+                                                      context,
+                                                      maxYear: now.year,
+                                                      onChanged:
+                                                          (year, month, day) {
+                                                        localdata
+                                                                .safari_booklet_issue_date =
+                                                            DateFormat(
+                                                                    'yyyy/MM/dd')
+                                                                .format(
+                                                                  DateTime(
+                                                                      year,
+                                                                      month,
+                                                                      day),
+                                                                )
+                                                                .toString();
+                                                        setState(() {});
+                                                      },
+                                                      onConfirm:
+                                                          (year, month, day) {
+                                                        localdata
+                                                                .safari_booklet_issue_date =
+                                                            DateFormat(
+                                                                    'yyyy/MM/dd')
+                                                                .format(
+                                                                  DateTime(
+                                                                      year,
+                                                                      month,
+                                                                      day),
+                                                                )
+                                                                .toString();
+                                                        setState(() {});
+                                                      },
+                                                    );
                                                   },
                                             child: AbsorbPointer(
                                               child: Row(
@@ -326,34 +344,7 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                                     IconButton(
                                                         icon: Icon(
                                                             Icons.date_range),
-                                                        onPressed: () {
-                                                          DatePicker
-                                                              .showDatePicker(
-                                                                  context,
-                                                                  maxTime:
-                                                                      DateTime
-                                                                          .now(),
-                                                                  onChanged:
-                                                                      (date) {
-                                                            localdata
-                                                                    .safari_booklet_issue_date =
-                                                                DateFormat(
-                                                                        'yyyy/MM/dd')
-                                                                    .format(
-                                                                        date)
-                                                                    .toString();
-                                                            setState(() {});
-                                                          }, onConfirm: (date) {
-                                                            localdata
-                                                                    .safari_booklet_issue_date =
-                                                                DateFormat(
-                                                                        'yyyy/MM/dd')
-                                                                    .format(
-                                                                        date)
-                                                                    .toString();
-                                                            setState(() {});
-                                                          });
-                                                        })
+                                                        onPressed: () {})
                                                   ]),
                                             ),
                                           ),
@@ -429,9 +420,61 @@ class _SafariBookletPageState extends State<SafariBookletPage> {
                                                           ? null
                                                           : () async {
                                                               try {
-                                                                localdata
-                                                                        .safari_booklet_picture =
-                                                                    await appimagepicker();
+                                                                showModalBottomSheet(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (context) {
+                                                                      return Container(
+                                                                        child:
+                                                                            Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.min,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.center,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.center,
+                                                                          children: <
+                                                                              Widget>[
+                                                                            Container(
+                                                                              padding: EdgeInsets.all(8),
+                                                                              //decoration: BoxDecoration(color: Colors.blue),
+                                                                              child: Text(
+                                                                                "Pick the image",
+                                                                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                              ),
+                                                                            ),
+                                                                            Divider(),
+                                                                            GestureDetector(
+                                                                              onTap: () async {
+                                                                                localdata.safari_booklet_picture = await appimagepicker(source: ImageSource.camera);
+                                                                                Navigator.pop(context);
+                                                                                setState(() {});
+                                                                              },
+                                                                              child: Text(
+                                                                                "Use Camera",
+                                                                                style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                              ),
+                                                                            ),
+                                                                            Divider(),
+                                                                            GestureDetector(
+                                                                              onTap: () async {
+                                                                                localdata.safari_booklet_picture = await appimagepicker(source: ImageSource.gallery);
+                                                                                Navigator.pop(context);
+                                                                                setState(() {});
+                                                                              },
+                                                                              child: Text(
+                                                                                "Use Gallery",
+                                                                                style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                              ),
+                                                                            ),
+                                                                            SizedBox(
+                                                                              height: 20,
+                                                                            )
+                                                                          ],
+                                                                        ),
+                                                                      );
+                                                                    });
                                                                 setState(() {});
                                                               } catch (e) {
                                                                 print(e);

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../models/localpropertydata.dart';
 import '../utils/appstate.dart';
@@ -429,9 +430,68 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                       localdata.isdrafted == 2
                                                           ? null
                                                           : () async {
-                                                              localdata
-                                                                      .second_partner_image =
-                                                                  await appimagepicker();
+                                                              showModalBottomSheet(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Container(
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.min,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.center,
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Container(
+                                                                            padding:
+                                                                                EdgeInsets.all(8),
+                                                                            //decoration: BoxDecoration(color: Colors.blue),
+                                                                            child:
+                                                                                Text(
+                                                                              "Pick the image",
+                                                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.second_partner_image = await appimagepicker(source: ImageSource.camera);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Camera",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.second_partner_image = await appimagepicker(source: ImageSource.gallery);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Gallery",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height:
+                                                                                20,
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    );
+                                                                  });
                                                               setState(() {});
                                                             },
                                                 )
@@ -628,9 +688,68 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                       localdata.isdrafted == 2
                                                           ? null
                                                           : () async {
-                                                              localdata
-                                                                      .second_partner_phote_note1 =
-                                                                  await appimagepicker();
+                                                              showModalBottomSheet(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Container(
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.min,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.center,
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Container(
+                                                                            padding:
+                                                                                EdgeInsets.all(8),
+                                                                            //decoration: BoxDecoration(color: Colors.blue),
+                                                                            child:
+                                                                                Text(
+                                                                              "Pick the image",
+                                                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.second_partner_phote_note1 = await appimagepicker(source: ImageSource.camera);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Camera",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.second_partner_phote_note1 = await appimagepicker(source: ImageSource.gallery);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Gallery",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height:
+                                                                                20,
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    );
+                                                                  });
                                                               setState(() {});
                                                             },
                                                 )
@@ -726,9 +845,68 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                       localdata.isdrafted == 2
                                                           ? null
                                                           : () async {
-                                                              localdata
-                                                                      .second_partner_photo_tips1 =
-                                                                  await appimagepicker();
+                                                              showModalBottomSheet(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Container(
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.min,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.center,
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Container(
+                                                                            padding:
+                                                                                EdgeInsets.all(8),
+                                                                            //decoration: BoxDecoration(color: Colors.blue),
+                                                                            child:
+                                                                                Text(
+                                                                              "Pick the image",
+                                                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.second_partner_photo_tips1 = await appimagepicker(source: ImageSource.camera);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Camera",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.second_partner_photo_tips1 = await appimagepicker(source: ImageSource.gallery);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Gallery",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height:
+                                                                                20,
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    );
+                                                                  });
                                                               setState(() {});
                                                             },
                                                 )
@@ -824,9 +1002,68 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                       localdata.isdrafted == 2
                                                           ? null
                                                           : () async {
-                                                              localdata
-                                                                      .second_partner_photo_tips2 =
-                                                                  await appimagepicker();
+                                                              showModalBottomSheet(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Container(
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.min,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.center,
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Container(
+                                                                            padding:
+                                                                                EdgeInsets.all(8),
+                                                                            //decoration: BoxDecoration(color: Colors.blue),
+                                                                            child:
+                                                                                Text(
+                                                                              "Pick the image",
+                                                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.second_partner_photo_tips2 = await appimagepicker(source: ImageSource.camera);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Camera",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.second_partner_photo_tips2 = await appimagepicker(source: ImageSource.gallery);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Gallery",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height:
+                                                                                20,
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    );
+                                                                  });
                                                               setState(() {});
                                                             },
                                                 )
@@ -1135,9 +1372,68 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                       localdata.isdrafted == 2
                                                           ? null
                                                           : () async {
-                                                              localdata
-                                                                      .third_partner_image =
-                                                                  await appimagepicker();
+                                                              showModalBottomSheet(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Container(
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.min,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.center,
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Container(
+                                                                            padding:
+                                                                                EdgeInsets.all(8),
+                                                                            //decoration: BoxDecoration(color: Colors.blue),
+                                                                            child:
+                                                                                Text(
+                                                                              "Pick the image",
+                                                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.third_partner_image = await appimagepicker(source: ImageSource.camera);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Camera",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.third_partner_image = await appimagepicker(source: ImageSource.gallery);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Gallery",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height:
+                                                                                20,
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    );
+                                                                  });
                                                               setState(() {});
                                                             },
                                                 )
@@ -1333,9 +1629,68 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                       localdata.isdrafted == 2
                                                           ? null
                                                           : () async {
-                                                              localdata
-                                                                      .third_partner_phote_note1 =
-                                                                  await appimagepicker();
+                                                              showModalBottomSheet(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Container(
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.min,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.center,
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Container(
+                                                                            padding:
+                                                                                EdgeInsets.all(8),
+                                                                            //decoration: BoxDecoration(color: Colors.blue),
+                                                                            child:
+                                                                                Text(
+                                                                              "Pick the image",
+                                                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.third_partner_phote_note1 = await appimagepicker(source: ImageSource.camera);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Camera",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.third_partner_phote_note1 = await appimagepicker(source: ImageSource.gallery);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Gallery",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height:
+                                                                                20,
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    );
+                                                                  });
                                                               setState(() {});
                                                             },
                                                 )
@@ -1431,9 +1786,68 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                       localdata.isdrafted == 2
                                                           ? null
                                                           : () async {
-                                                              localdata
-                                                                      .third_partner_photo_tips1 =
-                                                                  await appimagepicker();
+                                                              showModalBottomSheet(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Container(
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.min,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.center,
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Container(
+                                                                            padding:
+                                                                                EdgeInsets.all(8),
+                                                                            //decoration: BoxDecoration(color: Colors.blue),
+                                                                            child:
+                                                                                Text(
+                                                                              "Pick the image",
+                                                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.third_partner_photo_tips1 = await appimagepicker(source: ImageSource.camera);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Camera",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.third_partner_photo_tips1 = await appimagepicker(source: ImageSource.gallery);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Gallery",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height:
+                                                                                20,
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    );
+                                                                  });
                                                               setState(() {});
                                                             },
                                                 )
@@ -1529,9 +1943,68 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                       localdata.isdrafted == 2
                                                           ? null
                                                           : () async {
-                                                              localdata
-                                                                      .third_partner_photo_tips2 =
-                                                                  await appimagepicker();
+                                                              showModalBottomSheet(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Container(
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.min,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.center,
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Container(
+                                                                            padding:
+                                                                                EdgeInsets.all(8),
+                                                                            //decoration: BoxDecoration(color: Colors.blue),
+                                                                            child:
+                                                                                Text(
+                                                                              "Pick the image",
+                                                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.third_partner_photo_tips2 = await appimagepicker(source: ImageSource.camera);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Camera",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.third_partner_photo_tips2 = await appimagepicker(source: ImageSource.gallery);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Gallery",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height:
+                                                                                20,
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    );
+                                                                  });
                                                               setState(() {});
                                                             },
                                                 )
@@ -1839,9 +2312,68 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                       localdata.isdrafted == 2
                                                           ? null
                                                           : () async {
-                                                              localdata
-                                                                      .fourth_partner_image =
-                                                                  await appimagepicker();
+                                                              showModalBottomSheet(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Container(
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.min,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.center,
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Container(
+                                                                            padding:
+                                                                                EdgeInsets.all(8),
+                                                                            //decoration: BoxDecoration(color: Colors.blue),
+                                                                            child:
+                                                                                Text(
+                                                                              "Pick the image",
+                                                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.fourth_partner_image = await appimagepicker(source: ImageSource.camera);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Camera",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.fourth_partner_image = await appimagepicker(source: ImageSource.gallery);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Gallery",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height:
+                                                                                20,
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    );
+                                                                  });
                                                               setState(() {});
                                                             },
                                                 )
@@ -2038,9 +2570,68 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                       localdata.isdrafted == 2
                                                           ? null
                                                           : () async {
-                                                              localdata
-                                                                      .fourth_partner_phote_note1 =
-                                                                  await appimagepicker();
+                                                              showModalBottomSheet(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Container(
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.min,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.center,
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Container(
+                                                                            padding:
+                                                                                EdgeInsets.all(8),
+                                                                            //decoration: BoxDecoration(color: Colors.blue),
+                                                                            child:
+                                                                                Text(
+                                                                              "Pick the image",
+                                                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.fourth_partner_phote_note1 = await appimagepicker(source: ImageSource.camera);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Camera",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.fourth_partner_phote_note1 = await appimagepicker(source: ImageSource.gallery);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Gallery",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height:
+                                                                                20,
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    );
+                                                                  });
                                                               setState(() {});
                                                             },
                                                 )
@@ -2136,9 +2727,68 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                       localdata.isdrafted == 2
                                                           ? null
                                                           : () async {
-                                                              localdata
-                                                                      .fourth_partner_photo_tips1 =
-                                                                  await appimagepicker();
+                                                              showModalBottomSheet(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Container(
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.min,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.center,
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Container(
+                                                                            padding:
+                                                                                EdgeInsets.all(8),
+                                                                            //decoration: BoxDecoration(color: Colors.blue),
+                                                                            child:
+                                                                                Text(
+                                                                              "Pick the image",
+                                                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.fourth_partner_photo_tips1 = await appimagepicker(source: ImageSource.camera);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Camera",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.fourth_partner_photo_tips1 = await appimagepicker(source: ImageSource.gallery);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Gallery",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height:
+                                                                                20,
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    );
+                                                                  });
                                                               setState(() {});
                                                             },
                                                 )
@@ -2234,9 +2884,68 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                       localdata.isdrafted == 2
                                                           ? null
                                                           : () async {
-                                                              localdata
-                                                                      .fourth_partner_photo_tips2 =
-                                                                  await appimagepicker();
+                                                              showModalBottomSheet(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Container(
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.min,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.center,
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Container(
+                                                                            padding:
+                                                                                EdgeInsets.all(8),
+                                                                            //decoration: BoxDecoration(color: Colors.blue),
+                                                                            child:
+                                                                                Text(
+                                                                              "Pick the image",
+                                                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.fourth_partner_photo_tips2 = await appimagepicker(source: ImageSource.camera);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Camera",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.fourth_partner_photo_tips2 = await appimagepicker(source: ImageSource.gallery);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Gallery",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height:
+                                                                                20,
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    );
+                                                                  });
                                                               setState(() {});
                                                             },
                                                 )
@@ -2544,9 +3253,68 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                       localdata.isdrafted == 2
                                                           ? null
                                                           : () async {
-                                                              localdata
-                                                                      .fifth_partner_image =
-                                                                  await appimagepicker();
+                                                              showModalBottomSheet(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Container(
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.min,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.center,
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Container(
+                                                                            padding:
+                                                                                EdgeInsets.all(8),
+                                                                            //decoration: BoxDecoration(color: Colors.blue),
+                                                                            child:
+                                                                                Text(
+                                                                              "Pick the image",
+                                                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.fifth_partner_image = await appimagepicker(source: ImageSource.camera);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Camera",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.fifth_partner_image = await appimagepicker(source: ImageSource.gallery);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Gallery",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height:
+                                                                                20,
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    );
+                                                                  });
                                                               setState(() {});
                                                             },
                                                 )
@@ -2742,9 +3510,68 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                       localdata.isdrafted == 2
                                                           ? null
                                                           : () async {
-                                                              localdata
-                                                                      .fifth_partner_phote_note1 =
-                                                                  await appimagepicker();
+                                                              showModalBottomSheet(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Container(
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.min,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.center,
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Container(
+                                                                            padding:
+                                                                                EdgeInsets.all(8),
+                                                                            //decoration: BoxDecoration(color: Colors.blue),
+                                                                            child:
+                                                                                Text(
+                                                                              "Pick the image",
+                                                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.fifth_partner_phote_note1 = await appimagepicker(source: ImageSource.camera);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Camera",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.fifth_partner_phote_note1 = await appimagepicker(source: ImageSource.gallery);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Gallery",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height:
+                                                                                20,
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    );
+                                                                  });
                                                               setState(() {});
                                                             },
                                                 )
@@ -2840,9 +3667,68 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                       localdata.isdrafted == 2
                                                           ? null
                                                           : () async {
-                                                              localdata
-                                                                      .fifth_partner_photo_tips1 =
-                                                                  await appimagepicker();
+                                                              showModalBottomSheet(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Container(
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.min,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.center,
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Container(
+                                                                            padding:
+                                                                                EdgeInsets.all(8),
+                                                                            //decoration: BoxDecoration(color: Colors.blue),
+                                                                            child:
+                                                                                Text(
+                                                                              "Pick the image",
+                                                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.fifth_partner_photo_tips1 = await appimagepicker(source: ImageSource.camera);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Camera",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.fifth_partner_photo_tips1 = await appimagepicker(source: ImageSource.gallery);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Gallery",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height:
+                                                                                20,
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    );
+                                                                  });
                                                               setState(() {});
                                                             },
                                                 )
@@ -2938,9 +3824,68 @@ class _OtherPartnerInfoPageState extends State<OtherPartnerInfoPage> {
                                                       localdata.isdrafted == 2
                                                           ? null
                                                           : () async {
-                                                              localdata
-                                                                      .fifth_partner_photo_tips2 =
-                                                                  await appimagepicker();
+                                                              showModalBottomSheet(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Container(
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.min,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.center,
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Container(
+                                                                            padding:
+                                                                                EdgeInsets.all(8),
+                                                                            //decoration: BoxDecoration(color: Colors.blue),
+                                                                            child:
+                                                                                Text(
+                                                                              "Pick the image",
+                                                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.fifth_partner_photo_tips2 = await appimagepicker(source: ImageSource.camera);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Camera",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.fifth_partner_photo_tips2 = await appimagepicker(source: ImageSource.gallery);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Gallery",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height:
+                                                                                20,
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    );
+                                                                  });
                                                               setState(() {});
                                                             },
                                                 )
