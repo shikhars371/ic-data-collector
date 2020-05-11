@@ -13,7 +13,7 @@ class NavigationService {
         .pushReplacementNamed(routeName, arguments: parms);
   }
 
-  bool goBack() {
+  void goBack() {
     return navigatorKey.currentState.pop();
   }
 }
