@@ -309,5 +309,6 @@
     "key_home": "HomePage",
     "key_newsurvey": "New Survey",
     "key_rework": "Rework",
-    "key_no_survey": "No Survey Is Available"
+    "key_no_survey": "No Survey Is Available",
+    "key_use_type_doc": "Usage type in the document"
 }

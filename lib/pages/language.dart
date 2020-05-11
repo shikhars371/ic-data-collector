@@ -133,7 +133,7 @@ class _LanguagePageState extends State<LanguagePage> {
                                       color: Colors.white),
                                   child: Center(
                                     child: Text(
-                                      "درى",
+                                      "پښتو",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20),
@@ -157,7 +157,7 @@ class _LanguagePageState extends State<LanguagePage> {
                                       color: Colors.white),
                                   child: Center(
                                     child: Text(
-                                      "پښتو",
+                                      "درى",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20),

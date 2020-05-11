@@ -140,7 +140,7 @@
     "key_master_recipient": "متصرف، گروی گیرنده",
     "key_master_no_longer": "دیگر",
     "key_specify_misconduct": "Occupancy Type",
-    "key_does_property_building": "ساختمان - ۳",
+    "key_does_property_building": "آیا ساختمان وجود دارد؟",
     "key_building_use": "نوعیت استفاده از ساختمان:",
     "key_general": "عامه`",
     "key_building_category": "کتگوری ساختمان:",
@@ -309,5 +309,6 @@
     "key_home":"صفحه نخست",
     "key_newsurvey": "بررسی جدید",
     "key_rework": "کار",
-    "key_no_survey": "هیچ بررسی دیگری در دسترس نیست"
+    "key_no_survey": "هیچ بررسی دیگری در دسترس نیست",
+    "key_use_type_doc": "Usage type in the document"
 }

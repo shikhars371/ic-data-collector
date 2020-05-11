@@ -1,7 +1,9 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:image_cropper/image_cropper.dart';
 
 import '../utils/locator.dart';
 import '../utils/language_service.dart';
@@ -14,12 +16,29 @@ class Dpvalue {
   Dpvalue({this.name, this.value});
 }
 
-Future<String> appimagepicker() async {
-  var image =
-      await ImagePicker.pickImage(source: ImageSource.camera, imageQuality: 30);
+Future<String> appimagepicker({ImageSource source}) async {
+  var image = await ImagePicker.pickImage(source: source, imageQuality: 30);
+  File trasnformimage = await ImageCropper.cropImage(
+      sourcePath: image.path,
+      aspectRatioPresets: [
+        CropAspectRatioPreset.square,
+        CropAspectRatioPreset.ratio3x2,
+        CropAspectRatioPreset.original,
+        CropAspectRatioPreset.ratio4x3,
+        CropAspectRatioPreset.ratio16x9
+      ],
+      androidUiSettings: AndroidUiSettings(
+          toolbarTitle: 'Edit Image',
+          toolbarColor: Colors.blue,
+          toolbarWidgetColor: Colors.white,
+          initAspectRatio: CropAspectRatioPreset.original,
+          lockAspectRatio: false),
+      iosUiSettings: IOSUiSettings(
+        minimumAspectRatio: 1.0,
+      ));
   var apppath = await getApplicationDocumentsDirectory();
-  var filename = image.path.split("/").last;
-  var localfile = await image.copy('${apppath.path}/$filename');
+  var filename = trasnformimage.path.split("/").last;
+  var localfile = await trasnformimage.copy('${apppath.path}/$filename');
   return localfile.path;
 }
 

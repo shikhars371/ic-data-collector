@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:kapp/pages/fourlimit.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -63,33 +64,34 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
             await DBHelper()
                 .updatePropertySurvey(localdata, localdata.local_property_key);
           }
-          if (localdata.property_type == "2") {
-            Navigator.pushReplacement(
-              context,
-              PageTransition(
-                  child: OtherPartnerInfoPage(
-                    localdata: localdata,
-                  ),
-                  type: PageTransitionType.rightToLeft),
-            );
-          } else {
-            if (localdata.cityzenship_notice == "2") {
+          if (localdata.cityzenship_notice == "2") {
+            if (localdata.property_type == "2") {
               Navigator.pushReplacement(
-                  context,
-                  PageTransition(
-                      child: FourLimitPage(
-                        localdata: localdata,
-                      ),
-                      type: PageTransitionType.rightToLeft));
+                context,
+                PageTransition(
+                    child: OtherPartnerInfoPage(
+                      localdata: localdata,
+                    ),
+                    type: PageTransitionType.rightToLeft),
+              );
             } else {
               Navigator.pushReplacement(
-                  context,
-                  PageTransition(
-                      child: InfoPhotoHintPage(
-                        localdata: localdata,
-                      ),
-                      type: PageTransitionType.rightToLeft));
+                context,
+                PageTransition(
+                    child: FourLimitPage(
+                      localdata: localdata,
+                    ),
+                    type: PageTransitionType.rightToLeft),
+              );
             }
+          } else {
+            Navigator.pushReplacement(
+                context,
+                PageTransition(
+                    child: InfoPhotoHintPage(
+                      localdata: localdata,
+                    ),
+                    type: PageTransitionType.rightToLeft));
           }
         }
       },
@@ -616,9 +618,70 @@ class _FirstPartnerPageState extends State<FirstPartnerPage> {
                                                               tempemailholder =
                                                                   localdata
                                                                       .first_partner_name_email;
-                                                              localdata
-                                                                      .first_partner_name_property_owner =
-                                                                  await appimagepicker();
+
+                                                              showModalBottomSheet(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Container(
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.min,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.center,
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Container(
+                                                                            padding:
+                                                                                EdgeInsets.all(8),
+                                                                            //decoration: BoxDecoration(color: Colors.blue),
+                                                                            child:
+                                                                                Text(
+                                                                              "Pick the image",
+                                                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.first_partner_name_property_owner = await appimagepicker(source: ImageSource.camera);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Camera",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.first_partner_name_property_owner = await appimagepicker(source: ImageSource.gallery);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Gallery",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height:
+                                                                                20,
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    );
+                                                                  });
+
                                                               setState(() {});
                                                               localdata
                                                                       .first_partner_name_email =

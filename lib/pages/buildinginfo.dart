@@ -302,11 +302,12 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                                 true
                                             ? "0"
                                             : localdata.fst_building_use,
+                                            
                                     validate: (value) {
                                       if ((value.isEmpty) || value == "0") {
                                         return setapptext(key: 'key_required');
                                       }
-                                    }),
+                                    },),
                                 formCardDropdown(
                                     fieldrequired: true,
                                     enable:
@@ -544,6 +545,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   ),
                                 ),
                                 formCardDropdown(
+                                  fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata.snd_building_use
@@ -595,6 +597,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formCardDropdown(
+                                  fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata
@@ -822,6 +825,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   ),
                                 ),
                                 formCardDropdown(
+                                  fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata.trd_building_use
@@ -873,6 +877,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formCardDropdown(
+                                  fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata
@@ -1097,6 +1102,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   ),
                                 ),
                                 formCardDropdown(
+                                  fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata.forth_building_use
@@ -1149,6 +1155,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formCardDropdown(
+                                  fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata

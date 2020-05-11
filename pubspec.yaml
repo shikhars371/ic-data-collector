@@ -1,7 +1,7 @@
 name: kapp
 description: A new Flutter project.
 
-version: 1.0.3+14
+version: 1.1.0+15
 
 environment:
   sdk: ">=2.3.1 <3.0.0"
@@ -22,11 +22,8 @@ dependencies:
   get_it: ^3.1.0
   path_provider: ^1.5.1
   connectivity: ^0.4.6+2
-  flutter_datetime_picker: ^1.3.4
   image_picker: ^0.6.3+1
   intl: ^0.16.0
-  sentry: ^3.0.1
-  validators: ^2.0.0+1
   dio: ^3.0.8
   device_info: ^0.4.1+4
   catcher: ^0.3.0
@@ -34,6 +31,8 @@ dependencies:
   font_awesome_flutter: ^8.7.0
   package_info: ^0.4.0+14
   background_fetch: ^0.5.4
+  image_cropper: ^1.2.1
+  jalali_calendar: ^1.0.3+1
 
 dev_dependencies:
   flutter_test:

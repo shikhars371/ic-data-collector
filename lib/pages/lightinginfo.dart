@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:kapp/pages/fourlimit.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../models/localpropertydata.dart';
 import '../utils/appstate.dart';
@@ -389,9 +390,69 @@ class _LightingInfoPageState extends State<LightingInfoPage> {
                                                           : () async {
                                                               tempval = localdata
                                                                   .lightning_father_name;
-                                                              localdata
-                                                                      .lightning_picture_bell_power =
-                                                                  await appimagepicker();
+
+                                                              showModalBottomSheet(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Container(
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.min,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.center,
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Container(
+                                                                            padding:
+                                                                                EdgeInsets.all(8),
+                                                                            //decoration: BoxDecoration(color: Colors.blue),
+                                                                            child:
+                                                                                Text(
+                                                                              "Pick the image",
+                                                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.lightning_picture_bell_power = await appimagepicker(source: ImageSource.camera);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Camera",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.lightning_picture_bell_power = await appimagepicker(source: ImageSource.gallery);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Gallery",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height:
+                                                                                20,
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    );
+                                                                  });
                                                               setState(() {});
                                                               localdata
                                                                       .lightning_father_name =

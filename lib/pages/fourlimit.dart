@@ -1,8 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:kapp/pages/firstpartnerinfo.dart';
 import 'package:kapp/pages/homesketch.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../models/localpropertydata.dart';
 import '../utils/appstate.dart';
@@ -115,13 +117,25 @@ class _FourLimitPageState extends State<FourLimitPage> {
     return GestureDetector(
       onTap: () {
         if (localdata.property_type == "1") {
-          Navigator.pushReplacement(
+          if (localdata.cityzenship_notice == "2") {
+            Navigator.pushReplacement(
+              context,
+              PageTransition(
+                  child: FirstPartnerPage(
+                    localdata: localdata,
+                  ),
+                  type: PageTransitionType.leftToRight),
+            );
+          } else {
+            Navigator.pushReplacement(
               context,
               PageTransition(
                   child: InfoPhotoHintPage(
                     localdata: localdata,
                   ),
-                  type: PageTransitionType.leftToRight));
+                  type: PageTransitionType.leftToRight),
+            );
+          }
         } else {
           Navigator.pushReplacement(
               context,
@@ -482,22 +496,83 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                                   child: Text(setapptext(
                                                       key:
                                                           'key_capture_image')),
-                                                  onPressed: localdata
-                                                              .isdrafted ==
-                                                          2
-                                                      ? null
-                                                      : () async {
-                                                          tempval = localdata
-                                                              .fore_limits_north;
-                                                          localdata.home_map =
-                                                              await appimagepicker();
-                                                          setState(() {});
-                                                          localdata
-                                                                  .fore_limits_north =
-                                                              tempval;
-                                                          _north.text = tempval;
-                                                          setState(() {});
-                                                        },
+                                                  onPressed:
+                                                      localdata.isdrafted == 2
+                                                          ? null
+                                                          : () async {
+                                                              tempval = localdata
+                                                                  .fore_limits_north;
+
+                                                              showModalBottomSheet(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Container(
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.min,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.center,
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Container(
+                                                                            padding:
+                                                                                EdgeInsets.all(8),
+                                                                            //decoration: BoxDecoration(color: Colors.blue),
+                                                                            child:
+                                                                                Text(
+                                                                              "Pick the image",
+                                                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.home_map = await appimagepicker(source: ImageSource.camera);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Camera",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.home_map = await appimagepicker(source: ImageSource.gallery);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Gallery",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height:
+                                                                                20,
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    );
+                                                                  });
+                                                              setState(() {});
+                                                              localdata
+                                                                      .fore_limits_north =
+                                                                  tempval;
+                                                              _north.text =
+                                                                  tempval;
+                                                              setState(() {});
+                                                            },
                                                 )
                                               ],
                                             ),
@@ -597,9 +672,68 @@ class _FourLimitPageState extends State<FourLimitPage> {
                                                       localdata.isdrafted == 2
                                                           ? null
                                                           : () async {
-                                                              localdata
-                                                                      .home_photo =
-                                                                  await appimagepicker();
+                                                              showModalBottomSheet(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Container(
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.min,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.center,
+                                                                        children: <
+                                                                            Widget>[
+                                                                          Container(
+                                                                            padding:
+                                                                                EdgeInsets.all(8),
+                                                                            //decoration: BoxDecoration(color: Colors.blue),
+                                                                            child:
+                                                                                Text(
+                                                                              "Pick the image",
+                                                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.home_photo = await appimagepicker(source: ImageSource.camera);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Camera",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          Divider(),
+                                                                          GestureDetector(
+                                                                            onTap:
+                                                                                () async {
+                                                                              localdata.home_photo = await appimagepicker(source: ImageSource.gallery);
+                                                                              Navigator.pop(context);
+                                                                              setState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              "Use Gallery",
+                                                                              style: TextStyle(color: Colors.blue, fontSize: 16),
+                                                                            ),
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height:
+                                                                                20,
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    );
+                                                                  });
                                                               setState(() {});
                                                             },
                                                 )

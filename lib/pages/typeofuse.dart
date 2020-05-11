@@ -166,7 +166,7 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
                                       ? CheckColor.Black
                                       : CheckColor.Green,
                                   headerlablekey:
-                                      setapptext(key: 'key_Type_of_use'),
+                                      setapptext(key: 'key_use_type_doc'),
                                   dropdownitems: [
                                     Dpvalue(
                                         name: setapptext(
@@ -208,11 +208,8 @@ class _TypeOfUsePageState extends State<TypeOfUsePage> {
                                   }),
                               if (localdata.use_in_property_doc == "8") ...[
                                 formcardtextfield(
-                                  maxLength: 120,
-                                  inputFormatters: [
-                                    
-                                    
-                                  ],
+                                    maxLength: 120,
+                                    inputFormatters: [],
                                     headerlablekey:
                                         setapptext(key: 'key_Another'),
                                     radiovalue:
