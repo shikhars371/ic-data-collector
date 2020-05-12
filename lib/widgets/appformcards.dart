@@ -169,7 +169,7 @@ Widget formcardtextfield(
                 onFieldSubmitted: onFieldSubmitted,
                 inputFormatters: inputFormatters,
                 maxLength: maxLength,
-
+                maxLengthEnforced: true,
                 ///WhitelistingTextInputFormatter.digitsOnly
               ),
             )
