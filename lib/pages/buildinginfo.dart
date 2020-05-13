@@ -256,58 +256,55 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   ),
                                 ),
                                 formCardDropdown(
-                                    fieldrequired: true,
-                                    enable:
-                                        localdata.isdrafted == 2 ? true : false,
-                                    iscompleted: ((localdata.fst_building_use
-                                                    ?.isEmpty ??
-                                                true) ||
-                                            (localdata.fst_building_use == "0"))
-                                        ? CheckColor.Black
-                                        : CheckColor.Green,
-                                    headerlablekey:
-                                        setapptext(key: 'key_building_use'),
-                                    dropdownitems: [
-                                      Dpvalue(
-                                          name: setapptext(
-                                              key: 'key_none_selected'),
-                                          value: "0"),
-                                      Dpvalue(
-                                          name: setapptext(key: 'key_release'),
-                                          value: "1"),
-                                      Dpvalue(
-                                          name:
-                                              setapptext(key: 'key_commercial'),
-                                          value: "2"),
-                                      Dpvalue(
-                                          name: setapptext(key: 'key_govt'),
-                                          value: "3"),
-                                      Dpvalue(
-                                          name:
-                                              setapptext(key: 'key_productive'),
-                                          value: "4"),
-                                      Dpvalue(
-                                          name: setapptext(key: 'key_general'),
-                                          value: "5"),
-                                    ],
-                                    onChanged: (value) {
-                                      localdata.fst_building_use = value;
-                                      setState(() {});
-                                    },
-                                    onSaved: (value) {
-                                      localdata.fst_building_use = value;
-                                    },
-                                    value:
-                                        localdata.fst_building_use?.isEmpty ??
-                                                true
-                                            ? "0"
-                                            : localdata.fst_building_use,
-                                            
-                                    validate: (value) {
-                                      if ((value.isEmpty) || value == "0") {
-                                        return setapptext(key: 'key_required');
-                                      }
-                                    },),
+                                  fieldrequired: true,
+                                  enable:
+                                      localdata.isdrafted == 2 ? true : false,
+                                  iscompleted: ((localdata
+                                                  .fst_building_use?.isEmpty ??
+                                              true) ||
+                                          (localdata.fst_building_use == "0"))
+                                      ? CheckColor.Black
+                                      : CheckColor.Green,
+                                  headerlablekey:
+                                      setapptext(key: 'key_building_use'),
+                                  dropdownitems: [
+                                    Dpvalue(
+                                        name: setapptext(
+                                            key: 'key_none_selected'),
+                                        value: "0"),
+                                    Dpvalue(
+                                        name: setapptext(key: 'key_release'),
+                                        value: "1"),
+                                    Dpvalue(
+                                        name: setapptext(key: 'key_commercial'),
+                                        value: "2"),
+                                    Dpvalue(
+                                        name: setapptext(key: 'key_govt'),
+                                        value: "3"),
+                                    Dpvalue(
+                                        name: setapptext(key: 'key_productive'),
+                                        value: "4"),
+                                    Dpvalue(
+                                        name: setapptext(key: 'key_general'),
+                                        value: "5"),
+                                  ],
+                                  onChanged: (value) {
+                                    localdata.fst_building_use = value;
+                                    setState(() {});
+                                  },
+                                  onSaved: (value) {
+                                    localdata.fst_building_use = value;
+                                  },
+                                  value: localdata.fst_building_use?.isEmpty ??
+                                          true
+                                      ? "0"
+                                      : localdata.fst_building_use,
+                                  validate: (value) {
+                                    if ((value.isEmpty) || value == "0") {
+                                      return setapptext(key: 'key_required');
+                                    }
+                                  },
+                                ),
                                 formCardDropdown(
                                     fieldrequired: true,
                                     enable:
@@ -545,7 +542,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   ),
                                 ),
                                 formCardDropdown(
-                                  fieldrequired: true,
+                                    fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata.snd_building_use
@@ -597,7 +594,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formCardDropdown(
-                                  fieldrequired: true,
+                                    fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata
@@ -825,7 +822,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   ),
                                 ),
                                 formCardDropdown(
-                                  fieldrequired: true,
+                                    fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata.trd_building_use
@@ -877,7 +874,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formCardDropdown(
-                                  fieldrequired: true,
+                                    fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata
@@ -1102,7 +1099,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   ),
                                 ),
                                 formCardDropdown(
-                                  fieldrequired: true,
+                                    fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata.forth_building_use
@@ -1155,7 +1152,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formCardDropdown(
-                                  fieldrequired: true,
+                                    fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata
@@ -1234,13 +1231,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     onSaved: (value) {
                                       localdata.forth_specifyif_other =
                                           value.trim();
-                                    },
-                                    fieldrequired: true,
-                                    validator: (value) {
-                                      if (value.trim().isEmpty) {
-                                        return setapptext(
-                                            key: 'key_field_not_blank');
-                                      }
                                     },
                                     onChanged: (value) {
                                       localdata.forth_specifyif_other =
@@ -1385,6 +1375,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                   ),
                                 ),
                                 formCardDropdown(
+                                  fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata.fth_building_use
@@ -1436,6 +1427,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                       }
                                     }),
                                 formCardDropdown(
+                                  fieldrequired: true,
                                     enable:
                                         localdata.isdrafted == 2 ? true : false,
                                     iscompleted: ((localdata
@@ -1472,7 +1464,7 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                           name: setapptext(key: 'key_metal'),
                                           value: "5"),
                                       Dpvalue(
-                                          name: setapptext(key: 'key_Another'),
+                                          name: setapptext(key: 'key_other1'),
                                           value: "6"),
                                     ],
                                     onChanged: (value) {
@@ -1513,13 +1505,6 @@ class _BuildingInfoPageState extends State<BuildingInfoPage> {
                                     onSaved: (value) {
                                       localdata.fth_specifyif_other =
                                           value.trim();
-                                    },
-                                    fieldrequired: true,
-                                    validator: (value) {
-                                      if (value.trim().isEmpty) {
-                                        return setapptext(
-                                            key: 'key_field_not_blank');
-                                      }
                                     },
                                     onChanged: (value) {
                                       localdata.fth_specifyif_other =
