@@ -214,10 +214,10 @@
     "key_cover_note": "سند جلد:",
     "key_all_details": "Details of the number and area of ​​units (if the current use is mixed-use and commercial, fill the following sections).",
     "key_final_details": "د واحدونو مساحت او شمیر جزئیات (که چیری د اوسنی کټی اخیستنی ډول استوګنی، تجارتی او یا مختلط وی، لاندی ځای ډک کړی.)",
-    "key_second_partner_info": "د دوهم شریک مشخصات",
-    "key_third_partner_info": "دریم شریک مشخصات",
-    "key_fourth_partner_info": "څلورم شریک مشخصات",
-    "key_fifth_partner_info": "پنځم شریک مشخصات",
+    "key_second_partner_info": "شریک انځور",
+    "key_third_partner_info": "شریک انځور",
+    "key_fourth_partner_info": "شریک انځور",
+    "key_fifth_partner_info": "شریک انځور",
     "key_none_selected": "هیڅ نه ټاکل شوی",
     "key_kabul": "کابل -> کابل",
     "key_nangarhar": "ننگرهار-> جلال آباد",
@@ -287,7 +287,7 @@
     "key_something_wrong": "وبښی! تیروتنه شوی بیا کوښښ وکړی",
     "key_status": "حالت",
     "key_continue": "دوام ورکړی",
-    "key_gozar": "ګذر: (دوه رقمی عدد)",
+    "key_gozar": "گذر",
     "key_Disorganized": "غیر منظم",
     "key_Last_Sync_Date": "د همغږی ورستی نیټه",
     "key_logout_msg": "تاسو نشی کولی سروی معلوماتو د همغږی نه بحر شی. مهربانی وکړی بشپړه شوی سروی همغږی کړی.",
@@ -310,5 +310,7 @@
     "key_newsurvey": "نوې سروې",
     "key_rework": "بیا کار کول",
     "key_no_survey": "د سروې هیڅ کار نشته",
-    "key_use_type_doc": "Usage type in the document"
+    "key_use_type_doc": "په سند کې د کارولو ډول",
+    "key_municipality":"شاروالی",
+    "key_parcel":"Parcel"
 }

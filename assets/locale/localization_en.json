@@ -310,5 +310,9 @@
     "key_newsurvey": "New Survey",
     "key_rework": "Rework",
     "key_no_survey": "No Survey Is Available",
-    "key_use_type_doc": "Usage type in the document"
+    "key_use_type_doc": "Usage type in the document",
+    "key_municipality":"Municipality",
+    "key_nahia":"Nahia",
+    "key_parcel":"Parcel"
+
 }

@@ -20,6 +20,26 @@ class SurveyInfoPage extends StatefulWidget {
 }
 
 class _SurveyInfoPageState extends State<SurveyInfoPage> {
+  Widget wrapContaint({String titel, String subtitel}) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(left: 5, right: 5),
+          child: Text(titel),
+        ),
+        Padding(
+          padding: EdgeInsets.only(left: 5, right: 5),
+          child: Text(
+            subtitel,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        )
+      ],
+    );
+  }
+
   LocalPropertySurvey localdata;
   var _formkey = GlobalKey<FormState>();
   FocusNode _firstsurveyor;
@@ -280,139 +300,195 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                           child: ListView(
                             children: <Widget>[
                               localdata.editmode == 1
-                                  ? Container(
-                                      padding:
-                                          EdgeInsets.only(left: 15, right: 15),
-                                      child: Column(
-                                        children: <Widget>[
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: <Widget>[
-                                              Flexible(
-                                                fit: FlexFit.tight,
-                                                flex: 3,
-                                                child: Wrap(
-                                                  direction: Axis.vertical,
-                                                  children: <Widget>[
-                                                    Text(setapptext(
-                                                        key: 'key_province')),
-                                                    Text(
-                                                      getProvincename(localdata
-                                                                  .province
-                                                                  ?.isEmpty ??
-                                                              true
-                                                          ? ""
-                                                          : localdata.province),
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                              Flexible(
-                                                fit: FlexFit.tight,
-                                                flex: 3,
-                                                child: Wrap(
-                                                  direction: Axis.vertical,
-                                                  children: <Widget>[
-                                                    Text(setapptext(
-                                                        key: 'key_city')),
-                                                    Text(
-                                                      getCity(localdata.city
-                                                                  ?.isEmpty ??
-                                                              true
-                                                          ? ""
-                                                          : localdata.city),
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                              Flexible(
-                                                fit: FlexFit.tight,
-                                                child: Wrap(
-                                                  direction: Axis.vertical,
-                                                  children: <Widget>[
-                                                    Text(setapptext(
-                                                        key: 'key_only_block')),
-                                                    Text(
-                                                      localdata.block
-                                                                  ?.isEmpty ??
-                                                              true
-                                                          ? ""
-                                                          : localdata.block,
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    )
-                                                  ],
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 15,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: <Widget>[
-                                              Flexible(
-                                                fit: FlexFit.tight,
-                                                flex: 3,
-                                                child: Wrap(
-                                                  direction: Axis.vertical,
-                                                  children: <Widget>[
-                                                    Text(setapptext(
-                                                        key: 'key_part')),
-                                                    Text(
-                                                      localdata.part_number
-                                                                  ?.isEmpty ??
-                                                              true
-                                                          ? ""
-                                                          : localdata
-                                                              .part_number,
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                              Flexible(
-                                                fit: FlexFit.tight,
-                                                flex: 3,
-                                                child: Wrap(
-                                                  direction: Axis.vertical,
-                                                  children: <Widget>[
-                                                    Text(setapptext(
-                                                        key: 'key_unit_no')),
-                                                    Text(
-                                                      localdata.unit_number
-                                                                  ?.isEmpty ??
-                                                              true
-                                                          ? ""
-                                                          : localdata
-                                                              .unit_number,
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                              Flexible(
-                                                  fit: FlexFit.tight,
-                                                  child: SizedBox())
-                                            ],
-                                          ),
-                                        ],
-                                      ),
+                                  ? Wrap(
+                                      runAlignment: WrapAlignment.spaceBetween,
+                                      runSpacing: 20,
+                                      spacing: 20,
+                                      children: <Widget>[
+                                        wrapContaint(
+                                            titel:
+                                                setapptext(key: 'key_province'),
+                                            subtitel: getProvincename(
+                                                localdata.province?.isEmpty ??
+                                                        true
+                                                    ? ""
+                                                    : localdata.province)),
+                                        wrapContaint(
+                                            titel: setapptext(
+                                                key: 'key_municipality'),
+                                            subtitel: getCity(
+                                                localdata.city?.isEmpty ?? true
+                                                    ? ""
+                                                    : localdata.city)),
+                                        wrapContaint(
+                                            titel: setapptext(key: 'key_nahia'),
+                                            subtitel:
+                                                localdata.area?.isEmpty ?? true
+                                                    ? ""
+                                                    : localdata.area),
+                                        wrapContaint(
+                                            titel: setapptext(key: 'key_gozar'),
+                                            subtitel:
+                                                localdata.pass?.isEmpty ?? true
+                                                    ? ""
+                                                    : localdata.pass),
+                                        wrapContaint(
+                                            titel: setapptext(
+                                                key: 'key_only_block'),
+                                            subtitel:
+                                                localdata.block?.isEmpty ?? true
+                                                    ? ""
+                                                    : localdata.block),
+                                        wrapContaint(
+                                            titel: setapptext(key: 'key_parcel'),
+                                            subtitel: localdata
+                                                        .part_number?.isEmpty ??
+                                                    true
+                                                ? ""
+                                                : localdata.part_number),
+                                        wrapContaint(
+                                            titel:
+                                                setapptext(key: 'key_unit_no'),
+                                            subtitel: localdata
+                                                        .unit_number?.isEmpty ??
+                                                    true
+                                                ? ""
+                                                : localdata.unit_number),
+                                      ],
                                     )
+                                  // ? Container(
+                                  //     padding:
+                                  //         EdgeInsets.only(left: 15, right: 15),
+                                  //     child: Column(
+                                  //       children: <Widget>[
+                                  //         Row(
+                                  //           mainAxisAlignment:
+                                  //               MainAxisAlignment.spaceBetween,
+                                  //           children: <Widget>[
+                                  //             Flexible(
+                                  //               fit: FlexFit.tight,
+                                  //               flex: 3,
+                                  //               child: Wrap(
+                                  //                 direction: Axis.vertical,
+                                  //                 children: <Widget>[
+                                  //                   Text(setapptext(
+                                  //                       key: 'key_province')),
+                                  //                   Text(
+                                  //                     getProvincename(localdata
+                                  //                                 .province
+                                  //                                 ?.isEmpty ??
+                                  //                             true
+                                  //                         ? ""
+                                  //                         : localdata.province),
+                                  //                     style: TextStyle(
+                                  //                         fontWeight:
+                                  //                             FontWeight.bold),
+                                  //                   )
+                                  //                 ],
+                                  //               ),
+                                  //             ),
+                                  //             Flexible(
+                                  //               fit: FlexFit.tight,
+                                  //               flex: 3,
+                                  //               child: Wrap(
+                                  //                 direction: Axis.vertical,
+                                  //                 children: <Widget>[
+                                  //                   Text(setapptext(
+                                  //                       key: 'key_city')),
+                                  //                   Text(
+                                  //                     getCity(localdata.city
+                                  //                                 ?.isEmpty ??
+                                  //                             true
+                                  //                         ? ""
+                                  //                         : localdata.city),
+                                  //                     style: TextStyle(
+                                  //                         fontWeight:
+                                  //                             FontWeight.bold),
+                                  //                   )
+                                  //                 ],
+                                  //               ),
+                                  //             ),
+                                  //             Flexible(
+                                  //               fit: FlexFit.tight,
+                                  //               child: Wrap(
+                                  //                 direction: Axis.vertical,
+                                  //                 children: <Widget>[
+                                  //                   Text(setapptext(
+                                  //                       key: 'key_only_block')),
+                                  //                   Text(
+                                  //                     localdata.block
+                                  //                                 ?.isEmpty ??
+                                  //                             true
+                                  //                         ? ""
+                                  //                         : localdata.block,
+                                  //                     style: TextStyle(
+                                  //                         fontWeight:
+                                  //                             FontWeight.bold),
+                                  //                   )
+                                  //                 ],
+                                  //               ),
+                                  //             )
+                                  //           ],
+                                  //         ),
+                                  //         SizedBox(
+                                  //           height: 15,
+                                  //         ),
+                                  //         Row(
+                                  //           mainAxisAlignment:
+                                  //               MainAxisAlignment.spaceBetween,
+                                  //           children: <Widget>[
+                                  //             Flexible(
+                                  //               fit: FlexFit.tight,
+                                  //               flex: 3,
+                                  //               child: Wrap(
+                                  //                 direction: Axis.vertical,
+                                  //                 children: <Widget>[
+                                  //                   Text(setapptext(
+                                  //                       key: 'key_part')),
+                                  //                   Text(
+                                  //                     localdata.part_number
+                                  //                                 ?.isEmpty ??
+                                  //                             true
+                                  //                         ? ""
+                                  //                         : localdata
+                                  //                             .part_number,
+                                  //                     style: TextStyle(
+                                  //                         fontWeight:
+                                  //                             FontWeight.bold),
+                                  //                   )
+                                  //                 ],
+                                  //               ),
+                                  //             ),
+                                  //             Flexible(
+                                  //               fit: FlexFit.tight,
+                                  //               flex: 3,
+                                  //               child: Wrap(
+                                  //                 direction: Axis.vertical,
+                                  //                 children: <Widget>[
+                                  //                   Text(setapptext(
+                                  //                       key: 'key_unit_no')),
+                                  //                   Text(
+                                  //                     localdata.unit_number
+                                  //                                 ?.isEmpty ??
+                                  //                             true
+                                  //                         ? ""
+                                  //                         : localdata
+                                  //                             .unit_number,
+                                  //                     style: TextStyle(
+                                  //                         fontWeight:
+                                  //                             FontWeight.bold),
+                                  //                   )
+                                  //                 ],
+                                  //               ),
+                                  //             ),
+                                  //             Flexible(
+                                  //                 fit: FlexFit.tight,
+                                  //                 child: SizedBox())
+                                  //           ],
+                                  //         ),
+                                  //       ],
+                                  //     ),
+                                  //   )
                                   : SizedBox(),
                               formcardtextfield(
                                   enable: false,

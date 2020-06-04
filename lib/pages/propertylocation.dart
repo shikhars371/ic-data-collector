@@ -454,33 +454,34 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                               //       }
                               //     }),
                               formcardtextfield(
-                                  enable: false,
-                                  keyboardtype: TextInputType.number,
-                                  headerlablekey: setapptext(key: 'key_area'),
-                                  radiovalue: localdata.area?.isEmpty ?? true
-                                      ? CheckColor.Black
-                                      : CheckColor.Green,
-                                  hinttextkey:
-                                      setapptext(key: 'Key_number_value'),
-                                  initvalue: localdata.area?.isEmpty ?? true
-                                      ? ""
-                                      : localdata.area,
-                                  fieldrequired: true,
-                                  validator: (value) {
-                                    if (value.trim().isEmpty) {
-                                      return setapptext(
-                                          key: 'key_field_not_blank');
-                                    } else if (value.length != 2) {
-                                      return setapptext(key: 'key_two_digit');
-                                    }
-                                  },
-                                  onSaved: (value) {
-                                    localdata.area = value.trim();
-                                  },
-                                  onChanged: (value) {
-                                    localdata.area = value.trim();
-                                    setState(() {});
-                                  }),
+                                enable: false,
+                                keyboardtype: TextInputType.number,
+                                headerlablekey: setapptext(key: 'key_area'),
+                                radiovalue: localdata.area?.isEmpty ?? true
+                                    ? CheckColor.Black
+                                    : CheckColor.Green,
+                                hinttextkey:
+                                    setapptext(key: 'Key_number_value'),
+                                initvalue: localdata.area?.isEmpty ?? true
+                                    ? ""
+                                    : localdata.area,
+                                fieldrequired: true,
+                                validator: (value) {
+                                  if (value.trim().isEmpty) {
+                                    return setapptext(
+                                        key: 'key_field_not_blank');
+                                  } else if (value.length != 2) {
+                                    return setapptext(key: 'key_two_digit');
+                                  }
+                                },
+                                onSaved: (value) {
+                                  localdata.area = value.trim();
+                                },
+                                onChanged: (value) {
+                                  localdata.area = value.trim();
+                                  setState(() {});
+                                },
+                              ),
                               formcardtextfield(
                                   enable: false,
                                   keyboardtype: TextInputType.number,
