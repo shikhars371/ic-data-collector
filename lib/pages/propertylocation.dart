@@ -73,9 +73,36 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                 localdata.block +
                 localdata.part_number +
                 localdata.unit_number;
-            bool checkunitno =
-                await DBHelper().ifexistUnitNo(unitno: localdata.unit_number);
-            if (checkunitno) {
+            // bool checkunitno =
+            //     await DBHelper().ifexistUnitNo(unitno: localdata.unit_number);
+            // if (checkunitno) {
+            //   showDialog(
+            //       context: context,
+            //       builder: (BuildContext context) {
+            //         return AlertDialog(
+            //           title: Text(
+            //             setapptext(key: 'key_warning'),
+            //             style: TextStyle(
+            //                 fontWeight: FontWeight.bold, color: Colors.red),
+            //           ),
+            //           content: Text(
+            //             setapptext(key: 'key_unit_exist'),
+            //           ),
+            //           actions: <Widget>[
+            //             FlatButton(
+            //               onPressed: () {
+            //                 Navigator.pop(context);
+            //               },
+            //               child: Text(setapptext(key: 'key_ok')),
+            //             ),
+            //           ],
+            //         );
+            //       });
+            // } else {
+
+            // }
+            int svval = await DBHelper().addPropertySurvey(localdata);
+            if (svval == 0) {
               showDialog(
                   context: context,
                   builder: (BuildContext context) {
@@ -85,56 +112,30 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold, color: Colors.red),
                       ),
-                      content: Text(
-                        setapptext(key: 'key_unit_exist'),
-                      ),
+                      content: Text(setapptext(key: 'key_prop_data_exide')),
                       actions: <Widget>[
                         FlatButton(
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          child: Text(setapptext(key: 'key_ok')),
+                          child: Text(
+                            setapptext(key: 'key_ok'),
+                          ),
                         ),
                       ],
                     );
                   });
             } else {
-              int svval = await DBHelper().addPropertySurvey(localdata);
-              if (svval == 0) {
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: Text(
-                          setapptext(key: 'key_warning'),
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.red),
-                        ),
-                        content: Text(setapptext(key: 'key_prop_data_exide')),
-                        actions: <Widget>[
-                          FlatButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: Text(
-                              setapptext(key: 'key_ok'),
-                            ),
-                          ),
-                        ],
-                      );
-                    });
-              } else {
-                localdata.isdrafted = 0;
-                localdata.editmode = 1;
-                await DBHelper().updateTaskStatus(taskid: localdata.taskid);
-                Navigator.pushReplacement(
-                    context,
-                    PageTransition(
-                        child: PropertyDetailsPage(
-                          localdata: localdata,
-                        ),
-                        type: PageTransitionType.rightToLeft));
-              }
+              localdata.isdrafted = 0;
+              localdata.editmode = 1;
+              await DBHelper().updateTaskStatus(taskid: localdata.taskid);
+              Navigator.pushReplacement(
+                  context,
+                  PageTransition(
+                      child: PropertyDetailsPage(
+                        localdata: localdata,
+                      ),
+                      type: PageTransitionType.rightToLeft));
             }
           }
         }
