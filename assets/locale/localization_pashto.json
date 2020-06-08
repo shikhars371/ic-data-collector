@@ -219,7 +219,7 @@
     "key_fourth_partner_info": "شریک انځور",
     "key_fifth_partner_info": "شریک انځور",
     "key_none_selected": "هیڅ نه ټاکل شوی",
-    "key_kabul": "کابل -> کابل",
+    "key_kabul": "کابل",
     "key_nangarhar": "ننگرهار-> جلال آباد",
     "key_Kandahar": "کندهار -> قندهار",
     "key_Bamyan": "بامیان -> بامیان",
@@ -312,5 +312,5 @@
     "key_no_survey": "د سروې هیڅ کار نشته",
     "key_use_type_doc": "په سند کې د کارولو ډول",
     "key_municipality":"شاروالی",
-    "key_parcel":"Parcel"
+    "key_parcel":"پارسل"
 }

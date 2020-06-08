@@ -293,6 +293,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                         Expanded(
                           child: ListView(
                             children: <Widget>[
+                              //province
                               formcardtextfield(
                                 fieldrequired: true,
                                 enable: false,
@@ -312,6 +313,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                 //   setState(() {});
                                 // }
                               ),
+                              //municipality
                               formcardtextfield(
                                 fieldrequired: true,
                                 enable: false,
@@ -453,6 +455,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                               //         return setapptext(key: 'key_required');
                               //       }
                               //     }),
+                              //district/nahia
                               formcardtextfield(
                                 enable: false,
                                 keyboardtype: TextInputType.number,
@@ -482,6 +485,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                   setState(() {});
                                 },
                               ),
+                              //ctu/gozar
                               formcardtextfield(
                                   enable: false,
                                   keyboardtype: TextInputType.number,
@@ -510,6 +514,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     localdata.pass = value.trim();
                                     setState(() {});
                                   }),
+                              //block
                               formcardtextfield(
                                   enable: false,
                                   keyboardtype: TextInputType.number,
@@ -538,9 +543,10 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     localdata.block = value.trim();
                                     setState(() {});
                                   }),
+                              //parcel
                               formcardtextfield(
                                   enable:
-                                      localdata.isdrafted == 2 ? false : true,
+                                      ((localdata.isdrafted == 2)||(localdata.editmode==1)) ? false : true,
                                   inputFormatters: [
                                     WhitelistingTextInputFormatter.digitsOnly
                                   ],
@@ -574,9 +580,10 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                     localdata.part_number = value.trim();
                                     setState(() {});
                                   }),
+                              //unit no
                               formcardtextfield(
                                   enable:
-                                      localdata.isdrafted == 2 ? false : true,
+                                      ((localdata.isdrafted == 2)||(localdata.editmode==1)) ? false : true,
                                   inputFormatters: [
                                     WhitelistingTextInputFormatter.digitsOnly
                                   ],
