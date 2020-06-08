@@ -219,7 +219,7 @@
     "key_fourth_partner_info": "عکس شریک",
     "key_fifth_partner_info": "عکس شریک",
     "key_none_selected": "هیچ کدام انتخاب نشده است",
-    "key_kabul": "کابل -> کابل",
+    "key_kabul": "کابل",
     "key_nangarhar": "ننگرهار-> جلال آباد",
     "key_Kandahar": "کندهار -> قندهار",
     "key_Bamyan": "بامیان -> بامیان",
@@ -312,5 +312,6 @@
     "key_no_survey": "هیچ بررسی دیگری در دسترس نیست",
     "key_use_type_doc": "نوعیت استفاده در سند ",
     "key_municipality": "ښاروالی",
-    "key_parcel":"Parcel"
+    "key_nahia":"ناحیه",
+    "key_parcel":"پارسل"
 }
