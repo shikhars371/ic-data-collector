@@ -55,16 +55,72 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
           //in edit mode
           if (localdata.editmode == 1) {
             if (localdata.isdrafted != 2) {
-              await DBHelper().updatePropertySurvey(
-                  localdata, localdata.local_property_key);
+              var newloaclkey = localdata.province +
+                  localdata.city +
+                  localdata.area +
+                  localdata.pass +
+                  localdata.block +
+                  localdata.part_number +
+                  localdata.unit_number;
+              if (newloaclkey != localdata.local_property_key) {
+                var isexistPropertyId =
+                    await DBHelper().ifpropertyexist(localkey: newloaclkey);
+                if (isexistPropertyId) {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text(
+                            setapptext(key: 'key_warning'),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, color: Colors.red),
+                          ),
+                          content: Text(setapptext(key: 'key_prop_data_exide')),
+                          actions: <Widget>[
+                            FlatButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text(
+                                setapptext(key: 'key_ok'),
+                              ),
+                            ),
+                          ],
+                        );
+                      });
+                } else {
+                  await DBHelper().updatePropertySurvey(
+                      localdata, localdata.local_property_key);
+                  Navigator.pushReplacement(
+                    context,
+                    PageTransition(
+                        child: PropertyDetailsPage(
+                          localdata: localdata,
+                        ),
+                        type: PageTransitionType.rightToLeft),
+                  );
+                }
+              } else {
+                await DBHelper().updatePropertySurvey(
+                    localdata, localdata.local_property_key);
+                Navigator.pushReplacement(
+                  context,
+                  PageTransition(
+                      child: PropertyDetailsPage(
+                        localdata: localdata,
+                      ),
+                      type: PageTransitionType.rightToLeft),
+                );
+              }
+            } else {
+              Navigator.pushReplacement(
+                  context,
+                  PageTransition(
+                      child: PropertyDetailsPage(
+                        localdata: localdata,
+                      ),
+                      type: PageTransitionType.rightToLeft));
             }
-            Navigator.pushReplacement(
-                context,
-                PageTransition(
-                    child: PropertyDetailsPage(
-                      localdata: localdata,
-                    ),
-                    type: PageTransitionType.rightToLeft));
           } else {
             localdata.local_property_key = localdata.province +
                 localdata.city +
@@ -73,34 +129,6 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                 localdata.block +
                 localdata.part_number +
                 localdata.unit_number;
-            // bool checkunitno =
-            //     await DBHelper().ifexistUnitNo(unitno: localdata.unit_number);
-            // if (checkunitno) {
-            //   showDialog(
-            //       context: context,
-            //       builder: (BuildContext context) {
-            //         return AlertDialog(
-            //           title: Text(
-            //             setapptext(key: 'key_warning'),
-            //             style: TextStyle(
-            //                 fontWeight: FontWeight.bold, color: Colors.red),
-            //           ),
-            //           content: Text(
-            //             setapptext(key: 'key_unit_exist'),
-            //           ),
-            //           actions: <Widget>[
-            //             FlatButton(
-            //               onPressed: () {
-            //                 Navigator.pop(context);
-            //               },
-            //               child: Text(setapptext(key: 'key_ok')),
-            //             ),
-            //           ],
-            //         );
-            //       });
-            // } else {
-
-            // }
             int svval = await DBHelper().addPropertySurvey(localdata);
             if (svval == 0) {
               showDialog(
@@ -306,13 +334,6 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                 radiovalue: localdata.province?.isEmpty ?? true
                                     ? CheckColor.Black
                                     : CheckColor.Green,
-                                // onSaved: (value) {
-                                //   localdata.province = value.trim();
-                                // },
-                                // onChanged: (value) {
-                                //   localdata.province = value.trim();
-                                //   setState(() {});
-                                // }
                               ),
                               //municipality
                               formcardtextfield(
@@ -326,136 +347,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                 radiovalue: localdata.city?.isEmpty ?? true
                                     ? CheckColor.Black
                                     : CheckColor.Green,
-                                // onSaved: (value) {
-                                //   localdata.province = value.trim();
-                                // },
-                                // onChanged: (value) {
-                                //   localdata.province = value.trim();
-                                //   setState(() {});
-                                // }
                               ),
-                              // formCardDropdown(
-                              //     iscompleted:
-                              //         ((localdata.province?.isEmpty ??
-                              //                     true) ||
-                              //                 (localdata.province == "0"))
-                              //             ? false
-                              //             : true,
-                              //     headerlablekey:
-                              //         setapptext(key: 'key_select_province'),
-                              //     dropdownitems: [
-                              //       Dpvalue(
-                              //           name: setapptext(
-                              //               key: 'key_none_selected'),
-                              //           value: "0"),
-                              //       Dpvalue(
-                              //           name: setapptext(key: 'key_kabul'),
-                              //           value: "01-01"),
-                              //       Dpvalue(
-                              //           name:
-                              //               setapptext(key: 'key_nangarhar'),
-                              //           value: "06-01"),
-                              //       Dpvalue(
-                              //           name: setapptext(key: 'key_Kandahar'),
-                              //           value: "33-01"),
-                              //       Dpvalue(
-                              //           name: setapptext(key: 'key_Bamyan'),
-                              //           value: "10-01"),
-                              //       Dpvalue(
-                              //           name: setapptext(key: 'key_Daikundi'),
-                              //           value: "22-01"),
-                              //       Dpvalue(
-                              //           name: setapptext(key: 'key_Kundoz'),
-                              //           value: "17-01"),
-                              //       Dpvalue(
-                              //           name: setapptext(key: 'key_Balkh'),
-                              //           value: "18-01"),
-                              //       Dpvalue(
-                              //           name: setapptext(key: 'key_Herat'),
-                              //           value: "30-01"),
-                              //       Dpvalue(
-                              //           name: setapptext(key: 'key_Parwan'),
-                              //           value: "03-01"),
-                              //       Dpvalue(
-                              //           name: setapptext(key: 'key_Farah'),
-                              //           value: "04-01")
-                              //     ],
-                              //     onChanged: (value) {
-                              //       localdata.province = value;
-                              //       setState(() {});
-                              //     },
-                              //     onSaved: (value) {
-                              //       localdata.province = value;
-                              //     },
-                              //     value: localdata.province?.isEmpty ?? true
-                              //         ? "0"
-                              //         : localdata.province,
-                              //     validate: (value) {
-                              //       if ((value.isEmpty) || value == "0") {
-                              //         return setapptext(key: 'key_required');
-                              //       }
-                              //     }),
-                              // formCardDropdown(
-                              //     iscompleted:
-                              //         ((localdata.city?.isEmpty ?? true) ||
-                              //                 (localdata.city == "0"))
-                              //             ? false
-                              //             : true,
-                              //     headerlablekey:
-                              //         setapptext(key: 'key_select_city'),
-                              //     dropdownitems: [
-                              //       Dpvalue(
-                              //           name: setapptext(
-                              //               key: 'key_none_selected'),
-                              //           value: "0"),
-                              //       Dpvalue(
-                              //           name: setapptext(key: 'key_kabul'),
-                              //           value: "1"),
-                              //       Dpvalue(
-                              //           name:
-                              //               setapptext(key: 'key_Jalalabad'),
-                              //           value: "2"),
-                              //       Dpvalue(
-                              //           name: setapptext(key: 'key_Kandahar'),
-                              //           value: "3"),
-                              //       Dpvalue(
-                              //           name: setapptext(key: 'key_Bamyan'),
-                              //           value: "4"),
-                              //       Dpvalue(
-                              //           name: setapptext(key: 'key_Nili'),
-                              //           value: "5"),
-                              //       Dpvalue(
-                              //           name: setapptext(key: 'key_Kundoz'),
-                              //           value: "6"),
-                              //       Dpvalue(
-                              //           name: setapptext(key: 'key_Sharif'),
-                              //           value: "7"),
-                              //       Dpvalue(
-                              //           name: setapptext(key: 'key_Herat'),
-                              //           value: "8"),
-                              //       Dpvalue(
-                              //           name: setapptext(key: 'key_Charikar'),
-                              //           value: "9"),
-                              //       Dpvalue(
-                              //           name: setapptext(key: 'key_Farah'),
-                              //           value: "10")
-                              //     ],
-                              //     onChanged: (value) {
-                              //       localdata.city = value;
-
-                              //       setState(() {});
-                              //     },
-                              //     onSaved: (value) {
-                              //       localdata.city = value;
-                              //     },
-                              //     value: localdata.city?.isEmpty ?? true
-                              //         ? "0"
-                              //         : localdata.city,
-                              //     validate: (value) {
-                              //       if ((value.isEmpty) || value == "0") {
-                              //         return setapptext(key: 'key_required');
-                              //       }
-                              //     }),
                               //district/nahia
                               formcardtextfield(
                                 enable: false,
@@ -546,45 +438,46 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                   }),
                               //parcel
                               formcardtextfield(
-                                  enable:
-                                      ((localdata.isdrafted == 2)||(localdata.editmode==1)) ? false : true,
-                                  inputFormatters: [
-                                    WhitelistingTextInputFormatter.digitsOnly
-                                  ],
-                                  keyboardtype: TextInputType.number,
-                                  initvalue:
-                                      localdata.part_number?.isEmpty ?? true
-                                          ? ""
-                                          : localdata.part_number,
-                                  headerlablekey:
-                                      setapptext(key: 'key_part_number'),
-                                  radiovalue:
-                                      localdata.part_number?.isEmpty ?? true
-                                          ? CheckColor.Black
-                                          : CheckColor.Green,
-                                  fieldrequired: true,
-                                  hinttextkey:
-                                      setapptext(key: 'Key_number_value'),
-                                  validator: (value) {
-                                    if (value.trim().isEmpty) {
-                                      return setapptext(
-                                          key: 'key_field_not_blank');
-                                    } else if (value.length != 3) {
-                                      return setapptext(key: 'key_three_digit');
-                                    }
-                                  },
-                                  maxLength: 3,
-                                  onSaved: (value) {
-                                    localdata.part_number = value.trim();
-                                  },
-                                  onChanged: (value) {
-                                    localdata.part_number = value.trim();
-                                    setState(() {});
-                                  }),
+                                enable:
+                                    (localdata.isdrafted == 2) ? false : true,
+                                inputFormatters: [
+                                  WhitelistingTextInputFormatter.digitsOnly
+                                ],
+                                keyboardtype: TextInputType.number,
+                                initvalue:
+                                    localdata.part_number?.isEmpty ?? true
+                                        ? ""
+                                        : localdata.part_number,
+                                headerlablekey:
+                                    setapptext(key: 'key_part_number'),
+                                radiovalue:
+                                    localdata.part_number?.isEmpty ?? true
+                                        ? CheckColor.Black
+                                        : CheckColor.Green,
+                                fieldrequired: true,
+                                hinttextkey:
+                                    setapptext(key: 'Key_number_value'),
+                                validator: (value) {
+                                  if (value.trim().isEmpty) {
+                                    return setapptext(
+                                        key: 'key_field_not_blank');
+                                  } else if (value.length != 3) {
+                                    return setapptext(key: 'key_three_digit');
+                                  }
+                                },
+                                maxLength: 3,
+                                onSaved: (value) {
+                                  localdata.part_number = value.trim();
+                                },
+                                onChanged: (value) {
+                                  localdata.part_number = value.trim();
+                                  setState(() {});
+                                },
+                              ),
                               //unit no
                               formcardtextfield(
                                   enable:
-                                      ((localdata.isdrafted == 2)||(localdata.editmode==1)) ? false : true,
+                                      (localdata.isdrafted == 2) ? false : true,
                                   inputFormatters: [
                                     WhitelistingTextInputFormatter.digitsOnly
                                   ],
@@ -769,7 +662,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
                                   }),
                               SizedBox(
                                 height: 50,
-                              )
+                              ),
                             ],
                           ),
                         ),
