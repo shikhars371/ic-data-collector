@@ -189,7 +189,8 @@ class LocalPropertySurvey {
   String fifth_partner_photo_tips2;
   int formval;
   int editmode;
-  int isdrafted;/// 0 -:draft, 1-: saved , 2 -: synced,3-: assigned for rework
+  int isdrafted; // 0 -:draft, 1-: saved , 2 -: synced,3-: exist property
+  int isrework; //if rework 1 otherwise 0
   String boundaryinfonote;
   int isreldocphoto1;
   int isreldocphoto2;
@@ -418,6 +419,7 @@ class LocalPropertySurvey {
       this.formval,
       this.editmode,
       this.isdrafted,
+      this.isrework,
       this.boundaryinfonote,
       this.isreldocphoto1,
       this.isreldocphoto2,
@@ -649,6 +651,7 @@ class LocalPropertySurvey {
         formval = map['formval'],
         editmode = map['editmode'],
         isdrafted = map['isdrafted'],
+        isrework = map['isrework'],
         boundaryinfonote = map['boundaryinfonote'],
         isreldocphoto1 = map['isreldocphoto1'],
         isreldocphoto2 = map['isreldocphoto2'],

@@ -503,6 +503,7 @@ class ReworkTask with ChangeNotifier {
       {Map responseJson, String taskid}) async {
     LocalPropertySurvey _localproperty = new LocalPropertySurvey();
     var apppath = await getApplicationDocumentsDirectory();
+    _localproperty.isrework = 1;
     _localproperty.taskid = taskid;
     _localproperty.local_created_on = DateTime.now().toString();
     _localproperty.local_property_key =

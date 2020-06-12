@@ -17,6 +17,7 @@ import '../utils/appstate.dart';
 typedef void OnUploadProgressCallback(int sentBytes, int totalBytes);
 
 class AppSync with ChangeNotifier {
+  bool isPropertyDataExistInOnlineDb = false;
   AppState _state = AppState.Idle;
   AppState get state => _state;
   void setState(AppState appState) {
@@ -410,19 +411,35 @@ class AppSync with ChangeNotifier {
             "supporting_surveyor_id": propertydata.surveyleadid,
             "authority": "Survey Lead"
           };
-      var ifdataexist = await isPropertyExistInDataBase(
-          propertyid: propertydata.province +
-              "-" +
-              propertydata.area +
-              "-" +
-              propertydata.pass +
-              "-" +
-              propertydata.block +
-              "-" +
-              propertydata.part_number);
+      isPropertyDataExistInOnlineDb = await isPropertyExistInDataBase(
+        propertyid: propertydata.province +
+            "-" +
+            propertydata.area +
+            "-" +
+            propertydata.pass +
+            "-" +
+            propertydata.block +
+            "-" +
+            propertydata.part_number +
+            "-" +
+            propertydata.unit_number,
+      );
       //if data exist then patch otherwise insert
-      if (ifdataexist) {
-        var propertyid = await getPropertyId(
+      if (isPropertyDataExistInOnlineDb) {
+        ///if property survey assignment already exist
+        ///isdrafted should be 3
+        ///disable edit
+        if ((propertydata.isrework == 0) || ((propertydata.isrework == null))) {
+          propertydata.isdrafted = 3;
+          await DBHelper().updatePropertySurvey(
+              propertydata, propertydata.local_property_key);
+          result = true;
+        }
+
+        ///if rework
+        ///patch or update the property
+        else {
+          var propertyid = await getPropertyId(
             propertyid: propertydata.province +
                 "-" +
                 propertydata.area +
@@ -431,24 +448,28 @@ class AppSync with ChangeNotifier {
                 "-" +
                 propertydata.block +
                 "-" +
-                propertydata.part_number);
-        if (!(propertyid?.isEmpty ?? true)) {
-          responce = await http.patch(
+                propertydata.part_number +
+                "-" +
+                propertydata.unit_number,
+          );
+          if (!(propertyid?.isEmpty ?? true)) {
+            responce = await http.patch(
               Configuration.apiurl + "propertyinformation/$propertyid",
               body: json.encode(inputdata()),
               headers: {
                 "Content-Type": "application/json",
                 "Authorization": preferences.getString("accesstoken")
-              });
-          await http.patch(
-              Configuration.apiurl + "taskreassignment/${propertydata.taskid}",
-              body: {
-                "surveystatus": "close"
               },
+            );
+            await http.patch(
+              Configuration.apiurl + "taskreassignment/${propertydata.taskid}",
+              body: {"surveystatus": "close"},
               headers: {
                 "Content-Type": "application/json",
                 "Authorization": preferences.getString("accesstoken")
-              });
+              },
+            );
+          }
         }
       } else {
         responce = await http.post(Configuration.apiurl + "propertyinformation",
@@ -623,15 +644,13 @@ class AppSync with ChangeNotifier {
         if (responce.statusCode == 201) {
           //data uploaded
           await updateUploadstatus(propertydata: propertydata);
-          var r = await syncData(propertydata: propertydata);
-          result = r ? true : false;
-          propertydata.isdrafted = 2;
+          result = await syncData(propertydata: propertydata);
+          propertydata.isdrafted = isPropertyDataExistInOnlineDb ? 3 : 2;
           await updateUploadstatus(propertydata: propertydata);
-        } else {}
+        }
       } else {
-        var r = await syncData(propertydata: propertydata);
-        result = r ? true : false;
-        propertydata.isdrafted = 2;
+        result = await syncData(propertydata: propertydata);
+        propertydata.isdrafted = isPropertyDataExistInOnlineDb ? 3 : 2;
         await updateUploadstatus(propertydata: propertydata);
       }
     } catch (error, stackTrace) {

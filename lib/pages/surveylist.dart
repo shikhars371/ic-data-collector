@@ -79,8 +79,10 @@ class _SurveyPageState extends State<SurveyPage> {
                       direction: Axis.horizontal,
                       children: <Widget>[
                         ///edit icon
-                        surveydata.isdrafted == 2
-                            ? IconButton(
+                        ((surveydata.isdrafted == 2) ||
+                                (surveydata.isdrafted == 3))
+                            ? //view
+                            IconButton(
                                 icon: Icon(Icons.remove_red_eye),
                                 onPressed: () {
                                   Navigator.push(
@@ -96,7 +98,8 @@ class _SurveyPageState extends State<SurveyPage> {
                                     ),
                                   );
                                 })
-                            : IconButton(
+                            : //edit
+                            IconButton(
                                 iconSize: 25,
                                 icon: Icon(
                                   Icons.edit,
@@ -174,7 +177,8 @@ class _SurveyPageState extends State<SurveyPage> {
                                 },
                               ),
                         //upload icon
-                        surveydata.isdrafted == 2
+                        ((surveydata.isdrafted == 2) ||
+                                (surveydata.isdrafted == 3))
                             ? SizedBox()
                             : IconButton(
                                 iconSize: 25,
@@ -328,6 +332,9 @@ class _SurveyPageState extends State<SurveyPage> {
       case 2: //Synced
         result = setapptext(key: 'key_synced');
         break;
+      case 3: //exist
+        result = setapptext(key: 'key_duplicate');
+        break;
       default:
         result = "";
     }
@@ -345,6 +352,9 @@ class _SurveyPageState extends State<SurveyPage> {
         break;
       case 2: //Synced
         result = Colors.lightBlue;
+        break;
+      case 3: //exist
+        result = Colors.redAccent;
         break;
     }
     return result;

@@ -313,5 +313,6 @@
     "key_use_type_doc": "نوعیت استفاده در سند ",
     "key_municipality": "ښاروالی",
     "key_nahia":"ناحیه",
-    "key_parcel":"پارسل"
+    "key_parcel":"پارسل",
+    "key_duplicate":"Duplicate"
 }

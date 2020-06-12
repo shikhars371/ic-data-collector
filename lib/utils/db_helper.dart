@@ -40,8 +40,8 @@ class DBHelper with ChangeNotifier {
 
   initDatabase() async {
     io.Directory documentDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentDirectory.path, 'occollector.db');
-    var db = await openDatabase(path, version: 3, onCreate: _onCreate);
+    String path = join(documentDirectory.path, 'ocdatacollector.db');
+    var db = await openDatabase(path, version: 4, onCreate: _onCreate);
     return db;
   }
 
@@ -151,7 +151,7 @@ class DBHelper with ChangeNotifier {
         fifth_partner_email TEXT,fifth_partner_image TEXT,fifth_partner_machinegun_no TEXT,fifth_partner_cover_note TEXT,
         fifth_partner_note_page TEXT,fifth_partner_reg_no TEXT,fifth_partner_phote_note1 TEXT,
         fifth_partner_photo_tips1 TEXT,fifth_partner_photo_tips2 TEXT,formval INTEGER,editmode INTEGER,
-        isdrafted INTEGER DEFAULT 0,boundaryinfonote TEXT,
+        isdrafted INTEGER DEFAULT 0,isrework INTEGER DEFAULT 0,boundaryinfonote TEXT,
         isreldocphoto1 INTEGER DEFAULT 0,
         isreldocphoto2 INTEGER DEFAULT 0,
         isreldocphoto3 INTEGER DEFAULT 0,
@@ -408,11 +408,11 @@ class DBHelper with ChangeNotifier {
         fifth_partner_name,fifth_partner_surname,fifth_partner_boy,fifth_partner_father,fifth_partner_gender,fifth_partner_phone,
         fifth_partner_email,fifth_partner_image,fifth_partner_machinegun_no,fifth_partner_cover_note,
         fifth_partner_note_page,fifth_partner_reg_no,fifth_partner_phote_note1,
-        fifth_partner_photo_tips1,fifth_partner_photo_tips2,formval,editmode,boundaryinfonote)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
+        fifth_partner_photo_tips1,fifth_partner_photo_tips2,formval,editmode,boundaryinfonote,isrework)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
         ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
         ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
         ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
-        ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
       ''';
       List<dynamic> params = [
         data.taskid,
@@ -606,7 +606,8 @@ class DBHelper with ChangeNotifier {
         data.fifth_partner_photo_tips2,
         data.formval,
         data.editmode,
-        data.boundaryinfonote
+        data.boundaryinfonote,
+        data.isrework == null ? 0 : data.isrework
       ];
       bool check = await ifpropertyexist(localkey: data.local_property_key);
       if (!check) {
@@ -614,7 +615,6 @@ class DBHelper with ChangeNotifier {
       }
     } catch (error, stackTrace) {
       setState(AppState.Idle);
-
       Catcher.reportCheckedError(error, stackTrace);
     }
     setState(AppState.Idle);
@@ -1349,7 +1349,7 @@ class DBHelper with ChangeNotifier {
                   propertyid: item.propertyid, taskid: item.sid);
             } else {
               await dbClient.rawQuery(
-                  'UPDATE propertysurvey set isdrafted=0 where local_property_key = ?',
+                  'UPDATE propertysurvey set isdrafted=0,isrework=1 where local_property_key = ?',
                   [
                     item.province +
                         item.municipality +
