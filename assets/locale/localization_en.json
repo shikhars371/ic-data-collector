@@ -303,7 +303,7 @@
     "key_Mirbacha_Kot": "Mirbacha Kot",
     "key_Spinboldak": "Spinboldak",
     "key_Engile": "Engile",
-    "key_only_email": "Email",
+    "key_only_email": "Login ID",
     "key_notify_no_sync": "Please check you have some Pending survey to sync from last two days.",
     "key_limit_four": "*Value should be of 4 digit",
     "key_home": "HomePage",
@@ -314,5 +314,6 @@
     "key_municipality": "Municipality",
     "key_nahia": "Nahia",
     "key_parcel": "Parcel",
-    "key_duplicate": "Duplicate"
+    "key_duplicate": "Duplicate",
+    "key_surveyor_list":"Surveyor List"
 }

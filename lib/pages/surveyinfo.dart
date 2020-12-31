@@ -11,15 +11,30 @@ import '../widgets/appformcards.dart';
 import '../models/surveyAssignment.dart';
 
 class SurveyInfoPage extends StatefulWidget {
-  SurveyInfoPage({this.localdata, this.localsurveykey, this.surveyAssignment});
+  SurveyInfoPage(
+      {this.localdata,
+      this.localsurveykey,
+      this.surveyAssignment,
+      this.surveyDetails,
+      this.surveyList});
   final LocalPropertySurvey localdata;
   final String localsurveykey;
   final SurveyAssignment surveyAssignment;
+  final surveyDetails;
+  List surveyList;
   @override
-  _SurveyInfoPageState createState() => _SurveyInfoPageState();
+  _SurveyInfoPageState createState() =>
+      _SurveyInfoPageState(surveyDetails, surveyList);
 }
 
 class _SurveyInfoPageState extends State<SurveyInfoPage> {
+  _SurveyInfoPageState(this.surveyDetails, this.surveyList);
+  final surveyDetails;
+  List surveyList;
+  String defaultSurveyId1;
+  String currentSurveyId;
+  String currentSurveyName;
+  bool display1 = true;
   Widget wrapContaint({String titel, String subtitel}) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -84,8 +99,7 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
             localdata.editmode = 1;
           }
           if (widget.surveyAssignment != null) {
-            localdata.first_surveyor_name =
-                widget.surveyAssignment.surveyoronename;
+            localdata.first_surveyor_name = surveyDetails.first_name;
             localdata.senond_surveyor_name =
                 widget.surveyAssignment.surveyortwoname;
             localdata.technical_support_name =
@@ -236,6 +250,13 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
     _firstsurveyor = new FocusNode();
     _secondsurveyor = new FocusNode();
     _technicalsupport = new FocusNode();
+    localdata.taskid = surveyDetails["_id"];
+
+  
+    print(
+        "current survery details ====== ${currentSurveyId},${currentSurveyName}");
+    print("survery list ====== ${surveyList}");
+    defaultSurveyId1 = '';
     if (widget.localdata != null) {
       localdata = widget.localdata;
     }
@@ -265,6 +286,7 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
 
   @override
   Widget build(BuildContext context) {
+    print("++++++++++++++++++++${surveyDetails["first_name"]}");
     if (!(widget.localsurveykey?.isEmpty ?? true)) {
       localdata = Provider.of<DBHelper>(context).singlepropertysurveys;
       localdata.editmode = 1;
@@ -340,7 +362,8 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                                     ? ""
                                                     : localdata.block),
                                         wrapContaint(
-                                            titel: setapptext(key: 'key_parcel'),
+                                            titel:
+                                                setapptext(key: 'key_parcel'),
                                             subtitel: localdata
                                                         .part_number?.isEmpty ??
                                                     true
@@ -490,9 +513,10 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                   //     ),
                                   //   )
                                   : SizedBox(),
-                              formcardtextfield(
+                              formcardtextfield1(
                                   enable: false,
                                   fieldrequired: true,
+                                  surveyList: surveyList,
                                   headerlablekey:
                                       setapptext(key: 'key_first_surveyor'),
                                   radiovalue:
@@ -510,10 +534,10 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                         .requestFocus(_secondsurveyor);
                                   },
                                   initvalue:
-                                      localdata.first_surveyor_name?.isEmpty ??
+                                      surveyDetails["first_name"]?.isEmpty ??
                                               true
                                           ? ""
-                                          : localdata.first_surveyor_name,
+                                          : surveyDetails["first_name"],
                                   validator: (value) {
                                     if (value.trim().isEmpty) {
                                       return setapptext(
@@ -521,17 +545,27 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                     }
                                   },
                                   onSaved: (value) {
+                                    print("+++++++++++++++++++++3333++$value");
                                     localdata.first_surveyor_name =
                                         value.trim();
+                                        setState(() {
+                                      // display1 = false;
+                                    });
                                   },
                                   onChanged: (value) {
+                                    print("+++++++++22+++++++$value");
                                     localdata.first_surveyor_name =
                                         value.trim();
-                                    setState(() {});
+                                    setState(() {
+                                      // display1 = false;
+                                    });
+                                    print(
+                                        "+++++++++++++++++++++3333++,${localdata.first_surveyor_name}");
                                   }),
-                              formcardtextfield(
+                              formcardtextfield1(
                                   enable: false,
                                   fieldrequired: true,
+                                  surveyList: surveyList,
                                   headerlablekey:
                                       setapptext(key: 'key_second_surveyor'),
                                   radiovalue:
@@ -568,9 +602,10 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                         value.trim();
                                     setState(() {});
                                   }),
-                              formcardtextfield(
+                              formcardtextfield1(
                                   enable: false,
                                   fieldrequired: true,
+                                  surveyList: surveyList,
                                   headerlablekey: setapptext(
                                       key: 'key_name_technical_support'),
                                   radiovalue: localdata.technical_support_name

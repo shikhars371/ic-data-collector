@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:kapp/pages/surveyor_list.dart';
 
 import './route_paths.dart' as routers;
 import '../pages/login.dart';
 import '../pages/surveylist.dart';
-import '../pages/task.dart';
+// import '../pages/task.dart';
 import '../pages/language.dart';
 import '../pages/guide.dart';
 import '../pages/help.dart';
@@ -23,7 +24,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
                 surveyassignment: settings.arguments,
               ));
     case routers.TaskRoute:
-      return MaterialPageRoute(builder: (context) => TaskPage());
+      return MaterialPageRoute(builder: (context) => SurveyoerList());
     case routers.LanguageRoute:
       return MaterialPageRoute(builder: (context) => LanguagePage());
     case routers.GuideRoute:

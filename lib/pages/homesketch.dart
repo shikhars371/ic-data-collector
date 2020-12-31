@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kapp/pages/surveyor_list.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
@@ -314,6 +315,8 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                   ? SizedBox()
                                   : GestureDetector(
                                       onTap: () async {
+                                        print(
+                                            "final data submit ===============${localdata.taskid},${localdata.senond_surveyor_name}");
                                         _formkey.currentState.save();
                                         localdata.isdrafted = 1;
                                         localdata.surveyenddate =
@@ -331,7 +334,7 @@ class _HomeSketchPageState extends State<HomeSketchPage> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (BuildContext context) =>
-                                                TaskPage(),
+                                                SurveyoerList(),
                                           ),
                                         );
                                       },

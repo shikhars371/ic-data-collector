@@ -303,7 +303,7 @@
     "key_Mirbacha_Kot": "میر بچه کوت",
     "key_Spinboldak": "سپین بولدک",
     "key_Engile": "انجیل",
-    "key_only_email": "ایمیل",
+    "key_only_email": "Login ID",
     "key_notify_no_sync": "Please check you have some Pending survey to sync from last two days.",
     "key_limit_four": "*Value should be of 4 digit",
     "key_home": "صفحه نخست",
@@ -314,5 +314,7 @@
     "key_municipality": "ښاروالی",
     "key_nahia":"ناحیه",
     "key_parcel":"پارسل",
-    "key_duplicate":"Duplicate"
+    "key_duplicate":"Duplicate",
+    "key_surveyor_list":"Surveyor List"
+
 }

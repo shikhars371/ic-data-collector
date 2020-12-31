@@ -170,6 +170,7 @@ Widget formcardtextfield(
                 inputFormatters: inputFormatters,
                 maxLength: maxLength,
                 maxLengthEnforced: true,
+
                 ///WhitelistingTextInputFormatter.digitsOnly
               ),
             )
@@ -268,6 +269,474 @@ Widget formCardDropdown(
                 ),
               ),
             ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+Widget formcardtextfield1(
+    {TextInputType keyboardtype,
+    final item,
+    String initvalue,
+    String headerlablekey,
+    CheckColor radiovalue,
+    String hinttextkey,
+    Function(String) onSaved,
+    Function(String) validator,
+    Function(String) onChanged,
+    FocusNode fieldfocus,
+    TextInputAction textInputAction,
+    void Function(String) onFieldSubmitted,
+    Widget suffix,
+    bool enable,
+    int maxLength,
+    List<TextInputFormatter> inputFormatters,
+    List surveyList,
+    String value,
+    bool fieldrequired = false}) {
+  return Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+    ),
+    padding: EdgeInsets.all(10),
+    child: Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Row(
+              textDirection: locator<LanguageService>().currentlanguage == 0
+                  ? TextDirection.ltr
+                  : TextDirection.rtl,
+              children: <Widget>[
+                completedcheckbox(isCompleted: radiovalue),
+                fieldrequired
+                    ? Text(
+                        '*',
+                        style: TextStyle(color: Colors.red, fontSize: 18),
+                      )
+                    : SizedBox(),
+                Flexible(
+                  child: Container(
+                    child: Text(
+                      headerlablekey,
+                      overflow: TextOverflow.visible,
+                      softWrap: true,
+                      style: TextStyle(),
+                      textDirection:
+                          locator<LanguageService>().currentlanguage == 0
+                              ? TextDirection.ltr
+                              : TextDirection.rtl,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+              child: DropdownButtonFormField<String>(
+                hint: new Text(hinttextkey),
+                items: surveyList.map((item) {
+                  // String fullName =
+                  //     "${item["first_name"]} ${item["first_name"]}";
+                  return DropdownMenuItem<String>(
+                    value: item["_id"],
+                    child: Container(
+                      alignment: locator<LanguageService>().currentlanguage == 0
+                          ? Alignment.centerLeft
+                          : Alignment.centerRight,
+                      child: new Text(
+                          "${item["first_name"]} ${item["last_name"]}"),
+                    ),
+                  );
+                }).toList(),
+                // validator: validate,
+                onChanged: onChanged,
+                onSaved: onSaved,
+                value: value,
+              ),
+              // child: TextFormField(
+              //   autofocus: false,
+              //   textDirection: locator<LanguageService>().currentlanguage == 0
+              //       ? TextDirection.ltr
+              //       : TextDirection.rtl,
+              //   enabled: enable,
+              //   keyboardType: keyboardtype,
+              //   initialValue: initvalue?.isEmpty ?? true ? "" : initvalue,
+              //   decoration: InputDecoration(
+              //     errorStyle: TextStyle(color: Colors.redAccent),
+              //     suffixIcon: suffix,
+              //     hintText: hinttextkey?.isEmpty ?? true ? "" : hinttextkey,
+              //   ),
+              //   onSaved: onSaved,
+              //   validator: validator,
+              //   onChanged: onChanged,
+              //   onFieldSubmitted: onFieldSubmitted,
+              //   inputFormatters: inputFormatters,
+              //   maxLength: maxLength,
+              //   maxLengthEnforced: true,
+              //   ///WhitelistingTextInputFormatter.digitsOnly
+              // ),
+            )
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+Widget formcardtextfield3(
+    {TextInputType keyboardtype,
+    String initvalue,
+    String headerlablekey,
+    CheckColor radiovalue,
+    String hinttextkey,
+    Function(String) onSaved,
+    Function(String) validator,
+    Function(String) onChanged,
+    FocusNode fieldfocus,
+    TextInputAction textInputAction,
+    void Function(String) onFieldSubmitted,
+    Widget suffix,
+    bool enable,
+    int maxLength,
+    List<TextInputFormatter> inputFormatters,
+    List surveyList,
+    String value,
+    bool fieldrequired = false}) {
+  print("drop-down ====gozar ========== $surveyList");
+  return Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+    ),
+    padding: EdgeInsets.all(10),
+    child: Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Row(
+              textDirection: locator<LanguageService>().currentlanguage == 0
+                  ? TextDirection.ltr
+                  : TextDirection.rtl,
+              children: <Widget>[
+                completedcheckbox(isCompleted: radiovalue),
+                fieldrequired
+                    ? Text(
+                        '*',
+                        style: TextStyle(color: Colors.red, fontSize: 18),
+                      )
+                    : SizedBox(),
+                Flexible(
+                  child: Container(
+                    child: Text(
+                      headerlablekey,
+                      overflow: TextOverflow.visible,
+                      softWrap: true,
+                      style: TextStyle(),
+                      textDirection:
+                          locator<LanguageService>().currentlanguage == 0
+                              ? TextDirection.ltr
+                              : TextDirection.rtl,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+              child: DropdownButtonFormField<String>(
+                hint: new Text(hinttextkey),
+                items: surveyList.map((item) {
+                  return DropdownMenuItem<String>(
+                    value: item["_id"],
+                    child: Container(
+                      alignment: locator<LanguageService>().currentlanguage == 0
+                          ? Alignment.centerLeft
+                          : Alignment.centerRight,
+                      child: Text(
+                        item["name"],
+                      ),
+                    ),
+                  );
+                }).toList(),
+                // validator: validate,
+                onChanged: onChanged,
+                onSaved: onSaved,
+                value: value,
+              ),
+              // child: TextFormField(
+              //   autofocus: false,
+              //   textDirection: locator<LanguageService>().currentlanguage == 0
+              //       ? TextDirection.ltr
+              //       : TextDirection.rtl,
+              //   enabled: enable,
+              //   keyboardType: keyboardtype,
+              //   initialValue: initvalue?.isEmpty ?? true ? "" : initvalue,
+              //   decoration: InputDecoration(
+              //     errorStyle: TextStyle(color: Colors.redAccent),
+              //     suffixIcon: suffix,
+              //     hintText: hinttextkey?.isEmpty ?? true ? "" : hinttextkey,
+              //   ),
+              //   onSaved: onSaved,
+              //   validator: validator,
+              //   onChanged: onChanged,
+              //   onFieldSubmitted: onFieldSubmitted,
+              //   inputFormatters: inputFormatters,
+              //   maxLength: maxLength,
+              //   maxLengthEnforced: true,
+              //   ///WhitelistingTextInputFormatter.digitsOnly
+              // ),
+            )
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+Widget formcardtextfield4(
+    {TextInputType keyboardtype,
+    String initvalue,
+    String headerlablekey,
+    CheckColor radiovalue,
+    String hinttextkey,
+    Function(String) onSaved,
+    Function(String) validator,
+    Function(String) onChanged,
+    FocusNode fieldfocus,
+    TextInputAction textInputAction,
+    void Function(String) onFieldSubmitted,
+    Widget suffix,
+    bool enable,
+    int maxLength,
+    List<TextInputFormatter> inputFormatters,
+    List surveyList,
+    String value,
+    bool fieldrequired = false}) {
+  print("drop-down ====gozar ========== $surveyList");
+  return Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+    ),
+    padding: EdgeInsets.all(10),
+    child: Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Row(
+              textDirection: locator<LanguageService>().currentlanguage == 0
+                  ? TextDirection.ltr
+                  : TextDirection.rtl,
+              children: <Widget>[
+                completedcheckbox(isCompleted: radiovalue),
+                fieldrequired
+                    ? Text(
+                        '*',
+                        style: TextStyle(color: Colors.red, fontSize: 18),
+                      )
+                    : SizedBox(),
+                Flexible(
+                  child: Container(
+                    child: Text(
+                      headerlablekey,
+                      overflow: TextOverflow.visible,
+                      softWrap: true,
+                      style: TextStyle(),
+                      textDirection:
+                          locator<LanguageService>().currentlanguage == 0
+                              ? TextDirection.ltr
+                              : TextDirection.rtl,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+              child: DropdownButtonFormField<String>(
+                hint: new Text(hinttextkey),
+                items: surveyList.map((item) {
+                  return DropdownMenuItem<String>(
+                    value: item["name"],
+                    child: Container(
+                      alignment: locator<LanguageService>().currentlanguage == 0
+                          ? Alignment.centerLeft
+                          : Alignment.centerRight,
+                      child: Text(
+                        item["name"],
+                      ),
+                    ),
+                  );
+                }).toList(),
+                // validator: validate,
+                onChanged: onChanged,
+                onSaved: onSaved,
+                value: value,
+              ),
+              // child: TextFormField(
+              //   autofocus: false,
+              //   textDirection: locator<LanguageService>().currentlanguage == 0
+              //       ? TextDirection.ltr
+              //       : TextDirection.rtl,
+              //   enabled: enable,
+              //   keyboardType: keyboardtype,
+              //   initialValue: initvalue?.isEmpty ?? true ? "" : initvalue,
+              //   decoration: InputDecoration(
+              //     errorStyle: TextStyle(color: Colors.redAccent),
+              //     suffixIcon: suffix,
+              //     hintText: hinttextkey?.isEmpty ?? true ? "" : hinttextkey,
+              //   ),
+              //   onSaved: onSaved,
+              //   validator: validator,
+              //   onChanged: onChanged,
+              //   onFieldSubmitted: onFieldSubmitted,
+              //   inputFormatters: inputFormatters,
+              //   maxLength: maxLength,
+              //   maxLengthEnforced: true,
+              //   ///WhitelistingTextInputFormatter.digitsOnly
+              // ),
+            )
+          ],
+        ),
+      ),
+    ),
+  );
+}
+Widget formcardtextfield2(
+    {TextInputType keyboardtype,
+    String initvalue,
+    String headerlablekey,
+    CheckColor radiovalue,
+    String hinttextkey,
+    Function(String) onSaved,
+    Function(String) validator,
+    Function(String) onChanged,
+    FocusNode fieldfocus,
+    TextInputAction textInputAction,
+    void Function(String) onFieldSubmitted,
+    Widget suffix,
+    bool enable,
+    int maxLength,
+    List<TextInputFormatter> inputFormatters,
+    List surveyList,
+    String value,
+    bool fieldrequired = false}) {
+  print("nahialist ========= $surveyList");
+  return Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+    ),
+    padding: EdgeInsets.all(10),
+    child: Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Color.fromRGBO(176, 174, 171, 1), width: 1),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Row(
+              textDirection: locator<LanguageService>().currentlanguage == 0
+                  ? TextDirection.ltr
+                  : TextDirection.rtl,
+              children: <Widget>[
+                completedcheckbox(isCompleted: radiovalue),
+                fieldrequired
+                    ? Text(
+                        '*',
+                        style: TextStyle(color: Colors.red, fontSize: 18),
+                      )
+                    : SizedBox(),
+                Flexible(
+                  child: Container(
+                    child: Text(
+                      headerlablekey,
+                      overflow: TextOverflow.visible,
+                      softWrap: true,
+                      style: TextStyle(),
+                      textDirection:
+                          locator<LanguageService>().currentlanguage == 0
+                              ? TextDirection.ltr
+                              : TextDirection.rtl,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+              child: DropdownButtonFormField<String>(
+                hint: new Text(hinttextkey),
+                items: surveyList.map((item) {
+                  return DropdownMenuItem<String>(
+                    value: item,
+                    child: Container(
+                      alignment: locator<LanguageService>().currentlanguage == 0
+                          ? Alignment.centerLeft
+                          : Alignment.centerRight,
+                      child: Text(
+                        item,
+                      ),
+                    ),
+                  );
+                }).toList(),
+                // validator: validate,
+                onChanged: onChanged,
+                onSaved: onSaved,
+                value: value,
+              ),
+              // child: TextFormField(
+              //   autofocus: false,
+              //   textDirection: locator<LanguageService>().currentlanguage == 0
+              //       ? TextDirection.ltr
+              //       : TextDirection.rtl,
+              //   enabled: enable,
+              //   keyboardType: keyboardtype,
+              //   initialValue: initvalue?.isEmpty ?? true ? "" : initvalue,
+              //   decoration: InputDecoration(
+              //     errorStyle: TextStyle(color: Colors.redAccent),
+              //     suffixIcon: suffix,
+              //     hintText: hinttextkey?.isEmpty ?? true ? "" : hinttextkey,
+              //   ),
+              //   onSaved: onSaved,
+              //   validator: validator,
+              //   onChanged: onChanged,
+              //   onFieldSubmitted: onFieldSubmitted,
+              //   inputFormatters: inputFormatters,
+              //   maxLength: maxLength,
+              //   maxLengthEnforced: true,
+              //   ///WhitelistingTextInputFormatter.digitsOnly
+              // ),
+            )
           ],
         ),
       ),

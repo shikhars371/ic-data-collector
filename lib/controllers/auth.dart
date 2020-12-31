@@ -14,7 +14,6 @@ import '../utils/locator.dart';
 import '../utils/appstate.dart';
 import '../utils/db_helper.dart';
 
-
 class AuthModel with ChangeNotifier {
   final NavigationService _navigationService = locator<NavigationService>();
   AppState _state = AppState.Idle;
@@ -35,6 +34,11 @@ class AuthModel with ChangeNotifier {
         "password": user.password.trim()
       });
       if (responce.statusCode == 201) {
+        var preferences = await SharedPreferences.getInstance();
+        var datalogin = json.decode(responce.body);
+        preferences.setString("new_role_id", datalogin["user"]["role_id"][0]);
+
+        print("====loginResponse =========,${datalogin["user"]["role_id"][0]}");
         if (responce.body.isNotEmpty) {
           if (json
                   .decode(responce.body)['user']['mobile_access']

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kapp/pages/surveyor_list.dart';
 import 'package:provider/provider.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,14 +15,19 @@ import '../controllers/appsync.dart';
 import './task.dart';
 
 class SurveyPage extends StatefulWidget {
-  SurveyPage({this.surveyassignment});
+  SurveyPage({this.surveyassignment, this.surveyDetails, this.surveyList});
 
   final SurveyAssignment surveyassignment;
+  final surveyDetails;
+  List surveyList;
   @override
-  _SurveyPageState createState() => _SurveyPageState();
+  _SurveyPageState createState() => _SurveyPageState(surveyDetails, surveyList);
 }
 
 class _SurveyPageState extends State<SurveyPage> {
+  _SurveyPageState(this.surveyDetails, this.surveyList);
+  final surveyDetails;
+  List surveyList;
   String setapptext({String key}) {
     return AppTranslations.of(context).text(key);
   }
@@ -361,9 +367,8 @@ class _SurveyPageState extends State<SurveyPage> {
   }
 
   void floatingactionbuttonpresed() async {
-    var result = await DBHelper().currentsurveycount(
-        assignedcount: widget.surveyassignment.property_to_survey,
-        taskid: widget.surveyassignment.id);
+    var result = await DBHelper()
+        .currentsurveycount(assignedcount: 1000, taskid: surveyDetails["_id"]);
     if (result) {
       showDialog(
           context: context,
@@ -392,7 +397,8 @@ class _SurveyPageState extends State<SurveyPage> {
         context,
         MaterialPageRoute(
           builder: (BuildContext context) => SurveyInfoPage(
-            surveyAssignment: widget.surveyassignment,
+            surveyDetails: surveyDetails,
+            surveyList: surveyList,
           ),
         ),
       );
@@ -429,8 +435,7 @@ class _SurveyPageState extends State<SurveyPage> {
         ],
       ),
       body: FutureBuilder(
-        future:
-            DBHelper().getpropertysurveys(taskid: widget.surveyassignment.id),
+        future: DBHelper().getpropertysurveys(taskid: surveyDetails["_id"]),
         builder:
             (context, AsyncSnapshot<List<LocalPropertySurvey>> surveydata) {
           if (surveydata.connectionState == ConnectionState.done &&
@@ -1146,8 +1151,9 @@ class _UploadDataState extends State<UploadData> {
                                   msgvalue =
                                       setapptext(key: 'key_validate_user_data');
                                 });
-                                var r = await AppSync().validateUserData(
-                                    taskid: widget.propertydata.taskid);
+                                // var r = await AppSync().validateUserData(
+                                //     taskid: widget.propertydata.taskid);
+                                var r = true;
                                 if (r) {
                                   setState(() {
                                     msgvalue =
@@ -1159,8 +1165,8 @@ class _UploadDataState extends State<UploadData> {
                                   if (result) {
                                     sp.setString(
                                         "lastsync", DateTime.now().toString());
-                                    await DBHelper().updateTaskSyncStatus(
-                                        taskid: widget.propertydata.taskid);
+                                    // await DBHelper().updateTaskSyncStatus(
+                                    //     taskid: widget.propertydata.taskid);
                                     await BackGroundSync().startSync();
                                     setState(() {
                                       msgvalue =

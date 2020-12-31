@@ -975,7 +975,9 @@ class DBHelper with ChangeNotifier {
         localkey
       ];
       result = await dbClient.rawUpdate(sqlquery, params);
+      print("error res============= $result");
     } catch (error, stackTrace) {
+      print("error w============= $error");
       Catcher.reportCheckedError(error, stackTrace);
     }
     return result;
