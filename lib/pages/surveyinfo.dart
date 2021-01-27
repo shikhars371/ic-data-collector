@@ -548,6 +548,8 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                     print("+++++++++++++++++++++3333++$value");
                                     localdata.first_surveyor_name =
                                         value.trim();
+                                    localdata.taskid =
+                                        value.trim();
                                         setState(() {
                                       // display1 = false;
                                     });
@@ -555,6 +557,8 @@ class _SurveyInfoPageState extends State<SurveyInfoPage> {
                                   onChanged: (value) {
                                     print("+++++++++22+++++++$value");
                                     localdata.first_surveyor_name =
+                                        value.trim();
+                                    localdata.taskid =
                                         value.trim();
                                     setState(() {
                                       // display1 = false;

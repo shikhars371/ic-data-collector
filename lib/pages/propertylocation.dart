@@ -31,16 +31,27 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
   var _formkey = GlobalKey<FormState>();
 
   void _nahiaListAPI(String id) async {
+
     final jobsListAPIUrl =
-        'http://13.234.225.179:3002/mNahiasBySurveyorId?id=${id}';
+        'https://apisapi.afghanhabitat.org/mNahiasBySurveyorId?id=${localdata.first_surveyor_name}';
     final response = await http.get(jobsListAPIUrl);
 
     if (response.statusCode == 200) {
       final data1 = json.decode(response.body);
-      setState(() {
-        nahiaList.add(data1["data"].toString());
-        _prograssbar = false;
-      });
+
+       if(data1["data"] is String){
+         setState(() {
+           nahiaList.add(data1["data"].toString());
+           _prograssbar = false;
+         }); 
+       }else{
+         setState(() {
+           nahiaList=data1["data"];;
+           _prograssbar = false;
+         });
+       }
+      print("nahia ========== ${data1["data"]},${localdata.taskid},${localdata.first_surveyor_name}");
+      
       if (nahiaList.length != 0) {}
     } else {
       throw Exception('Failed to load jobs from API');
@@ -49,7 +60,7 @@ class _PropertyLocationPageState extends State<PropertyLocationPage> {
 
   _gozarListAPI(String nahiaId) async {
     final jobsListAPIUrl =
-        'http://13.234.225.179:3002/mGozar?nahia_id=${nahiaId}';
+        'https://apisapi.afghanhabitat.org/mGozar?nahia_id=${nahiaId}';
     final response = await http.get(jobsListAPIUrl);
     if (response.statusCode == 200) {
       final data1 = json.decode(response.body);
